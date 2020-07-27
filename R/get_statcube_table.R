@@ -1,5 +1,5 @@
 lgr01 <- function() {
-  fs::path_package(packageName(), "LGR01.json")
+  fs::path_package(utils::packageName(), "LGR01.json")
 }
 
 base_url <- "http://sdbext:8082/statistik.at/ext/statcube/rest/v1/"
