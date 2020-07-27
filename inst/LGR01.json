@@ -1,0 +1,15 @@
+{
+  "database" : "str:database:delgr001",
+  "measures" : [ "str:statfn:delgr001:F-DATA:F-HERSTPR:SUM" ],
+  "recodes" : {
+    "str:field:delgr001:F-DATA:C-A10-0" : {
+      "map" : [ [ "str:value:delgr001:F-DATA:C-A10-0:C-A10-0:A10-2015" ], [ "str:value:delgr001:F-DATA:C-A10-0:C-A10-0:A10-2016" ], [ "str:value:delgr001:F-DATA:C-A10-0:C-A10-0:A10-2017" ], [ "str:value:delgr001:F-DATA:C-A10-0:C-A10-0:A10-2018" ], [ "str:value:delgr001:F-DATA:C-A10-0:C-A10-0:A10-2019" ] ],
+      "total" : false
+    },
+    "str:field:delgr001:F-DATA:C-LGR001-0" : {
+      "map" : [ [ "str:value:delgr001:F-DATA:C-LGR001-0:C-LGR001-0:LGR001-18000" ] ],
+      "total" : false
+    }
+  },
+  "dimensions" : [ [ "str:field:delgr001:F-DATA:C-A10-0" ], [ "str:field:delgr001:F-DATA:C-LGR001-0" ] ]
+}
