@@ -15,6 +15,7 @@ Eine Sammlung von links, um relevante STATcube Seiten anzuzeigen
 \examples{
 # Zeige Startseite
 statcube_browse()
+
 # Zeige "Einstellungen"
 statcube_browse_preferences()
 }

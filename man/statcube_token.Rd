@@ -16,17 +16,33 @@ statcube_token_get()
 statcube_token_prompt()
 }
 \arguments{
-\item{token}{Ein API Token, welcher via
-\code{\link[=statcube_browse_preferences]{statcube_browse_preferences()}} angezeigt werden kann.}
+\item{token}{(\code{string}) Ein API Token. Ein persönlicher Token kann via
+\code{\link[=statcube_browse_preferences]{statcube_browse_preferences()}} angezeigt werden.}
 }
 \value{
-Es wird der API Token (invisible) zurückgegeben
+Alle vier Funktionen geben den Token (invisible) zurück
 }
 \description{
 Diese Funktion erlaubt es, einen STATcube API Token in den authSTAT vault zu
 speichern bzw den Token aus dem Vault zu laden.
 }
 \details{
-\code{statcube_token()} verhält sich wie \code{statcube_token_get()}, führt aber
-\code{statcube_token_prompt()} aus, falls der Token fehlt.
+\itemize{
+\item \code{statcube_token()} führt \code{statcube_token_get()} oder
+\code{statcube_token_prompt()} aus, je nachdem, ob der Token verfügbar ist.
+}
+
+\itemize{
+\item \code{statcube_token_set()} kann verwendet werden um den Token als Parameter
+(\code{string}) zu übergeben
+}
+
+\itemize{
+\item \code{statcube_token_get()} gibt den Token zurück, falls er existiert. Sonst
+wird ein Fehler geworfen.
+}
+
+\itemize{
+\item \code{statcube_token_prompt()} fragt den Token via \code{\link[=readline]{readline()}} ab
+}
 }

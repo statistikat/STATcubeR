@@ -5,12 +5,11 @@ secret_name <- "STATcube_token"
 #' Diese Funktion erlaubt es, einen STATcube API Token in den authSTAT vault zu
 #' speichern bzw den Token aus dem Vault zu laden.
 #'
-#' `statcube_token()` verhält sich wie `statcube_token_get()`, führt aber
-#' `statcube_token_prompt()` aus, falls der Token fehlt.
-#'
-#' @param token Ein API Token, welcher via
-#'   [statcube_browse_preferences()] angezeigt werden kann.
-#' @return Es wird der API Token (invisible) zurückgegeben
+#' * `statcube_token()` führt `statcube_token_get()` oder
+#'   `statcube_token_prompt()` aus, je nachdem, ob der Token verfügbar ist.
+#' @param token (`string`) Ein API Token. Ein persönlicher Token kann via
+#'   [statcube_browse_preferences()] angezeigt werden.
+#' @return Alle vier Funktionen geben den Token (invisible) zurück
 #' @export
 statcube_token <- function() {
   if (!statcube_token_exists()) {
@@ -32,6 +31,9 @@ statcube_token_valid <- function(token = statcube_token()) {
 }
 
 #' @rdname statcube_token
+#' @details
+#' * `statcube_token_set()` kann verwendet werden um den Token als Parameter
+#'   (`string`) zu übergeben
 #' @export
 statcube_token_set <- function(token) {
   if (!statcube_token_valid(token))
@@ -42,12 +44,17 @@ statcube_token_set <- function(token) {
 }
 
 #' @rdname statcube_token
+#' @details
+#' * `statcube_token_get()` gibt den Token zurück, falls er existiert. Sonst
+#'   wird ein Fehler geworfen.
 #' @export
 statcube_token_get <- function() {
   authSTAT::auth_get_secret(secret_name)
 }
 
 #' @rdname statcube_token
+#' @details
+#' * `statcube_token_prompt()` fragt den Token via [readline()] ab
 #' @export
 statcube_token_prompt <- function() {
   token <- readline("Geben Sie ihren API Token ein: \n")

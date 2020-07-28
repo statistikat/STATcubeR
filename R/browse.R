@@ -5,6 +5,7 @@
 #' @examples
 #' # Zeige Startseite
 #' statcube_browse()
+#'
 #' @export
 statcube_browse <- function() {
   utils::browseURL("http://sdbext:8081/statistik.at/ext/statcube/home")
