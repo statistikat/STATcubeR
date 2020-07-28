@@ -14,35 +14,37 @@ Zur Verwendung diese Paketes sind zwei Schritte notwendig
 
 * (einmalig) Hinzufügen des API Keys zum authSTAT-Vault
 * Herunterladen einer API Abfrage von STATcube. (JSON-Format)
-* Absenden der Abfrage über das JSON-File
+* Absenden der Abfrage über den R Server
 
 ### Hinzufügen des API Keys
 
-Rufen Sie die Funktion `api_token()` auf. Wenn noch kein Token hinzugefügt
-wurde wird dieser über ein RStudio-Prompt abgefragt.
+Zum verwenden dieses Pakets muss einmalig ein API-Schlüssel für STATcube
+auf den R Server geladen werden. Rufen Sie die Funktion
+`statcube_browse_preferences()` auf. Nun öffnet sich ein Browserfenster in
+dem der Schlüssel sichtbar ist. Kopieren Sie den Schlüssel in die
+Zwischenablage.
 
 ```r
-library(STATcubeR)
-statcube_token()
+statcube_browse_preferences()
 ```
 
-Alternativ kann der Token auch als Parameter übergeben werden
+Rufen Sie nun die Funktion `statcube_token_prompt()` auf. Der Token wird damit
+über ein RStudio-Prompt abgefragt.
 
 ```r
-statcube_token(new_token)
+statcube_token_prompt()
+#> STATcube Key wurde erfolgreich getestet und im Vault hinterlegt
 ```
-
-Der Token kann über die STATcube GUI unter "Benutzerkonto" abgefragt werden
-
-![](man/figures/get_key.png)
 
 ### Herunterladen der API Abfrage
 
-Laden sie eine "Open Data API Abfrage" über die STATcube GUI herunter.
+Laden sie eine "Open Data API Abfrage" über die STATcube GUI herunter. Erstellen
+Sie hierzu eine STATcube Tabelle und wählen Sie "API Abfrage" als
+Download-Option.
 
 ![](man/figures/download_json.png)
 
-Dabei wird eine json-Datei auf dem Windows-System abgelegt
+Nun wird eine json-Datei auf dem Windows-System abgelegt
 
 ### Importieren in R
 

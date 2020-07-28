@@ -2,13 +2,22 @@
 % Please edit documentation in R/token.R
 \name{statcube_token}
 \alias{statcube_token}
+\alias{statcube_token_set}
+\alias{statcube_token_get}
+\alias{statcube_token_prompt}
 \title{API Token hinzufügen}
 \usage{
-statcube_token(token = NULL)
+statcube_token()
+
+statcube_token_set(token)
+
+statcube_token_get()
+
+statcube_token_prompt()
 }
 \arguments{
-\item{token}{(Optional) Ein API Token, welcher via "Benutzerkonto" einsehbar
-ist.}
+\item{token}{Ein API Token, welcher via
+\code{\link[=statcube_browse_preferences]{statcube_browse_preferences()}} angezeigt werden kann.}
 }
 \value{
 Es wird der API Token (invisible) zurückgegeben
@@ -16,4 +25,8 @@ Es wird der API Token (invisible) zurückgegeben
 \description{
 Diese Funktion erlaubt es, einen STATcube API Token in den authSTAT vault zu
 speichern bzw den Token aus dem Vault zu laden.
+}
+\details{
+\code{statcube_token()} verhält sich wie \code{statcube_token_get()}, führt aber
+\code{statcube_token_prompt()} aus, falls der Token fehlt.
 }

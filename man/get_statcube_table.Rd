@@ -10,8 +10,8 @@ get_statcube_table(file = lgr01(), token = statcube_token())
 \item{file}{Pfad zu einem JSON file, welches über die STATcube GUI
 heruntergeladen wurde (Open Data API Abfrage)}
 
-\item{token}{(Optional) Ein API Token, welcher via "Benutzerkonto" einsehbar
-ist.}
+\item{token}{Ein API Token, welcher via
+\code{\link[=statcube_browse_preferences]{statcube_browse_preferences()}} angezeigt werden kann.}
 }
 \value{
 Ein Objekt der Klasse \code{STATcube_response} welche den Rückgabewert
