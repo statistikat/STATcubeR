@@ -34,7 +34,8 @@ print.STATcube_response <- function(x, ...) {
   content <- httr::content(x$response)
   cat("Objekt der Klasse STATcube_response\n\n")
   cat("Datenbank: \t", content$database$label, "\n")
-  cat("Werte:\t\t", content$measures[[1]]$label, "\n")
-  cat("Abfrage: \n")
-  cat(x$json, sep = "\n")
+  cat("Werte:\t\t", content$measures %>% sapply(function(x) x$label) %>% paste(collapse = ", "), "\n")
+  cat("Dimensionen: \t", content$fields %>% sapply(function(x) x$label) %>% paste(collapse = ", "), "\n")
+  #cat("Abfrage: \n")
+  #cat(x$json, sep = "\n")
 }
