@@ -2,7 +2,7 @@
 #'
 #' Diese Funktion startet einen Upload-Dialog, welcher es erlaubt API Abfragen
 #' im JSON-Format aus dem Windows-System zu Importieren. Die JSON-Datei wird
-#' hohgeladen und über [get_statcube_table()] ausgeführt.
+#' hohgeladen und über [get_statcube_response()] ausgeführt.
 #' @return Ein Objekt der Klasse `STATcube_response`
 #' @examples
 #' \dontrun{
