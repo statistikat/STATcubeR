@@ -12,7 +12,7 @@ Ein Objekt der Klasse \code{STATcube_response}
 \description{
 Diese Funktion startet einen Upload-Dialog, welcher es erlaubt API Abfragen
 im JSON-Format aus dem Windows-System zu Importieren. Die JSON-Datei wird
-hohgeladen und über \code{\link[=get_statcube_response]{get_statcube_response()}} ausgeführt.
+hohgeladen und über \code{\link[=sc_get_response]{sc_get_response()}} ausgeführt.
 }
 \examples{
 \dontrun{

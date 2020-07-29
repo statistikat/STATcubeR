@@ -1,4 +1,4 @@
-get_statcube_info <- function(token = statcube_token()) {
+sc_get_info <- function(token = sc_token()) {
   response <- httr::GET(
     url = fs::path(base_url, "info"),
     config = httr::add_headers(APIKey = token)
@@ -6,8 +6,7 @@ get_statcube_info <- function(token = statcube_token()) {
   response
 }
 
-
-get_statcube_schema <- function(token = statcube_token()) {
+sc_get_schema <- function(token = sc_token()) {
   response <- httr::GET(
     url = fs::path(base_url, "schema"),
     config = httr::add_headers(APIKey = token)
@@ -15,7 +14,7 @@ get_statcube_schema <- function(token = statcube_token()) {
   response
 }
 
-get_statcube_rate_limit <- function(token = statcube_token()) {
+sc_get_rate_limit <- function(token = sc_token()) {
   response <- httr::GET(
     url = fs::path(base_url, "rate_limit_table"),
     config = httr::add_headers(APIKey = token)

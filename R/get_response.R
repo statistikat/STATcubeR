@@ -2,7 +2,7 @@ lgr01 <- function() {
   fs::path_package(utils::packageName(), "LGR01.json")
 }
 
-scr_version <- function() {
+sc_version <- function() {
   toString(utils::packageVersion(utils::packageName()))
 }
 
@@ -15,11 +15,11 @@ base_url <- "http://sdbext:8082/statistik.at/ext/statcube/rest/v1/"
 #'   heruntergeladen wurde (Open Data API Abfrage)
 #' @return Ein Objekt der Klasse `STATcube_response` welche den Rückgabewert
 #'   von [httr::POST()] beinhaltet
-#' @inheritParams statcube_token
+#' @inheritParams sc_token
 #' @examples
-#' lgr_01 <- get_statcube_response()
+#' lgr_01 <- sc_get_response(sc_example("LGR01.json"))
 #' @export
-get_statcube_response <- function(file = lgr01(), token = statcube_token()) {
+sc_get_response <- function(file, token = sc_token()) {
   response <- httr::POST(
     url = fs::path(base_url, "table"),
     body = httr::upload_file(file),
@@ -28,10 +28,17 @@ get_statcube_response <- function(file = lgr01(), token = statcube_token()) {
   x <- list(
     response = response,
     json = readLines(file, warn = FALSE),
-    scr_version = scr_version()
+    scr_version = sc_version()
   )
   class(x) <- "STATcube_response"
   x
+}
+
+#' @export
+#' @param filename Name eines Beispiel-Json files.
+#' @rdname sc_get_response
+sc_example <- function(filename) {
+  fs::path_package(utils::packageName(), "json_examples", filename)
 }
 
 #' @export

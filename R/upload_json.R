@@ -2,7 +2,7 @@
 #'
 #' Diese Funktion startet einen Upload-Dialog, welcher es erlaubt API Abfragen
 #' im JSON-Format aus dem Windows-System zu Importieren. Die JSON-Datei wird
-#' hohgeladen und über [get_statcube_response()] ausgeführt.
+#' hohgeladen und über [sc_get_response()] ausgeführt.
 #' @return Ein Objekt der Klasse `STATcube_response`
 #' @examples
 #' \dontrun{
@@ -19,7 +19,7 @@ upload_json <- function() {
     function(input, output, session) {
       shiny::observeEvent(input$json, {
         input$json$datapath %>%
-          get_statcube_response() %>%
+          sc_get_response() %>%
           shiny::stopApp()
       })
     }
