@@ -19,7 +19,7 @@ upload_json <- function() {
     function(input, output, session) {
       shiny::observeEvent(input$json, {
         input$json$datapath %>%
-          get_statcube_table() %>%
+          get_statcube_response() %>%
           shiny::stopApp()
       })
     }

@@ -13,9 +13,9 @@ base_url <- "http://sdbext:8082/statistik.at/ext/statcube/rest/v1/"
 #'   von [httr::POST()] beinhaltet
 #' @inheritParams statcube_token
 #' @examples
-#' lgr_01 <- get_statcube_table()
+#' lgr_01 <- get_statcube_response()
 #' @export
-get_statcube_table <- function(file = lgr01(), token = statcube_token()) {
+get_statcube_response <- function(file = lgr01(), token = statcube_token()) {
   response <- httr::POST(
     url = fs::path(base_url, "table"),
     body = httr::upload_file(file),
