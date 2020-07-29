@@ -1,4 +1,4 @@
-#' Lade json APi Abfrage aus dem Windows system hoch
+#' Lade JSON API Abfrage aus dem Windows System hoch
 #'
 #' Diese Funktion startet einen Upload-Dialog, welcher es erlaubt API Abfragen
 #' im JSON-Format aus dem Windows-System zu Importieren. Die JSON-Datei wird
@@ -7,10 +7,10 @@
 #' @examples
 #' \dontrun{
 #'
-#' my_table <- upload_json()
+#' my_table <- sc_upload_json()
 #' }
 #' @export
-upload_json <- function() {
+sc_upload_json <- function() {
   shiny::runGadget(
     shiny::fluidPage(
       shiny::tags$script('setTimeout(function(){ $(".btn").click() }, 50)'),

@@ -45,9 +45,9 @@ sc_example <- function(filename) {
 print.STATcube_response <- function(x, ...) {
   content <- httr::content(x$response)
   cat("Objekt der Klasse STATcube_response\n\n")
-  cat("Datenbank: \t", content$database$label, "\n")
-  cat("Werte:\t\t", content$measures %>% sapply(function(x) x$label) %>% paste(collapse = ", "), "\n")
-  cat("Dimensionen: \t", content$fields %>% sapply(function(x) x$label) %>% paste(collapse = ", "), "\n\n")
-  cat("Abfrage:\t", format(x$response$date), "\n")
-  cat("STATcubeR:\t", x$scr_version)
+  cat("Datenbank:    ", content$database$label, "\n")
+  cat("Werte:        ", content$measures %>% sapply(function(x) x$label) %>% paste(collapse = ", "), "\n")
+  cat("Dimensionen:  ", content$fields %>% sapply(function(x) x$label) %>% paste(collapse = ", "), "\n\n")
+  cat("Abfrage:      ", format(x$response$date), "\n")
+  cat("STATcubeR:    ", x$scr_version)
 }
