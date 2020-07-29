@@ -2,6 +2,10 @@ lgr01 <- function() {
   fs::path_package(utils::packageName(), "LGR01.json")
 }
 
+scr_version <- function() {
+  toString(utils::packageVersion(utils::packageName()))
+}
+
 base_url <- "http://sdbext:8082/statistik.at/ext/statcube/rest/v1/"
 
 #' Führe eine API Abfrage gegen STATcube durch
@@ -23,7 +27,8 @@ get_statcube_response <- function(file = lgr01(), token = statcube_token()) {
   )
   x <- list(
     response = response,
-    json = readLines(file, warn = FALSE)
+    json = readLines(file, warn = FALSE),
+    scr_version = scr_version()
   )
   class(x) <- "STATcube_response"
   x
@@ -35,7 +40,7 @@ print.STATcube_response <- function(x, ...) {
   cat("Objekt der Klasse STATcube_response\n\n")
   cat("Datenbank: \t", content$database$label, "\n")
   cat("Werte:\t\t", content$measures %>% sapply(function(x) x$label) %>% paste(collapse = ", "), "\n")
-  cat("Dimensionen: \t", content$fields %>% sapply(function(x) x$label) %>% paste(collapse = ", "), "\n")
-  #cat("Abfrage: \n")
-  #cat(x$json, sep = "\n")
+  cat("Dimensionen: \t", content$fields %>% sapply(function(x) x$label) %>% paste(collapse = ", "), "\n\n")
+  cat("Abfrage:\t", format(x$response$date), "\n")
+  cat("STATcubeR:\t", x$scr_version)
 }
