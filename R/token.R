@@ -13,7 +13,7 @@ secret_name <- "STATcube_token"
 #' @export
 sc_token <- function() {
   if (!sc_token_exists()) {
-    if (rstudioapi::isAvailable())
+    if (interactive())
       sc_token_prompt()
     else
       stop("Kein STATcube API Token vorhanden")
