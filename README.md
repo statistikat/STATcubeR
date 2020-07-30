@@ -88,7 +88,7 @@ my_response
 #> Werte:         Fallzahl 
 #> Dimensionen:   Jahr, Bundesland, Geburtsland 
 #> 
-#> Abfrage:       2020-07-30 10:00:25 
+#> Abfrage:       2020-07-30 15:59:13 
 #> STATcubeR:     0.1.0
 ```
 
@@ -103,27 +103,40 @@ as.data.frame(my_response)
 ```
 
 Im Falle von `as.data.frame()` wird ein tidy Datensatz zurückgegeben,
-der jede Dimension des Cubes als Spalte enthält. Außerdem gibt es eine
-Spalte pro Wert. Beispiel:
+der jede Dimension des Cubes als Spalte enthält. Außerdem gibt es zwei
+Spalten pro Wert. Beispiel:
 
 ``` r
-library(dplyr)
 set.seed(1234)
-as.data.frame(my_response) %>% 
-  filter(Fallzahl != 0) %>% 
-  sample_n(10)
-#>    Jahr        Bundesland Geburtsland Fallzahl
-#> 1  2018   Salzburg <AT32>     Ausland   104206
-#> 2  2006 Steiermark <AT22>  Österreich  1096408
-#> 3  2020    Kärnten <AT21>    Zusammen   561293
-#> 4  2003 Steiermark <AT22>  Österreich  1088798
-#> 5  2008 Steiermark <AT22>  Österreich  1094940
-#> 6  2003 Vorarlberg <AT34>     Ausland    59655
-#> 7  2003   Salzburg <AT32>  Österreich   436825
-#> 8  2004   Salzburg <AT32>     Ausland    79142
-#> 9  2002 Burgenland <AT11>    Zusammen   276673
-#> 10 2013          Zusammen  Österreich  7087089
+as.data.frame(my_response) %>% dplyr::sample_n(10)
+#>        Jahr                Bundesland Geburtsland Fallzahl Fallzahl_a
+#> 1  Zusammen              Tirol <AT33>    Zusammen        0          X
+#> 2      2011 Nicht klassifizierbar <0>  Österreich        0           
+#> 3      2015         Burgenland <AT11>    Zusammen   288356           
+#> 4      2011           Salzburg <AT32>     Ausland    82391           
+#> 5      1999 Nicht klassifizierbar <0>     Ausland        0          X
+#> 6      2008           Salzburg <AT32>     Ausland    80421           
+#> 7      2000         Steiermark <AT22>    Zusammen        0          X
+#> 8      2009     Oberösterreich <AT31>  Österreich  1238869           
+#> 9      1993            Kärnten <AT21>  Österreich        0          X
+#> 10     2008   Niederösterreich <AT12>    Zusammen  1595503
 ```
+
+Die Spalte `Fallzahl_a` enthält die Anmerkungen (Annotations) zur Spalte
+`Fallzahl`. Um die Bedeutungen der Annotations zu sehen kann
+`sc_annotation_legend()` verwendet werden.
+
+``` r
+sc_annotation_legend(my_response)
+#> $Q
+#> [1] "STATcube – Statistische Datenbank von STATISTIK AUSTRIA"
+#> 
+#> $X
+#> [1] "Verkreuzung nicht erlaubt"
+```
+
+In diesem Fall ist der Nuller in Zeile 2 ein “echter nuller” und der
+Nuller in Zeile 1 steht für einen gesperrten Wert.
 
 ### Sonstiges
 
@@ -175,7 +188,7 @@ tourism_ts
 #> Werte:         Übernachtungen 
 #> Dimensionen:   Regionale Gliederung [teilw. SPE], Saison/Tourismusmonat, Herkunftsland 
 #> 
-#> Abfrage:       2020-07-30 10:00:31 
+#> Abfrage:       2020-07-30 15:59:17 
 #> STATcubeR:     0.1.0
 ```
 
@@ -188,8 +201,6 @@ externen Nutzern negativ beeinflussen.
 ## TODO
 
   - Erklären der Begriffe Datenbank, Werte und Dimensionen
-  - Verwenden von `my_content$cubes${value_key}$annotations`
-      - Hilfsspalten in `as.data.frame()` Version für jede Werte-Spalte
   - Verwenden der URIs, um Variablen auch als Codes (nicht Labels)
     anzubieten. Könnte sein, dass hierzu der `/schema`-Endpoint
     notwendig ist.

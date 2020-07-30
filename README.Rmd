@@ -111,16 +111,24 @@ as.data.frame(my_response)
 ```
 
 Im Falle von `as.data.frame()` wird ein tidy Datensatz zurückgegeben, der jede
-Dimension des Cubes als Spalte enthält. Außerdem gibt es eine Spalte pro
+Dimension des Cubes als Spalte enthält. Außerdem gibt es zwei Spalten pro
 Wert. Beispiel:
 
 ```{r}
-library(dplyr)
 set.seed(1234)
-as.data.frame(my_response) %>% 
-  filter(Fallzahl != 0) %>% 
-  sample_n(10)
+as.data.frame(my_response) %>% dplyr::sample_n(10)
 ```
+
+Die Spalte `Fallzahl_a` enthält die Anmerkungen (Annotations) zur Spalte
+`Fallzahl`. Um die Bedeutungen der Annotations zu sehen kann
+`sc_annotation_legend()` verwendet werden.
+
+```{r}
+sc_annotation_legend(my_response)
+```
+
+In diesem Fall ist der Nuller in Zeile 2 ein "echter nuller" und der Nuller
+in Zeile 1 steht für einen gesperrten Wert.
 
 ### Sonstiges
 
@@ -158,8 +166,6 @@ Sämtliche Anfragen werden an die externe STATcube Instanz gesendet. Eine
 ## TODO
 
 * Erklären der Begriffe Datenbank, Werte und Dimensionen
-* Verwenden von `my_content$cubes${value_key}$annotations`
-    * Hilfsspalten in `as.data.frame()` Version für jede Werte-Spalte
 * Verwenden der URIs, um Variablen auch als Codes (nicht Labels) anzubieten.
   Könnte sein, dass hierzu der `/schema`-Endpoint notwendig ist.
     * `my_content$fields[[i]]$items[[j]]$uris[[1]]`
