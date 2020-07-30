@@ -9,7 +9,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# STATcubeR
+# STATcubeR <img src="man/figures/STATcube_logo.png" align="right" alt="" width="120" />
 
 R Interface für die STATcube REST API
 

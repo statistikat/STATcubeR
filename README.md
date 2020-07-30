@@ -1,5 +1,5 @@
 
-# STATcubeR
+# STATcubeR <img src="man/figures/STATcube_logo.png" align="right" alt="" width="120" />
 
 R Interface für die STATcube REST API
 
@@ -159,7 +159,7 @@ STATcubeR:::sc_get_schema() %>% httr::content()
 STATcubeR:::sc_get_rate_limit() %>% httr::content()
 ```
 
-Gespeicherte Tabellen lassen sich über die `uid` laden. Hierzu ist kein
+Gespeicherte Tabellen lassen sich über die `id` laden. Hierzu ist kein
 JSON notwendig.
 
 ``` r
@@ -188,23 +188,17 @@ externen Nutzern negativ beeinflussen.
 ## TODO
 
   - Erklären der Begriffe Datenbank, Werte und Dimensionen
-
   - Verwenden von `my_content$cubes${value_key}$annotations`
-    
       - Hilfsspalten in `as.data.frame()` Version für jede Werte-Spalte
-
   - Verwenden der URIs, um Variablen auch als Codes (nicht Labels)
     anzubieten. Könnte sein, dass hierzu der `/schema`-Endpoint
     notwendig ist.
-    
       - `my_content$fields[[i]]$items[[j]]$uris[[1]]`
       - `my_content$fields[[i]]$uri`
       - `my_content$database$uri`
       - `my_content$measures[[i]]$uri`
-
   - Fehlermeldung, falls `my_response$status_code != 200`
 
-  - 
 ## API Dokumentation
 
   - `/table` Endpoint:
