@@ -8,6 +8,8 @@ unlist_n <- function(x, times) {
 get_annotations <- function(x, i = 1) {
   content <- httr::content(x$response)
   cube <- content$cubes[[i]]$annotations
+  if (is.null(cube))
+    return("")
   dims <- content$fields %>%
     lapply(function(x) x$items) %>%
     sapply(length)
@@ -30,10 +32,12 @@ get_fields <- function(x) {
   dims <- content$fields %>%
     lapply(function(x) x$items) %>%
     sapply(length)
-  array(0, rev(dims), dimnames = rev(get_dimnames(content$fields))) %>%
+  res <- array(0, rev(dims), dimnames = rev(get_dimnames(content$fields))) %>%
     stats::ftable() %>% as.data.frame() %>% (function(x) {
       x[, (ncol(x)-1):1]
     })
+  names(res) <- names(get_dimnames(content$fields))
+  res
 }
 
 #' @export
