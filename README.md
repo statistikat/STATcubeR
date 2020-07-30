@@ -1,7 +1,7 @@
 
 # STATcubeR
 
-R Interface für die STATcube API
+R Interface für die STATcube REST API
 
 ## Installation
 
@@ -79,23 +79,18 @@ Print-Methode gibt einen Einblick in die Abfrage.
 
 ``` r
 (json_pfad <- sc_example("bev_seit_1982.json"))
-```
-
-    ## /data/home/decill/projects/STATcubeR/inst/json_examples/bev_seit_1982.json
-
-``` r
+#> /data/home/decill/projects/STATcubeR/inst/json_examples/bev_seit_1982.json
 my_response <- sc_get_response(json_pfad)
 my_response
+#> Objekt der Klasse STATcube_response
+#> 
+#> Datenbank:     Bevölkerung zu Jahresbeginn ab 1982 
+#> Werte:         Fallzahl 
+#> Dimensionen:   Jahr, Bundesland, Geburtsland 
+#> 
+#> Abfrage:       2020-07-30 10:00:25 
+#> STATcubeR:     0.1.0
 ```
-
-    ## Objekt der Klasse STATcube_response
-    ## 
-    ## Datenbank:     Bevölkerung zu Jahresbeginn ab 1982 
-    ## Werte:         Fallzahl 
-    ## Dimensionen:   Jahr, Bundesland, Geburtsland 
-    ## 
-    ## Abfrage:       2020-07-29 14:30:35 
-    ## STATcubeR:     0.1.0
 
 ### Umwandeln in typische R-Datenformate
 
@@ -117,19 +112,18 @@ set.seed(1234)
 as.data.frame(my_response) %>% 
   filter(Fallzahl != 0) %>% 
   sample_n(10)
+#>    Jahr        Bundesland Geburtsland Fallzahl
+#> 1  2018   Salzburg <AT32>     Ausland   104206
+#> 2  2006 Steiermark <AT22>  Österreich  1096408
+#> 3  2020    Kärnten <AT21>    Zusammen   561293
+#> 4  2003 Steiermark <AT22>  Österreich  1088798
+#> 5  2008 Steiermark <AT22>  Österreich  1094940
+#> 6  2003 Vorarlberg <AT34>     Ausland    59655
+#> 7  2003   Salzburg <AT32>  Österreich   436825
+#> 8  2004   Salzburg <AT32>     Ausland    79142
+#> 9  2002 Burgenland <AT11>    Zusammen   276673
+#> 10 2013          Zusammen  Österreich  7087089
 ```
-
-    ##    Jahr        Bundesland Geburtsland Fallzahl
-    ## 1  2018   Salzburg <AT32>     Ausland   104206
-    ## 2  2006 Steiermark <AT22>  Österreich  1096408
-    ## 3  2020    Kärnten <AT21>    Zusammen   561293
-    ## 4  2003 Steiermark <AT22>  Österreich  1088798
-    ## 5  2008 Steiermark <AT22>  Österreich  1094940
-    ## 6  2003 Vorarlberg <AT34>     Ausland    59655
-    ## 7  2003   Salzburg <AT32>  Österreich   436825
-    ## 8  2004   Salzburg <AT32>     Ausland    79142
-    ## 9  2002 Burgenland <AT11>    Zusammen   276673
-    ## 10 2013          Zusammen  Österreich  7087089
 
 ### Sonstiges
 
@@ -138,21 +132,23 @@ werden.
 
 ``` r
 my_content <- httr::content(my_response$response)
+names(my_content)
+#> [1] "query"         "database"      "measures"      "fields"       
+#> [5] "cubes"         "annotationMap"
 my_content$measures
+#> [[1]]
+#> [[1]]$uri
+#> [1] "str:statfn:debevstandjb:F-BEVSTANDJB:F-ISIS-1:SUM"
+#> 
+#> [[1]]$label
+#> [1] "Fallzahl"
+#> 
+#> [[1]]$measure
+#> [1] "str:measure:debevstandjb:F-BEVSTANDJB:F-ISIS-1"
+#> 
+#> [[1]]$`function`
+#> [1] "SUM"
 ```
-
-    ## [[1]]
-    ## [[1]]$uri
-    ## [1] "str:statfn:debevstandjb:F-BEVSTANDJB:F-ISIS-1:SUM"
-    ## 
-    ## [[1]]$label
-    ## [1] "Fallzahl"
-    ## 
-    ## [[1]]$measure
-    ## [1] "str:measure:debevstandjb:F-BEVSTANDJB:F-ISIS-1"
-    ## 
-    ## [[1]]$`function`
-    ## [1] "SUM"
 
 Die Endpoints `/info`, `/schema` und `/rate_limit` sind testweise
 angebunden aber noch nicht exportiert.
@@ -163,24 +159,52 @@ STATcubeR:::sc_get_schema() %>% httr::content()
 STATcubeR:::sc_get_rate_limit() %>% httr::content()
 ```
 
+Gespeicherte Tabellen lassen sich über die `uid` laden. Hierzu ist kein
+JSON notwendig.
+
+``` r
+sc_saved_tables_list()
+#>               label                                             id
+#> 1 krankenbewegungen str:table:c7902e8d-5165-44e9-b17e-34ae20e2d1d4
+#> 2        tourism_ts str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c
+tourism_ts <- sc_saved_table("str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c")
+tourism_ts
+#> Objekt der Klasse STATcube_response
+#> 
+#> Datenbank:     Nächtigungsstatistik ab 1974 nach Saison 
+#> Werte:         Übernachtungen 
+#> Dimensionen:   Regionale Gliederung [teilw. SPE], Saison/Tourismusmonat, Herkunftsland 
+#> 
+#> Abfrage:       2020-07-30 10:00:31 
+#> STATcubeR:     0.1.0
+```
+
 STATcube verfügt über einen Cache. Wenn die selbe Abfrage mehrmals
 abgeschickt wird, so wird das Rate-Limit (1000 Anfragen pro Stunde)
-nicht belastet.
+nicht belastet. Sämtliche Anfragen werden an die externe STATcube
+Instanz gesendet. Eine Überlastung der API kann somit die UX von
+externen Nutzern negativ beeinflussen.
 
 ## TODO
 
   - Erklären der Begriffe Datenbank, Werte und Dimensionen
+
   - Verwenden von `my_content$cubes${value_key}$annotations`
+    
       - Hilfsspalten in `as.data.frame()` Version für jede Werte-Spalte
+
   - Verwenden der URIs, um Variablen auch als Codes (nicht Labels)
     anzubieten. Könnte sein, dass hierzu der `/schema`-Endpoint
     notwendig ist.
+    
       - `my_content$fields[[i]]$items[[j]]$uris[[1]]`
       - `my_content$fields[[i]]$uri`
       - `my_content$database$uri`
       - `my_content$measures[[i]]$uri`
+
   - Fehlermeldung, falls `my_response$status_code != 200`
 
+  - 
 ## API Dokumentation
 
   - `/table` Endpoint:

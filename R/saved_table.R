@@ -1,0 +1,24 @@
+#' @export
+sc_saved_table <- function(table_uri, token = sc_token()) {
+  response <- httr::GET(
+    url = fs::path(base_url, "table", "saved", table_uri),
+    config = httr::add_headers(APIKey = token)
+  )
+  x <- list(
+    response = response,
+    scr_version = sc_version()
+  )
+  class(x) <- "STATcube_response"
+  x
+}
+
+#' @export
+sc_saved_tables_list <- function() {
+  schema <- httr::content(sc_get_schema())$children
+  tables <- schema %>% sapply(function(x) x$type == "TABLE")
+  saved_tables <- schema[tables]
+  data.frame(
+    label = sapply(saved_tables, function(x) x$label),
+    id = sapply(saved_tables, function(x) x$id)
+  )
+}

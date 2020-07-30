@@ -2,9 +2,16 @@
 output: github_document
 ---
 
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
 # STATcubeR
 
-R Interface für die STATcube API
+R Interface für die STATcube REST API
 
 ## Installation
 
@@ -83,7 +90,7 @@ Das Objekt `my_response` beinhaltet die "rohe" API-Response. Die Print-Methode
 gibt einen Einblick in die Abfrage.
 
 ```{r, include=FALSE}
-pkgload::load_all()
+pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE)
 conflicted::conflict_prefer("filter", "dplyr")
 ```
 
@@ -121,6 +128,7 @@ Um den Inhalt der Response zu erhalten, kann `httr::content()` verwendet werden.
 
 ```{r}
 my_content <- httr::content(my_response$response)
+names(my_content)
 my_content$measures
 ```
 
@@ -133,8 +141,19 @@ STATcubeR:::sc_get_schema() %>% httr::content()
 STATcubeR:::sc_get_rate_limit() %>% httr::content()
 ```
 
+Gespeicherte Tabellen lassen sich über die `id` laden. Hierzu ist kein
+JSON notwendig.
+
+```{r}
+sc_saved_tables_list()
+tourism_ts <- sc_saved_table("str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c")
+tourism_ts
+```
+
 STATcube verfügt über einen Cache. Wenn die selbe Abfrage mehrmals abgeschickt
 wird, so wird das Rate-Limit (1000 Anfragen pro Stunde) nicht belastet.
+Sämtliche Anfragen werden an die externe STATcube Instanz gesendet. Eine
+Überlastung der API kann somit die UX von externen Nutzern negativ beeinflussen.
 
 ## TODO
 
