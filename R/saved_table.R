@@ -3,13 +3,7 @@ sc_saved_table <- function(table_uri, token = sc_token()) {
   response <- httr::GET(
     url = fs::path(base_url, "table", "saved", table_uri),
     config = httr::add_headers(APIKey = token)
-  )
-  x <- list(
-    response = response,
-    scr_version = sc_version()
-  )
-  class(x) <- "STATcube_response"
-  x
+  ) %>% as_sc_response()
 }
 
 #' @export

@@ -8,6 +8,17 @@ sc_version <- function() {
 
 base_url <- "http://sdbext:8082/statistik.at/ext/statcube/rest/v1/"
 
+as_sc_response <- function(response) {
+  if (response$status_code != 200)
+    stop(httr::content(response)$message)
+  x <- list(
+    response = response,
+    scr_version = sc_version()
+  )
+  class(x) <- "STATcube_response"
+  x
+}
+
 #' Führe eine API Abfrage gegen STATcube durch
 #'
 #' Erlaube es anhand eines jsone Files eine Tabelle von STATcube abzurufen.
@@ -20,18 +31,11 @@ base_url <- "http://sdbext:8082/statistik.at/ext/statcube/rest/v1/"
 #' lgr_01 <- sc_get_response(sc_example("LGR01.json"))
 #' @export
 sc_get_response <- function(file, token = sc_token()) {
-  response <- httr::POST(
+  httr::POST(
     url = fs::path(base_url, "table"),
     body = httr::upload_file(file),
     config = httr::add_headers(APIKey = token)
-  )
-  x <- list(
-    response = response,
-    json = readLines(file, warn = FALSE),
-    scr_version = sc_version()
-  )
-  class(x) <- "STATcube_response"
-  x
+  ) %>% as_sc_response()
 }
 
 #' @export

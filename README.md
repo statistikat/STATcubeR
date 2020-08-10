@@ -208,7 +208,6 @@ externen Nutzern negativ beeinflussen.
       - `my_content$fields[[i]]$uri`
       - `my_content$database$uri`
       - `my_content$measures[[i]]$uri`
-  - Fehlermeldung, falls `my_response$status_code != 200`
 
 ## API Dokumentation
 
