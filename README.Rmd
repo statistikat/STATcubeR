@@ -132,10 +132,10 @@ in Zeile 1 steht für einen gesperrten Wert.
 
 ### Sonstiges
 
-Um den Inhalt der Response zu erhalten, kann `httr::content()` verwendet werden.
+Um den Inhalt der Response zu erhalten, kann `sc_content()` verwendet werden.
 
 ```{r}
-my_content <- httr::content(my_response$response)
+my_content <- sc_content(my_response)
 names(my_content)
 my_content$measures
 ```

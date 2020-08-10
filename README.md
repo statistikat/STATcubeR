@@ -79,7 +79,7 @@ Print-Methode gibt einen Einblick in die Abfrage.
 
 ``` r
 (json_pfad <- sc_example("bev_seit_1982.json"))
-#> /data/home/decill/projects/STATcubeR/inst/json_examples/bev_seit_1982.json
+#> /data/home/decill/projects/METH/STATcubeR/inst/json_examples/bev_seit_1982.json
 my_response <- sc_get_response(json_pfad)
 my_response
 #> Objekt der Klasse STATcube_response
@@ -88,7 +88,7 @@ my_response
 #> Werte:         Fallzahl 
 #> Dimensionen:   Jahr, Bundesland, Geburtsland 
 #> 
-#> Abfrage:       2020-07-30 15:59:13 
+#> Abfrage:       2020-08-10 15:13:52 
 #> STATcubeR:     0.1.0
 ```
 
@@ -140,11 +140,11 @@ Nuller in Zeile 1 steht für einen gesperrten Wert.
 
 ### Sonstiges
 
-Um den Inhalt der Response zu erhalten, kann `httr::content()` verwendet
+Um den Inhalt der Response zu erhalten, kann `sc_content()` verwendet
 werden.
 
 ``` r
-my_content <- httr::content(my_response$response)
+my_content <- sc_content(my_response)
 names(my_content)
 #> [1] "query"         "database"      "measures"      "fields"       
 #> [5] "cubes"         "annotationMap"
@@ -180,6 +180,7 @@ sc_saved_tables_list()
 #>               label                                             id
 #> 1 krankenbewegungen str:table:c7902e8d-5165-44e9-b17e-34ae20e2d1d4
 #> 2        tourism_ts str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c
+#> 3      entlassungen str:table:f63f0713-155f-4d1d-8d41-4a50f0815fc7
 tourism_ts <- sc_saved_table("str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c")
 tourism_ts
 #> Objekt der Klasse STATcube_response
@@ -188,7 +189,7 @@ tourism_ts
 #> Werte:         Übernachtungen 
 #> Dimensionen:   Regionale Gliederung [teilw. SPE], Saison/Tourismusmonat, Herkunftsland 
 #> 
-#> Abfrage:       2020-07-30 15:59:17 
+#> Abfrage:       2020-08-10 15:13:56 
 #> STATcubeR:     0.1.0
 ```
 
