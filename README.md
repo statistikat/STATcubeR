@@ -88,7 +88,7 @@ my_response
 #> Werte:         Fallzahl 
 #> Dimensionen:   Jahr, Bundesland, Geburtsland 
 #> 
-#> Abfrage:       2020-08-10 15:13:52 
+#> Abfrage:       2020-08-10 15:35:24 
 #> STATcubeR:     0.1.0
 ```
 
@@ -189,8 +189,14 @@ tourism_ts
 #> Werte:         Übernachtungen 
 #> Dimensionen:   Regionale Gliederung [teilw. SPE], Saison/Tourismusmonat, Herkunftsland 
 #> 
-#> Abfrage:       2020-08-10 15:13:56 
+#> Abfrage:       2020-08-10 15:35:28 
 #> STATcubeR:     0.1.0
+```
+
+Diese gespeicherten Tabellen können nun auch als json exportiert werden
+
+``` r
+sc_write_json(tourism_ts, "tourism_ts.json")
 ```
 
 STATcube verfügt über einen Cache. Wenn die selbe Abfrage mehrmals

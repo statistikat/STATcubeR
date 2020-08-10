@@ -158,6 +158,12 @@ tourism_ts <- sc_saved_table("str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c")
 tourism_ts
 ```
 
+Diese Tabellen können nun auch als json exportiert werden
+
+```{r}
+sc_write_json(tourism_ts, "tourism_ts.json")
+```
+
 STATcube verfügt über einen Cache. Wenn die selbe Abfrage mehrmals abgeschickt
 wird, so wird das Rate-Limit (1000 Anfragen pro Stunde) nicht belastet.
 Sämtliche Anfragen werden an die externe STATcube Instanz gesendet. Eine
