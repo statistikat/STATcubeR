@@ -171,13 +171,28 @@ Sämtliche Anfragen werden an die externe STATcube Instanz gesendet. Eine
 
 ## TODO
 
-* Erklären der Begriffe Datenbank, Werte und Dimensionen
-* Verwenden der URIs, um Variablen auch als Codes (nicht Labels) anzubieten.
-  Könnte sein, dass hierzu der `/schema`-Endpoint notwendig ist.
-    * `my_content$fields[[i]]$items[[j]]$uris[[1]]`
-    * `my_content$fields[[i]]$uri`
-    * `my_content$database$uri`
-    * `my_content$measures[[i]]$uri`
+* Erklären der Begriffe Datenbank, Werte und Dimensionen in Dokumentation
+* Bereitstellen von Metadaten via `/schema`
+    * Variablenbeschreibungen (Dimensionen, Werte)
+    * Datensatzbeschreibungen
+    * Variablencodes/Datensbankcodes bereitstellen
+    * Verfügbare Vergröberungen/Verfeinerungen von Dimensionen anzeigen
+* Adaptierungen für externe Nutzung
+    * Bessere Dokumentation mit `pkgdown`
+    * Github-Seite einrichten
+    * Dependencies schlanker machen
+        * Token über `.Renviron` oder `.Rprofile` setzen statt mit `authSTAT`
+        * Dependency zu www.github.com/r-lib/fs entfernen
+        * `shiny` vermutlich unnötig, außer es werden mehr GUI-Features
+          zur Verfügung gestellt.
+        * `httr` ist notwendig. Indirekt hat man damit auch Zugang zu
+          `jsonlite` und `R6`. Siehe [r-lib/httr/DESCRIPTION](https://github.com/r-lib/httr/blob/cb4e20c9e0b38c0c020a8756db8db7a882288eaf/DESCRIPTION#L22)
+        * `magrittr` könnte entfernt werden - ist aber ohnehin sehr schlank
+* Clienseitiges Caching?
+* `Accept-Language` als Parameter? Damit könnten englische Responses
+  angefordert werden.
+* Gewichtete Werte speziell behandeln? `my_content$measures[[i]]$weight`
+* Precision: `my_content$cubes[[i]]$precision`
 
 ## API Dokumentation
 
