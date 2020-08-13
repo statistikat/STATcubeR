@@ -6,7 +6,7 @@ unlist_n <- function(x, times) {
 }
 
 get_annotations <- function(x, i = 1) {
-  content <- httr::content(x$response)
+  content <- sc_content(x)
   cube <- content$cubes[[i]]$annotations
   if (is.null(cube))
     return("")
@@ -28,7 +28,7 @@ get_dimnames <- function(fields) {
 }
 
 get_fields <- function(x) {
-  content <- httr::content(x$response)
+  content <- sc_content(x)
   dims <- content$fields %>%
     lapply(function(x) x$items) %>%
     sapply(length)
@@ -42,7 +42,7 @@ get_fields <- function(x) {
 
 #' @export
 as.data.frame.STATcube_response <- function(x) {
-  content <- httr::content(x$response)
+  content <- sc_content(x)
   df <- get_fields(x)
   for (i in seq_along(content$measures)) {
     label <- content$measures[[i]]$label
@@ -54,7 +54,7 @@ as.data.frame.STATcube_response <- function(x) {
 
 #' @export
 as.array.STATcube_response <- function(x, i = 1, ...) {
-  content <- httr::content(x$response)
+  content <- sc_content(x)
   first_cube <- content$cubes[[i]]$values
   dims <- content$fields %>% lapply(function(x) x$items) %>% sapply(length)
   labels <- content$fields %>% lapply(function(x) x$label)
@@ -63,6 +63,6 @@ as.array.STATcube_response <- function(x, i = 1, ...) {
 
 #' @export
 sc_annotation_legend <- function(x) {
-  content <- httr::content(x$response)
+  content <- sc_content(x)
   content$annotationMap
 }

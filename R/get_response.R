@@ -47,7 +47,7 @@ sc_example <- function(filename) {
 
 #' @export
 print.STATcube_response <- function(x, ...) {
-  content <- httr::content(x$response)
+  content <- sc_content(x)
   cat("Objekt der Klasse STATcube_response\n\n")
   cat("Datenbank:    ", content$database$label, "\n")
   cat("Werte:        ", content$measures %>% sapply(function(x) x$label) %>% paste(collapse = ", "), "\n")
