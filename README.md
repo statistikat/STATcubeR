@@ -189,21 +189,21 @@ tourism_ts
 #> Werte:         Übernachtungen 
 #> Dimensionen:   Regionale Gliederung [teilw. SPE], Saison/Tourismusmonat, Herkunftsland 
 #> 
-#> Abfrage:       2020-08-10 15:35:28 
+#> Abfrage:       2020-08-14 11:45:50 
 #> STATcubeR:     0.1.0
 ```
 
-Diese gespeicherten Tabellen können nun auch als json exportiert werden
+Diese Tabellen können nun auch als json exportiert werden
 
 ``` r
 sc_write_json(tourism_ts, "tourism_ts.json")
 ```
 
 STATcube verfügt über einen Cache. Wenn die selbe Abfrage mehrmals
-abgeschickt wird, so wird das Rate-Limit (1000 Anfragen pro Stunde)
-nicht belastet. Sämtliche Anfragen werden an die externe STATcube
-Instanz gesendet. Eine Überlastung der API kann somit die UX von
-externen Nutzern negativ beeinflussen.
+abgeschickt wird, so wird das Rate-Limit (100 Anfragen pro Stunde) nicht
+belastet. Sämtliche Anfragen werden an die externe STATcube Instanz
+gesendet. Eine Überlastung der API kann somit die UX von externen
+Nutzern negativ beeinflussen.
 
 ## TODO
 
@@ -214,14 +214,14 @@ externen Nutzern negativ beeinflussen.
       - Datensatzbeschreibungen
       - Variablencodes/Datensbankcodes bereitstellen
       - Verfügbare Vergröberungen/Verfeinerungen von Dimensionen
-        anzeigen
+        anzeigen?
   - Adaptierungen für externe Nutzung
       - Bessere Dokumentation mit `pkgdown`
       - Github-Seite einrichten
       - Dependencies schlanker machen
           - Token über `.Renviron` oder `.Rprofile` setzen statt mit
             `authSTAT`
-          - Dependency zu www.github.com/r-lib/fs entfernen
+          - Dependency zu [fs](http://www.github.com/r-lib/fs) entfernen
           - `shiny` vermutlich unnötig, außer es werden mehr
             GUI-Features zur Verfügung gestellt.
           - `httr` ist notwendig. Indirekt hat man damit auch Zugang zu
@@ -229,12 +229,24 @@ externen Nutzern negativ beeinflussen.
             [r-lib/httr/DESCRIPTION](https://github.com/r-lib/httr/blob/cb4e20c9e0b38c0c020a8756db8db7a882288eaf/DESCRIPTION#L22)
           - `magrittr` könnte entfernt werden - ist aber ohnehin sehr
             schlank
-  - Clienseitiges Caching?
-  - `Accept-Language` als Parameter? Damit könnten englische Responses
-    angefordert werden.
-  - Gewichtete Werte speziell behandeln?
-    `my_content$measures[[i]]$weight`
-  - Precision: `my_content$cubes[[i]]$precision`
+  - In `as.data.frame()`
+      - Gewichtete Werte speziell behandeln?
+        `my_content$measures[[i]]$weight`
+      - Precision (wenn verfügbar) ausgeben:
+        `my_content$cubes[[i]]$precision`
+      - Im Fall `annotation == "X"` den Wert durch ein `NA` (Not
+        Available) ersetzen. Eventuell ähnliche Ersetzungen für andere
+        Annotations durchführen
+      - Aggregierte Werte (imn oberen Beispiel `Jahr == "Zusammen"`)
+        entfernen? Diese Summenwerte wiedersprechen dem tidy-data
+        Prinzip
+  - Ungenutzte API Features
+      - Clienseitiges Caching für `/schema` implementieren? Siehe
+        Dokumentation zu API Parameter `If-None-Match`
+      - `Accept-Language` als Parameter? Damit könnten englische
+        Responses angefordert werden.
+      - [Sparse
+        Cubes](https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint/dense-and-sparse-cubes)
 
 ## API Dokumentation
 
