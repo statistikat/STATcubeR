@@ -20,23 +20,31 @@ und einen API Schlüssel hinzuzufügen. Eine Anleitung hierzu kann in dem
 [Setup Artikel](http://xlwt0012/rpkgs/dev/STATcubeR/articles/Setup.html)
 gefunden werden.
 
-## Verwendung
+## Anwendungsbeispiel: JSON-Abfrage
 
-Zur Verwendung diese Paketes sind folgende Schritte notwendig
+Im folgenden Beispiel wird eine Tabelle von STATcube in R exportiert. Hierzu
+sind folgende Schritte notwendig.
 
-* Herunterladen einer API Abfrage von STATcube. (JSON-Format)
+* Erstellen einer Tabelle auf STATcube (Tabellenansicht)
+* Herunterladen einer API Abfrage für diese Tabelle. (JSON-Format)
 * Absenden der Abfrage über den R Server
 * Konvertieren der API-Response in ein typisches R Datenformat
 
+### Erstellen einer Tabelle auf STATcube
+
+Verwenden Sie das grafische User-Interface von STATcube um eine Tabelle zu
+erstellen. Besuchen Sie hierzu
+http://sdbext:8081/statistik.at/ext/statcube/home. Womöglich ist eine Anmeldung
+mit Windows-Username und Windows-Passwort notwendig.
+
 ### Herunterladen der API Abfrage
 
-Laden sie eine "Open Data API Abfrage" über die STATcube GUI herunter. Erstellen
-Sie hierzu eine STATcube Tabelle und wählen Sie "API Abfrage" als
-Download-Option.
+Laden sie eine "Open Data API Abfrage" über die STATcube GUI herunter. Wählen
+Sie hierzu "API Abfrage" als Download-Option. Nun wird eine json-Datei auf dem
+Windows-System abgelegt.
 
 ![](man/figures/download_json.png)
 
-Nun wird eine json-Datei auf dem Windows-System abgelegt
 
 ### Absenden der Abfrage
 
@@ -47,18 +55,11 @@ der Funktion `sc_get_response()` ein, um die API Abfrage auszuführen.
 my_response <- sc_get_response("pfad/zu/api_abfrage.json")
 ```
 
-Alternativ kann mit der Funktion `sc_upload_json()` die json-Datei über einen
-Upload-Dialog angegeben werden.
-
-```r
-my_response <- sc_upload_json()
-```
-
 Das Objekt `my_response` beinhaltet die "rohe" API-Response. Die Print-Methode
 gibt einen Einblick in die Abfrage.
 
 ```{r, include=FALSE}
-pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE)
+pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
 conflicted::conflict_prefer("filter", "dplyr")
 ```
 
@@ -98,9 +99,43 @@ sc_annotation_legend(my_response)
 In diesem Fall ist der Nuller in Zeile 2 ein "echter nuller" und der Nuller
 in Zeile 1 steht für einen gesperrten Wert.
 
-### Sonstiges
+## Anwendungsbeispiel: Gespeicherte Tabelle
 
-Um den Inhalt der Response zu erhalten, kann `sc_content()` verwendet werden.
+Wenn auf STATcube gespeicherte Tabellen vorhanden sind, können diese auch
+ohne eine JSON-Abfrage importiert werden. Alle gespeicherten Tabellen
+können mit `sc_saved_tables_list()` aufgelistet werden.
+
+```{r}
+sc_saved_tables_list()
+```
+
+Anschließend kann die `id` einer gespeicherten Tabelle verwendet werden, um
+diese in R zu importieren.
+
+```{r}
+tourism_ts <- sc_saved_table("str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c")
+tourism_ts
+```
+
+Um die Tabellen für andere Nutzer von `STATcubeR` verfügbar zu machen, kann
+die Response wieder als json exportiert werden
+
+```{r}
+sc_write_json(tourism_ts, "tourism_ts.json")
+```
+
+Die dabei generierte JSON-Datei beinhaltet eine API Abfrage, welche mit
+`sc_get_response()` verwendet werden kann
+
+```r
+sc_get_response("tourism_ts.json")
+```
+
+## Sonstiges
+
+Um den Inhalt einer Response zu erhalten, kann `sc_content()` verwendet werden.
+Hierbei wird eine verschachtelte Liste zurückgegeben, welche dem JSON-Inhalt
+der API-Response entspricht.
 
 ```{r}
 my_content <- sc_content(my_response)
@@ -117,21 +152,6 @@ STATcubeR:::sc_get_schema() %>% httr::content()
 STATcubeR:::sc_get_rate_limit() %>% httr::content()
 ```
 
-Gespeicherte Tabellen lassen sich über die `id` laden. Hierzu ist kein
-JSON notwendig.
-
-```{r}
-sc_saved_tables_list()
-tourism_ts <- sc_saved_table("str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c")
-tourism_ts
-```
-
-Diese Tabellen können nun auch als json exportiert werden
-
-```{r}
-sc_write_json(tourism_ts, "tourism_ts.json")
-```
-
 STATcube verfügt über einen Cache. Wenn die selbe Abfrage mehrmals abgeschickt
 wird, so wird das Rate-Limit (100 Anfragen pro Stunde) nicht belastet.
 Sämtliche Anfragen werden an die externe STATcube Instanz gesendet. Eine
@@ -139,7 +159,7 @@ Sämtliche Anfragen werden an die externe STATcube Instanz gesendet. Eine
 
 ## TODO
 
-Vorschläge zur weiterentwicklung des Pakets können in dem
+Vorschläge zur Weiterentwicklung des Pakets können in dem
 [TODO Artikel](http://xlwt0012/rpkgs/dev/STATcubeR/articles/TODO.html)
 nachgelesen werden.
 
