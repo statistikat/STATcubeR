@@ -1,7 +1,3 @@
-lgr01 <- function() {
-  fs::path_package(utils::packageName(), "LGR01.json")
-}
-
 sc_version <- function() {
   toString(utils::packageVersion(utils::packageName()))
 }
