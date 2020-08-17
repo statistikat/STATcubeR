@@ -3,50 +3,21 @@
 
 R Interface für die STATcube REST API
 
-## Installation
+## Setup
 
-Falls die Portal-Credentials am R Server hinterlegt sind, kann über
-`install_statbucket()` installiert werden.
-
-``` r
-rinstSTAT::install_statbucket("METH/STATcubeR")
-library(STATcubeR)
-```
-
-Sonst ist auch eine Installation mit `git clone`/`R CMD INSTALL` möglich
-
-    git clone ssh://git@gitrepo:7999/METH/STATcubeR.git
-    R CMD INSTALL STATcubeR
+Zum erstmaligen Verwenden des Pakets ist es notwendig, das Paket zu
+installieren und einen API Schlüssel hinzuzufügen. Eine Anleitung hierzu
+kann in dem [Setup
+Artikel](http://xlwt0012/rpkgs/dev/STATcubeR/articles/Setup.html)
+gefunden werden.
 
 ## Verwendung
 
 Zur Verwendung diese Paketes sind folgende Schritte notwendig
 
-  - (einmalig) Hinzufügen des API Keys zum authSTAT-Vault
   - Herunterladen einer API Abfrage von STATcube. (JSON-Format)
   - Absenden der Abfrage über den R Server
   - Konvertieren der API-Response in ein typisches R Datenformat
-
-### Hinzufügen des API Keys
-
-Zum verwenden dieses Pakets muss einmalig ein API-Schlüssel für STATcube
-auf den R Server geladen werden. Rufen Sie die Funktion
-`sc_browse_preferences()` auf. Nun öffnet sich ein Browserfenster in dem
-der Schlüssel sichtbar ist. Eventuell muss davor Windows-User und
-Windows-Passwort eingegeben werden. Kopieren Sie den Schlüssel in die
-Zwischenablage.
-
-``` r
-sc_browse_preferences()
-```
-
-Rufen Sie nun die Funktion `statcube_token_set()` auf. Ersetzen Sie
-dabei `"XXXX"` durch den vorhin kopierten Token.
-
-``` r
-sc_token_set("XXXX")
-#> STATcube Key wurde erfolgreich getestet und im Vault hinterlegt
-```
 
 ### Herunterladen der API Abfrage
 
@@ -79,7 +50,7 @@ Print-Methode gibt einen Einblick in die Abfrage.
 
 ``` r
 (json_pfad <- sc_example("bev_seit_1982.json"))
-#> /data/home/decill/projects/METH/STATcubeR/inst/json_examples/bev_seit_1982.json
+#> /data/home/decill/projects/STATcubeR/inst/json_examples/bev_seit_1982.json
 my_response <- sc_get_response(json_pfad)
 my_response
 #> Objekt der Klasse STATcube_response
@@ -88,7 +59,7 @@ my_response
 #> Werte:         Fallzahl 
 #> Dimensionen:   Jahr, Bundesland, Geburtsland 
 #> 
-#> Abfrage:       2020-08-10 15:35:24 
+#> Abfrage:       2020-08-17 12:53:43 
 #> STATcubeR:     0.1.0
 ```
 
@@ -189,7 +160,7 @@ tourism_ts
 #> Werte:         Übernachtungen 
 #> Dimensionen:   Regionale Gliederung [teilw. SPE], Saison/Tourismusmonat, Herkunftsland 
 #> 
-#> Abfrage:       2020-08-14 11:45:50 
+#> Abfrage:       2020-08-17 12:53:55 
 #> STATcubeR:     0.1.0
 ```
 
@@ -207,46 +178,9 @@ Nutzern negativ beeinflussen.
 
 ## TODO
 
-  - Erklären der Begriffe Datenbank, Werte und Dimensionen in
-    Dokumentation
-  - Bereitstellen von Metadaten via `/schema`
-      - Variablenbeschreibungen (Dimensionen, Werte)
-      - Datensatzbeschreibungen
-      - Variablencodes/Datensbankcodes bereitstellen
-      - Verfügbare Vergröberungen/Verfeinerungen von Dimensionen
-        anzeigen?
-  - Adaptierungen für externe Nutzung
-      - Bessere Dokumentation mit `pkgdown`
-      - Github-Seite einrichten
-      - Dependencies schlanker machen
-          - Token über `.Renviron` oder `.Rprofile` setzen statt mit
-            `authSTAT`
-          - Dependency zu [fs](http://www.github.com/r-lib/fs) entfernen
-          - `shiny` vermutlich unnötig, außer es werden mehr
-            GUI-Features zur Verfügung gestellt.
-          - `httr` ist notwendig. Indirekt hat man damit auch Zugang zu
-            `jsonlite` und `R6`. Siehe
-            [r-lib/httr/DESCRIPTION](https://github.com/r-lib/httr/blob/cb4e20c9e0b38c0c020a8756db8db7a882288eaf/DESCRIPTION#L22)
-          - `magrittr` könnte entfernt werden - ist aber ohnehin sehr
-            schlank
-  - In `as.data.frame()`
-      - Gewichtete Werte speziell behandeln?
-        `my_content$measures[[i]]$weight`
-      - Precision (wenn verfügbar) ausgeben:
-        `my_content$cubes[[i]]$precision`
-      - Im Fall `annotation == "X"` den Wert durch ein `NA` (Not
-        Available) ersetzen. Eventuell ähnliche Ersetzungen für andere
-        Annotations durchführen
-      - Aggregierte Werte (imn oberen Beispiel `Jahr == "Zusammen"`)
-        entfernen? Diese Summenwerte wiedersprechen dem tidy-data
-        Prinzip
-  - Ungenutzte API Features
-      - Clienseitiges Caching für `/schema` implementieren? Siehe
-        Dokumentation zu API Parameter `If-None-Match`
-      - `Accept-Language` als Parameter? Damit könnten englische
-        Responses angefordert werden.
-      - [Sparse
-        Cubes](https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint/dense-and-sparse-cubes)
+Vorschläge zur weiterentwicklung des Pakets können in dem [TODO
+Artikel](http://xlwt0012/rpkgs/dev/STATcubeR/articles/TODO.html)
+nachgelesen werden.
 
 ## API Dokumentation
 

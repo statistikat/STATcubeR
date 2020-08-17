@@ -1,0 +1,59 @@
+---
+title: "TODO"
+---
+
+Entwicklungsziele für STATcubeR
+
+## Notwendige Entwicklungen
+
+Folgende Verbesserungen sollten bis zu einem Open-Source Release (Anfang 2021)
+abgearbeitet werden.
+
+#### Adaptierungen für externe Nutzung
+
+* Bessere Dokumentation mit `pkgdown`
+   * Erklären der Begriffe Datenbank, Werte und Dimensionen
+* Github-Seite einrichten
+* Dependencies schlanker machen
+    * Token über `.Renviron` oder `.Rprofile` setzen statt mit `authSTAT`
+    * Dependency zu [fs](http://www.github.com/r-lib/fs) entfernen
+    * `shiny` vermutlich unnötig, außer es werden mehr GUI-Features
+      zur Verfügung gestellt.
+    * `httr` ist notwendig. Indirekt hat man damit auch Zugang zu
+      `jsonlite` und `R6`. Siehe [r-lib/httr/DESCRIPTION](https://github.com/r-lib/httr/blob/cb4e20c9e0b38c0c020a8756db8db7a882288eaf/DESCRIPTION#L22)
+    * `magrittr` könnte entfernt werden - ist aber ohnehin sehr schlank
+    
+#### Verbesserungen von as.data.frame()
+
+* Im Fall `annotation == "X"` den Wert durch ein `NA` (Not Available)
+  ersetzen. Eventuell ähnliche Ersetzungen für andere Annotations
+  durchführen. Die Liste an möglichen Annotations ist fix.
+* Aggregierte Werte (imn oberen Beispiel `Jahr == "Zusammen"`) entfernen?
+  Diese Summenwerte wiedersprechen dem tidy-data Prinzip
+
+#### Metadaten
+
+Metadaten für Werte und Dimensionen verfügbar machen (`sc_meta(my_table)`)
+
+* Gewichtete Werte: `my_content$measures[[i]]$weight`
+* Precision (wenn verfügbar): `my_content$cubes[[i]]$precision`
+* Codes: Momentan werden in `as.data.frame()` nur Labels angezeigt.
+  Was, wenn Nutzer lieber mit den Codes arbeiten? Betrifft auch Ausprägungen
+  von Dimensionen (z.B. NUTS-Codes)
+
+#### Ungenutzte API Features
+
+* `Accept-Language` als Parameter in `sc_get_response()` etc.? Damit könnten
+  englische Responses angefordert werden.
+
+## Weitere Verbesserungsmöglichkeiten
+
+* Bereitstellen von Metadaten via `/schema`
+    * ~~Variablenbeschreibungen (Dimensionen, Werte)~~ -> Scheinbar nicht via
+      API verfügbar
+    * ~~Datensatzbeschreibungen~~ -> Scheinbar nicht via API verfügbar
+    * Verfügbare Vergröberungen/Verfeinerungen von Dimensionen anzeigen?
+* Ungenutzte API Features
+    * Clienseitiges Caching für `/schema` implementieren? Siehe Dokumentation 
+      zu API Parameter `If-None-Match`
+    * [Sparse Cubes](https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint/dense-and-sparse-cubes)

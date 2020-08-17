@@ -1,0 +1,50 @@
+---
+title: "Setup"
+---
+
+Anleitung zum (einmaligen) aufsetzen von STATcubeR am R Server.
+
+## Installation
+
+Falls die Portal-Credentials am R Server hinterlegt sind, kann über 
+`install_statbucket()` installiert werden.
+
+``` r
+rinstSTAT::install_statbucket("METH/STATcubeR")
+library(STATcubeR)
+```
+
+Sonst ist auch eine Installation mit `git clone`/`R CMD INSTALL` möglich
+
+```
+git clone ssh://git@gitrepo:7999/METH/STATcubeR.git
+R CMD INSTALL STATcubeR
+```
+
+## API Key hinzufügen
+
+Um die REST API von STATcube zu verwenden ist ein API-Schlüssel notwendig.
+Ein Schlüssel kann bei Alexander Bertsch angefordert werden und wird über das
+IAM vergeben. Wenn Sie bereits einen Schlüssel besitzen, so kann dieser
+folgendermaßen bereitgestellt werden.
+
+Kopieren Sie den Schlüssel von folgender Adresse in die Zwischenablage
+
+```
+http://sdbext:8081/statistik.at/ext/statcube/jsf/preferences/editPreferences.xhtml
+```
+
+Womöglich ist zum Besuchen dieser Seite eine Anmeldung notwendig. Bei der
+Anmeldung sollte der Windows-Username und das Windows Passwort verwendet werden
+
+Rufen Sie nun die Funktion `statcube_token_set()` auf, um den Schlüssel am
+R Server zu speichern. Ersetzen Sie dabei `"XXXX"` durch den vorhin kopierten
+Token.
+
+```r
+sc_token_set("XXXX")
+#> STATcube Key wurde erfolgreich getestet und im Vault hinterlegt
+```
+
+Der Schlüssel wird hiermit im authSTAT-Vault hinterlegt und muss in weiterer
+Folge nicht mehr eingegeben werden.

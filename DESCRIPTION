@@ -19,4 +19,5 @@ Authors@R:
            role = c("aut", "cre"),
            email = "de.cillia.gregor@gmail.com")
 Suggests: 
-    shiny
+    shiny,
+    rmarkdown
