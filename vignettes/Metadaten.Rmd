@@ -1,0 +1,29 @@
+---
+title: "Metadaten"
+---
+
+```{r, include = FALSE}
+pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
+```
+
+Wir starten mit dem selben Beispiel wie im README
+
+```{r load_data, chache = TRUE}
+json_pfad <- sc_example("bev_seit_1982.json")
+my_response <- sc_get_response(json_pfad)
+```
+
+`sc_meta()` kann nun verwendet werden um Metadaten in Form von drei 
+Tabellen darzustellen.
+
+```{r}
+sc_meta(my_response)
+```
+
+Wollen wir genauere Metadaten über die Bundesländer, so kann 
+`sc_meta_field()` verwendet werden.
+
+```{r}
+sc_meta_field(my_response, 2)
+```
+
