@@ -46,8 +46,11 @@ as.data.frame.STATcube_response <- function(x) {
   df <- get_fields(x)
   for (i in seq_along(content$measures)) {
     label <- content$measures[[i]]$label
-    df[[label]] <- unlist(content$cubes[[i]]$values)
-    df[[paste0(label, "_a")]] <- get_annotations(x, i)
+    values <- unlist(content$cubes[[i]]$values)
+    annotations <- get_annotations(x, i)
+    values[annotations == "X"] <- NA
+    df[[label]] <- values
+    df[[paste0(label, "_a")]] <- annotations
   }
   df
 }

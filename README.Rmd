@@ -5,7 +5,7 @@ output: github_document
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>", cache = TRUE
+  comment = "#>"
 )
 ```
 
@@ -63,7 +63,7 @@ pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE)
 conflicted::conflict_prefer("filter", "dplyr")
 ```
 
-```{r}
+```{r, cache = TRUE}
 (json_pfad <- sc_example("bev_seit_1982.json"))
 my_response <- sc_get_response(json_pfad)
 my_response
@@ -96,8 +96,8 @@ Die Spalte `Fallzahl_a` enthält die Anmerkungen (Annotations) zur Spalte
 sc_annotation_legend(my_response)
 ```
 
-In diesem Fall ist der Nuller in Zeile 2 ein "echter nuller" und der Nuller
-in Zeile 1 steht für einen gesperrten Wert.
+In diesem Fall ist der Nuller in Zeile 2 ein "echter nuller" und der Wert
+in Zeile 1 ist `NA` (**N**ot **A**vailable) aufgrund einer Sperrung.
 
 ## Anwendungsbeispiel: Gespeicherte Tabelle
 
@@ -105,14 +105,14 @@ Wenn auf STATcube gespeicherte Tabellen vorhanden sind, können diese auch
 ohne eine JSON-Abfrage importiert werden. Alle gespeicherten Tabellen
 können mit `sc_saved_tables_list()` aufgelistet werden.
 
-```{r}
+```{r, cache = TRUE}
 sc_saved_tables_list()
 ```
 
 Anschließend kann die `id` einer gespeicherten Tabelle verwendet werden, um
 diese in R zu importieren.
 
-```{r}
+```{r, cache = TRUE}
 tourism_ts <- sc_saved_table("str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c")
 tourism_ts
 ```

@@ -81,15 +81,15 @@ Spalten pro Wert. Beispiel:
 set.seed(1234)
 as.data.frame(my_response) %>% dplyr::sample_n(10)
 #>        Jahr                Bundesland Geburtsland Fallzahl Fallzahl_a
-#> 1  Zusammen              Tirol <AT33>    Zusammen        0          X
+#> 1  Zusammen              Tirol <AT33>    Zusammen       NA          X
 #> 2      2011 Nicht klassifizierbar <0>  Österreich        0           
 #> 3      2015         Burgenland <AT11>    Zusammen   288356           
 #> 4      2011           Salzburg <AT32>     Ausland    82391           
-#> 5      1999 Nicht klassifizierbar <0>     Ausland        0          X
+#> 5      1999 Nicht klassifizierbar <0>     Ausland       NA          X
 #> 6      2008           Salzburg <AT32>     Ausland    80421           
-#> 7      2000         Steiermark <AT22>    Zusammen        0          X
+#> 7      2000         Steiermark <AT22>    Zusammen       NA          X
 #> 8      2009     Oberösterreich <AT31>  Österreich  1238869           
-#> 9      1993            Kärnten <AT21>  Österreich        0          X
+#> 9      1993            Kärnten <AT21>  Österreich       NA          X
 #> 10     2008   Niederösterreich <AT12>    Zusammen  1595503
 ```
 
@@ -107,7 +107,8 @@ sc_annotation_legend(my_response)
 ```
 
 In diesem Fall ist der Nuller in Zeile 2 ein “echter nuller” und der
-Nuller in Zeile 1 steht für einen gesperrten Wert.
+Wert in Zeile 1 ist `NA` (**N**ot **A**vailable) aufgrund einer
+Sperrung.
 
 ## Anwendungsbeispiel: Gespeicherte Tabelle
 
