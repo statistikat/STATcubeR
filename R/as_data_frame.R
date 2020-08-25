@@ -41,14 +41,15 @@ get_fields <- function(x) {
 }
 
 #' @export
-as.data.frame.STATcube_response <- function(x, drop_aggregates = TRUE) {
+as.data.frame.STATcube_response <- function(x, drop_aggregates = TRUE, recode_na = TRUE) {
   content <- sc_content(x)
   df <- get_fields(x)
   for (i in seq_along(content$measures)) {
     label <- content$measures[[i]]$label
     values <- unlist(content$cubes[[i]]$values)
     annotations <- get_annotations(x, i)
-    values[annotations == "X"] <- NA
+    if (recode_na)
+      values[annotations == "X"] <- NA
     df[[label]] <- values
     df[[paste0(label, "_a")]] <- annotations
   }
@@ -58,6 +59,7 @@ as.data.frame.STATcube_response <- function(x, drop_aggregates = TRUE) {
       codes_total <- meta[meta$type == "Total", "label"]
       df <- df[!(df[[i]] %in% codes_total), ]
     }
+    rownames(df) <- NULL
   }
   df
 }

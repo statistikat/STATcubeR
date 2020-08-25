@@ -78,19 +78,18 @@ der jede Dimension des Cubes als Spalte enthält. Außerdem gibt es zwei
 Spalten pro Wert. Beispiel:
 
 ``` r
-set.seed(1234)
-as.data.frame(my_response) %>% dplyr::sample_n(10)
+as.data.frame(my_response) %>% .[c(1:4, 19:24), ]
 #>    Jahr                Bundesland Geburtsland Fallzahl Fallzahl_a
-#> 1  1995            Kärnten <AT21>     Ausland       NA          X
-#> 2  1986         Burgenland <AT11>  Österreich       NA          X
-#> 3  2012            Kärnten <AT21>  Österreich   501427           
-#> 4  2013   Niederösterreich <AT12>  Österreich  1447016           
-#> 5  2000 Nicht klassifizierbar <0>     Ausland       NA          X
-#> 6  1985               Wien <AT13>     Ausland       NA          X
-#> 7  1986            Kärnten <AT21>  Österreich       NA          X
-#> 8  2017   Niederösterreich <AT12>     Ausland   209163           
-#> 9  2011         Burgenland <AT11>     Ausland    24870           
-#> 10 1997   Niederösterreich <AT12>     Ausland       NA          X
+#> 1  2020         Burgenland <AT11>  Österreich   260354           
+#> 2  2020         Burgenland <AT11>     Ausland    34082           
+#> 3  2020            Kärnten <AT21>  Österreich   489262           
+#> 4  2020            Kärnten <AT21>     Ausland    72031           
+#> 19 2020 Nicht klassifizierbar <0>  Österreich        0           
+#> 20 2020 Nicht klassifizierbar <0>     Ausland        0           
+#> 21 1982         Burgenland <AT11>  Österreich       NA          X
+#> 22 1982         Burgenland <AT11>     Ausland       NA          X
+#> 23 1982            Kärnten <AT21>  Österreich       NA          X
+#> 24 1982            Kärnten <AT21>     Ausland       NA          X
 ```
 
 Die Spalte `Fallzahl_a` enthält die Anmerkungen (Annotations) zur Spalte
@@ -106,8 +105,9 @@ sc_annotation_legend(my_response)
 #> [1] "Verkreuzung nicht erlaubt"
 ```
 
-In diesem Fall ist der Wert in Zeile 1 `NA` (**N**ot **A**vailable)
-aufgrund einer Sperrung.
+In diesem Fall ist der Wert in Zeile 21 `NA` (**N**ot **A**vailable)
+aufgrund einer Sperrung. Bei dem Nuller in Zeile 20 handelt es sich
+hingegen um einen “echten Nuller”
 
 ## Anwendungsbeispiel: Gespeicherte Tabelle
 

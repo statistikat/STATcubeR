@@ -84,8 +84,7 @@ Dimension des Cubes als Spalte enthält. Außerdem gibt es zwei Spalten pro
 Wert. Beispiel:
 
 ```{r}
-set.seed(1234)
-as.data.frame(my_response) %>% dplyr::sample_n(10)
+as.data.frame(my_response) %>% .[c(1:4, 19:24), ]
 ```
 
 Die Spalte `Fallzahl_a` enthält die Anmerkungen (Annotations) zur Spalte
@@ -96,7 +95,9 @@ Die Spalte `Fallzahl_a` enthält die Anmerkungen (Annotations) zur Spalte
 sc_annotation_legend(my_response)
 ```
 
-In diesem Fall ist der Wert in Zeile 1 `NA` (**N**ot **A**vailable) aufgrund einer Sperrung.
+In diesem Fall ist der Wert in Zeile 21 `NA` (**N**ot **A**vailable) aufgrund
+einer Sperrung. Bei dem Nuller in Zeile 20 handelt es sich hingegen um einen
+"echten Nuller".
 
 ## Anwendungsbeispiel: Gespeicherte Tabelle
 
