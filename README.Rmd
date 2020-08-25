@@ -96,8 +96,7 @@ Die Spalte `Fallzahl_a` enthält die Anmerkungen (Annotations) zur Spalte
 sc_annotation_legend(my_response)
 ```
 
-In diesem Fall ist der Nuller in Zeile 2 ein "echter nuller" und der Wert
-in Zeile 1 ist `NA` (**N**ot **A**vailable) aufgrund einer Sperrung.
+In diesem Fall ist der Wert in Zeile 1 `NA` (**N**ot **A**vailable) aufgrund einer Sperrung.
 
 ## Anwendungsbeispiel: Gespeicherte Tabelle
 

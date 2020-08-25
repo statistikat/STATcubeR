@@ -28,8 +28,8 @@ abgearbeitet werden.
 * ~~Im Fall `annotation == "X"` den Wert durch ein `NA` (Not Available)
   ersetzen.~~ Eventuell ähnliche Ersetzungen für andere Annotations
   durchführen. Die Liste an möglichen Annotations ist fix.
-* Aggregierte Werte (im README-Beispiel `Jahr == "Zusammen"`) entfernen?
-  Diese Summenwerte widersprechen dem tidy-data Prinzip
+* ~~Aggregierte Werte (im README-Beispiel `Jahr == "Zusammen"`) entfernen?
+  Diese Summenwerte widersprechen dem tidy-data Prinzip~~
 
 #### Metadaten
 
