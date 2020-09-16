@@ -1,0 +1,5 @@
+template:
+  params:
+    bootswatch: cosmo
+
+url: https://statistikat.github.io/STATcubeR
