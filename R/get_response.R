@@ -2,7 +2,7 @@ sc_version <- function() {
   toString(utils::packageVersion(utils::packageName()))
 }
 
-base_url <- "http://sdbext:8082/statistik.at/ext/statcube/rest/v1/"
+base_url <- "http://sdbext:8082/statistik.at/ext/statcube/rest/v1"
 
 as_sc_response <- function(response) {
   if (response$status_code != 200)
@@ -28,7 +28,7 @@ as_sc_response <- function(response) {
 #' @export
 sc_get_response <- function(file, token = sc_token()) {
   httr::POST(
-    url = fs::path(base_url, "table"),
+    url = paste0(base_url, "/table"),
     body = httr::upload_file(file),
     config = httr::add_headers(APIKey = token)
   ) %>% as_sc_response()
@@ -38,7 +38,7 @@ sc_get_response <- function(file, token = sc_token()) {
 #' @param filename Name eines Beispiel-Json files.
 #' @rdname sc_get_response
 sc_example <- function(filename) {
-  fs::path_package(utils::packageName(), "json_examples", filename)
+  system.file(package = utils::packageName(), "json_examples", filename)
 }
 
 #' @export

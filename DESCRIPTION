@@ -10,7 +10,6 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports: 
     httr,
-    fs,
     magrittr
 Authors@R: 
     person(given = "Gregor de",
