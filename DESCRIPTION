@@ -3,7 +3,7 @@ Type: Package
 Title: R Interface für die STATcube API
 Version: 0.1.0
 Description: R Interface für die STATcube API.
-License: STAT
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
