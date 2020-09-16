@@ -9,7 +9,7 @@
 \usage{
 sc_token()
 
-sc_token_set(token)
+sc_token_set(token, test = TRUE)
 
 sc_token_get()
 
@@ -18,6 +18,8 @@ sc_token_prompt()
 \arguments{
 \item{token}{(\code{string}) Ein API Token. Ein persönlicher Token kann via
 \code{\link[=sc_browse_preferences]{sc_browse_preferences()}} angezeigt werden.}
+
+\item{test}{Soll eine Testabfrage mit dem Token durchgeführt werden?}
 }
 \value{
 Alle vier Funktionen geben den Token (invisible) zurück
@@ -33,7 +35,7 @@ nachdem, ob der Token verfügbar ist.
 }
 
 \itemize{
-\item \code{statcube_token_set()} kann verwendet werden um den Token als Parameter
+\item \code{sc_token_set()} kann verwendet werden um den Token als Parameter
 (\code{string}) zu übergeben
 }
 

@@ -1,5 +1,3 @@
-secret_name <- "STATcube_token"
-
 #' API Token hinzufügen
 #'
 #' Diese Funktion erlaubt es, einen STATcube API Token in den authSTAT vault zu
@@ -22,7 +20,7 @@ sc_token <- function() {
 }
 
 sc_token_exists <- function() {
-  authSTAT::auth_exists_secret(secret_name)
+  Sys.getenv("STATCUBE_TOKEN") != ""
 }
 
 sc_token_valid <- function(token = sc_token()) {
@@ -31,15 +29,18 @@ sc_token_valid <- function(token = sc_token()) {
 }
 
 #' @rdname sc_token
+#' @param test Soll eine Testabfrage mit dem Token durchgeführt werden?
 #' @details
-#' * `statcube_token_set()` kann verwendet werden um den Token als Parameter
+#' * `sc_token_set()` kann verwendet werden um den Token als Parameter
 #'   (`string`) zu übergeben
 #' @export
-sc_token_set <- function(token) {
-  if (!sc_token_valid(token))
+sc_token_set <- function(token, test = TRUE) {
+  if (test && !sc_token_valid(token))
     stop("Der angegebene Token konnte nicht verwendet werden")
-  authSTAT::auth_add_secret(secret_name, token)
-  message("STATcube Key wurde erfolgreich getestet und im Vault hinterlegt")
+  Sys.setenv(STATCUBE_TOKEN = token)
+  message("Der Schlüssel wurde für diese R Session gespeichert. Fügen Sie",
+          "\n\n  STATCUBE_TOKEN=XXXX\n\nzu ihrem .Renviron hinzu um den ",
+          "Schlüssel permanent zu speichern")
   invisible(token)
 }
 
@@ -49,7 +50,9 @@ sc_token_set <- function(token) {
 #'   wird ein Fehler geworfen.
 #' @export
 sc_token_get <- function() {
-  authSTAT::auth_get_secret(secret_name)
+  if (!sc_token_exists())
+    stop("No STATcube token available. Set token with sc_token_set()")
+  invisible(Sys.getenv("STATCUBE_TOKEN"))
 }
 
 #' @rdname sc_token
