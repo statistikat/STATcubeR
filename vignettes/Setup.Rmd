@@ -2,7 +2,7 @@
 title: "Setup"
 ---
 
-Anleitung zum (einmaligen) aufsetzen von STATcubeR am R Server.
+Anleitung zum (einmaligen) aufsetzen von STATcubeR.
 
 ## Installation
 
@@ -26,9 +26,9 @@ Token.
 
 ```r
 sc_token_set("XXXX")
-Der Schlüssel wurde für diese R Session gespeichert. Fügen Sie
+Der Token wurde fuer diese R Session gespeichert. Fuegen Sie
 
   STATCUBE_TOKEN=XXXX
 
-zu ihrem .Renviron hinzu um den Schlüssel permanent zu speichern
+zu ihrem .Renviron hinzu um den Token permanent zu speichern
 ```

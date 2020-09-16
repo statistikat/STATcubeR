@@ -38,9 +38,9 @@ sc_token_set <- function(token, test = TRUE) {
   if (test && !sc_token_valid(token))
     stop("Der angegebene Token konnte nicht verwendet werden")
   Sys.setenv(STATCUBE_TOKEN = token)
-  message("Der Schlüssel wurde für diese R Session gespeichert. Fügen Sie",
+  message("Der Token wurde fuer diese R Session gespeichert. Fuegen Sie",
           "\n\n  STATCUBE_TOKEN=XXXX\n\nzu ihrem .Renviron hinzu um den ",
-          "Schlüssel permanent zu speichern")
+          "Token permanent zu speichern")
   invisible(token)
 }
 
