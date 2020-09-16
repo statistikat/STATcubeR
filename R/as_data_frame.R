@@ -41,7 +41,9 @@ get_fields <- function(x) {
 }
 
 #' @export
-as.data.frame.STATcube_response <- function(x, drop_aggregates = TRUE, recode_na = TRUE) {
+as.data.frame.STATcube_response <- function(
+  x, ..., drop_aggregates = TRUE, recode_na = TRUE)
+{
   content <- sc_content(x)
   df <- get_fields(x)
   for (i in seq_along(content$measures)) {

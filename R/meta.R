@@ -1,7 +1,9 @@
+globalVariables(".")
+
 get_var_code <- function(x) {
   if (is.null(x))
     return("")
-  tail(strsplit(x, ":")[[1]], 1)
+  utils::tail(strsplit(x, ":")[[1]], 1)
 }
 
 #' @export
