@@ -15,8 +15,8 @@ abgearbeitet werden.
    * Erklären der Begriffe Datenbank, Werte und Dimensionen
 * Github-Seite einrichten
 * Dependencies schlanker machen
-    * Token über `.Renviron` oder `.Rprofile` setzen statt mit `authSTAT`
-    * Dependency zu [fs](http://www.github.com/r-lib/fs) entfernen
+    * ~~Token über `.Renviron` oder `.Rprofile` setzen statt mit `authSTAT`~~
+    * ~~Dependency zu [fs](http://www.github.com/r-lib/fs) entfernen~~
     * ~~`shiny` vermutlich unnötig, außer es werden mehr GUI-Features
       zur Verfügung gestellt.~~
     * `httr` ist notwendig. Indirekt hat man damit auch Zugang zu

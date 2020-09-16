@@ -25,8 +25,7 @@ Hierzu sind folgende Schritte notwendig.
 
 Verwenden Sie das grafische User-Interface von STATcube um eine Tabelle
 zu erstellen. Besuchen Sie hierzu
-<http://sdbext:8081/statistik.at/ext/statcube/home>. Womöglich ist eine
-Anmeldung mit Windows-Username und Windows-Passwort notwendig.
+<http://sdbext:8081/statistik.at/ext/statcube/home>.
 
 ### Herunterladen der API Abfrage
 
@@ -107,7 +106,7 @@ sc_annotation_legend(my_response)
 
 In diesem Fall ist der Wert in Zeile 21 `NA` (**N**ot **A**vailable)
 aufgrund einer Sperrung. Bei dem Nuller in Zeile 20 handelt es sich
-hingegen um einen “echten Nuller”
+hingegen um einen “echten Nuller”.
 
 ## Anwendungsbeispiel: Gespeicherte Tabelle
 

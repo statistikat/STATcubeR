@@ -34,8 +34,7 @@ sind folgende Schritte notwendig.
 
 Verwenden Sie das grafische User-Interface von STATcube um eine Tabelle zu
 erstellen. Besuchen Sie hierzu
-http://sdbext:8081/statistik.at/ext/statcube/home. Womöglich ist eine Anmeldung
-mit Windows-Username und Windows-Passwort notwendig.
+http://sdbext:8081/statistik.at/ext/statcube/home.
 
 ### Herunterladen der API Abfrage
 
@@ -123,6 +122,11 @@ die Response wieder als json exportiert werden
 ```{r}
 sc_write_json(tourism_ts, "tourism_ts.json")
 ```
+
+```{r, include=FALSE}
+on.exit(fs::file_delete("tourism_ts.json"))
+```
+
 
 Die dabei generierte JSON-Datei beinhaltet eine API Abfrage, welche mit
 `sc_get_response()` verwendet werden kann
