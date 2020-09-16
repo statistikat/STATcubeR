@@ -19,3 +19,5 @@ Authors@R:
            email = "de.cillia.gregor@gmail.com")
 Suggests: 
     rmarkdown
+URL: https://github.com/statistikat/STATcubeR
+
