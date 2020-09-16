@@ -74,9 +74,3 @@ as.array.STATcube_response <- function(x, i = 1, ...) {
   labels <- content$fields %>% lapply(function(x) x$label)
   array(unlist(first_cube), rev(dims), dimnames = rev(get_dimnames(content$fields)))
 }
-
-#' @export
-sc_annotation_legend <- function(x) {
-  content <- sc_content(x)
-  content$annotationMap
-}

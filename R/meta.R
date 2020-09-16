@@ -6,6 +6,11 @@ get_var_code <- function(x) {
   utils::tail(strsplit(x, ":")[[1]], 1)
 }
 
+#' Erhalte Metadaten aus einer STATcube Response
+#'
+#' Funktionen zum extrahieren von Metadaten
+#'
+#' @param response Ein Objekt der Klasse `STATcube_response`
 #' @export
 sc_meta <- function(response) {
   content <- sc_content(response)
@@ -33,6 +38,17 @@ sc_meta <- function(response) {
   list(database = db_info, measures = measure_info, fields = field_info)
 }
 
+#' @rdname sc_meta
+#' @param i index des Feldes, über das genauere Informationen
+#'   gewünscht sind
+#' @examples
+#' \dontrun{
+#'
+#' my_response <- sc_example("bev_seit_1982") %>%
+#'   sc_get_response()
+#' sc_meta(my_response)
+#' sc_meta_field(my_response, 1)
+#' }
 #' @export
 sc_meta_field <- function(response, i) {
   content <- sc_content(response)
