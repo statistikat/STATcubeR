@@ -5,3 +5,6 @@
 ^README\.Rmd$
 ^docs$
 ^vignettes/articles$
+^doc$
+^Meta$
+^README_cache$
