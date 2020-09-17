@@ -13,6 +13,10 @@ knitr::opts_chunk$set(
 
 R Interface for the STATcube REST API
 
+<!-- badges: start -->
+[![Travis build status](https://travis-ci.com/statistikat/STATcubeR.svg?branch=master)](https://travis-ci.com/statistikat/STATcubeR)
+<!-- badges: end -->
+
 ## Setup
 
 See the [setup article] for instructions on how to install the package

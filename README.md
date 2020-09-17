@@ -3,6 +3,12 @@
 
 R Interface for the STATcube REST API
 
+<!-- badges: start -->
+
+[![Travis build
+status](https://travis-ci.com/statistikat/STATcubeR.svg?branch=master)](https://travis-ci.com/statistikat/STATcubeR)
+<!-- badges: end -->
+
 ## Setup
 
 See the [setup
@@ -57,7 +63,7 @@ my_response
 #> STATcubeR:     0.1.0
 ```
 
-### Convert ino a data frame
+### Convert into a data frame
 
 The return value of `sc_get_response()` can be converted into a
 `data.frame` using the generic function `as.data.frame()`.
