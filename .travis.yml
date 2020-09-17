@@ -2,3 +2,11 @@
 
 language: R
 cache: packages
+
+r_github_packages:
+  - r-lib/pkgdown
+
+deploy:
+  provider: script
+  script: Rscript -e 'pkgdown::deploy_site_github()'
+  skip_cleanup: true
