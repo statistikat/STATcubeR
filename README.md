@@ -1,13 +1,19 @@
 
 # STATcubeR <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
-R Interface for the STATcube REST API
-
 <!-- badges: start -->
 
 [![Travis build
 status](https://travis-ci.com/statistikat/STATcubeR.svg?branch=master)](https://travis-ci.com/statistikat/STATcubeR)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![GitHub last
+commit](https://img.shields.io/github/last-commit/statistikat/STATcubeR.svg?logo=github)](https://github.com/statistikat/STATcubeR/commits/master)
+[![GitHub code size in
+bytes](https://img.shields.io/github/languages/code-size/statistikat/STATcubeR?logo=github)](https://github.com/statistikat/STATcubeR)
 <!-- badges: end -->
+
+R Interface for the STATcube REST API
 
 ## Setup
 
