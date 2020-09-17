@@ -20,15 +20,15 @@ eingesehen werden.
 http://sdbext:8081/statistik.at/ext/statcube/jsf/preferences/editPreferences.xhtml
 ```
 
-Rufen Sie nun die Funktion `statcube_token_set()` auf, um den Schlüssel am
-R Server zu speichern. Ersetzen Sie dabei `"XXXX"` durch den vorhin kopierten
-Token.
+Rufen Sie nun die Funktion `statcube_token_set()` auf, um den Schlüssel für
+`STATcubeR` verfügbar zu machen. Ersetzen Sie dabei `"XXXX"` durch den vorhin
+kopierten Token.
 
 ```r
 sc_token_set("XXXX")
-Der Token wurde fuer diese R Session gespeichert. Fuegen Sie
-
-  STATCUBE_TOKEN=XXXX
-
-zu ihrem .Renviron hinzu um den Token permanent zu speichern
+#> Der Token wurde fuer diese R Session gespeichert. Fuegen Sie
+#>
+#>   STATCUBE_TOKEN=XXXX
+#>
+#> zu ihrem .Renviron hinzu um den Token permanent zu speichern
 ```
