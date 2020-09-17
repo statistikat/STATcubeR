@@ -3,27 +3,27 @@
 \name{sc_get_response}
 \alias{sc_get_response}
 \alias{sc_example}
-\title{Führe eine API Abfrage gegen STATcube durch}
+\title{Post an api request against STATcube}
 \usage{
 sc_get_response(file, token = sc_token())
 
 sc_example(filename)
 }
 \arguments{
-\item{file}{Pfad zu einem JSON file, welches über die STATcube GUI
-heruntergeladen wurde (Open Data API Abfrage)}
+\item{file}{path to a json file, which was downloaded via the STATcube
+gui ("Open Data API Abfrage")}
 
-\item{token}{(\code{string}) Ein API Token. Ein persönlicher Token kann via
-\code{\link[=sc_browse_preferences]{sc_browse_preferences()}} angezeigt werden.}
+\item{token}{(\code{string}) An API token. To display your token, call
+\code{\link[=sc_browse_preferences]{sc_browse_preferences()}}.}
 
-\item{filename}{Name eines Beispiel-Json files.}
+\item{filename}{The name of an example json file.}
 }
 \value{
-Ein Objekt der Klasse \code{STATcube_response} welche den Rückgabewert
-von \code{\link[httr:POST]{httr::POST()}} beinhaltet
+An object of class \code{STATcube_response} which contains the return
+value of \code{\link[httr:POST]{httr::POST()}}
 }
 \description{
-Erlaube es anhand eines jsone Files eine Tabelle von STATcube abzurufen.
+retrieve a response from STATcube based on a json file
 }
 \examples{
 \dontrun{

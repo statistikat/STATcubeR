@@ -5,7 +5,7 @@
 \alias{sc_token_set}
 \alias{sc_token_get}
 \alias{sc_token_prompt}
-\title{API Token hinzufügen}
+\title{Manage your API Token}
 \usage{
 sc_token()
 
@@ -13,38 +13,37 @@ sc_token_set(token, test = TRUE)
 
 sc_token_get()
 
-sc_token_prompt()
+sc_token_prompt(test = TRUE)
 }
 \arguments{
-\item{token}{(\code{string}) Ein API Token. Ein persönlicher Token kann via
-\code{\link[=sc_browse_preferences]{sc_browse_preferences()}} angezeigt werden.}
+\item{token}{(\code{string}) An API token. To display your token, call
+\code{\link[=sc_browse_preferences]{sc_browse_preferences()}}.}
 
-\item{test}{Soll eine Testabfrage mit dem Token durchgeführt werden?}
+\item{test}{Use a test-requst to verify the token?}
 }
 \value{
-Alle vier Funktionen geben den Token (invisible) zurück
+All functions return the token (invisibly)
 }
 \description{
-Diese Funktion erlaubt es, einen STATcube API Token in den authSTAT vault zu
-speichern bzw den Token aus dem Vault zu laden.
+Functions to get/set the STATcube api token and make them available for calls
+against the STATcube api.
 }
 \details{
 \itemize{
-\item \code{sc_token()} führt \code{sc_token_get()} oder \code{sc_token_prompt()} aus, je
-nachdem, ob der Token verfügbar ist.
+\item \code{sc_token()} forwards to \code{sc_token_get()} if the token is already present.
+Otherwise, \code{sc_token_prompt()} will be invoked.
 }
 
 \itemize{
-\item \code{sc_token_set()} kann verwendet werden um den Token als Parameter
-(\code{string}) zu übergeben
+\item \code{sc_token_set()} can be used to pass the token as a parameter (\code{string})
 }
 
 \itemize{
-\item \code{sc_token_get()} gibt den Token zurück, falls er existiert. Sonst
-wird ein Fehler geworfen.
+\item \code{sc_token_get()} returns the token, if it exists. Otherwise,
+an error is thrown.
 }
 
 \itemize{
-\item \code{sc_token_prompt()} fragt den Token via \code{\link[=readline]{readline()}} ab
+\item \code{sc_token_prompt()} prompts for a token via \code{\link[=readline]{readline()}}
 }
 }

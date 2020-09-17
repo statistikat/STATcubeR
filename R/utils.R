@@ -14,12 +14,14 @@ is_sc_response <- function(x) {
   inherits(x, "STATcube_response")
 }
 
-#' Hilfsfunktionen
+#' Utility Functions
 #'
-#' Unterstützende Funktionen in STATcubeR
+#' Supporting functions for STATcubeR
 #'
 #' @rdname utils
-#' @param response Ein Objekt der Klasse STATcube_response
+#' @param response An objekt of class `STATcube_response`
+#' @description * `sc_content()` returns the raw api response as a nested
+#'   list
 #' @export
 sc_content <- function(response) {
   stopifnot(is_sc_response(response))
@@ -27,8 +29,9 @@ sc_content <- function(response) {
 }
 
 #' @rdname utils
-#' @param file Ein Dateiname, unter welchem das json abgespeichert
-#'   werden soll.
+#' @param file A filename, under which the json should be saved.
+#' @description * `sc_write_json()` saves the api request for a table as
+#'   a json file. The resulting json file can be passed to [sc_get_response()]
 #' @export
 sc_write_json <- function(response, file) {
     sc_content(response)$query %>%
@@ -46,6 +49,8 @@ sc_get_ratelimit <- function(x) {
 }
 
 #' @rdname utils
+#' @description * `sc_annotation_legend()` lists all annotations occurring in
+#'   a table together with descriptions of the annotations.
 #' @export
 sc_annotation_legend <- function(response) {
   content <- sc_content(response)

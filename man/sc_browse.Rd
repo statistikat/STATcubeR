@@ -3,14 +3,14 @@
 \name{sc_browse}
 \alias{sc_browse}
 \alias{sc_browse_preferences}
-\title{Links zu wichtigen STATcube Seiten}
+\title{Links to important STATcube pages}
 \usage{
 sc_browse()
 
 sc_browse_preferences()
 }
 \description{
-Eine Sammlung von links, um relevante STATcube Seiten anzuzeigen
+A collection of links, to browse important STATcube pages.
 }
 \examples{
 # Zeige Startseite

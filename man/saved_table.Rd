@@ -3,19 +3,20 @@
 \name{sc_saved_tables_list}
 \alias{sc_saved_tables_list}
 \alias{sc_saved_table}
-\title{Importiere gespeicherte Tabellen}
+\title{Import saved tables}
 \usage{
 sc_saved_tables_list()
 
 sc_saved_table(table_uri, token = sc_token())
 }
 \arguments{
-\item{table_uri}{Identifikator einer gespeicherten Tabelle aus \code{\link[=sc_saved_tables_list]{sc_saved_tables_list()}}}
+\item{table_uri}{Identifier of a saved table as returned by
+\code{\link[=sc_saved_tables_list]{sc_saved_tables_list()}}}
 
-\item{token}{Ein API Token}
+\item{token}{An API token}
 }
 \description{
-Funktionen um gespeicherte Tabellen aus STATcube zu importieren
+Functions for importing saved tables from STATcube
 }
 \examples{
 \dontrun{

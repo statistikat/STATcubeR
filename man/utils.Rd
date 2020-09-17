@@ -4,7 +4,7 @@
 \alias{sc_content}
 \alias{sc_write_json}
 \alias{sc_annotation_legend}
-\title{Hilfsfunktionen}
+\title{Utility Functions}
 \usage{
 sc_content(response)
 
@@ -13,11 +13,26 @@ sc_write_json(response, file)
 sc_annotation_legend(response)
 }
 \arguments{
-\item{response}{Ein Objekt der Klasse STATcube_response}
+\item{response}{An objekt of class \code{STATcube_response}}
 
-\item{file}{Ein Dateiname, unter welchem das json abgespeichert
-werden soll.}
+\item{file}{A filename, under which the json should be saved.}
 }
 \description{
-Unterstützende Funktionen in STATcubeR
+\itemize{
+\item \code{sc_content()} returns the raw api response as a nested
+list
+}
+
+\itemize{
+\item \code{sc_write_json()} saves the api request for a table as
+a json file. The resulting json file can be passed to \code{\link[=sc_get_response]{sc_get_response()}}
+}
+
+\itemize{
+\item \code{sc_annotation_legend()} lists all annotations occurring in
+a table together with descriptions of the annotations.
+}
+}
+\details{
+Supporting functions for STATcubeR
 }

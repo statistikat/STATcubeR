@@ -15,13 +15,13 @@ as_sc_response <- function(response) {
   x
 }
 
-#' Führe eine API Abfrage gegen STATcube durch
+#' Post an api request against STATcube
 #'
-#' Erlaube es anhand eines jsone Files eine Tabelle von STATcube abzurufen.
-#' @param file Pfad zu einem JSON file, welches über die STATcube GUI
-#'   heruntergeladen wurde (Open Data API Abfrage)
-#' @return Ein Objekt der Klasse `STATcube_response` welche den Rückgabewert
-#'   von [httr::POST()] beinhaltet
+#' retrieve a response from STATcube based on a json file
+#' @param file path to a json file, which was downloaded via the STATcube
+#'   gui ("Open Data API Abfrage")
+#' @return An object of class `STATcube_response` which contains the return
+#'   value of [httr::POST()]
 #' @inheritParams sc_token
 #' @examples
 #' \dontrun{
@@ -37,7 +37,7 @@ sc_get_response <- function(file, token = sc_token()) {
 }
 
 #' @export
-#' @param filename Name eines Beispiel-Json files.
+#' @param filename The name of an example json file.
 #' @rdname sc_get_response
 sc_example <- function(filename) {
   system.file(package = utils::packageName(), "json_examples", filename)
@@ -46,10 +46,10 @@ sc_example <- function(filename) {
 #' @export
 print.STATcube_response <- function(x, ...) {
   content <- sc_content(x)
-  cat("Objekt der Klasse STATcube_response\n\n")
-  cat("Datenbank:    ", content$database$label, "\n")
-  cat("Werte:        ", content$measures %>% sapply(function(x) x$label) %>% paste(collapse = ", "), "\n")
-  cat("Dimensionen:  ", content$fields %>% sapply(function(x) x$label) %>% paste(collapse = ", "), "\n\n")
-  cat("Abfrage:      ", format(x$response$date), "\n")
+  cat("An object of class STATcube_response\n\n")
+  cat("Database:     ", content$database$label, "\n")
+  cat("Measures:     ", content$measures %>% sapply(function(x) x$label) %>% paste(collapse = ", "), "\n")
+  cat("Fields:       ", content$fields %>% sapply(function(x) x$label) %>% paste(collapse = ", "), "\n\n")
+  cat("Request:      ", format(x$response$date), "\n")
   cat("STATcubeR:    ", x$scr_version)
 }

@@ -1,20 +1,20 @@
-#' API Token hinzufügen
+#' Manage your API Token
 #'
-#' Diese Funktion erlaubt es, einen STATcube API Token in den authSTAT vault zu
-#' speichern bzw den Token aus dem Vault zu laden.
+#' Functions to get/set the STATcube api token and make them available for calls
+#' against the STATcube api.
 #'
-#' * `sc_token()` führt `sc_token_get()` oder `sc_token_prompt()` aus, je
-#'   nachdem, ob der Token verfügbar ist.
-#' @param token (`string`) Ein API Token. Ein persönlicher Token kann via
-#'   [sc_browse_preferences()] angezeigt werden.
-#' @return Alle vier Funktionen geben den Token (invisible) zurück
+#' * `sc_token()` forwards to `sc_token_get()` if the token is already present.
+#'   Otherwise, `sc_token_prompt()` will be invoked.
+#' @param token (`string`) An API token. To display your token, call
+#'   [sc_browse_preferences()].
+#' @return All functions return the token (invisibly)
 #' @export
 sc_token <- function() {
   if (!sc_token_exists()) {
     if (interactive())
       sc_token_prompt()
     else
-      stop("Kein STATcube API Token vorhanden")
+      stop("No STATcube API Token available")
   }
   sc_token_get()
 }
@@ -29,25 +29,24 @@ sc_token_valid <- function(token = sc_token()) {
 }
 
 #' @rdname sc_token
-#' @param test Soll eine Testabfrage mit dem Token durchgeführt werden?
+#' @param test Use a test-requst to verify the token?
 #' @details
-#' * `sc_token_set()` kann verwendet werden um den Token als Parameter
-#'   (`string`) zu übergeben
+#' * `sc_token_set()` can be used to pass the token as a parameter (`string`)
 #' @export
 sc_token_set <- function(token, test = TRUE) {
   if (test && !sc_token_valid(token))
-    stop("Der angegebene Token konnte nicht verwendet werden")
+    stop("Der token could not be verified")
   Sys.setenv(STATCUBE_TOKEN = token)
-  message("Der Token wurde fuer diese R Session gespeichert. Fuegen Sie",
-          "\n\n  STATCUBE_TOKEN=XXXX\n\nzu ihrem .Renviron hinzu um den ",
-          "Token permanent zu speichern")
+  message("The provided token will be available for this R session. Add",
+          "\n\n  STATCUBE_TOKEN=XXXX\n\nto your .Renviron to set ",
+          "the token persistently")
   invisible(token)
 }
 
 #' @rdname sc_token
 #' @details
-#' * `sc_token_get()` gibt den Token zurück, falls er existiert. Sonst
-#'   wird ein Fehler geworfen.
+#' * `sc_token_get()` returns the token, if it exists. Otherwise,
+#'   an error is thrown.
 #' @export
 sc_token_get <- function() {
   if (!sc_token_exists())
@@ -57,9 +56,9 @@ sc_token_get <- function() {
 
 #' @rdname sc_token
 #' @details
-#' * `sc_token_prompt()` fragt den Token via [readline()] ab
+#' * `sc_token_prompt()` prompts for a token via [readline()]
 #' @export
-sc_token_prompt <- function() {
-  token <- readline("Geben Sie ihren API Token ein: \n")
-  sc_token_set(token)
+sc_token_prompt <- function(test = TRUE) {
+  token <- readline("Provide your API token: \n")
+  sc_token_set(token, test = test)
 }

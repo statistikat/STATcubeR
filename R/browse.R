@@ -1,6 +1,6 @@
-#' Links zu wichtigen STATcube Seiten
+#' Links to important STATcube pages
 #'
-#' Eine Sammlung von links, um relevante STATcube Seiten anzuzeigen
+#' A collection of links, to browse important STATcube pages.
 #'
 #' @examples
 #' # Zeige Startseite

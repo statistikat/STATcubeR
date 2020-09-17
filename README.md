@@ -1,80 +1,75 @@
 
 # STATcubeR <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
-R Interface für die STATcube REST API
+R Interface for the STATcube REST API
 
 ## Setup
 
-Zum erstmaligen Verwenden des Pakets ist es notwendig, das Paket zu
-installieren und einen API Schlüssel hinzuzufügen. Eine Anleitung hierzu
-kann in dem [Setup
-Artikel](http://xlwt0012/rpkgs/dev/STATcubeR/articles/Setup.html)
-gefunden werden.
+See the [setup
+article](http://xlwt0012/rpkgs/dev/STATcubeR/articles/Setup.html) for
+instructions on how to install the package and set your API key.
 
-## Anwendungsbeispiel: JSON-Abfrage
+## Usecase: JSON-Request
 
-Im folgenden Beispiel wird eine Tabelle von STATcube in R exportiert.
-Hierzu sind folgende Schritte notwendig.
+In the following example, a table will be exported from STATcube into an
+R session. This process involves four steps
 
-  - Erstellen einer Tabelle auf STATcube (Tabellenansicht)
-  - Herunterladen einer API Abfrage für diese Tabelle. (JSON-Format)
-  - Absenden der Abfrage über den R Server
-  - Konvertieren der API-Response in ein typisches R Datenformat
+  - create a table with the STATcube GUI (table view)
+  - download an “API request” for the table (format: `*.json`).
+  - send the `json` file to the API using `STATcubeR`.
+  - convert the return value into a `data.frame`
 
-### Erstellen einer Tabelle auf STATcube
+### create a table with the STATcube GUI
 
-Verwenden Sie das grafische User-Interface von STATcube um eine Tabelle
-zu erstellen. Besuchen Sie hierzu
+Use the graphical user interface of STATcube to create a table. Visit
 <http://sdbext:8081/statistik.at/ext/statcube/home>.
 
-### Herunterladen der API Abfrage
+### Download an API request
 
-Laden sie eine “Open Data API Abfrage” über die STATcube GUI herunter.
-Wählen Sie hierzu “API Abfrage” als Download-Option. Nun wird eine
-json-Datei auf dem Windows-System abgelegt.
+Choose “Open Data API Abfrage (.json)” in the download options. This
+will save a json file on your local file system.
 
 <img src="man/figures/download_json.png" />
 
-### Absenden der Abfrage
+### Send the json to the API
 
-Geben Sie den Pfad zu dem heruntergeladenen JSON-File in der Funktion
-`sc_get_response()` ein, um die API Abfrage auszuführen.
+Provide the path to the downloaded file in `sc_get_response()`.
 
 ``` r
 my_response <- sc_get_response("pfad/zu/api_abfrage.json")
 ```
 
-Das Objekt `my_response` beinhaltet die “rohe” API-Response. Die
-Print-Methode gibt einen Einblick in die Abfrage.
+The object `my_response` contains the raw API response from
+`httr::post()`. Printing the object will summarize the request.
 
 ``` r
-(json_pfad <- sc_example("bev_seit_1982.json"))
-#> /data/home/decill/projects/STATcubeR/inst/json_examples/bev_seit_1982.json
-my_response <- sc_get_response(json_pfad)
+(json_path <- sc_example("bev_seit_1982.json"))
+#> [1] "/data/home/decill/projects/STATcubeR/inst/json_examples/bev_seit_1982.json"
+my_response <- sc_get_response(json_path)
 my_response
-#> Objekt der Klasse STATcube_response
+#> An object of class STATcube_response
 #> 
-#> Datenbank:     Bevölkerung zu Jahresbeginn ab 1982 
-#> Werte:         Fallzahl 
-#> Dimensionen:   Jahr, Bundesland, Geburtsland 
+#> Database:      Bevölkerung zu Jahresbeginn ab 1982 
+#> Measures:      Fallzahl 
+#> Fields:        Jahr, Bundesland, Geburtsland 
 #> 
-#> Abfrage:       2020-08-17 12:53:43 
+#> Request:       2020-09-17 10:09:59 
 #> STATcubeR:     0.1.0
 ```
 
-### Umwandeln in typische R-Datenformate
+### Convert ino a data frame
 
-Um die importierten Daten in R zu nutzen kann `as.data.frame()` oder
-`as.array()` verwendet werden.
+The return value of `sc_get_response()` can be converted into a
+`data.frame` using the generic function `as.data.frame()`.
 
 ``` r
 as.array(my_response)
 as.data.frame(my_response)
 ```
 
-Im Falle von `as.data.frame()` wird ein tidy Datensatz zurückgegeben,
-der jede Dimension des Cubes als Spalte enthält. Außerdem gibt es zwei
-Spalten pro Wert. Beispiel:
+This will produce a tidy table, which contains a column for each
+dimension of the table. Furthermore, two columns will be present for
+each measure
 
 ``` r
 as.data.frame(my_response) %>% .[c(1:4, 19:24), ]
@@ -91,9 +86,9 @@ as.data.frame(my_response) %>% .[c(1:4, 19:24), ]
 #> 24 1982            Kärnten <AT21>     Ausland       NA          X
 ```
 
-Die Spalte `Fallzahl_a` enthält die Anmerkungen (Annotations) zur Spalte
-`Fallzahl`. Um die Bedeutungen der Annotations zu sehen kann
-`sc_annotation_legend()` verwendet werden.
+The column `Fallzahl_a` contains annotations for the column `Fallzahl`.
+In order to get explanations about those annotations, use the function
+`sc_annotation_legend()`.
 
 ``` r
 sc_annotation_legend(my_response)
@@ -104,59 +99,60 @@ sc_annotation_legend(my_response)
 #> [1] "Verkreuzung nicht erlaubt"
 ```
 
-In diesem Fall ist der Wert in Zeile 21 `NA` (**N**ot **A**vailable)
-aufgrund einer Sperrung. Bei dem Nuller in Zeile 20 handelt es sich
-hingegen um einen “echten Nuller”.
+In this case, we see that row 21 contains a value `NA` (**N**ot
+**A**vailable) because the value is not provided. However, the zero
+value in row 20 can be considered a “real zero value” because no
+annotations are provided.
 
-## Anwendungsbeispiel: Gespeicherte Tabelle
+## Usecase: Saved Table
 
-Wenn auf STATcube gespeicherte Tabellen vorhanden sind, können diese
-auch ohne eine JSON-Abfrage importiert werden. Alle gespeicherten
-Tabellen können mit `sc_saved_tables_list()` aufgelistet werden.
+If saved tables are present in STATcube, those can be imported without
+downloading a json file. All saved tables can be shown with
+`sc_saved_tables_list()`.
 
 ``` r
 sc_saved_tables_list()
 #>               label                                             id
-#> 1 krankenbewegungen str:table:c7902e8d-5165-44e9-b17e-34ae20e2d1d4
-#> 2        tourism_ts str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c
-#> 3      entlassungen str:table:f63f0713-155f-4d1d-8d41-4a50f0815fc7
+#> 1        ts_tourism str:table:cfc581ca-dd88-44e7-9ec2-cca153365dd5
+#> 2 krankenbewegungen str:table:c7902e8d-5165-44e9-b17e-34ae20e2d1d4
+#> 3        tourism_ts str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c
+#> 4      entlassungen str:table:f63f0713-155f-4d1d-8d41-4a50f0815fc7
 ```
 
-Anschließend kann die `id` einer gespeicherten Tabelle verwendet werden,
-um diese in R zu importieren.
+Subsequently the `id` of a saved table can be used to import the table
+into R.
 
 ``` r
 tourism_ts <- sc_saved_table("str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c")
 tourism_ts
-#> Objekt der Klasse STATcube_response
+#> An object of class STATcube_response
 #> 
-#> Datenbank:     Nächtigungsstatistik ab 1974 nach Saison 
-#> Werte:         Übernachtungen 
-#> Dimensionen:   Regionale Gliederung [teilw. SPE], Saison/Tourismusmonat, Herkunftsland 
+#> Database:      Nächtigungsstatistik ab 1974 nach Saison 
+#> Measures:      Übernachtungen 
+#> Fields:        Regionale Gliederung [teilw. SPE], Saison/Tourismusmonat, Herkunftsland 
 #> 
-#> Abfrage:       2020-08-17 13:33:44 
+#> Request:       2020-09-17 10:10:14 
 #> STATcubeR:     0.1.0
 ```
 
-Um die Tabellen für andere Nutzer von `STATcubeR` verfügbar zu machen,
-kann die Response wieder als json exportiert werden
+To make the table available for other users of `STATcubeR`, the response
+can be exported into a json.
 
 ``` r
 sc_write_json(tourism_ts, "tourism_ts.json")
 ```
 
-Die dabei generierte JSON-Datei beinhaltet eine API Abfrage, welche mit
-`sc_get_response()` verwendet werden kann
+The generated json file contains an API request that can be used in
+`sc_get_response()`.
 
 ``` r
-sc_get_response("tourism_ts.json")
+my_response <- sc_get_response("tourism_ts.json")
 ```
 
-## Sonstiges
+## Misc
 
-Um den Inhalt einer Response zu erhalten, kann `sc_content()` verwendet
-werden. Hierbei wird eine verschachtelte Liste zurückgegeben, welche dem
-JSON-Inhalt der API-Response entspricht.
+To get the raw API response content, use `sc_content()`. This function
+returns a nested list, containing data and metadata about the table.
 
 ``` r
 my_content <- sc_content(my_response)
@@ -178,8 +174,8 @@ my_content$measures
 #> [1] "SUM"
 ```
 
-Die Endpoints `/info`, `/schema` und `/rate_limit` sind testweise
-angebunden aber noch nicht exportiert.
+There is experimental support for the endpoints `/info`, `/schema` and
+`/rate_limit`. However, those endpoints are not exported by now.
 
 ``` r
 STATcubeR:::sc_get_info() %>% httr::content()
@@ -187,21 +183,13 @@ STATcubeR:::sc_get_schema() %>% httr::content()
 STATcubeR:::sc_get_rate_limit() %>% httr::content()
 ```
 
-STATcube verfügt über einen Cache. Wenn die selbe Abfrage mehrmals
-abgeschickt wird, so wird das Rate-Limit (100 Anfragen pro Stunde) nicht
-belastet. Sämtliche Anfragen werden an die externe STATcube Instanz
-gesendet. Eine Überlastung der API kann somit die UX von externen
-Nutzern negativ beeinflussen.
+STATcube uses caching for the table endpoint by default. If the same
+request to `sc_get_response()` is sent several times, this will not
+count towards the rate-limit (100 requests per hour).
 
-## TODO
+## API documentation
 
-Vorschläge zur Weiterentwicklung des Pakets können in dem [TODO
-Artikel](http://xlwt0012/rpkgs/dev/STATcubeR/articles/TODO.html)
-nachgelesen werden.
-
-## API Dokumentation
-
-  - `/table` Endpoint:
+  - `/table` endpoint:
     <https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint>
-  - `/schema` Endpoint:
+  - `/schema` endpoint:
     <https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/schema-endpoint>

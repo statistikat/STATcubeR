@@ -1,6 +1,6 @@
-#' Importiere gespeicherte Tabellen
+#' Import saved tables
 #'
-#' Funktionen um gespeicherte Tabellen aus STATcube zu importieren
+#' Functions for importing saved tables from STATcube
 #' @rdname saved_table
 #' @export
 sc_saved_tables_list <- function() {
@@ -13,8 +13,9 @@ sc_saved_tables_list <- function() {
   )
 }
 
-#' @param table_uri Identifikator einer gespeicherten Tabelle aus [sc_saved_tables_list()]
-#' @param token Ein API Token
+#' @param table_uri Identifier of a saved table as returned by
+#'   [sc_saved_tables_list()]
+#' @param token An API token
 #' @rdname saved_table
 #' @examples
 #' \dontrun{

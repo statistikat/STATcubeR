@@ -3,20 +3,19 @@
 \name{sc_meta}
 \alias{sc_meta}
 \alias{sc_meta_field}
-\title{Erhalte Metadaten aus einer STATcube Response}
+\title{Get metadata for a STATcube table}
 \usage{
 sc_meta(response)
 
 sc_meta_field(response, i)
 }
 \arguments{
-\item{response}{Ein Objekt der Klasse \code{STATcube_response}}
+\item{response}{An object of class \code{STATcube_response}}
 
-\item{i}{index des Feldes, über das genauere Informationen
-gewünscht sind}
+\item{i}{index of the field, for which further metadata are desired}
 }
 \description{
-Funktionen zum extrahieren von Metadaten
+Functions to extract metadata from a \code{STATcube_response} object.
 }
 \examples{
 \dontrun{

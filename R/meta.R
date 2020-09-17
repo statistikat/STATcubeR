@@ -6,11 +6,11 @@ get_var_code <- function(x) {
   utils::tail(strsplit(x, ":")[[1]], 1)
 }
 
-#' Erhalte Metadaten aus einer STATcube Response
+#' Get metadata for a STATcube table
 #'
-#' Funktionen zum extrahieren von Metadaten
+#' Functions to extract metadata from a `STATcube_response` object.
 #'
-#' @param response Ein Objekt der Klasse `STATcube_response`
+#' @param response An object of class `STATcube_response`
 #' @export
 sc_meta <- function(response) {
   content <- sc_content(response)
@@ -39,8 +39,7 @@ sc_meta <- function(response) {
 }
 
 #' @rdname sc_meta
-#' @param i index des Feldes, über das genauere Informationen
-#'   gewünscht sind
+#' @param i index of the field, for which further metadata are desired
 #' @examples
 #' \dontrun{
 #'
