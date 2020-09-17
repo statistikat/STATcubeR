@@ -48,7 +48,7 @@ will save a json file on your local file system.
 Provide the path to the downloaded file in `sc_get_response()`.
 
 ``` r
-my_response <- sc_get_response("pfad/zu/api_abfrage.json")
+my_response <- sc_get_response("path/to/api_request.json")
 ```
 
 The object `my_response` contains the raw API response from
@@ -79,9 +79,8 @@ as.array(my_response)
 as.data.frame(my_response)
 ```
 
-This will produce a tidy table, which contains a column for each
-dimension of the table. Furthermore, two columns will be present for
-each measure
+This will produce a tidy table, which contains a column for each field
+of the table. Furthermore, two columns will be present for each measure
 
 ``` r
 as.data.frame(my_response) %>% .[c(1:4, 19:24), ]
@@ -112,9 +111,9 @@ sc_annotation_legend(my_response)
 ```
 
 In this case, we see that row 21 contains a value `NA` (**N**ot
-**A**vailable) because the value is not provided. However, the zero
-value in row 20 can be considered a “real zero value” because no
-annotations are provided.
+**A**vailable) because the value is not disclosed (“Verkreuzung nicht
+erlaubt”). However, the zero value in row 20 can be considered a “real
+zero value” because no annotations are provided.
 
 ## Usecase: Saved Table
 
@@ -195,7 +194,7 @@ STATcubeR:::sc_get_schema() %>% httr::content()
 STATcubeR:::sc_get_rate_limit() %>% httr::content()
 ```
 
-STATcube uses caching for the table endpoint by default. If the same
+STATcube uses caching for the `/table` endpoint by default. If the same
 request to `sc_get_response()` is sent several times, this will not
 count towards the rate-limit (100 requests per hour).
 

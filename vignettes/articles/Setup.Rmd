@@ -34,3 +34,10 @@ sc_token_set("XXXX")
 #>
 #> to your .Renviron to set the token persistently
 ```
+
+## How do I get an API token?
+
+Currently, the api is only available inside the firewall of statistics austria.
+Therefore, api tokens can only be requested by our employees. Api access for
+external users with a statcube subscription is planned for spring 2021. Please
+get into contact with the package maintainers of `STATcubeR` for details.
