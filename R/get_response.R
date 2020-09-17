@@ -24,7 +24,9 @@ as_sc_response <- function(response) {
 #'   von [httr::POST()] beinhaltet
 #' @inheritParams sc_token
 #' @examples
+#' \dontrun{
 #' lgr_01 <- sc_get_response(sc_example("LGR01.json"))
+#' }
 #' @export
 sc_get_response <- function(file, token = sc_token()) {
   httr::POST(

@@ -26,5 +26,7 @@ von \code{\link[httr:POST]{httr::POST()}} beinhaltet
 Erlaube es anhand eines jsone Files eine Tabelle von STATcube abzurufen.
 }
 \examples{
+\dontrun{
 lgr_01 <- sc_get_response(sc_example("LGR01.json"))
+}
 }
