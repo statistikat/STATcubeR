@@ -16,6 +16,7 @@ sc_saved_tables_list <- function() {
 #' @param table_uri Identifier of a saved table as returned by
 #'   [sc_saved_tables_list()]
 #' @param token An API token
+#' @param language The language to be used for labeling. `"en"` or `"de"`
 #' @rdname saved_table
 #' @examples
 #' \dontrun{
@@ -26,9 +27,12 @@ sc_saved_tables_list <- function() {
 #' as.data.frame(my_response)
 #' }
 #' @export
-sc_saved_table <- function(table_uri, token = sc_token()) {
+sc_saved_table <- function(table_uri, token = sc_token(), language = c("en", "de")) {
   response <- httr::GET(
     url = paste0(base_url, "/table/saved/", table_uri),
-    config = httr::add_headers(APIKey = token)
+    config = httr::add_headers(
+      APIKey = token,
+      `Accept-Language` = match.arg(language)
+    )
   ) %>% as_sc_response()
 }

@@ -61,11 +61,11 @@ my_response <- sc_get_response(json_path)
 my_response
 #> An object of class STATcube_response
 #> 
-#> Database:      Bevölkerung zu Jahresbeginn ab 1982 
-#> Measures:      Fallzahl 
-#> Fields:        Jahr, Bundesland, Geburtsland 
+#> Database:      Population at the beginning of the year since 1982 
+#> Measures:      Number 
+#> Fields:        Time section, Bundesland, Country of birth 
 #> 
-#> Request:       2020-09-17 10:09:59 
+#> Request:       2020-09-17 14:35:12 
 #> STATcubeR:     0.1.0
 ```
 
@@ -84,17 +84,17 @@ of the table. Furthermore, two columns will be present for each measure
 
 ``` r
 as.data.frame(my_response) %>% .[c(1:4, 19:24), ]
-#>    Jahr                Bundesland Geburtsland Fallzahl Fallzahl_a
-#> 1  2020         Burgenland <AT11>  Österreich   260354           
-#> 2  2020         Burgenland <AT11>     Ausland    34082           
-#> 3  2020            Kärnten <AT21>  Österreich   489262           
-#> 4  2020            Kärnten <AT21>     Ausland    72031           
-#> 19 2020 Nicht klassifizierbar <0>  Österreich        0           
-#> 20 2020 Nicht klassifizierbar <0>     Ausland        0           
-#> 21 1982         Burgenland <AT11>  Österreich       NA          X
-#> 22 1982         Burgenland <AT11>     Ausland       NA          X
-#> 23 1982            Kärnten <AT21>  Österreich       NA          X
-#> 24 1982            Kärnten <AT21>     Ausland       NA          X
+#>    Time section           Bundesland Country of birth Number Number_a
+#> 1          2020    Burgenland <AT11>          Austria 260354         
+#> 2          2020    Burgenland <AT11>  Foreign country  34082         
+#> 3          2020     Carinthia <AT21>          Austria 489262         
+#> 4          2020     Carinthia <AT21>  Foreign country  72031         
+#> 19         2020 Not classifiable <0>          Austria      0         
+#> 20         2020 Not classifiable <0>  Foreign country      0         
+#> 21         1982    Burgenland <AT11>          Austria     NA        X
+#> 22         1982    Burgenland <AT11>  Foreign country     NA        X
+#> 23         1982     Carinthia <AT21>          Austria     NA        X
+#> 24         1982     Carinthia <AT21>  Foreign country     NA        X
 ```
 
 The column `Fallzahl_a` contains annotations for the column `Fallzahl`.
@@ -104,10 +104,10 @@ In order to get explanations about those annotations, use the function
 ``` r
 sc_annotation_legend(my_response)
 #> $Q
-#> [1] "STATcube – Statistische Datenbank von STATISTIK AUSTRIA"
+#> [1] "STATcube – Statistical Database of STATISTICS AUSTRIA"
 #> 
 #> $X
-#> [1] "Verkreuzung nicht erlaubt"
+#> [1] "Crosstabulation not allowed"
 ```
 
 In this case, we see that row 21 contains a value `NA` (**N**ot
@@ -138,11 +138,11 @@ tourism_ts <- sc_saved_table("str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c")
 tourism_ts
 #> An object of class STATcube_response
 #> 
-#> Database:      Nächtigungsstatistik ab 1974 nach Saison 
-#> Measures:      Übernachtungen 
-#> Fields:        Regionale Gliederung [teilw. SPE], Saison/Tourismusmonat, Herkunftsland 
+#> Database:      Accomodation statistics as of 1974 according to seasons 
+#> Measures:      Nights spent 
+#> Fields:        Tourism commune [partly SPE], Season/Tourism Month, Country of origin 
 #> 
-#> Request:       2020-09-17 10:10:14 
+#> Request:       2020-09-17 14:35:27 
 #> STATcubeR:     0.1.0
 ```
 
@@ -176,7 +176,7 @@ my_content$measures
 #> [1] "str:statfn:debevstandjb:F-BEVSTANDJB:F-ISIS-1:SUM"
 #> 
 #> [[1]]$label
-#> [1] "Fallzahl"
+#> [1] "Number"
 #> 
 #> [[1]]$measure
 #> [1] "str:measure:debevstandjb:F-BEVSTANDJB:F-ISIS-1"

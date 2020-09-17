@@ -95,7 +95,7 @@ sc_annotation_legend(my_response)
 ```
 
 In this case, we see that row 21 contains a value `NA` (**N**ot **A**vailable)
-because the value is not disclosed ("Verkreuzung nicht erlaubt"). However, the
+because the value is not disclosed ("Crosstabulation not allowed"). However, the
 zero value in row 20 can be considered a "real zero value" because no
 annotations are provided.
 

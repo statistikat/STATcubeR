@@ -23,16 +23,20 @@ as_sc_response <- function(response) {
 #' @return An object of class `STATcube_response` which contains the return
 #'   value of [httr::POST()]
 #' @inheritParams sc_token
+#' @param language The language to be used for labeling. `"en"` or `"de"`
 #' @examples
 #' \dontrun{
 #' lgr_01 <- sc_get_response(sc_example("LGR01.json"))
 #' }
 #' @export
-sc_get_response <- function(file, token = sc_token()) {
+sc_get_response <- function(file, token = sc_token(), language = c("en", "de")) {
   httr::POST(
     url = paste0(base_url, "/table"),
     body = httr::upload_file(file),
-    config = httr::add_headers(APIKey = token)
+    config = httr::add_headers(
+      APIKey = token,
+      `Accept-Language` = match.arg(language)
+    )
   ) %>% as_sc_response()
 }
 
