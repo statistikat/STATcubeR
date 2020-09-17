@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Import saved tables — sc_saved_tables_list • STATcubeR</title>
+<title>Post an api request against STATcube — sc_post_json • STATcubeR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Import saved tables — sc_saved_tables_list" />
-<meta property="og:description" content="Functions for importing saved tables from STATcube" />
+<meta property="og:title" content="Post an api request against STATcube — sc_post_json" />
+<meta property="og:description" content="retrieve a response from STATcube based on a json file" />
 <meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.png" />
 
 
@@ -133,45 +133,50 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Import saved tables</h1>
-    <small class="dont-index">Source: <a href='https://github.com/statistikat/STATcubeR/blob/master/R/saved_table.R'><code>R/saved_table.R</code></a></small>
-    <div class="hidden name"><code>saved_table.Rd</code></div>
+    <h1>Post an api request against STATcube</h1>
+    <small class="dont-index">Source: <a href='https://github.com/statistikat/STATcubeR/blob/master/R/get_response.R'><code>R/get_response.R</code></a></small>
+    <div class="hidden name"><code>sc_post_json.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Functions for importing saved tables from STATcube</p>
+    <p>retrieve a response from STATcube based on a json file</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sc_saved_tables_list</span>()
+    <pre class="usage"><span class='fu'>sc_post_json</span>(<span class='kw'>file</span>, token = <span class='fu'><a href='sc_token.html'>sc_token</a></span>(), language = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"en"</span>, <span class='st'>"de"</span>))
 
-<span class='fu'>sc_saved_table</span>(<span class='kw'>table_uri</span>, token = <span class='fu'><a href='sc_token.html'>sc_token</a></span>(), language = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"en"</span>, <span class='st'>"de"</span>))</pre>
+<span class='fu'>sc_example</span>(<span class='kw'>filename</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>table_uri</th>
-      <td><p>Identifier of a saved table as returned by
-<code>sc_saved_tables_list()</code></p></td>
+      <th>file</th>
+      <td><p>path to a json file, which was downloaded via the STATcube
+gui ("Open Data API Abfrage")</p></td>
     </tr>
     <tr>
       <th>token</th>
-      <td><p>An API token</p></td>
+      <td><p>(<code>string</code>) An API token. To display your token, call
+<code><a href='sc_browse.html'>sc_browse_preferences()</a></code>.</p></td>
     </tr>
     <tr>
       <th>language</th>
       <td><p>The language to be used for labeling. <code>"en"</code> or <code>"de"</code></p></td>
     </tr>
+    <tr>
+      <th>filename</th>
+      <td><p>The name of an example json file.</p></td>
+    </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>An object of class <code>STATcube_response</code> which contains the return
+value of <code><a href='https://httr.r-lib.org/reference/POST.html'>httr::POST()</a></code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
-
-(<span class='kw'>saved_tables</span> <span class='op'>&lt;-</span> <span class='fu'>sc_saved_tables_list</span>())
-<span class='kw'>table_uri</span> <span class='op'>&lt;-</span> <span class='kw'>saved_tables</span><span class='op'>$</span><span class='kw'>id</span>[<span class='fl'>1</span>]
-<span class='kw'>my_response</span> <span class='op'>&lt;-</span> <span class='fu'>sc_saved_table</span>(<span class='kw'>table_uri</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span>(<span class='kw'>my_response</span>)
+<span class='kw'>lgr_01</span> <span class='op'>&lt;-</span> <span class='fu'>sc_post_json</span>(<span class='fu'>sc_example</span>(<span class='st'>"LGR01.json"</span>))
 }
 </div></pre>
   </div>

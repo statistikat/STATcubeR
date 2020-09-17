@@ -102,42 +102,42 @@
     
 <p>This short article will showcase the usage of metadata with STATcubeR. For this, we start with the same example as in the README file.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw">json_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/sc_get_response.html">sc_example</a></span>(<span class="st">"bev_seit_1982.json"</span>)
-<span class="kw">my_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/sc_get_response.html">sc_get_response</a></span>(<span class="kw">json_path</span>)
+<span class="kw">json_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/sc_post_json.html">sc_example</a></span>(<span class="st">"bev_seit_1982.json"</span>)
+<span class="kw">my_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/sc_post_json.html">sc_post_json</a></span>(<span class="kw">json_path</span>)
 </pre></div>
 <p>Now, <code><a href="../../reference/sc_meta.html">sc_meta()</a></code> can be used to get metadata about the table.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="fu"><a href="../../reference/sc_meta.html">sc_meta</a></span>(<span class="kw">my_response</span>)
 </pre></div>
 <pre><code>## $database
-##                                 label         code
-## 1 Bevölkerung zu Jahresbeginn ab 1982 debevstandjb
+##                                                label         code
+## 1 Population at the beginning of the year since 1982 debevstandjb
 ## 
 ## $measures
-##      label     code fun precision
-## 1 Fallzahl F-ISIS-1 SUM         0
+##    label     code fun precision
+## 1 Number F-ISIS-1 SUM         0
 ## 
 ## $fields
-##         label        code nitems
-## 1        Jahr     C-A10-0     40
-## 2  Bundesland    C-BB00-0     11
-## 3 Geburtsland C-GEBLAND-0      3</code></pre>
+##              label        code nitems
+## 1     Time section     C-A10-0     40
+## 2       Bundesland    C-BB00-0     11
+## 3 Country of birth C-GEBLAND-0      3</code></pre>
 <p>In order to get more detailed metadata about a certain filed, use <code><a href="../../reference/sc_meta.html">sc_meta_field()</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="fu"><a href="../../reference/sc_meta.html">sc_meta_field</a></span>(<span class="kw">my_response</span>, <span class="fl">2</span>)
 </pre></div>
-<pre><code>##                        label code       type
-## 1          Burgenland &lt;AT11&gt;    1 RecodeItem
-## 2             Kärnten &lt;AT21&gt;    2 RecodeItem
-## 3    Niederösterreich &lt;AT12&gt;    3 RecodeItem
-## 4      Oberösterreich &lt;AT31&gt;    4 RecodeItem
-## 5            Salzburg &lt;AT32&gt;    5 RecodeItem
-## 6          Steiermark &lt;AT22&gt;    6 RecodeItem
-## 7               Tirol &lt;AT33&gt;    7 RecodeItem
-## 8          Vorarlberg &lt;AT34&gt;    8 RecodeItem
-## 9                Wien &lt;AT13&gt;    9 RecodeItem
-## 10 Nicht klassifizierbar &lt;0&gt;    0 RecodeItem
-## 11                  Zusammen           Total</code></pre>
+<pre><code>##                   label code       type
+## 1     Burgenland &lt;AT11&gt;    1 RecodeItem
+## 2      Carinthia &lt;AT21&gt;    2 RecodeItem
+## 3  Lower Austria &lt;AT12&gt;    3 RecodeItem
+## 4  Upper Austria &lt;AT31&gt;    4 RecodeItem
+## 5       Salzburg &lt;AT32&gt;    5 RecodeItem
+## 6         Styria &lt;AT22&gt;    6 RecodeItem
+## 7          Tyrol &lt;AT33&gt;    7 RecodeItem
+## 8     Vorarlberg &lt;AT34&gt;    8 RecodeItem
+## 9         Vienna &lt;AT13&gt;    9 RecodeItem
+## 10 Not classifiable &lt;0&gt;    0 RecodeItem
+## 11                Total           Total</code></pre>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

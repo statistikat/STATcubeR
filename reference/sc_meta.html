@@ -163,8 +163,8 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
 
-<span class='kw'>my_response</span> <span class='op'>&lt;-</span> <span class='fu'><a href='sc_get_response.html'>sc_example</a></span>(<span class='st'>"bev_seit_1982"</span>) <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='sc_get_response.html'>sc_get_response</a></span>()
+<span class='kw'>my_response</span> <span class='op'>&lt;-</span> <span class='fu'><a href='sc_post_json.html'>sc_example</a></span>(<span class='st'>"bev_seit_1982"</span>) <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='sc_post_json.html'>sc_post_json</a></span>()
 <span class='fu'>sc_meta</span>(<span class='kw'>my_response</span>)
 <span class='fu'>sc_meta_field</span>(<span class='kw'>my_response</span>, <span class='fl'>1</span>)
 }
