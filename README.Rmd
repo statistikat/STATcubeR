@@ -161,5 +161,4 @@ towards the rate-limit (100 requests per hour).
 * `/table` endpoint: https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint
 * `/schema` endpoint: https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/schema-endpoint
 
-[setup article]: http://xlwt0012/rpkgs/dev/STATcubeR/articles/Setup.html
-[TODO article]: http://xlwt0012/rpkgs/dev/STATcubeR/articles/TODO.html
+[setup article]: https://statistikat.github.io/STATcubeR/articles/articles/Setup.html

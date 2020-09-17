@@ -18,8 +18,8 @@ R Interface for the STATcube REST API
 ## Setup
 
 See the [setup
-article](http://xlwt0012/rpkgs/dev/STATcubeR/articles/Setup.html) for
-instructions on how to install the package and set your API key.
+article](https://statistikat.github.io/STATcubeR/articles/articles/Setup.html)
+for instructions on how to install the package and set your API key.
 
 ## Usecase: JSON-Request
 
