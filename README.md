@@ -56,10 +56,10 @@ will save a json file on your local file system.
 
 ### Send the json to the API
 
-Provide the path to the downloaded file in `sc_get_response()`.
+Provide the path to the downloaded file in `sc_post_json()`.
 
 ``` r
-my_response <- sc_get_response("path/to/api_request.json")
+my_response <- sc_post_json("path/to/api_request.json")
 ```
 
 The object `my_response` contains the raw API response from
@@ -70,7 +70,7 @@ Printing the object will summarize the request.
 ``` r
 (json_path <- sc_example("bev_seit_1982.json"))
 #> [1] "/data/home/decill/projects/STATcubeR/inst/json_examples/bev_seit_1982.json"
-my_response <- sc_get_response(json_path)
+my_response <- sc_post_json(json_path)
 my_response
 #> An object of class STATcube_response
 #> 
@@ -78,13 +78,13 @@ my_response
 #> Measures:      Number 
 #> Fields:        Time section, Bundesland, Country of birth 
 #> 
-#> Request:       2020-09-17 14:35:12 
+#> Request:       2020-09-17 15:40:37 
 #> STATcubeR:     0.1.0
 ```
 
 ### Convert into a data frame
 
-The return value of `sc_get_response()` can be converted into a
+The return value of `sc_post_json()` can be converted into a
 `data.frame` using the generic function `as.data.frame()`.
 
 ``` r
@@ -166,10 +166,10 @@ sc_write_json(tourism_ts, "tourism_ts.json")
 ```
 
 The generated json file contains an API request that can be used in
-`sc_get_response()`.
+`sc_post_json()`.
 
 ``` r
-my_response <- sc_get_response("tourism_ts.json")
+my_response <- sc_post_json("tourism_ts.json")
 ```
 
 ## Misc
@@ -211,8 +211,8 @@ STATcubeR:::sc_get_rate_limit() %>% httr::content()
 ```
 
 STATcube uses caching for the `/table` endpoint by default. If the same
-request to `sc_get_response()` is sent several times, this will not
-count towards the rate-limit (100 requests per hour).
+request to `sc_post_json()` is sent several times, this will not count
+towards the rate-limit (100 requests per hour).
 
 ## API documentation
 

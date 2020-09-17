@@ -21,7 +21,7 @@ Functions to extract metadata from a \code{STATcube_response} object.
 \dontrun{
 
 my_response <- sc_example("bev_seit_1982") \%>\%
-  sc_get_response()
+  sc_post_json()
 sc_meta(my_response)
 sc_meta_field(my_response, 1)
 }

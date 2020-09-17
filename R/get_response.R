@@ -26,10 +26,10 @@ as_sc_response <- function(response) {
 #' @param language The language to be used for labeling. `"en"` or `"de"`
 #' @examples
 #' \dontrun{
-#' lgr_01 <- sc_get_response(sc_example("LGR01.json"))
+#' lgr_01 <- sc_post_json(sc_example("LGR01.json"))
 #' }
 #' @export
-sc_get_response <- function(file, token = sc_token(), language = c("en", "de")) {
+sc_post_json <- function(file, token = sc_token(), language = c("en", "de")) {
   httr::POST(
     url = paste0(base_url, "/table"),
     body = httr::upload_file(file),
@@ -42,7 +42,7 @@ sc_get_response <- function(file, token = sc_token(), language = c("en", "de")) 
 
 #' @export
 #' @param filename The name of an example json file.
-#' @rdname sc_get_response
+#' @rdname sc_post_json
 sc_example <- function(filename) {
   system.file(package = utils::packageName(), "json_examples", filename)
 }

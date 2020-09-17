@@ -25,7 +25,7 @@ list
 
 \itemize{
 \item \code{sc_write_json()} saves the api request for a table as
-a json file. The resulting json file can be passed to \code{\link[=sc_get_response]{sc_get_response()}}
+a json file. The resulting json file can be passed to \code{\link[=sc_post_json]{sc_post_json()}}
 }
 
 \itemize{

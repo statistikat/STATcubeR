@@ -11,7 +11,7 @@ For this, we start with the same example as in the README file.
 
 ```{r load_data, chache = TRUE}
 json_path <- sc_example("bev_seit_1982.json")
-my_response <- sc_get_response(json_path)
+my_response <- sc_post_json(json_path)
 ```
 
 Now, `sc_meta()` can be used to get metadata about the table.
