@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/index.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/reference/saved_table.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/reference/sc_browse.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/reference/sc_get_response.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/reference/sc_meta.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/reference/sc_token.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/reference/utils.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/articles/articles/Metadata.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/articles/articles/Setup.html</loc>
+  </url>
+</urlset>

@@ -1,0 +1,11 @@
+pandoc: 2.7.3
+pkgdown: 1.6.1
+pkgdown_sha: ~
+articles:
+  articles/Metadata: Metadata.html
+  articles/Setup: Setup.html
+last_built: 2020-09-17T12:53Z
+urls:
+  reference: https://statistikat.github.io/STATcubeR/reference
+  article: https://statistikat.github.io/STATcubeR/articles
+
