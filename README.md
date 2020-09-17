@@ -1,5 +1,5 @@
 
-# STATcubeR <img src="man/figures/STATcube_logo.png" align="right" alt="" width="120" />
+# STATcubeR <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
 R Interface für die STATcube REST API
 
@@ -33,7 +33,7 @@ Laden sie eine “Open Data API Abfrage” über die STATcube GUI herunter.
 Wählen Sie hierzu “API Abfrage” als Download-Option. Nun wird eine
 json-Datei auf dem Windows-System abgelegt.
 
-![](man/figures/download_json.png)
+<img src="man/figures/download_json.png" />
 
 ### Absenden der Abfrage
 
