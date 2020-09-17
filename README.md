@@ -13,7 +13,14 @@ commit](https://img.shields.io/github/last-commit/statistikat/STATcubeR.svg?logo
 bytes](https://img.shields.io/github/languages/code-size/statistikat/STATcubeR?logo=github)](https://github.com/statistikat/STATcubeR)
 <!-- badges: end -->
 
-R Interface for the STATcube REST API
+R Interface for the STATcube REST API. This package exposes certain
+parts of the [SuperSTAR
+API](https://docs.wingarc.com.au/superstar/latest/open-data-api) to
+transfer your STATcube tables into R.
+
+Note that the API is currently only available inside the firewall of
+Statistics Austria. Support for external users will be available in
+2021.
 
 ## Setup
 
@@ -31,10 +38,14 @@ R session. This process involves four steps
   - send the `json` file to the API using `STATcubeR`.
   - convert the return value into a `data.frame`
 
-### create a table with the STATcube GUI
+### Create a table with the STATcube GUI
 
 Use the graphical user interface of STATcube to create a table. Visit
-<http://sdbext:8081/statistik.at/ext/statcube/home>.
+[STATcube](http://sdbext:8081/statistik.at/ext/statcube/home) and select
+a database. This will open the table view where you can create a table.
+See the [STATcube
+manual](http://www.statistik.at/wcm/idc/idcplg?IdcService=GET_PDF_FILE&dDocName=105692)
+for details.
 
 ### Download an API request
 
@@ -52,7 +63,9 @@ my_response <- sc_get_response("path/to/api_request.json")
 ```
 
 The object `my_response` contains the raw API response from
-`httr::post()`. Printing the object will summarize the request.
+`httr::post()` against the [`/table`
+endpoint](https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint).
+Printing the object will summarize the request.
 
 ``` r
 (json_path <- sc_example("bev_seit_1982.json"))
@@ -75,7 +88,6 @@ The return value of `sc_get_response()` can be converted into a
 `data.frame` using the generic function `as.data.frame()`.
 
 ``` r
-as.array(my_response)
 as.data.frame(my_response)
 ```
 
@@ -97,8 +109,8 @@ as.data.frame(my_response) %>% .[c(1:4, 19:24), ]
 #> 24         1982     Carinthia <AT21>  Foreign country     NA        X
 ```
 
-The column `Fallzahl_a` contains annotations for the column `Fallzahl`.
-In order to get explanations about those annotations, use the function
+The column `Number_a` contains annotations for the column `Number`. In
+order to get explanations about those annotations, use the function
 `sc_annotation_legend()`.
 
 ``` r
@@ -111,8 +123,8 @@ sc_annotation_legend(my_response)
 ```
 
 In this case, we see that row 21 contains a value `NA` (**N**ot
-**A**vailable) because the value is not disclosed (“Verkreuzung nicht
-erlaubt”). However, the zero value in row 20 can be considered a “real
+**A**vailable) because the value is not disclosed (“Crosstabulation not
+allowed”). However, the zero value in row 20 can be considered a “real
 zero value” because no annotations are provided.
 
 ## Usecase: Saved Table
@@ -185,8 +197,12 @@ my_content$measures
 #> [1] "SUM"
 ```
 
-There is experimental support for the endpoints `/info`, `/schema` and
-`/rate_limit`. However, those endpoints are not exported by now.
+There is experimental support for the endpoints
+[`/info`](https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/info-endpoint),
+[`/schema`](https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/schema-endpoint)
+and
+[`/rate_limit`](https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/rate-limit).
+However, those endpoints are not exported by now.
 
 ``` r
 STATcubeR:::sc_get_info() %>% httr::content()
@@ -200,7 +216,7 @@ count towards the rate-limit (100 requests per hour).
 
 ## API documentation
 
-  - `/table` endpoint:
-    <https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint>
-  - `/schema` endpoint:
-    <https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/schema-endpoint>
+  - [`/table`
+    endpoint](https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint)
+  - [`/schema`
+    endpoint](https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/schema-endpoint)
