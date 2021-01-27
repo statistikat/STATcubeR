@@ -33,8 +33,16 @@ get_fields <- function(x) {
     lapply(function(x) x$items) %>%
     sapply(length)
   res <- array(0, rev(dims), dimnames = rev(get_dimnames(content$fields))) %>%
-    stats::ftable() %>% as.data.frame() %>% (function(x) {
-      x[, (ncol(x)-1):1]
+    (function(x) {
+      if (length(dims) > 1)
+        stats::ftable(x) %>%
+        as.data.frame() %>%
+        (function(x) {
+          x[, (ncol(x)-1):1]
+        })
+      else {
+        as.data.frame(dimnames(x))
+      }
     })
   names(res) <- names(get_dimnames(content$fields))
   res
