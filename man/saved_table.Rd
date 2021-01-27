@@ -7,13 +7,13 @@
 \usage{
 sc_saved_tables_list()
 
-sc_saved_table(table_uri, token = sc_token(), language = c("en", "de"))
+sc_saved_table(table_uri, key = sc_key(), language = c("en", "de"))
 }
 \arguments{
 \item{table_uri}{Identifier of a saved table as returned by
 \code{\link[=sc_saved_tables_list]{sc_saved_tables_list()}}}
 
-\item{token}{An API token}
+\item{key}{An API key}
 
 \item{language}{The language to be used for labeling. \code{"en"} or \code{"de"}}
 }

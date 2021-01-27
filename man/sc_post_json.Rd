@@ -5,7 +5,7 @@
 \alias{sc_example}
 \title{Post an api request against STATcube}
 \usage{
-sc_post_json(file, token = sc_token(), language = c("en", "de"))
+sc_post_json(file, key = sc_key(), language = c("en", "de"))
 
 sc_example(filename)
 }
@@ -13,7 +13,7 @@ sc_example(filename)
 \item{file}{path to a json file, which was downloaded via the STATcube
 gui ("Open Data API Abfrage")}
 
-\item{token}{(\code{string}) An API token. To display your token, call
+\item{key}{(\code{string}) An API key. To display your key, call
 \code{\link[=sc_browse_preferences]{sc_browse_preferences()}}.}
 
 \item{language}{The language to be used for labeling. \code{"en"} or \code{"de"}}
