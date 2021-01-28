@@ -6,9 +6,9 @@ sc_get_info <- function(key = sc_key()) {
   response
 }
 
-sc_get_schema <- function(key = sc_key()) {
+sc_get_schema <- function(key = sc_key(), ...) {
   response <- httr::GET(
-    url = paste0(base_url, "/schema"),
+    url = paste0(base_url, "/schema", ...),
     config = httr::add_headers(APIKey = key)
   )
   response
