@@ -11,8 +11,11 @@
 #' my_db_info
 #' print(my_db_info, value = TRUE)
 #'
-#'# access parsed table
-#'my_db_info$parsed[2:7, 1:3]
+#'# access tabulated response
+#'my_db_info$tabulated[2:7, 1:3]
+#'
+#'# access parsed values
+#'my_db_info$parsed$`Weitere Klassifikationen`$Herkunftsland[1:4]
 #'
 #'# access the raw response from httr::GET()
 #'my_response <- my_db_info$response
@@ -23,10 +26,11 @@
 sc_db_info <- function(db_id, key = sc_key()) {
   response <- sc_get_schema(key = sc_key(), "/str:database:", db_id, "?depth=valueset")
   content <- httr::content(response)
-  parsed <- tabulate_db_info(content)
+  tabulated <- tabulate_db_info(content)
   x <- list(
     response = response,
-    parsed = parsed,
+    tabulated = tabulated,
+    parsed = data.tree::as.Node(tabulated) %>% data.tree::ToListSimple(),
     version = sc_version()
   )
   class(x) <- "sc_db_info"
@@ -40,7 +44,7 @@ sc_db_info <- function(db_id, key = sc_key()) {
 #' @rdname sc_db_info
 #' @export
 print.sc_db_info <- function(x, functions = FALSE, value = FALSE, ...) {
-  parsed <- x$parsed
+  parsed <- x$tabulated
   if (!functions)
     parsed <- parsed[parsed$type != "STAT_FUNCTION", ]
   if (!value)

@@ -28,6 +28,6 @@ sc_catalogue <- function(key = sc_key()) {
 }
 
 #' @export
-print.sc_catalogue <- function(x, ...) {
-  data.tree::as.Node(x$parsed) %>% print("type")
+print.sc_catalogue <- function(x, limit = 100, ...) {
+  data.tree::as.Node(x$parsed) %>% print("type", limit = limit)
 }

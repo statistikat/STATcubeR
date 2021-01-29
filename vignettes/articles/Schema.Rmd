@@ -1,0 +1,41 @@
+---
+title: "Schema"
+---
+
+```{r, include = FALSE}
+pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
+knitr::opts_chunk$set(cache = TRUE)
+```
+
+There are currently two functions in `STATcubeR` that utilize the `/schema`
+endpoint. The first function shows the catalogue, which lists all available
+databases in a tree form. The tree structure is determined by the API and
+closely resembles the "Katalog" view in the GUI.
+
+```{r}
+my_catalogue <- sc_catalogue()
+print(my_catalogue, limit = 20)
+```
+
+Now `my_catalogue$parsed` can be used to obtain database ids.
+
+```{r}
+my_catalogue$parsed$Statistiken$Tourismus$`Nächtigungsstatistik ab 1974 nach Kalenderjahr`
+```
+
+To get more information about this database, you can pass the `id` to
+`sc_db_info()`. Again, the contents do have a tree structure which is
+similar to the sidebar of the "Tabellenansicht" view.
+
+```{r load_data, chache = TRUE}
+my_db_info <- sc_db_info("detouextkal")
+my_db_info
+```
+
+`my_db_info$parsed` can be used in a similar fashion as `my_catalogue$parsed`
+to obtain details about the resources in the tree.
+
+```{r}
+my_db_info$parsed$`Weitere Klassifikationen`$Herkunftsland[1:4]
+```
+

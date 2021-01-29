@@ -34,8 +34,11 @@ my_db_info <- sc_db_info("devgrrgr004")
 my_db_info
 print(my_db_info, value = TRUE)
 
-# access parsed table
-my_db_info$parsed[2:7, 1:3]
+# access tabulated response
+my_db_info$tabulated[2:7, 1:3]
+
+# access parsed values
+my_db_info$parsed$`Weitere Klassifikationen`$Herkunftsland[1:4]
 
 # access the raw response from httr::GET()
 my_response <- my_db_info$response
