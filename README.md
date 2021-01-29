@@ -63,13 +63,13 @@ my_response <- sc_post_json("path/to/api_request.json")
 ```
 
 The object `my_response` contains the raw API response from
-`httr::post()` against the [`/table`
+`httr::POST()` against the [`/table`
 endpoint](https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint).
 Printing the object will summarize the request.
 
 ``` r
 (json_path <- sc_example("bev_seit_1982.json"))
-#> [1] "/data/home/decill/projects/STATcubeR/inst/json_examples/bev_seit_1982.json"
+#> [1] "/data/home/decill/git/STATgraph/STATcubeR/inst/json_examples/bev_seit_1982.json"
 my_response <- sc_post_json(json_path)
 my_response
 #> An object of class STATcube_response
@@ -78,7 +78,7 @@ my_response
 #> Measures:      Number 
 #> Fields:        Time section, Bundesland, Country of birth 
 #> 
-#> Request:       2020-09-17 15:40:37 
+#> Request:       2021-01-28 08:57:39 
 #> STATcubeR:     0.1.0
 ```
 
@@ -154,7 +154,7 @@ tourism_ts
 #> Measures:      Nights spent 
 #> Fields:        Tourism commune [partly SPE], Season/Tourism Month, Country of origin 
 #> 
-#> Request:       2020-09-17 14:35:27 
+#> Request:       2021-01-28 08:57:51 
 #> STATcubeR:     0.1.0
 ```
 

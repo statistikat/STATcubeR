@@ -60,7 +60,7 @@ Provide the path to the downloaded file in `sc_post_json()`.
 my_response <- sc_post_json("path/to/api_request.json")
 ```
 
-The object `my_response` contains the raw API response from `httr::post()`
+The object `my_response` contains the raw API response from `httr::POST()`
 against the [`/table` endpoint]. Printing the object will summarize the request.
 
 ```{r, include=FALSE}

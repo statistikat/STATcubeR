@@ -35,7 +35,7 @@ sc_key_valid <- function(key = sc_key()) {
 #' @export
 sc_key_set <- function(key, test = TRUE) {
   if (test && !sc_key_valid(key))
-    stop("Der key could not be verified")
+    stop("The key could not be verified")
   Sys.setenv(STATCUBE_key = key)
   message("The provided key will be available for this R session. Add",
           "\n\n  STATCUBE_KEY=XXXX\n\nto your .Renviron to set ",

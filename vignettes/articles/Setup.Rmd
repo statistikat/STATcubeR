@@ -24,7 +24,7 @@ http://sdbext:8081/statistik.at/ext/statcube/jsf/preferences/editPreferences.xht
 ```
 
 To make the key available to `STATcubeR`, use the function
-`statcube_key_set()`. Replace `"XXXX"` with your key.
+`sc_key_set()`. Replace `"XXXX"` with your key.
 
 ```r
 sc_key_set("XXXX")

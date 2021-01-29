@@ -23,5 +23,5 @@ my_catalogue
 
 ## access the parsed catalogue
 arbeitsmarkt <- my_catalogue$parsed$Statistiken$Arbeitsmarkt
-lfs <- arbeitsmarkt$`Mikrozensus-Arbeitskräfteerhebung Jahresdaten`
+arbeitsmarkt$`Mikrozensus-Arbeitskräfteerhebung Jahresdaten`
 }
