@@ -38,10 +38,13 @@ sc_write_json <- function(response, file) {
     jsonlite::write_json(path = file, auto_unbox = TRUE, pretty = TRUE)
 }
 
+sc_parse_time <- function(timestamp) {
+  (as.numeric(timestamp)/1000) %>% as.POSIXct(origin = "1970-01-01")
+}
+
 sc_get_ratelimit <- function(x) {
   headers <- x$response$headers
-  reset <- (as.numeric(headers$`x-ratelimit-reset-table`)/1000) %>%
-    as.POSIXct(origin = "1970-01-01")
+  reset <- sc_parse_time(headers$`x-ratelimit-reset-table`)
   diff <- reset - Sys.time()
   ratelimit <- headers$`x-ratelimit-table`
   remaining <- headers$`x-ratelimit-remaining-table`
