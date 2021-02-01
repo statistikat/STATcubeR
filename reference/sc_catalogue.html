@@ -166,12 +166,12 @@ resources</p>
     <pre class="examples"><div class='input'><span class='va'>my_catalogue</span> <span class='op'>&lt;-</span> <span class='fu'>sc_catalogue</span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='error'>Error in sc_catalogue(): could not find function "sc_catalogue"</span></div><div class='input'>
 <span class='co'>## print</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>my_catalogue</span>, limit <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in print(my_catalogue, limit = 20): object 'my_catalogue' not found</span></div><div class='input'>
+<span class='va'>my_catalogue</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'my_catalogue' not found</span></div><div class='input'>
 <span class='co'>## access the parsed catalogue</span>
-<span class='va'>arbeitsmarkt</span> <span class='op'>&lt;-</span> <span class='va'>my_catalogue</span><span class='op'>$</span><span class='va'>parsed</span><span class='op'>$</span><span class='va'>Statistiken</span><span class='op'>$</span><span class='va'>Arbeitsmarkt</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'my_catalogue' not found</span></div><div class='input'><span class='va'>arbeitsmarkt</span><span class='op'>$</span><span class='va'>`Mikrozensus-Arbeitskräfteerhebung Jahresdaten`</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'arbeitsmarkt' not found</span></div></pre>
+<span class='va'>my_catalogue</span><span class='op'>$</span><span class='va'>Statistics</span><span class='op'>$</span><span class='va'>`Labour Market`</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'my_catalogue' not found</span></div><div class='input'><span class='va'>my_catalogue</span><span class='op'>$</span><span class='va'>Statistics</span><span class='op'>$</span><span class='va'>`Labour Market`</span><span class='op'>$</span><span class='va'>`Working hours (Labour Force Survey)`</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'my_catalogue' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
