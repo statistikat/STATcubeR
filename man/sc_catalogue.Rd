@@ -22,6 +22,6 @@ my_catalogue <- sc_catalogue()
 my_catalogue
 
 ## access the parsed catalogue
-arbeitsmarkt <- my_catalogue$parsed$Statistiken$Arbeitsmarkt
-arbeitsmarkt$`Mikrozensus-Arbeitskräfteerhebung Jahresdaten`
+my_catalogue$Statistics$`Labour Market`
+my_catalogue$Statistics$`Labour Market`$`Working hours (Labour Force Survey)`
 }

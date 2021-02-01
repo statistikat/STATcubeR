@@ -5,20 +5,18 @@
 #' @param db_id a database id
 #' @inheritParams sc_key
 #' @examples
-#' my_db_info <- sc_db_info("devgrrgr004")
+#' my_db_info <- sc_db_info("deake005")
 #'
 #' # printing
 #' my_db_info
-#' print(my_db_info, value = TRUE)
 #'
-#'# access tabulated response
-#'my_db_info$tabulated[2:7, 1:3]
-#'
-#'# access parsed values
-#'my_db_info$parsed$`Weitere Klassifikationen`$Herkunftsland[1:4]
+#'# access child nodes
+#'my_db_info$`Demographic Characteristics`
+#'my_db_info$`Demographic Characteristics`$Gender$Gender
+#'my_db_info$`Demographic Characteristics`$Gender$Gender$male
 #'
 #'# access the raw response from httr::GET()
-#'my_response <- my_db_info$response
+#'my_response <- attr(my_db_info, "response")
 #'my_response$headers$date
 #'my_content <- httr::content(my_response)
 #'my_content$label
@@ -26,41 +24,55 @@
 sc_db_info <- function(db_id, key = sc_key()) {
   response <- sc_get_schema(key = sc_key(), "/str:database:", db_id, "?depth=valueset")
   content <- httr::content(response)
-  tabulated <- tabulate_db_info(content)
-  x <- list(
-    response = response,
-    tabulated = tabulated,
-    parsed = data.tree::as.Node(tabulated) %>% data.tree::ToListSimple(),
-    version = sc_version()
-  )
-  class(x) <- "sc_db_info"
+  x <- tabulate_db_info(content)
+  attr(x, "response") <- response
   x
 }
 
-#' @param functions show resources of type `STAT_FUNCTION`?
+drop_values <- function(x) {
+  if (!is.list(x))
+    return(x)
+  if (!is.null(x$type) && x$type == "VALUE")
+    return(NULL)
+  lapply(x, drop_values)
+}
+
+tabulate_db_info <- function(db, drop_value = FALSE) {
+  ret <- lapply(db$children, function(x) {
+    if (x$type == "VALUE")
+      return(x)
+    tabulate_db_info(x)
+  })
+  names(ret) <- sapply(db$children, function(x) x$label)
+  ret <- c(ret, db[which(names(db) != "children")])
+  class(ret) <- "sc_schema"
+  ret
+}
+
 #' @param value show resources of type `VALUE`?
 #' @param x object to be printed
+#' @param limit maximum number of entries to be printed
 #' @param ... ignored
 #' @rdname sc_db_info
 #' @export
-print.sc_db_info <- function(x, functions = FALSE, value = FALSE, ...) {
-  parsed <- x$tabulated
-  if (!functions)
-    parsed <- parsed[parsed$type != "STAT_FUNCTION", ]
-  if (!value)
-    parsed <- parsed[parsed$type != "VALUE", ]
-  data.tree::as.Node(parsed) %>% as.data.frame(NULL, FALSE, "type") %>%
-    `names<-`(c("", "resource_type")) %>% print()
-}
-
-tabulate_db_info <- function(db, pathString = "") {
-  ret <- data.frame(id = db$id, label = db$label, type = db$type,
-                    pathString = paste0(pathString, "/", db$label))
-  if (!is.null(db$children)) {
-    ret <- do.call(rbind, c(
-      list(ret),
-      lapply(db$children, tabulate_db_info, paste0(pathString, "/", db$label))
-    ))
+print.sc_schema <- function(x, limit = 30, value = FALSE, ...) {
+  if (!any(sapply(x, is.list)))
+    print(unclass(x))
+  else {
+    if (x$type == "VALUESET")
+      value <- TRUE
+    if (!value)
+      x <- drop_values(x)
+    x <- unclass(x) %>% data.tree::as.Node(nodeName = x$label, check = "no-check")
+    data.tree::Prune(x, function(node) {
+      !is.null(node$type) &&
+        !(node$type == "FOLDER" && length(node$children) == 0) &&
+        !(node$type == "TABLE")
+    })
+    data.tree::Do(data.tree::Traverse(x), function(node) {
+      if (!is.null(node$type) && node$type == "STAT_FUNCTION")
+        node$type <- node$location %>% strsplit(":") %>% .[[1]] %>% tail(1)
+    })
+    print(x, limit = limit, ..., "type")
   }
-  ret
 }

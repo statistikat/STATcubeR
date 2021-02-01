@@ -2,12 +2,12 @@
 % Please edit documentation in R/sc_db_info.R
 \name{sc_db_info}
 \alias{sc_db_info}
-\alias{print.sc_db_info}
+\alias{print.sc_schema}
 \title{Get information about a database}
 \usage{
 sc_db_info(db_id, key = sc_key())
 
-\method{print}{sc_db_info}(x, functions = FALSE, value = FALSE, ...)
+\method{print}{sc_schema}(x, limit = 30, value = FALSE, ...)
 }
 \arguments{
 \item{db_id}{a database id}
@@ -17,7 +17,7 @@ sc_db_info(db_id, key = sc_key())
 
 \item{x}{object to be printed}
 
-\item{functions}{show resources of type \code{STAT_FUNCTION}?}
+\item{limit}{maximum number of entries to be printed}
 
 \item{value}{show resources of type \code{VALUE}?}
 
@@ -28,20 +28,18 @@ Invoke the /schema endpoint and recurse into all valuesets. The return
 value can be displayed as a tree object
 }
 \examples{
-my_db_info <- sc_db_info("devgrrgr004")
+my_db_info <- sc_db_info("deake005")
 
 # printing
 my_db_info
-print(my_db_info, value = TRUE)
 
-# access tabulated response
-my_db_info$tabulated[2:7, 1:3]
-
-# access parsed values
-my_db_info$parsed$`Weitere Klassifikationen`$Herkunftsland[1:4]
+# access child nodes
+my_db_info$`Demographic Characteristics`
+my_db_info$`Demographic Characteristics`$Gender$Gender
+my_db_info$`Demographic Characteristics`$Gender$Gender$male
 
 # access the raw response from httr::GET()
-my_response <- my_db_info$response
+my_response <- attr(my_db_info, "response")
 my_response$headers$date
 my_content <- httr::content(my_response)
 my_content$label

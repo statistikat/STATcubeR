@@ -47,7 +47,7 @@ create a table. See the [STATcube manual] for details.
 
 ### Download an API request
 
-Choose "Open Data API Abfrage (.json)" in the download options. This will
+Choose "Open Data API Abfrage (.json)" in the [download options]. This will
 save a json file on your local file system.
 
  <img src="man/figures/download_json.png" />
@@ -105,7 +105,7 @@ annotations are provided.
 
 ## Usecase: Saved Table
 
-If saved tables are present in STATcube, those can be imported without
+If [saved tables] are present in STATcube, those can be imported without
 downloading a json file. All saved tables can be shown with
 `sc_saved_tables_list()`.
 
@@ -176,3 +176,5 @@ towards the rate-limit (100 requests per hour).
 [`/info`]: https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/info-endpoint
 [`/schema`]: https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/schema-endpoint
 [`/rate_limit`]: https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/rate-limit
+[saved tables]: https://docs.wingarc.com.au/superstar/latest/superweb2/user-guide/save-and-reload-tables
+[download options]: https://docs.wingarc.com.au/superstar/latest/superweb2/user-guide/download-tables

@@ -10,24 +10,21 @@
 #' my_catalogue
 #'
 #' ## access the parsed catalogue
-#' arbeitsmarkt <- my_catalogue$parsed$Statistiken$Arbeitsmarkt
-#' arbeitsmarkt$`Mikrozensus-Arbeitskräfteerhebung Jahresdaten`
+#' my_catalogue$Statistics$`Labour Market`
+#' my_catalogue$Statistics$`Labour Market`$`Working hours (Labour Force Survey)`
 #' @inheritParams sc_key
 #' @export
 sc_catalogue <- function(key = sc_key()) {
   catalogue <- sc_get_schema(key = sc_key(), "?depth=folder")
   catalogue_content <- httr::content(catalogue)
-  tabulated <- tabulate_db_info(catalogue_content)
-  x <- list(
-    response = catalogue,
-    parsed = data.tree::as.Node(tabulated) %>% data.tree::ToListSimple(),
-    version = sc_version()
-  )
-  class(x) <- "sc_catalogue"
+  x <- tabulate_db_info(catalogue_content)
+  attr(x, "response") <- catalogue
   x
 }
 
 #' @export
 print.sc_catalogue <- function(x, limit = 100, ...) {
-  data.tree::as.Node(x$parsed) %>% print("type", limit = limit)
+  tree <- data.tree::as.Node(x$parsed)
+  data.tree::Prune(tree, function(node) {!is.null(node$type)})
+  print(tree, "type", limit = limit)
 }
