@@ -104,89 +104,158 @@
 
     
     
-<p>There are currently two functions in <code>STATcubeR</code> that utilize the <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/schema-endpoint"><code>/schema</code> endpoint</a>. The first function shows the catalogue, which lists all available databases in a tree form. The tree structure is determined by the API and closely resembles the “Katalog” view in the GUI.</p>
+<p>There are currently two functions in <code>STATcubeR</code> that utilize the <code>/schema</code> endpoint. The first function shows the catalogue, which lists all available databases in a tree form. The tree structure is determined by the API and closely resembles the “Katalog” view in the GUI.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_catalogue</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/sc_catalogue.html">sc_catalogue</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">my_catalogue</span>, limit <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></code></pre></div>
-<pre><code>##                                                                                                levelName
-## 1  Extern V9                                                                                            
-## 2   ¦--Beispiele                                                                                        
-## 3   ¦   ¦--Gemeindedaten  (Demo)                                                                        
-## 4   ¦   ¦--People                                                                                       
-## 5   ¦   ¦--People multilingual                                                                          
-## 6   ¦   °--Retail Banking ML de                                                                         
-## 7   ¦--Publikationen und Services                                                                       
-## 8   ¦   ¦--Konjunkturmonitor                                                                            
-## 9   ¦   ¦   °--Konjunkturmonitor                                                                        
-## 10  ¦   °--Wirtschaftsatlas Österreich                                                                  
-## 11  ¦       ¦--01 Eckdaten Österreich und EU-Länder                                                     
-## 12  ¦       ¦--02 Eckdaten Bundesländer                                                                 
-## 13  ¦       ¦--03 Branchendaten nach Wirtschaftszweigen (ÖNACE 2003 C - K; ÖNACE 2008 B - N, 95)        
-## 14  ¦       ¦--04 Branchendaten nach Beschäftigtengrößenklassen (ÖNACE 2003 C - K; ÖNACE 2008 B - N, 95)
-## 15  ¦       ¦--05 Branchendaten im EU-Vergleich (ÖNACE 2003 C - K; ÖNACE 2008 B - N, 95)                
-## 16  ¦       ¦--06 Branchendaten nach Bundesländern (ÖNACE 2003 C - K; ÖNACE 2008 B - N, 95)             
-## 17  ¦       ¦--07 Industrie (ÖNACE 2003 C - E; ÖNACE 2008 B - E)                                        
-## 18  ¦       ¦--08 Bauwesen (ÖNACE 2003 F; ÖNACE 2008 F                                                  
-## 19  ¦       ¦--09 Handel (ÖNACE 2003 G; ÖNACE 2008 G)                                                   
-## 20  ¦       °--... 4 nodes w/ 0 sub                                                                     
-## 21  °--... 1 nodes w/ 628 sub                                                                           
-##        type
-## 1    FOLDER
-## 2    FOLDER
-## 3  DATABASE
-## 4  DATABASE
-## 5  DATABASE
-## 6  DATABASE
-## 7    FOLDER
-## 8    FOLDER
-## 9  DATABASE
-## 10   FOLDER
-## 11 DATABASE
-## 12 DATABASE
-## 13 DATABASE
-## 14 DATABASE
-## 15 DATABASE
-## 16 DATABASE
-## 17 DATABASE
-## 18 DATABASE
-## 19 DATABASE
-## 20         
-## 21</code></pre>
-<p>Now <code>my_catalogue$parsed</code> can be used to obtain database ids.</p>
+<span class="va">my_catalogue</span></code></pre></div>
+<pre><code>##                                                                  levelName     type
+## 1  Extern V9                                                                 FOLDER
+## 2   ¦--Examples                                                              FOLDER
+## 3   ¦   ¦--Communes (Demo)                                                 DATABASE
+## 4   ¦   ¦--People                                                          DATABASE
+## 5   ¦   ¦--People multilingual                                             DATABASE
+## 6   ¦   °--Retail Banking ML en                                            DATABASE
+## 7   ¦--Publications and services                                             FOLDER
+## 8   ¦   ¦--Economic Trend Monitor                                            FOLDER
+## 9   ¦   ¦   °--Economic Trend Monitor                                      DATABASE
+## 10  ¦   °--Austrian Economic Atlas                                           FOLDER
+## 11  ¦       ¦--01 Key data Austria and European Union                      DATABASE
+## 12  ¦       ¦--02 Key data Federal provinces                               DATABASE
+## 13  ¦       ¦--03 Key data on economic branches                            DATABASE
+## 14  ¦       ¦--04 Key data on economic branches by enterprise size classes DATABASE
+## 15  ¦       ¦--05 Key data on economic branches compared with the EU       DATABASE
+## 16  ¦       ¦--06 Key data on economic branches by federal provinces       DATABASE
+## 17  ¦       ¦--07 Key data industry                                        DATABASE
+## 18  ¦       ¦--08 Key data construction                                    DATABASE
+## 19  ¦       ¦--09 Key data trade                                           DATABASE
+## 20  ¦       ¦--10 Key data tourism                                         DATABASE
+## 21  ¦       ¦--11 Key data transport                                       DATABASE
+## 22  ¦       ¦--12 Key data foreign trade                                   DATABASE
+## 23  ¦       °--13 Key data agriculture and foresty                         DATABASE
+## 24  °--Statistics                                                            FOLDER
+## 25      ¦--Labour Market                                                     FOLDER
+## 26      ¦   ¦--Job Vacancies                                                 FOLDER
+## 27      ¦   ¦   ¦--Offene Stellen (Jahresdurchschnitt) ab 2009             DATABASE
+## 28      ¦   ¦   °--Offene Stellen Quartale ab 2009                         DATABASE
+## 29      ¦   ¦--Working hours (Labour Force Survey)                         DATABASE
+## 30      ¦   °--... 3 nodes w/ 0 sub                                                
+## 31      °--... 18 nodes w/ 601 sub</code></pre>
+<p>Now <code>my_catalogue</code> can be used to obtain database ids.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_catalogue</span><span class="op">$</span><span class="va">parsed</span><span class="op">$</span><span class="va">Statistiken</span><span class="op">$</span><span class="va">Tourismus</span><span class="op">$</span><span class="va">`Nächtigungsstatistik ab 1974 nach Kalenderjahr`</span></code></pre></div>
-<pre><code>## NULL</code></pre>
-<p>To get more information about this database, you can pass the <code>id</code> to <code><a href="../../reference/sc_db_info.html">sc_db_info()</a></code>. Again, the contents do have a tree structure which is similar to the sidebar of the “Tabellenansicht” view.</p>
+<code class="sourceCode R"><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span><span class="op">$</span><span class="va">`Labour Market`</span></code></pre></div>
+<pre><code>##                                                        levelName     type
+## 1 Labour Market                                                    FOLDER
+## 2  ¦--Job Vacancies                                                FOLDER
+## 3  ¦   ¦--Offene Stellen (Jahresdurchschnitt) ab 2009            DATABASE
+## 4  ¦   °--Offene Stellen Quartale ab 2009                        DATABASE
+## 5  ¦--Working hours (Labour Force Survey)                        DATABASE
+## 6  ¦--Austrian Micro census - Labour Force Survey Yearly Data    DATABASE
+## 7  ¦--Austrian Micro census - Labour Force Survey Quarterly Data DATABASE
+## 8  °--Microcensus Time Series since 1974                         DATABASE</code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_db_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/sc_db_info.html">sc_db_info</a></span><span class="op">(</span><span class="st">"detouextkal"</span><span class="op">)</span>
-<span class="va">my_db_info</span></code></pre></div>
-<pre><code>##                                             levelName     type
-## 1  Nächtigungsstatistik ab 1974 nach Kalenderjahr     DATABASE
-## 2   ¦--Fakten                                            GROUP
-## 3   ¦   ¦--Ankünfte                                    MEASURE
-## 4   ¦   ¦   °--Ankünfte                                    SUM
-## 5   ¦   °--Übernachtungen                              MEASURE
-## 6   ¦       °--Übernachtungen                              SUM
-## 7   ¦--Mussfelder                                        GROUP
-## 8   ¦   °--Kalenderjahr/Tourismusmonat                   FIELD
-## 9   ¦       ¦--Kalenderjahr/Tourismusmonat            VALUESET
-## 10  ¦       °--Kalenderjahr/Tourismusmonat (Ebene +1) VALUESET
-## 11  °--Weitere Klassifikationen                          GROUP
-## 12      ¦--Regionale Gliederung [teilw. SPE]             FIELD
-## 13      ¦   ¦--Regionale Gliederung                   VALUESET
-## 14      ¦   ¦--Politischer Bezirk                     VALUESET
-## 15      ¦   °--Bundesland                             VALUESET
-## 16      ¦--Beherbergungsbetrieb                          FIELD
-## 17      ¦   ¦--Beherbergungsbetrieb                   VALUESET
-## 18      ¦   ¦--Beherbergungsbetrieb (Ebene +1)        VALUESET
-## 19      ¦   °--Beherbergungsbetrieb (Ebene +2)        VALUESET
-## 20      °--Herkunftsland                                 FIELD
-## 21          ¦--Herkunftsland                          VALUESET
-## 22          °--Herkunftsland (Ebene +1)               VALUESET</code></pre>
-<p><code>my_db_info$parsed</code> can be used in a similar fashion as <code>my_catalogue$parsed</code> to obtain details about the resources in the tree.</p>
+<code class="sourceCode R"><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span><span class="op">$</span><span class="va">`Labour Market`</span><span class="op">$</span><span class="va">`Working hours (Labour Force Survey)`</span></code></pre></div>
+<pre><code>## $id
+## [1] "str:database:deake005"
+## 
+## $label
+## [1] "Working hours (Labour Force Survey)"
+## 
+## $location
+## [1] "http://sdbext:8082/statistik.at/ext/statcube/rest/v1/schema/str:database:deake005"
+## 
+## $type
+## [1] "DATABASE"
+## 
+## $lastModified
+## [1] 1.612167e+12
+## 
+## $recordViewEnabled
+## [1] FALSE</code></pre>
+<p>To get more information about this database, you can pass the <code>id</code> to <code><a href="../../reference/sc_db_info.html">sc_db_info()</a></code>. Again, the contents do have a tree structure which is similar to the sidebar of the “Tabellenansicht” view.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_db_info</span><span class="op">$</span><span class="va">parsed</span><span class="op">$</span><span class="va">`Weitere Klassifikationen`</span><span class="op">$</span><span class="va">Herkunftsland</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></code></pre></div>
-<pre><code>## NULL</code></pre>
+<code class="sourceCode R"><span class="va">my_db_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/sc_db_info.html">sc_db_info</a></span><span class="op">(</span><span class="st">"deake005"</span><span class="op">)</span>
+<span class="va">my_db_info</span></code></pre></div>
+<pre><code>##                                                                                   levelName     type
+## 1  Working hours (Labour Force Survey)                                                      DATABASE
+## 2   ¦--Factors                                                                                 GROUP
+## 3   ¦   ¦--Average hours actually worked per week                                            MEASURE
+## 4   ¦   ¦   °--Average hours actually worked per week                                            SUM
+## 5   ¦   ¦--Average hours usually worked per week                                             MEASURE
+## 6   ¦   ¦   °--Average hours usually worked per week                                             SUM
+## 7   ¦   ¦--Volume of hours worked in the main job per year in million hours                  MEASURE
+## 8   ¦   ¦   °--Volume of hours worked in the main job per year in million hours                  SUM
+## 9   ¦   ¦--Volume of hours worked overtime (paid) per year in million hours                  MEASURE
+## 10  ¦   ¦   °--Volume of hours worked overtime (paid) per year in million hours                  SUM
+## 11  ¦   ¦--Volume of hours worked overtime (unpaid) per year in million hours                MEASURE
+## 12  ¦   ¦   °--Volume of hours worked overtime (unpaid) per year in million hours                SUM
+## 13  ¦   ¦--Volume of hours worked overtime (paid/unpaid) per year in million hours           MEASURE
+## 14  ¦   ¦   °--Volume of hours worked overtime (paid/unpaid) per year in million hours           SUM
+## 15  ¦   ¦--Volume of hours worked in the second job per year in million hours                MEASURE
+## 16  ¦   ¦   °--Volume of hours worked in the second job per year in million hours                SUM
+## 17  ¦   ¦--Average hours worked overtime per week related to the total of employees          MEASURE
+## 18  ¦   ¦   °--Average hours worked overtime per week related to the total of employees          SUM
+## 19  ¦   °--Average hours worked overtime per week related to employees working overtime      MEASURE
+## 20  ¦       °--Average hours worked overtime per week related to employees working overtime      SUM
+## 21  ¦--Facts                                                                                   GROUP
+## 22  ¦   ¦--GEWTATJAHR                                                                        MEASURE
+## 23  ¦   ¦   °--GEWTATJAHR                                                                        SUM
+## 24  ¦   ¦--GEWJAHR                                                                           MEASURE
+## 25  ¦   ¦   °--GEWJAHR                                                                           SUM
+## 26  ¦   ¦--TATSTUNDMALGEW                                                                    MEASURE
+## 27  ¦   ¦   °--TATSTUNDMALGEW                                                                    SUM
+## 28  ¦   ¦--STUNDMALGEW                                                                       MEASURE
+## 29  ¦   ¦   °--STUNDMALGEW                                                                       SUM
+## 30  ¦   °--... 13 nodes w/ 13 sub                                                                   
+## 31  °--... 7 nodes w/ 105 sub</code></pre>
+<p><code>my_db_info</code> can be used in a similar fashion as <code>my_catalogue</code> to obtain details about the resources in the tree. For example, the <code>VALUESET</code> with the label “Herkunftsland” can be viewed like this.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_db_info</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span></code></pre></div>
+<pre><code>##                                                                                          levelName     type
+## 1  Demographic Characteristics                                                                        GROUP
+## 2   ¦--Gender                                                                                         FIELD
+## 3   ¦   °--Gender                                                                                  VALUESET
+## 4   ¦--Age in years-groups                                                                            FIELD
+## 5   ¦   ¦--Age in years-groups                                                                     VALUESET
+## 6   ¦   ¦--Alter in Jahresgruppen                                                                  VALUESET
+## 7   ¦   °--Alter (Ebene +1)                                                                        VALUESET
+## 8   ¦--Highest level of training completed (national classification)                                  FIELD
+## 9   ¦   ¦--Highest level of training completed (national classification)                           VALUESET
+## 10  ¦   °--Höchste abgeschlossene Schulbildung - nationale Gliederung (Ebene +1)                   VALUESET
+## 11  ¦--Highest level of training completed (ISCED 97)                                                 FIELD
+## 12  ¦   ¦--Highest level of training completed (ISCED 97)                                          VALUESET
+## 13  ¦   °--Höchste abgeschlossene Ausbildung (ISCED-97) (Ebene +1)                                 VALUESET
+## 14  ¦--Highest level of training completed (ISCED 2011)                                               FIELD
+## 15  ¦   ¦--Highest level of training completed (ISCED 2011)                                        VALUESET
+## 16  ¦   °--Höchste abgeschlossene Schulbildung - internationale Gliederung (ISCED 2011) (Ebene +1) VALUESET
+## 17  ¦--Nationality                                                                                    FIELD
+## 18  ¦   ¦--Nationality                                                                             VALUESET
+## 19  ¦   °--Staatsangehörigkeit                                                                     VALUESET
+## 20  ¦--Country of birth                                                                               FIELD
+## 21  ¦   ¦--Country of birth                                                                        VALUESET
+## 22  ¦   °--Geburtsland Österreich                                                                  VALUESET
+## 23  °--Migration background                                                                           FIELD
+## 24      ¦--Migration background                                                                    VALUESET
+## 25      °--Migrationshintergrund (Ebene +1)                                                        VALUESET</code></pre>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_db_info</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span><span class="op">$</span><span class="va">Gender</span><span class="op">$</span><span class="va">Gender</span></code></pre></div>
+<pre><code>##                  levelName     type
+## 1 Gender                   VALUESET
+## 2  ¦--male                    VALUE
+## 3  ¦--female                  VALUE
+## 4  °--Not classifiable &lt;0&gt;    VALUE</code></pre>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_db_info</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span><span class="op">$</span><span class="va">Gender</span><span class="op">$</span><span class="va">Gender</span><span class="op">$</span><span class="va">male</span></code></pre></div>
+<pre><code>## $id
+## [1] "str:value:deake005:F-DATA:C-C11-0:C-C11-0:C11-1"
+## 
+## $label
+## [1] "male"
+## 
+## $location
+## [1] "http://sdbext:8082/statistik.at/ext/statcube/rest/v1/schema/str:value:deake005:F-DATA:C-C11-0:C-C11-0:C11-1"
+## 
+## $type
+## [1] "VALUE"</code></pre>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
