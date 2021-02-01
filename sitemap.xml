@@ -13,19 +13,28 @@
     <loc>https://statistikat.github.io/STATcubeR/reference/sc_browse.html</loc>
   </url>
   <url>
+    <loc>https://statistikat.github.io/STATcubeR/reference/sc_catalogue.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/reference/sc_db_info.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/reference/sc_key.html</loc>
+  </url>
+  <url>
     <loc>https://statistikat.github.io/STATcubeR/reference/sc_meta.html</loc>
   </url>
   <url>
     <loc>https://statistikat.github.io/STATcubeR/reference/sc_post_json.html</loc>
   </url>
   <url>
-    <loc>https://statistikat.github.io/STATcubeR/reference/sc_token.html</loc>
-  </url>
-  <url>
     <loc>https://statistikat.github.io/STATcubeR/reference/utils.html</loc>
   </url>
   <url>
     <loc>https://statistikat.github.io/STATcubeR/articles/articles/Metadata.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/articles/articles/Schema.html</loc>
   </url>
   <url>
     <loc>https://statistikat.github.io/STATcubeR/articles/articles/Setup.html</loc>

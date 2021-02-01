@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pipe operator — %&gt;% • STATcubeR</title>
+<title>Obtain a catalogue of available tables and databases — sc_catalogue • STATcubeR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,10 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Pipe operator — %&gt;%" />
-<meta property="og:description" content="See magrittr::%&amp;gt;% for details." />
+<meta property="og:title" content="Obtain a catalogue of available tables and databases — sc_catalogue" />
+<meta property="og:description" content="Invoke the /schema endpoint to recurse into all datasets and tables. The
+return value contains a nested list with ids and labels for all
+resources" />
 <meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.png" />
 
 
@@ -136,19 +138,40 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pipe operator</h1>
-    <small class="dont-index">Source: <a href='https://github.com/statistikat/STATcubeR/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
-    <div class="hidden name"><code>pipe.Rd</code></div>
+    <h1>Obtain a catalogue of available tables and databases</h1>
+    <small class="dont-index">Source: <a href='https://github.com/statistikat/STATcubeR/blob/master/R/catalogue.R'><code>R/catalogue.R</code></a></small>
+    <div class="hidden name"><code>sc_catalogue.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>See <code>magrittr::%&gt;%</code> for details.</p>
+    <p>Invoke the /schema endpoint to recurse into all datasets and tables. The
+return value contains a nested list with ids and labels for all
+resources</p>
     </div>
 
-    <pre class="usage"><span class='va'>lhs</span> <span class='op'>%&gt;%</span> <span class='va'>rhs</span></pre>
+    <pre class="usage"><span class='fu'>sc_catalogue</span><span class='op'>(</span>key <span class='op'>=</span> <span class='fu'><a href='sc_key.html'>sc_key</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>key</th>
+      <td><p>(<code>string</code>) An API key. To display your key, call
+<code><a href='sc_browse.html'>sc_browse_preferences()</a></code>.</p></td>
+    </tr>
+    </table>
 
 
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='va'>my_catalogue</span> <span class='op'>&lt;-</span> <span class='fu'>sc_catalogue</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in sc_catalogue(): could not find function "sc_catalogue"</span></div><div class='input'>
+<span class='co'>## print</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>my_catalogue</span>, limit <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in print(my_catalogue, limit = 20): object 'my_catalogue' not found</span></div><div class='input'>
+<span class='co'>## access the parsed catalogue</span>
+<span class='va'>arbeitsmarkt</span> <span class='op'>&lt;-</span> <span class='va'>my_catalogue</span><span class='op'>$</span><span class='va'>parsed</span><span class='op'>$</span><span class='va'>Statistiken</span><span class='op'>$</span><span class='va'>Arbeitsmarkt</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'my_catalogue' not found</span></div><div class='input'><span class='va'>arbeitsmarkt</span><span class='op'>$</span><span class='va'>`Mikrozensus-Arbeitskräfteerhebung Jahresdaten`</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'arbeitsmarkt' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -65,6 +65,9 @@
       <a href="articles/articles/Metadata.html">Metadata</a>
     </li>
     <li>
+      <a href="articles/articles/Schema.html">Schema</a>
+    </li>
+    <li>
       <a href="articles/articles/Setup.html">Setup</a>
     </li>
   </ul>
@@ -130,35 +133,32 @@
 <h3 class="hasAnchor">
 <a href="#send-the-json-to-the-api" class="anchor"></a>Send the json to the API</h3>
 <p>Provide the path to the downloaded file in <code><a href="reference/sc_post_json.html">sc_post_json()</a></code>.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw">my_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sc_post_json.html">sc_post_json</a></span>(<span class="st">"path/to/api_request.json"</span>)
-</pre></div>
-<p>The object <code>my_response</code> contains the raw API response from <code>httr::post()</code> against the <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint"><code>/table</code> endpoint</a>. Printing the object will summarize the request.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-(<span class="kw">json_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sc_post_json.html">sc_example</a></span>(<span class="st">"bev_seit_1982.json"</span>))
-<span class="co">#&gt; [1] "/data/home/decill/projects/STATcubeR/inst/json_examples/bev_seit_1982.json"</span>
-<span class="kw">my_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sc_post_json.html">sc_post_json</a></span>(<span class="kw">json_path</span>)
-<span class="kw">my_response</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sc_post_json.html">sc_post_json</a></span><span class="op">(</span><span class="st">"path/to/api_request.json"</span><span class="op">)</span></code></pre></div>
+<p>The object <code>my_response</code> contains the raw API response from <code><a href="https://httr.r-lib.org/reference/POST.html">httr::POST()</a></code> against the <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint"><code>/table</code> endpoint</a>. Printing the object will summarize the request.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">(</span><span class="va">json_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sc_post_json.html">sc_example</a></span><span class="op">(</span><span class="st">"bev_seit_1982.json"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] "/data/home/decill/git/STATgraph/STATcubeR/inst/json_examples/bev_seit_1982.json"</span>
+<span class="va">my_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sc_post_json.html">sc_post_json</a></span><span class="op">(</span><span class="va">json_path</span><span class="op">)</span>
+<span class="va">my_response</span>
 <span class="co">#&gt; An object of class STATcube_response</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Database:      Population at the beginning of the year since 1982 </span>
 <span class="co">#&gt; Measures:      Number </span>
 <span class="co">#&gt; Fields:        Time section, Bundesland, Country of birth </span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Request:       2020-09-17 15:40:37 </span>
-<span class="co">#&gt; STATcubeR:     0.1.0</span>
-</pre></div>
+<span class="co">#&gt; Request:       2021-01-28 08:57:39 </span>
+<span class="co">#&gt; STATcubeR:     0.1.0</span></code></pre></div>
 </div>
 <div id="convert-into-a-data-frame" class="section level3">
 <h3 class="hasAnchor">
 <a href="#convert-into-a-data-frame" class="anchor"></a>Convert into a data frame</h3>
 <p>The return value of <code><a href="reference/sc_post_json.html">sc_post_json()</a></code> can be converted into a <code>data.frame</code> using the generic function <code><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame()</a></code>.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(<span class="kw">my_response</span>)
-</pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">my_response</span><span class="op">)</span></code></pre></div>
 <p>This will produce a tidy table, which contains a column for each field of the table. Furthermore, two columns will be present for each measure</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(<span class="kw">my_response</span>) <span class="op">%&gt;%</span> <span class="kw">.</span>[<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">19</span><span class="op">:</span><span class="fl">24</span>), ]
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">my_response</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="va">.</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">19</span><span class="op">:</span><span class="fl">24</span><span class="op">)</span>, <span class="op">]</span>
 <span class="co">#&gt;    Time section           Bundesland Country of birth Number Number_a</span>
 <span class="co">#&gt; 1          2020    Burgenland &lt;AT11&gt;          Austria 260354         </span>
 <span class="co">#&gt; 2          2020    Burgenland &lt;AT11&gt;  Foreign country  34082         </span>
@@ -169,17 +169,15 @@
 <span class="co">#&gt; 21         1982    Burgenland &lt;AT11&gt;          Austria     NA        X</span>
 <span class="co">#&gt; 22         1982    Burgenland &lt;AT11&gt;  Foreign country     NA        X</span>
 <span class="co">#&gt; 23         1982     Carinthia &lt;AT21&gt;          Austria     NA        X</span>
-<span class="co">#&gt; 24         1982     Carinthia &lt;AT21&gt;  Foreign country     NA        X</span>
-</pre></div>
+<span class="co">#&gt; 24         1982     Carinthia &lt;AT21&gt;  Foreign country     NA        X</span></code></pre></div>
 <p>The column <code>Number_a</code> contains annotations for the column <code>Number</code>. In order to get explanations about those annotations, use the function <code><a href="reference/sc_content.html">sc_annotation_legend()</a></code>.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="fu"><a href="reference/sc_content.html">sc_annotation_legend</a></span>(<span class="kw">my_response</span>)
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/sc_content.html">sc_annotation_legend</a></span><span class="op">(</span><span class="va">my_response</span><span class="op">)</span>
 <span class="co">#&gt; $Q</span>
 <span class="co">#&gt; [1] "STATcube – Statistical Database of STATISTICS AUSTRIA"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $X</span>
-<span class="co">#&gt; [1] "Crosstabulation not allowed"</span>
-</pre></div>
+<span class="co">#&gt; [1] "Crosstabulation not allowed"</span></code></pre></div>
 <p>In this case, we see that row 21 contains a value <code>NA</code> (<strong>N</strong>ot <strong>A</strong>vailable) because the value is not disclosed (“Crosstabulation not allowed”). However, the zero value in row 20 can be considered a “real zero value” because no annotations are provided.</p>
 </div>
 </div>
@@ -187,46 +185,42 @@
 <h2 class="hasAnchor">
 <a href="#usecase-saved-table" class="anchor"></a>Usecase: Saved Table</h2>
 <p>If saved tables are present in STATcube, those can be imported without downloading a json file. All saved tables can be shown with <code><a href="reference/sc_saved_tables_list.html">sc_saved_tables_list()</a></code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="fu"><a href="reference/sc_saved_tables_list.html">sc_saved_tables_list</a></span>()
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/sc_saved_tables_list.html">sc_saved_tables_list</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt;               label                                             id</span>
 <span class="co">#&gt; 1        ts_tourism str:table:cfc581ca-dd88-44e7-9ec2-cca153365dd5</span>
 <span class="co">#&gt; 2 krankenbewegungen str:table:c7902e8d-5165-44e9-b17e-34ae20e2d1d4</span>
 <span class="co">#&gt; 3        tourism_ts str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c</span>
-<span class="co">#&gt; 4      entlassungen str:table:f63f0713-155f-4d1d-8d41-4a50f0815fc7</span>
-</pre></div>
+<span class="co">#&gt; 4      entlassungen str:table:f63f0713-155f-4d1d-8d41-4a50f0815fc7</span></code></pre></div>
 <p>Subsequently the <code>id</code> of a saved table can be used to import the table into R.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="kw">tourism_ts</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sc_saved_tables_list.html">sc_saved_table</a></span>(<span class="st">"str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c"</span>)
-<span class="kw">tourism_ts</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">tourism_ts</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sc_saved_tables_list.html">sc_saved_table</a></span><span class="op">(</span><span class="st">"str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c"</span><span class="op">)</span>
+<span class="va">tourism_ts</span>
 <span class="co">#&gt; An object of class STATcube_response</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Database:      Accomodation statistics as of 1974 according to seasons </span>
 <span class="co">#&gt; Measures:      Nights spent </span>
 <span class="co">#&gt; Fields:        Tourism commune [partly SPE], Season/Tourism Month, Country of origin </span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Request:       2020-09-17 14:35:27 </span>
-<span class="co">#&gt; STATcubeR:     0.1.0</span>
-</pre></div>
+<span class="co">#&gt; Request:       2021-01-28 08:57:51 </span>
+<span class="co">#&gt; STATcubeR:     0.1.0</span></code></pre></div>
 <p>To make the table available for other users of <code>STATcubeR</code>, the response can be exported into a json.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="fu"><a href="reference/sc_content.html">sc_write_json</a></span>(<span class="kw">tourism_ts</span>, <span class="st">"tourism_ts.json"</span>)
-</pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/sc_content.html">sc_write_json</a></span><span class="op">(</span><span class="va">tourism_ts</span>, <span class="st">"tourism_ts.json"</span><span class="op">)</span></code></pre></div>
 <p>The generated json file contains an API request that can be used in <code><a href="reference/sc_post_json.html">sc_post_json()</a></code>.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="kw">my_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sc_post_json.html">sc_post_json</a></span>(<span class="st">"tourism_ts.json"</span>)
-</pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sc_post_json.html">sc_post_json</a></span><span class="op">(</span><span class="st">"tourism_ts.json"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="misc" class="section level2">
 <h2 class="hasAnchor">
 <a href="#misc" class="anchor"></a>Misc</h2>
 <p>To get the raw API response content, use <code><a href="reference/sc_content.html">sc_content()</a></code>. This function returns a nested list, containing data and metadata about the table.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="kw">my_content</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sc_content.html">sc_content</a></span>(<span class="kw">my_response</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="kw">my_content</span>)
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_content</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sc_content.html">sc_content</a></span><span class="op">(</span><span class="va">my_response</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">my_content</span><span class="op">)</span>
 <span class="co">#&gt; [1] "query"         "database"      "measures"      "fields"       </span>
 <span class="co">#&gt; [5] "cubes"         "annotationMap"</span>
-<span class="kw">my_content</span><span class="op">$</span><span class="kw">measures</span>
+<span class="va">my_content</span><span class="op">$</span><span class="va">measures</span>
 <span class="co">#&gt; [[1]]</span>
 <span class="co">#&gt; [[1]]$uri</span>
 <span class="co">#&gt; [1] "str:statfn:debevstandjb:F-BEVSTANDJB:F-ISIS-1:SUM"</span>
@@ -238,14 +232,12 @@
 <span class="co">#&gt; [1] "str:measure:debevstandjb:F-BEVSTANDJB:F-ISIS-1"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; [[1]]$`function`</span>
-<span class="co">#&gt; [1] "SUM"</span>
-</pre></div>
+<span class="co">#&gt; [1] "SUM"</span></code></pre></div>
 <p>There is experimental support for the endpoints <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/info-endpoint"><code>/info</code></a>, <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/schema-endpoint"><code>/schema</code></a> and <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/rate-limit"><code>/rate_limit</code></a>. However, those endpoints are not exported by now.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="kw">STATcubeR</span>:::<span class="fu">sc_get_info</span>() <span class="op">%&gt;%</span> <span class="kw">httr</span>::<span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span>()
-<span class="kw">STATcubeR</span>:::<span class="fu">sc_get_schema</span>() <span class="op">%&gt;%</span> <span class="kw">httr</span>::<span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span>()
-<span class="kw">STATcubeR</span>:::<span class="fu">sc_get_rate_limit</span>() <span class="op">%&gt;%</span> <span class="kw">httr</span>::<span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span>()
-</pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">STATcubeR</span><span class="fu">:::</span><span class="fu">sc_get_info</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu">STATcubeR</span><span class="fu">:::</span><span class="fu">sc_get_schema</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu">STATcubeR</span><span class="fu">:::</span><span class="fu">sc_get_rate_limit</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>STATcube uses caching for the <code>/table</code> endpoint by default. If the same request to <code><a href="reference/sc_post_json.html">sc_post_json()</a></code> is sent several times, this will not count towards the rate-limit (100 requests per hour).</p>
 </div>
 <div id="api-documentation" class="section level2">

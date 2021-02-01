@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pipe operator — %&gt;% • STATcubeR</title>
+<title>Manage your API Key — sc_key • STATcubeR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Pipe operator — %&gt;%" />
-<meta property="og:description" content="See magrittr::%&amp;gt;% for details." />
+<meta property="og:title" content="Manage your API Key — sc_key" />
+<meta property="og:description" content="Functions to get/set the STATcube api key and make them available for calls
+against the STATcube api." />
 <meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.png" />
 
 
@@ -136,17 +137,61 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pipe operator</h1>
-    <small class="dont-index">Source: <a href='https://github.com/statistikat/STATcubeR/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
-    <div class="hidden name"><code>pipe.Rd</code></div>
+    <h1>Manage your API Key</h1>
+    <small class="dont-index">Source: <a href='https://github.com/statistikat/STATcubeR/blob/master/R/key.R'><code>R/key.R</code></a></small>
+    <div class="hidden name"><code>sc_key.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>See <code>magrittr::%&gt;%</code> for details.</p>
+    <p>Functions to get/set the STATcube api key and make them available for calls
+against the STATcube api.</p>
     </div>
 
-    <pre class="usage"><span class='va'>lhs</span> <span class='op'>%&gt;%</span> <span class='va'>rhs</span></pre>
+    <pre class="usage"><span class='fu'>sc_key</span><span class='op'>(</span><span class='op'>)</span>
 
+<span class='fu'>sc_key_set</span><span class='op'>(</span><span class='va'>key</span>, test <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+
+<span class='fu'>sc_key_get</span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='fu'>sc_key_prompt</span><span class='op'>(</span>test <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>key</th>
+      <td><p>(<code>string</code>) An API key. To display your key, call
+<code><a href='sc_browse.html'>sc_browse_preferences()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>test</th>
+      <td><p>Use a test-requst to verify the key?</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>All functions return the key (invisibly)</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    
+<ul>
+<li><p><code>sc_key()</code> forwards to <code>sc_key_get()</code> if the key is already present.
+Otherwise, <code>sc_key_prompt()</code> will be invoked.</p></li>
+</ul>
+
+<ul>
+<li><p><code>sc_key_set()</code> can be used to pass the key as a parameter (<code>string</code>)</p></li>
+</ul>
+
+<ul>
+<li><p><code>sc_key_get()</code> returns the key, if it exists. Otherwise,
+an error is thrown.</p></li>
+</ul>
+
+<ul>
+<li><p><code>sc_key_prompt()</code> prompts for a key via <code><a href='https://rdrr.io/r/base/readline.html'>readline()</a></code></p></li>
+</ul>
 
 
   </div>

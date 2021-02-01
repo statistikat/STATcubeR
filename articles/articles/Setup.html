@@ -65,6 +65,9 @@
       <a href="../../articles/articles/Metadata.html">Metadata</a>
     </li>
     <li>
+      <a href="../../articles/articles/Schema.html">Schema</a>
+    </li>
+    <li>
       <a href="../../articles/articles/Setup.html">Setup</a>
     </li>
   </ul>
@@ -87,7 +90,8 @@
 
       
 
-      </header><script src="Setup_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="Setup_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="Setup_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="Setup_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Setup</h1>
@@ -105,29 +109,27 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>The package can be installed directly from github using the <code>remotes</code> package.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"statistikat/STATcubeR"</span>)
-</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"statistikat/STATcubeR"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="adding-an-api-token" class="section level2">
+<div id="adding-an-api-key" class="section level2">
 <h2 class="hasAnchor">
-<a href="#adding-an-api-token" class="anchor"></a>Adding an API token</h2>
-<p>In order to use the REST API of STATcube it is necessary to provide an API token. If your STATcube account is configured to use a token, the following address can be used to view your token.</p>
+<a href="#adding-an-api-key" class="anchor"></a>Adding an API key</h2>
+<p>In order to use the REST API of STATcube it is necessary to provide an API key. If your STATcube account is configured to use a key, the following address can be used to view your key</p>
 <pre><code>http://sdbext:8081/statistik.at/ext/statcube/jsf/preferences/editPreferences.xhtml</code></pre>
-<p>To make the token available to <code>STATcubeR</code>, use the function <code>statcube_token_set()</code>. Replace <code>"XXXX"</code> with your token.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu"><a href="../../reference/sc_token.html">sc_token_set</a></span>(<span class="st">"XXXX"</span>)
-<span class="co">#&gt; The provided token will be available for this R session. Add</span>
+<p>To make the key available to <code>STATcubeR</code>, use the function <code><a href="../../reference/sc_key.html">sc_key_set()</a></code>. Replace <code>"XXXX"</code> with your key.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/sc_key.html">sc_key_set</a></span><span class="op">(</span><span class="st">"XXXX"</span><span class="op">)</span>
+<span class="co">#&gt; The provided key will be available for this R session. Add</span>
 <span class="co">#&gt;</span>
-<span class="co">#&gt;   STATCUBE_TOKEN=XXXX</span>
+<span class="co">#&gt;   STATCUBE_KEY=XXXX</span>
 <span class="co">#&gt;</span>
-<span class="co">#&gt; to your .Renviron to set the token persistently</span>
-</pre></div>
+<span class="co">#&gt; to your .Renviron to set the key persistently</span></code></pre></div>
 </div>
-<div id="how-do-i-get-an-api-token" class="section level2">
+<div id="how-do-i-get-an-api-key" class="section level2">
 <h2 class="hasAnchor">
-<a href="#how-do-i-get-an-api-token" class="anchor"></a>How do I get an API token?</h2>
-<p>Currently, the api is only available inside the firewall of statistics austria. Therefore, api tokens can only be requested by our employees. Api access for external users with a statcube subscription is planned for spring 2021. Please get into contact with the package maintainers of <code>STATcubeR</code> for details.</p>
+<a href="#how-do-i-get-an-api-key" class="anchor"></a>How do I get an API key?</h2>
+<p>Currently, the api is only available inside the firewall of statistics austria. Therefore, api keys can only be requested by our employees. Api access for external users with a statcube subscription is planned for spring 2021. Please get into contact with the package maintainers of <code>STATcubeR</code> for details.</p>
 </div>
   </div>
 

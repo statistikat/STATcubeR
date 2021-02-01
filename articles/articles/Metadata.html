@@ -65,6 +65,9 @@
       <a href="../../articles/articles/Metadata.html">Metadata</a>
     </li>
     <li>
+      <a href="../../articles/articles/Schema.html">Schema</a>
+    </li>
+    <li>
       <a href="../../articles/articles/Setup.html">Setup</a>
     </li>
   </ul>
@@ -87,7 +90,8 @@
 
       
 
-      </header><script src="Metadata_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="Metadata_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="Metadata_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="Metadata_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Metadata</h1>
@@ -101,14 +105,12 @@
     
     
 <p>This short article will showcase the usage of metadata with STATcubeR. For this, we start with the same example as in the README file.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw">json_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/sc_post_json.html">sc_example</a></span>(<span class="st">"bev_seit_1982.json"</span>)
-<span class="kw">my_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/sc_post_json.html">sc_post_json</a></span>(<span class="kw">json_path</span>)
-</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">json_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/sc_post_json.html">sc_example</a></span><span class="op">(</span><span class="st">"bev_seit_1982.json"</span><span class="op">)</span>
+<span class="va">my_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/sc_post_json.html">sc_post_json</a></span><span class="op">(</span><span class="va">json_path</span><span class="op">)</span></code></pre></div>
 <p>Now, <code><a href="../../reference/sc_meta.html">sc_meta()</a></code> can be used to get metadata about the table.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="../../reference/sc_meta.html">sc_meta</a></span>(<span class="kw">my_response</span>)
-</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/sc_meta.html">sc_meta</a></span><span class="op">(</span><span class="va">my_response</span><span class="op">)</span></code></pre></div>
 <pre><code>## $database
 ##                                                label         code
 ## 1 Population at the beginning of the year since 1982 debevstandjb
@@ -123,9 +125,8 @@
 ## 2       Bundesland    C-BB00-0     11
 ## 3 Country of birth C-GEBLAND-0      3</code></pre>
 <p>In order to get more detailed metadata about a certain filed, use <code><a href="../../reference/sc_meta.html">sc_meta_field()</a></code>.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="../../reference/sc_meta.html">sc_meta_field</a></span>(<span class="kw">my_response</span>, <span class="fl">2</span>)
-</pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../../reference/sc_meta.html">sc_meta_field</a></span><span class="op">(</span><span class="va">my_response</span>, <span class="fl">2</span><span class="op">)</span></code></pre></div>
 <pre><code>##                   label code       type
 ## 1     Burgenland &lt;AT11&gt;    1 RecodeItem
 ## 2      Carinthia &lt;AT21&gt;    2 RecodeItem
