@@ -41,14 +41,14 @@ sc_field_parse_category <- function(field) {
 
 sc_field_parse_time <- function(field) {
   varcodes <- sc_field_codes(field)
-  ind <- which(is.na(varcodes))
+  ind <- is.na(varcodes)
   #varcodes[ind] <- NA
   year <- substr(varcodes, 1, 4)
   remainder <- substr(varcodes, 5, 8)
   parsed <- as.POSIXct(rep(NA, length(varcodes)))
 
   if (nchar(remainder[1]) == 0) {
-    parsed[-ind] <- as.POSIXct(paste0(year[-ind], "/1/1"))
+    parsed[!ind] <- as.POSIXct(paste0(year[!ind], "/1/1"))
   } else if (nchar(varcodes[1] == 5)) {
     if (substring(varcodes[1], 5, 5) %in% 1:4) {
       quarter <- remainder
