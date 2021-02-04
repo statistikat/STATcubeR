@@ -34,16 +34,16 @@ future.
 
 Currently, the package provides four main functions
 
-  - `sc_catalogue()` lists all available datasets and tables
-  - `sc_db_info()` provides metadata about a specific database
-  - `sc_post_json()` requests a table from the API according to a json
+  - `sc_schema_catalogue()` lists all available datasets and tables
+  - `sc_schema_db()` provides metadata about a specific database
+  - `sc_table()` requests a table from the API according to a json
     standard.
-  - `sc_saved_table()` requests a table based on an id
+  - `sc_table_saved()` requests a table based on an id
 
 More information about the first two functions can be found in the
 [schema
 article](https://statistikat.github.io/STATcubeR/articles/articles/Schema.html).
-`sc_post_json()` and `sc_saved_table()` have their own articles
+`sc_table()` and `sc_table_saved()` have their own articles
 [here](https://statistikat.github.io/STATcubeR/articles/JSON-requests.html)
 and
 [here](https://statistikat.github.io/STATcubeR/articles/Saved-Tables.html).

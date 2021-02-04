@@ -1,5 +1,3 @@
-#' Get information about a database
-#'
 #' Invoke the /schema endpoint and recurse into all valuesets. The return
 #' value can be displayed as a tree object
 #' @param db_id a database id
@@ -7,24 +5,25 @@
 #' @examples
 #' \dontrun{
 #'
-#' my_db_info <- sc_db_info("deake005")
+#' db_schema <- sc_schema_db("deake005")
 #'
 #' # printing
-#' my_db_info
+#' db_schema
 #'
 #' # access child nodes
-#' my_db_info$`Demographic Characteristics`
-#' my_db_info$`Demographic Characteristics`$Gender$Gender
-#' my_db_info$`Demographic Characteristics`$Gender$Gender$male
+#' db_schema$`Demographic Characteristics`
+#' db_schema$`Demographic Characteristics`$Gender$Gender
+#' db_schema$`Demographic Characteristics`$Gender$Gender$male
 #'
 #' # access the raw response from httr::GET()
-#' my_response <- attr(my_db_info, "response")
+#' my_response <- attr(db_schema, "response")
 #' my_response$headers$date
 #' my_content <- httr::content(my_response)
 #' my_content$label
 #' }
+#' @rdname sc_schema
 #' @export
-sc_db_info <- function(db_id, key = sc_key()) {
+sc_schema_db <- function(db_id, key = sc_key()) {
   response <- sc_get_schema(key = sc_key(), "/str:database:", db_id, "?depth=valueset")
   content <- httr::content(response)
   x <- tabulate_db_info(content)
@@ -56,7 +55,7 @@ tabulate_db_info <- function(db, drop_value = FALSE) {
 #' @param x object to be printed
 #' @param limit maximum number of entries to be printed
 #' @param ... ignored
-#' @rdname sc_db_info
+#' @rdname sc_schema
 #' @export
 print.sc_schema <- function(x, limit = 30, value = FALSE, ...) {
   if (!any(sapply(x, is.list)))

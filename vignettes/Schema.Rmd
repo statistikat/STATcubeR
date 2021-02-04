@@ -14,7 +14,7 @@ databases in a tree form. The tree structure is determined by the API and
 closely resembles the "Katalog" view in the GUI.
 
 ```{r}
-my_catalogue <- sc_catalogue()
+my_catalogue <- sc_schema_catalogue()
 my_catalogue
 ```
 
@@ -30,7 +30,7 @@ To get more information about this database, you can pass the `id` to
 similar to the sidebar of the "Tabellenansicht" view.
 
 ```{r load_data, chache = TRUE}
-my_db_info <- sc_db_info("deake005")
+my_db_info <- sc_schema_db("deake005")
 my_db_info
 ```
 
