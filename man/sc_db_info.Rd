@@ -28,6 +28,8 @@ Invoke the /schema endpoint and recurse into all valuesets. The return
 value can be displayed as a tree object
 }
 \examples{
+\dontrun{
+
 my_db_info <- sc_db_info("deake005")
 
 # printing
@@ -43,4 +45,5 @@ my_response <- attr(my_db_info, "response")
 my_response$headers$date
 my_content <- httr::content(my_response)
 my_content$label
+}
 }

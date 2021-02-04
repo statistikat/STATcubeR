@@ -16,6 +16,8 @@ return value contains a nested list with ids and labels for all
 resources
 }
 \examples{
+\dontrun{
+
 my_catalogue <- sc_catalogue()
 
 ## print
@@ -24,4 +26,5 @@ my_catalogue
 ## access the parsed catalogue
 my_catalogue$Statistics$`Labour Market`
 my_catalogue$Statistics$`Labour Market`$`Working hours (Labour Force Survey)`
+}
 }

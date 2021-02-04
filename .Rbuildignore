@@ -9,4 +9,5 @@
 ^Meta$
 ^README_cache$
 ^LICENSE\.md$
+^LICENSE$
 ^\.travis\.yml$

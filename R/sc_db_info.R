@@ -5,21 +5,24 @@
 #' @param db_id a database id
 #' @inheritParams sc_key
 #' @examples
+#' \dontrun{
+#'
 #' my_db_info <- sc_db_info("deake005")
 #'
 #' # printing
 #' my_db_info
 #'
-#'# access child nodes
-#'my_db_info$`Demographic Characteristics`
-#'my_db_info$`Demographic Characteristics`$Gender$Gender
-#'my_db_info$`Demographic Characteristics`$Gender$Gender$male
+#' # access child nodes
+#' my_db_info$`Demographic Characteristics`
+#' my_db_info$`Demographic Characteristics`$Gender$Gender
+#' my_db_info$`Demographic Characteristics`$Gender$Gender$male
 #'
-#'# access the raw response from httr::GET()
-#'my_response <- attr(my_db_info, "response")
-#'my_response$headers$date
-#'my_content <- httr::content(my_response)
-#'my_content$label
+#' # access the raw response from httr::GET()
+#' my_response <- attr(my_db_info, "response")
+#' my_response$headers$date
+#' my_content <- httr::content(my_response)
+#' my_content$label
+#' }
 #' @export
 sc_db_info <- function(db_id, key = sc_key()) {
   response <- sc_get_schema(key = sc_key(), "/str:database:", db_id, "?depth=valueset")
