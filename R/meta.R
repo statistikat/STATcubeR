@@ -11,12 +11,12 @@ get_var_code <- function(x, split_minus = FALSE) {
 
 #' Get metadata for a STATcube table
 #'
-#' Functions to extract metadata from a `STATcube_response` object.
+#' Functions to extract metadata from a `sc_table` object.
 #'
-#' @param response An object of class `STATcube_response`
+#' @param response An object of class `sc_table`
 #' @export
 sc_meta <- function(response) {
-  content <- sc_content(response)
+  content <- response$raw
   measure_info <- lapply(content$measures, function(measure) {
     data.frame(
       label = measure$label,
@@ -54,7 +54,7 @@ sc_meta <- function(response) {
 #' }
 #' @export
 sc_meta_field <- function(response, i = 1) {
-  content <- sc_content(response)
+  content <- response$raw
   field <- content$fields[[i]]
   res <- lapply(field$items, function(item) {
     data.frame(

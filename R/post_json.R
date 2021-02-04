@@ -4,23 +4,47 @@ sc_version <- function() {
 
 base_url <- "http://sdbext:8082/statistik.at/ext/statcube/rest/v1"
 
-as_sc_response <- function(response) {
-  if (response$status_code != 200)
-    stop(httr::content(response)$message)
-  x <- list(
-    response = response,
-    scr_version = sc_version()
+sc_table_class <- R6::R6Class(
+  "sc_table",
+  cloneable = FALSE,
+  public = list(
+    initialize = function(response) {
+      stopifnot(inherits(response, "response"))
+      if (response$status_code != 200)
+        stop(httr::content(response)$message)
+      private$httr_response <- response
+      private$version <- sc_version()
+    },
+    field = function(i = 1) {
+      sc_meta_field(self, i)
+    }
+  ),
+  active = list(
+    response = function() private$httr_response,
+    raw = function() httr::content(self$response),
+    meta = function() sc_meta(self),
+    data = function(val) {
+      if (!missing(val))
+        stop("data is read-only", call. = FALSE)
+      if (is.null(private$table))
+        private$table <- as.data.frame(self)
+      private$table
+    },
+    scr_version = function() private$version
+  ),
+  private = list(
+    httr_response = NULL,
+    table = NULL,
+    version = NULL
   )
-  class(x) <- "STATcube_response"
-  x
-}
+)
 
 #' Post an api request against STATcube
 #'
 #' retrieve a response from STATcube based on a json file
 #' @param file path to a json file, which was downloaded via the STATcube
 #'   gui ("Open Data API Abfrage")
-#' @return An object of class `STATcube_response` which contains the return
+#' @return An object of class `sc_table` which contains the return
 #'   value of [httr::POST()]
 #' @inheritParams sc_key
 #' @param language The language to be used for labeling. `"en"` or `"de"`
@@ -37,7 +61,7 @@ sc_post_json <- function(file, key = sc_key(), language = c("en", "de")) {
       APIKey = key,
       `Accept-Language` = match.arg(language)
     )
-  ) %>% as_sc_response()
+  ) %>% sc_table_class$new()
 }
 
 #' @export
@@ -48,12 +72,14 @@ sc_example <- function(filename) {
 }
 
 #' @export
-print.STATcube_response <- function(x, ...) {
-  content <- sc_content(x)
-  cat("An object of class STATcube_response\n\n")
+print.sc_table <- function(x, ...) {
+  content <- x$raw
+  cat("An object of class sc_table\n\n")
   cat("Database:     ", content$database$label, "\n")
-  cat("Measures:     ", content$measures %>% sapply(function(x) x$label) %>% paste(collapse = ", "), "\n")
-  cat("Fields:       ", content$fields %>% sapply(function(x) x$label) %>% paste(collapse = ", "), "\n\n")
+  cat("Measures:     ", content$measures %>% sapply(function(x) x$label) %>%
+        paste(collapse = ", "), "\n")
+  cat("Fields:       ", content$fields %>% sapply(function(x) x$label) %>%
+        paste(collapse = ", "), "\n\n")
   cat("Request:      ", format(x$response$date), "\n")
   cat("STATcubeR:    ", x$scr_version)
 }

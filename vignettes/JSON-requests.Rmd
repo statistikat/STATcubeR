@@ -88,11 +88,11 @@ annotations are provided.
 
 ## Get the raw API response
 
-To get the raw API response content, use `sc_content()`. This function returns
-a nested list, containing data and metadata about the table.
+To get the raw API response content, use `$raw`. This binding returns
+a nested list which contains data and metadata about the table.
 
 ```r
-my_content <- sc_content(my_response)
+my_content <- my_response$raw
 names(my_content)
 my_content$measures
 ```

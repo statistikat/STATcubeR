@@ -3,14 +3,14 @@
 \name{sc_post_json}
 \alias{sc_post_json}
 \alias{sc_example}
-\alias{as.data.frame.STATcube_response}
+\alias{as.data.frame.sc_table}
 \title{Post an api request against STATcube}
 \usage{
 sc_post_json(file, key = sc_key(), language = c("en", "de"))
 
 sc_example(filename)
 
-\method{as.data.frame}{STATcube_response}(
+\method{as.data.frame}{sc_table}(
   x,
   ...,
   drop_aggregates = TRUE,
@@ -30,7 +30,7 @@ gui ("Open Data API Abfrage")}
 
 \item{filename}{The name of an example json file.}
 
-\item{x}{an R object of class \code{STATcube_response}}
+\item{x}{an R object of class \code{sc_table}}
 
 \item{...}{unused}
 
@@ -47,7 +47,7 @@ used}
 depending on labels? Alternatively, codes are used}
 }
 \value{
-An object of class \code{STATcube_response} which contains the return
+An object of class \code{sc_table} which contains the return
 value of \code{\link[httr:POST]{httr::POST()}}
 }
 \description{

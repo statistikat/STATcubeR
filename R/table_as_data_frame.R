@@ -6,7 +6,7 @@ unlist_n <- function(x, times) {
 }
 
 get_annotations <- function(x, i = 1) {
-  content <- sc_content(x)
+  content <- x$raw
   cube <- content$cubes[[i]]$annotations
   if (is.null(cube))
     return("")
@@ -31,7 +31,7 @@ sc_model_matrix <- function(dims) {
 }
 
 #' @rdname sc_post_json
-#' @param x an R object of class `STATcube_response`
+#' @param x an R object of class `sc_table`
 #' @param ... unused
 #' @param drop_aggregates remove rows containing aggregates from the table.
 #'   The default (`TRUE`) makes the table tidy
@@ -42,11 +42,11 @@ sc_model_matrix <- function(dims) {
 #' @param parse_fields Parse field columns as `character` or `POSIXct`
 #'   depending on labels? Alternatively, codes are used
 #' @export
-as.data.frame.STATcube_response <- function(
+as.data.frame.sc_table <- function(
   x, ..., drop_aggregates = TRUE, recode_na = TRUE, label_vars = TRUE,
   parse_fields = TRUE
 ) {
-  content <- sc_content(x)
+  content <- x$raw
   dims_fields <- content$fields %>%
     lapply(function(x) x$items) %>%
     sapply(length)
@@ -54,8 +54,9 @@ as.data.frame.STATcube_response <- function(
   # labeling of fields
   for (i in seq_along(content$fields)) {
     field <- content$fields[[i]]
-    parsed <- ifelse(parse_fields, sc_field_parse(field),
-                     sc_field_codes(field, split_minus = FALSE))
+    parsed <- switch(parse_fields + 1,
+                     sc_field_codes(field, split_minus = FALSE),
+                     sc_field_parse(field))
     df[[i]] <- parsed[df[[i]]]
     names(df)[i] <- ifelse(label_vars, field$label, get_var_code(field$uri))
   }

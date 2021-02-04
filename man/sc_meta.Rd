@@ -10,12 +10,12 @@ sc_meta(response)
 sc_meta_field(response, i = 1)
 }
 \arguments{
-\item{response}{An object of class \code{STATcube_response}}
+\item{response}{An object of class \code{sc_table}}
 
 \item{i}{index of the field, for which further metadata are desired}
 }
 \description{
-Functions to extract metadata from a \code{STATcube_response} object.
+Functions to extract metadata from a \code{sc_table} object.
 }
 \examples{
 \dontrun{

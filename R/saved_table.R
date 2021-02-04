@@ -34,5 +34,5 @@ sc_saved_table <- function(table_uri, key = sc_key(), language = c("en", "de")) 
       APIKey = key,
       `Accept-Language` = match.arg(language)
     )
-  ) %>% as_sc_response()
+  ) %>% sc_table_class$new()
 }

@@ -10,31 +10,18 @@
 #' @usage lhs \%>\% rhs
 NULL
 
-is_sc_response <- function(x) {
-  inherits(x, "STATcube_response")
-}
-
 #' Utility Functions
 #'
 #' Supporting functions for STATcubeR
 #'
 #' @rdname utils
-#' @param response An objekt of class `STATcube_response`
-#' @description * `sc_content()` returns the raw api response as a nested
-#'   list
-#' @export
-sc_content <- function(response) {
-  stopifnot(is_sc_response(response))
-  httr::content(response$response)
-}
-
-#' @rdname utils
+#' @param response an object of class `sc_table`
 #' @param file A filename, under which the json should be saved.
 #' @description * `sc_write_json()` saves the api request for a table as
 #'   a json file. The resulting json file can be passed to [sc_post_json()]
 #' @export
 sc_write_json <- function(response, file) {
-    sc_content(response)$query %>%
+  response$raw$query %>%
     jsonlite::write_json(path = file, auto_unbox = TRUE, pretty = TRUE)
 }
 
@@ -56,6 +43,5 @@ sc_get_ratelimit <- function(x) {
 #'   a table together with descriptions of the annotations.
 #' @export
 sc_annotation_legend <- function(response) {
-  content <- sc_content(response)
-  content$annotationMap
+  response$raw$annotationMap
 }
