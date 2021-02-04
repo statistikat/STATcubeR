@@ -39,28 +39,33 @@ sc_field_parse_category <- function(field) {
   res
 }
 
+sc_as_time <- function(year, month, ind) {
+  as.POSIXct(paste0(
+    year[!ind], "/", month[!ind], "/1"
+  ))
+}
+
+sc_field_parse_time_month <- function(remainder) {
+  if (nchar(remainder[1]) == 0) {
+    rep(1, length(remainder))
+  } else if (nchar(remainder[1]) == 1) {
+    if (remainder[1] %in% 1:4)
+      as.numeric(remainder)*3 - 2
+    else
+      ifelse(remainder == "5", 1, 6)
+  } else {
+    as.numeric(remainder)
+  }
+}
+
 sc_field_parse_time <- function(field) {
   varcodes <- sc_field_codes(field)
-  ind <- is.na(varcodes)
-  #varcodes[ind] <- NA
   year <- substr(varcodes, 1, 4)
   remainder <- substr(varcodes, 5, 8)
+  month <- sc_field_parse_time_month(remainder)
+
   parsed <- as.POSIXct(rep(NA, length(varcodes)))
-
-  if (nchar(remainder[1]) == 0) {
-    parsed[!ind] <- as.POSIXct(paste0(year[!ind], "/1/1"))
-  } else if (nchar(varcodes[1] == 5)) {
-    if (substring(varcodes[1], 5, 5) %in% 1:4) {
-      quarter <- remainder
-
-    } else {
-      halfyear <- as.numeric(remainder)
-      parsed <- as.POSIXct(paste0(
-        year, ifelse(halfyear == 5, "/1/1", "/6/1")
-      ))
-    }
-  } else {
-    month <- remainder
-  }
+  ind <- is.na(varcodes)
+  parsed[!ind] <- sc_as_time(year, month, ind)
   parsed
 }
