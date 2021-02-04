@@ -6,14 +6,16 @@ sc_field_parse <- function(field) {
     sc_field_parse_time(field)
 }
 
-sc_field_codes <- function(field) {
-  field$items %>%
-    sapply(function(x) x$uris[[1]] %>% get_var_code(split_minus = TRUE))
+sc_field_codes <- function(field, split_minus = TRUE) {
+  res <- field$items %>%
+    sapply(function(x) x$uris[[1]] %>% get_var_code(split_minus))
+  res[res == ""] <- NA
+  res
 }
 
 sc_field_type <- function(field) {
   varcodes <- sc_field_codes(field)
-  varcodes <- varcodes[varcodes != ""]
+  varcodes <- varcodes[!is.na(varcodes)]
   codes_numeric <- all(!is.na(suppressWarnings(as.numeric(varcodes))))
   if (!codes_numeric)
     return("Category")
@@ -39,8 +41,8 @@ sc_field_parse_category <- function(field) {
 
 sc_field_parse_time <- function(field) {
   varcodes <- sc_field_codes(field)
-  ind <- which(varcodes == "")
-  varcodes[ind] <- NA
+  ind <- which(is.na(varcodes))
+  #varcodes[ind] <- NA
   year <- substr(varcodes, 1, 4)
   remainder <- substr(varcodes, 5, 8)
   parsed <- as.POSIXct(rep(NA, length(varcodes)))
