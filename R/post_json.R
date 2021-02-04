@@ -39,10 +39,10 @@ sc_table_class <- R6::R6Class(
   )
 )
 
-#' Post an api request against STATcube
+#' Create a request against the /table endpoint
 #'
 #' retrieve a response from STATcube based on a json file
-#' @param file path to a json file, which was downloaded via the STATcube
+#' @param json_file path to a json file, which was downloaded via the STATcube
 #'   gui ("Open Data API Abfrage")
 #' @return An object of class `sc_table` which contains the return
 #'   value of [httr::POST()]
@@ -50,13 +50,25 @@ sc_table_class <- R6::R6Class(
 #' @param language The language to be used for labeling. `"en"` or `"de"`
 #' @examples
 #' \dontrun{
-#' lgr_01 <- sc_post_json(sc_example("LGR01.json"))
+#' my_table <- sc_table_json(sc_example("LGR01.json"))
+#'
+#' # print
+#' my_table
+#'
+#' # get matadata for the table
+#' my_table$meta
+#'
+#' # get a data.frame
+#' as.data.frame(my_table)
+#'
+#' # get metadata for field 1
+#' my_table$field(1)
 #' }
 #' @export
-sc_post_json <- function(file, key = sc_key(), language = c("en", "de")) {
+sc_table <- function(json_file, language = c("en", "de"), key = sc_key()) {
   httr::POST(
     url = paste0(base_url, "/table"),
-    body = httr::upload_file(file),
+    body = httr::upload_file(json_file),
     config = httr::add_headers(
       APIKey = key,
       `Accept-Language` = match.arg(language)
@@ -66,7 +78,7 @@ sc_post_json <- function(file, key = sc_key(), language = c("en", "de")) {
 
 #' @export
 #' @param filename The name of an example json file.
-#' @rdname sc_post_json
+#' @rdname sc_table
 sc_example <- function(filename) {
   system.file(package = utils::packageName(), "json_examples", filename)
 }

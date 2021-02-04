@@ -37,10 +37,10 @@ save a json file on your local file system.
 
 ## Send the json to the API
 
-Provide the path to the downloaded file in `sc_post_json()`.
+Provide the path to the downloaded file in `sc_table()`.
 
 ``` r
-my_response <- sc_post_json("path/to/api_request.json")
+my_response <- sc_table(json_file = "path/to/api_request.json")
 ```
 
 The object `my_response` contains the raw API response from `httr::POST()`
@@ -53,7 +53,7 @@ conflicted::conflict_prefer("filter", "dplyr")
 
 ```{r, cache = TRUE}
 (json_path <- sc_example("bev_seit_1982.json"))
-my_response <- sc_post_json(json_path)
+my_response <- sc_table(json_path)
 my_response
 ```
 
@@ -101,5 +101,3 @@ my_content$measures
 [download options]: https://docs.wingarc.com.au/superstar/latest/superweb2/user-guide/download-tables
 [STATcube]: http://sdbext:8081/statistik.at/ext/statcube/home
 [STATcube manual]: http://www.statistik.at/wcm/idc/idcplg?IdcService=GET_PDF_FILE&dDocName=105692
-
-

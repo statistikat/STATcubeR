@@ -30,7 +30,7 @@ sc_model_matrix <- function(dims) {
   as.data.frame(out)
 }
 
-#' @rdname sc_post_json
+#' @rdname sc_table
 #' @param x an R object of class `sc_table`
 #' @param ... unused
 #' @param drop_aggregates remove rows containing aggregates from the table.

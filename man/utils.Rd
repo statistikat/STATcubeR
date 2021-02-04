@@ -17,7 +17,7 @@ sc_annotation_legend(response)
 \description{
 \itemize{
 \item \code{sc_write_json()} saves the api request for a table as
-a json file. The resulting json file can be passed to \code{\link[=sc_post_json]{sc_post_json()}}
+a json file. The resulting json file can be passed to \code{\link[=sc_table]{sc_table()}}
 }
 
 \itemize{

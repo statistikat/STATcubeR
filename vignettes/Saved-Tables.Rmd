@@ -46,10 +46,10 @@ on.exit(fs::file_delete("tourism_ts.json"))
 ```
 
 The generated json file contains an API request that can be used in
-`sc_post_json()`.
+`sc_table()`.
 
 ```r
-my_response <- sc_post_json("tourism_ts.json")
+my_response <- sc_table("tourism_ts.json")
 ```
 
 [saved tables]: https://docs.wingarc.com.au/superstar/latest/superweb2/user-guide/save-and-reload-tables
