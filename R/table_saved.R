@@ -1,9 +1,6 @@
-#' Import saved tables
-#'
-#' Functions for importing saved tables from STATcube
-#' @rdname saved_table
+#' @rdname sc_table
 #' @export
-sc_saved_tables_list <- function() {
+sc_table_saved_list <- function() {
   schema <- httr::content(sc_get_schema())$children
   tables <- schema %>% sapply(function(x) x$type == "TABLE")
   saved_tables <- schema[tables]
@@ -15,19 +12,20 @@ sc_saved_tables_list <- function() {
 
 #' @param table_uri Identifier of a saved table as returned by
 #'   [sc_saved_tables_list()]
-#' @param key An API key
-#' @param language The language to be used for labeling. `"en"` or `"de"`
-#' @rdname saved_table
+#' @rdname sc_table
 #' @examples
 #' \dontrun{
 #'
-#' (saved_tables <- sc_saved_tables_list())
+#' # get the ids and labels of all saved tables
+#' (saved_tables <- sc_table_saved_list())
 #' table_uri <- saved_tables$id[1]
-#' my_response <- sc_saved_table(table_uri)
+#'
+#' # get a table based on one of these ids
+#' my_response <- sc_table_saved(table_uri)
 #' as.data.frame(my_response)
 #' }
 #' @export
-sc_saved_table <- function(table_uri, key = sc_key(), language = c("en", "de")) {
+sc_table_saved <- function(table_uri, language = c("en", "de"), key = sc_key()) {
   response <- httr::GET(
     url = paste0(base_url, "/table/saved/", table_uri),
     config = httr::add_headers(

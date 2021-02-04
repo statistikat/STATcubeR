@@ -41,16 +41,19 @@ sc_table_class <- R6::R6Class(
 
 #' Create a request against the /table endpoint
 #'
-#' retrieve a response from STATcube based on a json file
+#' Send requests against the **`/table`** endpoint of the STATcube REST API. The
+#' requests can use a json file or a table uri to specify the table. In both
+#' cases, an object of class `"sc_table"` is returned.
 #' @param json_file path to a json file, which was downloaded via the STATcube
 #'   gui ("Open Data API Abfrage")
 #' @return An object of class `sc_table` which contains the return
-#'   value of [httr::POST()]
+#'   value of the [httr::POST()] request in `obj$response`. The object also
+#'   provides member functions to parse this response object.
 #' @inheritParams sc_key
 #' @param language The language to be used for labeling. `"en"` or `"de"`
 #' @examples
 #' \dontrun{
-#' my_table <- sc_table_json(sc_example("LGR01.json"))
+#' my_table <- sc_table(json_file = sc_example("LGR01.json"))
 #'
 #' # print
 #' my_table
