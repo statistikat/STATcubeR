@@ -71,7 +71,8 @@ print.sc_schema <- function(x, limit = 30, value = FALSE, ...) {
     })
     data.tree::Do(data.tree::Traverse(x), function(node) {
       if (!is.null(node$type) && node$type == "STAT_FUNCTION")
-        node$type <- node$location %>% strsplit(":") %>% .[[1]] %>% tail(1)
+        node$type <- node$location %>% strsplit(":") %>% .[[1]] %>%
+          utils::tail(1)
     })
     print(x, limit = limit, ..., "type")
   }
