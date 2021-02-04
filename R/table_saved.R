@@ -11,7 +11,7 @@ sc_table_saved_list <- function() {
 }
 
 #' @param table_uri Identifier of a saved table as returned by
-#'   [sc_saved_tables_list()]
+#'   [sc_table_saved_list()]
 #' @rdname sc_table
 #' @examples
 #' \dontrun{

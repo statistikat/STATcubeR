@@ -54,7 +54,7 @@ used}
 depending on labels? Alternatively, codes are used}
 
 \item{table_uri}{Identifier of a saved table as returned by
-\code{\link[=sc_saved_tables_list]{sc_saved_tables_list()}}}
+\code{\link[=sc_table_saved_list]{sc_table_saved_list()}}}
 }
 \value{
 An object of class \code{sc_table} which contains the return
