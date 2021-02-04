@@ -31,12 +31,21 @@
     <loc>https://statistikat.github.io/STATcubeR/reference/utils.html</loc>
   </url>
   <url>
-    <loc>https://statistikat.github.io/STATcubeR/articles/articles/Metadata.html</loc>
+    <loc>https://statistikat.github.io/STATcubeR/articles/JSON-requests.html</loc>
   </url>
   <url>
-    <loc>https://statistikat.github.io/STATcubeR/articles/articles/Schema.html</loc>
+    <loc>https://statistikat.github.io/STATcubeR/articles/Metadata.html</loc>
   </url>
   <url>
-    <loc>https://statistikat.github.io/STATcubeR/articles/articles/Setup.html</loc>
+    <loc>https://statistikat.github.io/STATcubeR/articles/Misc.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/articles/Saved-Tables.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/articles/Schema.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/articles/Setup.html</loc>
   </url>
 </urlset>

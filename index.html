@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>R Interface für die STATcube API • STATcubeR</title>
+<title>STATcubeR • STATcubeR</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -18,8 +18,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
-<meta property="og:title" content="R Interface für die STATcube API">
-<meta property="og:description" content="R Interface für die STATcube API.">
+<meta property="og:title" content="STATcubeR">
+<meta property="og:description" content="R Interface for the STATcube REST API.">
 <meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -54,26 +54,66 @@
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="articles/Setup.html">Setup</a>
+</li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
+    /schema
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/articles/Metadata.html">Metadata</a>
+      <a href="articles/Schema.html">Schema</a>
     </li>
     <li>
-      <a href="articles/articles/Schema.html">Schema</a>
+      <a href="articles/Metadata.html">Metadata</a>
     </li>
+    <li class="divider">
     <li>
-      <a href="articles/articles/Setup.html">Setup</a>
+      <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/schema-endpoint">
+        <span class="fas fa fas fa-link"></span>
+         
+        API Reference
+      </a>
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    /table
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/JSON-requests.html">JSON requests</a>
+    </li>
+    <li>
+      <a href="articles/Saved-Tables.html">Saved Tables</a>
+    </li>
+    <li class="divider">
+    <li>
+      <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint">
+        <span class="fas fa fas fa-link"></span>
+         
+        API reference
+      </a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="articles/Misc.html">Misc</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://www.statistik.at/web_de/services/statcube/index.html">
+    <span class="fas fa fas fa-cube fa-lg"></span>
+     
+  </a>
+</li>
 <li>
   <a href="https://github.com/statistikat/STATcubeR/">
     <span class="fab fa fab fa-github fa-lg"></span>
@@ -98,151 +138,32 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>R Interface for the STATcube REST API. This package exposes certain parts of the <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api">SuperSTAR API</a> to transfer your STATcube tables into R.</p>
-<p>Note that the API is currently only available inside the firewall of Statistics Austria. Support for external users will be available in</p>
-<ol><li>
-</li></ol>
+<p>R Interface for the STATcube REST API. This package exposes certain parts of the <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api">SuperSTAR API</a> to transfer your STATcube tables into R. The package provides utility functions to create API requests and parser functions to transform the API responses into common R objects.</p>
 <div id="setup" class="section level2">
 <h2 class="hasAnchor">
 <a href="#setup" class="anchor"></a>Setup</h2>
-<p>See the <a href="https://statistikat.github.io/STATcubeR/articles/articles/Setup.html">setup article</a> for instructions on how to install the package and set your API key.</p>
+<p>See the <a href="https://statistikat.github.io/STATcubeR/articles/articles/Setup.html">setup article</a> for instructions on how to install the package and set your API key. Note that the API is currently only available inside the firewall of Statistics Austria. Support for external users will be added in the near future.</p>
 </div>
-<div id="usecase-json-request" class="section level2">
+<div id="main-functions" class="section level2">
 <h2 class="hasAnchor">
-<a href="#usecase-json-request" class="anchor"></a>Usecase: JSON-Request</h2>
-<p>In the following example, a table will be exported from STATcube into an R session. This process involves four steps</p>
+<a href="#main-functions" class="anchor"></a>Main Functions</h2>
+<p>Currently, the main functions of the package are</p>
 <ul>
-<li>create a table with the STATcube GUI (table view)</li>
-<li>download an “API request” for the table (format: <code>*.json</code>).</li>
-<li>send the <code>json</code> file to the API using <code>STATcubeR</code>.</li>
-<li>convert the return value into a <code>data.frame</code>
-</li>
+<li>
+<code><a href="reference/sc_catalogue.html">sc_catalogue()</a></code> lists all available datasets and tables</li>
+<li>
+<code><a href="reference/sc_db_info.html">sc_db_info()</a></code> provides metadata about a specific database</li>
+<li>
+<code><a href="reference/sc_post_json.html">sc_post_json()</a></code> requests a table from the API according to a json standard</li>
+<li>
+<code><a href="reference/sc_saved_tables_list.html">sc_saved_table()</a></code> requests a table based on an id</li>
 </ul>
-<div id="create-a-table-with-the-statcube-gui" class="section level3">
-<h3 class="hasAnchor">
-<a href="#create-a-table-with-the-statcube-gui" class="anchor"></a>Create a table with the STATcube GUI</h3>
-<p>Use the graphical user interface of STATcube to create a table. Visit <a href="http://sdbext:8081/statistik.at/ext/statcube/home">STATcube</a> and select a database. This will open the table view where you can create a table. See the <a href="http://www.statistik.at/wcm/idc/idcplg?IdcService=GET_PDF_FILE&amp;dDocName=105692">STATcube manual</a> for details.</p>
-</div>
-<div id="download-an-api-request" class="section level3">
-<h3 class="hasAnchor">
-<a href="#download-an-api-request" class="anchor"></a>Download an API request</h3>
-<p>Choose “Open Data API Abfrage (.json)” in the download options. This will save a json file on your local file system.</p>
-<p><img src="reference/figures/download_json.png"></p>
-</div>
-<div id="send-the-json-to-the-api" class="section level3">
-<h3 class="hasAnchor">
-<a href="#send-the-json-to-the-api" class="anchor"></a>Send the json to the API</h3>
-<p>Provide the path to the downloaded file in <code><a href="reference/sc_post_json.html">sc_post_json()</a></code>.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sc_post_json.html">sc_post_json</a></span><span class="op">(</span><span class="st">"path/to/api_request.json"</span><span class="op">)</span></code></pre></div>
-<p>The object <code>my_response</code> contains the raw API response from <code><a href="https://httr.r-lib.org/reference/POST.html">httr::POST()</a></code> against the <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint"><code>/table</code> endpoint</a>. Printing the object will summarize the request.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="va">json_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sc_post_json.html">sc_example</a></span><span class="op">(</span><span class="st">"bev_seit_1982.json"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "/data/home/decill/git/STATgraph/STATcubeR/inst/json_examples/bev_seit_1982.json"</span>
-<span class="va">my_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sc_post_json.html">sc_post_json</a></span><span class="op">(</span><span class="va">json_path</span><span class="op">)</span>
-<span class="va">my_response</span>
-<span class="co">#&gt; An object of class STATcube_response</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Database:      Population at the beginning of the year since 1982 </span>
-<span class="co">#&gt; Measures:      Number </span>
-<span class="co">#&gt; Fields:        Time section, Bundesland, Country of birth </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Request:       2021-01-28 08:57:39 </span>
-<span class="co">#&gt; STATcubeR:     0.1.0</span></code></pre></div>
-</div>
-<div id="convert-into-a-data-frame" class="section level3">
-<h3 class="hasAnchor">
-<a href="#convert-into-a-data-frame" class="anchor"></a>Convert into a data frame</h3>
-<p>The return value of <code><a href="reference/sc_post_json.html">sc_post_json()</a></code> can be converted into a <code>data.frame</code> using the generic function <code><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame()</a></code>.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">my_response</span><span class="op">)</span></code></pre></div>
-<p>This will produce a tidy table, which contains a column for each field of the table. Furthermore, two columns will be present for each measure</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">my_response</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="va">.</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">19</span><span class="op">:</span><span class="fl">24</span><span class="op">)</span>, <span class="op">]</span>
-<span class="co">#&gt;    Time section           Bundesland Country of birth Number Number_a</span>
-<span class="co">#&gt; 1          2020    Burgenland &lt;AT11&gt;          Austria 260354         </span>
-<span class="co">#&gt; 2          2020    Burgenland &lt;AT11&gt;  Foreign country  34082         </span>
-<span class="co">#&gt; 3          2020     Carinthia &lt;AT21&gt;          Austria 489262         </span>
-<span class="co">#&gt; 4          2020     Carinthia &lt;AT21&gt;  Foreign country  72031         </span>
-<span class="co">#&gt; 19         2020 Not classifiable &lt;0&gt;          Austria      0         </span>
-<span class="co">#&gt; 20         2020 Not classifiable &lt;0&gt;  Foreign country      0         </span>
-<span class="co">#&gt; 21         1982    Burgenland &lt;AT11&gt;          Austria     NA        X</span>
-<span class="co">#&gt; 22         1982    Burgenland &lt;AT11&gt;  Foreign country     NA        X</span>
-<span class="co">#&gt; 23         1982     Carinthia &lt;AT21&gt;          Austria     NA        X</span>
-<span class="co">#&gt; 24         1982     Carinthia &lt;AT21&gt;  Foreign country     NA        X</span></code></pre></div>
-<p>The column <code>Number_a</code> contains annotations for the column <code>Number</code>. In order to get explanations about those annotations, use the function <code><a href="reference/sc_content.html">sc_annotation_legend()</a></code>.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/sc_content.html">sc_annotation_legend</a></span><span class="op">(</span><span class="va">my_response</span><span class="op">)</span>
-<span class="co">#&gt; $Q</span>
-<span class="co">#&gt; [1] "STATcube – Statistical Database of STATISTICS AUSTRIA"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $X</span>
-<span class="co">#&gt; [1] "Crosstabulation not allowed"</span></code></pre></div>
-<p>In this case, we see that row 21 contains a value <code>NA</code> (<strong>N</strong>ot <strong>A</strong>vailable) because the value is not disclosed (“Crosstabulation not allowed”). However, the zero value in row 20 can be considered a “real zero value” because no annotations are provided.</p>
-</div>
-</div>
-<div id="usecase-saved-table" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usecase-saved-table" class="anchor"></a>Usecase: Saved Table</h2>
-<p>If saved tables are present in STATcube, those can be imported without downloading a json file. All saved tables can be shown with <code><a href="reference/sc_saved_tables_list.html">sc_saved_tables_list()</a></code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/sc_saved_tables_list.html">sc_saved_tables_list</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt;               label                                             id</span>
-<span class="co">#&gt; 1        ts_tourism str:table:cfc581ca-dd88-44e7-9ec2-cca153365dd5</span>
-<span class="co">#&gt; 2 krankenbewegungen str:table:c7902e8d-5165-44e9-b17e-34ae20e2d1d4</span>
-<span class="co">#&gt; 3        tourism_ts str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c</span>
-<span class="co">#&gt; 4      entlassungen str:table:f63f0713-155f-4d1d-8d41-4a50f0815fc7</span></code></pre></div>
-<p>Subsequently the <code>id</code> of a saved table can be used to import the table into R.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">tourism_ts</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sc_saved_tables_list.html">sc_saved_table</a></span><span class="op">(</span><span class="st">"str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c"</span><span class="op">)</span>
-<span class="va">tourism_ts</span>
-<span class="co">#&gt; An object of class STATcube_response</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Database:      Accomodation statistics as of 1974 according to seasons </span>
-<span class="co">#&gt; Measures:      Nights spent </span>
-<span class="co">#&gt; Fields:        Tourism commune [partly SPE], Season/Tourism Month, Country of origin </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Request:       2021-01-28 08:57:51 </span>
-<span class="co">#&gt; STATcubeR:     0.1.0</span></code></pre></div>
-<p>To make the table available for other users of <code>STATcubeR</code>, the response can be exported into a json.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/sc_content.html">sc_write_json</a></span><span class="op">(</span><span class="va">tourism_ts</span>, <span class="st">"tourism_ts.json"</span><span class="op">)</span></code></pre></div>
-<p>The generated json file contains an API request that can be used in <code><a href="reference/sc_post_json.html">sc_post_json()</a></code>.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sc_post_json.html">sc_post_json</a></span><span class="op">(</span><span class="st">"tourism_ts.json"</span><span class="op">)</span></code></pre></div>
-</div>
-<div id="misc" class="section level2">
-<h2 class="hasAnchor">
-<a href="#misc" class="anchor"></a>Misc</h2>
-<p>To get the raw API response content, use <code><a href="reference/sc_content.html">sc_content()</a></code>. This function returns a nested list, containing data and metadata about the table.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_content</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sc_content.html">sc_content</a></span><span class="op">(</span><span class="va">my_response</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">my_content</span><span class="op">)</span>
-<span class="co">#&gt; [1] "query"         "database"      "measures"      "fields"       </span>
-<span class="co">#&gt; [5] "cubes"         "annotationMap"</span>
-<span class="va">my_content</span><span class="op">$</span><span class="va">measures</span>
-<span class="co">#&gt; [[1]]</span>
-<span class="co">#&gt; [[1]]$uri</span>
-<span class="co">#&gt; [1] "str:statfn:debevstandjb:F-BEVSTANDJB:F-ISIS-1:SUM"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$label</span>
-<span class="co">#&gt; [1] "Number"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$measure</span>
-<span class="co">#&gt; [1] "str:measure:debevstandjb:F-BEVSTANDJB:F-ISIS-1"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; [[1]]$`function`</span>
-<span class="co">#&gt; [1] "SUM"</span></code></pre></div>
-<p>There is experimental support for the endpoints <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/info-endpoint"><code>/info</code></a>, <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/schema-endpoint"><code>/schema</code></a> and <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/rate-limit"><code>/rate_limit</code></a>. However, those endpoints are not exported by now.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">STATcubeR</span><span class="fu">:::</span><span class="fu">sc_get_info</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu">STATcubeR</span><span class="fu">:::</span><span class="fu">sc_get_schema</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu">STATcubeR</span><span class="fu">:::</span><span class="fu">sc_get_rate_limit</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p>STATcube uses caching for the <code>/table</code> endpoint by default. If the same request to <code><a href="reference/sc_post_json.html">sc_post_json()</a></code> is sent several times, this will not count towards the rate-limit (100 requests per hour).</p>
+<p><code><a href="reference/sc_post_json.html">sc_post_json()</a></code> and <code><a href="reference/sc_saved_tables_list.html">sc_saved_table()</a></code> are showcased below. For more information about the first two functions, see the <a href="https://statistikat.github.io/STATcubeR/articles/articles/Schema.html">schema vignette</a>.</p>
 </div>
 <div id="api-documentation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#api-documentation" class="anchor"></a>API documentation</h2>
+<p>The STATcube API is based on the superSTAR REST API which is documented on <a href="https://docs.wingarc.com" class="uri">https://docs.wingarc.com</a>.</p>
 <ul>
 <li><a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint"><code>/table</code> endpoint</a></li>
 <li><a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/schema-endpoint"><code>/schema</code> endpoint</a></li>
@@ -256,6 +177,10 @@
 <h2>Links</h2>
 <ul class="list-unstyled">
 <li>Browse source code at <br><a href="https://github.com/statistikat/STATcubeR/">https://​github.com/​statistikat/​STATcubeR/​</a>
+</li>
+<li>Use the STATcube GUI at <br><a href="https://www.statistik.at/web_de/services/statcube/index.html">https://​www.statistik.at/​web_de/​services/​statcube/​index.html</a>
+</li>
+<li>Read the API reference at <br><a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/">https://​docs.wingarc.com.au/​superstar/​latest/​open-data-api/​open-data-api-reference/​</a>
 </li>
 </ul>
 </div>
