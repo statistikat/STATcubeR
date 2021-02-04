@@ -1,0 +1,20 @@
+---
+title: "Misc"
+---
+
+There is experimental support for the endpoints [`/info`], [`/schema`] and
+[`/rate_limit`]. However, those endpoints are not exported by now.
+
+```r
+STATcubeR:::sc_get_info() %>% httr::content()
+STATcubeR:::sc_get_schema() %>% httr::content()
+STATcubeR:::sc_get_rate_limit() %>% httr::content()
+```
+
+STATcube uses caching for the `/table` endpoint by default. If the same
+request to `sc_post_json()` is sent several times, this will not count
+towards the rate-limit (100 requests per hour).
+
+[`/info`]: https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/info-endpoint
+[`/schema`]: https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/schema-endpoint
+[`/rate_limit`]: https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/rate-limit

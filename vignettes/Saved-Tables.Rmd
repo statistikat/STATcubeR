@@ -1,0 +1,56 @@
+---
+title: "Saved Tables"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
+conflicted::conflict_prefer("filter", "dplyr")
+```
+
+If [saved tables] are present in STATcube, those can be imported without
+downloading a json file. All saved tables can be shown with
+`sc_saved_tables_list()`.
+
+```{r, cache = TRUE}
+sc_saved_tables_list()
+```
+
+Subsequently the `id` of a saved table can be used to import the table into R.
+
+```{r, cache = TRUE}
+tourism_ts <- sc_saved_table("str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c")
+tourism_ts
+```
+
+## Keys and accounts
+
+Tables are always saved to the logged in STATcube account. The API
+key is bound to an account and can only list the saved tables from that
+account. Saved tables from other accounts can not be listed or requested.
+
+## Converting saved tables to JSON requests
+
+To make the table available for later use or for other users of `STATcubeR`,
+the response can be exported into a json.
+
+```{r}
+sc_write_json(tourism_ts, "tourism_ts.json")
+```
+
+```{r, include=FALSE}
+on.exit(fs::file_delete("tourism_ts.json"))
+```
+
+The generated json file contains an API request that can be used in
+`sc_post_json()`.
+
+```r
+my_response <- sc_post_json("tourism_ts.json")
+```
+
+[saved tables]: https://docs.wingarc.com.au/superstar/latest/superweb2/user-guide/save-and-reload-tables
+

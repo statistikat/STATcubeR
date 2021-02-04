@@ -1,0 +1,105 @@
+---
+title: "JSON requests"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r, include=FALSE}
+pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
+conflicted::conflict_prefer("filter", "dplyr")
+```
+
+In the following example, a table will be exported from STATcube into an
+R session. This process involves four steps
+
+* create a table with the STATcube GUI (table view)
+* download an "API request" for the table (format: `*.json`).
+* send the `json` file to the API using `STATcubeR`.
+* convert the return value into a `data.frame`
+
+## Create a table with the STATcube GUI
+
+Use the graphical user interface of STATcube to create a table. Visit
+[STATcube] and select a database. This will open the table view where you can 
+create a table. See the [STATcube manual] for details.
+
+## Download an API request
+
+Choose "Open Data API Abfrage (.json)" in the [download options]. This will
+save a json file on your local file system.
+
+ <img src="download_json.png" />
+
+## Send the json to the API
+
+Provide the path to the downloaded file in `sc_post_json()`.
+
+``` r
+my_response <- sc_post_json("path/to/api_request.json")
+```
+
+The object `my_response` contains the raw API response from `httr::POST()`
+against the [`/table` endpoint]. Printing the object will summarize the request.
+
+```{r, include=FALSE}
+pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
+conflicted::conflict_prefer("filter", "dplyr")
+```
+
+```{r, cache = TRUE}
+(json_path <- sc_example("bev_seit_1982.json"))
+my_response <- sc_post_json(json_path)
+my_response
+```
+
+## Convert the response into a data frame
+
+The return value of `sc_post_json()` can be converted into a `data.frame`
+using the generic function `as.data.frame()`.
+
+```r
+as.data.frame(my_response)
+```
+
+This will produce a tidy table, which contains a column for each field
+of the table. Furthermore, two columns will be present for each measure
+
+```{r}
+as.data.frame(my_response) %>% .[c(1:4, 19:24), ]
+```
+
+The column `Number_a` contains annotations for the column
+`Number`. In order to get explanations about those annotations, use the
+function `sc_annotation_legend()`.
+
+```{r}
+sc_annotation_legend(my_response)
+```
+
+In this case, we see that row 21 contains a value `NA` (**N**ot **A**vailable)
+because the value is not disclosed ("Crosstabulation not allowed"). However, the
+zero value in row 20 can be considered a "real zero value" because no
+annotations are provided.
+
+## Get the raw API response
+
+To get the raw API response content, use `sc_content()`. This function returns
+a nested list, containing data and metadata about the table.
+
+```r
+my_content <- sc_content(my_response)
+names(my_content)
+my_content$measures
+```
+
+[`/table` endpoint]: https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint
+[download options]: https://docs.wingarc.com.au/superstar/latest/superweb2/user-guide/download-tables
+[STATcube]: http://sdbext:8081/statistik.at/ext/statcube/home
+[STATcube manual]: http://www.statistik.at/wcm/idc/idcplg?IdcService=GET_PDF_FILE&dDocName=105692
+
+
