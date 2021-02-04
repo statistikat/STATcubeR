@@ -146,8 +146,8 @@
     
 <p>This short article will showcase the usage of metadata with STATcubeR. For this, we start with the same example as in the README file.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">json_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_post_json.html">sc_example</a></span><span class="op">(</span><span class="st">"bev_seit_1982.json"</span><span class="op">)</span>
-<span class="va">my_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_post_json.html">sc_post_json</a></span><span class="op">(</span><span class="va">json_path</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">json_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"bev_seit_1982.json"</span><span class="op">)</span>
+<span class="va">my_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="va">json_path</span><span class="op">)</span></code></pre></div>
 <p>Now, <code><a href="../reference/sc_meta.html">sc_meta()</a></code> can be used to get metadata about the table.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/sc_meta.html">sc_meta</a></span><span class="op">(</span><span class="va">my_response</span><span class="op">)</span></code></pre></div>

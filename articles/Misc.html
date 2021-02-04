@@ -149,7 +149,7 @@
 <code class="sourceCode R"><span class="fu">STATcubeR</span><span class="fu">:::</span><span class="fu">sc_get_info</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu">STATcubeR</span><span class="fu">:::</span><span class="fu">sc_get_schema</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu">STATcubeR</span><span class="fu">:::</span><span class="fu">sc_get_rate_limit</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p>STATcube uses caching for the <code>/table</code> endpoint by default. If the same request to <code><a href="../reference/sc_post_json.html">sc_post_json()</a></code> is sent several times, this will not count towards the rate-limit (100 requests per hour).</p>
+<p>STATcube uses caching for the <code>/table</code> endpoint by default. If the same request to <code>sc_post_json()</code> is sent several times, this will not count towards the rate-limit (100 requests per hour).</p>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

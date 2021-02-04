@@ -146,7 +146,7 @@
     
 <p>There are currently two functions in <code>STATcubeR</code> that utilize the <code>/schema</code> endpoint. The first function shows the catalogue, which lists all available databases in a tree form. The tree structure is determined by the API and closely resembles the “Katalog” view in the GUI.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_catalogue</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_catalogue.html">sc_catalogue</a></span><span class="op">(</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">my_catalogue</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_catalogue</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">my_catalogue</span></code></pre></div>
 <pre><code>##                                                                  levelName     type
 ## 1  Extern V9                                                                 FOLDER
@@ -207,13 +207,13 @@
 ## [1] "DATABASE"
 ## 
 ## $lastModified
-## [1] 1.61244e+12
+## [1] 1.612455e+12
 ## 
 ## $recordViewEnabled
 ## [1] FALSE</code></pre>
-<p>To get more information about this database, you can pass the <code>id</code> to <code><a href="../reference/sc_db_info.html">sc_db_info()</a></code>. Again, the contents do have a tree structure which is similar to the sidebar of the “Tabellenansicht” view.</p>
+<p>To get more information about this database, you can pass the <code>id</code> to <code>sc_db_info()</code>. Again, the contents do have a tree structure which is similar to the sidebar of the “Tabellenansicht” view.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_db_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_db_info.html">sc_db_info</a></span><span class="op">(</span><span class="st">"deake005"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">my_db_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_db</a></span><span class="op">(</span><span class="st">"deake005"</span><span class="op">)</span>
 <span class="va">my_db_info</span></code></pre></div>
 <pre><code>##                                                                                   levelName     type
 ## 1  Working hours (Labour Force Survey)                                                      DATABASE

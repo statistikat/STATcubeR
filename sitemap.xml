@@ -7,16 +7,7 @@
     <loc>https://statistikat.github.io/STATcubeR/reference/pipe.html</loc>
   </url>
   <url>
-    <loc>https://statistikat.github.io/STATcubeR/reference/saved_table.html</loc>
-  </url>
-  <url>
     <loc>https://statistikat.github.io/STATcubeR/reference/sc_browse.html</loc>
-  </url>
-  <url>
-    <loc>https://statistikat.github.io/STATcubeR/reference/sc_catalogue.html</loc>
-  </url>
-  <url>
-    <loc>https://statistikat.github.io/STATcubeR/reference/sc_db_info.html</loc>
   </url>
   <url>
     <loc>https://statistikat.github.io/STATcubeR/reference/sc_key.html</loc>
@@ -25,7 +16,10 @@
     <loc>https://statistikat.github.io/STATcubeR/reference/sc_meta.html</loc>
   </url>
   <url>
-    <loc>https://statistikat.github.io/STATcubeR/reference/sc_post_json.html</loc>
+    <loc>https://statistikat.github.io/STATcubeR/reference/sc_schema.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/reference/sc_table.html</loc>
   </url>
   <url>
     <loc>https://statistikat.github.io/STATcubeR/reference/utils.html</loc>

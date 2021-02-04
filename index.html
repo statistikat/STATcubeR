@@ -138,7 +138,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>R Interface for the STATcube REST API. This package exposes certain parts of the <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api">SuperSTAR API</a> to transfer your STATcube tables into R. The package provides utility functions to create API requests and parser functions to transform the API responses into common R objects.</p>
+<p>R Interface for the <a href="http://sdbext:8081/statistik.at/ext/statcube/jsf/dataCatalogueExplorer.xhtml">STATcube</a> REST API. This package exposes certain parts of the <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api">SuperSTAR API</a> to transfer your STATcube tables into R. The package provides utility functions to create API requests and parser functions to transform the API responses into common R objects.</p>
 <div id="setup" class="section level2">
 <h2 class="hasAnchor">
 <a href="#setup" class="anchor"></a>Setup</h2>
@@ -147,18 +147,18 @@
 <div id="main-functions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#main-functions" class="anchor"></a>Main Functions</h2>
-<p>Currently, the main functions of the package are</p>
+<p>Currently, the package provides four main functions</p>
 <ul>
 <li>
-<code><a href="reference/sc_catalogue.html">sc_catalogue()</a></code> lists all available datasets and tables</li>
+<code><a href="reference/sc_schema.html">sc_schema_catalogue()</a></code> lists all available datasets and tables</li>
 <li>
-<code><a href="reference/sc_db_info.html">sc_db_info()</a></code> provides metadata about a specific database</li>
+<code><a href="reference/sc_schema.html">sc_schema_db()</a></code> provides metadata about a specific database</li>
 <li>
-<code><a href="reference/sc_post_json.html">sc_post_json()</a></code> requests a table from the API according to a json standard</li>
+<code><a href="reference/sc_table.html">sc_table()</a></code> requests a table from the API according to a json standard.</li>
 <li>
-<code><a href="reference/sc_saved_tables_list.html">sc_saved_table()</a></code> requests a table based on an id</li>
+<code><a href="reference/sc_table.html">sc_table_saved()</a></code> requests a table based on an id</li>
 </ul>
-<p><code><a href="reference/sc_post_json.html">sc_post_json()</a></code> and <code><a href="reference/sc_saved_tables_list.html">sc_saved_table()</a></code> are showcased below. For more information about the first two functions, see the <a href="https://statistikat.github.io/STATcubeR/articles/articles/Schema.html">schema vignette</a>.</p>
+<p>More information about the first two functions can be found in the <a href="https://statistikat.github.io/STATcubeR/articles/articles/Schema.html">schema article</a>. <code><a href="reference/sc_table.html">sc_table()</a></code> and <code><a href="reference/sc_table.html">sc_table_saved()</a></code> have their own articles <a href="https://statistikat.github.io/STATcubeR/articles/JSON-requests.html">here</a> and <a href="https://statistikat.github.io/STATcubeR/articles/Saved-Tables.html">here</a>.</p>
 </div>
 <div id="api-documentation" class="section level2">
 <h2 class="hasAnchor">
