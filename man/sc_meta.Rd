@@ -7,7 +7,7 @@
 \usage{
 sc_meta(response)
 
-sc_meta_field(response, i)
+sc_meta_field(response, i = 1)
 }
 \arguments{
 \item{response}{An object of class \code{STATcube_response}}

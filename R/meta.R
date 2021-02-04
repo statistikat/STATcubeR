@@ -1,9 +1,12 @@
 globalVariables(".")
 
-get_var_code <- function(x) {
+get_var_code <- function(x, split_minus = FALSE) {
   if (is.null(x))
     return("")
-  utils::tail(strsplit(x, ":")[[1]], 1)
+  res <- utils::tail(strsplit(x, ":")[[1]], 1)
+  if (split_minus)
+    res <- utils::tail(strsplit(res, "-")[[1]], 1)
+  res
 }
 
 #' Get metadata for a STATcube table
@@ -28,7 +31,8 @@ sc_meta <- function(response) {
     data.frame(
       label = field$label,
       code = get_var_code(field$uri),
-      nitems = length(field$items)
+      nitems = length(field$items),
+      type = sc_field_type(field)
     )
   }) %>% do.call(rbind, .)
   db_info <- data.frame(
@@ -49,14 +53,15 @@ sc_meta <- function(response) {
 #' sc_meta_field(my_response, 1)
 #' }
 #' @export
-sc_meta_field <- function(response, i) {
+sc_meta_field <- function(response, i = 1) {
   content <- sc_content(response)
   field <- content$fields[[i]]
-  lapply(field$items, function(item) {
+  res <- lapply(field$items, function(item) {
     data.frame(
       label = item$labels[[1]],
-      code = get_var_code(item$uris[[1]]),
-      type = item$type
+      code = get_var_code(item$uris[[1]])
     )
   }) %>% do.call(rbind, .)
+  res$parsed <- sc_field_parse(field)
+  res
 }

@@ -17,45 +17,38 @@ get_annotations <- function(x, i = 1) {
     sapply(function(x) paste(x, collapse = ", "))
 }
 
-get_dimnames <- function(fields) {
-  dimnames <- list()
-  for (i in seq_along(fields)) {
-    field <- fields[[i]]
-    dimnames[[i]] <- field$items %>% sapply(function(x) x$labels[[1]])
+sc_model_matrix <- function(dims) {
+  times <- 1
+  each <- prod(dims)
+  out <- list()
+  for (i in seq_along(dims)) {
+    each <- each / dims[i]
+    out[[paste0("FIELD_", i)]] <- seq_len(dims[i]) %>%
+      rep(times = times, each = each)
+    times <- times*dims[i]
   }
-  names(dimnames) <- fields %>% sapply(function(x) x$label)
-  dimnames
-}
-
-get_fields <- function(x) {
-  content <- sc_content(x)
-  dims <- content$fields %>%
-    lapply(function(x) x$items) %>%
-    sapply(length)
-  res <- array(0, rev(dims), dimnames = rev(get_dimnames(content$fields))) %>%
-    (function(x) {
-      if (length(dims) > 1)
-        stats::ftable(x) %>%
-        as.data.frame() %>%
-        (function(x) {
-          x[, (ncol(x)-1):1]
-        })
-      else {
-        as.data.frame(dimnames(x))
-      }
-    })
-  names(res) <- names(get_dimnames(content$fields))
-  res
+  as.data.frame(out)
 }
 
 #' @export
 as.data.frame.STATcube_response <- function(
-  x, ..., drop_aggregates = TRUE, recode_na = TRUE)
+  x, ..., drop_aggregates = TRUE, recode_na = TRUE, var_labels = TRUE)
 {
   content <- sc_content(x)
-  df <- get_fields(x)
+  dims_fields <- content$fields %>%
+    lapply(function(x) x$items) %>%
+    sapply(length)
+  df <- sc_model_matrix(dims_fields)
+  # labeling of fields
+  for (i in seq_along(content$fields)) {
+    field <- content$fields[[i]]
+    parsed <- sc_field_parse(field)
+    df[[i]] <- parsed[df[[i]]]
+    names(df)[i] <- ifelse(var_labels, field$label, get_var_code(field$uri))
+  }
   for (i in seq_along(content$measures)) {
-    label <- content$measures[[i]]$label
+    measure <- content$measures[[i]]
+    label <- ifelse(var_labels, measure$label, get_var_code(measure$measure))
     values <- unlist(content$cubes[[i]]$values)
     annotations <- get_annotations(x, i)
     if (recode_na)
@@ -64,21 +57,9 @@ as.data.frame.STATcube_response <- function(
     df[[paste0(label, "_a")]] <- annotations
   }
   if (drop_aggregates) {
-    for (i in seq_along(content$fields)) {
-      meta <- sc_meta_field(x, i)
-      codes_total <- meta[meta$type == "Total", "label"]
-      df <- df[!(df[[i]] %in% codes_total), ]
-    }
+    for (i in seq_along(content$fields))
+      df <- df[!is.na(df[[i]]), ]
     rownames(df) <- NULL
   }
   df
-}
-
-#' @export
-as.array.STATcube_response <- function(x, i = 1, ...) {
-  content <- sc_content(x)
-  first_cube <- content$cubes[[i]]$values
-  dims <- content$fields %>% lapply(function(x) x$items) %>% sapply(length)
-  labels <- content$fields %>% lapply(function(x) x$label)
-  array(unlist(first_cube), rev(dims), dimnames = rev(get_dimnames(content$fields)))
 }
