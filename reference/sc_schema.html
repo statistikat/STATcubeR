@@ -115,9 +115,6 @@ tree object." />
     <li>
       <a href="../articles/Schema.html">Schema</a>
     </li>
-    <li>
-      <a href="../articles/Metadata.html">Metadata</a>
-    </li>
     <li class="divider"></li>
     <li>
       <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/schema-endpoint">
@@ -140,6 +137,9 @@ tree object." />
     </li>
     <li>
       <a href="../articles/Saved-Tables.html">Saved Tables</a>
+    </li>
+    <li>
+      <a href="../articles/Metadata.html">Metadata</a>
     </li>
     <li class="divider"></li>
     <li>
@@ -234,35 +234,35 @@ tree object.</p>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \dontrun{</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 
 <span class='va'>my_catalogue</span> <span class='op'>&lt;-</span> <span class='fu'>sc_schema_catalogue</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in sc_schema_catalogue(): could not find function "sc_schema_catalogue"</span></div><div class='input'>
+
 <span class='co'>## print</span>
 <span class='va'>my_catalogue</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'my_catalogue' not found</span></div><div class='input'>
+
 <span class='co'>## access the parsed catalogue</span>
 <span class='va'>my_catalogue</span><span class='op'>$</span><span class='va'>Statistics</span><span class='op'>$</span><span class='va'>`Labour Market`</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'my_catalogue' not found</span></div><div class='input'><span class='va'>my_catalogue</span><span class='op'>$</span><span class='va'>Statistics</span><span class='op'>$</span><span class='va'>`Labour Market`</span><span class='op'>$</span><span class='va'>`Working hours (Labour Force Survey)`</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'my_catalogue' not found</span></div><div class='input'><span class='co'># }</span>
-<span class='co'># \dontrun{</span>
+<span class='va'>my_catalogue</span><span class='op'>$</span><span class='va'>Statistics</span><span class='op'>$</span><span class='va'>`Labour Market`</span><span class='op'>$</span><span class='va'>`Working hours (Labour Force Survey)`</span>
+<span class='op'>}</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 
 <span class='va'>db_schema</span> <span class='op'>&lt;-</span> <span class='fu'>sc_schema_db</span><span class='op'>(</span><span class='st'>"deake005"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in sc_schema_db("deake005"): could not find function "sc_schema_db"</span></div><div class='input'>
+
 <span class='co'># printing</span>
 <span class='va'>db_schema</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'db_schema' not found</span></div><div class='input'>
+
 <span class='co'># access child nodes</span>
 <span class='va'>db_schema</span><span class='op'>$</span><span class='va'>`Demographic Characteristics`</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'db_schema' not found</span></div><div class='input'><span class='va'>db_schema</span><span class='op'>$</span><span class='va'>`Demographic Characteristics`</span><span class='op'>$</span><span class='va'>Gender</span><span class='op'>$</span><span class='va'>Gender</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'db_schema' not found</span></div><div class='input'><span class='va'>db_schema</span><span class='op'>$</span><span class='va'>`Demographic Characteristics`</span><span class='op'>$</span><span class='va'>Gender</span><span class='op'>$</span><span class='va'>Gender</span><span class='op'>$</span><span class='va'>male</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'db_schema' not found</span></div><div class='input'>
+<span class='va'>db_schema</span><span class='op'>$</span><span class='va'>`Demographic Characteristics`</span><span class='op'>$</span><span class='va'>Gender</span><span class='op'>$</span><span class='va'>Gender</span>
+<span class='va'>db_schema</span><span class='op'>$</span><span class='va'>`Demographic Characteristics`</span><span class='op'>$</span><span class='va'>Gender</span><span class='op'>$</span><span class='va'>Gender</span><span class='op'>$</span><span class='va'>male</span>
+
 <span class='co'># access the raw response from httr::GET()</span>
 <span class='va'>my_response</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db_schema</span>, <span class='st'>"response"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'db_schema' not found</span></div><div class='input'><span class='va'>my_response</span><span class='op'>$</span><span class='va'>headers</span><span class='op'>$</span><span class='va'>date</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'my_response' not found</span></div><div class='input'><span class='va'>my_content</span> <span class='op'>&lt;-</span> <span class='fu'>httr</span><span class='fu'>::</span><span class='fu'><a href='https://httr.r-lib.org/reference/content.html'>content</a></span><span class='op'>(</span><span class='va'>my_response</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in is.response(x): object 'my_response' not found</span></div><div class='input'><span class='va'>my_content</span><span class='op'>$</span><span class='va'>label</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'my_content' not found</span></div><div class='input'><span class='co'># }</span>
+<span class='va'>my_response</span><span class='op'>$</span><span class='va'>headers</span><span class='op'>$</span><span class='va'>date</span>
+<span class='va'>my_content</span> <span class='op'>&lt;-</span> <span class='fu'>httr</span><span class='fu'>::</span><span class='fu'><a href='https://httr.r-lib.org/reference/content.html'>content</a></span><span class='op'>(</span><span class='va'>my_response</span><span class='op'>)</span>
+<span class='va'>my_content</span><span class='op'>$</span><span class='va'>label</span>
+<span class='op'>}</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

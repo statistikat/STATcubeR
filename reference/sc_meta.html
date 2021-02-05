@@ -110,9 +110,6 @@
     <li>
       <a href="../articles/Schema.html">Schema</a>
     </li>
-    <li>
-      <a href="../articles/Metadata.html">Metadata</a>
-    </li>
     <li class="divider"></li>
     <li>
       <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/schema-endpoint">
@@ -135,6 +132,9 @@
     </li>
     <li>
       <a href="../articles/Saved-Tables.html">Saved Tables</a>
+    </li>
+    <li>
+      <a href="../articles/Metadata.html">Metadata</a>
     </li>
     <li class="divider"></li>
     <li>
@@ -202,15 +202,20 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other functions for /table: 
+<code><a href='sc_table.html'>sc_table</a>()</code>,
+<code><a href='sc_write_json.html'>sc_write_json</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \dontrun{</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 
-<span class='va'>my_response</span> <span class='op'>&lt;-</span> <span class='fu'><a href='sc_table.html'>sc_example</a></span><span class='op'>(</span><span class='st'>"bev_seit_1982"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>sc_post_json</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in httr::upload_file(file): file.exists(path) is not TRUE</span></div><div class='input'><span class='fu'>sc_meta</span><span class='op'>(</span><span class='va'>my_response</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in is_sc_response(response): object 'my_response' not found</span></div><div class='input'><span class='fu'>sc_meta_field</span><span class='op'>(</span><span class='va'>my_response</span>, <span class='fl'>1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in is_sc_response(response): object 'my_response' not found</span></div><div class='input'><span class='co'># }</span>
+<span class='va'>my_response</span> <span class='op'>&lt;-</span> <span class='fu'><a href='sc_table.html'>sc_example</a></span><span class='op'>(</span><span class='st'>"bev_seit_1982.json"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='sc_table.html'>sc_table</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'>sc_meta</span><span class='op'>(</span><span class='va'>my_response</span><span class='op'>)</span>
+<span class='fu'>sc_meta_field</span><span class='op'>(</span><span class='va'>my_response</span>, <span class='fl'>1</span><span class='op'>)</span>
+<span class='op'>}</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

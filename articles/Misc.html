@@ -67,9 +67,6 @@
 <li>
       <a href="../articles/Schema.html">Schema</a>
     </li>
-    <li>
-      <a href="../articles/Metadata.html">Metadata</a>
-    </li>
     <li class="divider">
     <li>
       <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/schema-endpoint">
@@ -92,6 +89,9 @@
     </li>
     <li>
       <a href="../articles/Saved-Tables.html">Saved Tables</a>
+    </li>
+    <li>
+      <a href="../articles/Metadata.html">Metadata</a>
     </li>
     <li class="divider">
     <li>
@@ -144,11 +144,34 @@
 
     
     
-<p>There is experimental support for the endpoints <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/info-endpoint"><code>/info</code></a>, <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/schema-endpoint"><code>/schema</code></a> and <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/rate-limit"><code>/rate_limit</code></a>. However, those endpoints are not exported by now.</p>
+<p>There is experimental support for the endpoints <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/info-endpoint"><code>/info</code></a> and <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/rate-limit"><code>/rate_limit</code></a>. However, those endpoints are not exported by now.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">STATcubeR</span><span class="fu">:::</span><span class="fu">sc_get_info</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu">STATcubeR</span><span class="fu">:::</span><span class="fu">sc_get_schema</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu">STATcubeR</span><span class="fu">:::</span><span class="fu">sc_get_rate_limit</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">STATcubeR</span><span class="fu">:::</span><span class="fu">sc_get_info</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## $languages
+## $languages[[1]]
+## $languages[[1]]$locale
+## [1] "de"
+## 
+## $languages[[1]]$displayName
+## [1] "Deutsch"
+## 
+## 
+## $languages[[2]]
+## $languages[[2]]$locale
+## [1] "en"
+## 
+## $languages[[2]]$displayName
+## [1] "English"</code></pre>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">STATcubeR</span><span class="fu">:::</span><span class="fu">sc_get_rate_limit</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## $remaining
+## [1] 97
+## 
+## $limit
+## [1] 100
+## 
+## $reset
+## [1] 1.612514e+12</code></pre>
 <p>STATcube uses caching for the <code>/table</code> endpoint by default. If the same request to <code>sc_post_json()</code> is sent several times, this will not count towards the rate-limit (100 requests per hour).</p>
   </div>
 

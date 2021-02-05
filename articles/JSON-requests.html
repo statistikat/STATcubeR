@@ -67,9 +67,6 @@
 <li>
       <a href="../articles/Schema.html">Schema</a>
     </li>
-    <li>
-      <a href="../articles/Metadata.html">Metadata</a>
-    </li>
     <li class="divider">
     <li>
       <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/schema-endpoint">
@@ -92,6 +89,9 @@
     </li>
     <li>
       <a href="../articles/Saved-Tables.html">Saved Tables</a>
+    </li>
+    <li>
+      <a href="../articles/Metadata.html">Metadata</a>
     </li>
     <li class="divider">
     <li>
@@ -181,7 +181,7 @@
 <span class="co">#&gt; Measures:      Number </span>
 <span class="co">#&gt; Fields:        Time section, Bundesland, Country of birth </span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Request:       2021-02-04 19:04:23 </span>
+<span class="co">#&gt; Request:       2021-02-05 08:05:14 </span>
 <span class="co">#&gt; STATcubeR:     0.1.0</span></code></pre></div>
 </div>
 <div id="convert-the-response-into-a-data-frame" class="section level2">
@@ -221,7 +221,21 @@
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_content</span> <span class="op">&lt;-</span> <span class="va">my_response</span><span class="op">$</span><span class="va">raw</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">my_content</span><span class="op">)</span>
-<span class="va">my_content</span><span class="op">$</span><span class="va">measures</span></code></pre></div>
+<span class="co">#&gt; [1] "query"         "database"      "measures"      "fields"       </span>
+<span class="co">#&gt; [5] "cubes"         "annotationMap"</span>
+<span class="va">my_content</span><span class="op">$</span><span class="va">measures</span>
+<span class="co">#&gt; [[1]]</span>
+<span class="co">#&gt; [[1]]$uri</span>
+<span class="co">#&gt; [1] "str:statfn:debevstandjb:F-BEVSTANDJB:F-ISIS-1:SUM"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]]$label</span>
+<span class="co">#&gt; [1] "Number"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]]$measure</span>
+<span class="co">#&gt; [1] "str:measure:debevstandjb:F-BEVSTANDJB:F-ISIS-1"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; [[1]]$`function`</span>
+<span class="co">#&gt; [1] "SUM"</span></code></pre></div>
 </div>
   </div>
 
