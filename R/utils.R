@@ -19,6 +19,7 @@ NULL
 #' @param file A filename, under which the json should be saved.
 #' @description * `sc_write_json()` saves the api request for a table as
 #'   a json file. The resulting json file can be passed to [sc_table()]
+#' @family functions for /table
 #' @export
 sc_write_json <- function(response, file) {
   response$raw$query %>%

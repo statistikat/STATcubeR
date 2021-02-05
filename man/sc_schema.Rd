@@ -66,3 +66,4 @@ my_content <- httr::content(my_response)
 my_content$label
 }
 }
+\concept{functions for /schema}

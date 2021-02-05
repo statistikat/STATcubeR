@@ -22,7 +22,7 @@ sc_table_saved_list <- function() {
 #'
 #' # get a table based on one of these ids
 #' my_response <- sc_table_saved(table_uri)
-#' as.data.frame(my_response)
+#' as.data.frame(my_response) %>% head()
 #' }
 #' @export
 sc_table_saved <- function(table_uri, language = c("en", "de"), key = sc_key()) {

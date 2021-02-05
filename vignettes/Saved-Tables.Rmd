@@ -16,13 +16,13 @@ downloading a json file. All saved tables can be shown with
 `sc_saved_tables_list()`.
 
 ```{r, cache = TRUE}
-sc_saved_tables_list()
+sc_table_saved_list()
 ```
 
 Subsequently the `id` of a saved table can be used to import the table into R.
 
 ```{r, cache = TRUE}
-tourism_ts <- sc_saved_table("str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c")
+tourism_ts <- sc_table_saved("str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c")
 tourism_ts
 ```
 

@@ -51,6 +51,7 @@ sc_table_class <- R6::R6Class(
 #'   provides member functions to parse this response object.
 #' @inheritParams sc_key
 #' @param language The language to be used for labeling. `"en"` or `"de"`
+#' @family functions for /table
 #' @examples
 #' \dontrun{
 #' my_table <- sc_table(json_file = sc_example("LGR01.json"))

@@ -7,9 +7,6 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-```
-
-```{r, include=FALSE}
 pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
 conflicted::conflict_prefer("filter", "dplyr")
 ```
@@ -45,11 +42,6 @@ my_response <- sc_table(json_file = "path/to/api_request.json")
 
 The object `my_response` contains the raw API response from `httr::POST()`
 against the [`/table` endpoint]. Printing the object will summarize the request.
-
-```{r, include=FALSE}
-pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
-conflicted::conflict_prefer("filter", "dplyr")
-```
 
 ```{r, cache = TRUE}
 (json_path <- sc_example("bev_seit_1982.json"))
@@ -91,7 +83,7 @@ annotations are provided.
 To get the raw API response content, use `$raw`. This binding returns
 a nested list which contains data and metadata about the table.
 
-```r
+```{r}
 my_content <- my_response$raw
 names(my_content)
 my_content$measures

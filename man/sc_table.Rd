@@ -90,6 +90,12 @@ table_uri <- saved_tables$id[1]
 
 # get a table based on one of these ids
 my_response <- sc_table_saved(table_uri)
-as.data.frame(my_response)
+as.data.frame(my_response) \%>\% head()
 }
 }
+\seealso{
+Other functions for /table: 
+\code{\link{sc_meta}()},
+\code{\link{sc_write_json}()}
+}
+\concept{functions for /table}

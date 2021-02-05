@@ -28,3 +28,9 @@ a table together with descriptions of the annotations.
 \details{
 Supporting functions for STATcubeR
 }
+\seealso{
+Other functions for /table: 
+\code{\link{sc_meta}()},
+\code{\link{sc_table}()}
+}
+\concept{functions for /table}

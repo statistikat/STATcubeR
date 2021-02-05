@@ -26,8 +26,6 @@ navbar:
     menu:
     - text: Schema
       href: articles/Schema.html
-    - text: Metadata
-      href: articles/Metadata.html
     - text: -------
     - text: API Reference
       icon: fas fa-link
@@ -38,6 +36,8 @@ navbar:
       href: articles/JSON-requests.html
     - text: Saved Tables
       href: articles/Saved-Tables.html
+    - text: Metadata
+      href: articles/Metadata.html
     - text: -------
     - text: API reference
       icon: fas fa-link

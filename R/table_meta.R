@@ -14,6 +14,7 @@ get_var_code <- function(x, split_minus = FALSE) {
 #' Functions to extract metadata from a `sc_table` object.
 #'
 #' @param response An object of class `sc_table`
+#' @family functions for /table
 #' @export
 sc_meta <- function(response) {
   content <- response$raw
@@ -47,8 +48,8 @@ sc_meta <- function(response) {
 #' @examples
 #' \dontrun{
 #'
-#' my_response <- sc_example("bev_seit_1982") %>%
-#'   sc_post_json()
+#' my_response <- sc_example("bev_seit_1982.json") %>%
+#'   sc_table()
 #' sc_meta(my_response)
 #' sc_meta_field(my_response, 1)
 #' }
