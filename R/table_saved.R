@@ -1,7 +1,10 @@
 #' @rdname sc_table
 #' @export
 sc_table_saved_list <- function() {
-  schema <- httr::content(sc_get_schema())$children
+  schema <- sc_schema()
+  schema <- schema %>% attr("response") %>% httr::content()
+  schema <- schema$children
+
   tables <- schema %>% sapply(function(x) x$type == "TABLE")
   saved_tables <- schema[tables]
   data.frame(

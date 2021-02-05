@@ -6,14 +6,6 @@ sc_get_info <- function(key = sc_key()) {
   response
 }
 
-sc_get_schema <- function(key = sc_key(), ...) {
-  response <- httr::GET(
-    url = paste0(base_url, "/schema", ...),
-    config = httr::add_headers(APIKey = key, `Accept-Language` = "en")
-  )
-  response
-}
-
 sc_get_rate_limit <- function(key = sc_key()) {
   response <- httr::GET(
     url = paste0(base_url, "/rate_limit_table"),
