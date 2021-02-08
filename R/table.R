@@ -43,10 +43,14 @@ sc_table_class <- R6::R6Class(
 )
 
 #' Create a request against the /table endpoint
-#'
+#' @description
 #' Send requests against the **`/table`** endpoint of the STATcube REST API. The
-#' requests can use a json file or a table uri to specify the table. In both
-#' cases, an object of class `"sc_table"` is returned.
+#' requests can use three formats with corresponding functions
+#' * `sc_table()` uses a json file downloaded via the STATcube GUI
+#' * `sc_table_custom()` uses the ids of a database, measures and fields
+#' * `sc_table_saved()` uses a table uri of a saved table.
+#'
+#' Those three functions all return an object of class `"sc_table"`.
 #' @param json_file path to a json file, which was downloaded via the STATcube
 #'   gui ("Open Data API Abfrage")
 #' @return An object of class `sc_table` which contains the return
