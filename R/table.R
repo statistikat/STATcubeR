@@ -17,7 +17,8 @@ sc_table_class <- R6::R6Class(
     },
     field = function(i = 1) {
       sc_meta_field(self, i)
-    }
+    },
+    write_json = function(file) sc_write_json(self, file)
   ),
   active = list(
     response = function() private$httr_response,
@@ -30,7 +31,9 @@ sc_table_class <- R6::R6Class(
         private$table <- as.data.frame(self)
       private$table
     },
-    scr_version = function() private$version
+    scr_version = function() private$version,
+    annotation_legend = function() sc_annotation_legend(self),
+    rate_limit = function() sc_table_rate_limit(self)
   ),
   private = list(
     httr_response = NULL,
