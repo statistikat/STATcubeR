@@ -24,6 +24,8 @@ In order to get more detailed metadata about a certain filed, use
 `sc_meta_field()`.
 
 ```{r}
+sc_meta_field(my_response, 1) %>% head()
 sc_meta_field(my_response, 2)
+sc_meta_field(my_response, 3)
 ```
 

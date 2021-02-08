@@ -24,7 +24,10 @@ sc_key_exists <- function() {
 }
 
 sc_key_valid <- function(key = sc_key()) {
-  response <- sc_get_info(key)
+  response <- httr::GET(
+    url = paste0(base_url, "/info"),
+    config = httr::add_headers(APIKey = key)
+  )
   response$status_code == "200"
 }
 

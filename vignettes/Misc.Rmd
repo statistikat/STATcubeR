@@ -6,13 +6,20 @@ title: "Misc"
 pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
 ```
 
-There is experimental support for the endpoints [`/info`] and
-[`/rate_limit`]. However, those endpoints are not exported by now.
-
+Apart form `/table` and `/schema`, there is also support for the simple
+endpoints [`/info`] and [`/rate_limit`].
 
 ```{r}
-STATcubeR:::sc_get_info() %>% httr::content()
-STATcubeR:::sc_get_rate_limit() %>% httr::content()
+sc_info()
+sc_rate_limit()
+```
+
+Rate limits can also be obtained from the response of the `/table` endpoint
+with `sc_table_rate_limit()`
+
+```{r, cache = TRUE}
+table <- sc_table(sc_example("bev_seit_1982.json"))
+sc_table_rate_limit(table)
 ```
 
 STATcube uses caching for the `/table` endpoint by default. If the same

@@ -30,8 +30,14 @@ sc_parse_time <- function(timestamp) {
   (as.numeric(timestamp)/1000) %>% as.POSIXct(origin = "1970-01-01")
 }
 
-sc_get_ratelimit <- function(x) {
-  headers <- x$response$headers
+# get ratelimit based on /table response
+#' @rdname utils
+#' @description * `sc_table_rate_limit()` is similar to `sc_ratelimit()` but
+#'   uses the header of the `/table` response rather than a seperate API
+#'   call.
+#' @export
+sc_table_rate_limit <- function(response) {
+  headers <- response$response$headers
   reset <- sc_parse_time(headers$`x-ratelimit-reset-table`)
   diff <- reset - Sys.time()
   ratelimit <- headers$`x-ratelimit-table`
@@ -44,5 +50,6 @@ sc_get_ratelimit <- function(x) {
 #'   a table together with descriptions of the annotations.
 #' @export
 sc_annotation_legend <- function(response) {
-  response$raw$annotationMap
+  am <- response$raw$annotationMap
+  data.frame(annotation = names(am), label = unlist(am))
 }

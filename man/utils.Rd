@@ -2,10 +2,13 @@
 % Please edit documentation in R/utils.R
 \name{sc_write_json}
 \alias{sc_write_json}
+\alias{sc_table_rate_limit}
 \alias{sc_annotation_legend}
 \title{Utility Functions}
 \usage{
 sc_write_json(response, file)
+
+sc_table_rate_limit(response)
 
 sc_annotation_legend(response)
 }
@@ -18,6 +21,12 @@ sc_annotation_legend(response)
 \itemize{
 \item \code{sc_write_json()} saves the api request for a table as
 a json file. The resulting json file can be passed to \code{\link[=sc_table]{sc_table()}}
+}
+
+\itemize{
+\item \code{sc_table_rate_limit()} is similar to \code{sc_ratelimit()} but
+uses the header of the \verb{/table} response rather than a seperate API
+call.
 }
 
 \itemize{
