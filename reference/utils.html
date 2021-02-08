@@ -56,6 +56,12 @@ a json file. The resulting json file can be passed to sc_table()
 
 
 
+sc_table_rate_limit() is similar to sc_ratelimit() but
+uses the header of the /table response rather than a seperate API
+call.
+
+
+
 sc_annotation_legend() lists all annotations occurring in
 a table together with descriptions of the annotations.
 
@@ -199,6 +205,12 @@ a json file. The resulting json file can be passed to <code><a href='sc_table.ht
 </ul>
 
 <ul>
+<li><p><code>sc_table_rate_limit()</code> is similar to <code>sc_ratelimit()</code> but
+uses the header of the <code>/table</code> response rather than a seperate API
+call.</p></li>
+</ul>
+
+<ul>
 <li><p><code>sc_annotation_legend()</code> lists all annotations occurring in
 a table together with descriptions of the annotations.</p></li>
 </ul>
@@ -206,6 +218,8 @@ a table together with descriptions of the annotations.</p></li>
     </div>
 
     <pre class="usage"><span class='fu'>sc_write_json</span><span class='op'>(</span><span class='va'>response</span>, <span class='va'>file</span><span class='op'>)</span>
+
+<span class='fu'>sc_table_rate_limit</span><span class='op'>(</span><span class='va'>response</span><span class='op'>)</span>
 
 <span class='fu'>sc_annotation_legend</span><span class='op'>(</span><span class='va'>response</span><span class='op'>)</span></pre>
 

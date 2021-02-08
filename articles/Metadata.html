@@ -166,6 +166,15 @@
 ## 3 Country of birth C-GEBLAND-0      3    Category</code></pre>
 <p>In order to get more detailed metadata about a certain filed, use <code><a href="../reference/sc_meta.html">sc_meta_field()</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/sc_meta.html">sc_meta_field</a></span><span class="op">(</span><span class="va">my_response</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>##   label     code     parsed
+## 1  2020 A10-2020 2020-01-01
+## 2  1982 A10-1982 1982-01-01
+## 3  1983 A10-1983 1983-01-01
+## 4  1984 A10-1984 1984-01-01
+## 5  1985 A10-1985 1985-01-01
+## 6  1986 A10-1986 1986-01-01</code></pre>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/sc_meta.html">sc_meta_field</a></span><span class="op">(</span><span class="va">my_response</span>, <span class="fl">2</span><span class="op">)</span></code></pre></div>
 <pre><code>##                   label code               parsed
 ## 1     Burgenland &lt;AT11&gt;    1    Burgenland &lt;AT11&gt;
@@ -179,6 +188,12 @@
 ## 9         Vienna &lt;AT13&gt;    9        Vienna &lt;AT13&gt;
 ## 10 Not classifiable &lt;0&gt;    0 Not classifiable &lt;0&gt;
 ## 11                Total                      &lt;NA&gt;</code></pre>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/sc_meta.html">sc_meta_field</a></span><span class="op">(</span><span class="va">my_response</span>, <span class="fl">3</span><span class="op">)</span></code></pre></div>
+<pre><code>##             label               code          parsed
+## 1         Austria GEBLAND_DICHOTOM-1         Austria
+## 2 Foreign country GEBLAND_DICHOTOM-2 Foreign country
+## 3           Total                               &lt;NA&gt;</code></pre>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

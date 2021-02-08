@@ -275,31 +275,85 @@ provides member functions to parse this response object.</p>
 <code><a href='sc_write_json.html'>sc_write_json</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='va'>my_table</span> <span class='op'>&lt;-</span> <span class='fu'>sc_table</span><span class='op'>(</span>json_file <span class='op'>=</span> <span class='fu'>sc_example</span><span class='op'>(</span><span class='st'>"LGR01.json"</span><span class='op'>)</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='co'># \dontrun{</span>
+<span class='va'>my_table</span> <span class='op'>&lt;-</span> <span class='fu'>sc_table</span><span class='op'>(</span>json_file <span class='op'>=</span> <span class='fu'>sc_example</span><span class='op'>(</span><span class='st'>"bev_seit_1982.json"</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># print</span>
 <span class='va'>my_table</span>
-
+</div><div class='output co'>#&gt; An object of class sc_table
+#&gt; 
+#&gt; Database:      Population at the beginning of the year since 1982 
+#&gt; Measures:      Number 
+#&gt; Fields:        Time section, Bundesland, Country of birth 
+#&gt; 
+#&gt; Request:       2021-02-08 12:35:42 
+#&gt; STATcubeR:     0.1.0</div><div class='input'>
 <span class='co'># get matadata for the table</span>
 <span class='va'>my_table</span><span class='op'>$</span><span class='va'>meta</span>
-
+</div><div class='output co'>#&gt; $database
+#&gt;                                                label         code
+#&gt; 1 Population at the beginning of the year since 1982 debevstandjb
+#&gt; 
+#&gt; $measures
+#&gt;    label     code fun precision
+#&gt; 1 Number F-ISIS-1 SUM         0
+#&gt; 
+#&gt; $fields
+#&gt;              label        code nitems        type
+#&gt; 1     Time section     C-A10-0     40 Time (year)
+#&gt; 2       Bundesland    C-BB00-0     11    Category
+#&gt; 3 Country of birth C-GEBLAND-0      3    Category
+#&gt; </div><div class='input'>
 <span class='co'># get a data.frame</span>
-<span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>my_table</span><span class='op'>)</span>
-
-<span class='co'># get metadata for field 1</span>
-<span class='va'>my_table</span><span class='op'>$</span><span class='fu'>field</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
-<span class='op'>}</span>
-<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>my_table</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   Time section           Bundesland Country of birth  Number Number_a
+#&gt; 1   2020-01-01    Burgenland &lt;AT11&gt;          Austria  260354         
+#&gt; 2   2020-01-01    Burgenland &lt;AT11&gt;  Foreign country   34082         
+#&gt; 3   2020-01-01     Carinthia &lt;AT21&gt;          Austria  489262         
+#&gt; 4   2020-01-01     Carinthia &lt;AT21&gt;  Foreign country   72031         
+#&gt; 5   2020-01-01 Lower Austria &lt;AT12&gt;          Austria 1465396         
+#&gt; 6   2020-01-01 Lower Austria &lt;AT12&gt;  Foreign country  218891         </div><div class='input'>
+<span class='co'># get metadata for field 2</span>
+<span class='va'>my_table</span><span class='op'>$</span><span class='fu'>field</span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;                   label code               parsed
+#&gt; 1     Burgenland &lt;AT11&gt;    1    Burgenland &lt;AT11&gt;
+#&gt; 2      Carinthia &lt;AT21&gt;    2     Carinthia &lt;AT21&gt;
+#&gt; 3  Lower Austria &lt;AT12&gt;    3 Lower Austria &lt;AT12&gt;
+#&gt; 4  Upper Austria &lt;AT31&gt;    4 Upper Austria &lt;AT31&gt;
+#&gt; 5       Salzburg &lt;AT32&gt;    5      Salzburg &lt;AT32&gt;
+#&gt; 6         Styria &lt;AT22&gt;    6        Styria &lt;AT22&gt;
+#&gt; 7          Tyrol &lt;AT33&gt;    7         Tyrol &lt;AT33&gt;
+#&gt; 8     Vorarlberg &lt;AT34&gt;    8    Vorarlberg &lt;AT34&gt;
+#&gt; 9         Vienna &lt;AT13&gt;    9        Vienna &lt;AT13&gt;
+#&gt; 10 Not classifiable &lt;0&gt;    0 Not classifiable &lt;0&gt;
+#&gt; 11                Total                      &lt;NA&gt;</div><div class='input'><span class='co'># }</span>
+<span class='co'># \dontrun{</span>
 
 <span class='co'># get the ids and labels of all saved tables</span>
 <span class='op'>(</span><span class='va'>saved_tables</span> <span class='op'>&lt;-</span> <span class='fu'>sc_table_saved_list</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>table_uri</span> <span class='op'>&lt;-</span> <span class='va'>saved_tables</span><span class='op'>$</span><span class='va'>id</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>
+</div><div class='output co'>#&gt;               label                                             id
+#&gt; 1        ts_tourism str:table:cfc581ca-dd88-44e7-9ec2-cca153365dd5
+#&gt; 2 krankenbewegungen str:table:c7902e8d-5165-44e9-b17e-34ae20e2d1d4
+#&gt; 3        tourism_ts str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c
+#&gt; 4      entlassungen str:table:f63f0713-155f-4d1d-8d41-4a50f0815fc7</div><div class='input'><span class='va'>table_uri</span> <span class='op'>&lt;-</span> <span class='va'>saved_tables</span><span class='op'>$</span><span class='va'>id</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>
 
 <span class='co'># get a table based on one of these ids</span>
 <span class='va'>my_response</span> <span class='op'>&lt;-</span> <span class='fu'>sc_table_saved</span><span class='op'>(</span><span class='va'>table_uri</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>my_response</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='op'>}</span>
+</div><div class='output co'>#&gt;   Tourism commune [partly SPE] Season/Tourism Month
+#&gt; 1            Burgenland &lt;AT11&gt;           2019-01-01
+#&gt; 2            Burgenland &lt;AT11&gt;           2019-01-01
+#&gt; 3            Burgenland &lt;AT11&gt;           2019-01-01
+#&gt; 4            Burgenland &lt;AT11&gt;           2019-01-01
+#&gt; 5            Burgenland &lt;AT11&gt;           2019-01-01
+#&gt; 6            Burgenland &lt;AT11&gt;           2019-01-01
+#&gt;                Country of origin Nights spent Nights spent_a
+#&gt; 1                    Vienna &lt;01&gt;       249092               
+#&gt; 2    Burgenland (beg.05/03) &lt;70&gt;        72667               
+#&gt; 3     Carinthia (beg.05/03) &lt;71&gt;        48346               
+#&gt; 4 Lower Austria (beg.05/03) &lt;72&gt;       237369               
+#&gt; 5 Upper Austria (beg.05/03) &lt;73&gt;        75659               
+#&gt; 6      Salzburg (beg.05/03) &lt;74&gt;        23909               </div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

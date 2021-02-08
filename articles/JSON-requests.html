@@ -181,7 +181,7 @@
 <span class="co">#&gt; Measures:      Number </span>
 <span class="co">#&gt; Fields:        Time section, Bundesland, Country of birth </span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Request:       2021-02-05 08:05:14 </span>
+<span class="co">#&gt; Request:       2021-02-08 12:35:48 </span>
 <span class="co">#&gt; STATcubeR:     0.1.0</span></code></pre></div>
 </div>
 <div id="convert-the-response-into-a-data-frame" class="section level2">
@@ -207,11 +207,9 @@
 <p>The column <code>Number_a</code> contains annotations for the column <code>Number</code>. In order to get explanations about those annotations, use the function <code><a href="../reference/sc_write_json.html">sc_annotation_legend()</a></code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/sc_write_json.html">sc_annotation_legend</a></span><span class="op">(</span><span class="va">my_response</span><span class="op">)</span>
-<span class="co">#&gt; $Q</span>
-<span class="co">#&gt; [1] "STATcube – Statistical Database of STATISTICS AUSTRIA"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $X</span>
-<span class="co">#&gt; [1] "Crosstabulation not allowed"</span></code></pre></div>
+<span class="co">#&gt;   annotation                                                 label</span>
+<span class="co">#&gt; Q          Q STATcube – Statistical Database of STATISTICS AUSTRIA</span>
+<span class="co">#&gt; X          X                           Crosstabulation not allowed</span></code></pre></div>
 <p>In this case, we see that row 21 contains a value <code>NA</code> (<strong>N</strong>ot <strong>A</strong>vailable) because the value is not disclosed (“Crosstabulation not allowed”). However, the zero value in row 20 can be considered a “real zero value” because no annotations are provided.</p>
 </div>
 <div id="get-the-raw-api-response" class="section level2">

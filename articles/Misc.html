@@ -144,34 +144,22 @@
 
     
     
-<p>There is experimental support for the endpoints <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/info-endpoint"><code>/info</code></a> and <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/rate-limit"><code>/rate_limit</code></a>. However, those endpoints are not exported by now.</p>
+<p>Apart form <code>/table</code> and <code>/schema</code>, there is also support for the simple endpoints <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/info-endpoint"><code>/info</code></a> and <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/rate-limit"><code>/rate_limit</code></a>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">STATcubeR</span><span class="fu">:::</span><span class="fu">sc_get_info</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## $languages
-## $languages[[1]]
-## $languages[[1]]$locale
-## [1] "de"
-## 
-## $languages[[1]]$displayName
-## [1] "Deutsch"
-## 
-## 
-## $languages[[2]]
-## $languages[[2]]$locale
-## [1] "en"
-## 
-## $languages[[2]]$displayName
-## [1] "English"</code></pre>
+<code class="sourceCode R"><span class="fu"><a href="../reference/info_and_rate_limit.html">sc_info</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>##   locale displayName
+## 1     de     Deutsch
+## 2     en     English</code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">STATcubeR</span><span class="fu">:::</span><span class="fu">sc_get_rate_limit</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html">content</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## $remaining
-## [1] 97
-## 
-## $limit
-## [1] 100
-## 
-## $reset
-## [1] 1.612514e+12</code></pre>
+<code class="sourceCode R"><span class="fu"><a href="../reference/info_and_rate_limit.html">sc_rate_limit</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## remaining: 100/100
+## reset:     2021-02-08 14:32:12</code></pre>
+<p>Rate limits can also be obtained from the response of the <code>/table</code> endpoint with <code><a href="../reference/sc_write_json.html">sc_table_rate_limit()</a></code></p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"bev_seit_1982.json"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="../reference/sc_write_json.html">sc_table_rate_limit</a></span><span class="op">(</span><span class="va">table</span><span class="op">)</span></code></pre></div>
+<pre><code>## remaining: 100/100
+## reset:     2021-02-08 14:32:12</code></pre>
 <p>STATcube uses caching for the <code>/table</code> endpoint by default. If the same request to <code>sc_post_json()</code> is sent several times, this will not count towards the rate-limit (100 requests per hour).</p>
   </div>
 
