@@ -5,7 +5,6 @@
 #'   type `FIELD` or type `VALUESET`
 #' @rdname sc_table
 #' @examples
-#' \dontrun{
 #'
 #' sc_table_custom(
 #'   db = "str:database:detouextregsai",
@@ -18,7 +17,6 @@
 #'     "str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93SUM-0"
 #'   )
 #' )
-#' }
 #' @export
 sc_table_custom <- function(db, measures, fields, language = c("en", "de"),
                             key = sc_key()) {

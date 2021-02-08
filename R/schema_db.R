@@ -1,6 +1,5 @@
 #' @param db_id a database id
 #' @examples
-#' \dontrun{
 #'
 #' db_schema <- sc_schema_db("deake005")
 #'
@@ -17,7 +16,6 @@
 #' my_response$headers$date
 #' my_content <- httr::content(my_response)
 #' my_content$label
-#' }
 #' @rdname sc_schema
 #' @export
 sc_schema_db <- function(db_id, depth = "valueset", key = sc_key()) {

@@ -84,7 +84,6 @@ requests can use three formats with corresponding functions
 Those three functions all return an object of class \code{"sc_table"}.
 }
 \examples{
-\dontrun{
 my_table <- sc_table(json_file = sc_example("bev_seit_1982.json"))
 
 # print
@@ -98,8 +97,6 @@ as.data.frame(my_table) \%>\% head()
 
 # get metadata for field 2
 my_table$field(2)
-}
-\dontrun{
 
 sc_table_custom(
   db = "str:database:detouextregsai",
@@ -112,8 +109,6 @@ sc_table_custom(
     "str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93SUM-0"
   )
 )
-}
-\dontrun{
 
 # get the ids and labels of all saved tables
 (saved_tables <- sc_table_saved_list())
@@ -122,7 +117,6 @@ table_uri <- saved_tables$id[1]
 # get a table based on one of these ids
 my_response <- sc_table_saved(table_uri)
 as.data.frame(my_response) \%>\% head()
-}
 }
 \seealso{
 Other functions for /table: 

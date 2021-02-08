@@ -4,11 +4,8 @@
 #' information about available locales and the amount of requests available
 #' for calls against the `/table` endpoint.
 #' @examples
-#' \dontrun{
-#'
 #' sc_info()
 #' sc_rate_limit()
-#' }
 #' @name info_and_rate_limit
 #' @rdname info_and_rate_limit
 #' @inheritParams sc_key

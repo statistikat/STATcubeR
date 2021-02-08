@@ -46,13 +46,10 @@ sc_meta <- function(response) {
 #' @rdname sc_meta
 #' @param i index of the field, for which further metadata are desired
 #' @examples
-#' \dontrun{
-#'
 #' my_response <- sc_example("bev_seit_1982.json") %>%
 #'   sc_table()
 #' sc_meta(my_response)
 #' sc_meta_field(my_response, 1)
-#' }
 #' @export
 sc_meta_field <- function(response, i = 1) {
   content <- response$raw

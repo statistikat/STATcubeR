@@ -60,7 +60,6 @@ sc_table_class <- R6::R6Class(
 #' @param language The language to be used for labeling. `"en"` or `"de"`
 #' @family functions for /table
 #' @examples
-#' \dontrun{
 #' my_table <- sc_table(json_file = sc_example("bev_seit_1982.json"))
 #'
 #' # print
@@ -74,7 +73,6 @@ sc_table_class <- R6::R6Class(
 #'
 #' # get metadata for field 2
 #' my_table$field(2)
-#' }
 #' @export
 sc_table <- function(json_file, language = c("en", "de"), key = sc_key()) {
   httr::POST(

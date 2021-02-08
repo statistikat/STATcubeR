@@ -52,8 +52,6 @@ tor the specific dataset. The return values can be displayed as a
 tree object.
 }
 \examples{
-\dontrun{
-
 my_catalogue <- sc_schema_catalogue()
 
 ## print
@@ -62,8 +60,6 @@ my_catalogue
 ## access the parsed catalogue
 my_catalogue$Statistics$`Labour Market`
 my_catalogue$Statistics$`Labour Market`$`Working hours (Labour Force Survey)`
-}
-\dontrun{
 
 db_schema <- sc_schema_db("deake005")
 
@@ -80,6 +76,5 @@ my_response <- attr(db_schema, "response")
 my_response$headers$date
 my_content <- httr::content(my_response)
 my_content$label
-}
 }
 \concept{functions for /schema}
