@@ -12,11 +12,12 @@
 #' @name info_and_rate_limit
 #' @rdname info_and_rate_limit
 #' @inheritParams sc_key
+#' @inheritParams sc_table
 #' @export
-sc_info <- function(key = sc_key()) {
+sc_info <- function(language = c("en", "de"), key = sc_key()) {
   response <- httr::GET(
     url = paste0(base_url, "/info"),
-    config = httr::add_headers(APIKey = key)
+    config = sc_headers(language, key)
   )
   info_content <- httr::content(response)
   info_content$languages %>%

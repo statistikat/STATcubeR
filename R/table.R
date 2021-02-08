@@ -73,10 +73,7 @@ sc_table <- function(json_file, language = c("en", "de"), key = sc_key()) {
   httr::POST(
     url = paste0(base_url, "/table"),
     body = httr::upload_file(json_file),
-    config = httr::add_headers(
-      APIKey = key,
-      `Accept-Language` = match.arg(language)
-    )
+    config = sc_headers(language, key)
   ) %>% sc_table_class$new()
 }
 

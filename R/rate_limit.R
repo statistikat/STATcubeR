@@ -1,9 +1,9 @@
 #' @rdname info_and_rate_limit
 #' @export
-sc_rate_limit <- function(key = sc_key()) {
+sc_rate_limit <- function(language = c("en", "de"), key = sc_key()) {
   response <- httr::GET(
     url = paste0(base_url, "/rate_limit_table"),
-    config = httr::add_headers(APIKey = key)
+    config = sc_headers(language, key)
   )
   rate_limit <- httr::content(response)
   class(rate_limit) <- "sc_rate_limit"

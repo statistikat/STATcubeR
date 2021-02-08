@@ -31,9 +31,6 @@ sc_table_saved_list <- function() {
 sc_table_saved <- function(table_uri, language = c("en", "de"), key = sc_key()) {
   response <- httr::GET(
     url = paste0(base_url, "/table/saved/", table_uri),
-    config = httr::add_headers(
-      APIKey = key,
-      `Accept-Language` = match.arg(language)
-    )
+    config = sc_headers(language, key)
   ) %>% sc_table_class$new()
 }

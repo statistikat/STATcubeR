@@ -7,7 +7,12 @@
 \alias{sc_schema_db}
 \title{Create a request against the /schema endpoint}
 \usage{
-sc_schema(resource_id = NULL, depth = NULL, key = sc_key())
+sc_schema(
+  resource_id = NULL,
+  depth = NULL,
+  language = c("en", "de"),
+  key = sc_key()
+)
 
 \method{print}{sc_schema}(x, limit = 30, value = FALSE, ...)
 
@@ -22,6 +27,8 @@ sc_schema_db(db_id, depth = "valueset", key = sc_key())
 For datasets, available options are \code{NULL} (no recursion), \code{"folder"},
 \code{"field"} and \code{"valueset"}. For the catalogue, only \code{NULL} and \code{"folder"}
 are applicable.}
+
+\item{language}{The language to be used for labeling. \code{"en"} or \code{"de"}}
 
 \item{key}{(\code{string}) An API key. To display your key, call
 \code{\link[=sc_browse_preferences]{sc_browse_preferences()}}.}

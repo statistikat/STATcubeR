@@ -7,6 +7,7 @@
 #' tor the specific dataset. The return values can be displayed as a
 #' tree object.
 #' @inheritParams sc_key
+#' @inheritParams sc_table
 #' @param resource_id A resource identifier un uid format
 #' @param depth If provided, the request will recurse into the given level.
 #'   For datasets, available options are `NULL` (no recursion), `"folder"`,
@@ -14,14 +15,15 @@
 #'   are applicable.
 #' @family functions for /schema
 #' @export
-sc_schema <- function(resource_id = NULL, depth = NULL, key = sc_key()) {
+sc_schema <- function(resource_id = NULL, depth = NULL,
+                      language = c("en", "de"), key = sc_key()) {
   response <- httr::GET(
     url = paste0(
       base_url, "/schema",
       ifelse(is.null(resource_id), "", paste0("/", resource_id)),
       ifelse(is.null(depth), "", paste0("?depth=", depth))
     ),
-    config = httr::add_headers(APIKey = key, `Accept-Language` = "en")
+    config = sc_headers(language, key)
   )
   content <- httr::content(response)
   x <- sc_as_nested_list(content)

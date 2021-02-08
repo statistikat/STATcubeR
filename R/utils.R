@@ -53,3 +53,7 @@ sc_annotation_legend <- function(response) {
   am <- response$raw$annotationMap
   data.frame(annotation = names(am), label = unlist(am))
 }
+
+sc_headers <- function(language = c("en", "de"), key = sc_key(), ...) {
+  httr::add_headers(APIKey = key, `Accept-Language` = match.arg(language), ...)
+}
