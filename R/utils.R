@@ -38,11 +38,13 @@ sc_parse_time <- function(timestamp) {
 #' @export
 sc_table_rate_limit <- function(response) {
   headers <- response$response$headers
-  reset <- sc_parse_time(headers$`x-ratelimit-reset-table`)
-  diff <- reset - Sys.time()
-  ratelimit <- headers$`x-ratelimit-table`
-  remaining <- headers$`x-ratelimit-remaining-table`
-  cat(remaining, "/", ratelimit, ", reset in ", diff, " minutes", sep = "")
+  res <- data.frame(
+    remaining = headers$`x-ratelimit-remaining-table`,
+    limit     = headers$`x-ratelimit-table`,
+    reset     = headers$`x-ratelimit-reset-table`
+  )
+  class(res) <- "sc_rate_limit"
+  res
 }
 
 #' @rdname utils
