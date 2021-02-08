@@ -54,7 +54,7 @@ sc_table_class <- R6::R6Class(
 #' @family functions for /table
 #' @examples
 #' \dontrun{
-#' my_table <- sc_table(json_file = sc_example("LGR01.json"))
+#' my_table <- sc_table(json_file = sc_example("bev_seit_1982.json"))
 #'
 #' # print
 #' my_table
@@ -63,10 +63,10 @@ sc_table_class <- R6::R6Class(
 #' my_table$meta
 #'
 #' # get a data.frame
-#' as.data.frame(my_table)
+#' as.data.frame(my_table) %>% head()
 #'
-#' # get metadata for field 1
-#' my_table$field(1)
+#' # get metadata for field 2
+#' my_table$field(2)
 #' }
 #' @export
 sc_table <- function(json_file, language = c("en", "de"), key = sc_key()) {

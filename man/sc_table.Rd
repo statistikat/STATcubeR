@@ -68,7 +68,7 @@ cases, an object of class \code{"sc_table"} is returned.
 }
 \examples{
 \dontrun{
-my_table <- sc_table(json_file = sc_example("LGR01.json"))
+my_table <- sc_table(json_file = sc_example("bev_seit_1982.json"))
 
 # print
 my_table
@@ -77,10 +77,10 @@ my_table
 my_table$meta
 
 # get a data.frame
-as.data.frame(my_table)
+as.data.frame(my_table) \%>\% head()
 
-# get metadata for field 1
-my_table$field(1)
+# get metadata for field 2
+my_table$field(2)
 }
 \dontrun{
 
