@@ -36,7 +36,7 @@ sc_field_type <- function(field) {
 sc_field_parse_category <- function(field) {
   res <- field$items %>% sapply(function(x) x$labels[[1]])
   res[res == "Total"] <- NA
-  res
+  factor(res, levels = res)
 }
 
 sc_as_time <- function(year, month, ind) {
