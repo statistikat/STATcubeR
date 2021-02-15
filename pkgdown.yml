@@ -2,13 +2,14 @@ pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
+  Custom-Tables: Custom-Tables.html
   JSON-requests: JSON-requests.html
   Metadata: Metadata.html
   Misc: Misc.html
   Saved-Tables: Saved-Tables.html
   Schema: Schema.html
   Setup: Setup.html
-last_built: 2021-02-08T12:35Z
+last_built: 2021-02-15T09:17Z
 urls:
   reference: https://statistikat.github.io/STATcubeR/reference
   article: https://statistikat.github.io/STATcubeR/articles
