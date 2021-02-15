@@ -1,0 +1,53 @@
+---
+title: "Custom Tables"
+---
+
+```{r, include = FALSE}
+pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
+```
+
+Another way to import STATcube Data into R is the use of a custom table. This
+function requires the three arguments.
+
+* A database id
+* ids of measures to be imported (type `MEASURE` or `STAT_FUNCTION`)
+* ids of fields to be imported (type `FIELD` or `VALUESET`)
+
+Based on the database id, the remaining ids can be obtained with `sc_schema()`.
+
+```{r, cache = TRUE}
+id_db <- "str:database:detouextregsai"
+db_schema <- sc_schema_db(id_db)
+db_schema
+```
+
+Browse the schema to extract the desired ids. The basic idea is to extract the
+id components of desired measures and fields. If a measure has more than one
+entry of type `STAT_FUNCTION` either use the id of the measure to utilize
+the default function or provide the id of the function. The same is true if
+a field has several `VALUESET`s
+
+```{r}
+get_id <- function(x) {print(c(x$type, x$id)); x$id}
+id_arrivals <- get_id(db_schema$Facts$Arrivals$Arrivals)
+
+id_nights_spent <- get_id(db_schema$Facts$`Nights spent`)
+
+id_time <- get_id(db_schema$`Mandatory fields`$`Season/Tourism Month`)
+
+id_region <- get_id(db_schema$`Other Classifications`$`Country of origin`$`Herkunftsland (Ebene +1)`)
+```
+Now the ids can be used in `sc_table_custom()`. If several ids are used for the
+argument `measures` or `fields`, combine them with `c()` to pass a character
+vector of ids.
+
+```{r, cache = TRUE}
+my_response <- sc_table_custom(
+  db = id_db,
+  measures = c(id_arrivals, id_nights_spent),
+  fields = c(id_time, id_region)
+)
+my_response
+```
+
+

@@ -36,6 +36,8 @@ navbar:
       href: articles/JSON-requests.html
     - text: Saved Tables
       href: articles/Saved-Tables.html
+    - text: Custom tables
+      href: articles/Custom-Tables.html
     - text: Metadata
       href: articles/Metadata.html
     - text: -------
