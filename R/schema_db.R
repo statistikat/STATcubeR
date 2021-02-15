@@ -19,6 +19,9 @@
 #' @rdname sc_schema
 #' @export
 sc_schema_db <- function(db_id, depth = "valueset", key = sc_key()) {
-  sc_schema(resource_id = paste0("str:database:", db_id),
+  stopifnot(is.character(db_id) && length(db_id) == 1)
+  if (substr(db_id, 1, 3) != "str")
+    db_id <- paste0("str:database:", db_id)
+  sc_schema(resource_id = db_id,
             depth = depth, key = key)
 }
