@@ -86,6 +86,11 @@ sc_table <- function(json_file, language = c("en", "de"), key = sc_key()) {
 #' @param filename The name of an example json file.
 #' @rdname sc_table
 sc_example <- function(filename) {
+  example_dir <- system.file(package = utils::packageName(), "json_examples")
+  available_examples <- dir(example_dir)
+  if (!(filename %in% available_examples))
+    stop("Example ", filename, " does not exist. Valid examples are \"",
+         paste(available_examples, collapse = "\", \""), "\"")
   system.file(package = utils::packageName(), "json_examples", filename)
 }
 
