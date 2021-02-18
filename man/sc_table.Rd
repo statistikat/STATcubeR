@@ -84,7 +84,7 @@ requests can use three formats with corresponding functions
 Those three functions all return an object of class \code{"sc_table"}.
 }
 \examples{
-my_table <- sc_table(json_file = sc_example("bev_seit_1982.json"))
+my_table <- sc_table(json_file = sc_example("population_timeseries.json"))
 
 # print
 my_table

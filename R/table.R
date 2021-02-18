@@ -60,7 +60,7 @@ sc_table_class <- R6::R6Class(
 #' @param language The language to be used for labeling. `"en"` or `"de"`
 #' @family functions for /table
 #' @examples
-#' my_table <- sc_table(json_file = sc_example("bev_seit_1982.json"))
+#' my_table <- sc_table(json_file = sc_example("population_timeseries.json"))
 #'
 #' # print
 #' my_table

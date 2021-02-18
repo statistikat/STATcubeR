@@ -18,7 +18,7 @@ Rate limits can also be obtained from the response of the `/table` endpoint
 with `sc_table_rate_limit()`
 
 ```{r, cache = TRUE}
-table <- sc_table(sc_example("bev_seit_1982.json"))
+table <- sc_table(sc_example("population_timsereies.json"))
 sc_table_rate_limit(table)
 ```
 

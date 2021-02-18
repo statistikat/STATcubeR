@@ -18,7 +18,7 @@ sc_meta_field(response, i = 1)
 Functions to extract metadata from a \code{sc_table} object.
 }
 \examples{
-my_response <- sc_example("bev_seit_1982.json") \%>\%
+my_response <- sc_example("population_timeseries.json") \%>\%
   sc_table()
 sc_meta(my_response)
 sc_meta_field(my_response, 1)
