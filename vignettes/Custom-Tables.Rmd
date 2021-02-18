@@ -38,14 +38,14 @@ id_time <- get_id(db_schema$`Mandatory fields`$`Season/Tourism Month`)
 id_region <- get_id(db_schema$`Other Classifications`$`Country of origin`$`Herkunftsland (Ebene +1)`)
 ```
 Now the ids can be used in `sc_table_custom()`. If several ids are used for the
-argument `measures` or `fields`, combine them with `c()` to pass a character
+argument `dimensions` or `fields`, combine them with `c()` to pass a character
 vector of ids.
 
 ```{r, cache = TRUE}
 my_response <- sc_table_custom(
   db = id_db,
   measures = c(id_arrivals, id_nights_spent),
-  fields = c(id_time, id_region)
+  dimensions = c(id_time, id_region)
 )
 my_response
 ```

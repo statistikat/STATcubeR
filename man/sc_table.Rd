@@ -23,7 +23,13 @@ sc_example(filename)
   parse_fields = TRUE
 )
 
-sc_table_custom(db, measures, fields, language = c("en", "de"), key = sc_key())
+sc_table_custom(
+  db,
+  measures,
+  dimensions,
+  language = c("en", "de"),
+  key = sc_key()
+)
 
 sc_table_saved_list()
 
@@ -61,8 +67,9 @@ depending on labels? Alternatively, codes are used}
 \item{measures}{A character vector of uids for measures. Can be either of
 type \code{MEASURE} or of type \code{STAT_FUNCTION}}
 
-\item{fields}{A character vector of field variables. Can be either of
-type \code{FIELD} or type \code{VALUESET}}
+\item{dimensions}{A character vector of dimensions for the cube. Can be
+either of type \code{FIELD} or type \code{VALUESET}. Those entries are referred to
+as \code{fields} in the parsed API response}
 
 \item{table_uri}{Identifier of a saved table as returned by
 \code{\link[=sc_table_saved_list]{sc_table_saved_list()}}}
@@ -104,7 +111,7 @@ sc_table_custom(
     "str:statfn:detouextregsai:F-DATA1:F-ANK:SUM",
     "str:measure:detouextregsai:F-DATA1:F-UEB"
   ),
-  fields = c(
+  dimensions = c(
     "str:field:detouextregsai:F-DATA1:C-SDB_TIT-0",
     "str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93SUM-0"
   )
