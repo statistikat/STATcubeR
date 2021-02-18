@@ -8,8 +8,21 @@ knitr::opts_chunk$set(cache = TRUE)
 options(width = 200)
 ```
 
-There are currently two functions in `STATcubeR` that utilize the `/schema`
-endpoint. The first function shows the catalogue, which lists all available
+There are currently three functions in `STATcubeR` that utilize the `/schema`
+endpoint.
+
+* `sc_schema_catalogue()` returns an overview of all available databases and
+  tables.
+* `sc_schema_db()` can be used to inspect all fields and measures for a
+  database.
+* `sc_schema()` returns metadata about any resource.
+
+All functions return tree-like objects that are printed with the `data.tree`
+package.
+
+## Browsing the Catalogue
+
+The first function shows the catalogue, which lists all available
 databases in a tree form. The tree structure is determined by the API and
 closely resembles the "Katalog" view in the GUI.
 
@@ -25,8 +38,10 @@ my_catalogue$Statistics$`Labour Market`
 my_catalogue$Statistics$`Labour Market`$`Working hours (Labour Force Survey)`
 ```
 
+## Database infos
+
 To get more information about this database, you can pass the `id` to
-`sc_db_info()`. Again, the contents do have a tree structure which is
+`sc_schema_db()`. Again, the contents do have a tree structure which is
 similar to the sidebar of the "Tabellenansicht" view.
 
 ```{r load_data, chache = TRUE}
@@ -36,11 +51,29 @@ my_db_info
 
 `my_db_info` can be used in a similar fashion as `my_catalogue`
 to obtain details about the resources in the tree. For example, the
-`VALUESET` with the label "Herkunftsland" can be viewed like this.
+`VALUESET` with the label "Gender" can be viewed like this.
 
 ```{r}
 my_db_info$`Demographic Characteristics`
 my_db_info$`Demographic Characteristics`$Gender$Gender
 my_db_info$`Demographic Characteristics`$Gender$Gender$male
+```
+
+## Other resources
+
+Information about resources other than databases and the catalogue can
+be obtained by passing the resource id to `sc_schema()`.
+
+```{r, cache = TRUE}
+my_db_info$Facts$id
+group_info <- sc_schema(my_db_info$Facts$id)
+group_info
+```
+
+Note that the tree returned only has depth 1, i.e. the child nodes of measures
+are not returned. However, ids of the child nodes can be obtained with `$id`.
+
+```{r}
+group_info$GEWTATJAHR$id
 ```
 

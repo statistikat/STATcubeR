@@ -35,6 +35,9 @@ sc_key_set("XXXX")
 #> to your .Renviron to set the key persistently
 ```
 
+As suggested by the code output, the key can be set persistently by modifying
+`.Renviron`. This can be done easily with `usethis::edit_r_environ()`.
+
 ## How do I get an API key?
 
 Currently, the api is only available inside the firewall of statistics austria.

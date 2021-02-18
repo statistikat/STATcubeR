@@ -42,7 +42,7 @@ Currently, the package provides four main functions
 
 More information about the first two functions can be found in the
 [schema
-article](https://statistikat.github.io/STATcubeR/articles/articles/Schema.html).
+article](https://statistikat.github.io/STATcubeR/articles/Schema.html).
 `sc_table()` and `sc_table_saved()` have their own articles
 [here](https://statistikat.github.io/STATcubeR/articles/JSON-requests.html)
 and
