@@ -23,7 +23,7 @@ sc_table_rate_limit(table)
 ```
 
 STATcube uses caching for the `/table` endpoint by default. If the same
-request to `sc_post_json()` is sent several times, this will not count
+request to `sc_table()` is sent several times, this will not count
 towards the rate-limit (100 requests per hour).
 
 [`/info`]: https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/info-endpoint
