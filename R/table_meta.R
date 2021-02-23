@@ -22,7 +22,8 @@ sc_meta <- function(response) {
     data.frame(
       label = measure$label,
       code = get_var_code(measure$measure),
-      fun = measure$`function`
+      fun = measure$`function`,
+      stringsAsFactors = FALSE
     )
   }) %>% do.call(rbind, .)
 
@@ -33,12 +34,14 @@ sc_meta <- function(response) {
       label = field$label,
       code = get_var_code(field$uri),
       nitems = length(field$items),
-      type = sc_field_type(field)
+      type = sc_field_type(field),
+      stringsAsFactors = FALSE
     )
   }) %>% do.call(rbind, .)
   db_info <- data.frame(
     label = content$database$label,
-    code = content$database$id
+    code = content$database$id,
+    stringsAsFactors = FALSE
   )
   list(database = db_info, measures = measure_info, fields = field_info)
 }
