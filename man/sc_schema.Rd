@@ -14,7 +14,7 @@ sc_schema(
   key = sc_key()
 )
 
-\method{print}{sc_schema}(x, limit = 30, value = FALSE, ...)
+\method{print}{sc_schema}(x, limit = 30, value = FALSE, recursive = TRUE, ...)
 
 sc_schema_catalogue(depth = "folder", key = sc_key())
 
@@ -38,6 +38,9 @@ are applicable.}
 \item{limit}{maximum number of entries to be printed}
 
 \item{value}{show resources of type \code{VALUE}?}
+
+\item{recursive}{should the whole tree be shown? Alternatively, only display
+the direct children of the current resource.}
 
 \item{...}{ignored}
 

@@ -34,10 +34,12 @@ sc_schema <- function(resource_id = NULL, depth = NULL,
 #' @param value show resources of type `VALUE`?
 #' @param x object to be printed
 #' @param limit maximum number of entries to be printed
+#' @param recursive should the whole tree be shown? Alternatively, only display
+#'   the direct children of the current resource.
 #' @param ... ignored
 #' @rdname sc_schema
 #' @export
-print.sc_schema <- function(x, limit = 30, value = FALSE, ...) {
+print.sc_schema <- function(x, limit = 30, value = FALSE, recursive = TRUE, ...) {
   if (!any(sapply(x, is.list)))
     print(unclass(x))
   else {
@@ -46,9 +48,11 @@ print.sc_schema <- function(x, limit = 30, value = FALSE, ...) {
     if (!value)
       x <- drop_values(x)
     x <- unclass(x) %>% data.tree::as.Node(nodeName = x$label, check = "no-check")
+    if (!recursive)
+      data.tree::Prune(x, function(node) { length(node$path) <= 2 })
     data.tree::Prune(x, function(node) {
       !is.null(node$type) &&
-        !(node$type == "FOLDER" && length(node$children) == 0) &&
+        !(recursive && node$type == "FOLDER" && length(node$children) == 0) &&
         !(node$type == "TABLE")
     })
     data.tree::Do(data.tree::Traverse(x), function(node) {
