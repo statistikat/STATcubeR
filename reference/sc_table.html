@@ -57,7 +57,7 @@ sc_table_saved() uses a table uri of a saved table.
 
 
 Those three functions all return an object of class &quot;sc_table&quot;." />
-<meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.png" />
+<meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.svg" />
 
 
 
@@ -216,7 +216,13 @@ requests can use three formats with corresponding functions</p><ul>
   parse_fields <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span>
 
-<span class='fu'>sc_table_custom</span><span class='op'>(</span><span class='va'>db</span>, <span class='va'>measures</span>, <span class='va'>fields</span>, language <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"en"</span>, <span class='st'>"de"</span><span class='op'>)</span>, key <span class='op'>=</span> <span class='fu'><a href='sc_key.html'>sc_key</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>sc_table_custom</span><span class='op'>(</span>
+  <span class='va'>db</span>,
+  <span class='va'>measures</span>,
+  <span class='va'>dimensions</span>,
+  language <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"en"</span>, <span class='st'>"de"</span><span class='op'>)</span>,
+  key <span class='op'>=</span> <span class='fu'><a href='sc_key.html'>sc_key</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>)</span>
 
 <span class='fu'>sc_table_saved_list</span><span class='op'>(</span><span class='op'>)</span>
 
@@ -281,9 +287,10 @@ depending on labels? Alternatively, codes are used</p></td>
 type <code>MEASURE</code> or of type <code>STAT_FUNCTION</code></p></td>
     </tr>
     <tr>
-      <th>fields</th>
-      <td><p>A character vector of field variables. Can be either of
-type <code>FIELD</code> or type <code>VALUESET</code></p></td>
+      <th>dimensions</th>
+      <td><p>A character vector of dimensions for the cube. Can be
+either of type <code>FIELD</code> or type <code>VALUESET</code>. Those entries are referred to
+as <code>fields</code> in the parsed API response</p></td>
     </tr>
     <tr>
       <th>table_uri</th>
@@ -304,7 +311,7 @@ provides member functions to parse this response object.</p>
 <code><a href='sc_write_json.html'>sc_write_json</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>my_table</span> <span class='op'>&lt;-</span> <span class='fu'>sc_table</span><span class='op'>(</span>json_file <span class='op'>=</span> <span class='fu'>sc_example</span><span class='op'>(</span><span class='st'>"bev_seit_1982.json"</span><span class='op'>)</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='va'>my_table</span> <span class='op'>&lt;-</span> <span class='fu'>sc_table</span><span class='op'>(</span>json_file <span class='op'>=</span> <span class='fu'>sc_example</span><span class='op'>(</span><span class='st'>"population_timeseries.json"</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># print</span>
 <span class='va'>my_table</span>
@@ -314,7 +321,7 @@ provides member functions to parse this response object.</p>
 #&gt; Measures:      Number 
 #&gt; Fields:        Time section, Bundesland, Country of birth 
 #&gt; 
-#&gt; Request:       2021-02-15 09:17:54 
+#&gt; Request:       2021-03-01 15:49:50 
 #&gt; STATcubeR:     0.1.0</div><div class='input'>
 <span class='co'># get matadata for the table</span>
 <span class='va'>my_table</span><span class='op'>$</span><span class='va'>meta</span>
@@ -328,19 +335,19 @@ provides member functions to parse this response object.</p>
 #&gt; 
 #&gt; $fields
 #&gt;              label        code nitems        type
-#&gt; 1     Time section     C-A10-0     40 Time (year)
-#&gt; 2       Bundesland    C-BB00-0     11    Category
-#&gt; 3 Country of birth C-GEBLAND-0      3    Category
+#&gt; 1     Time section     C-A10-0     39 Time (year)
+#&gt; 2       Bundesland    C-BB00-0     10    Category
+#&gt; 3 Country of birth C-GEBLAND-0      2    Category
 #&gt; </div><div class='input'>
 <span class='co'># get a data.frame</span>
 <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>my_table</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   Time section           Bundesland Country of birth  Number Number_a
-#&gt; 1   2020-01-01    Burgenland &lt;AT11&gt;          Austria  260354         
-#&gt; 2   2020-01-01    Burgenland &lt;AT11&gt;  Foreign country   34082         
-#&gt; 3   2020-01-01     Carinthia &lt;AT21&gt;          Austria  489262         
-#&gt; 4   2020-01-01     Carinthia &lt;AT21&gt;  Foreign country   72031         
-#&gt; 5   2020-01-01 Lower Austria &lt;AT12&gt;          Austria 1465396         
-#&gt; 6   2020-01-01 Lower Austria &lt;AT12&gt;  Foreign country  218891         </div><div class='input'>
+</div><div class='output co'>#&gt;   Time section           Bundesland Country of birth Number Number_a
+#&gt; 1   1982-01-01    Burgenland &lt;AT11&gt;          Austria     NA        X
+#&gt; 2   1982-01-01    Burgenland &lt;AT11&gt;  Foreign country     NA        X
+#&gt; 3   1982-01-01     Carinthia &lt;AT21&gt;          Austria     NA        X
+#&gt; 4   1982-01-01     Carinthia &lt;AT21&gt;  Foreign country     NA        X
+#&gt; 5   1982-01-01 Lower Austria &lt;AT12&gt;          Austria     NA        X
+#&gt; 6   1982-01-01 Lower Austria &lt;AT12&gt;  Foreign country     NA        X</div><div class='input'>
 <span class='co'># get metadata for field 2</span>
 <span class='va'>my_table</span><span class='op'>$</span><span class='fu'>field</span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;                   label code               parsed
@@ -353,20 +360,26 @@ provides member functions to parse this response object.</p>
 #&gt; 7          Tyrol &lt;AT33&gt;    7         Tyrol &lt;AT33&gt;
 #&gt; 8     Vorarlberg &lt;AT34&gt;    8    Vorarlberg &lt;AT34&gt;
 #&gt; 9         Vienna &lt;AT13&gt;    9        Vienna &lt;AT13&gt;
-#&gt; 10 Not classifiable &lt;0&gt;    0 Not classifiable &lt;0&gt;
-#&gt; 11                Total                      &lt;NA&gt;</div><div class='input'>
+#&gt; 10 Not classifiable &lt;0&gt;    0 Not classifiable &lt;0&gt;</div><div class='input'>
 <span class='fu'>sc_table_custom</span><span class='op'>(</span>
   db <span class='op'>=</span> <span class='st'>"str:database:detouextregsai"</span>,
   measures <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
     <span class='st'>"str:statfn:detouextregsai:F-DATA1:F-ANK:SUM"</span>,
     <span class='st'>"str:measure:detouextregsai:F-DATA1:F-UEB"</span>
   <span class='op'>)</span>,
-  fields <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
+  dimensions <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
     <span class='st'>"str:field:detouextregsai:F-DATA1:C-SDB_TIT-0"</span>,
     <span class='st'>"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93SUM-0"</span>
   <span class='op'>)</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in sc_table_custom(db = "str:database:detouextregsai", measures = c("str:statfn:detouextregsai:F-DATA1:F-ANK:SUM",     "str:measure:detouextregsai:F-DATA1:F-UEB"), fields = c("str:field:detouextregsai:F-DATA1:C-SDB_TIT-0",     "str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93SUM-0")): could not find function "sc_table_custom"</span></div><div class='input'>
+</div><div class='output co'>#&gt; An object of class sc_table
+#&gt; 
+#&gt; Database:      Accomodation statistics as of 1974 according to seasons 
+#&gt; Measures:      Arrivals, Nights spent 
+#&gt; Fields:        Season/Tourism Month, Country of origin 
+#&gt; 
+#&gt; Request:       2021-03-01 15:49:51 
+#&gt; STATcubeR:     0.1.0</div><div class='input'>
 <span class='co'># get the ids and labels of all saved tables</span>
 <span class='op'>(</span><span class='va'>saved_tables</span> <span class='op'>&lt;-</span> <span class='fu'>sc_table_saved_list</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;               label                                             id

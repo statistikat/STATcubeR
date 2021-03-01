@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Metadata • STATcubeR</title>
+<title>DevOps and R • STATcubeR</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
-<meta property="og:title" content="Metadata">
+<meta property="og:title" content="DevOps and R">
 <meta property="og:description" content="STATcubeR">
 <meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.svg">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -133,73 +133,122 @@
 
       
 
-      </header><script src="Metadata_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="Metadata_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="Metadata_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="devops_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="devops_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="devops_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Metadata</h1>
+      <h1 data-toc-skip>DevOps and R</h1>
+            <h3 class="subtitle">Implementing an Entire R Development Life Cycle at Statistics Austria</h3>
+                        <h4 class="author">Gregor de Cillia</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/statistikat/STATcubeR/blob/master/vignettes/Metadata.Rmd"><code>vignettes/Metadata.Rmd</code></a></small>
-      <div class="hidden name"><code>Metadata.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/statistikat/STATcubeR/blob/master/vignettes/devops.Rmd"><code>vignettes/devops.Rmd</code></a></small>
+      <div class="hidden name"><code>devops.Rmd</code></div>
 
     </div>
 
     
     
-<p>This short article will showcase the usage of metadata with STATcubeR. For this, we start with the same example as in the <a href="https://statistikat.github.io/STATcubeR/articles/JSON-requests.html">JSON Article</a>.</p>
+<div id="outline" class="section level2">
+<h2 class="hasAnchor">
+<a href="#outline" class="anchor"></a>Outline</h2>
+<ul>
+<li>Goal: outlining the conceptual framework we have implemented at <strong>Statistics Austia</strong> for
+<ul>
+<li>automatic checking and building of R packages</li>
+<li>deployment of those packages</li>
+</ul>
+</li>
+<li>Our <strong>environment</strong> consists of
+<ul>
+<li>R Server (<code>Rstudio-Server-Pro</code>, <code>Ubuntu</code>)</li>
+<li>Git-Server (<code>BitBucket</code>)</li>
+<li>Build-Server (<code>Jenkins</code>)</li>
+</ul>
+</li>
+<li>For <strong>deployments</strong>, additionaly
+<ul>
+<li>
+<strong>Artifact repository manager</strong> (<code>JFrog Artifactory</code>) to collect sucessfully built R packages</li>
+<li>
+<strong>Webserver</strong> (<code>Ubuntu</code>) to host HTML documentation</li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="manual-workflow" class="section level2">
+<h2 class="hasAnchor">
+<a href="#manual-workflow" class="anchor"></a>“Manual” Workflow</h2>
+<p>Setting up a new package that uses the build server requires to create</p>
+<ul>
+<li>an <strong>RStudio project</strong> of type package on R server</li>
+<li>a <strong>repository</strong> on <code>BitBucket</code>
+</li>
+<li>a <strong>Jenkins Job</strong> on the build server</li>
+</ul>
+<p>Additionaly,</p>
+<ul>
+<li>those resources need to be <strong>connected</strong>
+<ul>
+<li>requires a post webhook token and a ssh keypair</li>
+</ul>
+</li>
+<li>jenkins job needs to be configured to check/build/deploy the package</li>
+</ul>
+<p>This is quite tedious and leads to</p>
+<ul>
+<li>inconsistent package design</li>
+<li>inconsistent package tests</li>
+</ul>
+</div>
+<div id="workflow-package" class="section level2">
+<h2 class="hasAnchor">
+<a href="#workflow-package" class="anchor"></a>Workflow package</h2>
+<p>The new workflow makes it possible to set up resources on all three servers from the R server.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">json_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"population_timeseries.json"</span><span class="op">)</span>
-<span class="va">my_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="va">json_path</span><span class="op">)</span></code></pre></div>
-<p>Now, <code><a href="../reference/sc_meta.html">sc_meta()</a></code> can be used to get metadata about the table.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/sc_meta.html">sc_meta</a></span><span class="op">(</span><span class="va">my_response</span><span class="op">)</span></code></pre></div>
-<pre><code>## $database
-##                                                label         code
-## 1 Population at the beginning of the year since 1982 debevstandjb
-## 
-## $measures
-##    label     code fun precision
-## 1 Number F-ISIS-1 SUM         0
-## 
-## $fields
-##              label        code nitems        type
-## 1     Time section     C-A10-0     39 Time (year)
-## 2       Bundesland    C-BB00-0     10    Category
-## 3 Country of birth C-GEBLAND-0      2    Category</code></pre>
-<p>In order to get more detailed metadata about a certain filed, use <code><a href="../reference/sc_meta.html">sc_meta_field()</a></code>.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/sc_meta.html">sc_meta_field</a></span><span class="op">(</span><span class="va">my_response</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>##   label     code     parsed
-## 1  1982 A10-1982 1982-01-01
-## 2  1983 A10-1983 1983-01-01
-## 3  1984 A10-1984 1984-01-01
-## 4  1985 A10-1985 1985-01-01
-## 5  1986 A10-1986 1986-01-01
-## 6  1987 A10-1987 1987-01-01</code></pre>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/sc_meta.html">sc_meta_field</a></span><span class="op">(</span><span class="va">my_response</span>, <span class="fl">2</span><span class="op">)</span></code></pre></div>
-<pre><code>##                   label code               parsed
-## 1     Burgenland &lt;AT11&gt;    1    Burgenland &lt;AT11&gt;
-## 2      Carinthia &lt;AT21&gt;    2     Carinthia &lt;AT21&gt;
-## 3  Lower Austria &lt;AT12&gt;    3 Lower Austria &lt;AT12&gt;
-## 4  Upper Austria &lt;AT31&gt;    4 Upper Austria &lt;AT31&gt;
-## 5       Salzburg &lt;AT32&gt;    5      Salzburg &lt;AT32&gt;
-## 6         Styria &lt;AT22&gt;    6        Styria &lt;AT22&gt;
-## 7          Tyrol &lt;AT33&gt;    7         Tyrol &lt;AT33&gt;
-## 8     Vorarlberg &lt;AT34&gt;    8    Vorarlberg &lt;AT34&gt;
-## 9         Vienna &lt;AT13&gt;    9        Vienna &lt;AT13&gt;
-## 10 Not classifiable &lt;0&gt;    0 Not classifiable &lt;0&gt;</code></pre>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/sc_meta.html">sc_meta_field</a></span><span class="op">(</span><span class="va">my_response</span>, <span class="fl">3</span><span class="op">)</span></code></pre></div>
-<pre><code>##             label               code          parsed
-## 1         Austria GEBLAND_DICHOTOM-1         Austria
-## 2 Foreign country GEBLAND_DICHOTOM-2 Foreign country</code></pre>
+<code class="sourceCode R"><span class="co">## useSTAT: inspired by www.github.com/r-lib/usethis</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">useSTAT</span><span class="op">)</span>
+<span class="co">## create a new project (package) from an internal template</span>
+<span class="fu"><a href="https://rdrr.io/pkg/useSTAT/man/create_stat_package.html">create_stat_package</a></span><span class="op">(</span><span class="st">"~/newPackage"</span><span class="op">)</span>
+<span class="co">## set up version control</span>
+<span class="fu"><a href="https://rdrr.io/pkg/useSTAT/man/use_statbucket.html">use_statbucket</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">## create a new job on the build server</span>
+<span class="fu"><a href="https://rdrr.io/pkg/useSTAT/man/use_jenkins.html">use_jenkins</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>From now on every <code>git push</code> from the R project will trigger a build on jenkins.</p>
+<p>In order to set up deployments, the file <code>config/jenkins.yaml</code> can be modified.</p>
+</div>
+<div id="pros-and-cons" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pros-and-cons" class="anchor"></a>Pros and Cons</h2>
+<ul>
+<li>
+<strong>Pros</strong>
+<ul>
+<li>Easier for the users to set up new packages</li>
+<li>More consistent package design</li>
+<li>Consistent checking across internal packages</li>
+</ul>
+</li>
+<li>
+<strong>Cons</strong>
+<ul>
+<li>API keys are required to remotely create repos/jobs</li>
+<li>Updating <code>buildSTAT</code> and yaml options is tedious to test because all tests need to run on build server (docker)</li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="thank-you-for-your-attention" class="section level1">
+<h1 class="hasAnchor">
+<a href="#thank-you-for-your-attention" class="anchor"></a>Thank you for your attention</h1>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 

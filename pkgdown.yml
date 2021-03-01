@@ -9,7 +9,8 @@ articles:
   Saved-Tables: Saved-Tables.html
   Schema: Schema.html
   Setup: Setup.html
-last_built: 2021-02-15T09:17Z
+  devops: devops.html
+last_built: 2021-03-01T15:49Z
 urls:
   reference: https://statistikat.github.io/STATcubeR/reference
   article: https://statistikat.github.io/STATcubeR/articles
