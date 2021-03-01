@@ -16,9 +16,14 @@ sc_schema(
 
 \method{print}{sc_schema}(x, limit = 30, value = FALSE, recursive = TRUE, ...)
 
-sc_schema_catalogue(depth = "folder", key = sc_key())
+sc_schema_catalogue(depth = "folder", language = c("en", "de"), key = sc_key())
 
-sc_schema_db(db_id, depth = "valueset", key = sc_key())
+sc_schema_db(
+  db_id,
+  depth = "valueset",
+  language = c("en", "de"),
+  key = sc_key()
+)
 }
 \arguments{
 \item{resource_id}{A resource identifier un uid format}

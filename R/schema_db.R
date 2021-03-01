@@ -18,7 +18,8 @@
 #' my_content$label
 #' @rdname sc_schema
 #' @export
-sc_schema_db <- function(db_id, depth = "valueset", key = sc_key()) {
+sc_schema_db <- function(db_id, depth = "valueset", language = c("en", "de"),
+                         key = sc_key()) {
   stopifnot(is.character(db_id) && length(db_id) == 1)
   if (substr(db_id, 1, 3) != "str")
     db_id <- paste0("str:database:", db_id)
