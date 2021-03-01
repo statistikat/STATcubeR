@@ -1,7 +1,7 @@
 #' Manage your API Key
 #'
-#' Functions to get/set the STATcube api key and make them available for calls
-#' against the STATcube api.
+#' Functions to get/set the STATcube API key and make them available for calls
+#' against the STATcube API.
 #'
 #' * `sc_key()` forwards to `sc_key_get()` if the key is already present.
 #'   Otherwise, `sc_key_prompt()` will be invoked.

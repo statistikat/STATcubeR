@@ -51,7 +51,7 @@ and
 ## API documentation
 
 The STATcube API is based on the superSTAR REST API which is documented
-on <https://docs.wingarc.com>.
+on <https://docs.wingarc.com.au>.
 
   - [`/table`
     endpoint](https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint)

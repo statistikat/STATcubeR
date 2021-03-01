@@ -13,7 +13,7 @@ conflicted::conflict_prefer("filter", "dplyr")
 
 If [saved tables] are present in STATcube, those can be imported without
 downloading a json file. All saved tables can be shown with
-`sc_saved_tables_list()`.
+`sc_table_saved_list()`.
 
 ```{r, cache = TRUE}
 sc_table_saved_list()

@@ -25,8 +25,8 @@ sc_key_prompt(test = TRUE)
 All functions return the key (invisibly)
 }
 \description{
-Functions to get/set the STATcube api key and make them available for calls
-against the STATcube api.
+Functions to get/set the STATcube API key and make them available for calls
+against the STATcube API.
 }
 \details{
 \itemize{
