@@ -16,7 +16,7 @@ Authors@R:
     person(given = "Gregor de",
            family = "Cillia",
            role = c("aut", "cre"),
-           email = "de.cillia.gregor@gmail.com")
+           email = "Gregor.deCillia@statistik.gv.at")
 Suggests: 
     rmarkdown,
     data.tree
