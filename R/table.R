@@ -8,7 +8,7 @@ sc_table_class <- R6::R6Class(
   "sc_table",
   cloneable = FALSE,
   public = list(
-    initialize = function(response, json = NULL) {
+    initialize = function(response, json = NULL, file = NULL) {
       stopifnot(inherits(response, "response"))
       if (response$status_code != 200)
         stop(httr::content(response)$message)
@@ -17,7 +17,13 @@ sc_table_class <- R6::R6Class(
       if (is.null(json))
         json <- jsonlite::toJSON(
           self$raw$query, auto_unbox = TRUE, pretty = TRUE) %>% toString()
-      private$json_content <- sc_json_class$new(json)
+      private$json_content <- sc_json_class$new(json, file)
+    },
+    update = function() {
+      response <- sc_table_json_post(self$json$content)
+      if (response$status_code != 200)
+        stop(httr::content(response)$message)
+      private$httr_response <- response
     },
     field = function(i = 1) {
       sc_meta_field(self, i)
@@ -80,11 +86,8 @@ sc_table_class <- R6::R6Class(
 #' my_table$field(2)
 #' @export
 sc_table <- function(json_file, language = c("en", "de"), key = sc_key()) {
-  httr::POST(
-    url = paste0(base_url, "/table"),
-    body = httr::upload_file(json_file),
-    config = sc_headers(language, key)
-  ) %>% sc_table_class$new(json = readLines(json_file))
+  sc_table_json_post(readLines(json_file), language, key) %>%
+    sc_table_class$new(file = json_file)
 }
 
 #' @export

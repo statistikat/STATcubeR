@@ -19,5 +19,6 @@ Authors@R:
            email = "Gregor.deCillia@statistik.gv.at")
 Suggests: 
     rmarkdown,
-    data.tree
+    data.tree,
+    rstudioapi
 URL: https://github.com/statistikat/STATcubeR
