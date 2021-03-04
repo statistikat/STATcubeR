@@ -23,12 +23,13 @@ sc_table_custom <- function(db, measures, dimensions, language = c("en", "de"),
                             key = sc_key()) {
   json_list <- list(database = db, measures = as.list(measures),
                     dimensions = lapply(dimensions, list))
+  json <- jsonlite::toJSON(json_list, auto_unbox = TRUE, pretty = TRUE)
   response <- httr::POST(
     url = paste0(base_url, "/table"),
-    body = jsonlite::toJSON(json_list, auto_unbox = TRUE),
+    body = json,
     encode = "raw",
     config = sc_headers(language, key)
   )
 
-  sc_table_class$new(response)
+  sc_table_class$new(response, toString(json))
 }
