@@ -24,9 +24,16 @@ sc_table_class <- R6::R6Class(
       if (response$status_code != 200)
         stop(httr::content(response)$message)
       private$httr_response <- response
+      private$table <- NULL
     },
     field = function(i = 1) {
       sc_meta_field(self, i)
+    },
+    browse = function() {
+      browseURL(paste0(
+        "https://statcube.at/statcube/openinfopage?id=",
+        self$raw$database$id
+      ))
     }
   ),
   active = list(
