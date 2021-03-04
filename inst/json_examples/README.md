@@ -13,6 +13,10 @@ table_accomodation <- sc_table(sc_example("accomodation.json"))
 ## economic accounts for agriculture: 97 items, 1990-2020
 table_agriculture <- sc_table(sc_example("agriculture_prices.json"))
 
+## monthly data of 63 economic trend measures for industry, construction,
+## trade, services, imports, exports, and more: http://monitor.statistik.at
+table_trends <- sc_table(sc_example("economic_trend_monitor.json"))
+
 ## Gross regional product by NUTS-2 region, 2000-2011
 table_grp <- sc_table(sc_example("gross_regional_product.json"))
 
