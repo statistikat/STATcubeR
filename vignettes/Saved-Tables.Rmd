@@ -38,7 +38,7 @@ To make the table available for later use or for other users of `STATcubeR`,
 the response can be exported into a json.
 
 ```{r}
-sc_write_json(tourism_ts, "tourism_ts.json")
+tourism_ts$json$write("tourism_ts.json")
 ```
 
 ```{r, include=FALSE}
