@@ -2,7 +2,7 @@
   "database" : "str:database:devgrrgr004",
   "measures" : [ "str:statfn:devgrrgr004:F-DATA:F-RGR-BRPNOM:SUM" ],
   "dimensions" : [
-    [ "str:field:devgrrgr004:F-DATA:C-RGRP86-0" ],
+    [ "str:valueset:devgrrgr004:F-DATA:C-RGRP86-0:C-RGRB91-0" ],
     [ "str:field:devgrrgr004:F-DATA:C-A10-0" ]
   ]
 }

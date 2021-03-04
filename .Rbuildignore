@@ -11,3 +11,4 @@
 ^LICENSE\.md$
 ^LICENSE$
 ^\.travis\.yml$
+^inst/json_examples/README\.md$

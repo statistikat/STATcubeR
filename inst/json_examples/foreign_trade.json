@@ -1,0 +1,11 @@
+{
+  "database": "str:database:denatec06",
+  "measures": [
+    "str:measure:denatec06:F-DATA:F-FAKT02",
+    "str:measure:denatec06:F-DATA:F-FAKT04"
+  ],
+  "dimensions": [
+    [ "str:field:denatec06:F-DATA:C-A10-0" ],
+    [ "str:valueset:denatec06:F-DATA:C-NACEK2_3-0:C-NACEK2_2-0" ]
+  ]
+}

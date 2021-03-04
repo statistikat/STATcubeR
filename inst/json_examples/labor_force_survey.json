@@ -1,0 +1,40 @@
+{
+  "database" : "str:database:deake005",
+  "measures" : [
+    "str:statfn:deake005:F-DATA:F-FAKTOR1:SUM",
+    "str:statfn:deake005:F-DATA:F-FAKTOR2:SUM"
+  ],
+  "recodes" : {
+    "str:field:deake005:F-DATA:C-A10-0" : {
+      "map" : [ [ "str:value:deake005:F-DATA:C-A10-0:C-A10-0:A10-2019" ] ]
+    },
+    "str:field:deake005:F-DATA:C-AKEY66-0" : { "map" : [
+      [ "str:value:deake005:F-DATA:C-AKEY66-0:C-AKEW76-0:AKEW76-1" ],
+      [ "str:value:deake005:F-DATA:C-AKEY66-0:C-AKEW76-0:AKEW76-2" ],
+      [ "str:value:deake005:F-DATA:C-AKEY66-0:C-AKEW76-0:AKEW76-3" ],
+      [ "str:value:deake005:F-DATA:C-AKEY66-0:C-AKEW76-0:AKEW76-4" ],
+      [ "str:value:deake005:F-DATA:C-AKEY66-0:C-AKEW76-0:AKEW76-5" ]
+    ] },
+    "str:field:deake005:F-DATA:C-C11-0" : { "map" : [
+      [ "str:value:deake005:F-DATA:C-C11-0:C-C11-0:C11-1" ],
+      [ "str:value:deake005:F-DATA:C-C11-0:C-C11-0:C11-2" ]
+    ] },
+    "str:field:deake005:F-DATA:C-B00-0" : { "map" : [
+      [ "str:value:deake005:F-DATA:C-B00-0:C-B00-0:B00-1" ],
+      [ "str:value:deake005:F-DATA:C-B00-0:C-B00-0:B00-2" ],
+      [ "str:value:deake005:F-DATA:C-B00-0:C-B00-0:B00-3" ],
+      [ "str:value:deake005:F-DATA:C-B00-0:C-B00-0:B00-4" ],
+      [ "str:value:deake005:F-DATA:C-B00-0:C-B00-0:B00-5" ],
+      [ "str:value:deake005:F-DATA:C-B00-0:C-B00-0:B00-6" ],
+      [ "str:value:deake005:F-DATA:C-B00-0:C-B00-0:B00-7" ],
+      [ "str:value:deake005:F-DATA:C-B00-0:C-B00-0:B00-8" ],
+      [ "str:value:deake005:F-DATA:C-B00-0:C-B00-0:B00-9" ]
+    ] }
+  },
+  "dimensions" : [
+    [ "str:field:deake005:F-DATA:C-A10-0" ],
+    [ "str:field:deake005:F-DATA:C-C11-0" ],
+    [ "str:field:deake005:F-DATA:C-AKEY66-0" ],
+    [ "str:field:deake005:F-DATA:C-B00-0" ]
+  ]
+}
