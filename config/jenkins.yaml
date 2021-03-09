@@ -1,0 +1,9 @@
+mail:
+- gregor.decillia@statistik.gv.at
+
+cache:
+  - r
+
+deploy:
+  pkgdown: false
+  artifactory: true
