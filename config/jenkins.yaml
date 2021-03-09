@@ -12,3 +12,7 @@ pkg_options:
   checks:
     # can't skip examples, therefore ignore errors
     ignore_errors: true
+
+features:
+  build_branches:
+    - statbucket
