@@ -98,12 +98,17 @@ sc_table <- function(json_file, language = c("en", "de"), key = sc_key()) {
 }
 
 #' @export
+#' @rdname sc_table
+sc_examples_list <- function() {
+  example_dir <- system.file(package = utils::packageName(), "json_examples")
+  dir(example_dir, pattern = "json")
+}
+
+#' @export
 #' @param filename The name of an example json file.
 #' @rdname sc_table
 sc_example <- function(filename) {
-  example_dir <- system.file(package = utils::packageName(), "json_examples")
-  available_examples <- dir(example_dir, pattern = "json")
-  filename <- match.arg(filename, available_examples)
+  filename <- match.arg(filename, sc_examples_list())
   system.file(package = utils::packageName(), "json_examples", filename)
 }
 

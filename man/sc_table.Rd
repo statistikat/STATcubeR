@@ -3,6 +3,7 @@
 %   R/table_custom.R, R/table_saved.R
 \name{sc_table}
 \alias{sc_table}
+\alias{sc_examples_list}
 \alias{sc_example}
 \alias{as.data.frame.sc_table}
 \alias{sc_table_custom}
@@ -11,6 +12,8 @@
 \title{Create a request against the /table endpoint}
 \usage{
 sc_table(json_file, language = c("en", "de"), key = sc_key())
+
+sc_examples_list()
 
 sc_example(filename)
 
