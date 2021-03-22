@@ -14,7 +14,7 @@ and more. The most common categorical variables are years and (NUTS-2) regions.
 
 File                     | Description
 ------------------------ | ----------------------------------------------------------------------------------
-`accomodation`           | accomodation statistics (arrivals, nights spent) by season, establishment type and country of origin, 2000-2021
+`accomodation`           | accomodation statistics (arrivals, nights spent) by month, establishment type and country of origin, 2000-2021
 `agriculture_prices`     | economic accounts for agriculture: 97 items, 1990-2020
 `economic_atlas`         | Key data for federal provinces from the economic atlas. Private households, employment rate, accomodation. 1995-2019. https://www.statistik.at/atlas/
 `economic_trend_monitor` | monthly data of 63 economic trend measures for industry, construction, trade, services, imports, exports, and more: http://monitor.statistik.at
