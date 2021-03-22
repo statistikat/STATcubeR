@@ -20,5 +20,6 @@ Authors@R:
 Suggests: 
     rmarkdown,
     data.tree,
-    rstudioapi
+    rstudioapi,
+    openssl
 URL: https://github.com/statistikat/STATcubeR
