@@ -1,11 +1,11 @@
 {
   "database": "str:database:dewatlas2",
   "measures": [
-    "str:measure:dewatlas2:F-WATLAS2:F-PRIVHH-1",
-    "str:measure:dewatlas2:F-WATLAS2:F-EWTQLFK-1",
     "str:measure:dewatlas2:F-WATLAS2:F-ALQLFK-1",
+    "str:measure:dewatlas2:F-WATLAS2:F-EWTQLFK-1",
     "str:measure:dewatlas2:F-WATLAS2:F-ZNACHT-1",
-    "str:measure:dewatlas2:F-WATLAS2:F-DSADAUER-1"
+    "str:measure:dewatlas2:F-WATLAS2:F-DSADAUER-1",
+    "str:measure:dewatlas2:F-WATLAS2:F-PRIVHH-1"
   ],
   "dimensions": [
     [ "str:field:dewatlas2:F-WATLAS2:C-WIAJAHR-1" ],
