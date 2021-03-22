@@ -53,7 +53,7 @@ sc_table_rate_limit <- function(response) {
 #' @export
 sc_annotation_legend <- function(response) {
   am <- response$raw$annotationMap
-  data.frame(annotation = names(am), label = unlist(am))
+  data.frame(annotation = names(am), label = unlist(am), row.names = NULL)
 }
 
 sc_headers <- function(language = c("en", "de"), key = sc_key(), ...) {
