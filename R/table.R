@@ -4,14 +4,26 @@ sc_version <- function() {
 
 base_url <- "http://sdbext:8082/statistik.at/ext/statcube/rest/v1"
 
+sc_env <- new.env(parent = emptyenv())
+
+sc_get_last_error <- function() {
+  sc_env$last_error
+}
+
+sc_set_last_error <- function(x) {
+  sc_env$last_error <- x
+}
+
 sc_table_class <- R6::R6Class(
   "sc_table",
   cloneable = FALSE,
   public = list(
     initialize = function(response, json = NULL, file = NULL) {
       stopifnot(inherits(response, "response"))
-      if (response$status_code != 200)
+      if (response$status_code != 200) {
+        sc_set_last_error(response)
         stop(httr::content(response)$message)
+      }
       private$httr_response <- response
       private$version <- sc_version()
       if (is.null(json))
