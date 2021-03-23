@@ -44,7 +44,7 @@ sc_json_class <- R6::R6Class(
 )
 
 sc_table_json_post <- function(json, language = c("en", "de"), key = sc_key()) {
-  sc_with_cache(list(json, language, key), function() {
+  sc_with_cache(list(json, language), function() {
     httr::POST(
       url = paste0(base_url, "/table"),
       body = json,
