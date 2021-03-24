@@ -23,6 +23,5 @@ sc_schema_db <- function(db_id, depth = "valueset", language = c("en", "de"),
   stopifnot(is.character(db_id) && length(db_id) == 1)
   if (substr(db_id, 1, 3) != "str")
     db_id <- paste0("str:database:", db_id)
-  sc_schema(resource_id = db_id,
-            depth = depth, key = key)
+  sc_schema(resource_id = db_id, depth = depth, key = key, language = language)
 }
