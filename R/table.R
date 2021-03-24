@@ -20,10 +20,6 @@ sc_table_class <- R6::R6Class(
   public = list(
     initialize = function(response, json = NULL, file = NULL) {
       stopifnot(inherits(response, "response"))
-      if (response$status_code != 200) {
-        sc_set_last_error(response)
-        stop(httr::content(response)$message)
-      }
       private$httr_response <- response
       private$version <- sc_version()
       if (is.null(json))

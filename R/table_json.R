@@ -45,10 +45,15 @@ sc_json_class <- R6::R6Class(
 
 sc_table_json_post <- function(json, language = c("en", "de"), key = sc_key()) {
   sc_with_cache(list(json, language), function() {
-    httr::POST(
+    response <- httr::POST(
       url = paste0(base_url, "/table"),
       body = json,
       config = sc_headers(language, key)
     )
+    if (response$status_code != 200) {
+      sc_set_last_error(response)
+      stop(httr::content(response)$message)
+    }
+    response
   })
 }
