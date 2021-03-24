@@ -35,7 +35,10 @@ sc_cache_enabled <- function() {
 }
 
 sc_cache_dir <- function() {
-  "~/.STATcubeR_cache"
+  cache_dir <- Sys.getenv("STATCUBE_CACHE_DIR")
+  if ("" == cache_dir)
+    cache_dir <- "~/.STATcubeR_cache"
+  cache_dir
 }
 
 sc_cache_file <- function(params) {
