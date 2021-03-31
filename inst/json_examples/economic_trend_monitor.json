@@ -66,6 +66,14 @@
     "str:measure:dekonjunkturmonitor:F-DATA:F-FAKT-81"
   ],
   "dimensions": [
-    [ "str:valueset:dekonjunkturmonitor:F-DATA:C-KMMONAT-0:C-KMMONAT-0" ]
-  ]
+    [ "str:valueset:dekonjunkturmonitor:F-DATA:C-KMMONAT-0:C-KMMONAT-0" ],
+    [ "str:field:dekonjunkturmonitor:F-DATA:C-QUOTE-1" ]
+  ],
+  "recodes": {
+    "str:field:dekonjunkturmonitor:F-DATA:C-QUOTE-1" : {
+      "map": [
+        [ "str:value:dekonjunkturmonitor:F-DATA:C-QUOTE-1:C-QUOTE-1:1" ]
+      ]
+    }
+  }
 }
