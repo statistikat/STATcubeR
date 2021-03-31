@@ -41,9 +41,9 @@ sc_cache_dir <- function() {
   cache_dir
 }
 
-sc_cache_file <- function(params) {
+sc_cache_file <- function(params, ext = ".rds") {
   openssl::md5(serialize(params, NULL)) %>%
-    paste0(sc_cache_dir(), "/", ., ".rds")
+    paste0(sc_cache_dir(), "/", ., ext)
 }
 
 #' @rdname sc_cache
