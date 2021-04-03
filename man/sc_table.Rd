@@ -11,7 +11,12 @@
 \alias{sc_table_saved}
 \title{Create a request against the /table endpoint}
 \usage{
-sc_table(json_file, language = c("en", "de"), key = sc_key())
+sc_table(
+  json_file,
+  language = c("en", "de"),
+  add_totals = TRUE,
+  key = sc_key()
+)
 
 sc_examples_list()
 
@@ -20,7 +25,7 @@ sc_example(filename)
 \method{as.data.frame}{sc_table}(
   x,
   ...,
-  drop_aggregates = TRUE,
+  drop_aggregates = FALSE,
   recode_na = TRUE,
   label_vars = TRUE,
   parse_fields = TRUE
@@ -43,6 +48,9 @@ sc_table_saved(table_uri, language = c("en", "de"), key = sc_key())
 gui ("Open Data API Abfrage")}
 
 \item{language}{The language to be used for labeling. \code{"en"} or \code{"de"}}
+
+\item{add_totals}{Should totals be added for each measure in the json
+request?}
 
 \item{key}{(\code{string}) An API key. To display your key, call
 \code{\link[=sc_browse_preferences]{sc_browse_preferences()}}.}

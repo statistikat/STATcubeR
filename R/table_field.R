@@ -1,5 +1,4 @@
-sc_field_parse <- function(field) {
-  type <- sc_field_type(field)
+sc_field_parse <- function(field, type = sc_field_type(field)) {
   if (type == "Category")
     sc_field_parse_category(field)
   else
@@ -36,6 +35,7 @@ sc_field_type <- function(field) {
 sc_field_parse_category <- function(field) {
   res <- field$items %>% sapply(function(x) x$labels[[1]])
   res[res == "Total"] <- NA
+  res[res == "Zusammen"] <- NA
   factor(res, levels = res)
 }
 

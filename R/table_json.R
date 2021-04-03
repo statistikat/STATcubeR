@@ -43,7 +43,20 @@ sc_json_class <- R6::R6Class(
   )
 )
 
-sc_table_json_post <- function(json, language = c("en", "de"), key = sc_key()) {
+sc_json_add_totals <- function(json_content) {
+  measures <- unlist(json_content$dimensions)
+  for (measure in measures)
+    json_content$recodes[[measure]]$total <- TRUE
+  json_content
+}
+
+sc_table_json_post <- function(json, language = c("en", "de"),
+                               add_totals = TRUE, key = sc_key()) {
+  if (add_totals)
+    json <- json %>%
+      jsonlite::fromJSON(simplifyVector = FALSE) %>%
+      sc_json_add_totals() %>%
+      jsonlite::toJSON(pretty = TRUE, auto_unbox = TRUE)
   sc_with_cache(list(json, language), function() {
     response <- httr::POST(
       url = paste0(base_url, "/table"),
