@@ -40,7 +40,7 @@ sc_field_parse_category <- function(field) {
 }
 
 sc_as_time <- function(year, month, ind) {
-  as.POSIXct(paste0(
+  as.Date(paste0(
     year[!ind], "/", month[!ind], "/1"
   ))
 }
@@ -64,7 +64,7 @@ sc_field_parse_time <- function(field) {
   remainder <- substr(varcodes, 5, 8)
   month <- sc_field_parse_time_month(remainder)
 
-  parsed <- as.POSIXct(rep(NA, length(varcodes)))
+  parsed <- as.Date(rep(NA, length(varcodes)))
   ind <- is.na(varcodes)
   parsed[!ind] <- sc_as_time(year, month, ind)
   parsed
