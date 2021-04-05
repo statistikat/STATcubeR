@@ -32,10 +32,13 @@ sc_table_class <- R6::R6Class(
       if (response$status_code != 200)
         stop(httr::content(response)$message)
       private$httr_response <- response
-      private$table <- NULL
+      private$cache <- NULL
     },
     field = function(i = 1) {
-      sc_meta_field(self, i)
+      cache_id <- paste0("field_", i)
+      if (!(cache_id %in% names(private$cache)))
+        private$cache[[cache_id]] <- sc_meta_field(self, i)
+      private$cache[[cache_id]]
     },
     browse = function() {
       browseURL(paste0(
@@ -47,13 +50,17 @@ sc_table_class <- R6::R6Class(
   active = list(
     response = function() private$httr_response,
     raw = function() httr::content(self$response),
-    meta = function() sc_meta(self),
+    meta = function() {
+      if (is.null(private$cache$meta))
+        private$cache$meta <- sc_meta(self)
+      private$cache$meta
+    },
     data = function(val) {
       if (!missing(val))
         stop("data is read-only", call. = FALSE)
-      if (is.null(private$table))
-        private$table <- as.data.frame(self)
-      private$table
+      if (is.null(private$cache$data))
+        private$cache$data <- sc_table_create_data(self)
+      private$cache$data
     },
     scr_version = function() private$version,
     annotation_legend = function() sc_annotation_legend(self),
@@ -62,9 +69,9 @@ sc_table_class <- R6::R6Class(
   ),
   private = list(
     httr_response = NULL,
-    table = NULL,
     version = NULL,
-    json_content = NULL
+    json_content = NULL,
+    cache = NULL
   )
 )
 
