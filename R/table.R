@@ -40,6 +40,9 @@ sc_table_class <- R6::R6Class(
         private$cache[[cache_id]] <- sc_meta_field(self, i)
       private$cache[[cache_id]]
     },
+    tabulate = function(...) {
+      sc_tabulate(self, ...)
+    },
     browse = function() {
       browseURL(paste0(
         "https://statcube.at/statcube/openinfopage?id=",
