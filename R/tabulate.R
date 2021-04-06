@@ -20,6 +20,7 @@
 #'   `data.frame`? Those extra columns are of type list and contain character
 #'   vectors with all annotations for the corresponding measure
 #' @param round use the precision of each measure for rounding?
+#' @param .list allows to define the arguments for `...` as a character vector.
 #' @examples
 #' table_tourism <- sc_example("accomodation.json") %>% sc_table("de")
 #'

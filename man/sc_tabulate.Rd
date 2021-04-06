@@ -19,6 +19,8 @@ sc_tabulate(
 
 \item{...}{Names of measures and/or fields}
 
+\item{.list}{allows to define the arguments for \code{...} as a character vector.}
+
 \item{parse_time}{should field variables of type time be converted
 into a \code{POSIXct} format?}
 
