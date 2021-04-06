@@ -1,9 +1,25 @@
 {
-  "database" : "str:database:debevstandjb",
-  "measures" : ["str:statfn:debevstandjb:F-BEVSTANDJB:F-ISIS-1:SUM"],
+  "database" : "str:database:debevstand",
+  "measures" : [ "str:statfn:debevstand:F-BEVSTAND:F-ISIS-1:SUM" ],
+  "recodes" : {
+    "str:field:debevstand:F-BEVSTAND:C-C41-2" : {
+      "map" : [
+        [ "str:value:debevstand:F-BEVSTAND:C-C41-2:C-B00-0:B00-1" ],
+        [ "str:value:debevstand:F-BEVSTAND:C-C41-2:C-B00-0:B00-2" ],
+        [ "str:value:debevstand:F-BEVSTAND:C-C41-2:C-B00-0:B00-9" ],
+        [ "str:value:debevstand:F-BEVSTAND:C-C41-2:C-B00-0:B00-8" ],
+        [ "str:value:debevstand:F-BEVSTAND:C-C41-2:C-B00-0:B00-7" ],
+        [ "str:value:debevstand:F-BEVSTAND:C-C41-2:C-B00-0:B00-6" ],
+        [ "str:value:debevstand:F-BEVSTAND:C-C41-2:C-B00-0:B00-5" ],
+        [ "str:value:debevstand:F-BEVSTAND:C-C41-2:C-B00-0:B00-4" ],
+        [ "str:value:debevstand:F-BEVSTAND:C-C41-2:C-B00-0:B00-3" ]
+      ]
+    }
+  },
   "dimensions" : [
-    [ "str:field:debevstandjb:F-BEVSTANDJB:C-A10-0" ],
-    [ "str:field:debevstandjb:F-BEVSTANDJB:C-BB00-0" ],
-    [ "str:field:debevstandjb:F-BEVSTANDJB:C-GEBLAND-0" ]
+    [ "str:field:debevstand:F-BEVSTAND:C-A10-0" ],
+    [ "str:field:debevstand:F-BEVSTAND:C-BESC51-0" ],
+    [ "str:field:debevstand:F-BEVSTAND:C-BESC11-0" ],
+    [ "str:field:debevstand:F-BEVSTAND:C-C41-2" ]
   ]
 }

@@ -1,6 +1,22 @@
 {
   "database" : "str:database:delgr001",
-  "measures" : [ "str:statfn:delgr001:F-DATA:F-HERSTPR:SUM" ],
+  "measures" : [
+    "str:statfn:delgr001:F-DATA:F-HERSTPR:SUM",
+    "str:statfn:delgr001:F-DATA:F-GUETSTEU:SUM",
+    "str:statfn:delgr001:F-DATA:F-ERZEUGPR:SUM",
+    "str:statfn:delgr001:F-DATA:F-GUETSUB:SUM"
+  ],
+  "recodes" : {
+    "str:field:delgr001:F-DATA:C-LGR001-0" : {
+      "map" : [
+        [ "str:value:delgr001:F-DATA:C-LGR001-0:C-LGR001-0:LGR001-01000" ],
+        [ "str:value:delgr001:F-DATA:C-LGR001-0:C-LGR001-0:LGR001-12200" ],
+        [ "str:value:delgr001:F-DATA:C-LGR001-0:C-LGR001-0:LGR001-11100" ],
+        [ "str:value:delgr001:F-DATA:C-LGR001-0:C-LGR001-0:LGR001-11200" ],
+        [ "str:value:delgr001:F-DATA:C-LGR001-0:C-LGR001-0:LGR001-07000" ]
+      ]
+    }
+  },
   "dimensions" : [
     [ "str:field:delgr001:F-DATA:C-A10-0" ],
     [ "str:field:delgr001:F-DATA:C-LGR001-0" ]

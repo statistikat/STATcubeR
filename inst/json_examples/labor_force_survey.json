@@ -5,9 +5,6 @@
     "str:statfn:deake005:F-DATA:F-FAKTOR2:SUM"
   ],
   "recodes" : {
-    "str:field:deake005:F-DATA:C-A10-0" : {
-      "map" : [ [ "str:value:deake005:F-DATA:C-A10-0:C-A10-0:A10-2019" ] ]
-    },
     "str:field:deake005:F-DATA:C-AKEY66-0" : { "map" : [
       [ "str:value:deake005:F-DATA:C-AKEY66-0:C-AKEW76-0:AKEW76-1" ],
       [ "str:value:deake005:F-DATA:C-AKEY66-0:C-AKEW76-0:AKEW76-2" ],
