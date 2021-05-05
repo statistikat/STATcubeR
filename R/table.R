@@ -114,7 +114,7 @@ sc_table_class <- R6::R6Class(
 #' @export
 sc_table <- function(json_file, language = c("en", "de"), add_totals = TRUE,
                      key = sc_key()) {
-  sc_table_json_post(readLines(json_file), language, add_totals, key) %>%
+  sc_table_json_post(readLines(json_file, warn = FALSE), language, add_totals, key) %>%
     sc_table_class$new(file = json_file)
 }
 

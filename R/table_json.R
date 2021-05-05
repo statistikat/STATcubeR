@@ -3,7 +3,7 @@ sc_json_class <- R6::R6Class(
   list(
     initialize = function(json = NULL, file = NULL) {
       if (!is.null(file))
-        json <- readLines(file)
+        json <- readLines(file, warn = FALSE)
       private$json_content <- json
       private$file_ <- file
     },
@@ -30,7 +30,7 @@ sc_json_class <- R6::R6Class(
       if (is.null(self$file))
         private$json_content
       else
-        readLines(self$file)
+        readLines(self$file, warn = FALSE)
     },
     database = function() private$parse()$database,
     dimensions = function() unlist(private$parse()$dimensions),
