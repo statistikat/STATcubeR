@@ -75,7 +75,7 @@ od_create_data <- function(x, id) {
 
   meta$measures <- subset(df_hdr, df_hdr$code %in% cols_nums)[, 2:1]
   colnames(meta$measures) <- c("label", "code")
-  meta$measures$fun <- "SUM"
+  meta$measures$fun <- NA_character_
   meta$measures$precision <- NA_integer_
   meta$measures$annotations  <- NA_character_
   meta$measures$NAs <- sapply(dat[, meta$measures$code], function(x) sum(is.na(x)))
