@@ -11,7 +11,9 @@ RoxygenNote: 7.1.1
 Imports: 
     httr,
     magrittr,
-    jsonlite
+    jsonlite,
+    rvest,
+    readr
 Authors@R: 
     person(given = "Gregor de",
            family = "Cillia",
