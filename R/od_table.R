@@ -19,6 +19,7 @@ od_table_class <- R6::R6Class(
         attr(res, "time") <- as.numeric(difftime(Sys.time(), stime, unit = "secs"))
       }
       private$cache <- res
+      private$version <- sc_version()
       invisible(self)
     },
     field = function(i = 1) {
@@ -111,7 +112,8 @@ od_table_class <- R6::R6Class(
     },
     data = function() {
       private$cache$data
-    }
+    },
+    scr_version = function() private$version
   ),
   private = list(
     id = NULL,
@@ -120,7 +122,8 @@ od_table_class <- R6::R6Class(
     cache = NULL,
     time = function() {
       attributes(private$cache)$time
-    }
+    },
+    version = NULL
   )
 )
 
@@ -165,5 +168,5 @@ print.od_table <- function(x, ...) {
   cat("Measures:     ", paste(x$meta$measures$label, collapse = ", "),"\n")
   cat("Fields:       ", paste(x$meta$fields$label, collapse = ", "), "\n\n")
   cat("Request:      ", format(x$response$date), "\n")
-  cat("OpenData:     ", sc_version())
+  cat("STATcubeR:    ", x$scr_version)
 }
