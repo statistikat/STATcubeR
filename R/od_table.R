@@ -23,9 +23,6 @@ od_table_class <- R6::R6Class(
       invisible(self)
     },
     field = function(i = 1) {
-      if (missing(i)) {
-        return(private$cache$fields)
-      }
       private$cache$fields[[i]]
     },
     tabulate = function(...) {
