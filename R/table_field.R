@@ -13,7 +13,10 @@ sc_field_codes <- function(field, split_minus = TRUE) {
 }
 
 sc_field_type <- function(field) {
-  varcodes <- sc_field_codes(field)
+  if (is.character(field))
+    varcodes <- sapply(field, function(x) utils::tail(strsplit(x, "-")[[1]], 1))
+  else
+    varcodes <- sc_field_codes(field)
   varcodes <- varcodes[!is.na(varcodes)]
   codes_numeric <- all(!is.na(suppressWarnings(as.numeric(varcodes))))
   if (!codes_numeric)
@@ -21,7 +24,7 @@ sc_field_type <- function(field) {
   if (!all(diff(nchar(varcodes)) == 0) || !(nchar(varcodes)[1] %in% 4:6))
     return("Category")
   year <- as.numeric(substr(varcodes, 1, 4))
-  if (!all(year %in% 1900:2100))
+  if (!all(year %in% 1900:2150))
     return("Category")
   time_type <- switch(
     as.character(nchar(varcodes[1])),
@@ -59,7 +62,10 @@ sc_field_parse_time_month <- function(remainder) {
 }
 
 sc_field_parse_time <- function(field) {
-  varcodes <- sc_field_codes(field)
+  if (is.character(field))
+    varcodes <- sapply(field, function(x) utils::tail(strsplit(x, "-")[[1]], 1))
+  else
+    varcodes <- sc_field_codes(field)
   year <- substr(varcodes, 1, 4)
   remainder <- substr(varcodes, 5, 8)
   month <- sc_field_parse_time_month(remainder)
