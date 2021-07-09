@@ -27,6 +27,9 @@ od_table_class <- R6::R6Class(
       }
       private$cache$fields[[i]]
     },
+    tabulate = function(...) {
+      od_tabulate(self, ...)
+    },
     render = function() {
       measures <- self$meta$measures
       measures2 <- data.frame(
