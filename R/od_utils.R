@@ -3,10 +3,6 @@ od_url <- function(id) {
   file.path(baseurl, paste0("ogd/json?dataset=", id))
 }
 
-od_version <- function() {
-  as.character(utils::packageVersion("freiSTAT"))
-}
-
 od_attr <- function(rq) {
   res <- strsplit(strsplit(rq$extras$attribute_description, "; ")[[1]], ":")
 

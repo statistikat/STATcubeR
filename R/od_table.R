@@ -165,5 +165,5 @@ print.od_table <- function(x, ...) {
   cat("Measures:     ", paste(x$meta$measures$label, collapse = ", "),"\n")
   cat("Fields:       ", paste(x$meta$fields$label, collapse = ", "), "\n\n")
   cat("Request:      ", format(x$response$date), "\n")
-  cat("OpenData:     ", od_version())
+  cat("OpenData:     ", sc_version())
 }
