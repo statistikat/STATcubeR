@@ -4,12 +4,20 @@ od_url <- function(id) {
 }
 
 od_attr <- function(rq) {
-  res <- strsplit(strsplit(rq$extras$attribute_description, "; ")[[1]], ":")
-
-  data.frame(
-    code = sapply(res, "[[", 1),
-    name = sapply(res, "[[", 2)
-  )
+  desc <- rq$extras$attribute_description %>% paste0(";", .) %>% gsub("; ", ";", .)
+  index_c <- gregexpr(";C-", desc) %>% .[[1]]
+  index_f <- gregexpr(";F-", desc) %>% .[[1]]
+  index_code <- sort(c(index_c, index_f))
+  index_colon <- gregexpr(":", desc) %>% .[[1]]
+  index_end <- c(index_code[-1], 1000000L)
+  code <- character(0)
+  label = character(0)
+  for (i in seq_along(index_code)) {
+    next_col <- min(index_colon[index_colon > index_code[i]])
+    code <- c(code, substr(desc, index_code[i] + 1, next_col - 1))
+    label <- c(label, substr(desc, next_col + 1, index_end[i]))
+  }
+  data.frame(code = code, label = label)
 }
 
 od_create_data <- function(x, id) {
