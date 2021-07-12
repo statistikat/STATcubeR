@@ -9,7 +9,7 @@ od_attr <- function(rq) {
   index_f <- gregexpr(";F-", desc) %>% .[[1]]
   index_code <- sort(c(index_c, index_f))
   index_colon <- gregexpr(":", desc) %>% .[[1]]
-  index_end <- c(index_code[-1], 1000000L)
+  index_end <- c(index_code[-1], 1000000L) - 1
   code <- character(0)
   label = character(0)
   for (i in seq_along(index_code)) {
