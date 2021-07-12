@@ -22,7 +22,7 @@ od_attr <- function(rq) {
 
 od_create_data <- function(x, id) {
   rq <- httr::content(x, encoding = "UTF-8")
-  df <- do.call("rbind", lapply(rq$resources, as.data.frame))
+  df <- do.call("rbind", lapply(rq$resources, as.data.frame, stringsAsFactors = FALSE))
   if (any(df$format != "csv")) {
     stop(paste0("Datensatz ", shQuote(id), " kann nicht eingelesen werden.\n",
     "Grund: es sind nicht alle Metadaten als csv vorhanden"), call. = FALSE)
