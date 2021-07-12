@@ -24,22 +24,25 @@ od_create_data <- function(x, id) {
   rq <- httr::content(x, encoding = "UTF-8")
   df <- do.call("rbind", lapply(rq$resources, as.data.frame, stringsAsFactors = FALSE))
   if (any(df$format != "csv")) {
-    stop(paste0("Datensatz ", shQuote(id), " kann nicht eingelesen werden.\n",
-    "Grund: es sind nicht alle Metadaten als csv vorhanden"), call. = FALSE)
+    stop(paste0("Dataset ", shQuote(id), " could not be read.\n",
+    "Reason: not all metadata is available as .csv"), call. = FALSE)
   }
 
   suppressWarnings(df_inps <- lapply(df$url, function(x) {
     tryCatch(
-      readr::read_delim(x, delim = ";", col_types = readr::cols(), na = c("", "NA", ":"),
-                        locale = readr::locale(decimal_mark = ",")),
+      readr::read_delim(
+        file = x,
+        delim = ";",
+        col_types = readr::cols(),
+        na = c("", "NA", ":"),
+        locale = readr::locale(decimal_mark = ",")),
       error = function(e) e)
   }))
   names(df_inps) <- df$url
 
   if (any(sapply(df_inps, function(x) inherits(x, "simpleError")))) {
-    stop(paste0(
-      "Datensatz ", shQuote(id), " kann nicht eingelesen werden.\n",
-      "Grund: Fehler beim Einlesen mit `readr::read_delim()`"), call. = FALSE)
+      stop(paste0("Dataset ", shQuote(id), " could not be read.\n",
+      "Reason: Error when using `readr::read_delim()`"), call. = FALSE)
   }
 
   dat <- df_inps[[1]]
@@ -70,7 +73,7 @@ od_create_data <- function(x, id) {
       }
     }
   } else {
-    message("datensatz ", id, ": fehlende metadaten")
+    message("Dataset ", id, ": missing metadata")
     return(NULL)
   }
 

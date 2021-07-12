@@ -30,7 +30,7 @@ respected as this meta-information is not available)}
 }
 \description{
 \code{od_tabulate()} extracts the data in the table and turns it into a tidy
-data.frame. It is basically a copy of \code{\link[=sc_tabulate]{sc_tabulate()}} Additionally,
+data.frame. It is basically a copy of \code{\link[=sc_tabulate]{sc_tabulate()}}. Additionally,
 certain STATcube conventions are applied
 \itemize{
 \item zeros are recoded to \code{NA}s
@@ -43,7 +43,7 @@ is true for fields.
 }
 \examples{
 \dontrun{
-table <- od_table(od_list()$id[2])
+table <- od_table(od_list()$id[1])
 
 od_tabulate(table)
 od_tabulate(table, "Geschlecht", "Staatsangehörigkeit")

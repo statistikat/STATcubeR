@@ -2,26 +2,27 @@
 % Please edit documentation in R/od_list.R
 \name{od_list}
 \alias{od_list}
-\title{Liste alle Datensätze}
+\title{List available Opendata datasets}
 \usage{
 od_list()
 }
 \value{
-ein \code{data.frame} mit zwei Spalten
+a \code{data.frame} with two columns
 \itemize{
-\item \code{"gruppe"}: Inhaltliche Gliederungsgruppe, unter der ein Datensatz gegliedert ist.
-\item \code{"id"}: Name des Datensatzes; Kann in \code{\link[=od_table]{od_table()}} verwendet werden
-\item \code{"label"} Bezeichnung der Datenbank
+\item \code{"gruppe"}: Grouping under which a dataset is listed
+\item \code{"id"}: Name of the dataset which can later be used in
+\code{\link[=od_table]{od_table()}}
+\item \code{"label"}: Description of the dataset
 }
 }
 \description{
-\code{\link[=od_list]{od_list()}} gibt alle auf \href{https://data.statistik.gv.at}{data.statistik.gv.at} verfügbaren Datensätze
-zurück.
+\code{\link[=od_list]{od_list()}} returns a \code{data.frame } containing all datasets published at
+\href{https://data.statistik.gv.at}{data.statistik.gv.at}
 }
 \details{
-manche Datensätze sind unter mehreren Gruppen gelistet.
+some datasets are pulbished under multiple groups
 }
 \examples{
 df <- od_list()
-subset(df, df$grupp == "Arbeit")
+subset(df, df$gruppe == "Arbeit")
 }
