@@ -29,7 +29,10 @@ od_create_data <- function(x, id) {
   }
 
   suppressWarnings(df_inps <- lapply(df$url, function(x) {
-    tryCatch(readr::read_delim(x, delim = ";", col_types = readr::cols(), locale = readr::locale(decimal_mark = ",")), error = function(e) e)
+    tryCatch(
+      readr::read_delim(x, delim = ";", col_types = readr::cols(), na = c("", "NA", ":"),
+                        locale = readr::locale(decimal_mark = ",")),
+      error = function(e) e)
   }))
   names(df_inps) <- df$url
 
