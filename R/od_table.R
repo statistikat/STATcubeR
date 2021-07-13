@@ -2,13 +2,14 @@ od_table_class <- R6::R6Class(
   classname = "od_table",
   cloneable = FALSE,
   public = list(
-    initialize = function(id) {
+    initialize = function(id, language) {
       stime <- Sys.time()
       stopifnot(rlang::is_scalar_character(id))
+      private$lang <- language
       private$id <- id
       json <- od_json_get(id)
       private$json <- json
-      res <- od_create_data(json, id = id)
+      res <- od_create_data(json, id = id, lang = language)
       if (!is.null(res)) {
         attr(res, "time") <- as.numeric(difftime(Sys.time(), stime, unit = "secs"))
       }
@@ -106,7 +107,15 @@ od_table_class <- R6::R6Class(
     scr_version = function() private$version,
     times = function() { list(
       request = private$request_time
-    )}
+    )},
+    language = function(value) {
+      if (missing(value))
+        private$lang
+      else {
+        value <- match.arg(value, c("en", "de"))
+        private$lang <- value
+      }
+    }
   ),
   private = list(
     id = NULL,
@@ -114,6 +123,7 @@ od_table_class <- R6::R6Class(
     request_time = NULL,
     json = NULL,
     cache = NULL,
+    lang = NULL,
     time = function() {
       attributes(private$cache)$time
     },
@@ -155,11 +165,13 @@ od_table_class <- R6::R6Class(
 #' od_table("OGD_krankenbewegungen_ex_LEISTUNGEN_1")
 #' od_table("OGD_f1741_HH_Proj_1")
 #' od_table("OGD_veste303_Veste203_1")
-od_table <- function(id) {
-  od_table_class$new(id = id)
+od_table <- function(id, language = c("en", "de")) {
+  language <- match.arg(language)
+  od_table_class$new(id = id, language = language)
 }
 
-with_wrap <- function(x) {
+with_wrap <- function(x, lang) {
+  x <- od_get_labels(x, lang)
   if (length(x) > 10)
     x <- c(x[1:10], "...")
   x <- paste(x, collapse = ", ")
@@ -169,10 +181,12 @@ with_wrap <- function(x) {
 
 #' @export
 print.od_table <- function(x, ...) {
+  col_lang <- ifelse(x$language == "de", "label", "label_en")
+  lang <- x$language
   cat("An object of class \033[1mod_table\033[22m\n\n")
-  cat("Database:  ", with_wrap(x$meta$database$label), "\n")
-  cat("Measures:  ", with_wrap(x$meta$measures$label),"\n")
-  cat("Fields:    ", with_wrap(x$meta$fields$label), "\n\n")
+  cat("Database:  ", with_wrap(x$meta$database, lang), "\n")
+  cat("Measures:  ", with_wrap(x$meta$measures, lang),"\n")
+  cat("Fields:    ", with_wrap(x$meta$fields, lang), "\n\n")
   cat("Request:   ", format(x$times$request), "\n")
   cat("STATcubeR: ", x$scr_version)
 }

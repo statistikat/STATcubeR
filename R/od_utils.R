@@ -58,7 +58,17 @@ od_get_csv <- function(id, suffix = NULL, cache = TRUE, rename_vars = TRUE) {
     x
 }
 
-od_create_data <- function(json, id = od_json_get_id(json)) {
+od_get_labels <- function(x, lang = c("en", "de")) {
+  lang <- match.arg(lang)
+  if (lang == "de")
+    return(x$label)
+  out <- x$label_en
+  out[is.na(out) | out == ""] <- x$label[is.na(out) | out == ""]
+  out
+}
+
+od_create_data <- function(json, id = od_json_get_id(json), lang = c("en", "de")) {
+  lang <- match.arg(lang)
   cache <- od_cache_up_to_date(json, id)
   vars <- od_attr(json)
   meta <- list(
@@ -105,9 +115,10 @@ od_create_data <- function(json, id = od_json_get_id(json)) {
   meta$fields$type <- sapply(fields, function(x) sc_field_type(x$code))
 
   for (i in seq_along(fields)) {
+    labels <- od_get_labels(fields[[i]], lang = lang)
     fields[[i]]$parsed <- switch(
       meta$fields$type[i],
-      Category = factor(fields[[i]]$label, fields[[i]]$label),
+      Category = factor(labels, labels),
       sc_field_parse_time(fields[[i]]$code)
     )
   }
@@ -119,7 +130,7 @@ od_create_data <- function(json, id = od_json_get_id(json)) {
   }
 
   idx <- match(header$code, colnames(dat))
-  colnames(dat)[idx] <- header$label
+  colnames(dat)[idx] <- od_get_labels(header, lang)
 
   list(data = dat, meta = meta, fields = fields)
 }
