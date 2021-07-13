@@ -70,6 +70,8 @@ od_create_data <- function(json, id = od_json_get_id(json)) {
     stop("Dataset ", shQuote(id), ": invalid format", call. = FALSE)
   if (length(json$resources) !=  2 + nrow(meta$fields))
     stop("Dataset ", shQuote(id), ": unexpected resources field in json", call. = FALSE)
+  if (substr(id, 1, 7) == "OGDEXT_")
+    stop("Datasets ids beginning with OGDEXT are not supported: ", shQuote(id), call. = FALSE)
 
   dat <- od_get_csv(id, cache = cache)
   if (!setequal(names(dat), vars$code))
