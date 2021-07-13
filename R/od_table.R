@@ -158,12 +158,18 @@ od_table <- function(id) {
   od_table_class$new(id = id)
 }
 
+with_wrap <- function(x) {
+  x <- paste(x, collapse = ", ")
+  strwrap(x, width = getOption("width") - 12, exdent = 12) %>%
+    paste(collapse = "\n")
+}
+
 #' @export
 print.od_table <- function(x, ...) {
-  cat("An object of class od_table\n\n")
-  cat("Database:     ", x$meta$database$label, "\n")
-  cat("Measures:     ", paste(x$meta$measures$label, collapse = ", "),"\n")
-  cat("Fields:       ", paste(x$meta$fields$label, collapse = ", "), "\n\n")
-  cat("Request:      ", format(x$response$date), "\n")
-  cat("STATcubeR:    ", x$scr_version)
+  cat("An object of class \033[1mod_table\033[22m\n\n")
+  cat("Database:  ", with_wrap(x$meta$database$label), "\n")
+  cat("Measures:  ", with_wrap(x$meta$measures$label),"\n")
+  cat("Fields:    ", with_wrap(x$meta$fields$label), "\n\n")
+  cat("Request:   ", format(x$response$date), "\n")
+  cat("STATcubeR: ", x$scr_version)
 }
