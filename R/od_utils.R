@@ -51,9 +51,10 @@ od_get_csv <- function(id, suffix = NULL, cache = TRUE, rename_vars = TRUE) {
       cache_file, quiet = TRUE
     )
   x <- utils::read.csv2(cache_file, na.strings = c("", "NA", ":"), check.names = FALSE)
-  if (rename_vars && !is.null(suffix))
-    x[, 2:1] %>% `names<-`(c("label", "code"))
-  else
+  if (rename_vars && !is.null(suffix)) {
+    index_label_en <- ifelse(suffix == "HEADER", 3, 4)
+    x[, c(2,1,index_label_en)] %>% `names<-`(c("label", "code", "label_en"))
+  } else
     x
 }
 
@@ -61,7 +62,8 @@ od_create_data <- function(json, id = od_json_get_id(json)) {
   cache <- od_cache_up_to_date(json, id)
   vars <- od_attr(json)
   meta <- list(
-    database = data.frame(label = json$title, code = id),
+    database = data.frame(label = json$title, code = id,
+                          label_en = json$extras$en_title_and_desc),
     measures = vars[substr(vars$code, 1, 1) == "F", ],
     fields   = vars[substr(vars$code, 1, 1) == "C", ]
   )
@@ -85,6 +87,8 @@ od_create_data <- function(json, id = od_json_get_id(json)) {
     meta$measures = header[substr(header$code, 1, 1) == "F", ]
     meta$fields   = header[substr(header$code, 1, 1) == "C", ]
   }
+  meta$measures$label_en <- header$label_en[substr(header$code, 1, 1) == "F"]
+  meta$fields$label_en <- header$label_en[substr(header$code, 1, 1) == "C"]
 
   fields <- lapply(meta$fields$code, function(code) {
     fld <- od_get_csv(id, code, cache = cache)
