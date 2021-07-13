@@ -7,13 +7,10 @@ od_table_class <- R6::R6Class(
       stopifnot(rlang::is_scalar_character(id))
       private$id <- id
       r <- httr::GET(url =  od_url(id = id))
-      if (is.null(httr::content(r))) {
-        stop(shQuote(id), " ist keine vorhandene Datensatz-Id", call. = FALSE)
+      if (length(r$content) == 0) {
+        stop(shQuote(id), ": invalid dataset id", call. = FALSE)
       }
       private$httr_response <- r
-      if (r$status_code != 200) {
-        stop("angegebene Resource wurde nicht gefunden (err = ", r$status_code, ")", call. = FALSE)
-      }
       res <- od_create_data(r, id = id)
       if (!is.null(res)) {
         attr(res, "time") <- as.numeric(difftime(Sys.time(), stime, unit = "secs"))
