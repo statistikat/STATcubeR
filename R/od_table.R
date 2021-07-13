@@ -31,7 +31,8 @@ od_table_class <- R6::R6Class(
         Name = measures$label,
         Fehlend = measures$NAs,
         Anmerkungen = measures$annotations,
-        Aggregation = sapply(measures$fun, switch, SUM = "Summe", MEDIAN = "Median", MEAN = "Arith. Mittel"),
+        Aggregation = sapply(measures$fun, switch, SUM = "Summe", MEDIAN = "Median", MEAN = "Arith. Mittel",
+                             `NA` = "Unbekannt"),
         Kommast. = measures$precision
       )
       fields <- self$meta$fields
@@ -151,11 +152,17 @@ od_table_class <- R6::R6Class(
 #' r3$field()
 #' r3$field(1)
 #' r3$data
+#'
+#' od_table("OGD_krankenbewegungen_ex_LEISTUNGEN_1")
+#' od_table("OGD_f1741_HH_Proj_1")
+#' od_table("OGD_veste303_Veste203_1")
 od_table <- function(id) {
   od_table_class$new(id = id)
 }
 
 with_wrap <- function(x) {
+  if (length(x) > 10)
+    x <- c(x[1:10], "...")
   x <- paste(x, collapse = ", ")
   strwrap(x, width = getOption("width") - 12, exdent = 12) %>%
     paste(collapse = "\n")
