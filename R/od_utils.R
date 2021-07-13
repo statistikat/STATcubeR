@@ -20,6 +20,13 @@ od_attr <- function(json) {
   data.frame(label = label, code = code)
 }
 
+od_json_get <- function(id) {
+  r <- httr::GET(url =  od_url(id = id))
+  if (length(r$content) == 0)
+    stop(shQuote(id), ": invalid dataset id", call. = FALSE)
+  httr::content(r)
+}
+
 od_json_get_id <- function(json) {
   strsplit(json$extras$metadata_original_portal, "=")[[1]][2]
 }
@@ -28,7 +35,8 @@ od_cache_up_to_date <- function(json, id = od_json_get_id(json)) {
   cache_file <- paste0(sc_cache_dir(), "/open_data/", id, ".csv")
   if (!file.exists(cache_file))
     return(FALSE)
-  last_modified_server <- json$resources[[1]]$last_modified
+  last_modified_server <- json$resources[[1]]$last_modified %>%
+    as.POSIXct(format = "%Y-%m-%dT%H:%M:%OS")
   last_modified_cache <- file.info(cache_file)$mtime
   last_modified_cache > last_modified_server
 }
@@ -49,8 +57,7 @@ od_get_csv <- function(id, suffix = NULL, cache = TRUE, rename_vars = TRUE) {
     x
 }
 
-od_create_data <- function(x, id) {
-  json <- httr::content(x, encoding = "UTF-8")
+od_create_data <- function(json, id = od_json_get_id(json)) {
   cache <- od_cache_up_to_date(json, id)
   vars <- od_attr(json)
   meta <- list(

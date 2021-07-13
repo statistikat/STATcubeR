@@ -6,15 +6,13 @@ od_table_class <- R6::R6Class(
       stime <- Sys.time()
       stopifnot(rlang::is_scalar_character(id))
       private$id <- id
-      r <- httr::GET(url =  od_url(id = id))
-      if (length(r$content) == 0) {
-        stop(shQuote(id), ": invalid dataset id", call. = FALSE)
-      }
-      private$httr_response <- r
-      res <- od_create_data(r, id = id)
+      json <- od_json_get(id)
+      private$json <- json
+      res <- od_create_data(json, id = id)
       if (!is.null(res)) {
         attr(res, "time") <- as.numeric(difftime(Sys.time(), stime, unit = "secs"))
       }
+      private$request_time <- stime
       private$cache <- res
       private$version <- sc_version()
       invisible(self)
@@ -96,11 +94,8 @@ od_table_class <- R6::R6Class(
     }
   ),
   active = list(
-    response = function() {
-      private$httr_response
-    },
     raw = function() {
-      httr::content(self$response)
+      private$json
     },
     meta = function() {
       private$cache$meta
@@ -108,12 +103,16 @@ od_table_class <- R6::R6Class(
     data = function() {
       private$cache$data
     },
-    scr_version = function() private$version
+    scr_version = function() private$version,
+    times = function() { list(
+      request = private$request_time
+    )}
   ),
   private = list(
     id = NULL,
     create_time = NULL,
-    httr_response = NULL,
+    request_time = NULL,
+    json = NULL,
     cache = NULL,
     time = function() {
       attributes(private$cache)$time
@@ -174,6 +173,6 @@ print.od_table <- function(x, ...) {
   cat("Database:  ", with_wrap(x$meta$database$label), "\n")
   cat("Measures:  ", with_wrap(x$meta$measures$label),"\n")
   cat("Fields:    ", with_wrap(x$meta$fields$label), "\n\n")
-  cat("Request:   ", format(x$response$date), "\n")
+  cat("Request:   ", format(x$times$request), "\n")
   cat("STATcubeR: ", x$scr_version)
 }
