@@ -13,10 +13,14 @@ Imports:
     magrittr,
     jsonlite
 Authors@R: 
-    person(given = "Gregor de",
-           family = "Cillia",
-           role = c("aut", "cre"),
-           email = "Gregor.deCillia@statistik.gv.at")
+    c(person(given = "Gregor",
+             family = "de Cillia",
+             role = c("aut", "cre"),
+             email = "Gregor.deCillia@statistik.gv.at"),
+      person(given = "Bernhard",
+             family = "Meindl",
+             role = "aut",
+             email = "Bernhard.Meindl@statistik.gv.at"))
 Suggests: 
     rmarkdown,
     data.tree,
