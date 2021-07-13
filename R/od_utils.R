@@ -3,8 +3,8 @@ od_url <- function(id) {
   file.path(baseurl, paste0("ogd/json?dataset=", id))
 }
 
-od_attr <- function(rq) {
-  desc <- rq$extras$attribute_description %>% paste0(";", .) %>% gsub("; ", ";", .)
+od_attr <- function(json) {
+  desc <- json$extras$attribute_description %>% paste0(";", .) %>% gsub("; ", ";", .)
   index_c <- gregexpr(";C-", desc) %>% .[[1]]
   index_f <- gregexpr(";F-", desc) %>% .[[1]]
   index_code <- sort(c(index_c, index_f))
@@ -17,108 +17,96 @@ od_attr <- function(rq) {
     code <- c(code, substr(desc, index_code[i] + 1, next_col - 1))
     label <- c(label, substr(desc, next_col + 1, index_end[i]))
   }
-  data.frame(code = code, label = label)
+  data.frame(label = label, code = code)
+}
+
+od_json_get_id <- function(json) {
+  strsplit(json$extras$metadata_original_portal, "=")[[1]][2]
+}
+
+od_cache_up_to_date <- function(json, id = od_json_get_id(json)) {
+  cache_file <- paste0(sc_cache_dir(), "/open_data/", id, ".csv")
+  if (!file.exists(cache_file))
+    return(FALSE)
+  last_modified_server <- json$resources[[1]]$last_modified
+  last_modified_cache <- file.info(cache_file)$mtime
+  last_modified_cache > last_modified_server
+}
+
+od_get_csv <- function(id, suffix = NULL, cache = TRUE, rename_vars = TRUE) {
+  filename <- c(id, suffix) %>% paste(collapse = "_") %>% paste0(".csv")
+  cache_file <- paste0(sc_cache_dir(), "/open_data/", filename)
+  dir.create(dirname(cache_file), recursive = TRUE, showWarnings = FALSE)
+  if (!cache || !file.exists(cache_file))
+    utils::download.file(
+      paste0("https://data.statistik.gv.at/data/", filename),
+      cache_file, quiet = TRUE
+    )
+  x <- utils::read.csv2(cache_file, na.strings = c("", "NA", ":"), check.names = FALSE)
+  if (rename_vars && !is.null(suffix))
+    x[, 2:1] %>% `names<-`(c("label", "code"))
+  else
+    x
 }
 
 od_create_data <- function(x, id) {
-  rq <- httr::content(x, encoding = "UTF-8")
-  df <- do.call("rbind", lapply(rq$resources, as.data.frame, stringsAsFactors = FALSE))
-  if (any(df$format != "csv")) {
-    stop(paste0("Dataset ", shQuote(id), " could not be read.\n",
-    "Reason: not all metadata is available as .csv"), call. = FALSE)
-  }
-
-  suppressWarnings(df_inps <- lapply(df$url, function(x) {
-    tryCatch(
-      readr::read_delim(
-        file = x,
-        delim = ";",
-        col_types = readr::cols(),
-        na = c("", "NA", ":"),
-        locale = readr::locale(decimal_mark = ",")),
-      error = function(e) e)
-  }))
-  names(df_inps) <- df$url
-
-  if (any(sapply(df_inps, function(x) inherits(x, "simpleError")))) {
-      stop(paste0("Dataset ", shQuote(id), " could not be read.\n",
-      "Reason: Error when using `readr::read_delim()`"), call. = FALSE)
-  }
-
-  dat <- df_inps[[1]]
-
-  idx_hdr <- which(grepl("_HEADER", df$name))
-  if (length(idx_hdr) == 1) {
-    df_hdr <- df_inps[[idx_hdr]][, c("code", "name")]
-    df <- df[-idx_hdr, ]
-  } else {
-    df_hdr <- od_attr(rq)
-  }
-
-  cn <- colnames(dat)
-  fields <- list()
-  if (nrow(df) > 1) {
-    cols_facts <- c()
-    for (i in 2:nrow(df)) {
-      idx <- which(sapply(cn, function(x) grepl(x, df$url[i])))
-      ff <- df_inps[[df$url[i]]]
-      if (length(idx) == 1) {
-        cols_facts <- c(cols_facts, cn[idx])
-        cc <- match(dat[[idx]], ff$code)
-        dat[[idx]] <- ff$name[cc]
-
-        new_field <- list(data.frame(label = ff$name, code = ff$code, parsed = NA_character_))
-        fields <- append(fields, new_field)
-        names(fields)[length(fields)] <- cn[idx]
-      }
-    }
-  } else {
-    message("Dataset ", id, ": missing metadata")
-    return(NULL)
-  }
-
-  cols_nums <- setdiff(cn, cols_facts)
-  meta <- list()
-  meta$database <- data.frame(
-    label = rq$title, code = id
+  json <- httr::content(x, encoding = "UTF-8")
+  cache <- od_cache_up_to_date(json, id)
+  vars <- od_attr(json)
+  meta <- list(
+    database = data.frame(label = json$title, code = id),
+    measures = vars[substr(vars$code, 1, 1) == "F", ],
+    fields   = vars[substr(vars$code, 1, 1) == "C", ]
   )
 
-  meta$measures <- subset(df_hdr, df_hdr$code %in% cols_nums)[, 2:1]
-  colnames(meta$measures) <- c("label", "code")
-  meta$measures$fun <- NA_character_
-  meta$measures$precision <- NA_integer_
-  meta$measures$annotations  <- NA_character_
-  meta$measures$NAs <- sapply(dat[, meta$measures$code], function(x) sum(is.na(x)))
+  if (json$resources[[1]]$format != "csv")
+    stop("Dataset ", shQuote(id), ": invalid format", call. = FALSE)
+  if (length(json$resources) !=  2 + nrow(meta$fields))
+    stop("Dataset ", shQuote(id), ": unexpected resources field in json", call. = FALSE)
 
-  metafields <-  subset(df_hdr, df_hdr$code %in% cols_facts)[, 2:1]
-  colnames(metafields) <- c("label", "code")
+  dat <- od_get_csv(id, cache = cache)
+  if (!setequal(names(dat), vars$code))
+    stop(shQuote(paste0(id, ".csv")), " and attribute description do not match", call. = FALSE)
 
-  metafields$nitems <- sapply(metafields$code, function(x) length(unique(dat[[x]])))
-  metafields$type <- sapply(cols_facts, function(x) {
-    tryCatch(sc_field_type(df_inps[[1]][[x]]), error = function(e) "Category")
+  header <- od_get_csv(id, "HEADER", cache = cache)
+  if (!identical(header$code, vars$code))
+    stop("HEADER and attribute description do not match", call. = FALSE)
+  if (!identical(header$label, vars$label)) {
+    message("HEADER and attribute description do not match")
+    meta$measures = header[substr(header$code, 1, 1) == "F", ]
+    meta$fields   = header[substr(header$code, 1, 1) == "C", ]
+  }
+
+  fields <- lapply(meta$fields$code, function(code) {
+    fld <- od_get_csv(id, code, cache = cache)
+    udc <- unique(dat[[code]])
+    fld$code <- as.character(fld$code)
+    stopifnot(all(udc %in% fld$code))
+    if (length(udc) != nrow(fld))
+      message("dropping unused levels in ", shQuote(code))
+    fld[fld$code %in% udc, ]
   })
 
-  # any time-field?
-  idx <- which(metafields$type != "Category")
-  if (length(idx) > 0) {
-    for (v in names(idx)) {
-      dat[[v]] <- sc_field_parse_time(df_inps[[1]][[v]])
-    }
+  meta$measures$NAs <- sapply(dat[meta$measures$code], function(x) sum(is.na(x)))
+  meta$fields$nitems <- sapply(fields, nrow)
+  meta$fields$type <- sapply(fields, function(x) sc_field_type(x$code))
+
+  for (i in seq_along(fields)) {
+    fields[[i]]$parsed <- switch(
+      meta$fields$type[i],
+      Category = factor(fields[[i]]$label, fields[[i]]$label),
+      sc_field_parse_time(fields[[i]]$code)
+    )
   }
-  metafields$total <- TRUE # # todo: check if total is always included
-  meta$fields <- metafields
 
-  # colnames
-  idx <- match(metafields$code, colnames(dat))
-  colnames(dat)[idx] <- metafields$label
-
-  idx <- match(meta$measures$code, colnames(dat))
-  colnames(dat)[idx] <- meta$measures$label
-
-  # fields -> numeric
-  for (v in meta$measures$label) {
-    dat[[v]] <- suppressWarnings(as.numeric(dat[[v]]))
+  for (i in seq_along(meta$fields$code)) {
+    code <- meta$fields$code[i]
+    fld <- fields[[i]]
+    dat[[code]] <- fld$parsed[match(dat[[code]], fld$code)]
   }
-  attr(dat, "spec") <- NULL
+
+  idx <- match(header$code, colnames(dat))
+  colnames(dat)[idx] <- header$label
+
   list(data = dat, meta = meta, fields = fields)
 }
