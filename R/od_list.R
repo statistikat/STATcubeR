@@ -24,19 +24,19 @@ od_list <- function() {
 
   # main-groups
   grp <- html %>%
-    rvest::html_elements(".panel-heading") %>%
-    rvest::html_elements("a") %>%
-    rvest::html_text()
+    xml2::xml_find_all('//*[@class="panel-heading"]') %>%
+    xml2::xml_find_all(".//a") %>%
+    xml2::xml_text()
 
   el <- html %>%
-    rvest::html_elements("h4") %>%
-    rvest::html_elements("a")
+    xml2::xml_find_all(".//h4") %>%
+    xml2::xml_find_all(".//a")
 
   # ids
   df <- data.frame(
     gruppe = "NA",
-    id = el %>% rvest::html_attr("aria-label"),
-    label = el %>% rvest::html_text()
+    id = el %>% xml2::xml_attr("aria-label"),
+    label = el %>% xml2::xml_text()
   )
 
   tt <- diff(c(which(is.na(df$id)), nrow(df) + 1))
