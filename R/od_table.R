@@ -92,6 +92,17 @@ od_table_class <- R6::R6Class(
         ))
 
       ) %>% htmltools::browsable()
+    },
+    total_codes = function(...) {
+      args <- list(...)
+      if (length(args) == 0)
+        return(self$meta$fields[, c("code", "total_code")])
+      stopifnot(all(names(args) %in% self$meta$fields$code))
+      for (i in seq_along(args)) {
+        j <- which(self$meta$fields$code %in% names(args)[i])
+        stopifnot(args[[i]] %in% self$field(j)$code)
+        private$cache$meta$fields$total_code[j] <- args[[i]]
+      }
     }
   ),
   active = list(

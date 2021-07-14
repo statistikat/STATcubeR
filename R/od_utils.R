@@ -113,6 +113,7 @@ od_create_data <- function(json, id = od_json_get_id(json), lang = c("en", "de")
   meta$measures$NAs <- sapply(dat[meta$measures$code], function(x) sum(is.na(x)))
   meta$fields$nitems <- sapply(fields, nrow)
   meta$fields$type <- sapply(fields, function(x) sc_field_type(x$code))
+  meta$fields$total_code <- NA_character_
 
   for (i in seq_along(fields)) {
     labels <- od_get_labels(fields[[i]], lang = lang)
