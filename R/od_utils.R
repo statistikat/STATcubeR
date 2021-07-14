@@ -20,7 +20,9 @@ od_attr <- function(json) {
   data.frame(label = label, code = code)
 }
 
-od_json_get <- function(id) {
+od_json_get <- function(id, check = TRUE) {
+  if (check && substr(id, 1, 4) != "OGD_")
+    stop("Datasets ids must begin with \"OGD_\" : ", shQuote(id), call. = FALSE)
   r <- httr::GET(url =  od_url(id = id))
   if (length(r$content) == 0)
     stop(shQuote(id), ": invalid dataset id", call. = FALSE)
@@ -82,8 +84,6 @@ od_create_data <- function(json, id = od_json_get_id(json), lang = c("en", "de")
     stop("Dataset ", shQuote(id), ": invalid format", call. = FALSE)
   if (length(json$resources) !=  2 + nrow(meta$fields))
     stop("Dataset ", shQuote(id), ": unexpected resources field in json", call. = FALSE)
-  if (substr(id, 1, 7) == "OGDEXT_")
-    stop("Datasets ids beginning with OGDEXT are not supported: ", shQuote(id), call. = FALSE)
 
   dat <- od_get_csv(id, cache = cache)
   if (!setequal(names(dat), vars$code))
