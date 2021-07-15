@@ -120,8 +120,8 @@ od_match_codes <- function(table, patterns) {
          paste(shQuote(patterns[no_match]), collapse = ", "), call. = FALSE)
   }
   list(
-    measures = table$meta$measures$code[na.omit(msrs)],
-    fields = table$meta$fields$code[na.omit(flds)]
+    measures = table$meta$measures$code[stats::na.omit(msrs)],
+    fields = table$meta$fields$code[stats::na.omit(flds)]
   )
 }
 
