@@ -43,7 +43,8 @@ od_cache_up_to_date <- function(json, id = od_json_get_id(json)) {
   last_modified_cache > last_modified_server
 }
 
-od_get_csv <- function(id, suffix = NULL, cache = TRUE, rename_vars = TRUE) {
+od_get_csv <- function(id, suffix = NULL, cache = TRUE, rename_vars = TRUE,
+                       strings_as_factors = FALSE) {
   filename <- c(id, suffix) %>% paste(collapse = "_") %>% paste0(".csv")
   cache_file <- paste0(sc_cache_dir(), "/open_data/", filename)
   dir.create(dirname(cache_file), recursive = TRUE, showWarnings = FALSE)
@@ -52,7 +53,8 @@ od_get_csv <- function(id, suffix = NULL, cache = TRUE, rename_vars = TRUE) {
       paste0("https://data.statistik.gv.at/data/", filename),
       cache_file, quiet = TRUE
     )
-  x <- utils::read.csv2(cache_file, na.strings = c("", "NA", ":"), check.names = FALSE)
+  x <- utils::read.csv2(cache_file, na.strings = c("", "NA", ":"),
+                        check.names = FALSE, stringsAsFactors = strings_as_factors)
   if (rename_vars && !is.null(suffix)) {
     index_label_en <- ifelse(suffix == "HEADER", 3, 4)
     x[, c(2,1,index_label_en)] %>% `names<-`(c("label", "code", "label_en"))
