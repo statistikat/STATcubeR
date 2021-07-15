@@ -30,7 +30,7 @@ od_json_get <- function(id, check = TRUE) {
 }
 
 od_json_get_id <- function(json) {
-  strsplit(json$extras$metadata_original_portal, "=")[[1]][2]
+  json$resources[[1]]$name
 }
 
 od_cache_up_to_date <- function(json, id = od_json_get_id(json)) {
