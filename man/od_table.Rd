@@ -2,42 +2,59 @@
 % Please edit documentation in R/od_table.R
 \name{od_table}
 \alias{od_table}
-\title{Create a table-instance for a open-data Dataset (data.statistik.gv.at)}
+\title{Create a table-instance from an open-data dataset}
 \usage{
-od_table(id)
+od_table(id, language = c("en", "de"))
 }
 \arguments{
 \item{id}{the name of the data-set that should be accessed}
-}
-\value{
-An object of class \code{od_table} which contains the return
-value of the \code{\link[httr:POST]{httr::POST()}} request in \code{obj$response}. The object also
-provides member functions to parse this response object.
+
+\item{language}{the language to be used for labelling data: \code{"en"} or \code{"de"}}
 }
 \description{
 \code{\link[=od_table]{od_table()}} returns an \code{R6}-class object containing all relevant data
-and metadata information to be used as input for graphSTAT.
+and metadata from data.statistik.gv.at.
+\itemize{
+\item \verb{$data_raw} contains the contents of \verb{\{id\}.csv}
+\item \verb{$meta} includes information from \verb{\{id\}_HEADER.csv}
+\item \verb{$field(i)} contains information from \verb{\{id\}_\{field_code\}.csv}
+}
+}
+\details{
+The returned abject also provides certain functionalities to label and
+aggreate the dataset.
+\itemize{
+\item \code{object$data} takes \code{object$data_raw} and applies labels based on
+the metadata.
+\item \code{object$tabulate()} also applies labeling and aggregates the
+dataset. See \code{\link[=od_tabulate]{od_tabulate()}} for more information.
+\item \code{object$language} can be used to get or set the language of the dataset.
+This affects the labelling behavior
+}
 }
 \examples{
-r1 <- od_table(id = "OGD_veste309_Veste309_1")
+x <- od_table("OGD_krebs_ext_KREBS_1")
 
-r1$meta
-r1$field()
-r1$field(1)
-r1$data
+## metadata
+x
+x$meta
+x$field(4)
+x$field(3)
 
-r2 <- od_table(id = "OGD_krebs_ext_KREBS_1")
-r2$meta
-r2$field()
-r2$field(1)
-r2$data
+## data
+x$data_raw \%>\% head()
+x$data     \%>\% head()
 
-r3 <- od_table(id = "OGD_konjunkturmonitor_KonMon_1")
-r3$meta
-r3$field()
-r3$field(1)
-r3$data
+## switch language
+x$language <- "de"
+x$data     \%>\% head()
 
+## tabulation: see `?od_tabulate` for more examples
+x$tabulate("Reporting year", "Sex") \%>\% head()
+
+## other interesting tables
+od_table("OGD_veste309_Veste309_1")
+od_table("OGD_konjunkturmonitor_KonMon_1")
 od_table("OGD_krankenbewegungen_ex_LEISTUNGEN_1")
 od_table("OGD_f1741_HH_Proj_1")
 od_table("OGD_veste303_Veste203_1")

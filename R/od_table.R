@@ -83,37 +83,53 @@ od_table_class <- R6::R6Class(
   )
 )
 
-#' Create a table-instance for a open-data Dataset (data.statistik.gv.at)
+#' Create a table-instance from an open-data dataset
+#'
+#' @description
 #'
 #' [od_table()] returns an `R6`-class object containing all relevant data
-#' and metadata information to be used as input for graphSTAT.
+#' and metadata from data.statistik.gv.at.
+#'
+#' * `$data_raw` contains the contents of `{id}.csv`
+#' * `$meta` includes information from `{id}_HEADER.csv`
+#' * `$field(i)` contains information from `{id}_{field_code}.csv`
 #'
 #' @param id the name of the data-set that should be accessed
+#' @param language the language to be used for labelling data: `"en"` or `"de"`
 #'
-#' @return An object of class `od_table` which contains the return
-#'   value of the [httr::POST()] request in `obj$response`. The object also
-#'   provides member functions to parse this response object.
+#' @details
+#' The returned abject also provides certain functionalities to label and
+#' aggreate the dataset.
+#' * `object$data` takes `object$data_raw` and applies labels based on
+#'   the metadata.
+#' * `object$tabulate()` also applies labeling and aggregates the
+#'   dataset. See [od_tabulate()] for more information.
+#' * `object$language` can be used to get or set the language of the dataset.
+#'   This affects the labelling behavior
 #' @export
 #' @examples
-#' r1 <- od_table(id = "OGD_veste309_Veste309_1")
+#' x <- od_table("OGD_krebs_ext_KREBS_1")
 #'
-#' r1$meta
-#' r1$field()
-#' r1$field(1)
-#' r1$data
+#' ## metadata
+#' x
+#' x$meta
+#' x$field(4)
+#' x$field(3)
 #'
-#' r2 <- od_table(id = "OGD_krebs_ext_KREBS_1")
-#' r2$meta
-#' r2$field()
-#' r2$field(1)
-#' r2$data
+#' ## data
+#' x$data_raw %>% head()
+#' x$data     %>% head()
 #'
-#' r3 <- od_table(id = "OGD_konjunkturmonitor_KonMon_1")
-#' r3$meta
-#' r3$field()
-#' r3$field(1)
-#' r3$data
+#' ## switch language
+#' x$language <- "de"
+#' x$data     %>% head()
 #'
+#' ## tabulation: see `?od_tabulate` for more examples
+#' x$tabulate("Reporting year", "Sex") %>% head()
+#'
+#' ## other interesting tables
+#' od_table("OGD_veste309_Veste309_1")
+#' od_table("OGD_konjunkturmonitor_KonMon_1")
 #' od_table("OGD_krankenbewegungen_ex_LEISTUNGEN_1")
 #' od_table("OGD_f1741_HH_Proj_1")
 #' od_table("OGD_veste303_Veste203_1")
@@ -140,5 +156,5 @@ print.od_table <- function(x, ...) {
   cat("Measures:  ", with_wrap(x$meta$measures, lang),"\n")
   cat("Fields:    ", with_wrap(x$meta$fields, lang), "\n\n")
   cat("Request:   ", format(x$times$request), "\n")
-  cat("STATcubeR: ", x$scr_version)
+  cat("STATcubeR: ", x$scr_version, "\n")
 }
