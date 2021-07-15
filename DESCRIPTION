@@ -25,6 +25,5 @@ Suggests:
     rmarkdown,
     data.tree,
     rstudioapi,
-    openssl,
     xml2
 URL: https://github.com/statistikat/STATcubeR
