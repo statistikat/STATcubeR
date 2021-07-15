@@ -121,19 +121,32 @@ od_create_data <- function(json, id = od_json_get_id(json), lang = c("en", "de")
     labels <- od_get_labels(fields[[i]], lang = lang)
     fields[[i]]$parsed <- switch(
       meta$fields$type[i],
-      Category = factor(labels, labels),
+      Category = labels,
       sc_field_parse_time(fields[[i]]$code)
     )
+    j <- match(meta$fields$code[i], names(dat))
+    dat[[j]] <- factor(dat[[j]], fields[[i]]$code)
   }
-
-  for (i in seq_along(meta$fields$code)) {
-    code <- meta$fields$code[i]
-    fld <- fields[[i]]
-    dat[[code]] <- fld$parsed[match(dat[[code]], fld$code)]
-  }
-
-  idx <- match(header$code, colnames(dat))
-  colnames(dat)[idx] <- od_get_labels(header, lang)
 
   list(data = dat, meta = meta, fields = fields)
 }
+
+od_label_data <- function(table, x = table$data_raw) {
+  lang <- table$language
+
+  for (i in which(table$meta$fields$code %in% names(x))) {
+    field <- table$field(i)
+    code <- table$meta$fields$code[i]
+    if (is.character(field$parsed))
+      levels(x[[code]]) <- field$parsed
+    else
+      x[[code]] <- field$parsed[x[[code]]]
+  }
+
+  idx <- match(names(x), c(table$meta$measures$code, table$meta$fields$code))
+  names(x) <- c(od_get_labels(table$meta$measures, lang),
+                od_get_labels(table$meta$fields, lang))[idx]
+
+  x
+}
+

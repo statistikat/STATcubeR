@@ -99,9 +99,10 @@ od_table_class <- R6::R6Class(
         return(self$meta$fields[, c("code", "total_code")])
       stopifnot(all(names(args) %in% self$meta$fields$code))
       for (i in seq_along(args)) {
-        j <- which(self$meta$fields$code %in% names(args)[i])
-        stopifnot(args[[i]] %in% self$field(j)$code)
-        private$cache$meta$fields$total_code[j] <- args[[i]]
+        arg <- args[[i]]
+        j <- match(names(args)[i], self$meta$fields$code)
+        stopifnot(is.na(arg) | arg %in% self$field(j)$code)
+        private$cache$meta$fields$total_code[j] <- arg
       }
     }
   ),
@@ -112,8 +113,11 @@ od_table_class <- R6::R6Class(
     meta = function() {
       private$cache$meta
     },
-    data = function() {
+    data_raw = function() {
       private$cache$data
+    },
+    data = function() {
+      od_label_data(self)
     },
     scr_version = function() private$version,
     times = function() { list(
@@ -125,6 +129,12 @@ od_table_class <- R6::R6Class(
       else {
         value <- match.arg(value, c("en", "de"))
         private$lang <- value
+        for (i in seq_along(private$cache$fields)) {
+          field <- private$cache$fields[[i]]
+          if (is.character(field$parsed)) {
+            private$cache$fields[[i]]$parsed <- od_get_labels(field, value)
+          }
+        }
       }
     }
   ),
