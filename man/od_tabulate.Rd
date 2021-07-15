@@ -4,48 +4,73 @@
 \alias{od_tabulate}
 \title{Turn od_table objects into tidy data frames}
 \usage{
-od_tabulate(
-  table,
-  ...,
-  .list = NULL,
-  parse_time = TRUE,
-  round = TRUE,
-  recode_zeros = TRUE
-)
+od_tabulate(table, ...)
 }
 \arguments{
 \item{table}{An object of class \code{od_table}}
 
 \item{...}{Names of measures and/or fields}
-
-\item{.list}{allows to define the arguments for \code{...} as a character vector.}
-
-\item{parse_time}{should field variables of type time be converted
-into a \code{POSIXct} format? (currently not respected)}
-
-\item{round}{use the precision of each measure for rounding (currently not
-respected as this meta-information is not available)}
-
-\item{recode_zeros}{turn zero values into \code{NA}s prior to rounding}
 }
 \description{
 \code{od_tabulate()} extracts the data in the table and turns it into a tidy
-data.frame. It is basically a copy of \code{\link[=sc_tabulate]{sc_tabulate()}}. Additionally,
-certain STATcube conventions are applied
-\itemize{
-\item zeros are recoded to \code{NA}s
-\item rounding is done according to the precision of each measure
-}
+\code{data.frame}. It is basically a copy of \code{\link[=sc_tabulate]{sc_tabulate()}}.
 
 the \code{...} argument decides which measures and/or fields should be included
 in the output. If no measures are given, all measures are included. The same
 is true for fields.
 }
+\details{
+Aggregation is done as follows
+\itemize{
+\item First, all columns that priovide a total code via \code{table$total_codes()}
+will be used to filter for \code{column == total_code} or \code{column != toal_code}
+\item Then, the remaining data is aggregated using \code{\link[=rowSums]{rowSums()}}
+}
+
+The ellipsis (\code{...}) supports partial matching of codes, english labels and
+german labels. See Examples
+}
 \examples{
 \dontrun{
-table <- od_table(od_list()$id[1])
+table <- od_table("OGD_veste309_Veste309_1")
 
+# no arguments -> same output as `table$data`
 od_tabulate(table)
-od_tabulate(table, "Geschlecht", "Staatsangehörigkeit")
+
+# provide some fields -> aggregate to keep only these fields
+od_tabulate(table, "Sex", "Citizenship")
+
+# provide some measures -> drop all other measures from the output
+od_tabulate(table, "Arithmetic mean")
+
+# mixture of measures and fields  -> keep exactly those columns
+od_tabulate(table, "Sex", "Arithmetic mean")
+
+## define total codes
+table$total_codes(
+  `C-A11-0` = "A11-1",
+  `C-STAATS-0` = "STAATS-9",
+  `C-VEBDL-0` = "VEBDL-10",
+  `C-BESCHV-0` = "BESCHV-1"
+)
+
+# filter for totals in `Region (NUTS2)` and `Form of employment`. Drop totals
+# in `Sex` and `Citizenship`.
+od_tabulate(table, "Sex", "Citizenship")
+
+## switch language
+table$language <- "de"
+od_tabulate(table, "Sex", "Citizenship")
+
+## `...` matches for codes, english labels and german labels
+od_tabulate(table, "C-A11-0", "Citizenship", "2. Quartil (Median)")
+
+## Keep totals in the output by removing total codes
+od_tabulate(table, "C-A11-0")      # -> 2 rows: "male" "female"
+table$total_codes(`C-A11-0` = NA)
+od_tabulate(table, "C-A11-0")      # -> 3 rows: "total", "male", "female"
+
+## table$tabulate(...) is an alias for sc_tabulate(table, ...)
+table$tabulate("C-A11-0")
 }
 }
