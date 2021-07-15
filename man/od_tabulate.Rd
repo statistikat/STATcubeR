@@ -31,7 +31,6 @@ The ellipsis (\code{...}) supports partial matching of codes, english labels and
 german labels. See Examples
 }
 \examples{
-\dontrun{
 table <- od_table("OGD_veste309_Veste309_1")
 
 # no arguments -> same output as `table$data`
@@ -72,5 +71,4 @@ od_tabulate(table, "C-A11-0")      # -> 3 rows: "total", "male", "female"
 
 ## table$tabulate(...) is an alias for sc_tabulate(table, ...)
 table$tabulate("C-A11-0")
-}
 }

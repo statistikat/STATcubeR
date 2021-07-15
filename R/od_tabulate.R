@@ -21,7 +21,6 @@
 #' @param table An object of class `od_table`
 #' @param ... Names of measures and/or fields
 #' @examples
-#' \dontrun{
 #' table <- od_table("OGD_veste309_Veste309_1")
 #'
 #' # no arguments -> same output as `table$data`
@@ -62,7 +61,6 @@
 #'
 #' ## table$tabulate(...) is an alias for sc_tabulate(table, ...)
 #' table$tabulate("C-A11-0")
-#' }
 #' @export
 od_tabulate <- function(table, ...) {
   stopifnot(inherits(table, "od_table"))
