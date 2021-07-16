@@ -19,6 +19,8 @@ od_table_class <- R6::R6Class(
       invisible(self)
     },
     field = function(i = 1) {
+      if (!is.numeric(i))
+        i <- od_match_codes(self$meta$fields, i)
       private$cache$fields[[i]]
     },
     tabulate = function(...) {
@@ -28,12 +30,14 @@ od_table_class <- R6::R6Class(
       args <- list(...)
       if (length(args) == 0)
         return(self$meta$fields[, c("code", "total_code")])
-      stopifnot(all(names(args) %in% self$meta$fields$code))
-      for (i in seq_along(args)) {
-        arg <- args[[i]]
-        j <- match(names(args)[i], self$meta$fields$code)
-        stopifnot(is.na(arg) | arg %in% self$field(j)$code)
-        private$cache$meta$fields$total_code[j] <- arg
+      keys <- od_match_codes(self$meta$fields, names(args), single = FALSE)
+      values <- unlist(args)
+      for (i in seq_along(keys)) {
+        key <- keys[i]
+        value <- values[i]
+        if (!is.na(value))
+          value <- od_match_codes(self$field(key), value, codes = TRUE)
+        private$cache$meta$fields$total_code[key] <- value
       }
     }
   ),
@@ -113,7 +117,7 @@ od_table_class <- R6::R6Class(
 #' ## metadata
 #' x
 #' x$meta
-#' x$field(4)
+#' x$field("Sex")
 #' x$field(3)
 #'
 #' ## data
@@ -122,6 +126,7 @@ od_table_class <- R6::R6Class(
 #'
 #' ## switch language
 #' x$language <- "de"
+#' x
 #' x$data     %>% head()
 #'
 #' ## tabulation: see `?od_tabulate` for more examples

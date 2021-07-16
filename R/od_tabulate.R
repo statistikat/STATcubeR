@@ -13,13 +13,14 @@
 #'
 #' * First, all columns that priovide a total code via `table$total_codes()`
 #'   will be used to filter for `column == total_code` or `column != toal_code`
-#' * Then, the remaining data is aggregated using [rowSums()]
+#' * Then, the remaining data is aggregated using [rowsum()]
 #'
 #' The ellipsis (`...`) supports partial matching of codes, english labels and
 #' german labels. See Examples
 #'
 #' @param table An object of class `od_table`
 #' @param ... Names of measures and/or fields
+#' @param .list allows to define the arguments for `...` as a character vector
 #' @param raw If `FALSE` (the default), apply labeling to the dataset.
 #'   Otherwise, return codes.
 #' @param parse_time Should time variables be converted into a `Date` format?
@@ -47,6 +48,14 @@
 #'   `C-BESCHV-0` = "BESCHV-1"
 #' )
 #'
+#' ## alternatively, use partial matching to define totals
+#' table$total_codes(
+#'   Sex = "Sum total",
+#'   Citizenship = "Total",
+#'   Region = "Total",
+#'   `Form of employment` = "Total"
+#' )
+#'
 #' # filter for totals in `Region (NUTS2)` and `Form of employment`. Drop totals
 #' # in `Sex` and `Citizenship`.
 #' od_tabulate(table, "Sex", "Citizenship")
@@ -66,16 +75,12 @@
 #' ## table$tabulate(...) is an alias for sc_tabulate(table, ...)
 #' table$tabulate("C-A11-0")
 #' @export
-od_tabulate <- function(table, ..., raw = FALSE, parse_time = TRUE) {
+od_tabulate <- function(table, ..., .list = NULL, raw = FALSE, parse_time = TRUE) {
   stopifnot(inherits(table, "od_table"))
-  codes <- od_match_codes(table, c(...))
+  codes <- od_tabulate_handle_dots(table, ..., .list = .list)
   fields <- codes$fields
   measures <- codes$measures
   mf <- table$meta$fields
-  if (length(measures) == 0)
-    measures <- table$meta$measures$code
-  if (length(fields) == 0)
-    fields <- mf$code
   x <- table$data_raw
   x <- x[, setdiff(names(x), setdiff(table$meta$measures$code, measures))]
   fields_to_aggregate <- setdiff(mf$code, fields)
@@ -108,24 +113,35 @@ od_tabulate <- function(table, ..., raw = FALSE, parse_time = TRUE) {
   x
 }
 
-od_match_codes <- function(table, patterns) {
-  fields <- table$meta$fields
-  measures <- table$meta$measures
-  flds <- pmatch(patterns, fields$code)
-  msrs <- pmatch(patterns, measures$code)
-  flds[is.na(flds)] <- pmatch(patterns[is.na(flds)], fields$label)
-  msrs[is.na(msrs)] <- pmatch(patterns[is.na(msrs)], measures$label)
-  flds[is.na(flds)] <- pmatch(patterns[is.na(flds)], fields$label_en)
-  msrs[is.na(msrs)] <- pmatch(patterns[is.na(msrs)], measures$label_en)
-
-  no_match <- is.na(msrs) & is.na(flds)
-  if (any(no_match)) {
-    stop("could not match the following patterns: ",
-         paste(shQuote(patterns[no_match]), collapse = ", "), call. = FALSE)
-  }
+od_tabulate_handle_dots <- function(table, ..., .list) {
+  if (is.null(.list))
+    .list <- c(...)
+  fields <- od_match_codes(table$meta$fields, .list, dots = TRUE)
+  measures <- od_match_codes(table$meta$measures, .list, dots = TRUE)
+  no_match <- is.na(fields) & is.na(measures)
+  if (any(no_match))
+    stop("Unable to match pattern ", shQuote(.list[no_match][1]), call. = FALSE)
+  if (all(is.na(measures)))
+    measures <- table$meta$measures$code
+  if (all(is.na(fields)))
+    fields <- table$meta$fields$code
   list(
-    measures = table$meta$measures$code[stats::na.omit(msrs)],
-    fields = table$meta$fields$code[stats::na.omit(flds)]
+    measures = measures[!is.na(measures)],
+    fields = fields[!is.na(fields)]
   )
 }
 
+od_match_codes <- function(dict, patterns, dots = FALSE, codes = dots,
+                           require_match = !dots, single = !dots) {
+  stopifnot(is.character(patterns))
+  if (single && length(patterns) != 1)
+    stop("Multiple patterns were provided", call. = TRUE)
+  matches <- pmatch(patterns, dict$code)
+  matches[is.na(matches)] <- pmatch(patterns[is.na(matches)], dict$label)
+  matches[is.na(matches)] <- pmatch(patterns[is.na(matches)], dict$label_en)
+  if (require_match && anyNA(matches))
+    stop("Could not match pattern ", shQuote(patterns[is.na(matches)][1]), call. = FALSE)
+  if (codes)
+    matches <- dict$code[matches]
+  matches
+}

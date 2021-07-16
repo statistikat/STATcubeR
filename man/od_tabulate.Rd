@@ -4,12 +4,14 @@
 \alias{od_tabulate}
 \title{Turn od_table objects into tidy data frames}
 \usage{
-od_tabulate(table, ..., raw = FALSE, parse_time = TRUE)
+od_tabulate(table, ..., .list = NULL, raw = FALSE, parse_time = TRUE)
 }
 \arguments{
 \item{table}{An object of class \code{od_table}}
 
 \item{...}{Names of measures and/or fields}
+
+\item{.list}{allows to define the arguments for \code{...} as a character vector}
 
 \item{raw}{If \code{FALSE} (the default), apply labeling to the dataset.
 Otherwise, return codes.}
@@ -30,7 +32,7 @@ Aggregation is done as follows
 \itemize{
 \item First, all columns that priovide a total code via \code{table$total_codes()}
 will be used to filter for \code{column == total_code} or \code{column != toal_code}
-\item Then, the remaining data is aggregated using \code{\link[=rowSums]{rowSums()}}
+\item Then, the remaining data is aggregated using \code{\link[=rowsum]{rowsum()}}
 }
 
 The ellipsis (\code{...}) supports partial matching of codes, english labels and
@@ -57,6 +59,14 @@ table$total_codes(
   `C-STAATS-0` = "STAATS-9",
   `C-VEBDL-0` = "VEBDL-10",
   `C-BESCHV-0` = "BESCHV-1"
+)
+
+## alternatively, use partial matching to define totals
+table$total_codes(
+  Sex = "Sum total",
+  Citizenship = "Total",
+  Region = "Total",
+  `Form of employment` = "Total"
 )
 
 # filter for totals in `Region (NUTS2)` and `Form of employment`. Drop totals

@@ -38,7 +38,7 @@ x <- od_table("OGD_krebs_ext_KREBS_1")
 ## metadata
 x
 x$meta
-x$field(4)
+x$field("Sex")
 x$field(3)
 
 ## data
@@ -47,6 +47,7 @@ x$data     \%>\% head()
 
 ## switch language
 x$language <- "de"
+x
 x$data     \%>\% head()
 
 ## tabulation: see `?od_tabulate` for more examples
