@@ -1,0 +1,155 @@
+od_url <- function(id) {
+  baseurl <- "https://data.statistik.gv.at"
+  file.path(baseurl, paste0("ogd/json?dataset=", id))
+}
+
+od_attr <- function(json) {
+  desc <- json$extras$attribute_description %>% paste0(";", .) %>% gsub("; ", ";", .)
+  index_c <- gregexpr(";C-", desc) %>% .[[1]]
+  index_f <- gregexpr(";F-", desc) %>% .[[1]]
+  index_code <- sort(c(index_c, index_f))
+  index_colon <- gregexpr(":", desc) %>% .[[1]]
+  index_end <- c(index_code[-1], 1000000L) - 1
+  code <- character(0)
+  label = character(0)
+  for (i in seq_along(index_code)) {
+    next_col <- min(index_colon[index_colon > index_code[i]])
+    code <- c(code, substr(desc, index_code[i] + 1, next_col - 1))
+    label <- c(label, substr(desc, next_col + 1, index_end[i]))
+  }
+  data.frame(label = label, code = code)
+}
+
+od_json_get <- function(id, check = TRUE) {
+  if (check && substr(id, 1, 4) != "OGD_")
+    stop("Datasets ids must begin with \"OGD_\" : ", shQuote(id), call. = FALSE)
+  r <- httr::GET(url =  od_url(id = id))
+  if (length(r$content) == 0)
+    stop(shQuote(id), ": invalid dataset id", call. = FALSE)
+  httr::content(r)
+}
+
+od_json_get_id <- function(json) {
+  json$resources[[1]]$name
+}
+
+od_cache_up_to_date <- function(json, id = od_json_get_id(json)) {
+  cache_file <- paste0(sc_cache_dir(), "/open_data/", id, ".csv")
+  if (!file.exists(cache_file))
+    return(FALSE)
+  last_modified_server <- json$resources[[1]]$last_modified %>%
+    as.POSIXct(format = "%Y-%m-%dT%H:%M:%OS")
+  last_modified_cache <- file.info(cache_file)$mtime
+  last_modified_cache > last_modified_server
+}
+
+od_get_csv <- function(id, suffix = NULL, cache = TRUE, rename_vars = TRUE,
+                       strings_as_factors = FALSE) {
+  filename <- c(id, suffix) %>% paste(collapse = "_") %>% paste0(".csv")
+  cache_file <- paste0(sc_cache_dir(), "/open_data/", filename)
+  dir.create(dirname(cache_file), recursive = TRUE, showWarnings = FALSE)
+  if (!cache || !file.exists(cache_file))
+    utils::download.file(
+      paste0("https://data.statistik.gv.at/data/", filename),
+      cache_file, quiet = TRUE
+    )
+  x <- utils::read.csv2(cache_file, na.strings = c("", "NA", ":"),
+                        check.names = FALSE, stringsAsFactors = strings_as_factors)
+  if (rename_vars && !is.null(suffix)) {
+    index_label_en <- ifelse(suffix == "HEADER", 3, 4)
+    x[, c(2,1,index_label_en)] %>% `names<-`(c("label", "code", "label_en"))
+  } else
+    x
+}
+
+od_get_labels <- function(x, lang = c("en", "de")) {
+  lang <- match.arg(lang)
+  if (lang == "de")
+    return(x$label)
+  out <- x$label_en
+  out[is.na(out) | out == ""] <- x$label[is.na(out) | out == ""]
+  out
+}
+
+od_create_data <- function(json, id = od_json_get_id(json), lang = c("en", "de")) {
+  lang <- match.arg(lang)
+  cache <- od_cache_up_to_date(json, id)
+  vars <- od_attr(json)
+  meta <- list(
+    database = data.frame(label = json$title, code = id,
+                          label_en = json$extras$en_title_and_desc),
+    measures = vars[substr(vars$code, 1, 1) == "F", ],
+    fields   = vars[substr(vars$code, 1, 1) == "C", ]
+  )
+
+  if (json$resources[[1]]$format != "csv")
+    stop("Dataset ", shQuote(id), ": invalid format", call. = FALSE)
+  if (length(json$resources) !=  2 + nrow(meta$fields))
+    stop("Dataset ", shQuote(id), ": unexpected resources field in json", call. = FALSE)
+
+  dat <- od_get_csv(id, cache = cache)
+  if (!setequal(names(dat), vars$code))
+    stop(shQuote(paste0(id, ".csv")), " and attribute description do not match", call. = FALSE)
+
+  header <- od_get_csv(id, "HEADER", cache = cache)
+  if (!identical(header$code, vars$code))
+    stop("HEADER and attribute description do not match", call. = FALSE)
+  if (!identical(header$label, vars$label)) {
+    message("HEADER and attribute description do not match")
+    meta$measures = header[substr(header$code, 1, 1) == "F", ]
+    meta$fields   = header[substr(header$code, 1, 1) == "C", ]
+  }
+  meta$measures$label_en <- header$label_en[substr(header$code, 1, 1) == "F"]
+  meta$fields$label_en <- header$label_en[substr(header$code, 1, 1) == "C"]
+
+  fields <- lapply(meta$fields$code, function(code) {
+    fld <- od_get_csv(id, code, cache = cache)
+    udc <- unique(dat[[code]])
+    fld$code <- as.character(fld$code)
+    stopifnot(all(udc %in% fld$code))
+    if (length(udc) != nrow(fld))
+      message("dropping unused levels in ", shQuote(code))
+    fld[fld$code %in% udc, ]
+  })
+
+  meta$measures$NAs <- sapply(dat[meta$measures$code], function(x) sum(is.na(x)))
+  meta$fields$nitems <- sapply(fields, nrow)
+  meta$fields$type <- sapply(fields, function(x) sc_field_type(x$code))
+  meta$fields$total_code <- NA_character_
+
+  for (i in seq_along(fields)) {
+    labels <- od_get_labels(fields[[i]], lang = lang)
+    fields[[i]]$parsed <- switch(
+      meta$fields$type[i],
+      Category = labels,
+      sc_field_parse_time(fields[[i]]$code)
+    )
+    j <- match(meta$fields$code[i], names(dat))
+    dat[[j]] <- factor(dat[[j]], fields[[i]]$code)
+  }
+
+  list(data = dat, meta = meta, fields = fields)
+}
+
+od_label_data <- function(table, x = table$data_raw, parse_time = TRUE) {
+  lang <- table$language
+
+  for (i in which(table$meta$fields$code %in% names(x))) {
+    field <- table$field(i)
+    code <- table$meta$fields$code[i]
+    if (is.character(field$parsed))
+      levels(x[[code]]) <- field$parsed
+    else {
+      if (parse_time)
+        x[[code]] <- field$parsed[x[[code]]]
+      else
+        levels(x[[code]]) <- od_get_labels(field, lang)
+    }
+  }
+
+  idx <- match(names(x), c(table$meta$measures$code, table$meta$fields$code))
+  names(x) <- c(od_get_labels(table$meta$measures, lang),
+                od_get_labels(table$meta$fields, lang))[idx]
+
+  x
+}

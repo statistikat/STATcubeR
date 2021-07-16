@@ -41,8 +41,17 @@ sc_cache_dir <- function() {
   cache_dir
 }
 
+sc_checksum <- function(x) {
+  temp_file <- tempfile()
+  on.exit(file.remove(temp_file))
+  file_connection <- file(temp_file, "w")
+  serialize(x, file_connection)
+  close(file_connection)
+  as.character(tools::md5sum(temp_file))
+}
+
 sc_cache_file <- function(params, ext = ".rds") {
-  openssl::md5(serialize(params, NULL)) %>%
+  sc_checksum(params) %>%
     paste0(sc_cache_dir(), "/", ., ext)
 }
 
