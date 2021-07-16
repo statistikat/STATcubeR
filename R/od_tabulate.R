@@ -20,6 +20,10 @@
 #'
 #' @param table An object of class `od_table`
 #' @param ... Names of measures and/or fields
+#' @param raw If `FALSE` (the default), apply labeling to the dataset.
+#'   Otherwise, return codes.
+#' @param parse_time Should time variables be converted into a `Date` format?
+#'   Ignored if `raw` is set to `TRUE`.
 #' @examples
 #' table <- od_table("OGD_veste309_Veste309_1")
 #'
@@ -62,7 +66,7 @@
 #' ## table$tabulate(...) is an alias for sc_tabulate(table, ...)
 #' table$tabulate("C-A11-0")
 #' @export
-od_tabulate <- function(table, ...) {
+od_tabulate <- function(table, ..., raw = FALSE, parse_time = TRUE) {
   stopifnot(inherits(table, "od_table"))
   codes <- od_match_codes(table, c(...))
   fields <- codes$fields
@@ -99,7 +103,9 @@ od_tabulate <- function(table, ...) {
       rowsum(x[measures], group = grouping_var, reorder = FALSE)
     )
   }
-  od_label_data(table, x)
+  if (!raw)
+    x <- od_label_data(table, x, parse_time)
+  x
 }
 
 od_match_codes <- function(table, patterns) {

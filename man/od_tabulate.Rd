@@ -4,12 +4,18 @@
 \alias{od_tabulate}
 \title{Turn od_table objects into tidy data frames}
 \usage{
-od_tabulate(table, ...)
+od_tabulate(table, ..., raw = FALSE, parse_time = TRUE)
 }
 \arguments{
 \item{table}{An object of class \code{od_table}}
 
 \item{...}{Names of measures and/or fields}
+
+\item{raw}{If \code{FALSE} (the default), apply labeling to the dataset.
+Otherwise, return codes.}
+
+\item{parse_time}{Should time variables be converted into a \code{Date} format?
+Ignored if \code{raw} is set to \code{TRUE}.}
 }
 \description{
 \code{od_tabulate()} extracts the data in the table and turns it into a tidy
