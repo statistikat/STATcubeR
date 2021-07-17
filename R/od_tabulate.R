@@ -133,7 +133,7 @@ od_tabulate_handle_dots <- function(table, ..., .list) {
 
 od_match_codes <- function(dict, patterns, dots = FALSE, codes = dots,
                            require_match = !dots, single = !dots) {
-  stopifnot(is.character(patterns))
+  stopifnot(is.character(patterns) || length(patterns) == 0)
   if (single && length(patterns) != 1)
     stop("Multiple patterns were provided", call. = TRUE)
   matches <- pmatch(patterns, dict$code)
