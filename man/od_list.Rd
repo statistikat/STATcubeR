@@ -9,7 +9,7 @@ od_list()
 \value{
 a \code{data.frame} with two columns
 \itemize{
-\item \code{"gruppe"}: Grouping under which a dataset is listed
+\item \code{"category"}: Grouping under which a dataset is listed
 \item \code{"id"}: Name of the dataset which can later be used in
 \code{\link[=od_table]{od_table()}}
 \item \code{"label"}: Description of the dataset
@@ -24,5 +24,5 @@ some datasets are pulbished under multiple groups
 }
 \examples{
 df <- od_list()
-subset(df, df$gruppe == "Arbeit")
+subset(df, category == "Arbeit")
 }
