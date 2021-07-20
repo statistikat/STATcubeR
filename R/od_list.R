@@ -5,18 +5,18 @@
 #'
 #' @details some datasets are pulbished under multiple groups
 #' @return a `data.frame` with two columns
-#' - `"gruppe"`: Grouping under which a dataset is listed
+#' - `"category"`: Grouping under which a dataset is listed
 #' - `"id"`: Name of the dataset which can later be used in
 #' [od_table()]
 #' - `"label"`: Description of the dataset
 #' @export
 #' @examples
 #' df <- od_list()
-#' subset(df, df$gruppe == "Arbeit")
+#' subset(df, category == "Arbeit")
 od_list <- function() {
   url <- "https://data.statistik.gv.at/web/catalog.jsp"
   r <- httr::GET(url)
-  if (r$status_code != 200) {
+  if (httr::http_error(r)) {
     stop("Error while reading ", shQuote(url), call. = FALSE)
   }
 
@@ -34,16 +34,19 @@ od_list <- function() {
 
   # ids
   df <- data.frame(
-    gruppe = "NA",
+    category = "NA",
     id = el %>% xml2::xml_attr("aria-label"),
-    label = el %>% xml2::xml_text()
+    label = el %>% xml2::xml_text(),
+    stringsAsFactors = FALSE
   )
 
   tt <- diff(c(which(is.na(df$id)), nrow(df) + 1))
-  df$gruppe <- rep(grp, tt)
+  df$category <- rep(grp, tt)
   df <- df[!is.na(df$id), ]
   df <- df[!duplicated(df$id), ]
+  df <- df[substr(df$id, 1, 4) == "OGD_", ]
+  df <- df[!(df$id %in% od_resource_blacklist), ]
   rownames(df) <- NULL
+  attr(df, "od") <- r$times[["total"]]
   df
 }
-

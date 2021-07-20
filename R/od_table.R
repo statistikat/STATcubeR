@@ -7,9 +7,9 @@ od_table_class <- R6::R6Class(
       stopifnot(rlang::is_scalar_character(id))
       private$lang <- language
       private$id <- id
-      json <- od_json_get(id)
+      json <- od_json(id)
       private$json <- json
-      res <- od_create_data(json, id = id, lang = language)
+      res <- od_create_data(id, json, language)
       if (!is.null(res)) {
         attr(res, "time") <- as.numeric(difftime(Sys.time(), stime, unit = "secs"))
       }
@@ -71,6 +71,9 @@ od_table_class <- R6::R6Class(
           }
         }
       }
+    },
+    resources = function() {
+      private$cache$resources
     }
   ),
   private = list(
@@ -143,8 +146,9 @@ od_table <- function(id, language = c("en", "de")) {
   od_table_class$new(id = id, language = language)
 }
 
-with_wrap <- function(x, lang) {
-  x <- od_get_labels(x, lang)
+with_wrap <- function(x, lang, label = TRUE) {
+  if (label)
+    x <- od_get_labels(x, lang)
   if (length(x) > 10)
     x <- c(x[1:10], "...")
   x <- paste(x, collapse = ", ")
@@ -156,7 +160,7 @@ with_wrap <- function(x, lang) {
 print.od_table <- function(x, ...) {
   col_lang <- ifelse(x$language == "de", "label", "label_en")
   lang <- x$language
-  cat("An object of class \033[1mod_table\033[22m\n\n")
+  cat("An object of class od_table\n\n")
   cat("Database:  ", with_wrap(x$meta$database, lang), "\n")
   cat("Measures:  ", with_wrap(x$meta$measures, lang),"\n")
   cat("Fields:    ", with_wrap(x$meta$fields, lang), "\n\n")
