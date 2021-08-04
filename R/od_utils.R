@@ -76,7 +76,8 @@ od_create_data <- function(id, json = od_json(id), lang = c("en", "de")) {
     size = od$size, download = od$download, parsed = NA), resources[1:6]
   )
 
-  list(data = dat, meta = meta, fields = fields, resources = resources)
+  list(data = dat, meta = meta, fields = fields, resources = resources,
+       header = header)
 }
 
 od_label_data <- function(table, x = table$data_raw, parse_time = TRUE) {

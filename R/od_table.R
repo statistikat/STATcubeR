@@ -54,6 +54,9 @@ od_table_class <- R6::R6Class(
     data = function() {
       od_label_data(self)
     },
+    header = function() {
+      private$cache$header
+    },
     scr_version = function() private$version,
     times = function() { list(
       request = private$request_time
