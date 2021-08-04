@@ -4,7 +4,14 @@
 \alias{od_tabulate}
 \title{Turn od_table objects into tidy data frames}
 \usage{
-od_tabulate(table, ..., .list = NULL, raw = FALSE, parse_time = TRUE)
+od_tabulate(
+  table,
+  ...,
+  .list = NULL,
+  raw = FALSE,
+  parse_time = TRUE,
+  recode_zeros = FALSE
+)
 }
 \arguments{
 \item{table}{An object of class \code{od_table}}

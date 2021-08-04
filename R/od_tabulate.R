@@ -75,7 +75,8 @@
 #' ## table$tabulate(...) is an alias for sc_tabulate(table, ...)
 #' table$tabulate("C-A11-0")
 #' @export
-od_tabulate <- function(table, ..., .list = NULL, raw = FALSE, parse_time = TRUE) {
+od_tabulate <- function(table, ..., .list = NULL, raw = FALSE, parse_time = TRUE,
+                        recode_zeros = FALSE) {
   stopifnot(inherits(table, "od_table"))
   codes <- od_tabulate_handle_dots(table, ..., .list = .list)
   fields <- codes$fields
@@ -86,7 +87,8 @@ od_tabulate <- function(table, ..., .list = NULL, raw = FALSE, parse_time = TRUE
   fields_to_aggregate <- setdiff(mf$code, fields)
   has_total <- mf$code[!is.na(mf$total_code)]
   x <- x[, setdiff(names(x), setdiff(fields_to_aggregate, has_total))]
-
+  if (recode_zeros)
+    x[measures][0 == x[measures]] <- NA
   aggregate_via_total <- intersect(fields_to_aggregate, has_total)
   for (field_code in aggregate_via_total) {
     i <- match(field_code, mf$code)
