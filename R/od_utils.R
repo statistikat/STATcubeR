@@ -23,9 +23,9 @@ od_attr <- function(json) {
 od_get_labels <- function(x, lang = c("en", "de")) {
   lang <- match.arg(lang)
   if (lang == "de")
-    return(x$label)
+    return(x$label_de)
   out <- x$label_en
-  out[is.na(out) | out == ""] <- x$label[is.na(out) | out == ""]
+  out[is.na(out) | out == ""] <- x$label_de[is.na(out) | out == ""]
   out
 }
 
@@ -35,7 +35,7 @@ od_create_data <- function(id, json = od_json(id), lang = c("en", "de")) {
   dat <- resources$data[[1]]
   header <- resources$data[[2]]
   meta <- list(
-    database = data.frame(label = json$title, code = id,
+    database = data.frame(code = id, label = NA, label_de = json$title,
                           label_en = json$extras$en_title_and_desc),
     measures = header[substr(header$code, 1, 1) == "F", ],
     fields   = header[substr(header$code, 1, 1) == "C", ]
@@ -58,10 +58,9 @@ od_create_data <- function(id, json = od_json(id), lang = c("en", "de")) {
   meta$fields$total_code <- NA_character_
 
   for (i in seq_along(fields)) {
-    labels <- od_get_labels(fields[[i]], lang = lang)
     fields[[i]]$parsed <- switch(
       meta$fields$type[i],
-      Category = labels,
+      Category = NA_character_,
       sc_field_parse_time(fields[[i]]$code)
     )
     j <- match(meta$fields$code[i], names(dat))
@@ -81,8 +80,6 @@ od_create_data <- function(id, json = od_json(id), lang = c("en", "de")) {
 }
 
 od_label_data <- function(table, x = table$data_raw, parse_time = TRUE) {
-  lang <- table$language
-
   for (i in which(table$meta$fields$code %in% names(x))) {
     field <- table$field(i)
     code <- table$meta$fields$code[i]
@@ -92,13 +89,12 @@ od_label_data <- function(table, x = table$data_raw, parse_time = TRUE) {
       if (parse_time)
         x[[code]] <- field$parsed[x[[code]]]
       else
-        levels(x[[code]]) <- od_get_labels(field, lang)
+        levels(x[[code]]) <- field$label
     }
   }
 
   idx <- match(names(x), c(table$meta$measures$code, table$meta$fields$code))
-  names(x) <- c(od_get_labels(table$meta$measures, lang),
-                od_get_labels(table$meta$fields, lang))[idx]
+  names(x) <- c(table$meta$measures$label, table$meta$fields$label)[idx]
 
   x
 }

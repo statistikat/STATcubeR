@@ -77,7 +77,7 @@
 #' @export
 od_tabulate <- function(table, ..., .list = NULL, raw = FALSE, parse_time = TRUE,
                         recode_zeros = FALSE) {
-  stopifnot(inherits(table, "od_table"))
+  stopifnot(inherits(table, "sc_data"))
   codes <- od_tabulate_handle_dots(table, ..., .list = .list)
   fields <- codes$fields
   measures <- codes$measures
@@ -140,7 +140,6 @@ od_match_codes <- function(dict, patterns, dots = FALSE, codes = dots,
     stop("Multiple patterns were provided", call. = TRUE)
   matches <- pmatch(patterns, dict$code)
   matches[is.na(matches)] <- pmatch(patterns[is.na(matches)], dict$label)
-  matches[is.na(matches)] <- pmatch(patterns[is.na(matches)], dict$label_en)
   if (require_match && anyNA(matches))
     stop("Could not match pattern ", shQuote(patterns[is.na(matches)][1]), call. = FALSE)
   if (codes)

@@ -1,63 +1,29 @@
 od_table_class <- R6::R6Class(
   classname = "od_table",
+  inherit = sc_data_class,
   cloneable = FALSE,
   public = list(
     initialize = function(id, language) {
       stime <- Sys.time()
       stopifnot(rlang::is_scalar_character(id))
-      private$lang <- language
       private$id <- id
       json <- od_json(id)
       private$json <- json
       res <- od_create_data(id, json, language)
-      if (!is.null(res)) {
-        attr(res, "time") <- as.numeric(difftime(Sys.time(), stime, unit = "secs"))
-      }
       private$request_time <- stime
-      private$cache <- res
-      private$version <- sc_version()
+      private$cache <- res[c("header", "resources")]
+      super$initialize(res$data, res$meta, res$fields)
+      self$language <- language
       invisible(self)
-    },
-    field = function(i = 1) {
-      if (!is.numeric(i))
-        i <- od_match_codes(self$meta$fields, i)
-      private$cache$fields[[i]]
-    },
-    tabulate = function(...) {
-      od_tabulate(self, ...)
-    },
-    total_codes = function(...) {
-      args <- list(...)
-      if (length(args) == 0)
-        return(self$meta$fields[, c("code", "total_code")])
-      keys <- od_match_codes(self$meta$fields, names(args), single = FALSE)
-      values <- unlist(args)
-      for (i in seq_along(keys)) {
-        key <- keys[i]
-        value <- values[i]
-        if (!is.na(value))
-          value <- od_match_codes(self$field(key), value, codes = TRUE)
-        private$cache$meta$fields$total_code[key] <- value
-      }
     }
   ),
   active = list(
     raw = function() {
       private$json
     },
-    meta = function() {
-      private$cache$meta
-    },
-    data_raw = function() {
-      private$cache$data
-    },
-    data = function() {
-      od_label_data(self)
-    },
     header = function() {
       private$cache$header
     },
-    scr_version = function() private$version,
     times = function() { list(
       request = private$request_time
     )},
@@ -67,10 +33,14 @@ od_table_class <- R6::R6Class(
       else {
         value <- match.arg(value, c("en", "de"))
         private$lang <- value
-        for (i in seq_along(private$cache$fields)) {
-          field <- private$cache$fields[[i]]
+        private$p_meta$database$label <- od_get_labels(private$p_meta$database)
+        private$p_meta$measures$label <- od_get_labels(private$p_meta$measures)
+        private$p_meta$fields$label <- od_get_labels(private$p_meta$fields)
+        for (i in seq_along(private$p_fields)) {
+          field <- private$p_fields[[i]]
+          private$p_fields[[i]]$label <- od_get_labels(field, value)
           if (is.character(field$parsed)) {
-            private$cache$fields[[i]]$parsed <- od_get_labels(field, value)
+            private$p_fields[[i]]$parsed <- od_get_labels(field, value)
           }
         }
       }
@@ -85,11 +55,7 @@ od_table_class <- R6::R6Class(
     request_time = NULL,
     json = NULL,
     cache = NULL,
-    lang = NULL,
-    time = function() {
-      attributes(private$cache)$time
-    },
-    version = NULL
+    lang = NULL
   )
 )
 
@@ -149,9 +115,7 @@ od_table <- function(id, language = c("en", "de")) {
   od_table_class$new(id = id, language = language)
 }
 
-with_wrap <- function(x, lang, label = TRUE) {
-  if (label)
-    x <- od_get_labels(x, lang)
+with_wrap <- function(x) {
   if (length(x) > 10)
     x <- c(x[1:10], "...")
   x <- paste(x, collapse = ", ")
@@ -161,12 +125,10 @@ with_wrap <- function(x, lang, label = TRUE) {
 
 #' @export
 print.od_table <- function(x, ...) {
-  col_lang <- ifelse(x$language == "de", "label", "label_en")
-  lang <- x$language
   cat("An object of class od_table\n\n")
-  cat("Database:  ", with_wrap(x$meta$database, lang), "\n")
-  cat("Measures:  ", with_wrap(x$meta$measures, lang),"\n")
-  cat("Fields:    ", with_wrap(x$meta$fields, lang), "\n\n")
+  cat("Database:  ", with_wrap(x$meta$database$label), "\n")
+  cat("Measures:  ", with_wrap(x$meta$measures$label),"\n")
+  cat("Fields:    ", with_wrap(x$meta$fields$label), "\n\n")
   cat("Request:   ", format(x$times$request), "\n")
   cat("STATcubeR: ", x$scr_version, "\n")
 }

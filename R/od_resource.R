@@ -155,7 +155,11 @@ od_resources_check <- function(json) {
 od_normalize_columns <- function(x, suffix) {
   if (!is.null(suffix)) {
     index_label_en <- ifelse(suffix == "HEADER", 3, 4)
-    x <- x[, c(1,2,index_label_en)] %>% `names<-`(c("code", "label", "label_en"))
+    x <- x[, c(1, 2, 2, index_label_en)] %>%
+      `names<-`(c("code", "label", "label_de", "label_en"))
+    x$label <- NA_character_
+    x$label_en <- as.character(x$label_en)
+    x$label_de <- as.character(x$label_de)
     x$code <- as.character(x$code)
   }
   x
