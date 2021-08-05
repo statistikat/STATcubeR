@@ -41,14 +41,14 @@ sc_table_create_data <- function(x) {
   # labeling of fields
   for (i in seq_along(content$fields)) {
     field <- content$fields[[i]]
-    parsed <- sc_field_parse_category(field)
-    df[[i]] <- parsed[df[[i]]]
-    names(df)[i] <- field$label
+    codes <- sc_field_codes(field, split_minus = FALSE)
+    df[[i]] <- factor(df[[i]], labels = codes)
+    names(df)[i] <- get_var_code(field$uri)
   }
   # add measures
   for (i in seq_along(content$measures)) {
     measure <- content$measures[[i]]
-    label <- measure$label
+    label <- get_var_code(measure$measure)
     values <- unlist(content$cubes[[i]]$values)
     annotations <- get_annotations(x, i)
     df[[label]] <- values

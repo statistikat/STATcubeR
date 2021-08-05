@@ -17,6 +17,7 @@ sc_set_last_error <- function(x) {
 sc_table_class <- R6::R6Class(
   "sc_table",
   cloneable = FALSE,
+  inherit = sc_data_class,
   public = list(
     initialize = function(response, json = NULL, file = NULL) {
       stopifnot(inherits(response, "response"))
@@ -26,19 +27,21 @@ sc_table_class <- R6::R6Class(
         json <- jsonlite::toJSON(
           self$raw$query, auto_unbox = TRUE, pretty = TRUE) %>% toString()
       private$json_content <- sc_json_class$new(json, file)
+
+      meta <- sc_meta(self)
+      super$initialize(
+        data = sc_table_create_data(self),
+        meta = meta,
+        field = lapply(seq_len(nrow(meta$fields)), function(i) {
+          sc_meta_field(self, i)
+        })
+      )
     },
     update = function() {
       response <- sc_table_json_post(self$json$content)
       if (response$status_code != 200)
         stop(httr::content(response)$message)
-      private$httr_response <- response
-      private$cache <- NULL
-    },
-    field = function(i = 1) {
-      cache_id <- paste0("field_", i)
-      if (!(cache_id %in% names(private$cache)))
-        private$cache[[cache_id]] <- sc_meta_field(self, i)
-      private$cache[[cache_id]]
+      self$initialize(response, self$json$content, self$json$file)
     },
     tabulate = function(...) {
       sc_tabulate(self, ...)
@@ -53,18 +56,6 @@ sc_table_class <- R6::R6Class(
   active = list(
     response = function() private$httr_response,
     raw = function() httr::content(self$response),
-    meta = function() {
-      if (is.null(private$cache$meta))
-        private$cache$meta <- sc_meta(self)
-      private$cache$meta
-    },
-    data = function(val) {
-      if (!missing(val))
-        stop("data is read-only", call. = FALSE)
-      if (is.null(private$cache$data))
-        private$cache$data <- sc_table_create_data(self)
-      private$cache$data
-    },
     scr_version = function() private$version,
     annotation_legend = function() sc_annotation_legend(self),
     rate_limit = function() sc_table_rate_limit(self),
@@ -73,8 +64,7 @@ sc_table_class <- R6::R6Class(
   private = list(
     httr_response = NULL,
     version = NULL,
-    json_content = NULL,
-    cache = NULL
+    json_content = NULL
   )
 )
 

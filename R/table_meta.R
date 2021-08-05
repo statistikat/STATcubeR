@@ -2,7 +2,7 @@ globalVariables(".")
 
 get_var_code <- function(x, split_minus = FALSE) {
   if (is.null(x))
-    return("")
+    return("SC_TOTAL")
   res <- utils::tail(strsplit(x, ":")[[1]], 1)
   if (split_minus)
     res <- utils::tail(strsplit(res, "-")[[1]], 1)
@@ -45,9 +45,9 @@ sc_meta <- function(response) {
     data.frame(
       label = field$label,
       code = get_var_code(field$uri),
-      nitems = length(field$items) - has_total,
+      nitems = length(field$items),
       type = sc_field_type(field),
-      total = has_total,
+      total_code = ifelse(has_total, "SC_TOTAL", NA_character_),
       stringsAsFactors = FALSE
     )
   }) %>% do.call(rbind, .)

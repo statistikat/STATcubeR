@@ -35,53 +35,25 @@
 #' tt
 #' tt[['Import, Wert in Euro_a']] %>% str()
 #' @export
-sc_tabulate <- function(table, ..., .list = NULL, parse_time = TRUE, round = TRUE,
-                        recode_zeros = TRUE, annotations = FALSE) {
-  data <- table$data
-  if (!is.null(.list))
-    col_names <- .list
-  else
-    col_names <- c(...)
-  fields <- intersect(col_names, table$meta$fields$label)
-  if (length(fields) == 0)
-    fields <- table$meta$fields$label
-  measures <- intersect(col_names, table$meta$measures$label)
-  if (length(measures) == 0)
-    measures <- table$meta$measures$label
+sc_tabulate <- function(table, ..., .list = NULL, parse_time = TRUE,
+                        round = TRUE, recode_zeros = TRUE, annotations = FALSE,
+                        raw = FALSE) {
+  data <- od_tabulate(table, ..., .list = .list, parse_time = parse_time,
+                      recode_zeros = recode_zeros, raw = raw)
 
-  ## subset rows and columns
-  ind <- rep(TRUE, nrow(data))
-  for (field in table$meta$fields$label) {
-    if (field %in% fields)
-      ind <- ind & !is.na(data[[field]])
-    else
-      ind <- ind & is.na(data[[field]])
-  }
-  data <- data[ind, ] %>% .[, c(fields, measures)]
+  codes <- od_tabulate_handle_dots(table, ..., .list = .list)
+  measures <- codes$measures
 
-  if (recode_zeros)
-    data[data == 0] <- NA
-  if (parse_time) {
-    meta_f <- table$meta$fields
-    time_vars <- meta_f$label[meta_f$type != "Category"]
-    for (field in intersect(time_vars, fields)) {
-      i <- which(meta_f$label == field)
-      parsed <- table$field(i)$parsed
-      data[[field]] <- parsed[data[[field]]]
-    }
-  }
   if (round)
     for (measure in measures) {
       meta_m <- table$meta$measures
-      precision <- meta_m$precision[meta_m$label == measure]
-      data[[measure]] <- round(data[[measure]], precision)
+      meta_m <- meta_m[meta_m$code == measure, ]
+      measure <- ifelse(raw, meta_m$code, meta_m$label)
+      data[[measure]] <- round(data[[measure]], meta_m$precision)
     }
   if (annotations) {
-    for (measure in measures) {
-      ann <- attr(table$data[[measure]], "annotations")
-      #data[[paste0(measure, "_a")]] <- I(ann[ind])
-      data[[paste0(measure, "_a")]] <- sapply(ann[ind], paste, collapse = ", ")
-    }
+    stop("param 'annotations' needs to be re-implemented")
   }
+
   data
 }
