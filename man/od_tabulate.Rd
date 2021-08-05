@@ -25,6 +25,8 @@ Otherwise, return codes.}
 
 \item{parse_time}{Should time variables be converted into a \code{Date} format?
 Ignored if \code{raw} is set to \code{TRUE}.}
+
+\item{recode_zeros}{turn zero values into NAs}
 }
 \description{
 \code{od_tabulate()} extracts the data in the table and turns it into a tidy

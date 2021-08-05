@@ -25,6 +25,7 @@
 #'   Otherwise, return codes.
 #' @param parse_time Should time variables be converted into a `Date` format?
 #'   Ignored if `raw` is set to `TRUE`.
+#' @param recode_zeros turn zero values into NAs
 #' @examples
 #' table <- od_table("OGD_veste309_Veste309_1")
 #'

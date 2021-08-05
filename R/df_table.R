@@ -1,8 +1,8 @@
 df_table <- function(x) {
   x <- as.data.frame(x)
 
-  measures <- sc_data_df_build_meta(x, "numeric", "integer")
-  fields_m <- sc_data_df_build_meta(x, "factor", "character") # Date
+  measures <- df_table_meta(x, "numeric", "integer")
+  fields_m <- df_table_meta(x, "factor", "character") # Date
   fields_m$total_code <- NA_character_
 
   names(x) <- seq_along(x)
@@ -31,9 +31,9 @@ df_table <- function(x) {
   x
 }
 
-sc_data_df_build_meta = function(x, ...) {
+df_table_meta = function(x, ...) {
   classes <- c(...)
-  col_classes <- lapply(x, class) %>% sapply(head, 1)
+  col_classes <- lapply(x, class) %>% sapply(utils::head, 1)
   ind <- which(col_classes %in% classes)
   if (length(ind) == 0) {
     data.frame(code = character(0), label = character())
