@@ -11,7 +11,8 @@ sc_tabulate(
   parse_time = TRUE,
   round = TRUE,
   recode_zeros = TRUE,
-  annotations = FALSE
+  annotations = FALSE,
+  raw = FALSE
 )
 }
 \arguments{
