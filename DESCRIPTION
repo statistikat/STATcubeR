@@ -25,5 +25,6 @@ Suggests:
     rmarkdown,
     data.tree,
     rstudioapi,
-    xml2
+    xml2,
+    pillar
 URL: https://github.com/statistikat/STATcubeR
