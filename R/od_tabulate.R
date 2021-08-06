@@ -109,7 +109,7 @@ od_tabulate <- function(table, ..., .list = NULL, raw = FALSE, parse_time = TRUE
     x <- cbind(
       subset(x, !duplicated(grouping_var), fields),
       rowsum(x[measures], group = grouping_var, reorder = FALSE)
-    )
+    ) %>% sc_tibble()
   }
   if (!raw)
     x <- od_label_data(table, x, parse_time)

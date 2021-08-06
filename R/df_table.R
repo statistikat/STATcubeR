@@ -4,6 +4,10 @@ df_table <- function(x) {
   measures <- df_table_meta(x, "numeric", "integer")
   fields_m <- df_table_meta(x, "factor", "character") # Date
   fields_m$total_code <- NA_character_
+  measures$NAs <- sapply(seq_len(nrow(measures)), function(i) {
+    label <- measures$label[i]
+    sum(is.na(x[[label]]))
+  })
 
   names(x) <- seq_along(x)
 

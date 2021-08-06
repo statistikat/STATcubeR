@@ -3,7 +3,10 @@ sc_data_class <- R6::R6Class(
   cloneable = FALSE,
   public = list(
     initialize = function(data, meta, fields) {
-      private$p_data <- data
+      meta <- lapply(meta, sc_tibble_meta)
+      meta$measures <- sc_tibble_meta(meta$measures, "NAs")
+      meta$fields <- sc_tibble_meta(meta$fields, "total_code")
+      private$p_data <- sc_tibble(data)
       private$p_meta <- meta
       private$p_fields <- fields
       private$version <- sc_version()
@@ -11,7 +14,7 @@ sc_data_class <- R6::R6Class(
     field = function(i = 1) {
       if (!is.numeric(i))
         i <- od_match_codes(self$meta$fields, i)
-      private$p_fields[[i]]
+      sc_tibble_meta(private$p_fields[[i]], "parsed")
     },
     tabulate = function(...) {
       od_tabulate(self, ...)

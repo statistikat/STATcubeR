@@ -22,7 +22,7 @@ od_table_class <- R6::R6Class(
       private$json
     },
     header = function() {
-      private$cache$header
+      private$cache$header %>% sc_tibble_meta(c("label_de", "label_en"))
     },
     times = function() { list(
       request = private$request_time
@@ -33,9 +33,10 @@ od_table_class <- R6::R6Class(
       else {
         value <- match.arg(value, c("en", "de"))
         private$lang <- value
-        private$p_meta$database$label <- od_get_labels(private$p_meta$database)
-        private$p_meta$measures$label <- od_get_labels(private$p_meta$measures)
-        private$p_meta$fields$label <- od_get_labels(private$p_meta$fields)
+        private$cache$header$label <- od_get_labels(private$cache$header, value)
+        private$p_meta$database$label <- od_get_labels(private$p_meta$database, value)
+        private$p_meta$measures$label <- od_get_labels(private$p_meta$measures, value)
+        private$p_meta$fields$label <- od_get_labels(private$p_meta$fields, value)
         for (i in seq_along(private$p_fields)) {
           field <- private$p_fields[[i]]
           private$p_fields[[i]]$label <- od_get_labels(field, value)
