@@ -32,6 +32,9 @@ into a \code{POSIXct} format?}
 \item{annotations}{Include separate annotation columns in the returned
 \code{data.frame}? Those extra columns are of type list and contain character
 vectors with all annotations for the corresponding measure}
+
+\item{raw}{If FALSE (the default), apply labeling to the dataset.
+Otherwise, return codes.}
 }
 \description{
 \code{sc_tabulate()} extracts the data in the table and turns it into a tidy
