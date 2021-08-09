@@ -94,7 +94,7 @@
 #' table_tourism$tabulate()
 #' table_tourism$tabulate("Saison/Tourismusmonat")
 #' table_tourism$tabulate("Saison/Tourismusmonat", "Ankünfte")
-#' table_tourism$sc_tabulate("Ankünfte")
+#' table_tourism$tabulate("Ankünfte")
 #'
 #' ## TODO: param annotations does not work currently
 #' if (FALSE) {
