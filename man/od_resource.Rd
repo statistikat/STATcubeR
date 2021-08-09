@@ -31,7 +31,7 @@ cache directory will be updated to \code{dir}.}
 
 \item{timestamp}{A timestamp in \code{POSIXct} format. If provided, the
 cached resource will be updated if it is older than that value. Otherwise
-it will be downloaded only if does not exist in th ecache.}
+it will be downloaded only if it does not exist in the cache.}
 
 \item{...}{For internal use}
 

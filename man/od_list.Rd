@@ -4,7 +4,12 @@
 \alias{od_list}
 \title{List available Opendata datasets}
 \usage{
-od_list()
+od_list(unique = TRUE)
+}
+\arguments{
+\item{unique}{some datasets are pulbished under multiple groups.
+They will only be listed once with the first group they appear in unless
+this parameter is set to \code{FALSE}.}
 }
 \value{
 a \code{data.frame} with two columns
@@ -19,10 +24,8 @@ a \code{data.frame} with two columns
 \code{\link[=od_list]{od_list()}} returns a \code{data.frame } containing all datasets published at
 \href{https://data.statistik.gv.at}{data.statistik.gv.at}
 }
-\details{
-some datasets are pulbished under multiple groups
-}
 \examples{
 df <- od_list()
-subset(df, category == "Arbeit")
+df
+subset(df, category == "Bildung und Forschung")
 }

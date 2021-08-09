@@ -61,7 +61,8 @@ as \code{fields} in the parsed API response}
 \value{
 An object of class \code{sc_table} which contains the return
 value of the \code{\link[httr:POST]{httr::POST()}} request in \code{obj$response}. The object also
-provides member functions to parse this response object.
+provides member functions to parse this response object. See
+\link{sc_table_class} for the class documentation.
 }
 \description{
 Send requests against the \strong{\verb{/table}} endpoint of the STATcube REST API. The

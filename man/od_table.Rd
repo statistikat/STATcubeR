@@ -7,31 +7,29 @@
 od_table(id, language = c("en", "de"))
 }
 \arguments{
-\item{id}{the name of the data-set that should be accessed}
+\item{id}{the id of the data-set that should be accessed}
 
-\item{language}{the language to be used for labelling data: \code{"en"} or \code{"de"}}
+\item{language}{language to be used for labeling. \code{"en"} or \code{"de"}}
+}
+\value{
+The returned objects is of class \code{sc_table} and inherits several parsing
+methods from \link{sc_data}. See \link{od_table_class} for the full class
+documentation.
 }
 \description{
-\code{\link[=od_table]{od_table()}} returns an \code{R6}-class object containing all relevant data
-and metadata from data.statistik.gv.at.
-\itemize{
-\item \verb{$data_raw} contains the contents of \verb{\{id\}.csv}
-\item \verb{$meta} includes information from \verb{\{id\}_HEADER.csv}
-\item \verb{$field(i)} contains information from \verb{\{id\}_\{field_code\}.csv}
+\code{od_table(id)} returns an \code{R6}-class object containing all relevant data
+and metadata from https://data.statistik.gv.at/data/
+}
+\section{Components}{
+\tabular{ll}{
+   \strong{Component} \tab \strong{Corresponding File on Server} \cr
+   \verb{$data         } \tab \verb{https://data.statistik.gv.at/data/$\{id\}.csv} \cr
+   \verb{$header       } \tab \verb{https://data.statistik.gv.at/data/$\{id\}_HEADER.csv} \cr
+   \verb{$field(code)  } \tab \verb{https://data.statistik.gv.at/data/$\{id\}_$\{code\}.csv} \cr
+   \verb{$json         } \tab \verb{https://data.statistik.gv.at/ogd/json?dataset=$\{id\}} \cr
 }
 }
-\details{
-The returned abject also provides certain functionalities to label and
-aggreate the dataset.
-\itemize{
-\item \code{object$data} takes \code{object$data_raw} and applies labels based on
-the metadata.
-\item \code{object$tabulate()} also applies labeling and aggregates the
-dataset. See \code{\link[=od_tabulate]{od_tabulate()}} for more information.
-\item \code{object$language} can be used to get or set the language of the dataset.
-This affects the labelling behavior
-}
-}
+
 \examples{
 x <- od_table("OGD_krebs_ext_KREBS_1")
 
@@ -42,16 +40,16 @@ x$field("Sex")
 x$field(3)
 
 ## data
-x$data_raw \%>\% head()
-x$data     \%>\% head()
+x$data
+x$tabulate()
+
+## tabulation: see `?od_tabulate` for more examples
+x$tabulate("Reporting year", "Sex")
 
 ## switch language
 x$language <- "de"
 x
-x$data     \%>\% head()
-
-## tabulation: see `?od_tabulate` for more examples
-x$tabulate("Reporting year", "Sex") \%>\% head()
+x$tabulate()
 
 ## other interesting tables
 od_table("OGD_veste309_Veste309_1")

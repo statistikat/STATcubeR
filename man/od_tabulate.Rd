@@ -84,10 +84,9 @@ od_tabulate(table, "Sex", "Citizenship")
 
 ## switch language
 table$language <- "de"
-od_tabulate(table, "Sex", "Citizenship")
 
-## `...` matches for codes, english labels and german labels
-od_tabulate(table, "C-A11-0", "Citizenship", "2. Quartil (Median)")
+## `...` matches for codes and labels
+od_tabulate(table, "C-A11-0", "Staats", "2. Quartil (Median)")
 
 ## Keep totals in the output by removing total codes
 od_tabulate(table, "C-A11-0")      # -> 2 rows: "male" "female"
