@@ -1,5 +1,5 @@
 
-# STATcubeR <img src="man/figures/logo.png" align="right" alt="" width="120" />
+# STATcubeR <img src="man/figures/logo_readme.png" align="right" alt="" width="120" />
 
 <!-- badges: start -->
 
