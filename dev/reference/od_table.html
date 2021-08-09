@@ -49,13 +49,8 @@
   
 
 <meta property="og:title" content="Create a table-instance from an open-data dataset — od_table" />
-<meta property="og:description" content="od_table() returns an R6-class object containing all relevant data
-and metadata from data.statistik.gv.at.
-$data_raw contains the contents of {id}.csv
-$meta includes information from {id}_HEADER.csv
-$field(i) contains information from {id}_{field_code}.csv
-
-" />
+<meta property="og:description" content="od_table(id) returns an R6-class object containing all relevant data
+and metadata from https://data.statistik.gv.at/data/" />
 <meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.png" />
 
 
@@ -88,7 +83,7 @@ $field(i) contains information from {id}_{field_code}.csv
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">STATcubeR</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.2</span>
       </span>
     </div>
 
@@ -105,58 +100,40 @@ $field(i) contains information from {id}_{field_code}.csv
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    STATcube API
+    Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/Setup.html">Setup</a>
+      <a href="../articles/index.html">Show All Articles ...</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">STATcube REST API</li>
     <li>
-      <a href="../articles/JSON-requests.html">JSON requests</a>
+      <a href="../articles/Setup.html">All about the API Key</a>
     </li>
     <li>
-      <a href="../articles/Saved-Tables.html">Saved Tables</a>
+      <a href="../articles/JSON-requests.html">Get Data via JSON Requests</a>
     </li>
     <li>
-      <a href="../articles/Custom-Tables.html">Custom tables</a>
+      <a href="../articles/Schema.html">Metadata with the /schema Endpoint</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">Open Goventment Data</li>
     <li>
-      <a href="../articles/Metadata.html">Metadata</a>
-    </li>
-    <li>
-      <a href="../articles/Schema.html">Schema</a>
-    </li>
-    <li>
-      <a href="../articles/Misc.html">Misc</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    open.data
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/od_table.html">Overview</a>
-    </li>
-    <li>
-      <a href="../articles/od_tabulate.html">Tabulation</a>
-    </li>
-    <li>
-      <a href="../articles/od_resources.html">File Management</a>
+      <a href="../articles/od_table.html">Getting Started with OGD Data</a>
     </li>
     <li>
       <a href="../articles/od_list.html">Available Datasets</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">The STATcubeR Data Class</li>
     <li>
-      <a href="https://data.statistik.gv.at/">data.statistik.gv.at</a>
+      <a href="../articles/sc_data.html">A Common Class for OGD and API Data</a>
+    </li>
+    <li>
+      <a href="../articles/od_tabulate.html">Tabulation of Data</a>
     </li>
   </ul>
 </li>
@@ -196,13 +173,8 @@ $field(i) contains information from {id}_{field_code}.csv
     </div>
 
     <div class="ref-description">
-    <p><code>od_table()</code> returns an <code>R6</code>-class object containing all relevant data
-and metadata from data.statistik.gv.at.</p><ul>
-<li><p><code>$data_raw</code> contains the contents of <code>{id}.csv</code></p></li>
-<li><p><code>$meta</code> includes information from <code>{id}_HEADER.csv</code></p></li>
-<li><p><code>$field(i)</code> contains information from <code>{id}_{field_code}.csv</code></p></li>
-</ul>
-
+    <p><code>od_table(id)</code> returns an <code>R6</code>-class object containing all relevant data
+and metadata from https://data.statistik.gv.at/data/</p>
     </div>
 
     <pre class="usage"><span class='fu'>od_table</span><span class='op'>(</span><span class='va'>id</span>, language <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"en"</span>, <span class='st'>"de"</span><span class='op'>)</span><span class='op'>)</span></pre>
@@ -212,55 +184,60 @@ and metadata from data.statistik.gv.at.</p><ul>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>id</th>
-      <td><p>the name of the data-set that should be accessed</p></td>
+      <td><p>the id of the data-set that should be accessed</p></td>
     </tr>
     <tr>
       <th>language</th>
-      <td><p>the language to be used for labelling data: <code>"en"</code> or <code>"de"</code></p></td>
+      <td><p>language to be used for labeling. <code>"en"</code> or <code>"de"</code></p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The returned abject also provides certain functionalities to label and
-aggreate the dataset.</p><ul>
-<li><p><code>object$data</code> takes <code>object$data_raw</code> and applies labels based on
-the metadata.</p></li>
-<li><p><code>object$tabulate()</code> also applies labeling and aggregates the
-dataset. See <code><a href='od_tabulate.html'>od_tabulate()</a></code> for more information.</p></li>
-<li><p><code>object$language</code> can be used to get or set the language of the dataset.
-This affects the labelling behavior</p></li>
-</ul>
+    <p>The returned objects is of class <code>sc_table</code> and inherits several parsing
+methods from <a href='sc_data.html'>sc_data</a>. See <a href='od_table_class.html'>od_table_class</a> for the full class
+documentation.</p>
+    <h2 class="hasAnchor" id="components"><a class="anchor" href="#components"></a>Components</h2>
+
+    
+<table class='table'>
+<tr><td><strong>Component</strong></td><td><strong>Corresponding File on Server</strong></td></tr>
+<tr><td><code>$data         </code></td><td><code>https://data.statistik.gv.at/data/${id}.csv</code></td></tr>
+<tr><td><code>$header       </code></td><td><code>https://data.statistik.gv.at/data/${id}_HEADER.csv</code></td></tr>
+<tr><td><code>$field(code)  </code></td><td><code>https://data.statistik.gv.at/data/${id}_${code}.csv</code></td></tr>
+<tr><td><code>$json         </code></td><td><code>https://data.statistik.gv.at/ogd/json?dataset=${id}</code></td></tr>
+</table>
+
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>od_table</span><span class='op'>(</span><span class='st'>"OGD_krebs_ext_KREBS_1"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error: HEADER and attribute description do not match</span></div><div class='input'>
+    <pre class="examples"><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>od_table</span><span class='op'>(</span><span class='st'>"OGD_krebs_ext_KREBS_1"</span><span class='op'>)</span>
+
 <span class='co'>## metadata</span>
 <span class='va'>x</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'x' not found</span></div><div class='input'><span class='va'>x</span><span class='op'>$</span><span class='va'>meta</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'x' not found</span></div><div class='input'><span class='va'>x</span><span class='op'>$</span><span class='fu'>field</span><span class='op'>(</span><span class='st'>"Sex"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'x' not found</span></div><div class='input'><span class='va'>x</span><span class='op'>$</span><span class='fu'>field</span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'x' not found</span></div><div class='input'>
+<span class='va'>x</span><span class='op'>$</span><span class='va'>meta</span>
+<span class='va'>x</span><span class='op'>$</span><span class='fu'>field</span><span class='op'>(</span><span class='st'>"Sex"</span><span class='op'>)</span>
+<span class='va'>x</span><span class='op'>$</span><span class='fu'>field</span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>
+
 <span class='co'>## data</span>
-<span class='va'>x</span><span class='op'>$</span><span class='va'>data_raw</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in head(.): object 'x' not found</span></div><div class='input'><span class='va'>x</span><span class='op'>$</span><span class='va'>data</span>     <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in head(.): object 'x' not found</span></div><div class='input'>
+<span class='va'>x</span><span class='op'>$</span><span class='va'>data</span>
+<span class='va'>x</span><span class='op'>$</span><span class='fu'>tabulate</span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='co'>## tabulation: see `?od_tabulate` for more examples</span>
+<span class='va'>x</span><span class='op'>$</span><span class='fu'>tabulate</span><span class='op'>(</span><span class='st'>"Reporting year"</span>, <span class='st'>"Sex"</span><span class='op'>)</span>
+
 <span class='co'>## switch language</span>
 <span class='va'>x</span><span class='op'>$</span><span class='va'>language</span> <span class='op'>&lt;-</span> <span class='st'>"de"</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in x$language &lt;- "de": object 'x' not found</span></div><div class='input'><span class='va'>x</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'x' not found</span></div><div class='input'><span class='va'>x</span><span class='op'>$</span><span class='va'>data</span>     <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in head(.): object 'x' not found</span></div><div class='input'>
-<span class='co'>## tabulation: see `?od_tabulate` for more examples</span>
-<span class='va'>x</span><span class='op'>$</span><span class='fu'>tabulate</span><span class='op'>(</span><span class='st'>"Reporting year"</span>, <span class='st'>"Sex"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in head(.): object 'x' not found</span></div><div class='input'>
+<span class='va'>x</span>
+<span class='va'>x</span><span class='op'>$</span><span class='fu'>tabulate</span><span class='op'>(</span><span class='op'>)</span>
+
 <span class='co'>## other interesting tables</span>
 <span class='fu'>od_table</span><span class='op'>(</span><span class='st'>"OGD_veste309_Veste309_1"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error: HEADER and attribute description do not match</span></div><div class='input'><span class='fu'>od_table</span><span class='op'>(</span><span class='st'>"OGD_konjunkturmonitor_KonMon_1"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error: HEADER and attribute description do not match</span></div><div class='input'><span class='fu'>od_table</span><span class='op'>(</span><span class='st'>"OGD_krankenbewegungen_ex_LEISTUNGEN_1"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error: HEADER and attribute description do not match</span></div><div class='input'><span class='fu'>od_table</span><span class='op'>(</span><span class='st'>"OGD_f1741_HH_Proj_1"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error: HEADER and attribute description do not match</span></div><div class='input'><span class='fu'>od_table</span><span class='op'>(</span><span class='st'>"OGD_veste303_Veste203_1"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error: HEADER and attribute description do not match</span></div></pre>
+<span class='fu'>od_table</span><span class='op'>(</span><span class='st'>"OGD_konjunkturmonitor_KonMon_1"</span><span class='op'>)</span>
+<span class='fu'>od_table</span><span class='op'>(</span><span class='st'>"OGD_krankenbewegungen_ex_LEISTUNGEN_1"</span><span class='op'>)</span>
+<span class='fu'>od_table</span><span class='op'>(</span><span class='st'>"OGD_f1741_HH_Proj_1"</span><span class='op'>)</span>
+<span class='fu'>od_table</span><span class='op'>(</span><span class='st'>"OGD_veste303_Veste203_1"</span><span class='op'>)</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

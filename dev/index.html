@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">STATcubeR</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.2</span>
       </span>
     </div>
 
@@ -57,58 +57,40 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    STATcube API
+    Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/Setup.html">Setup</a>
+      <a href="articles/index.html">Show All Articles ...</a>
     </li>
     <li class="divider">
+    <li class="dropdown-header">STATcube REST API</li>
     <li>
-      <a href="articles/JSON-requests.html">JSON requests</a>
+      <a href="articles/Setup.html">All about the API Key</a>
     </li>
     <li>
-      <a href="articles/Saved-Tables.html">Saved Tables</a>
+      <a href="articles/JSON-requests.html">Get Data via JSON Requests</a>
     </li>
     <li>
-      <a href="articles/Custom-Tables.html">Custom tables</a>
+      <a href="articles/Schema.html">Metadata with the /schema Endpoint</a>
     </li>
     <li class="divider">
+    <li class="dropdown-header">Open Goventment Data</li>
     <li>
-      <a href="articles/Metadata.html">Metadata</a>
-    </li>
-    <li>
-      <a href="articles/Schema.html">Schema</a>
-    </li>
-    <li>
-      <a href="articles/Misc.html">Misc</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    open.data
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="articles/od_table.html">Overview</a>
-    </li>
-    <li>
-      <a href="articles/od_tabulate.html">Tabulation</a>
-    </li>
-    <li>
-      <a href="articles/od_resources.html">File Management</a>
+      <a href="articles/od_table.html">Getting Started with OGD Data</a>
     </li>
     <li>
       <a href="articles/od_list.html">Available Datasets</a>
     </li>
     <li class="divider">
+    <li class="dropdown-header">The STATcubeR Data Class</li>
     <li>
-      <a href="https://data.statistik.gv.at/">data.statistik.gv.at</a>
+      <a href="articles/sc_data.html">A Common Class for OGD and API Data</a>
+    </li>
+    <li>
+      <a href="articles/od_tabulate.html">Tabulation of Data</a>
     </li>
   </ul>
 </li>
@@ -161,12 +143,16 @@
 <p>To import datasets from <a href="https://data.statistik.gv.at" class="uri">https://data.statistik.gv.at</a>, simply pass the dataset id to the <code><a href="reference/od_table.html">od_table()</a></code> function. For example, the OGD data from the <a href="https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_veste309_Veste309_1">structure of earnings survey</a> can be accessed as follows.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">earnings</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/od_table.html">od_table</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span><span class="op">)</span>
-<span class="va">earnings</span><span class="op">$</span><span class="va">data</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></code></pre></div>
-<pre><code>        Sex Citizenship Region (NUTS2)                      Form of employment Arithmetic mean 1st quartile
-1 Sum total       Total          Total                                   Total              18           12
-2 Sum total       Total          Total                    Standard employment               19           13
-3 Sum total       Total          Total         Non-standard employment (total)              15           10
-4 Sum total       Total          Total Non-standard employment: part-time only              16           11</code></pre>
+<span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code># A STATcubeR tibble: 72 x 9
+  Sex    Citizenship `Region (NUTS2)` `Form of employment`   `Arithmetic mea… `1st quartile`
+* &lt;fct&gt;  &lt;fct&gt;       &lt;fct&gt;            &lt;fct&gt;                             &lt;int&gt;          &lt;int&gt;
+1 Sum t… Total       Total            "Total"                              18             12
+2 Sum t… Total       Total            "Standard employment "               19             13
+3 Sum t… Total       Total            "Non-standard employm…               15             10
+4 Sum t… Total       Total            "Non-standard employm…               16             11
+# … with 68 more rows, and 3 more variables: 2nd quartile (median) &lt;int&gt;,
+#   3rd quartile &lt;int&gt;, Number of employees &lt;int&gt;</code></pre>
 <p>The resulting object contains labeled data (see above), raw data, metadata and more. See the <a href="articles/od_table.html">OGD Article</a> for further details.</p>
 </div>
 <div id="statcube-api" class="section level2">

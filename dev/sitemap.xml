@@ -16,6 +16,9 @@
     <loc>https://statistikat.github.io/STATcubeR/reference/od_table.html</loc>
   </url>
   <url>
+    <loc>https://statistikat.github.io/STATcubeR/reference/od_table_class.html</loc>
+  </url>
+  <url>
     <loc>https://statistikat.github.io/STATcubeR/reference/od_tabulate.html</loc>
   </url>
   <url>
@@ -26,6 +29,9 @@
   </url>
   <url>
     <loc>https://statistikat.github.io/STATcubeR/reference/sc_cache.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/reference/sc_data.html</loc>
   </url>
   <url>
     <loc>https://statistikat.github.io/STATcubeR/reference/sc_key.html</loc>
@@ -40,7 +46,13 @@
     <loc>https://statistikat.github.io/STATcubeR/reference/sc_table.html</loc>
   </url>
   <url>
+    <loc>https://statistikat.github.io/STATcubeR/reference/sc_table_class.html</loc>
+  </url>
+  <url>
     <loc>https://statistikat.github.io/STATcubeR/reference/sc_tabulate.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/reference/sg_data.html</loc>
   </url>
   <url>
     <loc>https://statistikat.github.io/STATcubeR/reference/utils.html</loc>
@@ -50,9 +62,6 @@
   </url>
   <url>
     <loc>https://statistikat.github.io/STATcubeR/articles/JSON-requests.html</loc>
-  </url>
-  <url>
-    <loc>https://statistikat.github.io/STATcubeR/articles/Metadata.html</loc>
   </url>
   <url>
     <loc>https://statistikat.github.io/STATcubeR/articles/Misc.html</loc>
@@ -79,6 +88,6 @@
     <loc>https://statistikat.github.io/STATcubeR/articles/od_tabulate.html</loc>
   </url>
   <url>
-    <loc>https://statistikat.github.io/STATcubeR/articles/test.html</loc>
+    <loc>https://statistikat.github.io/STATcubeR/articles/sc_data.html</loc>
   </url>
 </urlset>

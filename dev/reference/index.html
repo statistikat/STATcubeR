@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">STATcubeR</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.2</span>
       </span>
     </div>
 
@@ -98,58 +98,40 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    STATcube API
+    Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/Setup.html">Setup</a>
+      <a href="../articles/index.html">Show All Articles ...</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">STATcube REST API</li>
     <li>
-      <a href="../articles/JSON-requests.html">JSON requests</a>
+      <a href="../articles/Setup.html">All about the API Key</a>
     </li>
     <li>
-      <a href="../articles/Saved-Tables.html">Saved Tables</a>
+      <a href="../articles/JSON-requests.html">Get Data via JSON Requests</a>
     </li>
     <li>
-      <a href="../articles/Custom-Tables.html">Custom tables</a>
+      <a href="../articles/Schema.html">Metadata with the /schema Endpoint</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">Open Goventment Data</li>
     <li>
-      <a href="../articles/Metadata.html">Metadata</a>
-    </li>
-    <li>
-      <a href="../articles/Schema.html">Schema</a>
-    </li>
-    <li>
-      <a href="../articles/Misc.html">Misc</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    open.data
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/od_table.html">Overview</a>
-    </li>
-    <li>
-      <a href="../articles/od_tabulate.html">Tabulation</a>
-    </li>
-    <li>
-      <a href="../articles/od_resources.html">File Management</a>
+      <a href="../articles/od_table.html">Getting Started with OGD Data</a>
     </li>
     <li>
       <a href="../articles/od_list.html">Available Datasets</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">The STATcubeR Data Class</li>
     <li>
-      <a href="https://data.statistik.gv.at/">data.statistik.gv.at</a>
+      <a href="../articles/sc_data.html">A Common Class for OGD and API Data</a>
+    </li>
+    <li>
+      <a href="../articles/od_tabulate.html">Tabulation of Data</a>
     </li>
   </ul>
 </li>
@@ -197,8 +179,8 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
+          <h2 id="section-open-government-data" class="hasAnchor"><a href="#section-open-government-data" class="anchor"></a>Open Government Data</h2>
+          <p class="section-desc"><p>Get resources from the open govenment data portal from Statistics Austria. See the <a href="../articles/od_table.html">OGD Article</a> for a hands-on documentation.</p></p>
         </th>
       </tr>
       
@@ -207,12 +189,6 @@
       
       
       <tr>
-        
-        <td>
-          <p><code><a href="info_and_rate_limit.html">sc_info()</a></code> <code><a href="info_and_rate_limit.html">sc_rate_limit()</a></code> </p>
-        </td>
-        <td><p>Info and rate limit</p></td>
-      </tr><tr>
         
         <td>
           <p><code><a href="od_list.html">od_list()</a></code> </p>
@@ -236,31 +212,29 @@
           <p><code><a href="od_tabulate.html">od_tabulate()</a></code> </p>
         </td>
         <td><p>Turn od_table objects into tidy data frames</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="sc_browse.html">sc_browse()</a></code> <code><a href="sc_browse.html">sc_browse_preferences()</a></code> </p>
-        </td>
-        <td><p>Links to important STATcube pages</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="sc_key.html">sc_key()</a></code> <code><a href="sc_key.html">sc_key_set()</a></code> <code><a href="sc_key.html">sc_key_get()</a></code> <code><a href="sc_key.html">sc_key_prompt()</a></code> </p>
-        </td>
-        <td><p>Manage your API Key</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="sc_meta.html">sc_meta()</a></code> <code><a href="sc_meta.html">sc_meta_field()</a></code> </p>
-        </td>
-        <td><p>Get metadata for a STATcube table</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="sc_schema.html">sc_schema()</a></code> <code><a href="sc_schema.html">print(<i>&lt;sc_schema&gt;</i>)</a></code> <code><a href="sc_schema.html">sc_schema_catalogue()</a></code> <code><a href="sc_schema.html">sc_schema_db()</a></code> </p>
-        </td>
-        <td><p>Create a request against the /schema endpoint</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-statcube-rest-api" class="hasAnchor"><a href="#section-statcube-rest-api" class="anchor"></a>STATcube REST API</h2>
+          <p class="section-desc"><p>Get resources from the REAST API of STATcube. See the <a href="../articles/Setup.html">Setup article</a> for instructions about the API Key and the <a href="../articles/JSON-requests.html">json requests article</a> for a hands-on documentation.</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-table-endpoint" class="hasAnchor"><a href="#section-table-endpoint" class="anchor"></a>Table endpoint</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="sc_table.html">sc_table()</a></code> <code><a href="sc_table.html">sc_examples_list()</a></code> <code><a href="sc_table.html">sc_example()</a></code> <code><a href="sc_table.html">sc_table_custom()</a></code> <code><a href="sc_table.html">sc_table_saved_list()</a></code> <code><a href="sc_table.html">sc_table_saved()</a></code> </p>
@@ -272,12 +246,62 @@
           <p><code><a href="sc_tabulate.html">sc_tabulate()</a></code> </p>
         </td>
         <td><p>Turn sc_table objects into tidy data frames</p></td>
+      </tr>
+    </tbody><tbody>
+      
+      <tr>
+        <th colspan="2">
+          <h3 id="section-other" class="hasAnchor"><a href="#section-other" class="anchor"></a>Other</h3>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="sc_key.html">sc_key()</a></code> <code><a href="sc_key.html">sc_key_set()</a></code> <code><a href="sc_key.html">sc_key_get()</a></code> <code><a href="sc_key.html">sc_key_prompt()</a></code> </p>
+        </td>
+        <td><p>Manage your API Key</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="utils.html">sc_write_json()</a></code> <code><a href="utils.html">sc_table_rate_limit()</a></code> <code><a href="utils.html">sc_annotation_legend()</a></code> </p>
+          <p><code><a href="sc_schema.html">sc_schema()</a></code> <code><a href="sc_schema.html">print(<i>&lt;sc_schema&gt;</i>)</a></code> <code><a href="sc_schema.html">sc_schema_catalogue()</a></code> <code><a href="sc_schema.html">sc_schema_db()</a></code> </p>
         </td>
-        <td><p>Utility Functions</p></td>
+        <td><p>Create a request against the /schema endpoint</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="info_and_rate_limit.html">sc_info()</a></code> <code><a href="info_and_rate_limit.html">sc_rate_limit()</a></code> </p>
+        </td>
+        <td><p>Create a requests against the endpoints /info and /rate_limit_table</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-general" class="hasAnchor"><a href="#section-general" class="anchor"></a>General</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="sc_data.html">sc_data</a></code> </p>
+        </td>
+        <td><p>Common interface for STATcubeR datasets</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="sc_browse.html">sc_browse()</a></code> <code><a href="sc_browse.html">sc_browse_preferences()</a></code> <code><a href="sc_browse.html">sc_browse_ogd()</a></code> </p>
+        </td>
+        <td><p>Links to important STATcube and OGD pages</p></td>
       </tr>
     </tbody>
     </table>

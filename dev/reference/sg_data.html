@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create a requests against the endpoints /info and /rate_limit_table — info_and_rate_limit • STATcubeR</title>
+<title>data interface for STATgraph — sg_data • STATcubeR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,10 +48,15 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Create a requests against the endpoints /info and /rate_limit_table — info_and_rate_limit" />
-<meta property="og:description" content="Utilize the simple endpoints /info and /ratelimit. Those provide
-information about available locales and the amount of requests available
-for calls against the /table endpoint." />
+<meta property="og:title" content="data interface for STATgraph — sg_data" />
+<meta property="og:description" content="Convert R objects into a special format for the web application.
+Currently, the following objects are convertible
+od_table: OGD Datasets
+sc_table: Responses from the STATcube REST API
+data.frame: Requires that all columns are of type factor, character,
+integer numeric, or Date.
+
+" />
 <meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.png" />
 
 
@@ -168,39 +173,76 @@ for calls against the /table endpoint." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create a requests against the endpoints /info and /rate_limit_table</h1>
-    <small class="dont-index">Source: <a href='https://github.com/statistikat/STATcubeR/blob/master/R/info.R'><code>R/info.R</code></a>, <a href='https://github.com/statistikat/STATcubeR/blob/master/R/rate_limit.R'><code>R/rate_limit.R</code></a></small>
-    <div class="hidden name"><code>info_and_rate_limit.Rd</code></div>
+    <h1>data interface for STATgraph</h1>
+    <small class="dont-index">Source: <a href='https://github.com/statistikat/STATcubeR/blob/master/R/sg_data.R'><code>R/sg_data.R</code></a></small>
+    <div class="hidden name"><code>sg_data.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Utilize the simple endpoints <code>/info</code> and <code>/ratelimit</code>. Those provide
-information about available locales and the amount of requests available
-for calls against the <code>/table</code> endpoint.</p>
+    <p>Convert R objects into a special format for the web application.
+Currently, the following objects are convertible</p><ul>
+<li><p><code>od_table</code>: OGD Datasets</p></li>
+<li><p><code>sc_table</code>: Responses from the STATcube REST API</p></li>
+<li><p><code>data.frame</code>: Requires that all columns are of type <code>factor</code>, <code>character</code>,
+<code>integer</code> <code>numeric</code>, or <code>Date</code>.</p></li>
+</ul>
+
     </div>
 
-    <pre class="usage"><span class='fu'>sc_info</span><span class='op'>(</span>language <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"en"</span>, <span class='st'>"de"</span><span class='op'>)</span>, key <span class='op'>=</span> <span class='fu'><a href='sc_key.html'>sc_key</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='fu'>sc_rate_limit</span><span class='op'>(</span>language <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"en"</span>, <span class='st'>"de"</span><span class='op'>)</span>, key <span class='op'>=</span> <span class='fu'><a href='sc_key.html'>sc_key</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>sg_data</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>language</th>
-      <td><p>The language to be used for labeling. <code>"en"</code> or <code>"de"</code></p></td>
+      <th>x</th>
+      <td><p>An object to be converted</p></td>
     </tr>
     <tr>
-      <th>key</th>
-      <td><p>(<code>string</code>) An API key. To display your key, call
-<code><a href='sc_browse.html'>sc_browse_preferences()</a></code>.</p></td>
+      <th>...</th>
+      <td><p>Specifiers for the conversion. Currently ignored.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>An object of class <code>sg_data</code> with the following methods</p><ul>
+<li><p><code>$vars</code> contains codes and labels for all</p><ul>
+<li><p><code>$times</code></p></li>
+<li><p><code>$measures</code></p></li>
+<li><p><code>$categories</code></p></li>
+</ul></li>
+<li><p><code>$tabulate(..., .list)</code> aggregates the data. <code>...</code> should contain the
+codes from <code>$vars</code>.</p></li>
+</ul>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='fu'>sc_info</span><span class='op'>(</span><span class='op'>)</span>
-<span class='fu'>sc_rate_limit</span><span class='op'>(</span><span class='op'>)</span>
+    <pre class="examples"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/statistikat/STATcubeR'>STATcubeR</a></span><span class='op'>)</span>
+
+<span class='va'>cancer</span> <span class='op'>&lt;-</span> <span class='fu'><a href='od_table.html'>od_table</a></span><span class='op'>(</span><span class='st'>"OGD_krebs_ext_KREBS_1"</span>, language <span class='op'>=</span> <span class='st'>"de"</span><span class='op'>)</span>
+<span class='fu'>sg_data</span><span class='op'>(</span><span class='va'>cancer</span><span class='op'>)</span>
+
+<span class='va'>pop</span> <span class='op'>&lt;-</span> <span class='fu'><a href='sc_table.html'>sc_table</a></span><span class='op'>(</span>json_file <span class='op'>=</span> <span class='fu'><a href='sc_table.html'>sc_example</a></span><span class='op'>(</span><span class='st'>"population_timeseries.json"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>sg_data</span><span class='op'>(</span><span class='va'>pop</span><span class='op'>)</span>
+
+<span class='fu'>sg_data</span><span class='op'>(</span><span class='va'>iris</span><span class='op'>)</span>
+
+<span class='co'>## basic usage</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'>sg_data</span><span class='op'>(</span><span class='va'>cancer</span><span class='op'>)</span>
+<span class='va'>y</span><span class='op'>$</span><span class='va'>vars</span>
+<span class='va'>y</span><span class='op'>$</span><span class='fu'>tabulate</span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='co'>## recode varnames</span>
+<span class='va'>y</span><span class='op'>$</span><span class='fu'>recode_varname</span><span class='op'>(</span><span class='st'>"C-BERJ-0"</span>, <span class='st'>"Jahr"</span><span class='op'>)</span>
+<span class='va'>y</span><span class='op'>$</span><span class='fu'>recode_varname</span><span class='op'>(</span><span class='st'>"C-TUM_ICD10_3ST-0"</span>, <span class='st'>"Tumore"</span><span class='op'>)</span>
+<span class='va'>y</span><span class='op'>$</span><span class='fu'>recode_varname</span><span class='op'>(</span><span class='st'>"F-KRE"</span>, <span class='st'>"Anzahl"</span><span class='op'>)</span>
+<span class='va'>y</span><span class='op'>$</span><span class='fu'>tabulate</span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='co'>## recode levels</span>
+<span class='va'>y</span><span class='op'>$</span><span class='fu'>recode_levels</span><span class='op'>(</span><span class='st'>"C-KRE_GESCHLECHT-0"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"M"</span>, <span class='st'>"W"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>y</span><span class='op'>$</span><span class='fu'>recode_levels</span><span class='op'>(</span><span class='st'>"C-BUNDESLAND-0"</span>, <span class='va'>LETTERS</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>9</span><span class='op'>]</span><span class='op'>)</span>
+<span class='va'>y</span><span class='op'>$</span><span class='fu'>tabulate</span><span class='op'>(</span><span class='op'>)</span>
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

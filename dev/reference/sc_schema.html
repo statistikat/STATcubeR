@@ -87,7 +87,7 @@ tree object." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">STATcubeR</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.2</span>
       </span>
     </div>
 
@@ -104,58 +104,40 @@ tree object." />
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    STATcube API
+    Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/Setup.html">Setup</a>
+      <a href="../articles/index.html">Show All Articles ...</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">STATcube REST API</li>
     <li>
-      <a href="../articles/JSON-requests.html">JSON requests</a>
+      <a href="../articles/Setup.html">All about the API Key</a>
     </li>
     <li>
-      <a href="../articles/Saved-Tables.html">Saved Tables</a>
+      <a href="../articles/JSON-requests.html">Get Data via JSON Requests</a>
     </li>
     <li>
-      <a href="../articles/Custom-Tables.html">Custom tables</a>
+      <a href="../articles/Schema.html">Metadata with the /schema Endpoint</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">Open Goventment Data</li>
     <li>
-      <a href="../articles/Metadata.html">Metadata</a>
-    </li>
-    <li>
-      <a href="../articles/Schema.html">Schema</a>
-    </li>
-    <li>
-      <a href="../articles/Misc.html">Misc</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    open.data
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/od_table.html">Overview</a>
-    </li>
-    <li>
-      <a href="../articles/od_tabulate.html">Tabulation</a>
-    </li>
-    <li>
-      <a href="../articles/od_resources.html">File Management</a>
+      <a href="../articles/od_table.html">Getting Started with OGD Data</a>
     </li>
     <li>
       <a href="../articles/od_list.html">Available Datasets</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">The STATcubeR Data Class</li>
     <li>
-      <a href="https://data.statistik.gv.at/">data.statistik.gv.at</a>
+      <a href="../articles/sc_data.html">A Common Class for OGD and API Data</a>
+    </li>
+    <li>
+      <a href="../articles/od_tabulate.html">Tabulation of Data</a>
     </li>
   </ul>
 </li>
@@ -227,7 +209,7 @@ tree object.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>resource_id</th>
-      <td><p>A resource identifier un uid format</p></td>
+      <td><p>A resource identifier in uid format</p></td>
     </tr>
     <tr>
       <th>depth</th>
@@ -274,31 +256,31 @@ the direct children of the current resource.</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>my_catalogue</span> <span class='op'>&lt;-</span> <span class='fu'>sc_schema_catalogue</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in sc_key(): No STATcube API key available</span></div><div class='input'>
+    <pre class="examples"><span class='va'>my_catalogue</span> <span class='op'>&lt;-</span> <span class='fu'>sc_schema_catalogue</span><span class='op'>(</span><span class='op'>)</span>
+
 <span class='co'>## print</span>
 <span class='va'>my_catalogue</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'my_catalogue' not found</span></div><div class='input'>
+
 <span class='co'>## access the parsed catalogue</span>
 <span class='va'>my_catalogue</span><span class='op'>$</span><span class='va'>Statistics</span><span class='op'>$</span><span class='va'>`Labour Market`</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'my_catalogue' not found</span></div><div class='input'><span class='va'>my_catalogue</span><span class='op'>$</span><span class='va'>Statistics</span><span class='op'>$</span><span class='va'>`Labour Market`</span><span class='op'>$</span><span class='va'>`Working hours (Labour Force Survey)`</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'my_catalogue' not found</span></div><div class='input'>
+<span class='va'>my_catalogue</span><span class='op'>$</span><span class='va'>Statistics</span><span class='op'>$</span><span class='va'>`Labour Market`</span><span class='op'>$</span><span class='va'>`Working hours (Labour Force Survey)`</span>
+
 <span class='va'>db_schema</span> <span class='op'>&lt;-</span> <span class='fu'>sc_schema_db</span><span class='op'>(</span><span class='st'>"deake005"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in sc_key(): No STATcube API key available</span></div><div class='input'>
+
 <span class='co'># printing</span>
 <span class='va'>db_schema</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'db_schema' not found</span></div><div class='input'>
+
 <span class='co'># access child nodes</span>
 <span class='va'>db_schema</span><span class='op'>$</span><span class='va'>`Demographic Characteristics`</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'db_schema' not found</span></div><div class='input'><span class='va'>db_schema</span><span class='op'>$</span><span class='va'>`Demographic Characteristics`</span><span class='op'>$</span><span class='va'>Gender</span><span class='op'>$</span><span class='va'>Gender</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'db_schema' not found</span></div><div class='input'><span class='va'>db_schema</span><span class='op'>$</span><span class='va'>`Demographic Characteristics`</span><span class='op'>$</span><span class='va'>Gender</span><span class='op'>$</span><span class='va'>Gender</span><span class='op'>$</span><span class='va'>male</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'db_schema' not found</span></div><div class='input'>
+<span class='va'>db_schema</span><span class='op'>$</span><span class='va'>`Demographic Characteristics`</span><span class='op'>$</span><span class='va'>Gender</span><span class='op'>$</span><span class='va'>Gender</span>
+<span class='va'>db_schema</span><span class='op'>$</span><span class='va'>`Demographic Characteristics`</span><span class='op'>$</span><span class='va'>Gender</span><span class='op'>$</span><span class='va'>Gender</span><span class='op'>$</span><span class='va'>male</span>
+
 <span class='co'># access the raw response from httr::GET()</span>
 <span class='va'>my_response</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db_schema</span>, <span class='st'>"response"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'db_schema' not found</span></div><div class='input'><span class='va'>my_response</span><span class='op'>$</span><span class='va'>headers</span><span class='op'>$</span><span class='va'>date</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'my_response' not found</span></div><div class='input'><span class='va'>my_content</span> <span class='op'>&lt;-</span> <span class='fu'>httr</span><span class='fu'>::</span><span class='fu'><a href='https://httr.r-lib.org/reference/content.html'>content</a></span><span class='op'>(</span><span class='va'>my_response</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in is.response(x): object 'my_response' not found</span></div><div class='input'><span class='va'>my_content</span><span class='op'>$</span><span class='va'>label</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'my_content' not found</span></div></pre>
+<span class='va'>my_response</span><span class='op'>$</span><span class='va'>headers</span><span class='op'>$</span><span class='va'>date</span>
+<span class='va'>my_content</span> <span class='op'>&lt;-</span> <span class='fu'>httr</span><span class='fu'>::</span><span class='fu'><a href='https://httr.r-lib.org/reference/content.html'>content</a></span><span class='op'>(</span><span class='va'>my_response</span><span class='op'>)</span>
+<span class='va'>my_content</span><span class='op'>$</span><span class='va'>label</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

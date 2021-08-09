@@ -89,7 +89,7 @@ Those three functions all return an object of class &quot;sc_table&quot;." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">STATcubeR</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.2</span>
       </span>
     </div>
 
@@ -106,58 +106,40 @@ Those three functions all return an object of class &quot;sc_table&quot;." />
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    STATcube API
+    Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/Setup.html">Setup</a>
+      <a href="../articles/index.html">Show All Articles ...</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">STATcube REST API</li>
     <li>
-      <a href="../articles/JSON-requests.html">JSON requests</a>
+      <a href="../articles/Setup.html">All about the API Key</a>
     </li>
     <li>
-      <a href="../articles/Saved-Tables.html">Saved Tables</a>
+      <a href="../articles/JSON-requests.html">Get Data via JSON Requests</a>
     </li>
     <li>
-      <a href="../articles/Custom-Tables.html">Custom tables</a>
+      <a href="../articles/Schema.html">Metadata with the /schema Endpoint</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">Open Goventment Data</li>
     <li>
-      <a href="../articles/Metadata.html">Metadata</a>
-    </li>
-    <li>
-      <a href="../articles/Schema.html">Schema</a>
-    </li>
-    <li>
-      <a href="../articles/Misc.html">Misc</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    open.data
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/od_table.html">Overview</a>
-    </li>
-    <li>
-      <a href="../articles/od_tabulate.html">Tabulation</a>
-    </li>
-    <li>
-      <a href="../articles/od_resources.html">File Management</a>
+      <a href="../articles/od_table.html">Getting Started with OGD Data</a>
     </li>
     <li>
       <a href="../articles/od_list.html">Available Datasets</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">The STATcubeR Data Class</li>
     <li>
-      <a href="https://data.statistik.gv.at/">data.statistik.gv.at</a>
+      <a href="../articles/sc_data.html">A Common Class for OGD and API Data</a>
+    </li>
+    <li>
+      <a href="../articles/od_tabulate.html">Tabulation of Data</a>
     </li>
   </ul>
 </li>
@@ -282,7 +264,8 @@ as <code>fields</code> in the parsed API response</p></td>
 
     <p>An object of class <code>sc_table</code> which contains the return
 value of the <code><a href='https://httr.r-lib.org/reference/POST.html'>httr::POST()</a></code> request in <code>obj$response</code>. The object also
-provides member functions to parse this response object.</p>
+provides member functions to parse this response object. See
+<a href='sc_table_class.html'>sc_table_class</a> for the class documentation.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other functions for /table: 
@@ -290,20 +273,20 @@ provides member functions to parse this response object.</p>
 <code><a href='sc_write_json.html'>sc_write_json</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>my_table</span> <span class='op'>&lt;-</span> <span class='fu'>sc_table</span><span class='op'>(</span>json_file <span class='op'>=</span> <span class='fu'>sc_example</span><span class='op'>(</span><span class='st'>"population_timeseries.json"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in sc_key(): No STATcube API key available</span></div><div class='input'>
+    <pre class="examples"><span class='va'>my_table</span> <span class='op'>&lt;-</span> <span class='fu'>sc_table</span><span class='op'>(</span>json_file <span class='op'>=</span> <span class='fu'>sc_example</span><span class='op'>(</span><span class='st'>"population_timeseries.json"</span><span class='op'>)</span><span class='op'>)</span>
+
 <span class='co'># print</span>
 <span class='va'>my_table</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'my_table' not found</span></div><div class='input'>
+
 <span class='co'># get matadata for the table</span>
 <span class='va'>my_table</span><span class='op'>$</span><span class='va'>meta</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'my_table' not found</span></div><div class='input'>
+
 <span class='co'># get a data.frame</span>
 <span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>my_table</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in as.data.frame(my_table): object 'my_table' not found</span></div><div class='input'>
+
 <span class='co'># get metadata for field 2</span>
 <span class='va'>my_table</span><span class='op'>$</span><span class='fu'>field</span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'my_table' not found</span></div><div class='input'>
+
 <span class='fu'>sc_table_custom</span><span class='op'>(</span>
   db <span class='op'>=</span> <span class='st'>"str:database:detouextregsai"</span>,
   measures <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
@@ -315,15 +298,15 @@ provides member functions to parse this response object.</p>
     <span class='st'>"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93SUM-0"</span>
   <span class='op'>)</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in sc_key(): No STATcube API key available</span></div><div class='input'>
+
 <span class='co'># get the ids and labels of all saved tables</span>
 <span class='op'>(</span><span class='va'>saved_tables</span> <span class='op'>&lt;-</span> <span class='fu'>sc_table_saved_list</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in sc_key(): No STATcube API key available</span></div><div class='input'><span class='va'>table_uri</span> <span class='op'>&lt;-</span> <span class='va'>saved_tables</span><span class='op'>$</span><span class='va'>id</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): object 'saved_tables' not found</span></div><div class='input'>
+<span class='va'>table_uri</span> <span class='op'>&lt;-</span> <span class='va'>saved_tables</span><span class='op'>$</span><span class='va'>id</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>
+
 <span class='co'># get a table based on one of these ids</span>
 <span class='va'>my_response</span> <span class='op'>&lt;-</span> <span class='fu'>sc_table_saved</span><span class='op'>(</span><span class='va'>table_uri</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in paste0(base_url, "/table/saved/", table_uri): object 'table_uri' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>my_response</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in as.data.frame(my_response): object 'my_response' not found</span></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/as.data.frame.html'>as.data.frame</a></span><span class='op'>(</span><span class='va'>my_response</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

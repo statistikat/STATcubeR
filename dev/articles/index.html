@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">STATcubeR</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.2</span>
       </span>
     </div>
 
@@ -98,58 +98,40 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    STATcube API
+    Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/Setup.html">Setup</a>
+      <a href="../articles/index.html">Show All Articles ...</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">STATcube REST API</li>
     <li>
-      <a href="../articles/JSON-requests.html">JSON requests</a>
+      <a href="../articles/Setup.html">All about the API Key</a>
     </li>
     <li>
-      <a href="../articles/Saved-Tables.html">Saved Tables</a>
+      <a href="../articles/JSON-requests.html">Get Data via JSON Requests</a>
     </li>
     <li>
-      <a href="../articles/Custom-Tables.html">Custom tables</a>
+      <a href="../articles/Schema.html">Metadata with the /schema Endpoint</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">Open Goventment Data</li>
     <li>
-      <a href="../articles/Metadata.html">Metadata</a>
-    </li>
-    <li>
-      <a href="../articles/Schema.html">Schema</a>
-    </li>
-    <li>
-      <a href="../articles/Misc.html">Misc</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    open.data
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/od_table.html">Overview</a>
-    </li>
-    <li>
-      <a href="../articles/od_tabulate.html">Tabulation</a>
-    </li>
-    <li>
-      <a href="../articles/od_resources.html">File Management</a>
+      <a href="../articles/od_table.html">Getting Started with OGD Data</a>
     </li>
     <li>
       <a href="../articles/od_list.html">Available Datasets</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">The STATcubeR Data Class</li>
     <li>
-      <a href="https://data.statistik.gv.at/">data.statistik.gv.at</a>
+      <a href="../articles/sc_data.html">A Common Class for OGD and API Data</a>
+    </li>
+    <li>
+      <a href="../articles/od_tabulate.html">Tabulation of Data</a>
     </li>
   </ul>
 </li>
@@ -187,34 +169,46 @@
     </div>
 
     <div class="section ">
-      <h3>All vignettes</h3>
+      <h3>STATcube REST API</h3>
+      <p class="section-desc"><p>Learn how to use the STATcube REST API to bring your STATcube tables into your R session</p></p>
+
+      <dl>
+        <dt><a href="Setup.html">Setup the API Key</a></dt>
+        <dd><p>Set up authentication to the STATcube REST API by setting your API key for the session or persistently.</p></dt>
+        <dt><a href="JSON-requests.html">JSON requests</a></dt>
+        <dd><p>Import data from STATcube data by downloading json files in the STATcube GUI</p></dt>
+        <dt><a href="Saved-Tables.html">Saved Tables</a></dt>
+        <dd><p>STATcube allows you to save tables in the GUI. You can directly import those saved tables using <code><a href="../reference/sc_table.html">sc_table_saved()</a></code></p></dt>
+        <dt><a href="Custom-Tables.html">Custom Tables</a></dt>
+        <dd><p>Define custom requests against the <code>/table</code> endpoint by defining ids of requested resources as character vectors.</p></dt>
+        <dt><a href="Schema.html">Schema</a></dt>
+        <dd><p>The /schema endpoint of the REST API provide metadata about databases and can also be used to retrieve a catalogue with all available databases</p></dt>
+        <dt><a href="Misc.html">Info and Rate limit</a></dt>
+        <dd><p>How to use the (rather simple) endpoints <code>/info</code> and <code>/rate_limit_table</code></p></dt>
+      </dl>
+    </div>
+    <div class="section ">
+      <h3>Open Government Data</h3>
+      <p class="section-desc"><p>Articles about the import of OGD datasets into your R session</p></p>
+
+      <dl>
+        <dt><a href="od_table.html">Open Government Data</a></dt>
+        <dd><p>Overview about all functionalities regarding OGD Datasets</p></dt>
+        <dt><a href="od_resources.html">File Management</a></dt>
+        <dd><p>Learn how STATcubeR caches the data that is downloaded from the OGD portal</p></dt>
+        <dt><a href="od_list.html">Available Datasets</a></dt>
+        <dd><p>List all datasets from the OGD portal of Statistics Austria</p></dt>
+      </dl>
+    </div>
+    <div class="section ">
+      <h3>Data Class</h3>
       <p class="section-desc"></p>
 
       <dl>
-        <dt><a href="Custom-Tables.html">Custom Tables</a></dt>
-        <dd></dt>
-        <dt><a href="JSON-requests.html">JSON requests</a></dt>
-        <dd></dt>
-        <dt><a href="Metadata.html">Metadata</a></dt>
-        <dd></dt>
-        <dt><a href="Misc.html">Misc</a></dt>
-        <dd></dt>
-        <dt><a href="Saved-Tables.html">Saved Tables</a></dt>
-        <dd></dt>
-        <dt><a href="Schema.html">Schema</a></dt>
-        <dd></dt>
-        <dt><a href="Setup.html">Setup</a></dt>
-        <dd></dt>
-        <dt><a href="od_list.html">Available Datasets</a></dt>
-        <dd></dt>
-        <dt><a href="od_resources.html">File Management</a></dt>
-        <dd></dt>
-        <dt><a href="od_table.html">Open Government Data</a></dt>
-        <dd></dt>
-        <dt><a href="od_tabulate.html">Tabulating open.data Datasets</a></dt>
-        <dd></dt>
-        <dt><a href="test.html">test</a></dt>
-        <dd></dt>
+        <dt><a href="sc_data.html">The STATcubeR data class</a></dt>
+        <dd><p>The base class for Open Data and STATcube datasets</p></dt>
+        <dt><a href="od_tabulate.html">Tabulating STATcbeR Datasets</a></dt>
+        <dd><p>Learn how to turn sc_table objects into tidy data frames using the tabulate() method.</p></dt>
       </dl>
     </div>
   </div>

@@ -19,7 +19,8 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="File Management">
-<meta property="og:description" content="STATcubeR">
+<meta property="og:description" content="Learn how STATcubeR caches the data that is downloaded from the OGD portal
+">
 <meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.png">
 <meta name="robots" content="noindex">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -40,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">STATcubeR</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.2</span>
       </span>
     </div>
 
@@ -57,58 +58,40 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    STATcube API
+    Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/Setup.html">Setup</a>
+      <a href="../articles/index.html">Show All Articles ...</a>
     </li>
     <li class="divider">
+    <li class="dropdown-header">STATcube REST API</li>
     <li>
-      <a href="../articles/JSON-requests.html">JSON requests</a>
+      <a href="../articles/Setup.html">All about the API Key</a>
     </li>
     <li>
-      <a href="../articles/Saved-Tables.html">Saved Tables</a>
+      <a href="../articles/JSON-requests.html">Get Data via JSON Requests</a>
     </li>
     <li>
-      <a href="../articles/Custom-Tables.html">Custom tables</a>
+      <a href="../articles/Schema.html">Metadata with the /schema Endpoint</a>
     </li>
     <li class="divider">
+    <li class="dropdown-header">Open Goventment Data</li>
     <li>
-      <a href="../articles/Metadata.html">Metadata</a>
-    </li>
-    <li>
-      <a href="../articles/Schema.html">Schema</a>
-    </li>
-    <li>
-      <a href="../articles/Misc.html">Misc</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    open.data
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/od_table.html">Overview</a>
-    </li>
-    <li>
-      <a href="../articles/od_tabulate.html">Tabulation</a>
-    </li>
-    <li>
-      <a href="../articles/od_resources.html">File Management</a>
+      <a href="../articles/od_table.html">Getting Started with OGD Data</a>
     </li>
     <li>
       <a href="../articles/od_list.html">Available Datasets</a>
     </li>
     <li class="divider">
+    <li class="dropdown-header">The STATcubeR Data Class</li>
     <li>
-      <a href="https://data.statistik.gv.at/">data.statistik.gv.at</a>
+      <a href="../articles/sc_data.html">A Common Class for OGD and API Data</a>
+    </li>
+    <li>
+      <a href="../articles/od_tabulate.html">Tabulation of Data</a>
     </li>
   </ul>
 </li>
@@ -159,22 +142,23 @@
 <p>By default, <code>STATcubeR</code> caches all accessed resources from <a href="https://data.statistik.gv.at" class="uri">https://data.statistik.gv.at</a> in the temporary directory of the current R session.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/od_resource.html">od_cache_dir</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "/tmp/Rtmp4WJH1r/STATcubeR/"</code></pre>
+<pre><code>## [1] "/tmp/RtmpAjZhHE/STATcubeR/open_data/"</code></pre>
 <p>Let’s examine for example what happens when the data from the structure of earnings suvey (SES) is requested</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">earnings</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/od_table.html">od_table</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span><span class="op">)</span></code></pre></div>
 <p>First <code>STATcubeR</code> will grab a json with metadata about this dataset from <a href="https://data.statistik.gv.at/ogd/json?dataset=OGD_veste309_Veste309_1" class="uri">https://data.statistik.gv.at/ogd/json?dataset=OGD_veste309_Veste309_1</a> and check which resources belong to it. For any resource, the attributes <code>name</code> and <code>last_modified</code> are extracted from the json. They are also included in the <code>od_table</code> object under <code>$resources</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">earnings</span><span class="op">$</span><span class="va">resources</span></code></pre></div>
-<pre class="r-output"><code>  <span style="font-weight: bold;">name</span><span>                                   </span><span style="font-weight: bold;">last_modified</span><span>       </span><span style="font-weight: bold;">cached</span><span>               </span><span style="font-weight: bold;">size</span><span> </span><span style="font-weight: bold;">download</span><span> </span><span style="font-weight: bold;">parsed</span>
+<pre class="r-output"><code><span style="color: #555555;"># A data frame: 7 × 6</span>
+  <span style="font-weight: bold;">name</span><span>                                   </span><span style="font-weight: bold;">last_modified</span><span>       </span><span style="font-weight: bold;">cached</span><span>               </span><span style="font-weight: bold;">size</span><span> </span><span style="font-weight: bold;">download</span><span> </span><span style="font-weight: bold;">parsed</span>
   <span style="color: #555555;font-style: italic;">&lt;fct&gt;</span><span>                                  </span><span style="color: #555555;font-style: italic;">&lt;dttm&gt;</span><span>              </span><span style="color: #555555;font-style: italic;">&lt;dttm&gt;</span><span>              </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>    </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span>
-<span style="color: #555555;">1</span><span> OGD_veste309_Veste309_1.json           2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-07-20 </span><span style="color: #555555;">11:58:20</span><span>  </span><span style="text-decoration: underline;">4</span><span>071    84.1  </span><span style="color: #BB0000;">NA</span><span>    </span>
-<span style="color: #555555;">2</span><span> OGD_veste309_Veste309_1.csv            2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-07-20 </span><span style="color: #555555;">11:58:20</span><span>  </span><span style="text-decoration: underline;">3</span><span>857    14.4   1.56 </span>
-<span style="color: #555555;">3</span><span> OGD_veste309_Veste309_1_HEADER.csv     2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-07-20 </span><span style="color: #555555;">11:58:21</span><span>   516    11.5   1.05 </span>
-<span style="color: #555555;">4</span><span> OGD_veste309_Veste309_1_C-A11-0.csv    2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-07-20 </span><span style="color: #555555;">11:58:21</span><span>   159     9.78  0.641</span>
-<span style="color: #555555;">5</span><span> OGD_veste309_Veste309_1_C-STAATS-0.csv 2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-07-20 </span><span style="color: #555555;">11:58:21</span><span>   697    17.7   2.11 </span>
-<span style="color: #555555;">6</span><span> OGD_veste309_Veste309_1_C-VEBDL-0.csv  2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-07-20 </span><span style="color: #555555;">11:58:21</span><span>   518    19.4   1.13 </span>
-<span style="color: #555555;">7</span><span> OGD_veste309_Veste309_1_C-BESCHV-0.csv 2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-07-20 </span><span style="color: #555555;">11:58:21</span><span>   641    15.3   2.29 </span></code></pre>
+<span style="color: #555555;">1</span><span> OGD_veste309_Veste309_1.json           2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-08-09 </span><span style="color: #555555;">10:54:45</span><span>  </span><span style="text-decoration: underline;">4</span><span>071     71.0 </span><span style="color: #BB0000;">NA</span><span>    </span>
+<span style="color: #555555;">2</span><span> OGD_veste309_Veste309_1.csv            2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-08-09 </span><span style="color: #555555;">10:54:45</span><span>  </span><span style="text-decoration: underline;">3</span><span>857     11.3  1.70 </span>
+<span style="color: #555555;">3</span><span> OGD_veste309_Veste309_1_HEADER.csv     2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-08-09 </span><span style="color: #555555;">10:54:45</span><span>   516     11.0 13.3  </span>
+<span style="color: #555555;">4</span><span> OGD_veste309_Veste309_1_C-A11-0.csv    2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-08-09 </span><span style="color: #555555;">10:54:45</span><span>   159     16.3  0.702</span>
+<span style="color: #555555;">5</span><span> OGD_veste309_Veste309_1_C-STAATS-0.csv 2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-08-09 </span><span style="color: #555555;">10:54:45</span><span>   697     14.6  1.46 </span>
+<span style="color: #555555;">6</span><span> OGD_veste309_Veste309_1_C-VEBDL-0.csv  2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-08-09 </span><span style="color: #555555;">10:54:45</span><span>   518     15.5  1.29 </span>
+<span style="color: #555555;">7</span><span> OGD_veste309_Veste309_1_C-BESCHV-0.csv 2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-08-09 </span><span style="color: #555555;">10:54:45</span><span>   641     10.0  0.914</span></code></pre>
 <p><code>last_modified</code> tells us when the resource was changed on the fileserver. If a resource does not exist in the cache or if the last modified entry in the json is newer than the cached file, it will be dowloaded from the server. Otherwise, the cached version is reused.</p>
 </div>
 <div id="access-and-updates" class="section level2">
@@ -183,18 +167,19 @@
 <p>Cached files can be acessed with <code><a href="../reference/od_resource.html">od_cache_file()</a></code>. If the specified file exists in the cache, a path to the file will be returned. Otherwise, the file is downloaded to the cache and then the path is returned. The files use the same naming conventions as the open data fileserver.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/od_resource.html">od_cache_file</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "/tmp/Rtmp4WJH1r/STATcubeR/OGD_veste309_Veste309_1.csv"</code></pre>
+<pre><code>## [1] "/tmp/RtmpAjZhHE/STATcubeR/open_data/OGD_veste309_Veste309_1.csv"</code></pre>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/od_resource.html">od_cache_file</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span>, <span class="st">"C-A11-0"</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "/tmp/Rtmp4WJH1r/STATcubeR/OGD_veste309_Veste309_1_C-A11-0.csv"</code></pre>
+<pre><code>## [1] "/tmp/RtmpAjZhHE/STATcubeR/open_data/OGD_veste309_Veste309_1_C-A11-0.csv"</code></pre>
 <p>To read files from the cache as <code>data.frame</code>s, use <code><a href="../reference/od_resource.html">od_resource()</a></code> with same parameters as in <code><a href="../reference/od_resource.html">od_cache_file()</a></code>. This will apply a special parser to the dataset which drops unneeded columns and normalizes column names.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/od_resource.html">od_resource</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span>, <span class="st">"C-A11-0"</span><span class="op">)</span></code></pre></div>
-<pre class="r-output"><code>  <span style="font-weight: bold;">code</span><span>  </span><span style="font-weight: bold;">label</span><span>     </span><span style="font-weight: bold;">label_en</span><span> </span>
-  <span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>     </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>    </span>
-<span style="color: #555555;">1</span><span> A11-1 insgesamt Sum total</span>
-<span style="color: #555555;">2</span><span> A11-2 männlich  Male     </span>
-<span style="color: #555555;">3</span><span> A11-3 weiblich  Female   </span></code></pre>
+<pre class="r-output"><code><span style="color: #555555;"># A data frame: 3 × 4</span>
+  <span style="font-weight: bold;">code</span><span>  </span><span style="font-weight: bold;">label</span><span> </span><span style="font-weight: bold;">label_de</span><span>  </span><span style="font-weight: bold;">label_en</span><span> </span>
+<span style="color: #555555;">*</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span> </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>     </span><span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>    </span>
+<span style="color: #555555;">1</span><span> A11-1 </span><span style="color: #BB0000;">NA</span><span>    insgesamt Sum total</span>
+<span style="color: #555555;">2</span><span> A11-2 </span><span style="color: #BB0000;">NA</span><span>    männlich  Male     </span>
+<span style="color: #555555;">3</span><span> A11-3 </span><span style="color: #BB0000;">NA</span><span>    weiblich  Female   </span></code></pre>
 <p>The parser behaves differently for header files, data files and fields. Json files can be acessed with <code><a href="../reference/od_resource.html">od_json()</a></code>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/od_resource.html">od_json</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span><span class="op">)</span>
@@ -207,7 +192,7 @@
 <p><code><a href="../reference/od_resource.html">od_cache_clear(id)</a></code> can be used to clear the cache from all files belonging to the passed dataset id. We saw that <code>earnings$resources</code> contains 7 rows, therefore 7 files will be deleted during cleanup.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/od_resource.html">od_cache_clear</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span><span class="op">)</span></code></pre></div>
-<pre><code>## deleted 7 files from '/tmp/Rtmp4WJH1r/STATcubeR/'</code></pre>
+<pre><code>## deleted 7 files from '/tmp/RtmpAjZhHE/STATcubeR/open_data/'</code></pre>
 <p>If you want to use a persistent directory like <code>~/.cache/STATcubeR</code> for caching, the directory can be changed with <code><a href="../reference/od_resource.html">od_cache_dir(new)</a></code>.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/od_resource.html">od_cache_dir</a></span><span class="op">(</span><span class="st">"~/.cache/STATcubeR"</span><span class="op">)</span></code></pre></div>
@@ -218,15 +203,16 @@
 <p>Let’s go back to the <code>$resources</code> field of <code>earnings</code></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">earnings</span><span class="op">$</span><span class="va">resources</span></code></pre></div>
-<pre class="r-output"><code>  <span style="font-weight: bold;">name</span><span>                                   </span><span style="font-weight: bold;">last_modified</span><span>       </span><span style="font-weight: bold;">cached</span><span>               </span><span style="font-weight: bold;">size</span><span> </span><span style="font-weight: bold;">download</span><span> </span><span style="font-weight: bold;">parsed</span>
+<pre class="r-output"><code><span style="color: #555555;"># A data frame: 7 × 6</span>
+  <span style="font-weight: bold;">name</span><span>                                   </span><span style="font-weight: bold;">last_modified</span><span>       </span><span style="font-weight: bold;">cached</span><span>               </span><span style="font-weight: bold;">size</span><span> </span><span style="font-weight: bold;">download</span><span> </span><span style="font-weight: bold;">parsed</span>
   <span style="color: #555555;font-style: italic;">&lt;fct&gt;</span><span>                                  </span><span style="color: #555555;font-style: italic;">&lt;dttm&gt;</span><span>              </span><span style="color: #555555;font-style: italic;">&lt;dttm&gt;</span><span>              </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>    </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span>
-<span style="color: #555555;">1</span><span> OGD_veste309_Veste309_1.json           2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-07-20 </span><span style="color: #555555;">11:58:20</span><span>  </span><span style="text-decoration: underline;">4</span><span>071    84.1  </span><span style="color: #BB0000;">NA</span><span>    </span>
-<span style="color: #555555;">2</span><span> OGD_veste309_Veste309_1.csv            2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-07-20 </span><span style="color: #555555;">11:58:20</span><span>  </span><span style="text-decoration: underline;">3</span><span>857    14.4   1.56 </span>
-<span style="color: #555555;">3</span><span> OGD_veste309_Veste309_1_HEADER.csv     2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-07-20 </span><span style="color: #555555;">11:58:21</span><span>   516    11.5   1.05 </span>
-<span style="color: #555555;">4</span><span> OGD_veste309_Veste309_1_C-A11-0.csv    2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-07-20 </span><span style="color: #555555;">11:58:21</span><span>   159     9.78  0.641</span>
-<span style="color: #555555;">5</span><span> OGD_veste309_Veste309_1_C-STAATS-0.csv 2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-07-20 </span><span style="color: #555555;">11:58:21</span><span>   697    17.7   2.11 </span>
-<span style="color: #555555;">6</span><span> OGD_veste309_Veste309_1_C-VEBDL-0.csv  2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-07-20 </span><span style="color: #555555;">11:58:21</span><span>   518    19.4   1.13 </span>
-<span style="color: #555555;">7</span><span> OGD_veste309_Veste309_1_C-BESCHV-0.csv 2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-07-20 </span><span style="color: #555555;">11:58:21</span><span>   641    15.3   2.29 </span></code></pre>
+<span style="color: #555555;">1</span><span> OGD_veste309_Veste309_1.json           2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-08-09 </span><span style="color: #555555;">10:54:45</span><span>  </span><span style="text-decoration: underline;">4</span><span>071     71.0 </span><span style="color: #BB0000;">NA</span><span>    </span>
+<span style="color: #555555;">2</span><span> OGD_veste309_Veste309_1.csv            2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-08-09 </span><span style="color: #555555;">10:54:45</span><span>  </span><span style="text-decoration: underline;">3</span><span>857     11.3  1.70 </span>
+<span style="color: #555555;">3</span><span> OGD_veste309_Veste309_1_HEADER.csv     2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-08-09 </span><span style="color: #555555;">10:54:45</span><span>   516     11.0 13.3  </span>
+<span style="color: #555555;">4</span><span> OGD_veste309_Veste309_1_C-A11-0.csv    2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-08-09 </span><span style="color: #555555;">10:54:45</span><span>   159     16.3  0.702</span>
+<span style="color: #555555;">5</span><span> OGD_veste309_Veste309_1_C-STAATS-0.csv 2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-08-09 </span><span style="color: #555555;">10:54:45</span><span>   697     14.6  1.46 </span>
+<span style="color: #555555;">6</span><span> OGD_veste309_Veste309_1_C-VEBDL-0.csv  2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-08-09 </span><span style="color: #555555;">10:54:45</span><span>   518     15.5  1.29 </span>
+<span style="color: #555555;">7</span><span> OGD_veste309_Veste309_1_C-BESCHV-0.csv 2021-03-24 </span><span style="color: #555555;">11:32:41</span><span> 2021-08-09 </span><span style="color: #555555;">10:54:45</span><span>   641     10.0  0.914</span></code></pre>
 <p>We already looked at <strong><code>name</code></strong> and <strong><code>last_modified</code></strong>. The remaining columns can be interpreted as follows</p>
 <ul>
 <li>
@@ -245,20 +231,38 @@
 <p><code>od_cache_summary()</code> will give an overview about all files that are available in the cache directory. The returned table contains one row for every dataset. The column <strong><code>updated</code></strong> contains the last modified date for the datasets json file. <strong><code>json</code></strong>, <strong><code>data</code></strong> and <strong><code>header</code></strong> give the file sizes in bytes for the corresponding files. <strong><code>fields</code></strong> is the total size of all fields and <strong><code>n_fields</code></strong> is the number of classification files available.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">od_cache_summary</span><span class="op">(</span><span class="op">)</span> </code></pre></div>
-<pre class="r-output"><code>   <span style="font-weight: bold;">id</span><span>                                           </span><span style="font-weight: bold;">updated</span><span>              </span><span style="font-weight: bold;">json</span><span>   </span><span style="font-weight: bold;">data</span><span> </span><span style="font-weight: bold;">header</span><span> </span><span style="font-weight: bold;">fields</span><span> </span><span style="font-weight: bold;">n_fields</span>
+<pre class="r-output"><code><span style="color: #555555;"># A data frame: 268 × 7</span>
+   <span style="font-weight: bold;">id</span><span>                                           </span><span style="font-weight: bold;">updated</span><span>              </span><span style="font-weight: bold;">json</span><span>   </span><span style="font-weight: bold;">data</span><span> </span><span style="font-weight: bold;">header</span><span> </span><span style="font-weight: bold;">fields</span><span> </span><span style="font-weight: bold;">n_fields</span>
    <span style="color: #555555;font-style: italic;">&lt;chr&gt;</span><span>                                        </span><span style="color: #555555;font-style: italic;">&lt;dttm&gt;</span><span>              </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>  </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span><span>    </span><span style="color: #555555;font-style: italic;">&lt;int&gt;</span>
-<span style="color: #555555;"> 1</span><span> OGD__steuer_lst_ab_2015_3_LSt_2015_Auswahl_3 2021-07-20 </span><span style="color: #555555;">11:52:18</span><span>  </span><span style="text-decoration: underline;">6</span><span>528  </span><span style="text-decoration: underline;">83</span><span>665   </span><span style="text-decoration: underline;">4</span><span>259   </span><span style="text-decoration: underline;">1</span><span>695        5</span>
-<span style="color: #555555;"> 2</span><span> OGD__steuer_lst_ab_2015_6_LSt_2015_Auswahl_6 2021-07-20 </span><span style="color: #555555;">11:52:18</span><span>  </span><span style="text-decoration: underline;">6</span><span>208 </span><span style="text-decoration: underline;">305</span><span>349   </span><span style="text-decoration: underline;">4</span><span>297   </span><span style="text-decoration: underline;">2</span><span>653        4</span>
-<span style="color: #555555;"> 3</span><span> OGD__steuer_lst_ab_2017_3_LSt_2017_Auswahl_3 2021-07-20 </span><span style="color: #555555;">11:52:18</span><span>  </span><span style="text-decoration: underline;">6</span><span>513  </span><span style="text-decoration: underline;">42</span><span>023   </span><span style="text-decoration: underline;">4</span><span>259   </span><span style="text-decoration: underline;">1</span><span>676        5</span>
-<span style="color: #555555;"> 4</span><span> OGD__steuer_lst_ab_2017_6_LSt_2017_Auswahl_6 2021-07-20 </span><span style="color: #555555;">11:52:18</span><span>  </span><span style="text-decoration: underline;">6</span><span>193 </span><span style="text-decoration: underline;">153</span><span>282   </span><span style="text-decoration: underline;">4</span><span>297   </span><span style="text-decoration: underline;">2</span><span>634        4</span>
-<span style="color: #555555;"> 5</span><span> OGD__steuer_lue_2015_1a_LuE_ab_2015          2021-07-20 </span><span style="color: #555555;">11:52:18</span><span>  </span><span style="text-decoration: underline;">4</span><span>862 </span><span style="text-decoration: underline;">269</span><span>849   </span><span style="text-decoration: underline;">2</span><span>263   </span><span style="text-decoration: underline;">3</span><span>436        3</span>
-<span style="color: #555555;"> 6</span><span> OGD_1531kn2_Aussenhandel_4                   2021-07-20 </span><span style="color: #555555;">11:52:20</span><span>  </span><span style="text-decoration: underline;">3</span><span>089 </span><span style="text-decoration: underline;">106</span><span>427    277   </span><span style="text-decoration: underline;">9</span><span>435        2</span>
-<span style="color: #555555;"> 7</span><span> OGD_aeapp_biber_abschl_ext_BIBER_ABSCHL_1    2021-07-20 </span><span style="color: #555555;">11:52:15</span><span>  </span><span style="text-decoration: underline;">5</span><span>063  </span><span style="text-decoration: underline;">35</span><span>682    429   </span><span style="text-decoration: underline;">1</span><span>327        4</span>
-<span style="color: #555555;"> 8</span><span> OGD_aest_erv_statw_haupt_ERV_STATWECHSEL_1   2021-07-20 </span><span style="color: #555555;">11:52:15</span><span>  </span><span style="text-decoration: underline;">6</span><span>237  </span><span style="text-decoration: underline;">88</span><span>258    476   </span><span style="text-decoration: underline;">1</span><span>700        5</span>
-<span style="color: #555555;"> 9</span><span> OGD_ahlgrhs_Aussenhandel_2                   2021-07-20 </span><span style="color: #555555;">11:52:20</span><span>  </span><span style="text-decoration: underline;">3</span><span>318  </span><span style="text-decoration: underline;">13</span><span>886    270   </span><span style="text-decoration: underline;">1</span><span>276        3</span>
-<span style="color: #555555;">10</span><span> OGD_ahlgrhs_Aussenhandel_3                   2021-07-20 </span><span style="color: #555555;">11:52:20</span><span>  </span><span style="text-decoration: underline;">2</span><span>974  </span><span style="text-decoration: underline;">28</span><span>513    225   </span><span style="text-decoration: underline;">7</span><span>681        2</span>
+<span style="color: #555555;"> 1</span><span> OGD__steuer_lst_ab_2015_3_LSt_2015_Auswahl_3 2021-08-09 </span><span style="color: #555555;">10:49:41</span><span>  </span><span style="text-decoration: underline;">6</span><span>528  </span><span style="text-decoration: underline;">83</span><span>665   </span><span style="text-decoration: underline;">4</span><span>259   </span><span style="text-decoration: underline;">1</span><span>695        5</span>
+<span style="color: #555555;"> 2</span><span> OGD__steuer_lst_ab_2015_6_LSt_2015_Auswahl_6 2021-08-09 </span><span style="color: #555555;">10:49:41</span><span>  </span><span style="text-decoration: underline;">6</span><span>208 </span><span style="text-decoration: underline;">305</span><span>349   </span><span style="text-decoration: underline;">4</span><span>297   </span><span style="text-decoration: underline;">2</span><span>653        4</span>
+<span style="color: #555555;"> 3</span><span> OGD__steuer_lst_ab_2017_3_LSt_2017_Auswahl_3 2021-08-09 </span><span style="color: #555555;">10:49:41</span><span>  </span><span style="text-decoration: underline;">6</span><span>513  </span><span style="text-decoration: underline;">42</span><span>023   </span><span style="text-decoration: underline;">4</span><span>259   </span><span style="text-decoration: underline;">1</span><span>676        5</span>
+<span style="color: #555555;"> 4</span><span> OGD__steuer_lst_ab_2017_6_LSt_2017_Auswahl_6 2021-08-09 </span><span style="color: #555555;">10:49:41</span><span>  </span><span style="text-decoration: underline;">6</span><span>193 </span><span style="text-decoration: underline;">153</span><span>282   </span><span style="text-decoration: underline;">4</span><span>297   </span><span style="text-decoration: underline;">2</span><span>634        4</span>
+<span style="color: #555555;"> 5</span><span> OGD__steuer_lue_2015_1a_LuE_ab_2015          2021-08-09 </span><span style="color: #555555;">10:49:41</span><span>  </span><span style="text-decoration: underline;">4</span><span>862 </span><span style="text-decoration: underline;">269</span><span>849   </span><span style="text-decoration: underline;">2</span><span>263   </span><span style="text-decoration: underline;">3</span><span>436        3</span>
+<span style="color: #555555;"> 6</span><span> OGD_1531kn2_Aussenhandel_4                   2021-08-09 </span><span style="color: #555555;">10:49:43</span><span>  </span><span style="text-decoration: underline;">3</span><span>089 </span><span style="text-decoration: underline;">106</span><span>427    277   </span><span style="text-decoration: underline;">9</span><span>435        2</span>
+<span style="color: #555555;"> 7</span><span> OGD_aeapp_biber_abschl_ext_BIBER_ABSCHL_1    2021-08-09 </span><span style="color: #555555;">10:49:38</span><span>  </span><span style="text-decoration: underline;">5</span><span>063  </span><span style="text-decoration: underline;">35</span><span>682    429   </span><span style="text-decoration: underline;">1</span><span>327        4</span>
+<span style="color: #555555;"> 8</span><span> OGD_aest_erv_statw_haupt_ERV_STATWECHSEL_1   2021-08-09 </span><span style="color: #555555;">10:49:38</span><span>  </span><span style="text-decoration: underline;">6</span><span>237  </span><span style="text-decoration: underline;">88</span><span>258    476   </span><span style="text-decoration: underline;">1</span><span>700        5</span>
+<span style="color: #555555;"> 9</span><span> OGD_ahlgrhs_Aussenhandel_2                   2021-08-09 </span><span style="color: #555555;">10:49:42</span><span>  </span><span style="text-decoration: underline;">3</span><span>318  </span><span style="text-decoration: underline;">13</span><span>886    270   </span><span style="text-decoration: underline;">1</span><span>276        3</span>
+<span style="color: #555555;">10</span><span> OGD_ahlgrhs_Aussenhandel_3                   2021-08-09 </span><span style="color: #555555;">10:49:42</span><span>  </span><span style="text-decoration: underline;">2</span><span>974  </span><span style="text-decoration: underline;">28</span><span>513    225   </span><span style="text-decoration: underline;">7</span><span>681        2</span>
 <span style="color: #555555;"># … with 258 more rows</span></code></pre>
 <p>Note that <code>od_cache_summary()</code> only gathers information from the local file system based on filenames, <code><a href="https://rdrr.io/r/base/file.info.html">file.mtime()</a></code> and <code><a href="https://rdrr.io/r/base/file.info.html">file.size()</a></code>.</p>
+</div>
+<div id="download-history" class="section level2">
+<h2 class="hasAnchor">
+<a href="#download-history" class="anchor"></a>Download history</h2>
+<p>To get a history of all files that have been downloaded from the server, use <code>od_downloads()</code>. For each file, a timestamp for the download is recorded as well as the download time in milliseconds.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">od_downloads</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre class="r-output"><code><span style="color: #555555;"># A data frame: 7 × 3</span>
+  <span style="font-weight: bold;">time</span><span>                </span><span style="font-weight: bold;">file</span><span>                                   </span><span style="font-weight: bold;">downloaded</span>
+<span style="color: #555555;">*</span><span> </span><span style="color: #555555;font-style: italic;">&lt;dttm&gt;</span><span>              </span><span style="color: #555555;font-style: italic;">&lt;fct&gt;</span><span>                                       </span><span style="color: #555555;font-style: italic;">&lt;dbl&gt;</span>
+<span style="color: #555555;">1</span><span> 2021-08-09 </span><span style="color: #555555;">10:54:45</span><span> OGD_veste309_Veste309_1_C-BESCHV-0.csv       10.0</span>
+<span style="color: #555555;">2</span><span> 2021-08-09 </span><span style="color: #555555;">10:54:45</span><span> OGD_veste309_Veste309_1_C-VEBDL-0.csv        15.5</span>
+<span style="color: #555555;">3</span><span> 2021-08-09 </span><span style="color: #555555;">10:54:45</span><span> OGD_veste309_Veste309_1_C-STAATS-0.csv       14.6</span>
+<span style="color: #555555;">4</span><span> 2021-08-09 </span><span style="color: #555555;">10:54:45</span><span> OGD_veste309_Veste309_1_C-A11-0.csv          16.3</span>
+<span style="color: #555555;">5</span><span> 2021-08-09 </span><span style="color: #555555;">10:54:45</span><span> OGD_veste309_Veste309_1_HEADER.csv           11.0</span>
+<span style="color: #555555;">6</span><span> 2021-08-09 </span><span style="color: #555555;">10:54:45</span><span> OGD_veste309_Veste309_1.csv                  11.3</span>
+<span style="color: #555555;">7</span><span> 2021-08-09 </span><span style="color: #555555;">10:54:45</span><span> OGD_veste309_Veste309_1.json                 71.0</span></code></pre>
 </div>
   </div>
 

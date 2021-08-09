@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">STATcubeR</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.2</span>
       </span>
     </div>
 
@@ -98,58 +98,40 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    STATcube API
+    Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/Setup.html">Setup</a>
+      <a href="../articles/index.html">Show All Articles ...</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">STATcube REST API</li>
     <li>
-      <a href="../articles/JSON-requests.html">JSON requests</a>
+      <a href="../articles/Setup.html">All about the API Key</a>
     </li>
     <li>
-      <a href="../articles/Saved-Tables.html">Saved Tables</a>
+      <a href="../articles/JSON-requests.html">Get Data via JSON Requests</a>
     </li>
     <li>
-      <a href="../articles/Custom-Tables.html">Custom tables</a>
+      <a href="../articles/Schema.html">Metadata with the /schema Endpoint</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">Open Goventment Data</li>
     <li>
-      <a href="../articles/Metadata.html">Metadata</a>
-    </li>
-    <li>
-      <a href="../articles/Schema.html">Schema</a>
-    </li>
-    <li>
-      <a href="../articles/Misc.html">Misc</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    open.data
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/od_table.html">Overview</a>
-    </li>
-    <li>
-      <a href="../articles/od_tabulate.html">Tabulation</a>
-    </li>
-    <li>
-      <a href="../articles/od_resources.html">File Management</a>
+      <a href="../articles/od_table.html">Getting Started with OGD Data</a>
     </li>
     <li>
       <a href="../articles/od_list.html">Available Datasets</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">The STATcubeR Data Class</li>
     <li>
-      <a href="https://data.statistik.gv.at/">data.statistik.gv.at</a>
+      <a href="../articles/sc_data.html">A Common Class for OGD and API Data</a>
+    </li>
+    <li>
+      <a href="../articles/od_tabulate.html">Tabulation of Data</a>
     </li>
   </ul>
 </li>
@@ -187,18 +169,28 @@
       <small>Source: <a href='https://github.com/statistikat/STATcubeR/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="statcuber-030" class="section level1">
-<h1 class="page-header" data-toc-text="0.3.0">
-<a href="#statcuber-030" class="anchor"></a>STATcubeR 0.3.0</h1>
+    <div id="statcuber-022" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.2">
+<a href="#statcuber-022" class="anchor"></a>STATcubeR 0.2.2</h1>
+<ul>
+<li>Common base class for OGD data and data from the REST API</li>
+<li>Improved print methods</li>
+<li>Direct documentation of certain R6 classes with roxygen2</li>
+<li>remove unnecessary exports</li>
+</ul>
+</div>
+    <div id="statcuber-021" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.1">
+<a href="#statcuber-021" class="anchor"></a>STATcubeR 0.2.1</h1>
 <div id="open-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#open-data" class="anchor"></a>Open Data</h2>
 <p><code>STATcubeR</code> now contains functions to access open government data from <a href="https://data.statistik.gv.at/" class="uri">https://data.statistik.gv.at/</a></p>
 <ul>
-<li>new class <code><a href="../reference/od_table.html">od_table()</a></code> to get OGD data</li>
+<li>new class <code>od_table</code> to get OGD data</li>
 <li>methods to tabulate reponses</li>
 <li>caching</li>
-<li>three new pkgdown articles</li>
+<li>four new pkgdown articles</li>
 </ul>
 </div>
 <div id="other" class="section level2">
@@ -210,7 +202,7 @@
 <li>avoid EOL warnings when reading JSON requests</li>
 <li>start using <code>NEWS.md</code>
 </li>
-<li>reorganize README.Rmd and put open data there front and center</li>
+<li>reorganize <code>README.md</code> and put open data there front and center</li>
 </ul>
 </div>
 </div>

@@ -86,7 +86,7 @@ is true for fields." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">STATcubeR</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.2</span>
       </span>
     </div>
 
@@ -103,58 +103,40 @@ is true for fields." />
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    STATcube API
+    Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/Setup.html">Setup</a>
+      <a href="../articles/index.html">Show All Articles ...</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">STATcube REST API</li>
     <li>
-      <a href="../articles/JSON-requests.html">JSON requests</a>
+      <a href="../articles/Setup.html">All about the API Key</a>
     </li>
     <li>
-      <a href="../articles/Saved-Tables.html">Saved Tables</a>
+      <a href="../articles/JSON-requests.html">Get Data via JSON Requests</a>
     </li>
     <li>
-      <a href="../articles/Custom-Tables.html">Custom tables</a>
+      <a href="../articles/Schema.html">Metadata with the /schema Endpoint</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">Open Goventment Data</li>
     <li>
-      <a href="../articles/Metadata.html">Metadata</a>
-    </li>
-    <li>
-      <a href="../articles/Schema.html">Schema</a>
-    </li>
-    <li>
-      <a href="../articles/Misc.html">Misc</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    open.data
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/od_table.html">Overview</a>
-    </li>
-    <li>
-      <a href="../articles/od_tabulate.html">Tabulation</a>
-    </li>
-    <li>
-      <a href="../articles/od_resources.html">File Management</a>
+      <a href="../articles/od_table.html">Getting Started with OGD Data</a>
     </li>
     <li>
       <a href="../articles/od_list.html">Available Datasets</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">The STATcubeR Data Class</li>
     <li>
-      <a href="https://data.statistik.gv.at/">data.statistik.gv.at</a>
+      <a href="../articles/sc_data.html">A Common Class for OGD and API Data</a>
+    </li>
+    <li>
+      <a href="../articles/od_tabulate.html">Tabulation of Data</a>
     </li>
   </ul>
 </li>
@@ -201,7 +183,14 @@ in the output. If no measures are given, all measures are included. The same
 is true for fields.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>od_tabulate</span><span class='op'>(</span><span class='va'>table</span>, <span class='va'>...</span>, .list <span class='op'>=</span> <span class='cn'>NULL</span>, raw <span class='op'>=</span> <span class='cn'>FALSE</span>, parse_time <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>od_tabulate</span><span class='op'>(</span>
+  <span class='va'>table</span>,
+  <span class='va'>...</span>,
+  .list <span class='op'>=</span> <span class='cn'>NULL</span>,
+  raw <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  parse_time <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  recode_zeros <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -228,6 +217,10 @@ Otherwise, return codes.</p></td>
       <td><p>Should time variables be converted into a <code>Date</code> format?
 Ignored if <code>raw</code> is set to <code>TRUE</code>.</p></td>
     </tr>
+    <tr>
+      <th>recode_zeros</th>
+      <td><p>turn zero values into NAs</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
@@ -242,20 +235,20 @@ will be used to filter for <code>column == total_code</code> or <code>column != 
 german labels. See Examples</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>table</span> <span class='op'>&lt;-</span> <span class='fu'><a href='od_table.html'>od_table</a></span><span class='op'>(</span><span class='st'>"OGD_veste309_Veste309_1"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error: HEADER and attribute description do not match</span></div><div class='input'>
+    <pre class="examples"><span class='va'>table</span> <span class='op'>&lt;-</span> <span class='fu'><a href='od_table.html'>od_table</a></span><span class='op'>(</span><span class='st'>"OGD_veste309_Veste309_1"</span><span class='op'>)</span>
+
 <span class='co'># no arguments -&gt; same output as `table$data`</span>
 <span class='fu'>od_tabulate</span><span class='op'>(</span><span class='va'>table</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in od_tabulate(table): inherits(table, "od_table") is not TRUE</span></div><div class='input'>
+
 <span class='co'># provide some fields -&gt; aggregate to keep only these fields</span>
 <span class='fu'>od_tabulate</span><span class='op'>(</span><span class='va'>table</span>, <span class='st'>"Sex"</span>, <span class='st'>"Citizenship"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in od_tabulate(table, "Sex", "Citizenship"): inherits(table, "od_table") is not TRUE</span></div><div class='input'>
+
 <span class='co'># provide some measures -&gt; drop all other measures from the output</span>
 <span class='fu'>od_tabulate</span><span class='op'>(</span><span class='va'>table</span>, <span class='st'>"Arithmetic mean"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in od_tabulate(table, "Arithmetic mean"): inherits(table, "od_table") is not TRUE</span></div><div class='input'>
+
 <span class='co'># mixture of measures and fields  -&gt; keep exactly those columns</span>
 <span class='fu'>od_tabulate</span><span class='op'>(</span><span class='va'>table</span>, <span class='st'>"Sex"</span>, <span class='st'>"Arithmetic mean"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in od_tabulate(table, "Sex", "Arithmetic mean"): inherits(table, "od_table") is not TRUE</span></div><div class='input'>
+
 <span class='co'>## define total codes</span>
 <span class='va'>table</span><span class='op'>$</span><span class='fu'>total_codes</span><span class='op'>(</span>
   `C-A11-0` <span class='op'>=</span> <span class='st'>"A11-1"</span>,
@@ -263,7 +256,7 @@ german labels. See Examples</p>
   `C-VEBDL-0` <span class='op'>=</span> <span class='st'>"VEBDL-10"</span>,
   `C-BESCHV-0` <span class='op'>=</span> <span class='st'>"BESCHV-1"</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in table$total_codes: object of type 'closure' is not subsettable</span></div><div class='input'>
+
 <span class='co'>## alternatively, use partial matching to define totals</span>
 <span class='va'>table</span><span class='op'>$</span><span class='fu'>total_codes</span><span class='op'>(</span>
   Sex <span class='op'>=</span> <span class='st'>"Sum total"</span>,
@@ -271,26 +264,25 @@ german labels. See Examples</p>
   Region <span class='op'>=</span> <span class='st'>"Total"</span>,
   `Form of employment` <span class='op'>=</span> <span class='st'>"Total"</span>
 <span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in table$total_codes: object of type 'closure' is not subsettable</span></div><div class='input'>
+
 <span class='co'># filter for totals in `Region (NUTS2)` and `Form of employment`. Drop totals</span>
 <span class='co'># in `Sex` and `Citizenship`.</span>
 <span class='fu'>od_tabulate</span><span class='op'>(</span><span class='va'>table</span>, <span class='st'>"Sex"</span>, <span class='st'>"Citizenship"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in od_tabulate(table, "Sex", "Citizenship"): inherits(table, "od_table") is not TRUE</span></div><div class='input'>
+
 <span class='co'>## switch language</span>
 <span class='va'>table</span><span class='op'>$</span><span class='va'>language</span> <span class='op'>&lt;-</span> <span class='st'>"de"</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in table$language &lt;- "de": object of type 'closure' is not subsettable</span></div><div class='input'><span class='fu'>od_tabulate</span><span class='op'>(</span><span class='va'>table</span>, <span class='st'>"Sex"</span>, <span class='st'>"Citizenship"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in od_tabulate(table, "Sex", "Citizenship"): inherits(table, "od_table") is not TRUE</span></div><div class='input'>
-<span class='co'>## `...` matches for codes, english labels and german labels</span>
-<span class='fu'>od_tabulate</span><span class='op'>(</span><span class='va'>table</span>, <span class='st'>"C-A11-0"</span>, <span class='st'>"Citizenship"</span>, <span class='st'>"2. Quartil (Median)"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in od_tabulate(table, "C-A11-0", "Citizenship", "2. Quartil (Median)"): inherits(table, "od_table") is not TRUE</span></div><div class='input'>
+
+<span class='co'>## `...` matches for codes and labels</span>
+<span class='fu'>od_tabulate</span><span class='op'>(</span><span class='va'>table</span>, <span class='st'>"C-A11-0"</span>, <span class='st'>"Staats"</span>, <span class='st'>"2. Quartil (Median)"</span><span class='op'>)</span>
+
 <span class='co'>## Keep totals in the output by removing total codes</span>
 <span class='fu'>od_tabulate</span><span class='op'>(</span><span class='va'>table</span>, <span class='st'>"C-A11-0"</span><span class='op'>)</span>      <span class='co'># -&gt; 2 rows: "male" "female"</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in od_tabulate(table, "C-A11-0"): inherits(table, "od_table") is not TRUE</span></div><div class='input'><span class='va'>table</span><span class='op'>$</span><span class='fu'>total_codes</span><span class='op'>(</span>`C-A11-0` <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in table$total_codes: object of type 'closure' is not subsettable</span></div><div class='input'><span class='fu'>od_tabulate</span><span class='op'>(</span><span class='va'>table</span>, <span class='st'>"C-A11-0"</span><span class='op'>)</span>      <span class='co'># -&gt; 3 rows: "total", "male", "female"</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in od_tabulate(table, "C-A11-0"): inherits(table, "od_table") is not TRUE</span></div><div class='input'>
+<span class='va'>table</span><span class='op'>$</span><span class='fu'>total_codes</span><span class='op'>(</span>`C-A11-0` <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span>
+<span class='fu'>od_tabulate</span><span class='op'>(</span><span class='va'>table</span>, <span class='st'>"C-A11-0"</span><span class='op'>)</span>      <span class='co'># -&gt; 3 rows: "total", "male", "female"</span>
+
 <span class='co'>## table$tabulate(...) is an alias for sc_tabulate(table, ...)</span>
 <span class='va'>table</span><span class='op'>$</span><span class='fu'>tabulate</span><span class='op'>(</span><span class='st'>"C-A11-0"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in table$tabulate: object of type 'closure' is not subsettable</span></div></pre>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

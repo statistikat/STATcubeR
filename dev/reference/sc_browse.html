@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Links to important STATcube pages — sc_browse • STATcubeR</title>
+<title>Links to important STATcube and OGD pages — sc_browse • STATcubeR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,7 +48,7 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Links to important STATcube pages — sc_browse" />
+<meta property="og:title" content="Links to important STATcube and OGD pages — sc_browse" />
 <meta property="og:description" content="A collection of links, to browse important STATcube pages." />
 <meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.png" />
 
@@ -82,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">STATcubeR</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">0.2.2</span>
       </span>
     </div>
 
@@ -99,58 +99,40 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    STATcube API
+    Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/Setup.html">Setup</a>
+      <a href="../articles/index.html">Show All Articles ...</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">STATcube REST API</li>
     <li>
-      <a href="../articles/JSON-requests.html">JSON requests</a>
+      <a href="../articles/Setup.html">All about the API Key</a>
     </li>
     <li>
-      <a href="../articles/Saved-Tables.html">Saved Tables</a>
+      <a href="../articles/JSON-requests.html">Get Data via JSON Requests</a>
     </li>
     <li>
-      <a href="../articles/Custom-Tables.html">Custom tables</a>
+      <a href="../articles/Schema.html">Metadata with the /schema Endpoint</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">Open Goventment Data</li>
     <li>
-      <a href="../articles/Metadata.html">Metadata</a>
-    </li>
-    <li>
-      <a href="../articles/Schema.html">Schema</a>
-    </li>
-    <li>
-      <a href="../articles/Misc.html">Misc</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    open.data
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/od_table.html">Overview</a>
-    </li>
-    <li>
-      <a href="../articles/od_tabulate.html">Tabulation</a>
-    </li>
-    <li>
-      <a href="../articles/od_resources.html">File Management</a>
+      <a href="../articles/od_table.html">Getting Started with OGD Data</a>
     </li>
     <li>
       <a href="../articles/od_list.html">Available Datasets</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">The STATcubeR Data Class</li>
     <li>
-      <a href="https://data.statistik.gv.at/">data.statistik.gv.at</a>
+      <a href="../articles/sc_data.html">A Common Class for OGD and API Data</a>
+    </li>
+    <li>
+      <a href="../articles/od_tabulate.html">Tabulation of Data</a>
     </li>
   </ul>
 </li>
@@ -184,7 +166,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Links to important STATcube pages</h1>
+    <h1>Links to important STATcube and OGD pages</h1>
     <small class="dont-index">Source: <a href='https://github.com/statistikat/STATcubeR/blob/master/R/browse.R'><code>R/browse.R</code></a></small>
     <div class="hidden name"><code>sc_browse.Rd</code></div>
     </div>
@@ -195,17 +177,22 @@
 
     <pre class="usage"><span class='fu'>sc_browse</span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='fu'>sc_browse_preferences</span><span class='op'>(</span><span class='op'>)</span></pre>
+<span class='fu'>sc_browse_preferences</span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='fu'>sc_browse_ogd</span><span class='op'>(</span><span class='op'>)</span></pre>
 
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Zeige Startseite</span>
+    <pre class="examples"><span class='co'># Show starting page</span>
 <span class='fu'>sc_browse</span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='co'># Zeige "Einstellungen"</span>
+<span class='co'># Show the preferences page with the API key</span>
 <span class='fu'>sc_browse_preferences</span><span class='op'>(</span><span class='op'>)</span>
-</div></pre>
+
+<span class='co'># Show the landing page for OGD datasets</span>
+<span class='fu'>sc_browse_ogd</span><span class='op'>(</span><span class='op'>)</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
