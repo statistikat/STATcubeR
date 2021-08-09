@@ -86,7 +86,7 @@ added to a timeseries
 \if{html}{\out{<a id="method-tabulate"></a>}}
 \if{latex}{\out{\hypertarget{method-tabulate}{}}}
 \subsection{Method \code{tabulate()}}{
-An extension of \link{sc_data}\verb{$tabulate()} with additional
+An extension of \code{\link[=sc_tabulate]{sc_tabulate()}} with additional
 parameters.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{sc_table_class$tabulate(..., round = TRUE, annotations = FALSE)}\if{html}{\out{</div>}}
@@ -95,13 +95,13 @@ parameters.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{...}}{Parameters which are passed down to \link{sc_data}\verb{$tabulate()}}
+\item{\code{...}}{Parameters which are passed down to \code{\link[=sc_tabulate]{sc_tabulate()}}}
 
 \item{\code{round}}{apply rounding to each measure accoring to the precision
 provided by the API.}
 
 \item{\code{annotations}}{Include separate annotation columns in the returned
-table. See \code{\link[=sc_tabulate]{sc_tabulate()}}}
+table. This parameter is currently broken and needs to be re-implemented}
 }
 \if{html}{\out{</div>}}
 }

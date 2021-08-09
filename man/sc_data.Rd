@@ -137,7 +137,7 @@ create a tidy dataset
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{...}}{arguments that are passed down to \code{\link[=od_tabulate]{od_tabulate()}}}
+\item{\code{...}}{arguments that are passed down to \code{\link[=sc_tabulate]{sc_tabulate()}}}
 }
 \if{html}{\out{</div>}}
 }

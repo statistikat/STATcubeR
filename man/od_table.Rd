@@ -43,7 +43,7 @@ x$field(3)
 x$data
 x$tabulate()
 
-## tabulation: see `?od_tabulate` for more examples
+## tabulation: see `?sc_tabulate` for more examples
 x$tabulate("Reporting year", "Sex")
 
 ## switch language

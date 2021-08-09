@@ -59,15 +59,15 @@ sc_table_class <- R6::R6Class(
         stop(httr::content(response)$message)
       self$initialize(response, self$json$content, self$json$file)
     },
-    #' @description An extension of [sc_data]`$tabulate()` with additional
+    #' @description An extension of [sc_tabulate()] with additional
     #'   parameters.
-    #' @param ... Parameters which are passed down to [sc_data]`$tabulate()`
+    #' @param ... Parameters which are passed down to [sc_tabulate()]
     #' @param round apply rounding to each measure accoring to the precision
     #'   provided by the API.
     #' @param annotations Include separate annotation columns in the returned
-    #'   table. See [sc_tabulate()]
+    #'   table. This parameter is currently broken and needs to be re-implemented
     tabulate = function(..., round = TRUE, annotations = FALSE) {
-      sc_tabulate(self, ..., round = round, annotations = annotations)
+      sc_table_tabulate(self, ..., round = round, annotations = annotations)
     },
     #' @description open the dataset in a browser
     browse = function() {

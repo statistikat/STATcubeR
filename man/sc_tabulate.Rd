@@ -2,60 +2,122 @@
 % Please edit documentation in R/tabulate.R
 \name{sc_tabulate}
 \alias{sc_tabulate}
-\title{Turn sc_table objects into tidy data frames}
+\title{Turn sc_data objects into tidy data frames}
 \usage{
 sc_tabulate(
   table,
   ...,
   .list = NULL,
+  raw = FALSE,
   parse_time = TRUE,
-  round = TRUE,
-  recode_zeros = TRUE,
-  annotations = FALSE,
-  raw = FALSE
+  recode_zeros = inherits(table, "sc_table")
 )
 }
 \arguments{
-\item{table}{An object of class \code{sc_table}}
+\item{table}{An object of class \code{sc_data}}
 
 \item{...}{Names of measures and/or fields}
 
 \item{.list}{allows to define the arguments for \code{...} as a character vector.}
 
-\item{parse_time}{should field variables of type time be converted
-into a \code{POSIXct} format?}
-
-\item{round}{use the precision of each measure for rounding?}
-
-\item{recode_zeros}{turn zero values into \code{NA}s prior to rounding}
-
-\item{annotations}{Include separate annotation columns in the returned
-\code{data.frame}? Those extra columns are of type list and contain character
-vectors with all annotations for the corresponding measure}
-
 \item{raw}{If FALSE (the default), apply labeling to the dataset.
 Otherwise, return codes.}
+
+\item{parse_time}{Should time variables be converted into a \code{Date} format?
+Ignored if \code{raw} is set to \code{TRUE}.}
+
+\item{recode_zeros}{turn zero values into \code{NA}s}
 }
 \description{
 \code{sc_tabulate()} extracts the data in the table and turns it into a tidy
-data.frame. Additionaly, certain STATcube conventions are applied
-\itemize{
-\item zeros are recoded to \code{NA}s
-\item rounding is done according to the precision of each measure
-\item time variables are converted into \code{POSIXct}
-}
+data.frame. It applies labeling of the data and transforms time variables
+into a \code{Date} format if they satisfy certain STATcube Standards.
+
+\code{sc_tabulate(table, ...)} is just an alias for \code{table$tabulate(...)} and
+was added so this rather complicated method can have a separate documentation
+page. It is recommended to use the \code{table$tabulate()} syntax
 
 the \code{...} argument decides which measures and/or fields should be included
 in the output. If no measures are given, all measures are included. The same
 is true for fields.
 }
+\details{
+Aggregation is done as follows
+\itemize{
+\item First, all columns that priovide a total code via \code{table$total_codes()}
+will be used to filter for \code{column == total_code} or \code{column != total_code}
+\item Then, the remaining data is aggregated using \code{\link[=rowsum]{rowsum()}}
+}
+
+The ellipsis (\code{...}) supports partial matching of codes and labels.
+See Examples
+
+For objects of class \code{sc_table} two additional operations are performed.
+\itemize{
+\item zeros are recoded to \code{NA}s
+\item rounding is done according to the precision of each measure. Ronding
+happens after the recoding to \code{NA} values
+}
+}
 \examples{
+############################ OGD Data #######################################
+
+table <- od_table("OGD_veste309_Veste309_1")
+
+# no arguments -> same output as `table$data`
+table$tabulate()
+
+# provide some fields -> aggregate to keep only these fields
+table$tabulate("Sex", "Citizenship")
+
+# provide some measures -> drop all other measures from the output
+table$tabulate("Arithmetic mean")
+
+# mixture of measures and fields  -> keep exactly those columns
+table$tabulate("Sex", "Arithmetic mean")
+
+## define total codes
+table$total_codes(
+  `C-A11-0` = "A11-1",
+  `C-STAATS-0` = "STAATS-9",
+  `C-VEBDL-0` = "VEBDL-10",
+  `C-BESCHV-0` = "BESCHV-1"
+)
+
+## alternatively, use partial matching to define totals
+table$total_codes(
+  Sex = "Sum total",
+  Citizenship = "Total",
+  Region = "Total",
+  `Form of employment` = "Total"
+)
+
+# filter for totals in `Region (NUTS2)` and `Form of employment`. Drop totals
+# in `Sex` and `Citizenship`.
+table$tabulate("Sex", "Citizenship")
+
+## switch language
+table$language <- "de"
+
+## `...` matches for codes and labels
+table$tabulate("C-A11-0", "Staats", "2. Quartil (Median)")
+
+## Keep totals in the output by removing total codes
+table$tabulate("C-A11-0")      # -> 2 rows: "male" "female"
+table$total_codes(`C-A11-0` = NA)
+table$tabulate("C-A11-0")      # -> 3 rows: "total", "male", "female"
+
+## table$tabulate(...) is an alias for sc_tabulate(table, ...)
+sc_tabulate(table, "C-A11-0")
+
+######################### STATcube REST API #################################
+
 table_tourism <- sc_example("accomodation.json") \%>\% sc_table("de")
 
-sc_tabulate(table_tourism)
-sc_tabulate(table_tourism, "Saison/Tourismusmonat")
-sc_tabulate(table_tourism, "Saison/Tourismusmonat", "Ankünfte")
-sc_tabulate(table_tourism, "Ankünfte")
+table_tourism$tabulate()
+table_tourism$tabulate("Saison/Tourismusmonat")
+table_tourism$tabulate("Saison/Tourismusmonat", "Ankünfte")
+table_tourism$sc_tabulate("Ankünfte")
 
 ## TODO: param annotations does not work currently
 if (FALSE) {
@@ -65,4 +127,7 @@ if (FALSE) {
   tt
   tt[['Import, Wert in Euro_a']] \%>\% str()
 }
+}
+\seealso{
+sc_table_class
 }

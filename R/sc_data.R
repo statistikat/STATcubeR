@@ -48,12 +48,12 @@ sc_data <- R6::R6Class(
       sc_tibble_meta(private$p_fields[[i]], "parsed")
     },
     #' @description create a tidy dataset
-    #' @param ... arguments that are passed down to [od_tabulate()]
+    #' @param ... arguments that are passed down to [sc_tabulate()]
     #' @examples
     #' x <- od_table("OGD_krebs_ext_KREBS_1")
     #' x$tabulate("Reporting year", "Sex")
     tabulate = function(...) {
-      od_tabulate(self, ...)
+      sc_data_tabulate(self, ...)
     },
     #' @param ... key value pairs to define the total codes. Key should be a
     #'   field code and value a code from `$field(i)`. If empty, it will
