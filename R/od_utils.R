@@ -29,7 +29,8 @@ od_get_labels <- function(x, lang = c("en", "de")) {
   out
 }
 
-od_create_data <- function(id, json = od_json(id), lang = c("en", "de")) {
+od_create_data <- function(id, json = od_json(id), lang = c("en", "de"),
+                           verbose = FALSE) {
   lang <- match.arg(lang)
   resources <- od_resource_all(json = json)
   dat <- resources$data[[1]]
@@ -46,7 +47,7 @@ od_create_data <- function(id, json = od_json(id), lang = c("en", "de")) {
     fld <- resources$data[[2 + i]]
     udc <- unique(dat[[code]])
     stopifnot(all(udc %in% fld$code))
-    if (length(udc) != nrow(fld))
+    if (verbose && length(udc) != nrow(fld))
       message("dropping unused levels in ", shQuote(code), ": ",
               paste(shQuote(setdiff(fld$code, udc)), collapse = ", "))
     fld[fld$code %in% udc, ]
