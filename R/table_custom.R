@@ -20,10 +20,10 @@
 #' )
 #' @export
 sc_table_custom <- function(db, measures, dimensions, language = c("en", "de"),
-                            key = sc_key()) {
+                            add_totals = TRUE, key = sc_key()) {
   json_list <- list(database = db, measures = as.list(measures),
                     dimensions = lapply(dimensions, list))
   json <- jsonlite::toJSON(json_list, auto_unbox = TRUE, pretty = TRUE)
-  response <- sc_table_json_post(json, language, key)
+  response <- sc_table_json_post(json, language, add_totals, key)
   sc_table_class$new(response, toString(json))
 }

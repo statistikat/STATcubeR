@@ -1,7 +1,7 @@
 Package: STATcubeR
 Type: Package
 Title: Make API calls to STATcube
-Version: 0.2.0
+Version: 0.2.2
 Description: R Interface for the STATcube REST API.
 License: GPL (>= 2)
 Encoding: UTF-8
@@ -13,13 +13,19 @@ Imports:
     magrittr,
     jsonlite
 Authors@R: 
-    person(given = "Gregor de",
-           family = "Cillia",
-           role = c("aut", "cre"),
-           email = "Gregor.deCillia@statistik.gv.at")
+    c(person(given = "Gregor",
+             family = "de Cillia",
+             role = c("aut", "cre"),
+             email = "Gregor.deCillia@statistik.gv.at"),
+      person(given = "Bernhard",
+             family = "Meindl",
+             role = "aut",
+             email = "Bernhard.Meindl@statistik.gv.at"))
 Suggests: 
     rmarkdown,
     data.tree,
     rstudioapi,
-    openssl
-URL: https://github.com/statistikat/STATcubeR
+    xml2,
+    pillar
+URL: https://statistikat.github.io/STATcubeR, 
+  https://github.com/statistikat/STATcubeR
