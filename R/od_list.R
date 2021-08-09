@@ -3,7 +3,9 @@
 #' [od_list()] returns a `data.frame ` containing all datasets published at
 #' [data.statistik.gv.at](https://data.statistik.gv.at)
 #'
-#' @details some datasets are pulbished under multiple groups
+#' @param unique some datasets are pulbished under multiple groups.
+#'   They will only be listed once with the first group they appear in unless
+#'   this parameter is set to `FALSE`.
 #' @return a `data.frame` with two columns
 #' - `"category"`: Grouping under which a dataset is listed
 #' - `"id"`: Name of the dataset which can later be used in
@@ -12,8 +14,9 @@
 #' @export
 #' @examples
 #' df <- od_list()
-#' subset(df, category == "Arbeit")
-od_list <- function() {
+#' df
+#' subset(df, category == "Bildung und Forschung")
+od_list <- function(unique = TRUE) {
   url <- "https://data.statistik.gv.at/web/catalog.jsp"
   r <- httr::GET(url)
   if (httr::http_error(r)) {
@@ -43,10 +46,13 @@ od_list <- function() {
   tt <- diff(c(which(is.na(df$id)), nrow(df) + 1))
   df$category <- rep(grp, tt)
   df <- df[!is.na(df$id), ]
-  df <- df[!duplicated(df$id), ]
+  if (unique)
+    df <- df[!duplicated(df$id), ]
+  else
+    df <- df[df$label != "JSON", ]
   df <- df[substr(df$id, 1, 4) == "OGD_", ]
   df <- df[!(df$id %in% od_resource_blacklist), ]
   rownames(df) <- NULL
   attr(df, "od") <- r$times[["total"]]
-  df
+  df %>% `class<-`(c("tbl", "data.frame"))
 }
