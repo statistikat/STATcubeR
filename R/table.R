@@ -14,16 +14,28 @@ sc_set_last_error <- function(x) {
   sc_env$last_error <- x
 }
 
+#' @title  Class for /table responses
+#' @description R6 Class for all responses of the /table endpoint of the
+#'   STATcube REST API.
+#' @keywords internal
 sc_table_class <- R6::R6Class(
   "sc_table",
   cloneable = FALSE,
   inherit = sc_data,
   public = list(
+    #' @description Ususally, objects of class `sc_table` are generated with
+    #'   one of the factory methods [sc_table()], [sc_table_saved()] or
+    #'   [sc_table_custom()]. If this constructor is invoked directly,
+    #'   either omit the parameters `json` and `file` or make sure that they
+    #'   match with `response`.
+    #' @param response a response from `httr::POST()` against the /table
+    #'   endpoint.
+    #' @param json the json file used in the request as a string.
+    #' @param file the file path to the json file
     initialize = function(response, json = NULL, file = NULL) {
       stopifnot(inherits(response, "response"))
       private$httr_response <- response
-      private$version <- sc_version()
-      if (is.null(json))
+      if (is.null(json) && is.null(file))
         json <- jsonlite::toJSON(
           self$raw$query, auto_unbox = TRUE, pretty = TRUE) %>% toString()
       private$json_content <- sc_json_class$new(json, file)
@@ -37,15 +49,27 @@ sc_table_class <- R6::R6Class(
         })
       )
     },
+    #' @description Update the data by re-sending the json to the API. This
+    #'   is still experimental and could break the object in case new levels
+    #'   were added to one of the fields. For example, if a new entry is
+    #'   added to a timeseries
     update = function() {
       response <- sc_table_json_post(self$json$content)
       if (response$status_code != 200)
         stop(httr::content(response)$message)
       self$initialize(response, self$json$content, self$json$file)
     },
-    tabulate = function(...) {
-      sc_tabulate(self, ...)
+    #' @description An extension of [sc_data]`$tabulate()` with additional
+    #'   parameters.
+    #' @param ... Parameters which are passed down to [sc_data]`$tabulate()`
+    #' @param round apply rounding to each measure accoring to the precision
+    #'   provided by the API.
+    #' @param annotations Include separate annotation columns in the returned
+    #'   table. See [sc_tabulate()]
+    tabulate = function(..., round = TRUE, annotations = FALSE) {
+      sc_tabulate(self, ..., round = round, annotations = annotations)
     },
+    #' @description open the dataset in a browser
     browse = function() {
       browseURL(paste0(
         "https://statcube.at/statcube/openinfopage?id=",
@@ -54,16 +78,24 @@ sc_table_class <- R6::R6Class(
     }
   ),
   active = list(
+    #' @field response
+    #' the httr response
     response = function() private$httr_response,
+    #' @field raw
+    #' the raw response content
     raw = function() httr::content(self$response),
-    scr_version = function() private$version,
+    #' @field annotation_legend
+    #' list of all annotations occuring in the data
     annotation_legend = function() sc_annotation_legend(self),
+    #' @field rate_limit
+    #' how much requests were left after the POST request for this table was sent?
     rate_limit = function() sc_table_rate_limit(self),
+    #' @field json
+    #' an object of class `sc_json` based the json file used in the request
     json = function() private$json_content
   ),
   private = list(
     httr_response = NULL,
-    version = NULL,
     json_content = NULL
   )
 )
@@ -83,7 +115,8 @@ sc_table_class <- R6::R6Class(
 #'   request?
 #' @return An object of class `sc_table` which contains the return
 #'   value of the [httr::POST()] request in `obj$response`. The object also
-#'   provides member functions to parse this response object.
+#'   provides member functions to parse this response object. See
+#'   [sc_table_class] for the class documentation.
 #' @inheritParams sc_key
 #' @param language The language to be used for labeling. `"en"` or `"de"`
 #' @family functions for /table
