@@ -31,11 +31,14 @@
 #' sc_tabulate(table_tourism, "Saison/Tourismusmonat", "Ankünfte")
 #' sc_tabulate(table_tourism, "Ankünfte")
 #'
-#' table_trade <- sc_example("foreign_trade.json") %>% sc_table("de")
-#' tt <- sc_tabulate(table_trade, "Berichtsjahr", "Import, Wert in Euro",
-#'                   annotations = TRUE)
-#' tt
-#' tt[['Import, Wert in Euro_a']] %>% str()
+#' ## TODO: param annotations does not work currently
+#' if (FALSE) {
+#'   table_trade <- sc_example("foreign_trade.json") %>% sc_table("de")
+#'   tt <- sc_tabulate(table_trade, "Berichtsjahr", "Import, Wert in Euro",
+#'                     annotations = TRUE)
+#'   tt
+#'   tt[['Import, Wert in Euro_a']] %>% str()
+#' }
 #' @export
 sc_tabulate <- function(table, ..., .list = NULL, parse_time = TRUE,
                         round = TRUE, recode_zeros = TRUE, annotations = FALSE,
