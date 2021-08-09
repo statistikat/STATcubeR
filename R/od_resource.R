@@ -70,7 +70,7 @@ od_cache_update <- function(url, filename) {
 #' @param suffix A suffix for the resource: `"HEADER"` or a field code.
 #' @param timestamp A timestamp in `POSIXct` format. If provided, the
 #'   cached resource will be updated if it is older than that value. Otherwise
-#'   it will be downloaded only if does not exist in th ecache.
+#'   it will be downloaded only if it does not exist in the cache.
 #' @param ... For internal use
 #' @examples
 #'
