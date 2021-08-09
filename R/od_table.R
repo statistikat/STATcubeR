@@ -1,32 +1,102 @@
+#' @title Create a table-instance from an open-data dataset
+#'
+#' @description
+#'
+#' `od_table(id)` returns an `R6`-class object containing all relevant data
+#' and metadata from https://data.statistik.gv.at/data/
+#'
+#' @section Components:
+#'
+#' **Component**   | **Corresponding File on Server**
+#' --------------  | ---------------------------------
+#' `$data         `| `https://data.statistik.gv.at/data/${id}.csv`
+#' `$header       `| `https://data.statistik.gv.at/data/${id}_HEADER.csv`
+#' `$field(code)  `| `https://data.statistik.gv.at/data/${id}_${code}.csv`
+#' `$json         `| `https://data.statistik.gv.at/ogd/json?dataset=${id}`
+#'
+#' @param id the id of the data-set that should be accessed
+#' @param language language to be used for labeling. `"en"` or `"de"`
+#'
+#' @return
+#' The returned objects is of class `sc_table` and inherits several parsing
+#' methods from [sc_data]. See [od_table_class] for the full class
+#' documentation.
+#'
+#' @examples
+#' x <- od_table("OGD_krebs_ext_KREBS_1")
+#'
+#' ## metadata
+#' x
+#' x$meta
+#' x$field("Sex")
+#' x$field(3)
+#'
+#' ## data
+#' x$data
+#' x$tabulate()
+#'
+#' ## tabulation: see `?od_tabulate` for more examples
+#' x$tabulate("Reporting year", "Sex")
+#'
+#' ## switch language
+#' x$language <- "de"
+#' x
+#' x$tabulate()
+#'
+#' ## other interesting tables
+#' od_table("OGD_veste309_Veste309_1")
+#' od_table("OGD_konjunkturmonitor_KonMon_1")
+#' od_table("OGD_krankenbewegungen_ex_LEISTUNGEN_1")
+#' od_table("OGD_f1741_HH_Proj_1")
+#' od_table("OGD_veste303_Veste203_1")
+#' @export
+od_table <- function(id, language = c("en", "de")) {
+  od_table_class$new(id, language)
+}
+
+#' @title Create a table-instance from an open-data dataset
+#'
+#' @description R6 Class open data datasets.
+#' @keywords internal
 od_table_class <- R6::R6Class(
   classname = "od_table",
   inherit = sc_data,
   cloneable = FALSE,
   public = list(
-    initialize = function(id, language) {
+    #' @description This class is not exported. Use [od_table()] to
+    #' initialize objects of class `od_table`.
+    #' @param id the id of the data-set that should be accessed
+    #' @param language language to be used for labeling. `"en"` or `"de"`
+    initialize = function(id, language = c("en", "de")) {
+      language <- match.arg(language)
       stime <- Sys.time()
       stopifnot(rlang::is_scalar_character(id))
       private$id <- id
       json <- od_json(id)
-      private$json <- json
+      private$p_json <- json
       res <- od_create_data(id, json, language)
-      private$request_time <- stime
       private$cache <- res[c("header", "resources")]
+      res$meta$source$requested <- stime
       super$initialize(res$data, res$meta, res$fields)
       self$language <- language
       invisible(self)
     }
   ),
   active = list(
-    raw = function() {
-      private$json
+    #' @field json
+    #' parsed version of `https://data.statistik.gv.at/ogd/json?dataset=${id}`
+    json = function() {
+      private$p_json
     },
+    #' @field header
+    #' parsed version of `https://data.statistik.gv.at/data/${id}_HEADER.csv`.
+    #'
+    #' Similar contents can be found in `$meta`.
     header = function() {
       private$cache$header %>% sc_tibble_meta(c("label_de", "label_en"))
     },
-    times = function() { list(
-      request = private$request_time
-    )},
+    #' @field language
+    #' language to be used for labeling. `"en"` or `"de"`
     language = function(value) {
       if (missing(value))
         private$lang
@@ -46,75 +116,19 @@ od_table_class <- R6::R6Class(
         }
       }
     },
+    #' @field resources
+    #' lists all files downloaded from the server to contruct this table
     resources = function() {
-      private$cache$resources
+      private$cache$resources %>% `class<-`(c("tbl", "data.frame"))
     }
   ),
   private = list(
     id = NULL,
-    create_time = NULL,
-    request_time = NULL,
-    json = NULL,
+    p_json = NULL,
     cache = NULL,
     lang = NULL
   )
 )
-
-#' Create a table-instance from an open-data dataset
-#'
-#' @description
-#'
-#' [od_table()] returns an `R6`-class object containing all relevant data
-#' and metadata from data.statistik.gv.at.
-#'
-#' * `$data` contains the contents of `{id}.csv`
-#' * `$meta` includes information from `{id}_HEADER.csv`
-#' * `$field(i)` contains information from `{id}_{field_code}.csv`
-#'
-#' @param id the name of the data-set that should be accessed
-#' @param language the language to be used for labelling data: `"en"` or `"de"`
-#'
-#' @details
-#' The returned abject also provides certain functionalities to label and
-#' aggreate the dataset.
-#' * `object$data` takes `object$data_raw` and applies labels based on
-#'   the metadata.
-#' * `object$tabulate()` also applies labeling and aggregates the
-#'   dataset. See [od_tabulate()] for more information.
-#' * `object$language` can be used to get or set the language of the dataset.
-#'   This affects the labelling behavior
-#' @export
-#' @examples
-#' x <- od_table("OGD_krebs_ext_KREBS_1")
-#'
-#' ## metadata
-#' x
-#' x$meta
-#' x$field("Sex")
-#' x$field(3)
-#'
-#' ## data
-#' x$data
-#' x$tabulate()
-#'
-#' ## switch language
-#' x$language <- "de"
-#' x
-#' x$tabulate()
-#'
-#' ## tabulation: see `?od_tabulate` for more examples
-#' x$tabulate("Reporting year", "Sex")
-#'
-#' ## other interesting tables
-#' od_table("OGD_veste309_Veste309_1")
-#' od_table("OGD_konjunkturmonitor_KonMon_1")
-#' od_table("OGD_krankenbewegungen_ex_LEISTUNGEN_1")
-#' od_table("OGD_f1741_HH_Proj_1")
-#' od_table("OGD_veste303_Veste203_1")
-od_table <- function(id, language = c("en", "de")) {
-  language <- match.arg(language)
-  od_table_class$new(id = id, language = language)
-}
 
 with_wrap <- function(x) {
   if (length(x) > 10)
@@ -130,6 +144,6 @@ print.od_table <- function(x, ...) {
   cat("Database:  ", with_wrap(x$meta$source$label), "\n")
   cat("Measures:  ", with_wrap(x$meta$measures$label),"\n")
   cat("Fields:    ", with_wrap(x$meta$fields$label), "\n\n")
-  cat("Request:   ", format(x$times$request), "\n")
+  cat("Request:   ", format(x$meta$source$requested), "\n")
   cat("STATcubeR: ", x$meta$source$scr_version, "\n")
 }
