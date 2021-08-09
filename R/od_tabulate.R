@@ -83,7 +83,7 @@ od_tabulate <- function(table, ..., .list = NULL, raw = FALSE, parse_time = TRUE
   fields <- codes$fields
   measures <- codes$measures
   mf <- table$meta$fields
-  x <- table$data_raw
+  x <- table$data
   x <- x[, setdiff(names(x), setdiff(table$meta$measures$code, measures))]
   fields_to_aggregate <- setdiff(mf$code, fields)
   has_total <- mf$code[!is.na(mf$total_code)]

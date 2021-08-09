@@ -1,6 +1,6 @@
 od_table_class <- R6::R6Class(
   classname = "od_table",
-  inherit = sc_data_class,
+  inherit = sc_data,
   cloneable = FALSE,
   public = list(
     initialize = function(id, language) {
@@ -34,7 +34,7 @@ od_table_class <- R6::R6Class(
         value <- match.arg(value, c("en", "de"))
         private$lang <- value
         private$cache$header$label <- od_get_labels(private$cache$header, value)
-        private$p_meta$database$label <- od_get_labels(private$p_meta$database, value)
+        private$p_meta$source$label <- od_get_labels(private$p_meta$source, value)
         private$p_meta$measures$label <- od_get_labels(private$p_meta$measures, value)
         private$p_meta$fields$label <- od_get_labels(private$p_meta$fields, value)
         for (i in seq_along(private$p_fields)) {
@@ -67,7 +67,7 @@ od_table_class <- R6::R6Class(
 #' [od_table()] returns an `R6`-class object containing all relevant data
 #' and metadata from data.statistik.gv.at.
 #'
-#' * `$data_raw` contains the contents of `{id}.csv`
+#' * `$data` contains the contents of `{id}.csv`
 #' * `$meta` includes information from `{id}_HEADER.csv`
 #' * `$field(i)` contains information from `{id}_{field_code}.csv`
 #'
@@ -94,16 +94,16 @@ od_table_class <- R6::R6Class(
 #' x$field(3)
 #'
 #' ## data
-#' x$data_raw %>% head()
-#' x$data     %>% head()
+#' x$data
+#' x$tabulate()
 #'
 #' ## switch language
 #' x$language <- "de"
 #' x
-#' x$data     %>% head()
+#' x$tabulate()
 #'
 #' ## tabulation: see `?od_tabulate` for more examples
-#' x$tabulate("Reporting year", "Sex") %>% head()
+#' x$tabulate("Reporting year", "Sex")
 #'
 #' ## other interesting tables
 #' od_table("OGD_veste309_Veste309_1")
@@ -127,9 +127,9 @@ with_wrap <- function(x) {
 #' @export
 print.od_table <- function(x, ...) {
   cat("An object of class od_table\n\n")
-  cat("Database:  ", with_wrap(x$meta$database$label), "\n")
+  cat("Database:  ", with_wrap(x$meta$source$label), "\n")
   cat("Measures:  ", with_wrap(x$meta$measures$label),"\n")
   cat("Fields:    ", with_wrap(x$meta$fields$label), "\n\n")
   cat("Request:   ", format(x$times$request), "\n")
-  cat("STATcubeR: ", x$scr_version, "\n")
+  cat("STATcubeR: ", x$meta$source$scr_version, "\n")
 }

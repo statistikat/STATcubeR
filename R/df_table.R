@@ -1,4 +1,4 @@
-df_table <- function(x) {
+df_table <- function(x, label = "data") {
   x <- as.data.frame(x)
 
   measures <- df_table_meta(x, "numeric", "integer")
@@ -26,9 +26,12 @@ df_table <- function(x) {
   for (i in which(sapply(x, is.factor)))
     levels(x[[i]]) <- seq_along(unique(x[[i]]))
 
-  x <- sc_data_class$new(
+  x <- sc_data$new(
     data = x,
-    meta = list(measures = measures, fields = fields_m),
+    meta = list(
+      source = data.frame(code = substr(sc_checksum(x), 1, 10),
+                          label = label, stringsAsFactors = FALSE),
+      measures = measures, fields = fields_m),
     fields = fields
   )
   class(x) <- c("df_table", class(x))
@@ -54,5 +57,5 @@ print.df_table <- function(x, ...) {
   cat("An object of class df_table\n\n")
   cat("Measures:  ", with_wrap(x$meta$measures$label),"\n")
   cat("Fields:    ", with_wrap(x$meta$fields$label), "\n\n")
-  cat("STATcubeR: ", x$scr_version, "\n")
+  cat("STATcubeR: ", x$meta$source$scr_version, "\n")
 }

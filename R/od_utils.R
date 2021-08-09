@@ -35,8 +35,8 @@ od_create_data <- function(id, json = od_json(id), lang = c("en", "de")) {
   dat <- resources$data[[1]]
   header <- resources$data[[2]]
   meta <- list(
-    database = data.frame(code = id, label = NA, label_de = json$title,
-                          label_en = json$extras$en_title_and_desc),
+    source = data.frame(code = id, label = NA, label_de = json$title,
+                        label_en = json$extras$en_title_and_desc),
     measures = header[substr(header$code, 1, 1) == "F", ],
     fields   = header[substr(header$code, 1, 1) == "C", ]
   )
@@ -79,7 +79,7 @@ od_create_data <- function(id, json = od_json(id), lang = c("en", "de")) {
        header = header)
 }
 
-od_label_data <- function(table, x = table$data_raw, parse_time = TRUE) {
+od_label_data <- function(table, x = table$data, parse_time = TRUE) {
   for (i in which(table$meta$fields$code %in% names(x))) {
     field <- table$field(i)
     code <- table$meta$fields$code[i]

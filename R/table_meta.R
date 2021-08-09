@@ -56,7 +56,7 @@ sc_meta <- function(response) {
     code = content$database$id,
     stringsAsFactors = FALSE
   )
-  list(database = db_info, measures = measure_info, fields = field_info)
+  list(source = db_info, measures = measure_info, fields = field_info)
 }
 
 #' @rdname sc_meta

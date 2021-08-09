@@ -17,7 +17,7 @@ sc_set_last_error <- function(x) {
 sc_table_class <- R6::R6Class(
   "sc_table",
   cloneable = FALSE,
-  inherit = sc_data_class,
+  inherit = sc_data,
   public = list(
     initialize = function(response, json = NULL, file = NULL) {
       stopifnot(inherits(response, "response"))
@@ -127,11 +127,11 @@ sc_example <- function(filename) {
 print.sc_table <- function(x, ...) {
   content <- x$raw
   cat("An object of class sc_table\n\n")
-  cat("Database:     ", content$database$label, "\n")
+  cat("Database:     ", content$source$label, "\n")
   cat("Measures:     ", content$measures %>% sapply(function(x) x$label) %>%
         paste(collapse = ", "), "\n")
   cat("Fields:       ", content$fields %>% sapply(function(x) x$label) %>%
         paste(collapse = ", "), "\n\n")
   cat("Request:      ", format(x$response$date), "\n")
-  cat("STATcubeR:    ", x$scr_version)
+  cat("STATcubeR:    ", x$meta$source$scr_version)
 }
