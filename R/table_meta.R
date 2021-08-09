@@ -24,7 +24,7 @@ summarize_annotations <- function(x, i) {
 #'
 #' @param response An object of class `sc_table`
 #' @family functions for /table
-#' @export
+#' @keywords internal
 sc_meta <- function(response) {
   content <- response$raw
   measure_info <- lapply(seq_along(content$measures), function(i) {
@@ -66,7 +66,7 @@ sc_meta <- function(response) {
 #'   sc_table()
 #' sc_meta(my_response)
 #' sc_meta_field(my_response, 1)
-#' @export
+#' @keywords internal
 sc_meta_field <- function(response, i = 1) {
   content <- response$raw
   field <- content$fields[[i]]

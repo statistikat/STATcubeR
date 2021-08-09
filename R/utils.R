@@ -20,7 +20,7 @@ NULL
 #' @description * `sc_write_json()` saves the api request for a table as
 #'   a json file. The resulting json file can be passed to [sc_table()]
 #' @family functions for /table
-#' @export
+#' @keywords internal
 sc_write_json <- function(response, file) {
   response$raw$query %>%
     jsonlite::write_json(path = file, auto_unbox = TRUE, pretty = TRUE)
@@ -35,7 +35,7 @@ sc_parse_time <- function(timestamp) {
 #' @description * `sc_table_rate_limit()` is similar to `sc_ratelimit()` but
 #'   uses the header of the `/table` response rather than a seperate API
 #'   call.
-#' @export
+#' @keywords internal
 sc_table_rate_limit <- function(response) {
   headers <- response$response$headers
   res <- data.frame(
@@ -50,7 +50,7 @@ sc_table_rate_limit <- function(response) {
 #' @rdname utils
 #' @description * `sc_annotation_legend()` lists all annotations occurring in
 #'   a table together with descriptions of the annotations.
-#' @export
+#' @keywords internal
 sc_annotation_legend <- function(response) {
   am <- response$raw$annotationMap
   data.frame(annotation = names(am), label = unlist(am), row.names = NULL)
