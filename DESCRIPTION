@@ -27,4 +27,5 @@ Suggests:
     rstudioapi,
     xml2,
     pillar
-URL: https://github.com/statistikat/STATcubeR
+URL: https://statistikat.github.io/STATcubeR, 
+  https://github.com/statistikat/STATcubeR
