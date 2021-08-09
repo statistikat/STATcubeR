@@ -5,16 +5,7 @@ description: >
   for the session or persistently.
 ---
 
-Instructions for the first-time use of `STATcubeR`.
-
-## Installation
-
-The package can be installed directly from github using the
-`remotes` package.
-
-``` r
-remotes::install_github("statistikat/STATcubeR")
-```
+Instructions for the first-time use of the STATcube REST API.
 
 ## Adding an API key
 
@@ -45,5 +36,12 @@ As suggested by the code output, the key can be set persistently by modifying
 
 Currently, the api is only available inside the firewall of statistics austria.
 Therefore, api keys can only be requested by our employees. Api access for
-external users with a statcube subscription is planned for spring 2021. Please
-get into contact with the package maintainers of `STATcubeR` for details.
+external users with a statcube subscription is planned in the near future.
+Please get into contact with the package maintainers of `{STATcubeR}` for details.
+
+## Next Steps
+
+See the [JSON requests article](JSON-requests.html) to see how tables can be
+defined in the STATcube GUI and imported into R.
+Alternatively, import a saved table by following the
+[saved tables article](Saved-Tables.html)
