@@ -1,5 +1,8 @@
 ---
 title: "Custom Tables"
+description: >
+  Define custom requests against the `/table` endpoint by defining ids of
+  requested resources as character vectors.
 ---
 
 ```{r, include = FALSE}

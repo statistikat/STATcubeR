@@ -1,5 +1,8 @@
 ---
-title: "Setup"
+title: "Setup the API Key"
+description: >
+  Set up authentication to the STATcube REST API by setting your API key
+  for the session or persistently.
 ---
 
 Instructions for the first-time use of `STATcubeR`.

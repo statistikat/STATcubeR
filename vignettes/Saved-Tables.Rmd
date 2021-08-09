@@ -1,5 +1,8 @@
 ---
 title: "Saved Tables"
+description: > 
+  STATcube allows you to save tables in the GUI. You can directly import those
+  saved tables using `sc_table_saved()`
 ---
 
 ```{r, include = FALSE}

@@ -1,5 +1,8 @@
 ---
 title: "Schema"
+description: >
+  The /schema endpoint of the REST API provide metadata about databases and
+  can also be used to retrieve a catalogue with all available databases
 ---
 
 ```{r, include = FALSE}

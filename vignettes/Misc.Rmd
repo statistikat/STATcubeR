@@ -1,5 +1,7 @@
 ---
-title: "Misc"
+title: "Info and Rate limit"
+description: >
+  How to use the (rather simple) endpoints `/info` and `/rate_limit_table`
 ---
 
 ```{r, include = FALSE}
