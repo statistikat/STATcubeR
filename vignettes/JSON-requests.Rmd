@@ -18,7 +18,7 @@ R session. This process involves four steps
 
 * create a table with the STATcube GUI (table view)
 * download an "API request" for the table (format: `*.json`).
-* send the `json` file to the API using `STATcubeR`.
+* send the `json` file to the API using `{STATcubeR}`.
 * convert the return value into a `data.frame`
 
 ## Create a table with the STATcube GUI

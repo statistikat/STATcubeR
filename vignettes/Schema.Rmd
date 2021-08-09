@@ -11,7 +11,7 @@ knitr::opts_chunk$set(cache = TRUE)
 options(width = 200)
 ```
 
-There are currently three functions in `STATcubeR` that utilize the `/schema`
+There are currently three functions in `{STATcubeR}` that utilize the `/schema`
 endpoint.
 
 * `sc_schema_catalogue()` returns an overview of all available databases and
@@ -20,7 +20,7 @@ endpoint.
   database.
 * `sc_schema()` returns metadata about any resource.
 
-All functions return tree-like objects that are printed with the `data.tree`
+All functions return tree-like objects that are printed with the `{data.tree}`
 package.
 
 ## Browsing the Catalogue

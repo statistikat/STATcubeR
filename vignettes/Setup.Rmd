@@ -26,7 +26,7 @@ the following address can be used to view your key
 http://sdbext:8081/statistik.at/ext/statcube/jsf/preferences/editPreferences.xhtml
 ```
 
-To make the key available to `STATcubeR`, use the function
+To make the key available to `{STATcubeR}`, use the function
 `sc_key_set()`. Replace `"XXXX"` with your key.
 
 ```r
