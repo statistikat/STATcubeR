@@ -13,26 +13,54 @@ commit](https://img.shields.io/github/last-commit/statistikat/STATcubeR.svg?logo
 bytes](https://img.shields.io/github/languages/code-size/statistikat/STATcubeR?logo=github)](https://github.com/statistikat/STATcubeR)
 <!-- badges: end -->
 
-R Interface for the
-[STATcube](http://sdbext:8081/statistik.at/ext/statcube/jsf/dataCatalogueExplorer.xhtml)
-REST API. This package exposes certain parts of the [SuperSTAR
-API](https://docs.wingarc.com.au/superstar/latest/open-data-api) to
-transfer your STATcube tables into R. The package provides utility
-functions to create API requests and parser functions to transform the
-API responses into common R objects.
+R client for all things [STATcube](http://sdbext:8081/statistik.at/ext/statcube/jsf/dataCatalogueExplorer.xhtml).
+Get data from the STATcube REST API or via the open government data portal at
+https://data.statistik.gv.at. STATcubeR makes it easy to include both those
+datasources into your R projects.
 
-## Setup
+## Installation
 
-See the [setup
-article](https://statistikat.github.io/STATcubeR/articles/articles/Setup.html)
-for instructions on how to install the package and set your API key.
-Note that the API is currently only available inside the firewall of
+This package can be installed directly from github using the `{remotes}` package.
+
+```r
+remotes::install_github("statistikat/STATcubeR")
+```
+
+## Open Data
+
+To import datasets from https://data.statistik.gv.at, simply pass the dataset
+id to the `od_table()` function. For example, the OGD data from the [structure of earnings survey](https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_veste309_Veste309_1)
+can be accessed as follows.
+
+```r
+earnings <- od_table("OGD_veste309_Veste309_1")
+earnings$tabulate()
+```
+
+```
+# A STATcubeR tibble: 72 x 9
+  Sex    Citizenship `Region (NUTS2)` `Form of employment`   `Arithmetic mea… `1st quartile`
+* <fct>  <fct>       <fct>            <fct>                             <int>          <int>
+1 Sum t… Total       Total            "Total"                              18             12
+2 Sum t… Total       Total            "Standard employment "               19             13
+3 Sum t… Total       Total            "Non-standard employm…               15             10
+4 Sum t… Total       Total            "Non-standard employm…               16             11
+# … with 68 more rows, and 3 more variables: 2nd quartile (median) <int>,
+#   3rd quartile <int>, Number of employees <int>
+```
+
+The resulting object contains labeled data (see above), raw data, metadata and
+more. See the [OGD Article](https://statistikat.github.io/STATcubeR/articles/od_table.html) for further details.
+
+## STATcube API
+
+In order to use the REST API, it is required to set up an API key. See the
+[setup article](https://statistikat.github.io/STATcubeR/articles/articles/Setup.html)
+for more details. The API is currently only available for employees of
 Statistics Austria. Support for external users will be added in the near
 future.
 
-## Main Functions
-
-Currently, the package provides four main functions
+There are four main functions that interact with the API
 
   - `sc_schema_catalogue()` lists all available datasets and tables
   - `sc_schema_db()` provides metadata about a specific database
@@ -47,13 +75,3 @@ article](https://statistikat.github.io/STATcubeR/articles/Schema.html).
 [here](https://statistikat.github.io/STATcubeR/articles/JSON-requests.html)
 and
 [here](https://statistikat.github.io/STATcubeR/articles/Saved-Tables.html).
-
-## API documentation
-
-The STATcube API is based on the superSTAR REST API which is documented
-on <https://docs.wingarc.com.au>.
-
-  - [`/table`
-    endpoint](https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint)
-  - [`/schema`
-    endpoint](https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/schema-endpoint)
