@@ -25,6 +25,7 @@ sc_table_custom(
   measures,
   dimensions,
   language = c("en", "de"),
+  add_totals = TRUE,
   key = sc_key()
 )
 
