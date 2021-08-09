@@ -1,4 +1,4 @@
-#' Info and rate limit
+#' Create a requests against the endpoints /info and /rate_limit_table
 #'
 #' Utilize the simple endpoints `/info` and `/ratelimit`. Those provide
 #' information about available locales and the amount of requests available

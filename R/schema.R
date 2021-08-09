@@ -8,7 +8,7 @@
 #' tree object.
 #' @inheritParams sc_key
 #' @inheritParams sc_table
-#' @param resource_id A resource identifier un uid format
+#' @param resource_id A resource identifier in uid format
 #' @param depth If provided, the request will recurse into the given level.
 #'   For datasets, available options are `NULL` (no recursion), `"folder"`,
 #'   `"field"` and `"valueset"`. For the catalogue, only `NULL` and `"folder"`
