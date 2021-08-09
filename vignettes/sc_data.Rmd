@@ -1,0 +1,92 @@
+---
+title: "The STATcubeR data class"
+description: "The base class for Open Data and STATcube datasets"
+---
+
+```{r, include = FALSE}
+pkgload::load_all()
+source("R/df_print.R")
+options(tibble.print_min = 5)
+od_cache_dir("~/.cache/STATcubeR/open_data/")
+```
+
+The class [sc_data] defines a common interface for open data datasets and responses from the `/table` endpoint of the STATcube REST API.
+It defines methods that are applicable to both datasources like aquiring metadata, labeling the data and aggregating results.
+
+## Constructing `sc_data` objects
+
+The [sc_data] class itself is not exported in `{STATcubeR}`.
+Therefore, objects of the class should be created with one of the following functions
+
+* `od_table()` obtains data from the OGD portal.
+* `sc_table()` creates a request against the table endpoint of the STATcube
+  REST API
+    * `sc_table_saved()` and `sc_table_custom()` also use the `/table` endpoint.
+       However, the request is specified via ids rather than a json file.
+* `df_table()` creates a [sc_data] object based on a data.frame.
+  The function was developed to make STATcubeR data and data frames interchangable for an internal project.
+
+To illustrate, we will use one of the OGD datasets to showcase the functionalities of this class.
+Notice however, that objects created with `sc_table()` can be used interchangibly.
+
+```{r}
+x <- od_table("OGD_krebs_ext_KREBS_1")
+```
+
+## Data
+
+The data from the table can be extracted using the active binding `$data`.
+Notice how this dataset only includes codes and possibly some totals.
+The data is always provided in a long format with one column for each field and one column for each measure.
+
+```{r}
+x$data
+```
+
+It will be explained how labeled data can be obtained in the **Tabulation** section.
+
+## Metadata
+
+Metadata for a [sc_data] object includes labels and other information that is relevant to correctly parse the raw data.
+The active binding `$meta` contains at least the entries `$source`, `$measures` and `$fields`.
+
+### Source
+
+The source field contains information about the data source.
+The most important entries are `code` and `label`.
+
+```{r}
+x$meta$source
+```
+
+On the bottom, we see that additional information about the source is available, namely `label_en`, `label_de`, etc.
+These metadata were added from the derived class `od_table` and are not part of the `sc_table` interface.
+
+### Measures
+
+This part of the metadata is a data.frame with one row for each measure.
+It contains codes and labels as well as the number of NAs found in `$data` for that particular column.
+
+```{r}
+x$meta$measures
+```
+
+### Fields
+
+The fields entry summarizes all categorical variables.
+It includes the codes and labels as well as the total code registered for the particular field.
+
+```{r}
+x$meta$fields
+```
+
+## Tabulation
+
+The method `$tabulate()` can be used to turn `sc_table` objects into tidy data.frames.
+See the [tabulation article](od_tabulate.html) for more defails.
+
+```{r}
+x$tabulate()
+```
+
+[sc_data]: ../reference/sc_data.html
