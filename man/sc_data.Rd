@@ -10,7 +10,7 @@ STATcube REST API and OGD datasets. \code{sc_data} obects are usually created wi
 }
 \examples{
 ## create a new sc_data object via od_table()
-x <- od_table$new("OGD_krebs_ext_KREBS_1")
+x <- od_table("OGD_krebs_ext_KREBS_1")
 
 ## show data
 x$data
@@ -22,7 +22,7 @@ x$meta
 ## Method `sc_data$field`
 ## ------------------------------------------------
 
-x <- od_table$new("OGD_krebs_ext_KREBS_1")
+x <- od_table("OGD_krebs_ext_KREBS_1")
 x$field(1)
 x$field("Sex")
 
@@ -30,14 +30,14 @@ x$field("Sex")
 ## Method `sc_data$tabulate`
 ## ------------------------------------------------
 
-x <- od_table$new("OGD_krebs_ext_KREBS_1")
+x <- od_table("OGD_krebs_ext_KREBS_1")
 x$tabulate("Reporting year", "Sex")
 
 ## ------------------------------------------------
 ## Method `sc_data$total_codes`
 ## ------------------------------------------------
 
-earnings <- od_table$new("OGD_veste309_Veste309_1")
+earnings <- od_table("OGD_veste309_Veste309_1")
 earnings$total_codes(Sex = "Sum total", Citizenship = "Total",
                      Region = "Total", `Form of employment` = "Total")
 earnings$tabulate("Form of employment")
@@ -116,7 +116,7 @@ all available codes and labels.}
 }
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
-\preformatted{x <- od_table$new("OGD_krebs_ext_KREBS_1")
+\preformatted{x <- od_table("OGD_krebs_ext_KREBS_1")
 x$field(1)
 x$field("Sex")
 }
@@ -143,7 +143,7 @@ create a tidy dataset
 }
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
-\preformatted{x <- od_table$new("OGD_krebs_ext_KREBS_1")
+\preformatted{x <- od_table("OGD_krebs_ext_KREBS_1")
 x$tabulate("Reporting year", "Sex")
 }
 \if{html}{\out{</div>}}
@@ -171,7 +171,7 @@ can also use labels instead of codes. See examples.}
 }
 \subsection{Examples}{
 \if{html}{\out{<div class="r example copy">}}
-\preformatted{earnings <- od_table$new("OGD_veste309_Veste309_1")
+\preformatted{earnings <- od_table("OGD_veste309_Veste309_1")
 earnings$total_codes(Sex = "Sum total", Citizenship = "Total",
                      Region = "Total", `Form of employment` = "Total")
 earnings$tabulate("Form of employment")

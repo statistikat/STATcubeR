@@ -6,7 +6,7 @@
 #' [od_table()], [sc_table()] or `df_table()`.
 #' @examples
 #' ## create a new sc_data object via od_table()
-#' x <- od_table$new("OGD_krebs_ext_KREBS_1")
+#' x <- od_table("OGD_krebs_ext_KREBS_1")
 #'
 #' ## show data
 #' x$data
@@ -39,7 +39,7 @@ sc_data <- R6::R6Class(
     #'   a character is provided, the field is matched using `pmatch()` on
     #'   all available codes and labels.
     #' @examples
-    #' x <- od_table$new("OGD_krebs_ext_KREBS_1")
+    #' x <- od_table("OGD_krebs_ext_KREBS_1")
     #' x$field(1)
     #' x$field("Sex")
     field = function(i = 1) {
@@ -50,7 +50,7 @@ sc_data <- R6::R6Class(
     #' @description create a tidy dataset
     #' @param ... arguments that are passed down to [od_tabulate()]
     #' @examples
-    #' x <- od_table$new("OGD_krebs_ext_KREBS_1")
+    #' x <- od_table("OGD_krebs_ext_KREBS_1")
     #' x$tabulate("Reporting year", "Sex")
     tabulate = function(...) {
       od_tabulate(self, ...)
@@ -60,7 +60,7 @@ sc_data <- R6::R6Class(
     #'   return a data.frame with all specified total codes. Keys and values
     #'   can also use labels instead of codes. See examples.
     #' @examples
-    #' earnings <- od_table$new("OGD_veste309_Veste309_1")
+    #' earnings <- od_table("OGD_veste309_Veste309_1")
     #' earnings$total_codes(Sex = "Sum total", Citizenship = "Total",
     #'                      Region = "Total", `Form of employment` = "Total")
     #' earnings$tabulate("Form of employment")
