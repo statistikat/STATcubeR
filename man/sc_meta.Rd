@@ -29,3 +29,4 @@ Other functions for /table:
 \code{\link{sc_write_json}()}
 }
 \concept{functions for /table}
+\keyword{internal}

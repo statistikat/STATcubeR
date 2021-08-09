@@ -4,7 +4,7 @@
 \alias{info_and_rate_limit}
 \alias{sc_info}
 \alias{sc_rate_limit}
-\title{Info and rate limit}
+\title{Create a requests against the endpoints /info and /rate_limit_table}
 \usage{
 sc_info(language = c("en", "de"), key = sc_key())
 

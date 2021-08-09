@@ -3,19 +3,25 @@
 \name{sc_browse}
 \alias{sc_browse}
 \alias{sc_browse_preferences}
-\title{Links to important STATcube pages}
+\alias{sc_browse_ogd}
+\title{Links to important STATcube and OGD pages}
 \usage{
 sc_browse()
 
 sc_browse_preferences()
+
+sc_browse_ogd()
 }
 \description{
 A collection of links, to browse important STATcube pages.
 }
 \examples{
-# Zeige Startseite
+# Show starting page
 sc_browse()
 
-# Zeige "Einstellungen"
+# Show the preferences page with the API key
 sc_browse_preferences()
+
+# Show the landing page for OGD datasets
+sc_browse_ogd()
 }

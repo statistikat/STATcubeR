@@ -26,7 +26,7 @@ sc_schema_db(
 )
 }
 \arguments{
-\item{resource_id}{A resource identifier un uid format}
+\item{resource_id}{A resource identifier in uid format}
 
 \item{depth}{If provided, the request will recurse into the given level.
 For datasets, available options are \code{NULL} (no recursion), \code{"folder"},

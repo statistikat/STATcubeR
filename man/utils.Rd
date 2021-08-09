@@ -43,3 +43,4 @@ Other functions for /table:
 \code{\link{sc_table}()}
 }
 \concept{functions for /table}
+\keyword{internal}
