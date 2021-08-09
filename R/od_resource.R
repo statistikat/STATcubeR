@@ -96,6 +96,7 @@ od_cache_file <- function(id, suffix = NULL, timestamp = NULL, ...) {
     last_modified = timestamp))
 }
 
+#' @export
 print.od_cache_file <- function(x, ...) {
   print(as.character(x), ...)
 }
@@ -114,7 +115,8 @@ od_resource <- function(id, suffix = NULL, timestamp = NULL) {
     od_normalize_columns(suffix)
   t <- Sys.time() - t
   t <- 1000*as.numeric(t)
-  structure(x, od = c(attr(cache_file, "od"), list(parsed = t)))
+  structure(x, od = c(attr(cache_file, "od"), list(parsed = t)),
+            class = c("tbl", "data.frame"))
 }
 
 od_resource_parse_all <- function(resources) {
@@ -193,5 +195,5 @@ od_resource_all <- function(id, json = od_json(id)) {
   check_header(out$data[[2]])
   out$data[[2]] %<>% od_normalize_columns("HEADER")
   out$data[seq(3, nrow(out))] %<>% lapply(od_normalize_columns, "FIELD")
-  out
+  out %>% `class<-`(c("tbl", "data.frame"))
 }
