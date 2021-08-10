@@ -61,11 +61,6 @@ sc_meta <- function(response) {
 
 #' @rdname sc_meta
 #' @param i index of the field, for which further metadata are desired
-#' @examples
-#' my_response <- sc_example("population_timeseries.json") %>%
-#'   sc_table()
-#' sc_meta(my_response)
-#' sc_meta_field(my_response, 1)
 #' @keywords internal
 sc_meta_field <- function(response, i = 1) {
   content <- response$raw
