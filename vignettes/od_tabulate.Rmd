@@ -6,7 +6,7 @@ description: >
 ---
 
 ```{r, include = FALSE}
-pkgload::load_all()
+pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
 source("R/df_print.R")
 options(tibble.print_min = 5)
 od_cache_dir("~/.cache/STATcubeR/open_data/")
