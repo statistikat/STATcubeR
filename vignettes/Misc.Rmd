@@ -17,11 +17,11 @@ sc_rate_limit()
 ```
 
 Rate limits can also be obtained from the response of the `/table` endpoint
-with `sc_table_rate_limit()`
+with `$rate_limit`.
 
 ```{r, cache = TRUE}
 table <- sc_table(sc_example("population_timeseries.json"))
-sc_table_rate_limit(table)
+table$rate_limit
 ```
 
 STATcube uses caching for the `/table` endpoint by default. If the same

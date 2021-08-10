@@ -56,29 +56,12 @@ my_response
 The return value of `sc_post_json()` can be converted into a `data.frame`
 using the generic function `as.data.frame()`.
 
-```r
+```{r}
 as.data.frame(my_response)
 ```
 
 This will produce a tidy table, which contains a column for each field
-of the table. Furthermore, two columns will be present for each measure
-
-```{r}
-as.data.frame(my_response) %>% .[c(1:4, 19:24), ]
-```
-
-The column `Number_a` contains annotations for the column
-`Number`. In order to get explanations about those annotations, use the
-function `sc_annotation_legend()`.
-
-```{r}
-sc_annotation_legend(my_response)
-```
-
-In this case, we see that row 21 contains a value `NA` (**N**ot **A**vailable)
-because the value is not disclosed ("Crosstabulation not allowed"). However, the
-zero value in row 20 can be considered a "real zero value" because no
-annotations are provided.
+of the table. Furthermore, one column will be present for each measure
 
 ## Get the raw API response
 
