@@ -1,0 +1,23 @@
+.rt-expander-button{
+  display: none;
+}
+
+.od_details{
+  margin-left: 15px;
+  margin-right: 15px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.od_details u:hover {
+  background-color: lightgrey;
+}
+
+.tippy-box[data-theme~="custom"] {
+  font-size: 15px;
+}
+
+.tippy-tooltip.custom-theme {
+  font-size: 15px;
+}
