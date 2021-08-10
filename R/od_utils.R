@@ -99,3 +99,24 @@ od_label_data <- function(table, x = table$data, parse_time = TRUE) {
 
   x
 }
+
+#' @export
+print.od_json <- function(json) {
+  att <- od_attr(json)
+  measures <- att$label[substr(att$code, 1, 1) == "F"]
+  fields <- att$label[substr(att$code, 1, 1) == "C"]
+  last_modified <- json$extras$metadata_modified  %>%
+    as.POSIXct(format = "%Y-%m-%dT%H:%M:%OS") %>% format()
+  cat(paste(strwrap(json$title), collapse = "\n"), "\n\n")
+  cat(strwrap(json$notes), sep = "\n")
+  cat("\n")
+  cat("Measures:  ", with_wrap(measures), "\n")
+  cat("Fields:    ", with_wrap(fields), "\n")
+  cat("Updated:   ", last_modified, "\n")
+  cat("Tags:      ", with_wrap(unlist(json$tags)), "\n")
+  cat("Categories:", with_wrap(unlist(json$extras$categorization)), "\n\n")
+  cat(paste(c(json$extras$metadata_original_portal,
+              unlist(json$extras$metadata_linkage)), collapse = "\n"))
+  cat("\n")
+}
+

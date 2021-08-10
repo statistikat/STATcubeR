@@ -180,6 +180,7 @@ od_json <- function(id, timestamp = Sys.time() - 3600) {
   json <- jsonlite::read_json(file)
   t <- Sys.time() - t
   attr(json, "od") <- c(attr(file, "od"), list(parsed = t))
+  class(json) <- c("od_json", "list")
   json
 }
 

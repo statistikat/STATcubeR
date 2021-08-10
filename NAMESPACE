@@ -2,6 +2,7 @@
 
 S3method(as.data.frame,sc_table)
 S3method(print,od_cache_file)
+S3method(print,od_json)
 S3method(print,od_table)
 S3method(print,sc_rate_limit)
 S3method(print,sc_schema)
