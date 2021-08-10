@@ -25,7 +25,7 @@ sc_data <- R6::R6Class(
     #'   `od_table()` or `df_table()`
     initialize = function(data, meta, fields) {
       meta$source$scr_version <- sc_version()
-      meta$source <- sc_tibble_meta(meta$source)
+      meta$source <- sc_tibble_meta(meta$source, "lang")
       meta$measures <- sc_tibble_meta(meta$measures, "NAs")
       meta$fields <- sc_tibble_meta(meta$fields, "total_code")
       private$p_data <- sc_tibble(data)

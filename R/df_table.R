@@ -30,7 +30,7 @@ df_table <- function(x, label = "data") {
     data = x,
     meta = list(
       source = data.frame(code = substr(sc_checksum(x), 1, 10),
-                          label = label, stringsAsFactors = FALSE),
+                          label = label, stringsAsFactors = FALSE, lang = "en"),
       measures = measures, fields = fields_m),
     fields = fields
   )

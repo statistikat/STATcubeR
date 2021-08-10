@@ -41,6 +41,7 @@ sc_table_class <- R6::R6Class(
       private$json_content <- sc_json_class$new(json, file)
 
       meta <- sc_meta(self)
+      meta$source$lang <- response$headers$`content-language`
       super$initialize(
         data = sc_table_create_data(self),
         meta = meta,
