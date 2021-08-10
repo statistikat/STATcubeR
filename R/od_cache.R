@@ -60,6 +60,7 @@ od_cache_summary <- function() {
 
 
 #' @rdname od_cache
+#' @importFrom magrittr %T>%
 #' @export
 od_downloads <- function() {
   x <- od_cache_dir() %>% paste0("/downloads.log") %T>%
