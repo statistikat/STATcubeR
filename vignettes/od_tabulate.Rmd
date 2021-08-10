@@ -1,0 +1,188 @@
+---
+title: "Tabulating STATcbeR Datasets"
+description: >
+  Learn how to turn sc_table objects into tidy data frames using the
+  tabulate() method.
+---
+
+```{r, include = FALSE}
+pkgload::load_all()
+source("R/df_print.R")
+options(tibble.print_min = 5)
+od_cache_dir("~/.cache/STATcubeR/open_data/")
+```
+
+This article contains the most important aspects of the method `$tabulate()`.
+This method aggregate s`sc_data` objects.
+The first part will use the cancer dataset from the [OGD overview article](od_table.html).
+After that, other features of `$tabulate()` will be demonstrated with the data from the structure of earnings survey (SES).
+
+```{r, message = FALSE, results='hide'}
+cancer   <- od_table("OGD_krebs_ext_KREBS_1")
+earnings <- od_table("OGD_veste309_Veste309_1")
+```
+
+Notice that these tabulation methods can also be used with the STATcube REST API.
+This means that objects created by `sc_table()` also have a `$tabulate()` method.
+
+## Tabulating Data {#tabulate}
+
+Calling the `$tabulate()` method with no arguments produces a table with the same dimensions as `$data`.
+
+```{r}
+cancer$tabulate()
+```
+
+```{r}
+identical(dim(cancer$tabulate()), dim(cancer$data))
+```
+
+Instead of `cancer$tabulate(...)` it is also possible to use `sc_tabulate(cancer, ...)`.
+All available parameters for the `$tabulate()` method are documented in `?sc_tabulate`.
+
+## Aggregation
+
+### Aggregating with sums
+
+To get the number of cases by reporting year and sex, use the labels of those variables as arguments.
+
+```{r}
+cancer$tabulate("Reporting year", "Sex")
+```
+
+If more than one measure is included in the dataset, all measures will be aggregated.
+`{STATcubeR}` uses `rowsum()` to ensure a good performance with big datasets.
+It is also possible to use partial matching or use codes.
+
+```{r}
+cancer$tabulate("Reporting", "C-KRE")
+```
+
+STATcubeR will use `pmatch()` to match the supplied strings with the metadata
+to identify the variables that should be used for aggregation.
+
+### Limitations of sums {#totals}
+
+In some cases, datasets cannot be aggregated using the `rowsum()` approach.
+As an example, take the structure of earnings survey.
+
+```{r}
+earnings <- od_table("OGD_veste309_Veste309_1")
+earnings
+```
+
+As we can see from the `print()` output, the measures contain means and quartiles.
+Therefore, aggregating the data via `rowsum()` is not meaningful.
+However, this dataset contains a "total code" for every field.
+
+```{r, echo = FALSE}
+options(tibble.print_min = 10)
+```
+
+```{r}
+earnings$tabulate()
+```
+
+### Aggregating via total codes
+
+These total codes can be used to aggregate the data with `$tabulate()`.
+In order to do that, the total codes need to be specified using `$total_codes()`. 
+
+```{r}
+earnings$total_codes(Sex = "Sum total", Citizenship = "Total", 
+                     Region = "Total", `Form of employment` = "Total")
+```
+
+Now `$tabulate()` will use these total codes to form aggregates of the data.
+
+```{r}
+earnings$tabulate("Form of employment")
+```
+
+As we can see, the method extracted rows 2 to 7 from the data. The logic for
+selecting those rows is equivalent to the following `{dplyr}` expression.
+
+```{r, eval = FALSE}
+earnings$data %>% dplyr::filter(Sex == "Sum total" & Citizenship == "Total" & 
+  `Region (NUTS2)` == "Total" & `Form of employment` != "Total") %>% 
+  dplyr::select(-Sex, -Citizenship, -`Region (NUTS2)`)
+```
+
+The `$tabulate()` method also works with more than one variable.
+
+```{r, echo = FALSE}
+options(tibble.print_min = 12)
+```
+
+```{r}
+earnings$tabulate("Sex", "Form of employment")
+```
+
+### Including totals in the oputput
+
+It is not necessary that all fields have totals.
+For example, suppose we want to include the totals for `Sex` in the output table.
+We can just remove the toal code before running `od_tabulate()`.
+The special symbol `NA` can be used to unset a total code.
+
+```{r}
+earnings$total_codes(Sex = NA)
+earnings$tabulate("Sex")
+```
+
+## German Labels and Codes
+
+For OGD datasets, it is possible to switch the language used for labeling the data.
+This can be done by setting `$language` to `"de"` or `"en"`.
+
+```{r}
+earnings$language <- "de"
+earnings$tabulate("Geschlecht")
+```
+
+To skip labelling altogether and use variable codes in the output, use `raw=TRUE`.
+
+```{r}
+earnings$tabulate("Geschlecht", raw = TRUE)
+```
+
+Switching languages is currently only available for `od_table()` objects.
+For `sc_table()` objects this would require more support for the `sc_schema()` endpoint.
+See the [github issues] for some development goals regarding labeling.
+
+## Subsetting columns
+
+In the previous examples, we only supplied names ando/or codes of fields to `sc_tabulate()`.
+It is also possible to include measures in which case the unlisted measures will be omitted.
+
+```{r}
+earnings$tabulate("Geschlecht", "Arithmetisches Mittel", "2. Quartil")
+```
+
+Just like for fields, measures also support partial matching and codes.
+In the above example, `"2. Quartil"` was matched to `"2. Quartil (Median)"`.
+
+## Programmatic usage
+
+Notice that we used the german label for the column `"Sex"` in the last calls
+to `tabulate()`. This is necessary because only the "active" labels are
+available to define the tabulation. If you want to use `STATcubeR`
+programatically, always use codes to define the tabulation and also use the
+`.list` parameter if you want to pass several codes.
+
+```{r, echo = FALSE}
+options(tibble.print_min = 7, tibble.print_max = 7)
+```
+
+```{r}
+earnings$field("C-A11-0")
+earnings$total_codes(`C-A11-0` = "A11-1")
+vars_to_tabulate <- c("C-A11-0", "C-BESCHV-0")
+earnings$tabulate(.list = vars_to_tabulate)
+```
+
+`$total_codes()` currently uses an ellipsis (`...`) parameter to define total codes.
+In the future, programmatic updates of `sc_data` objects should be defined in `$recodes`.
+See [#17](https://github.com/statistikat/STATcubeR/issues/17).
+
+[github issues]: https://github.com/statistikat/STATcubeR/labels/label
