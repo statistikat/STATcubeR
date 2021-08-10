@@ -2,13 +2,49 @@ template:
   params:
     bootswatch: cosmo
 
+development:
+  mode: devel
+
 url: https://statistikat.github.io/STATcubeR
+
+authors:
+  Gregor de Cillia:
+    href: https://github.com/GregorDeCillia
+  Bernhard Meindl:
+    href: https://github.com/bernhard-da
+
+articles:
+- title: STATcube REST API
+  desc: >
+    Learn how to use the STATcube REST API to bring your STATcube tables
+    into your R session
+  contents:
+  - Setup
+  - JSON-requests
+  - Saved-Tables
+  - Custom-Tables
+  - Schema
+  - Misc
+- title: Open Government Data
+  desc: >
+    Articles about the import of OGD datasets into your R session
+  navbar: open data
+  contents:
+  - od_table
+  - od_resources
+  - od_list
+- title: Data Class
+  contents:
+  - sc_data
+  - od_tabulate
 
 home:
   title: STATcubeR
   links:
   - text: Use the STATcube GUI
     href: https://www.statistik.at/web_de/services/statcube/index.html
+  - text: Find open govenment data
+    href: https://data.statistik.gv.at
   - text: Read the API reference
     href: https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/
 
@@ -20,35 +56,59 @@ navbar:
     href: index.html
   - text: Reference
     href: reference/index.html
-  - text: Setup
-    href: articles/Setup.html
-  - text: /schema
+  - text: Articles
     menu:
-    - text: Schema
-      href: articles/Schema.html
-    - text: -------
-    - text: API Reference
-      icon: fas fa-link
-      href: https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/schema-endpoint
-  - text: /table
-    menu:
-    - text: JSON requests
+    - text: Show All Articles ...
+      href: articles/index.html
+    - text: ---------------------
+    - text: STATcube REST API
+    - text: All about the API Key
+      href: articles/Setup.html
+    - text: Get Data via JSON Requests
       href: articles/JSON-requests.html
-    - text: Saved Tables
-      href: articles/Saved-Tables.html
-    - text: Custom tables
-      href: articles/Custom-Tables.html
-    - text: Metadata
-      href: articles/Metadata.html
-    - text: -------
-    - text: API reference
-      icon: fas fa-link
-      href: https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint
-      target: "_blank"
-  - text: Misc
-    href: articles/Misc.html
+    - text: Metadata with the /schema Endpoint
+      href: articles/Schema.html
+    - text: ------------------------
+    - text: Open Goventment Data
+    - text: Getting Started with OGD Data
+      href: articles/od_table.html
+    - text: Available Datasets
+      href: articles/od_list.html
+    - text: ---------------------
+    - text: The STATcubeR Data Class
+    - text: A Common Class for OGD and API Data
+      href: articles/sc_data.html
+    - text: Tabulation of Data
+      href: articles/od_tabulate.html
+  - text: News
+    href: news/index.html
   right:
   - icon: fas fa-cube fa-lg
     href: https://www.statistik.at/web_de/services/statcube/index.html
   - icon: fab fa-github fa-lg
     href: https://github.com/statistikat/STATcubeR/
+
+reference:
+- title: Open Government Data
+  desc: >
+    Get resources from the open govenment data portal from
+    Statistics Austria. See the [OGD Article](../articles/od_table.html)
+    for a hands-on documentation.
+  contents:
+  - matches('od')
+- title: STATcube REST API
+  desc: >
+    Get resources from the REAST API of STATcube. See the
+    [Setup article](../articles/Setup.html) for instructions about the
+    API Key and the [json requests article](../articles/JSON-requests.html)
+    for a hands-on documentation.
+  contents:
+  - 'sc_table'
+  - 'sc_key'
+  - 'sc_schema'
+  - 'info_and_rate_limit'
+- title: General
+  contents:
+  - 'sc_data'
+  - 'sc_browse'
+  - 'sc_tabulate'
