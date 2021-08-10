@@ -1,0 +1,138 @@
+---
+title: "File Management"
+description: >
+  Learn how STATcubeR caches the data that is downloaded from the OGD portal
+---
+
+```{r setup, include=FALSE}
+source("R/df_print.R")
+pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
+tmp_cache_dir <- file.path(tempdir(), "STATcubeR/open_data") 
+dir.create(tmp_cache_dir, recursive = TRUE)
+od_cache_dir(tmp_cache_dir)
+```
+
+This artricle explains how and where `{STATcubeR}` caches resources from http://data.statistik.gv.at in the local file system.
+Understanding this behavior will allow you to enable persistent caches and directly use the cached resources.
+
+## Overview
+
+By default, `{STATcubeR}` caches all accessed resources from https://data.statistik.gv.at in the temporary directory of the current R session.
+
+```{r}
+od_cache_dir()
+```
+
+Let's examine for example what happens when the data from the structure of earnings suvey (SES) is requested.
+
+```{r}
+earnings <- od_table("OGD_veste309_Veste309_1")
+```
+
+First `STATcubeR` will grab a json with metadata about this dataset from https://data.statistik.gv.at/ogd/json?dataset=OGD_veste309_Veste309_1 and check which resources belong to it. 
+For any resource, the attributes `name` and `last_modified` are extracted from the json.
+They are also included in the `od_table` object under `$resources`.
+
+```{r}
+earnings$resources
+```
+
+`last_modified` tells us when the resource was changed on the fileserver.
+If a resource does not exist in the cache or if the last modified entry in the json is newer than the cached file, it will be dowloaded from the server.
+Otherwise, the cached version is reused.
+
+## Access and Updates
+
+Cached files can be acessed with `od_cache_file()`.
+If the specified file exists in the cache, a path to the file will be returned.
+Otherwise, the file is downloaded to the cache and then the path is returned.
+The files use the same naming conventions as the open data fileserver.
+
+```{r}
+od_cache_file("OGD_veste309_Veste309_1")
+```
+
+```{r}
+od_cache_file("OGD_veste309_Veste309_1", "C-A11-0")
+```
+
+To read files from the cache as `data.frame`s, use `od_resource()` with same parameters as in `od_cache_file()`.
+This will apply a special parser to the dataset which drops unneeded columns and normalizes column names.
+
+```{r}
+od_resource("OGD_veste309_Veste309_1", "C-A11-0")
+```
+
+The parser behaves differently for header files, data files and fields.
+Json files can be acessed with `od_json()`.
+
+```{r}
+json <- od_json("OGD_veste309_Veste309_1")
+unlist(json$tags)
+```
+
+## Clearing and Changing
+
+`od_cache_clear(id)` can be used to clear the cache from all files belonging to the passed dataset id.
+We saw that `earnings$resources` contains 7 rows, therefore 7 files will be deleted during cleanup.
+
+```{r}
+od_cache_clear("OGD_veste309_Veste309_1")
+```
+
+If you want to use a persistent directory like `~/.cache/STATcubeR/open_data/` for caching, the directory can be changed with `od_cache_dir(new)`. 
+
+```{r}
+od_cache_dir("~/.cache/STATcubeR/open_data/")
+```
+
+## The resources field
+
+Let's go back to the `$resources` field of `earnings`.
+
+```{r}
+earnings$resources
+```
+
+We already looked at __`name`__ and __`last_modified`__.
+The remaining columns can be interpreted as follows
+
+* __`cached`__ tells us the last time the cache file for the resource was modified.
+* __`size`__ is the file size in bytes
+* __`download`__ contains the amount of milliseconds used to retrieve the resource when it was last updated.
+* __`parsed`__ reports the amount of milliseconds it took `od_resource()` to convert the file contents into a `data.frame()` format.
+  For the json file, the parsing time is always reported as <code><span style='color: #BB0000;'>NA</span></code>.
+
+## What's in the cache?
+
+`od_cache_summary()` will give an overview about all files that are available in the cache directory.
+The returned table contains one row for every dataset.
+
+- The column **`updated`** contains the last modified date for the datasets json file.
+- **`json`**, **`data`** and **`header`** give the file sizes in bytes for the corresponding files.
+- **`fields`** is the total size of all fields and **`n_fields`** is the number of classification files available.
+
+We can get a clear picture on how much disk space is used for each dataset.
+
+```{r}
+od_cache_summary() 
+```
+
+Note that `od_cache_summary()` only gathers information from the local file system based on filenames, `file.mtime()` and `file.size()`.
+
+```{r, include=FALSE}
+od_cache_dir(tmp_cache_dir)
+```
+
+## Download history
+
+To get a history of all files that have been downloaded from the server, use `od_downloads()`.
+For each file, a timestamp for the download is recorded as well as the download time in milliseconds.
+
+```{r}
+od_downloads()
+```
+
+```{r cleanup, include=FALSE}
+unlink(tmp_cache_dir)
+```
