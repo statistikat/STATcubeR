@@ -44,6 +44,7 @@ od_cache_dir <- function(dir = NULL) {
 #' @name od_resource
 #' @details
 #' `od_cache_clear(id)` removes all files belonging to the specified id.
+#' @export
 od_cache_clear <- function(id) {
   od_resource_check_id(id)
   files <- od_cache_dir() %>% dir(id, full.names = TRUE)
