@@ -10,16 +10,22 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+source("R/df_print.R")
 pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
 conflicted::conflict_prefer("filter", "dplyr")
 ```
+
+```{r, echo = FALSE}
+source("R/add_tooltip.R")$value
+```
+
 
 In the following example, a table will be exported from STATcube into an
 R session. This process involves four steps
 
 * create a table with the STATcube GUI (table view)
 * download an "API request" for the table (format: `*.json`).
-* send the `json` file to the API using `{STATcubeR}`.
+* send the `json` file to the API using `r STATcubeR`.
 * convert the return value into a `data.frame`
 
 ## Create a table with the STATcube GUI
@@ -54,15 +60,16 @@ my_response
 
 ## Convert the response into a data frame
 
-The return value of `sc_post_json()` can be converted into a `data.frame`
-using the generic function `as.data.frame()`.
+The return value of `sc_table()` can be converted into a `data.frame`.
+To do that, use the `$tabulate()` method.
 
 ```{r}
-as.data.frame(my_response)
+my_response$tabulate()
 ```
 
-This will produce a tidy table, which contains a column for each field
-of the table. Furthermore, one column will be present for each measure
+This will produce a tidy table, which contains a column for each field of the table.
+Furthermore, one column will be present for each measure.
+More information about can be found in the `r ticle("od_tabulate")`.
 
 ## Get the raw API response
 

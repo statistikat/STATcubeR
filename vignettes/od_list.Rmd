@@ -128,7 +128,7 @@ all_datasets
 ```
 
 If you identify an interesting dataset, consider downloading the metadata json to get more details.
-The json contains links to further metadata including a link to https://data.statistik.gv.at/
+The json contains links to further metadata including a link to `r ogd_portal`.
 
 ```{r}
 (id <- all_datasets$id[2])

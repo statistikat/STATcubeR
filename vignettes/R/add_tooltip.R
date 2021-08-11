@@ -22,7 +22,7 @@ tippy_dataset <- function(x, text = NULL) {
     text,
     class = "STATcubeR",
     `data-tippy-content` = tooltip,
-    `data-tippy-interactive`="true",
+    `data-tippy-interactive` = "true",
   )
 }
 
@@ -55,6 +55,7 @@ STATcubeR <- tags$a(
 ogd_portal <- tags$a(
   "data.statistik.gv.at",
   href = "https://data.statistik.gv.at",
+  `data-tippy-allowHTML` = "true",
   `data-tippy-content` = "
   <b>Open Government Data from Statistics Austria</b><br/>
 The open data portal provides datasets from Statistics Austria according to open data guidelines
