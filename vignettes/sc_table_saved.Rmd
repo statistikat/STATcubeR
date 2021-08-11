@@ -19,13 +19,13 @@ If [saved tables] are present in STATcube, those can be imported without
 downloading a json file. All saved tables can be shown with
 `sc_table_saved_list()`.
 
-```{r, cache = TRUE}
+```{r}
 sc_table_saved_list()
 ```
 
 Subsequently the `id` of a saved table can be used to import the table into R.
 
-```{r, cache = TRUE}
+```{r}
 tourism_ts <- sc_table_saved("str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c")
 tourism_ts
 ```
