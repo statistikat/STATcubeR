@@ -1,19 +1,7 @@
-Package: STATcubeR
 Type: Package
+Package: STATcubeR
 Title: Tools for importing STATcube and OGD data
 Version: 0.2.2
-Description: Import data from the STATcube REST API or from the open data portal
-  of Statistics Austria. This package includes a client for API requests as
-  well as parsing utilities for data which originates from STATcube.
-License: GPL (>= 2)
-Encoding: UTF-8
-LazyData: true
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
-Imports: 
-    httr,
-    magrittr,
-    jsonlite
 Authors@R: 
     c(person(given = "Gregor",
              family = "de Cillia",
@@ -23,11 +11,24 @@ Authors@R:
              family = "Meindl",
              role = "aut",
              email = "Bernhard.Meindl@statistik.gv.at"))
+Description: Import data from the STATcube REST API or from the open data
+    portal of Statistics Austria. This package includes a client for API
+    requests as well as parsing utilities for data which originates from
+    STATcube.
+License: GPL (>= 2)
+URL: https://statistikat.github.io/STATcubeR,
+    https://github.com/statistikat/STATcubeR
+Imports: 
+    httr,
+    jsonlite,
+    magrittr
 Suggests: 
-    rmarkdown,
     data.tree,
+    pillar,
+    rmarkdown,
     rstudioapi,
-    xml2,
-    pillar
-URL: https://statistikat.github.io/STATcubeR, 
-  https://github.com/statistikat/STATcubeR
+    xml2
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
