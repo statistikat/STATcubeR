@@ -6,13 +6,8 @@ link_text: JSON requests article
 ---
 
 ```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
 source("R/df_print.R")
 pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
-conflicted::conflict_prefer("filter", "dplyr")
 ```
 
 ```{r, echo = FALSE}

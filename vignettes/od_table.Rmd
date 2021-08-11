@@ -7,7 +7,6 @@ link_text: OGD article
 ```{r, include = FALSE}
 pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
 source("R/df_print.R")
-od_cache_dir("~/.cache/STATcubeR/open_data/")
 table <- od_table("OGD_krebs_ext_KREBS_1")
 ```
 

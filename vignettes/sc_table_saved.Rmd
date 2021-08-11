@@ -7,12 +7,7 @@ link_text: "saved tables article"
 ---
 
 ```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
 pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
-conflicted::conflict_prefer("filter", "dplyr")
 ```
 
 If [saved tables] are present in STATcube, those can be imported without

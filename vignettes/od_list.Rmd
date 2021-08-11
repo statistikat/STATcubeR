@@ -10,7 +10,6 @@ library(reactable)
 library(tidyverse)
 
 source("R/df_print.R")
-od_cache_dir("~/.cache/STATcubeR/open_data/")
 all_datasets <- od_list()
 ```
 

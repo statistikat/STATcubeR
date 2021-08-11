@@ -8,7 +8,7 @@ link_text: "schema article"
 
 ```{r, include = FALSE}
 pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
-options(width = 200)
+options(width = 120)
 ```
 
 There are currently three functions in `{STATcubeR}` that utilize the `/schema`
