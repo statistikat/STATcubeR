@@ -4,14 +4,12 @@ description: "The base class for Open Data and STATcube datasets"
 link_text: "STATcubeR data article"
 ---
 
-```{r, include = FALSE}
-pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
-source("R/df_print.R")
-options(tibble.print_min = 5)
+```{r, echo = FALSE}
+source("R/setup.R")$value
 ```
 
-```{r, echo = FALSE}
-source("R/add_tooltip.R")$value
+```{r, include = FALSE}
+options(tibble.print_min = 5)
 ```
 
 The class [sc_data] defines a common interface for open data datasets and responses from the `/table` endpoint of the STATcube REST API.

@@ -4,8 +4,8 @@ description: >
   How to use the (rather simple) endpoints `/info` and `/rate_limit_table`
 ---
 
-```{r, include = FALSE}
-pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
+```{r, echo = FALSE}
+source("R/setup.R")$value
 ```
 
 Apart form `/table` and `/schema`, there is also support for the simple

@@ -6,16 +6,14 @@ description: >
 link_text: "tabulation article"
 ---
 
+```{r, echo = FALSE}
+source("R/setup.R")$value
+```
+
 ```{r, include = FALSE}
-pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
-source("R/df_print.R")
 options(tibble.print_min = 5)
 cancer   <- od_table("OGD_krebs_ext_KREBS_1")
 earnings <- od_table("OGD_veste309_Veste309_1")
-```
-
-```{r, echo = FALSE}
-source("R/add_tooltip.R")$value
 ```
 
 This article contains the most important aspects of the method `$tabulate()`.

@@ -6,8 +6,8 @@ description: >
 link_text: "saved tables article"
 ---
 
-```{r, include = FALSE}
-pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
+```{r, echo = FALSE}
+source("R/setup.R")$value
 ```
 
 If [saved tables] are present in STATcube, those can be imported without

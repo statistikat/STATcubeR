@@ -5,16 +5,14 @@ description: >
 link_text: "caching article"
 ---
 
+```{r, echo=FALSE}
+source("R/setup.R")$value
+```
+
 ```{r setup, include=FALSE}
-source("R/df_print.R")
-pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
 tmp_cache_dir <- file.path(tempdir(), "STATcubeR/open_data") 
 dir.create(tmp_cache_dir, recursive = TRUE)
 od_cache_dir(tmp_cache_dir)
-```
-
-```{r, echo=FALSE}
-source("R/add_tooltip.R")$value
 ```
 
 This article explains how and where `r STATcubeR` caches resources from `r ogd_portal` in the local file system.

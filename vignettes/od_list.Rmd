@@ -4,17 +4,14 @@ description: "List all datasets from the OGD portal of Statistics Austria"
 link_text: "available datasets article"
 ---
 
-```{r, include=FALSE}
-pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
-library(reactable)
-library(tidyverse)
-
-source("R/df_print.R")
-all_datasets <- od_list()
+```{r, echo=FALSE}
+source("R/setup.R")$value
 ```
 
-```{r, echo=FALSE}
-source("R/add_tooltip.R")$value
+```{r, include=FALSE}
+library(reactable)
+library(tidyverse)
+all_datasets <- od_list()
 ```
 
 At the time of writing this article, there are 268 datasets that are assumed to be compatible with `od_table()`.

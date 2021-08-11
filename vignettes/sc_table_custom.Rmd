@@ -5,12 +5,8 @@ description: >
   requested resources as character vectors.
 ---
 
-```{r, include = FALSE}
-pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
-```
-
-```{r}
-source("R/add_tooltip.R")$value
+```{r, echo = FALSE}
+source("R/setup.R")$value
 ```
 
 Another way to import STATcube Data into R is the use of a custom table. This

@@ -4,14 +4,12 @@ description: Overview about all functionalities regarding OGD Datasets
 link_text: OGD article
 ---
 
-```{r, include = FALSE}
-pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
-source("R/df_print.R")
-table <- od_table("OGD_krebs_ext_KREBS_1")
+```{r, echo = FALSE}
+source("R/setup.R")$value
 ```
 
-```{r, echo = FALSE}
-source("R/add_tooltip.R")$value
+```{r, include = FALSE}
+table <- od_table("OGD_krebs_ext_KREBS_1")
 ```
 
 `od_table()` makes it easy to import datasets from the `r ogd_portal` into your R sessions.

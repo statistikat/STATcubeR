@@ -6,7 +6,7 @@ description: >
 ---
 
 ```{r, echo = FALSE}
-source("R/add_tooltip.R")$value
+source("R/setup.R")$value
 ```
 
 
