@@ -55,7 +55,7 @@ more. See the [OGD Article](https://statistikat.github.io/STATcubeR/articles/od_
 ## STATcube API
 
 In order to use the REST API, it is required to set up an API key. See the
-[setup article](https://statistikat.github.io/STATcubeR/articles/articles/Setup.html)
+[setup article](https://statistikat.github.io/STATcubeR/articles/articles/sc_key.html)
 for more details. The API is currently only available for employees of
 Statistics Austria. Support for external users will be added in the near
 future.
@@ -70,8 +70,8 @@ There are four main functions that interact with the API
 
 More information about the first two functions can be found in the
 [schema
-article](https://statistikat.github.io/STATcubeR/articles/Schema.html).
+article](https://statistikat.github.io/STATcubeR/articles/sc_schema.html).
 `sc_table()` and `sc_table_saved()` have their own articles
-[here](https://statistikat.github.io/STATcubeR/articles/JSON-requests.html)
+[here](https://statistikat.github.io/STATcubeR/articles/sc_table.html)
 and
-[here](https://statistikat.github.io/STATcubeR/articles/Saved-Tables.html).
+[here](https://statistikat.github.io/STATcubeR/articles/sc_table_saved.html).
