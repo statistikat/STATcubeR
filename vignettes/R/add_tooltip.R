@@ -47,7 +47,7 @@ STATcubeR <- tags$a(
   href = "../index.html",
   `data-tippy-content` = "
   <b>R Package for all things STATcube</b><br/>
-  Get data From the STATcube REST API or from the Open Data portal into your R sessions
+  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
   ",
   class = "STATcubeR"
 )
