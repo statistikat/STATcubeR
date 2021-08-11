@@ -49,7 +49,7 @@ Now the ids can be used in `sc_table_custom()`. If several ids are used for the
 argument `dimensions` or `fields`, combine them with `c()` to pass a character
 vector of ids.
 
-```{r, cache = TRUE}
+```{r}
 my_response <- sc_table_custom(
   db = id_db,
   measures = c(id_arrivals, id_nights_spent),

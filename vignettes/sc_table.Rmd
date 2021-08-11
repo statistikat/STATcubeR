@@ -52,7 +52,7 @@ my_response <- sc_table(json_file = "path/to/api_request.json")
 The object `my_response` contains the raw API response from `httr::POST()`
 against the [`/table` endpoint]. Printing the object will summarize the request.
 
-```{r, cache = TRUE}
+```{r}
 (json_path <- sc_example("population_timeseries.json"))
 my_response <- sc_table(json_path)
 my_response
