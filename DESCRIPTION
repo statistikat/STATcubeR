@@ -1,8 +1,10 @@
 Package: STATcubeR
 Type: Package
-Title: Make API calls to STATcube
+Title: Tools for importing STATcube and OGD data
 Version: 0.2.2
-Description: R Interface for the STATcube REST API.
+Description: Import data from the STATcube REST API or from the open data portal
+  of Statistics Austria. This package includes a client for API requests as
+  well as parsing utilities for data which originates from STATcube.
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
