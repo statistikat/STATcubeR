@@ -109,13 +109,13 @@
     <li class="divider"></li>
     <li class="dropdown-header">STATcube REST API</li>
     <li>
-      <a href="../articles/Setup.html">All about the API Key</a>
+      <a href="../articles/sc_key.html">All about the API Key</a>
     </li>
     <li>
-      <a href="../articles/JSON-requests.html">Get Data via JSON Requests</a>
+      <a href="../articles/sc_table.html">Get Data via JSON Requests</a>
     </li>
     <li>
-      <a href="../articles/Schema.html">Metadata with the /schema Endpoint</a>
+      <a href="../articles/sc_schema.html">Metadata with the /schema Endpoint</a>
     </li>
     <li class="divider"></li>
     <li class="dropdown-header">Open Goventment Data</li>
@@ -131,7 +131,7 @@
       <a href="../articles/sc_data.html">A Common Class for OGD and API Data</a>
     </li>
     <li>
-      <a href="../articles/od_tabulate.html">Tabulation of Data</a>
+      <a href="../articles/sc_tabulate.html">Tabulation of Data</a>
     </li>
   </ul>
 </li>
@@ -191,6 +191,12 @@
       <tr>
         
         <td>
+          <p><code><a href="od_cache.html">od_cache_summary()</a></code> <code><a href="od_cache.html">od_downloads()</a></code> </p>
+        </td>
+        <td><p>Cache management for Open Data</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="od_list.html">od_list()</a></code> </p>
         </td>
         <td><p>List available Opendata datasets</p></td>
@@ -206,30 +212,15 @@
           <p><code><a href="od_table.html">od_table()</a></code> </p>
         </td>
         <td><p>Create a table-instance from an open-data dataset</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="od_tabulate.html">od_tabulate()</a></code> </p>
-        </td>
-        <td><p>Turn od_table objects into tidy data frames</p></td>
       </tr>
     </tbody><tbody>
       <tr>
         <th colspan="2">
           <h2 id="section-statcube-rest-api" class="hasAnchor"><a href="#section-statcube-rest-api" class="anchor"></a>STATcube REST API</h2>
-          <p class="section-desc"><p>Get resources from the REAST API of STATcube. See the <a href="../articles/Setup.html">Setup article</a> for instructions about the API Key and the <a href="../articles/JSON-requests.html">json requests article</a> for a hands-on documentation.</p></p>
+          <p class="section-desc"><p>Get resources from the REAST API of STATcube. See the <a href="../articles/sc_key.html">API key article</a> for instructions about the API Key and the <a href="../articles/sc_table.html">json requests article</a> for a hands-on documentation.</p></p>
         </th>
       </tr>
       
-      
-    </tbody><tbody>
-      
-      <tr>
-        <th colspan="2">
-          <h3 id="section-table-endpoint" class="hasAnchor"><a href="#section-table-endpoint" class="anchor"></a>Table endpoint</h3>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
       
     </tbody><tbody>
       
@@ -241,25 +232,6 @@
         </td>
         <td><p>Create a request against the /table endpoint</p></td>
       </tr><tr>
-        
-        <td>
-          <p><code><a href="sc_tabulate.html">sc_tabulate()</a></code> </p>
-        </td>
-        <td><p>Turn sc_table objects into tidy data frames</p></td>
-      </tr>
-    </tbody><tbody>
-      
-      <tr>
-        <th colspan="2">
-          <h3 id="section-other" class="hasAnchor"><a href="#section-other" class="anchor"></a>Other</h3>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-    </tbody><tbody>
-      
-      
-      <tr>
         
         <td>
           <p><code><a href="sc_key.html">sc_key()</a></code> <code><a href="sc_key.html">sc_key_set()</a></code> <code><a href="sc_key.html">sc_key_get()</a></code> <code><a href="sc_key.html">sc_key_prompt()</a></code> </p>
@@ -282,7 +254,7 @@
       <tr>
         <th colspan="2">
           <h2 id="section-general" class="hasAnchor"><a href="#section-general" class="anchor"></a>General</h2>
-          <p class="section-desc"></p>
+          <p class="section-desc"><p>Other functionalities including the <a href="../articles/sc_data.html">STATcubeR data class</a>.</p></p>
         </th>
       </tr>
       
@@ -302,6 +274,12 @@
           <p><code><a href="sc_browse.html">sc_browse()</a></code> <code><a href="sc_browse.html">sc_browse_preferences()</a></code> <code><a href="sc_browse.html">sc_browse_ogd()</a></code> </p>
         </td>
         <td><p>Links to important STATcube and OGD pages</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="sc_tabulate.html">sc_tabulate()</a></code> </p>
+        </td>
+        <td><p>Turn sc_data objects into tidy data frames</p></td>
       </tr>
     </tbody>
     </table>

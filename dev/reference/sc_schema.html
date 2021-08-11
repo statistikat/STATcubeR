@@ -115,13 +115,13 @@ tree object." />
     <li class="divider"></li>
     <li class="dropdown-header">STATcube REST API</li>
     <li>
-      <a href="../articles/Setup.html">All about the API Key</a>
+      <a href="../articles/sc_key.html">All about the API Key</a>
     </li>
     <li>
-      <a href="../articles/JSON-requests.html">Get Data via JSON Requests</a>
+      <a href="../articles/sc_table.html">Get Data via JSON Requests</a>
     </li>
     <li>
-      <a href="../articles/Schema.html">Metadata with the /schema Endpoint</a>
+      <a href="../articles/sc_schema.html">Metadata with the /schema Endpoint</a>
     </li>
     <li class="divider"></li>
     <li class="dropdown-header">Open Goventment Data</li>
@@ -137,7 +137,7 @@ tree object." />
       <a href="../articles/sc_data.html">A Common Class for OGD and API Data</a>
     </li>
     <li>
-      <a href="../articles/od_tabulate.html">Tabulation of Data</a>
+      <a href="../articles/sc_tabulate.html">Tabulation of Data</a>
     </li>
   </ul>
 </li>
@@ -256,31 +256,248 @@ the direct children of the current resource.</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='va'>my_catalogue</span> <span class='op'>&lt;-</span> <span class='fu'>sc_schema_catalogue</span><span class='op'>(</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='va'>my_catalogue</span> <span class='op'>&lt;-</span> <span class='fu'>sc_schema_catalogue</span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='co'>## print</span>
 <span class='va'>my_catalogue</span>
-
+</div><div class='output co'>#&gt;                                                                  levelName
+#&gt; 1  Extern V9                                                              
+#&gt; 2   ¦--Examples                                                           
+#&gt; 3   ¦   ¦--Communes (Demo)                                                
+#&gt; 4   ¦   ¦--People                                                         
+#&gt; 5   ¦   ¦--People multilingual                                            
+#&gt; 6   ¦   °--Retail Banking ML en                                           
+#&gt; 7   ¦--Publications and services                                          
+#&gt; 8   ¦   ¦--Economic Trend Monitor                                         
+#&gt; 9   ¦   ¦   °--Economic Trend Monitor                                     
+#&gt; 10  ¦   °--Austrian Economic Atlas                                        
+#&gt; 11  ¦       ¦--01 Key data Austria and European Union                     
+#&gt; 12  ¦       ¦--02 Key data Federal provinces                              
+#&gt; 13  ¦       ¦--03 Key data on economic branches                           
+#&gt; 14  ¦       ¦--04 Key data on economic branches by enterprise size classes
+#&gt; 15  ¦       ¦--05 Key data on economic branches compared with the EU      
+#&gt; 16  ¦       ¦--06 Key data on economic branches by federal provinces      
+#&gt; 17  ¦       ¦--07 Key data industry                                       
+#&gt; 18  ¦       ¦--08 Key data construction                                   
+#&gt; 19  ¦       ¦--09 Key data trade                                          
+#&gt; 20  ¦       ¦--10 Key data tourism                                        
+#&gt; 21  ¦       ¦--11 Key data transport                                      
+#&gt; 22  ¦       ¦--12 Key data foreign trade                                  
+#&gt; 23  ¦       °--13 Key data agriculture and foresty                        
+#&gt; 24  °--Statistics                                                         
+#&gt; 25      ¦--Labour Market                                                  
+#&gt; 26      ¦   ¦--Job Vacancies                                              
+#&gt; 27      ¦   ¦   ¦--Offene Stellen (Jahresdurchschnitt) ab 2009            
+#&gt; 28      ¦   ¦   °--Offene Stellen Quartale ab 2009                        
+#&gt; 29      ¦   ¦--Working hours (Labour Force Survey)                        
+#&gt; 30      ¦   °--... 3 nodes w/ 0 sub                                       
+#&gt; 31      °--... 18 nodes w/ 621 sub                                        
+#&gt;        type
+#&gt; 1    FOLDER
+#&gt; 2    FOLDER
+#&gt; 3  DATABASE
+#&gt; 4  DATABASE
+#&gt; 5  DATABASE
+#&gt; 6  DATABASE
+#&gt; 7    FOLDER
+#&gt; 8    FOLDER
+#&gt; 9  DATABASE
+#&gt; 10   FOLDER
+#&gt; 11 DATABASE
+#&gt; 12 DATABASE
+#&gt; 13 DATABASE
+#&gt; 14 DATABASE
+#&gt; 15 DATABASE
+#&gt; 16 DATABASE
+#&gt; 17 DATABASE
+#&gt; 18 DATABASE
+#&gt; 19 DATABASE
+#&gt; 20 DATABASE
+#&gt; 21 DATABASE
+#&gt; 22 DATABASE
+#&gt; 23 DATABASE
+#&gt; 24   FOLDER
+#&gt; 25   FOLDER
+#&gt; 26   FOLDER
+#&gt; 27 DATABASE
+#&gt; 28 DATABASE
+#&gt; 29 DATABASE
+#&gt; 30         
+#&gt; 31         </div><div class='input'>
 <span class='co'>## access the parsed catalogue</span>
 <span class='va'>my_catalogue</span><span class='op'>$</span><span class='va'>Statistics</span><span class='op'>$</span><span class='va'>`Labour Market`</span>
-<span class='va'>my_catalogue</span><span class='op'>$</span><span class='va'>Statistics</span><span class='op'>$</span><span class='va'>`Labour Market`</span><span class='op'>$</span><span class='va'>`Working hours (Labour Force Survey)`</span>
-
+</div><div class='output co'>#&gt;                                                        levelName     type
+#&gt; 1 Labour Market                                                    FOLDER
+#&gt; 2  ¦--Job Vacancies                                                FOLDER
+#&gt; 3  ¦   ¦--Offene Stellen (Jahresdurchschnitt) ab 2009            DATABASE
+#&gt; 4  ¦   °--Offene Stellen Quartale ab 2009                        DATABASE
+#&gt; 5  ¦--Working hours (Labour Force Survey)                        DATABASE
+#&gt; 6  ¦--Austrian Micro census - Labour Force Survey Yearly Data    DATABASE
+#&gt; 7  ¦--Austrian Micro census - Labour Force Survey Quarterly Data DATABASE
+#&gt; 8  °--Microcensus Time Series since 1974                         DATABASE</div><div class='input'><span class='va'>my_catalogue</span><span class='op'>$</span><span class='va'>Statistics</span><span class='op'>$</span><span class='va'>`Labour Market`</span><span class='op'>$</span><span class='va'>`Working hours (Labour Force Survey)`</span>
+</div><div class='output co'>#&gt; $id
+#&gt; [1] "str:database:deake005"
+#&gt; 
+#&gt; $label
+#&gt; [1] "Working hours (Labour Force Survey)"
+#&gt; 
+#&gt; $location
+#&gt; [1] "http://sdbext:8082/statistik.at/ext/statcube/rest/v1/schema/str:database:deake005"
+#&gt; 
+#&gt; $type
+#&gt; [1] "DATABASE"
+#&gt; 
+#&gt; $lastModified
+#&gt; [1] 1.628679e+12
+#&gt; 
+#&gt; $recordViewEnabled
+#&gt; [1] FALSE
+#&gt; </div><div class='input'>
 <span class='va'>db_schema</span> <span class='op'>&lt;-</span> <span class='fu'>sc_schema_db</span><span class='op'>(</span><span class='st'>"deake005"</span><span class='op'>)</span>
 
 <span class='co'># printing</span>
 <span class='va'>db_schema</span>
-
+</div><div class='output co'>#&gt;                                                                                   levelName
+#&gt; 1  Working hours (Labour Force Survey)                                                     
+#&gt; 2   ¦--Factors                                                                             
+#&gt; 3   ¦   ¦--Average hours actually worked per week                                          
+#&gt; 4   ¦   ¦   °--Average hours actually worked per week                                      
+#&gt; 5   ¦   ¦--Average hours usually worked per week                                           
+#&gt; 6   ¦   ¦   °--Average hours usually worked per week                                       
+#&gt; 7   ¦   ¦--Volume of hours worked in the main job per year in million hours                
+#&gt; 8   ¦   ¦   °--Volume of hours worked in the main job per year in million hours            
+#&gt; 9   ¦   ¦--Volume of hours worked overtime (paid) per year in million hours                
+#&gt; 10  ¦   ¦   °--Volume of hours worked overtime (paid) per year in million hours            
+#&gt; 11  ¦   ¦--Volume of hours worked overtime (unpaid) per year in million hours              
+#&gt; 12  ¦   ¦   °--Volume of hours worked overtime (unpaid) per year in million hours          
+#&gt; 13  ¦   ¦--Volume of hours worked overtime (paid/unpaid) per year in million hours         
+#&gt; 14  ¦   ¦   °--Volume of hours worked overtime (paid/unpaid) per year in million hours     
+#&gt; 15  ¦   ¦--Volume of hours worked in the second job per year in million hours              
+#&gt; 16  ¦   ¦   °--Volume of hours worked in the second job per year in million hours          
+#&gt; 17  ¦   ¦--Average hours worked overtime per week related to the total of employees        
+#&gt; 18  ¦   ¦   °--Average hours worked overtime per week related to the total of employees    
+#&gt; 19  ¦   °--Average hours worked overtime per week related to employees working overtime    
+#&gt; 20  ¦       °--Average hours worked overtime per week related to employees working overtime
+#&gt; 21  ¦--Facts                                                                               
+#&gt; 22  ¦   ¦--GEWTATJAHR                                                                      
+#&gt; 23  ¦   ¦   °--GEWTATJAHR                                                                  
+#&gt; 24  ¦   ¦--GEWJAHR                                                                         
+#&gt; 25  ¦   ¦   °--GEWJAHR                                                                     
+#&gt; 26  ¦   ¦--TATSTUNDMALGEW                                                                  
+#&gt; 27  ¦   ¦   °--TATSTUNDMALGEW                                                              
+#&gt; 28  ¦   ¦--STUNDMALGEW                                                                     
+#&gt; 29  ¦   ¦   °--STUNDMALGEW                                                                 
+#&gt; 30  ¦   °--... 13 nodes w/ 13 sub                                                          
+#&gt; 31  °--... 7 nodes w/ 105 sub                                                              
+#&gt;        type
+#&gt; 1  DATABASE
+#&gt; 2     GROUP
+#&gt; 3   MEASURE
+#&gt; 4       SUM
+#&gt; 5   MEASURE
+#&gt; 6       SUM
+#&gt; 7   MEASURE
+#&gt; 8       SUM
+#&gt; 9   MEASURE
+#&gt; 10      SUM
+#&gt; 11  MEASURE
+#&gt; 12      SUM
+#&gt; 13  MEASURE
+#&gt; 14      SUM
+#&gt; 15  MEASURE
+#&gt; 16      SUM
+#&gt; 17  MEASURE
+#&gt; 18      SUM
+#&gt; 19  MEASURE
+#&gt; 20      SUM
+#&gt; 21    GROUP
+#&gt; 22  MEASURE
+#&gt; 23      SUM
+#&gt; 24  MEASURE
+#&gt; 25      SUM
+#&gt; 26  MEASURE
+#&gt; 27      SUM
+#&gt; 28  MEASURE
+#&gt; 29      SUM
+#&gt; 30         
+#&gt; 31         </div><div class='input'>
 <span class='co'># access child nodes</span>
 <span class='va'>db_schema</span><span class='op'>$</span><span class='va'>`Demographic Characteristics`</span>
-<span class='va'>db_schema</span><span class='op'>$</span><span class='va'>`Demographic Characteristics`</span><span class='op'>$</span><span class='va'>Gender</span><span class='op'>$</span><span class='va'>Gender</span>
-<span class='va'>db_schema</span><span class='op'>$</span><span class='va'>`Demographic Characteristics`</span><span class='op'>$</span><span class='va'>Gender</span><span class='op'>$</span><span class='va'>Gender</span><span class='op'>$</span><span class='va'>male</span>
-
+</div><div class='output co'>#&gt;                                                                                          levelName
+#&gt; 1  Demographic Characteristics                                                                    
+#&gt; 2   ¦--Gender                                                                                     
+#&gt; 3   ¦   °--Gender                                                                                 
+#&gt; 4   ¦--Age in years-groups                                                                        
+#&gt; 5   ¦   ¦--Age in years-groups                                                                    
+#&gt; 6   ¦   ¦--Alter in Jahresgruppen                                                                 
+#&gt; 7   ¦   °--Alter (Ebene +1)                                                                       
+#&gt; 8   ¦--Highest level of training completed (national classification)                              
+#&gt; 9   ¦   ¦--Highest level of training completed (national classification)                          
+#&gt; 10  ¦   °--Höchste abgeschlossene Schulbildung - nationale Gliederung (Ebene +1)                  
+#&gt; 11  ¦--Highest level of training completed (ISCED 97)                                             
+#&gt; 12  ¦   ¦--Highest level of training completed (ISCED 97)                                         
+#&gt; 13  ¦   °--Höchste abgeschlossene Ausbildung (ISCED-97) (Ebene +1)                                
+#&gt; 14  ¦--Highest level of training completed (ISCED 2011)                                           
+#&gt; 15  ¦   ¦--Highest level of training completed (ISCED 2011)                                       
+#&gt; 16  ¦   °--Höchste abgeschlossene Schulbildung - internationale Gliederung (ISCED 2011) (Ebene +1)
+#&gt; 17  ¦--Nationality                                                                                
+#&gt; 18  ¦   ¦--Nationality                                                                            
+#&gt; 19  ¦   °--Staatsangehörigkeit                                                                    
+#&gt; 20  ¦--Country of birth                                                                           
+#&gt; 21  ¦   ¦--Country of birth                                                                       
+#&gt; 22  ¦   °--Geburtsland Österreich                                                                 
+#&gt; 23  °--Migration background                                                                       
+#&gt; 24      ¦--Migration background                                                                   
+#&gt; 25      °--Migrationshintergrund (Ebene +1)                                                       
+#&gt;        type
+#&gt; 1     GROUP
+#&gt; 2     FIELD
+#&gt; 3  VALUESET
+#&gt; 4     FIELD
+#&gt; 5  VALUESET
+#&gt; 6  VALUESET
+#&gt; 7  VALUESET
+#&gt; 8     FIELD
+#&gt; 9  VALUESET
+#&gt; 10 VALUESET
+#&gt; 11    FIELD
+#&gt; 12 VALUESET
+#&gt; 13 VALUESET
+#&gt; 14    FIELD
+#&gt; 15 VALUESET
+#&gt; 16 VALUESET
+#&gt; 17    FIELD
+#&gt; 18 VALUESET
+#&gt; 19 VALUESET
+#&gt; 20    FIELD
+#&gt; 21 VALUESET
+#&gt; 22 VALUESET
+#&gt; 23    FIELD
+#&gt; 24 VALUESET
+#&gt; 25 VALUESET</div><div class='input'><span class='va'>db_schema</span><span class='op'>$</span><span class='va'>`Demographic Characteristics`</span><span class='op'>$</span><span class='va'>Gender</span><span class='op'>$</span><span class='va'>Gender</span>
+</div><div class='output co'>#&gt;                  levelName     type
+#&gt; 1 Gender                   VALUESET
+#&gt; 2  ¦--male                    VALUE
+#&gt; 3  ¦--female                  VALUE
+#&gt; 4  °--Not classifiable &lt;0&gt;    VALUE</div><div class='input'><span class='va'>db_schema</span><span class='op'>$</span><span class='va'>`Demographic Characteristics`</span><span class='op'>$</span><span class='va'>Gender</span><span class='op'>$</span><span class='va'>Gender</span><span class='op'>$</span><span class='va'>male</span>
+</div><div class='output co'>#&gt; $id
+#&gt; [1] "str:value:deake005:F-DATA:C-C11-0:C-C11-0:C11-1"
+#&gt; 
+#&gt; $label
+#&gt; [1] "male"
+#&gt; 
+#&gt; $location
+#&gt; [1] "http://sdbext:8082/statistik.at/ext/statcube/rest/v1/schema/str:value:deake005:F-DATA:C-C11-0:C-C11-0:C11-1"
+#&gt; 
+#&gt; $type
+#&gt; [1] "VALUE"
+#&gt; </div><div class='input'>
 <span class='co'># access the raw response from httr::GET()</span>
 <span class='va'>my_response</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db_schema</span>, <span class='st'>"response"</span><span class='op'>)</span>
 <span class='va'>my_response</span><span class='op'>$</span><span class='va'>headers</span><span class='op'>$</span><span class='va'>date</span>
-<span class='va'>my_content</span> <span class='op'>&lt;-</span> <span class='fu'>httr</span><span class='fu'>::</span><span class='fu'><a href='https://httr.r-lib.org/reference/content.html'>content</a></span><span class='op'>(</span><span class='va'>my_response</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "Wed, 11 Aug 2021 11:55:46 GMT"</div><div class='input'><span class='va'>my_content</span> <span class='op'>&lt;-</span> <span class='fu'>httr</span><span class='fu'>::</span><span class='fu'><a href='https://httr.r-lib.org/reference/content.html'>content</a></span><span class='op'>(</span><span class='va'>my_response</span><span class='op'>)</span>
 <span class='va'>my_content</span><span class='op'>$</span><span class='va'>label</span>
-</pre>
+</div><div class='output co'>#&gt; [1] "Working hours (Labour Force Survey)"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -68,13 +68,13 @@
     <li class="divider">
     <li class="dropdown-header">STATcube REST API</li>
     <li>
-      <a href="articles/Setup.html">All about the API Key</a>
+      <a href="articles/sc_key.html">All about the API Key</a>
     </li>
     <li>
-      <a href="articles/JSON-requests.html">Get Data via JSON Requests</a>
+      <a href="articles/sc_table.html">Get Data via JSON Requests</a>
     </li>
     <li>
-      <a href="articles/Schema.html">Metadata with the /schema Endpoint</a>
+      <a href="articles/sc_schema.html">Metadata with the /schema Endpoint</a>
     </li>
     <li class="divider">
     <li class="dropdown-header">Open Goventment Data</li>
@@ -90,7 +90,7 @@
       <a href="articles/sc_data.html">A Common Class for OGD and API Data</a>
     </li>
     <li>
-      <a href="articles/od_tabulate.html">Tabulation of Data</a>
+      <a href="articles/sc_tabulate.html">Tabulation of Data</a>
     </li>
   </ul>
 </li>
@@ -133,9 +133,9 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>This package can be installed directly from github using the <code>remotes</code> package.</p>
+<p>This package can be installed directly from github using the <a href="https://remotes.r-lib.org">remotes</a> package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"statistikat/STATcubeR"</span>, ref <span class="op">=</span> <span class="st">"merge-od"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"statistikat/STATcubeR"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="open-data" class="section level2">
 <h2 class="hasAnchor">
@@ -153,12 +153,12 @@
 4 Sum t… Total       Total            "Non-standard employm…               16             11
 # … with 68 more rows, and 3 more variables: 2nd quartile (median) &lt;int&gt;,
 #   3rd quartile &lt;int&gt;, Number of employees &lt;int&gt;</code></pre>
-<p>The resulting object contains labeled data (see above), raw data, metadata and more. See the <a href="articles/od_table.html">OGD Article</a> for further details.</p>
+<p>The resulting object contains labeled data (see above), raw data, metadata and more. See the <a href="https://statistikat.github.io/STATcubeR/articles/od_table.html">OGD Article</a> for further details.</p>
 </div>
 <div id="statcube-api" class="section level2">
 <h2 class="hasAnchor">
 <a href="#statcube-api" class="anchor"></a>STATcube API</h2>
-<p>In order to use the REST API, it is required to set up an API key. See the <a href="https://statistikat.github.io/STATcubeR/articles/articles/Setup.html">setup article</a> for more details. The API is currently only available for employees of Statistics Austria. Support for external users will be added in the near future.</p>
+<p>In order to use the REST API, it is required to set up an API key. See the <a href="https://statistikat.github.io/STATcubeR/articles/articles/sc_key.html">setup article</a> for more details. The API is currently only available for employees of Statistics Austria. Support for external users will be added in the near future.</p>
 <p>There are four main functions that interact with the API</p>
 <ul>
 <li>
@@ -170,7 +170,7 @@
 <li>
 <code><a href="reference/sc_table.html">sc_table_saved()</a></code> requests a table based on an id</li>
 </ul>
-<p>More information about the first two functions can be found in the <a href="https://statistikat.github.io/STATcubeR/articles/Schema.html">schema article</a>. <code><a href="reference/sc_table.html">sc_table()</a></code> and <code><a href="reference/sc_table.html">sc_table_saved()</a></code> have their own articles <a href="https://statistikat.github.io/STATcubeR/articles/JSON-requests.html">here</a> and <a href="https://statistikat.github.io/STATcubeR/articles/Saved-Tables.html">here</a>.</p>
+<p>More information about the first two functions can be found in the <a href="https://statistikat.github.io/STATcubeR/articles/sc_schema.html">schema article</a>. <code><a href="reference/sc_table.html">sc_table()</a></code> and <code><a href="reference/sc_table.html">sc_table_saved()</a></code> have their own articles <a href="https://statistikat.github.io/STATcubeR/articles/sc_table.html">here</a> and <a href="https://statistikat.github.io/STATcubeR/articles/sc_table_saved.html">here</a>.</p>
 </div>
 </div>
   </div>

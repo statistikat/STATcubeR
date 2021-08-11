@@ -2,18 +2,18 @@ pandoc: 2.11.4
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
-  Custom-Tables: Custom-Tables.html
-  JSON-requests: JSON-requests.html
-  Misc: Misc.html
-  Saved-Tables: Saved-Tables.html
-  Schema: Schema.html
-  Setup: Setup.html
   od_list: od_list.html
   od_resources: od_resources.html
   od_table: od_table.html
-  od_tabulate: od_tabulate.html
   sc_data: sc_data.html
-last_built: 2021-08-09T08:54Z
+  sc_info: sc_info.html
+  sc_key: sc_key.html
+  sc_schema: sc_schema.html
+  sc_table: sc_table.html
+  sc_table_custom: sc_table_custom.html
+  sc_table_saved: sc_table_saved.html
+  sc_tabulate: sc_tabulate.html
+last_built: 2021-08-11T11:55Z
 urls:
   reference: https://statistikat.github.io/STATcubeR/reference
   article: https://statistikat.github.io/STATcubeR/articles

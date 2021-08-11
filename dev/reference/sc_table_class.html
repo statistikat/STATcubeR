@@ -111,13 +111,13 @@ STATcube REST API." />
     <li class="divider"></li>
     <li class="dropdown-header">STATcube REST API</li>
     <li>
-      <a href="../articles/Setup.html">All about the API Key</a>
+      <a href="../articles/sc_key.html">All about the API Key</a>
     </li>
     <li>
-      <a href="../articles/JSON-requests.html">Get Data via JSON Requests</a>
+      <a href="../articles/sc_table.html">Get Data via JSON Requests</a>
     </li>
     <li>
-      <a href="../articles/Schema.html">Metadata with the /schema Endpoint</a>
+      <a href="../articles/sc_schema.html">Metadata with the /schema Endpoint</a>
     </li>
     <li class="divider"></li>
     <li class="dropdown-header">Open Goventment Data</li>
@@ -133,7 +133,7 @@ STATcube REST API." />
       <a href="../articles/sc_data.html">A Common Class for OGD and API Data</a>
     </li>
     <li>
-      <a href="../articles/od_tabulate.html">Tabulation of Data</a>
+      <a href="../articles/sc_tabulate.html">Tabulation of Data</a>
     </li>
   </ul>
 </li>
@@ -243,19 +243,19 @@ added to a timeseries</p><h4 class='hasAnchor' id='arguments'><a class='anchor' 
 
 <p><hr>
 <a id="method-tabulate"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code><a href='https://rdrr.io/r/base/tabulate.html'>tabulate()</a></code></h3>
-<p>An extension of <a href='sc_data.html'>sc_data</a><code>$tabulate()</code> with additional
+<p>An extension of <code><a href='sc_tabulate.html'>sc_tabulate()</a></code> with additional
 parameters.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
 <p><div class="r"></p><pre><span class='va'>sc_table_class</span><span class='op'>$</span><span class='fu'>tabulate</span><span class='op'>(</span><span class='va'>...</span>, round <span class='op'>=</span> <span class='cn'>TRUE</span>, annotations <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
-<dt><code>...</code></dt><dd><p>Parameters which are passed down to <a href='sc_data.html'>sc_data</a><code>$tabulate()</code></p></dd>
+<dt><code>...</code></dt><dd><p>Parameters which are passed down to <code><a href='sc_tabulate.html'>sc_tabulate()</a></code></p></dd>
 
 <dt><code>round</code></dt><dd><p>apply rounding to each measure accoring to the precision
 provided by the API.</p></dd>
 
 <dt><code>annotations</code></dt><dd><p>Include separate annotation columns in the returned
-table. See <code><a href='sc_tabulate.html'>sc_tabulate()</a></code></p></dd>
+table. This parameter is currently broken and needs to be re-implemented</p></dd>
 
 </dl><p></div></p>
 <p><hr>

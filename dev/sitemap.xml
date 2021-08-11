@@ -7,6 +7,9 @@
     <loc>https://statistikat.github.io/STATcubeR/reference/info_and_rate_limit.html</loc>
   </url>
   <url>
+    <loc>https://statistikat.github.io/STATcubeR/reference/od_cache.html</loc>
+  </url>
+  <url>
     <loc>https://statistikat.github.io/STATcubeR/reference/od_list.html</loc>
   </url>
   <url>
@@ -17,9 +20,6 @@
   </url>
   <url>
     <loc>https://statistikat.github.io/STATcubeR/reference/od_table_class.html</loc>
-  </url>
-  <url>
-    <loc>https://statistikat.github.io/STATcubeR/reference/od_tabulate.html</loc>
   </url>
   <url>
     <loc>https://statistikat.github.io/STATcubeR/reference/pipe.html</loc>
@@ -52,28 +52,7 @@
     <loc>https://statistikat.github.io/STATcubeR/reference/sc_tabulate.html</loc>
   </url>
   <url>
-    <loc>https://statistikat.github.io/STATcubeR/reference/sg_data.html</loc>
-  </url>
-  <url>
     <loc>https://statistikat.github.io/STATcubeR/reference/utils.html</loc>
-  </url>
-  <url>
-    <loc>https://statistikat.github.io/STATcubeR/articles/Custom-Tables.html</loc>
-  </url>
-  <url>
-    <loc>https://statistikat.github.io/STATcubeR/articles/JSON-requests.html</loc>
-  </url>
-  <url>
-    <loc>https://statistikat.github.io/STATcubeR/articles/Misc.html</loc>
-  </url>
-  <url>
-    <loc>https://statistikat.github.io/STATcubeR/articles/Saved-Tables.html</loc>
-  </url>
-  <url>
-    <loc>https://statistikat.github.io/STATcubeR/articles/Schema.html</loc>
-  </url>
-  <url>
-    <loc>https://statistikat.github.io/STATcubeR/articles/Setup.html</loc>
   </url>
   <url>
     <loc>https://statistikat.github.io/STATcubeR/articles/od_list.html</loc>
@@ -85,9 +64,27 @@
     <loc>https://statistikat.github.io/STATcubeR/articles/od_table.html</loc>
   </url>
   <url>
-    <loc>https://statistikat.github.io/STATcubeR/articles/od_tabulate.html</loc>
+    <loc>https://statistikat.github.io/STATcubeR/articles/sc_data.html</loc>
   </url>
   <url>
-    <loc>https://statistikat.github.io/STATcubeR/articles/sc_data.html</loc>
+    <loc>https://statistikat.github.io/STATcubeR/articles/sc_info.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/articles/sc_key.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/articles/sc_schema.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/articles/sc_table.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/articles/sc_table_custom.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/articles/sc_table_saved.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/articles/sc_tabulate.html</loc>
   </url>
 </urlset>
