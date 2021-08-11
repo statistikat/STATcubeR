@@ -17,13 +17,16 @@
 #' @export
 sc_schema <- function(resource_id = NULL, depth = NULL,
                       language = c("en", "de"), key = sc_key()) {
-  response <- httr::GET(
-    url = paste0(
-      base_url, "/schema",
-      ifelse(is.null(resource_id), "", paste0("/", resource_id)),
-      ifelse(is.null(depth), "", paste0("?depth=", depth))
-    ),
-    config = sc_headers(language, key)
+  response <- sc_with_cache(
+    list(resource_id, depth, language, key),
+    function() { httr::GET(
+      url = paste0(
+        base_url, "/schema",
+        ifelse(is.null(resource_id), "", paste0("/", resource_id)),
+        ifelse(is.null(depth), "", paste0("?depth=", depth))
+      ),
+      config = sc_headers(language, key)
+    )}
   )
   content <- httr::content(response)
   x <- sc_as_nested_list(content)
