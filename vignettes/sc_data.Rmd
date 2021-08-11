@@ -1,6 +1,7 @@
 ---
 title: "The STATcubeR data class"
 description: "The base class for Open Data and STATcube datasets"
+link_text: "STATcubeR data article"
 ---
 
 ```{r, include = FALSE}
@@ -10,21 +11,26 @@ options(tibble.print_min = 5)
 od_cache_dir("~/.cache/STATcubeR/open_data/")
 ```
 
+```{r, echo = FALSE}
+source("R/add_tooltip.R")$value
+```
+
 The class [sc_data] defines a common interface for open data datasets and responses from the `/table` endpoint of the STATcube REST API.
 It defines methods that are applicable to both datasources like aquiring metadata, labeling the data and aggregating results.
 
 ## Constructing `sc_data` objects
 
-The [sc_data] class itself is not exported in `{STATcubeR}`.
+The [sc_data] class itself is not exported in `r STATcubeR`.
 Therefore, objects of the class should be created with one of the following functions
 
 * `od_table()` obtains data from the OGD portal.
-* `sc_table()` creates a request against the table endpoint of the STATcube
-  REST API
+  See the `r ticle("od_table")`
+* `sc_table()` creates a request against the table endpoint of the STATcube REST API.
+  See the `r ticle("JSON-requests")`
     * `sc_table_saved()` and `sc_table_custom()` also use the `/table` endpoint.
        However, the request is specified via ids rather than a json file.
 * `df_table()` creates a [sc_data] object based on a data.frame.
-  The function was developed to make STATcubeR data and data frames interchangable for an internal project.
+  The function was developed to make `r STATcubeR` data and data frames interchangable for an internal project.
 
 To illustrate, we will use one of the OGD datasets to showcase the functionalities of this class.
 Notice however, that objects created with `sc_table()` can be used interchangibly.
@@ -36,7 +42,7 @@ x <- od_table("OGD_krebs_ext_KREBS_1")
 ## Data
 
 The data from the table can be extracted using the active binding `$data`.
-Notice how this dataset only includes codes and possibly some totals.
+Notice how `r tippy_dataset(x)` only includes codes and possibly some totals.
 The data is always provided in a long format with one column for each field and one column for each measure.
 
 ```{r}
@@ -83,7 +89,7 @@ x$meta$fields
 ## Tabulation
 
 The method `$tabulate()` can be used to turn `sc_table` objects into tidy data.frames.
-See the [tabulation article](od_tabulate.html) for more defails.
+See the `r ticle("od_tabulate")` for more defails.
 
 ```{r}
 x$tabulate()

@@ -2,6 +2,7 @@
 title: "JSON requests"
 description: >
   Import data from STATcube data by downloading json files in the STATcube GUI
+link_text: JSON requests article
 ---
 
 ```{r, include = FALSE}

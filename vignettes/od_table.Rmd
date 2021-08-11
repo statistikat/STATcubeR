@@ -1,33 +1,35 @@
 ---
 title: "Open Government Data"
 description: Overview about all functionalities regarding OGD Datasets
+link_text: OGD article
 ---
 
 ```{r, include = FALSE}
 pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
 source("R/df_print.R")
-source("R/add_tooltip.R")
 od_cache_dir("~/.cache/STATcubeR/open_data/")
+table <- od_table("OGD_krebs_ext_KREBS_1")
 ```
 
-`od_table()` makes it easy to import datasets from the <u id='ogd'>open data portal</u> into your R sessions.
+```{r, echo = FALSE}
+source("R/add_tooltip.R")$value
+```
+
+`od_table()` makes it easy to import datasets from the `r ogd_portal` into your R sessions.
 This function does use direct downloads from the fileserver.
 Therefore no API key is required.
 
-In this example, we will use a <u id='cancer_data'>data set about cancer statistics</u>.
+In this example, we will use a `r tippy_dataset(table, "data set about cancer statistics")`.
 The dataset id `OGD_krebs_ext_KREBS_1` can be extracted from the url and will be used in the data import.
 
-```{r, echo = FALSE}
-htmltools::tagList(
-  add_tooltip(
-    "ogd", "https://data.statistik.gv.at/",
-    "The open data portal provides datasets from Statistics Austria according to open data guidelines"
-  ),
-  add_tooltip(
-    "cancer_data", "https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_krebs_ext_KREBS_1",
-    "Cancer statistics by reporting year, province of residence and localisation of cancer"
-  )
-)
+```{js, echo = FALSE}
+let url = "https://data.statistik.gv.at/"
+tippy("#ogd", {allowHTML: true, interactive: true, theme: 'light rounded', content: 
+  "<b>Open Government Data from Statistics Austria</b><br/>" +
+  "The open data portal provides datasets from Statistics Austria" +
+  " according to open data guidelines<br/>" +
+  `<a href=${url} target='blank_'>${url}</a>`
+})
 ```
 
 ## Import
@@ -54,7 +56,7 @@ table$header
 ```
 
 Additional metadata can be obtained via `$meta`.
-See the metadata article for more details.
+See the `r ticle("sc_data")` for more details.
 
 The method `table$field()` can be used to get information about specific fields.
 For example, the information from [`OGD_krebs_ext_KREBS_1_C-KRE_GESCHLECHT-0.csv`] is available through this call.
@@ -89,7 +91,7 @@ table$tabulate()
 ```
 
 Time variables are converted into a `<date>` format if they satisfy certain STATcube standards.
-You can read more about `$tabulate()` in the [tabulation article].
+You can read more about `$tabulate()` in the `r ticle('od_tabulate')`.
 
 ## A Trip to Germany {#sauerkraut}
 
@@ -115,15 +117,13 @@ table$tabulate()
 
 ## Further reading
 
-* See the [available datasets article] to list all datasets that are compatible with `od_table()`.
+* See the `r ticle('od_list')` to list all datasets that are compatible with `od_table()`.
 * Open data datasets often contain a large amount of rows.
-  Check out the [tabulation article] to see how they can be summarized into a more compact form.
-* `{STATcubeR}` caches all files requested from the server under the hood.
-  The [caching article] explains where and how those caches are stored.
+  Check out the `r ticle('od_tabulate')` to see how they can be summarized into a more compact form.
+* `r STATcubeR` caches all files requested from the server under the hood.
+  The `r ticle('od_resources')` explains where and how those caches are stored.
+  
 
-[caching article]: od_resources.html
-[available datasets article]: od_list.html
-[tabulation article]: od_tabulate.html
 [`od_table`]: ../reference/od_table_class.html
 [`OGD_krebs_ext_KREBS_1.csv`]: https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1.csv
 [`OGD_krebs_ext_KREBS_1_HEADER.csv`]: https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_HEADER.csv

@@ -3,6 +3,7 @@ title: "Tabulating STATcbeR Datasets"
 description: >
   Learn how to turn sc_table objects into tidy data frames using the
   tabulate() method.
+link_text: "tabulation article"
 ---
 
 ```{r, include = FALSE}
@@ -10,14 +11,20 @@ pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE)
 source("R/df_print.R")
 options(tibble.print_min = 5)
 od_cache_dir("~/.cache/STATcubeR/open_data/")
+cancer   <- od_table("OGD_krebs_ext_KREBS_1")
+earnings <- od_table("OGD_veste309_Veste309_1")
+```
+
+```{r, echo = FALSE}
+source("R/add_tooltip.R")$value
 ```
 
 This article contains the most important aspects of the method `$tabulate()`.
 This method aggregate s`sc_data` objects.
-The first part will use the cancer dataset from the [OGD overview article](od_table.html).
-After that, other features of `$tabulate()` will be demonstrated with the data from the structure of earnings survey (SES).
+The first part will use the `r tippy_dataset(cancer, "cancer dataset")` from the `r ticle("od_table")`.
+After that, other features of `$tabulate()` will be demonstrated with the data from the `r tippy_dataset(earnings, "structure of earnings survey (SES)")`.
 
-```{r, message = FALSE, results='hide'}
+```{r, eval = FALSE}
 cancer   <- od_table("OGD_krebs_ext_KREBS_1")
 earnings <- od_table("OGD_veste309_Veste309_1")
 ```
@@ -51,14 +58,14 @@ cancer$tabulate("Reporting year", "Sex")
 ```
 
 If more than one measure is included in the dataset, all measures will be aggregated.
-`{STATcubeR}` uses `rowsum()` to ensure a good performance with big datasets.
+`r STATcubeR` uses `rowsum()` to ensure a good performance with big datasets.
 It is also possible to use partial matching or use codes.
 
 ```{r}
 cancer$tabulate("Reporting", "C-KRE")
 ```
 
-STATcubeR will use `pmatch()` to match the supplied strings with the metadata
+`r STATcubeR` will use `pmatch()` to match the supplied strings with the metadata
 to identify the variables that should be used for aggregation.
 
 ### Limitations of sums {#totals}
@@ -166,7 +173,7 @@ In the above example, `"2. Quartil"` was matched to `"2. Quartil (Median)"`.
 
 Notice that we used the german label for the column `"Sex"` in the last calls
 to `tabulate()`. This is necessary because only the "active" labels are
-available to define the tabulation. If you want to use `STATcubeR`
+available to define the tabulation. If you want to use `r STATcubeR`
 programatically, always use codes to define the tabulation and also use the
 `.list` parameter if you want to pass several codes.
 

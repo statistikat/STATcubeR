@@ -1,7 +1,7 @@
 ---
 title: "Available Datasets"
 description: "List all datasets from the OGD portal of Statistics Austria"
-output: html_document
+link_text: "available datasets article"
 ---
 
 ```{r, include=FALSE}
@@ -12,6 +12,10 @@ library(tidyverse)
 source("R/df_print.R")
 od_cache_dir("~/.cache/STATcubeR/open_data/")
 all_datasets <- od_list()
+```
+
+```{r, echo=FALSE}
+source("R/add_tooltip.R")$value
 ```
 
 At the time of writing this article, there are 268 datasets that are assumed to be compatible with `od_table()`.
@@ -53,7 +57,7 @@ od_index$fields <- lapply(descs_parsed, function(x) {
 ## rendering
 hide_col <- colDef(show = FALSE)
 tpy <- function(x, y) {
-  tippy::tippy(x, paste0("<span style='font-size: 15px;'>", y, "</span>"))
+  tags$span(x, `data-tippy-content` = y)
 }
 
 od_index %>% 

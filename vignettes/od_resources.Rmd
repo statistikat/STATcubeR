@@ -2,6 +2,7 @@
 title: "File Management"
 description: >
   Learn how STATcubeR caches the data that is downloaded from the OGD portal
+link_text: "caching article"
 ---
 
 ```{r setup, include=FALSE}
@@ -12,12 +13,16 @@ dir.create(tmp_cache_dir, recursive = TRUE)
 od_cache_dir(tmp_cache_dir)
 ```
 
-This artricle explains how and where `{STATcubeR}` caches resources from http://data.statistik.gv.at in the local file system.
+```{r, echo=FALSE}
+source("R/add_tooltip.R")$value
+```
+
+This article explains how and where `r STATcubeR` caches resources from `r ogd_portal` in the local file system.
 Understanding this behavior will allow you to enable persistent caches and directly use the cached resources.
 
 ## Overview
 
-By default, `{STATcubeR}` caches all accessed resources from https://data.statistik.gv.at in the temporary directory of the current R session.
+By default, `r STATcubeR` caches all accessed resources from `r ogd_portal` in the temporary directory of the current R session.
 
 ```{r}
 od_cache_dir()
