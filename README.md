@@ -55,7 +55,7 @@ more. See the [OGD Article](https://statistikat.github.io/STATcubeR/articles/od_
 ## STATcube API
 
 In order to use the REST API, it is required to set up an API key. See the
-[setup article](https://statistikat.github.io/STATcubeR/articles/articles/sc_key.html)
+[setup article](https://statistikat.github.io/STATcubeR/articles/sc_key.html)
 for more details. The API is currently only available for employees of
 Statistics Austria. Support for external users will be added in the near
 future.
