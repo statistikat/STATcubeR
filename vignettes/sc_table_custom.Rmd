@@ -23,7 +23,7 @@ function requires the three arguments.
 Based on the database id, the remaining ids can be obtained with `sc_schema()`.
 See the `r ticle('sc_schema')` for more details.
 
-```{r, cache = TRUE}
+```{r}
 id_db <- "str:database:detouextregsai"
 db_schema <- sc_schema_db(id_db)
 db_schema

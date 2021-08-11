@@ -8,7 +8,6 @@ link_text: "schema article"
 
 ```{r, include = FALSE}
 pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
-knitr::opts_chunk$set(cache = TRUE)
 options(width = 200)
 ```
 
@@ -48,7 +47,7 @@ To get more information about this database, you can pass the `id` to
 `sc_schema_db()`. Again, the contents do have a tree structure which is
 similar to the sidebar of the "Tabellenansicht" view.
 
-```{r load_data, chache = TRUE}
+```{r load_data}
 my_db_info <- sc_schema_db("deake005")
 my_db_info
 ```
@@ -68,7 +67,7 @@ my_db_info$`Demographic Characteristics`$Gender$Gender$male
 Information about resources other than databases and the catalogue can
 be obtained by passing the resource id to `sc_schema()`.
 
-```{r, cache = TRUE}
+```{r}
 my_db_info$Facts$id
 group_info <- sc_schema(my_db_info$Facts$id)
 group_info
