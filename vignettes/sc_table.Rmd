@@ -69,7 +69,7 @@ my_response$tabulate()
 
 This will produce a tidy table, which contains a column for each field of the table.
 Furthermore, one column will be present for each measure.
-More information about can be found in the `r ticle("od_tabulate")`.
+More information about can be found in the `r ticle("sc_tabulate")`.
 
 ## Get the raw API response
 

@@ -1,5 +1,5 @@
 ---
-title: "Tabulating STATcbeR Datasets"
+title: "Tabulating STATcubeR Datasets"
 description: >
   Learn how to turn sc_table objects into tidy data frames using the
   tabulate() method.

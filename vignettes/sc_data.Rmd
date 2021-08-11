@@ -26,7 +26,7 @@ Therefore, objects of the class should be created with one of the following func
 * `od_table()` obtains data from the OGD portal.
   See the `r ticle("od_table")`
 * `sc_table()` creates a request against the table endpoint of the STATcube REST API.
-  See the `r ticle("JSON-requests")`
+  See the `r ticle("sc_table")`
     * `sc_table_saved()` and `sc_table_custom()` also use the `/table` endpoint.
        However, the request is specified via ids rather than a json file.
 * `df_table()` creates a [sc_data] object based on a data.frame.
@@ -89,7 +89,7 @@ x$meta$fields
 ## Tabulation
 
 The method `$tabulate()` can be used to turn `sc_table` objects into tidy data.frames.
-See the `r ticle("od_tabulate")` for more defails.
+See the `r ticle("sc_tabulate")` for more defails.
 
 ```{r}
 x$tabulate()

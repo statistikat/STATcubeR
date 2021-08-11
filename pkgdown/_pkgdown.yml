@@ -19,12 +19,12 @@ articles:
     Learn how to use the STATcube REST API to bring your STATcube tables
     into your R session
   contents:
-  - Setup
-  - JSON-requests
-  - Saved-Tables
-  - Custom-Tables
-  - Schema
-  - Misc
+  - sc_key
+  - sc_table
+  - sc_table_saved
+  - sc_table_custom
+  - sc_schema
+  - sc_info
 - title: Open Government Data
   desc: >
     Articles about the import of OGD datasets into your R session
@@ -36,7 +36,7 @@ articles:
 - title: Data Class
   contents:
   - sc_data
-  - od_tabulate
+  - sc_tabulate
 
 home:
   title: STATcubeR
@@ -63,11 +63,11 @@ navbar:
     - text: ---------------------
     - text: STATcube REST API
     - text: All about the API Key
-      href: articles/Setup.html
+      href: articles/sc_key.html
     - text: Get Data via JSON Requests
-      href: articles/JSON-requests.html
+      href: articles/sc_table.html
     - text: Metadata with the /schema Endpoint
-      href: articles/Schema.html
+      href: articles/sc_schema.html
     - text: ------------------------
     - text: Open Goventment Data
     - text: Getting Started with OGD Data
@@ -79,7 +79,7 @@ navbar:
     - text: A Common Class for OGD and API Data
       href: articles/sc_data.html
     - text: Tabulation of Data
-      href: articles/od_tabulate.html
+      href: articles/sc_tabulate.html
   - text: News
     href: news/index.html
   right:
@@ -99,8 +99,8 @@ reference:
 - title: STATcube REST API
   desc: >
     Get resources from the REAST API of STATcube. See the
-    [Setup article](../articles/Setup.html) for instructions about the
-    API Key and the [json requests article](../articles/JSON-requests.html)
+    [API key article](../articles/sc_key.html) for instructions about the
+    API Key and the [json requests article](../articles/sc_table.html)
     for a hands-on documentation.
   contents:
   - 'sc_table'
@@ -108,6 +108,8 @@ reference:
   - 'sc_schema'
   - 'info_and_rate_limit'
 - title: General
+  desc: >
+    Other functionalities including the [STATcubeR data class](../articles/sc_data.html).
   contents:
   - 'sc_data'
   - 'sc_browse'

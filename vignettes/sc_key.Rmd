@@ -5,6 +5,11 @@ description: >
   for the session or persistently.
 ---
 
+```{r, echo = FALSE}
+source("R/add_tooltip.R")$value
+```
+
+
 Instructions for the first-time use of the STATcube REST API.
 
 ## Adding an API key
@@ -17,7 +22,7 @@ the following address can be used to view your key
 http://sdbext:8081/statistik.at/ext/statcube/jsf/preferences/editPreferences.xhtml
 ```
 
-To make the key available to `{STATcubeR}`, use the function
+To make the key available to `r STATcubeR`, use the function
 `sc_key_set()`. Replace `"XXXX"` with your key.
 
 ```r
@@ -37,11 +42,9 @@ As suggested by the code output, the key can be set persistently by modifying
 Currently, the api is only available inside the firewall of statistics austria.
 Therefore, api keys can only be requested by our employees. Api access for
 external users with a statcube subscription is planned in the near future.
-Please get into contact with the package maintainers of `{STATcubeR}` for details.
+Please get into contact with the package maintainers of `r STATcubeR` for details.
 
 ## Next Steps
 
-See the [JSON requests article](JSON-requests.html) to see how tables can be
-defined in the STATcube GUI and imported into R.
-Alternatively, import a saved table by following the
-[saved tables article](Saved-Tables.html)
+See the `r ticle('sc_table')` to see how tables can be defined in the STATcube GUI and imported into R.
+Alternatively, import a saved table by following the `r ticle('sc_table_saved')`.

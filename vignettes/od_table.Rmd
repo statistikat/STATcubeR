@@ -91,7 +91,7 @@ table$tabulate()
 ```
 
 Time variables are converted into a `<date>` format if they satisfy certain STATcube standards.
-You can read more about `$tabulate()` in the `r ticle('od_tabulate')`.
+You can read more about `$tabulate()` in the `r ticle('sc_tabulate')`.
 
 ## A Trip to Germany {#sauerkraut}
 
@@ -119,7 +119,7 @@ table$tabulate()
 
 * See the `r ticle('od_list')` to list all datasets that are compatible with `od_table()`.
 * Open data datasets often contain a large amount of rows.
-  Check out the `r ticle('od_tabulate')` to see how they can be summarized into a more compact form.
+  Check out the `r ticle('sc_tabulate')` to see how they can be summarized into a more compact form.
 * `r STATcubeR` caches all files requested from the server under the hood.
   The `r ticle('od_resources')` explains where and how those caches are stored.
   
