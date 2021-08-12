@@ -90,6 +90,6 @@ my_content <- httr::content(my_response)
 my_content$label
 
 # print with data.tree
-print(my_catalogue, tree = TRUE)
+print(my_catalogue$Examples, tree = TRUE)
 }
 \concept{functions for /schema}

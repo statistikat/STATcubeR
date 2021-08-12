@@ -20,6 +20,11 @@ registerS3method(
   envir = asNamespace("knitr")
 )
 
+registerS3method(
+  "knit_print", "sc_schema", knit_print.data.frame,
+  envir = asNamespace("knitr")
+)
+
 options(crayon.enabled = TRUE)
 options(pillar.min_chars = 30)
 options(pillar.bold = TRUE)

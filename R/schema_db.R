@@ -18,7 +18,7 @@
 #' my_content$label
 #'
 #' # print with data.tree
-#' print(my_catalogue, tree = TRUE)
+#' print(my_catalogue$Examples, tree = TRUE)
 #' @rdname sc_schema
 #' @export
 sc_schema_db <- function(db_id, depth = "valueset", language = c("en", "de"),

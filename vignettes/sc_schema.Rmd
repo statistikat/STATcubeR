@@ -10,17 +10,12 @@ link_text: "schema article"
 source("R/setup.R")$value
 ```
 
-There are currently three functions in `{STATcubeR}` that utilize the `/schema`
+There are currently three functions in `r STATcubeR` that utilize the `/schema`
 endpoint.
 
-* `sc_schema_catalogue()` returns an overview of all available databases and
-  tables.
-* `sc_schema_db()` can be used to inspect all fields and measures for a
-  database.
+* `sc_schema_catalogue()` returns an overview of all available databases and tables.
+* `sc_schema_db()` can be used to inspect all fields and measures for a database.
 * `sc_schema()` returns metadata about any resource.
-
-All functions return tree-like objects that are printed with the `{data.tree}`
-package.
 
 ## Browsing the Catalogue
 
@@ -33,18 +28,34 @@ my_catalogue <- sc_schema_catalogue()
 my_catalogue
 ```
 
-Now `my_catalogue` can be used to obtain database ids.
+We see that the catalog has 8 child nodes: Four childs of type `FOLDER` and four childs of type `TABLE`.
+To get access to the child nodes use `my_catalogue${child_label}`
 
 ```{r}
-my_catalogue$Statistics$`Labour Market`
+my_catalogue$Statistics
+```
+
+The child node `Statistics` is also of class `sc_schema` and shows all entries of the subfolder.
+Inside the catalogue, the leafs of the tree are mostly of type `DATABASE` and `TABLE`.
+Here is an example for a `TABLE` node.
+
+```{r}
+my_catalogue$Statistics$`Labour Market`$`Standardtabelle / Default table (defaulttable_deake005)`
+```
+
+As suggested by the output, tables can be used with the `/table` endpoint via `sc_table_saved()`.
+See the `r ticle("sc_table_saved")` for more details.
+
+Here is an example for a `DATABASE` node.
+
+```{r}
 my_catalogue$Statistics$`Labour Market`$`Working hours (Labour Force Survey)`
 ```
 
 ## Database infos
 
-To get more information about this database, you can pass the `id` to
-`sc_schema_db()`. Again, the contents do have a tree structure which is
-similar to the sidebar of the "Tabellenansicht" view.
+To get information about a specific database, you can pass the database `id` to `sc_schema_db()`.
+Again, the contents do have a tree structure which is similar to the sidebar of the "Tabellenansicht" view.
 
 ```{r load_data}
 my_db_info <- sc_schema_db("deake005")
@@ -61,6 +72,23 @@ my_db_info$`Demographic Characteristics`$Gender$Gender
 my_db_info$`Demographic Characteristics`$Gender$Gender$male
 ```
 
+The leafs of database schemas are mostly of type `VALUE` and `MEASURE`.
+
+## Data structure od sc_schema objects
+
+As shown above, `sc_schema` objets have a tree like structure.
+Each `sc_schema` object has `id`, `label`, `location` and `type` as the last four entries
+
+```{r}
+str(tail(my_db_info$`Demographic Characteristics`, 4))
+str(tail(my_catalogue$Statistics, 4))
+```
+
+Schema objects can have an arbitrary amount of childs.
+Childs are always of type `sc_schema`.
+`x$type` determines the type of the schema object.
+See the [SuperSTAR API documentation](https://docs.wingarc.com.au/superstar/9.11/open-data-api/open-data-api-reference/schema-endpoint) for a complete list of schema types.
+
 ## Other resources
 
 Information about resources other than databases and the catalogue can
@@ -72,10 +100,35 @@ group_info <- sc_schema(my_db_info$Facts$id)
 group_info
 ```
 
-Note that the tree returned only has depth 1, i.e. the child nodes of measures
-are not returned. However, ids of the child nodes can be obtained with `$id`.
+Note that the tree returned only has depth 1, i.e. the child nodes of measures are not available in `group_info`. 
+However, ids of the child nodes can be obtained with `$id`.
+These ids can be used to send another request to the `/schema` endpoint
 
 ```{r}
 group_info$GEWTATJAHR$id
 ```
+
+Alternatively, use the `depth` parameter of `sc_schema`.
+
+```r
+group_info <- sc_schema(my_db_info$Facts$id, depth = "valueset")
+```
+
+## Printing with data.tree
+
+If the `{data.tree}` package is installed, it can be used for an alternative
+print mehtod.
+
+```{r}
+print(my_catalogue, tree = TRUE)
+```
+
+The data.tree implementation can be set as a default with `options()`
+
+```{r}
+options(STATcubeR.print_tree = TRUE)
+my_catalogue$Statistics
+```
+
+
 

@@ -35,7 +35,7 @@ sc_schema <- function(resource_id = NULL, depth = NULL,
 }
 
 print_schema_with_tree <- function(x, ...) {
-  stopifnot(requireNamespace("data.tree"))
+  stopifnot(requireNamespace("data.tree", quietly = TRUE))
   x <- unclass(x) %>% data.tree::as.Node(nodeName = x$label, check = "no-check")
   print(x, ..., "type")
   invisible(x)
