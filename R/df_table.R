@@ -1,3 +1,24 @@
+#' Experimental: turn `data.frame` objects into `sc_data`
+#'
+#' Adapter function to initialize `sc_data` objects based on a `data.frame`.
+#' Currently, there are heavy restrictions on how the data should look
+#' like to work with this function - see Details. This function is not exported.
+#'
+#' Codes will be automatically assigned to each field, measure and level
+#' in the data. Allowed column types are `numeric`, `integer`, `factor`
+#' and `character`.
+#'
+#' There are several improvements that need to be made before this will be
+#' an exported function
+#' * `sc_tabulate()` currently assumes that each combination of field
+#'   values occurs once in the data. This is not necessarily the case here.
+#' * Time columns are not supported.
+#' @param x a `data.frame` or an object that is compatible with `as.data.frame`
+#' @param label a character vector of length one that will be used as a
+#'   display label for the dataset.
+#' @examples
+#' STATcubeR:::df_table(iris)
+#' @keywords internal
 df_table <- function(x, label = "data") {
   x <- as.data.frame(x)
 
