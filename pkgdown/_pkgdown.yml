@@ -106,7 +106,7 @@ reference:
   - 'sc_table'
   - 'sc_key'
   - 'sc_schema'
-  - 'info_and_rate_limit'
+  - 'other_endpoints'
 - title: General
   desc: >
     Other functionalities including the [STATcubeR data class](../articles/sc_data.html).
