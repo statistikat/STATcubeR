@@ -1,11 +1,26 @@
-#' Cache responses from the /table endpoint
+#' Cache responses from the STATcube REST API
 #'
-#' Functions to cache all requested tables in the directory `~/.STATcubeR_cache`
-#' and reuse them in calls to `sc_table()` and `sc_table_custom()`. These
-#' functions are designed for testing and documentation and should not be
+#' Functions to cache requested resources in the directory `~/.STATcubeR_cache`
+#' and reuse them in calls to `sc_table()`, `sc_table_custom()` `sc_schema()` and so forth.
+#' These functions are designed for testing and documentation and should not be
 #' regarded as part of the STATcubeR interface. The caching logic is likely to
 #' change in the future in which case `sc_cache_clear()` is required to purge
 #' old cache entries.
+#'
+#' Caching can be set up using environment variables. To set up a persistent cache
+#' for both Open Data and the REST API, the following lines in `.Renviron` can
+#' be used.
+#'
+#' ```
+#' STATCUBE_KEY       = YOUR_API_KEY_GOES_HERE
+#' STATCUBE_CACHE     = TRUE
+#' OD_CACHE_DIR       = "~/.cache/STATcubeR/open_data/"
+#' STATCUBE_CACHE_DIR = "~/.cache/STATcubeR/api/"
+#' ```
+#'
+#' Note that the caches are always used and there is no check to verify if the
+#' resources are unchanged in the server. Caching is not implemented for the
+#' endpoints [sc_info()] and [sc_rate_limit_table()].``
 #' @usage
 #' ## enable caching for the current R session
 #' sc_cache_enable()

@@ -5,7 +5,7 @@
 \alias{sc_cache_enable}
 \alias{sc_cache_disable}
 \alias{sc_cache_clear}
-\title{Cache responses from the /table endpoint}
+\title{Cache responses from the STATcube REST API}
 \usage{
 ## enable caching for the current R session
 sc_cache_enable()
@@ -17,11 +17,24 @@ sc_cache_disable()
 sc_cache_clear()
 }
 \description{
-Functions to cache all requested tables in the directory \verb{~/.STATcubeR_cache}
-and reuse them in calls to \code{sc_table()} and \code{sc_table_custom()}. These
-functions are designed for testing and documentation and should not be
+Functions to cache requested resources in the directory \verb{~/.STATcubeR_cache}
+and reuse them in calls to \code{sc_table()}, \code{sc_table_custom()} \code{sc_schema()} and so forth.
+These functions are designed for testing and documentation and should not be
 regarded as part of the STATcubeR interface. The caching logic is likely to
 change in the future in which case \code{sc_cache_clear()} is required to purge
 old cache entries.
+}
+\details{
+Caching can be set up using environment variables. To set up a persistent cache
+for both Open Data and the REST API, the following lines in \code{.Renviron} can
+be used.\preformatted{STATCUBE_KEY       = YOUR_API_KEY_GOES_HERE
+STATCUBE_CACHE     = TRUE
+OD_CACHE_DIR       = "~/.cache/STATcubeR/open_data/"
+STATCUBE_CACHE_DIR = "~/.cache/STATcubeR/api/"
+}
+
+Note that the caches are always used and there is no check to verify if the
+resources are unchanged in the server. Caching is not implemented for the
+endpoints \code{\link[=sc_info]{sc_info()}} and \code{\link[=sc_rate_limit_table]{sc_rate_limit_table()}}.``
 }
 \keyword{internal}
