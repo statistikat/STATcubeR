@@ -18,8 +18,8 @@ sc_data <- R6::R6Class(
   "sc_data",
   public = list(
     #' @description
-    #' This class is not exported. Use `od_table()` or `sc_table()` to
-    #' initialize objects of class `sc_data`.
+    #' This class is not exported. Use `od_table()`, `sc_table()` or
+    #' `df_table()` to initialize objects of class `sc_data`.
     #' @param data,meta,fields raw data, metadata and field information.
     #'   Do not use directly but initialize objects with `sc_table`,
     #'   `od_table()` or `df_table()`
@@ -33,7 +33,9 @@ sc_data <- R6::R6Class(
       private$p_fields <- fields
       private$version <- sc_version()
     },
-    #' @description get information about a specific field
+    #' @description get information about a specific field. The format of
+    #'   the reurn value is similar to `$meta`. A `data.frame` that includes
+    #'   codes and labels for each level of the field.
     #' @param i specifier for the field. Integer or character. If an interger
     #'   is provided, it should match the row number in `$meta$fields`. If
     #'   a character is provided, the field is matched using `pmatch()` on
@@ -47,7 +49,7 @@ sc_data <- R6::R6Class(
         i <- od_match_codes(self$meta$fields, i)
       sc_tibble_meta(private$p_fields[[i]], "parsed")
     },
-    #' @description create a tidy dataset
+    #' @description create a tidy dataset. See [sc_tabulate()] for details.
     #' @param ... arguments that are passed down to [sc_tabulate()]
     #' @examples
     #' x <- od_table("OGD_krebs_ext_KREBS_1")
