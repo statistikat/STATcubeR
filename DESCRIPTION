@@ -25,7 +25,6 @@ Imports:
 Suggests: 
     data.tree,
     pillar,
-    rmarkdown,
     rstudioapi,
     xml2
 Encoding: UTF-8
