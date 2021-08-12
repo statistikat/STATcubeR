@@ -59,7 +59,7 @@ print.sc_schema <- function(x, tree = NULL, ..., limit = 30) {
     tree <- getOption("STATcubeR.print_tree", FALSE)
   classes <- sapply(x, class)
   if (tree && any(classes == "sc_schema"))
-    return(print_schema_with_tree(x, limit = 30, ...))
+    return(print_schema_with_tree(x, limit = limit, ...))
   cat(x$type, ": ", x$label, "\n", sep = "")
   sc_schema_print_children(x, message_empty = switch(
     x$type,
@@ -82,12 +82,10 @@ sc_schema_print_children <- function(x, message_empty = NULL) {
     cat(message_empty, "\n")
 }
 
-sc_as_nested_list <- function(db) {
-  ret <- lapply(db$children, function(x) {
-    sc_as_nested_list(x)
-  })
-  names(ret) <- sapply(db$children, function(x) x$label)
-  ret <- c(ret, db[which(names(db) != "children")])
+sc_as_nested_list <- function(x) {
+  ret <- lapply(x$children, sc_as_nested_list)
+  names(ret) <- sapply(x$children, function(x) x$label)
+  ret <- c(ret, x[which(names(x) != "children")])
   class(ret) <- "sc_schema"
   ret
 }
