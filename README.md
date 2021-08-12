@@ -55,7 +55,7 @@ more. See the [OGD Article](https://statistikat.github.io/STATcubeR/articles/od_
 ## STATcube API
 
 In order to use the REST API, it is required to set up an API key. See the
-[setup article](https://statistikat.github.io/STATcubeR/articles/sc_key.html)
+[api key article](https://statistikat.github.io/STATcubeR/articles/sc_key.html)
 for more details. The API is currently only available for employees of
 Statistics Austria. Support for external users will be added in the near
 future.
@@ -75,3 +75,29 @@ article](https://statistikat.github.io/STATcubeR/articles/sc_schema.html).
 [here](https://statistikat.github.io/STATcubeR/articles/sc_table.html)
 and
 [here](https://statistikat.github.io/STATcubeR/articles/sc_table_saved.html).
+
+## Consistent data formats
+
+Both OGD data and data form the `/table` endpoint are wrapped into an `{R6}`
+class to provide easy acces to data and metadata. For example, the
+`$tabulate()` method is also available for tables from the REST API.
+
+```r
+# https://statcube.at/statcube/openinfopage?id=debevstand
+population <- sc_table(sc_example("population"))
+population$tabulate()
+```
+
+```
+# A STATcubeR tibble: 8,316 x 5
+  Quarter    `Age in single year… `Sex <2>` `Commune <2383> (Provi… `Number of perso…
+* <date>     <fct>                <fct>     <fct>                               <dbl>
+1 2002-01-01 Up to 14 years old   male      Burgenland <AT11>                   21287
+2 2002-01-01 Up to 14 years old   male      Carinthia <AT21>                    47230
+3 2002-01-01 Up to 14 years old   male      Vienna <AT13>                      117920
+4 2002-01-01 Up to 14 years old   male      Vorarlberg <AT34>                   34798
+# … with 8,312 more rows
+```
+
+See the [base class article](https://statistikat.github.io/STATcubeR/articles/sc_data.html)
+for more information about the features of this class.
