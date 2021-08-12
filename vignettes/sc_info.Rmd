@@ -13,7 +13,7 @@ endpoints [`/info`] and [`/rate_limit`].
 
 ```{r}
 sc_info()
-sc_rate_limit()
+sc_rate_limit_table()
 ```
 
 Rate limits can also be obtained from the response of the `/table` endpoint
