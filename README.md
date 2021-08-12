@@ -28,25 +28,24 @@ remotes::install_github("statistikat/STATcubeR")
 
 ## Open Data
 
-To import datasets from https://data.statistik.gv.at, simply pass the dataset
-id to the `od_table()` function. For example, the OGD data from the [structure of earnings survey](https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_veste309_Veste309_1)
+To import datasets from https://data.statistik.gv.at, pass the dataset
+id to the `od_table()` function. For example, OGD about the [austrian population in 2020](https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_bevstandjbab2002_BevStand_2020)
 can be accessed as follows.
 
 ```r
-earnings <- od_table("OGD_veste309_Veste309_1")
-earnings$tabulate()
+population <- od_table("OGD_bevstandjbab2002_BevStand_2020")
+population$tabulate()
 ```
 
 ```
-# A STATcubeR tibble: 72 x 9
-  Sex    Citizenship `Region (NUTS2)` `Form of employment`   `Arithmetic mea… `1st quartile`
-* <fct>  <fct>       <fct>            <fct>                             <int>          <int>
-1 Sum t… Total       Total            "Total"                              18             12
-2 Sum t… Total       Total            "Standard employment "               19             13
-3 Sum t… Total       Total            "Non-standard employm…               15             10
-4 Sum t… Total       Total            "Non-standard employm…               16             11
-# … with 68 more rows, and 3 more variables: 2nd quartile (median) <int>,
-#   3rd quartile <int>, Number of employees <int>
+# A STATcubeR tibble: 392,508 x 5
+  `Time section` Sex   `Commune (aggregation by political distri… `Age in single year… Number
+* <date>         <fct> <fct>                                      <fct>                 <int>
+1 2020-01-01     male  Eisenstadt <10101>                         under 1 year old         77
+2 2020-01-01     male  Eisenstadt <10101>                         1 year old               75
+3 2020-01-01     male  Eisenstadt <10101>                         2 years old              70
+4 2020-01-01     male  Eisenstadt <10101>                         3 years old              83
+# … with 392,504 more rows
 ```
 
 The resulting object contains labeled data (see above), raw data, metadata and
@@ -83,20 +82,20 @@ class to provide easy acces to data and metadata. For example, the
 `$tabulate()` method is also available for tables from the REST API.
 
 ```r
-# https://statcube.at/statcube/openinfopage?id=debevstand
-population <- sc_table(sc_example("population"))
+# https://statcube.at/statcube/openinfopage?id=debevstandjbab2002
+population <- sc_table_saved("str:table:defaulttable_debevstandjbab2002")
 population$tabulate()
 ```
 
 ```
-# A STATcubeR tibble: 8,316 x 5
-  Quarter    `Age in single year… `Sex <2>` `Commune <2383> (Provi… `Number of perso…
-* <date>     <fct>                <fct>     <fct>                               <dbl>
-1 2002-01-01 Up to 14 years old   male      Burgenland <AT11>                   21287
-2 2002-01-01 Up to 14 years old   male      Carinthia <AT21>                    47230
-3 2002-01-01 Up to 14 years old   male      Vienna <AT13>                      117920
-4 2002-01-01 Up to 14 years old   male      Vorarlberg <AT34>                   34798
-# … with 8,312 more rows
+# A STATcubeR tibble: 10 x 3
+  `Time section` `Commune (aggregation by political district)`  Number
+  <date>         <fct>                                           <dbl>
+1 2021-01-01     Burgenland <AT11>                              296010
+2 2021-01-01     Carinthia <AT21>                               562089
+3 2021-01-01     Lower Austria <AT12>                          1690879
+4 2021-01-01     Upper Austria <AT31>                          1495608
+# … with 6 more rows
 ```
 
 See the [base class article](https://statistikat.github.io/STATcubeR/articles/sc_data.html)
