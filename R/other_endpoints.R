@@ -1,4 +1,4 @@
-#' Create a requests against the endpoints /info and /rate_limit_table
+#' Other endpoints of the STATcube REST API
 #'
 #' Utilize the simple endpoints `/info` and `/ratelimit`. Those provide
 #' information about available locales and the amount of requests available
@@ -6,8 +6,8 @@
 #' @examples
 #' sc_info()
 #' sc_rate_limit()
-#' @name info_and_rate_limit
-#' @rdname info_and_rate_limit
+#' @name other_endpoints
+#' @rdname other_endpoints
 #' @inheritParams sc_key
 #' @inheritParams sc_table
 #' @export
@@ -22,3 +22,24 @@ sc_info <- function(language = c("en", "de"), key = sc_key()) {
       data.frame(locale = x$locale, displayName = x$displayName)) %>%
     do.call(rbind, .)
 }
+
+#' @rdname other_endpoints
+#' @export
+sc_rate_limit <- function(language = c("en", "de"), key = sc_key()) {
+  response <- httr::GET(
+    url = paste0(base_url, "/rate_limit_table"),
+    config = sc_headers(language, key)
+  )
+  rate_limit <- httr::content(response)
+  class(rate_limit) <- "sc_rate_limit"
+  rate_limit
+}
+
+#' @export
+print.sc_rate_limit <- function(x, ...) {
+  cat(
+    "remaining: ", x$remaining, "/", x$limit, "\n",
+    "reset:     ", as.character(sc_parse_time(x$reset)),sep = ""
+  )
+}
+
