@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cache responses from the /table endpoint — sc_cache • STATcubeR</title>
+<title>Cache responses from the STATcube REST API — sc_cache • STATcubeR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,10 +48,10 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Cache responses from the /table endpoint — sc_cache" />
-<meta property="og:description" content="Functions to cache all requested tables in the directory ~/.STATcubeR_cache
-and reuse them in calls to sc_table() and sc_table_custom(). These
-functions are designed for testing and documentation and should not be
+<meta property="og:title" content="Cache responses from the STATcube REST API — sc_cache" />
+<meta property="og:description" content="Functions to cache requested resources in the directory ~/.STATcubeR_cache
+and reuse them in calls to sc_table(), sc_table_custom() sc_schema() and so forth.
+These functions are designed for testing and documentation and should not be
 regarded as part of the STATcubeR interface. The caching logic is likely to
 change in the future in which case sc_cache_clear() is required to purge
 old cache entries." />
@@ -171,15 +171,15 @@ old cache entries." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Cache responses from the /table endpoint</h1>
+    <h1>Cache responses from the STATcube REST API</h1>
     <small class="dont-index">Source: <a href='https://github.com/statistikat/STATcubeR/blob/master/R/cache.R'><code>R/cache.R</code></a></small>
     <div class="hidden name"><code>sc_cache.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Functions to cache all requested tables in the directory <code>~/.STATcubeR_cache</code>
-and reuse them in calls to <code><a href='sc_table.html'>sc_table()</a></code> and <code><a href='sc_table.html'>sc_table_custom()</a></code>. These
-functions are designed for testing and documentation and should not be
+    <p>Functions to cache requested resources in the directory <code>~/.STATcubeR_cache</code>
+and reuse them in calls to <code><a href='sc_table.html'>sc_table()</a></code>, <code><a href='sc_table.html'>sc_table_custom()</a></code> <code><a href='sc_schema.html'>sc_schema()</a></code> and so forth.
+These functions are designed for testing and documentation and should not be
 regarded as part of the STATcubeR interface. The caching logic is likely to
 change in the future in which case <code>sc_cache_clear()</code> is required to purge
 old cache entries.</p>
@@ -195,6 +195,19 @@ old cache entries.</p>
 <span class='fu'>sc_cache_clear</span><span class='op'>(</span><span class='op'>)</span></pre>
 
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Caching can be set up using environment variables. To set up a persistent cache
+for both Open Data and the REST API, the following lines in <code>.Renviron</code> can
+be used.</p><pre><span class='va'>STATCUBE_KEY</span>       <span class='op'>=</span> <span class='va'>YOUR_API_KEY_GOES_HERE</span>
+<span class='va'>STATCUBE_CACHE</span>     <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='va'>OD_CACHE_DIR</span>       <span class='op'>=</span> <span class='st'>"~/.cache/STATcubeR/open_data/"</span>
+<span class='va'>STATCUBE_CACHE_DIR</span> <span class='op'>=</span> <span class='st'>"~/.cache/STATcubeR/api/"</span>
+</pre>
+
+<p>Note that the caches are always used and there is no check to verify if the
+resources are unchanged in the server. Caching is not implemented for the
+endpoints <code><a href='other_endpoints.html'>sc_info()</a></code> and <code><a href='other_endpoints.html'>sc_rate_limit_table()</a></code>.``</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -176,7 +176,7 @@ od_table(), sc_table() or df_table()." />
     <div class="ref-description">
     <p>This class represents a common interface for datasets returned from the
 STATcube REST API and OGD datasets. <code>sc_data</code> obects are usually created with
-<code><a href='od_table.html'>od_table()</a></code>, <code><a href='sc_table.html'>sc_table()</a></code> or <code>df_table()</code>.</p>
+<code><a href='od_table.html'>od_table()</a></code>, <code><a href='sc_table.html'>sc_table()</a></code> or <code><a href='df_table.html'>df_table()</a></code>.</p>
     </div>
 
 
@@ -215,20 +215,22 @@ the total codes. Derived classes might add additional columns</p></li>
 </ul>
 <p><hr>
 <a id="method-new"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>new()</code></h3>
-<p>This class is not exported. Use <code><a href='od_table.html'>od_table()</a></code> or <code><a href='sc_table.html'>sc_table()</a></code> to
-initialize objects of class <code>sc_data</code>.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p>This class is not exported. Use <code><a href='od_table.html'>od_table()</a></code>, <code><a href='sc_table.html'>sc_table()</a></code> or
+<code><a href='df_table.html'>df_table()</a></code> to initialize objects of class <code>sc_data</code>.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
 <p><div class="r"></p><pre><span class='va'>sc_data</span><span class='op'>$</span><span class='fu'>new</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>meta</span>, <span class='va'>fields</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
 <p><div class="arguments"></p><dl>
 <dt><code>data, meta, fields</code></dt><dd><p>raw data, metadata and field information.
 Do not use directly but initialize objects with <code>sc_table</code>,
-<code><a href='od_table.html'>od_table()</a></code> or <code>df_table()</code></p></dd>
+<code><a href='od_table.html'>od_table()</a></code> or <code><a href='df_table.html'>df_table()</a></code></p></dd>
 
 </dl><p></div></p>
 <p><hr>
 <a id="method-field"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code>field()</code></h3>
-<p>get information about a specific field</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p>get information about a specific field. The format of
+the reurn value is similar to <code>$meta</code>. A <code>data.frame</code> that includes
+codes and labels for each level of the field.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
 <p><div class="r"></p><pre><span class='va'>sc_data</span><span class='op'>$</span><span class='fu'>field</span><span class='op'>(</span>i <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>
@@ -247,7 +249,7 @@ all available codes and labels.</p></dd>
 
 <p><hr>
 <a id="method-tabulate"></a></p><h3 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Method <code><a href='https://rdrr.io/r/base/tabulate.html'>tabulate()</a></code></h3>
-<p>create a tidy dataset</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
+<p>create a tidy dataset. See <code><a href='sc_tabulate.html'>sc_tabulate()</a></code> for details.</p><h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Usage</h4>
 <p><div class="r"></p><pre><span class='va'>sc_data</span><span class='op'>$</span><span class='fu'>tabulate</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre><p></div></p>
 
 <h4 class='hasAnchor' id='arguments'><a class='anchor' href='#arguments'></a>Arguments</h4>

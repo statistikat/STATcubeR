@@ -135,7 +135,14 @@
 
     
     
-<p>There are currently three functions in <a href="https://statistikat.github.io/STATcubeR">STATcubeR</a> that utilize the <code>/schema</code> endpoint.</p>
+<script src="https://unpkg.com/@popperjs/core@2"></script><script src="https://unpkg.com/tippy.js@6"></script><link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light.css">
+<script>$(document).ready(function () {
+    window.setTimeout("tippy('.STATcubeR', {allowHTML: true, theme:'light rounded'});", 50);
+    });
+    </script><p>There are currently three functions in <a href="../index.html" data-tippy-content="
+  &lt;b&gt;R Package for all things STATcube&lt;/b&gt;&lt;br/&gt;
+  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  " class="STATcubeR">STATcubeR</a> that utilize the <code>/schema</code> endpoint.</p>
 <ul>
 <li>
 <code><a href="../reference/sc_schema.html">sc_schema_catalogue()</a></code> returns an overview of all available databases and tables.</li>
@@ -144,7 +151,6 @@
 <li>
 <code><a href="../reference/sc_schema.html">sc_schema()</a></code> returns metadata about any resource.</li>
 </ul>
-<p>All functions return tree-like objects that are printed with the <a href="http://github.com/gluc/data.tree">data.tree</a> package.</p>
 <div id="browsing-the-catalogue" class="section level2">
 <h2 class="hasAnchor">
 <a href="#browsing-the-catalogue" class="anchor"></a>Browsing the Catalogue</h2>
@@ -152,192 +158,245 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_catalogue</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_catalogue</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">my_catalogue</span></code></pre></div>
-<pre><code>##                                                                  levelName     type
-## 1  Extern V9                                                                 FOLDER
-## 2   ¦--Examples                                                              FOLDER
-## 3   ¦   ¦--Communes (Demo)                                                 DATABASE
-## 4   ¦   ¦--People                                                          DATABASE
-## 5   ¦   ¦--People multilingual                                             DATABASE
-## 6   ¦   °--Retail Banking ML en                                            DATABASE
-## 7   ¦--Publications and services                                             FOLDER
-## 8   ¦   ¦--Economic Trend Monitor                                            FOLDER
-## 9   ¦   ¦   °--Economic Trend Monitor                                      DATABASE
-## 10  ¦   °--Austrian Economic Atlas                                           FOLDER
-## 11  ¦       ¦--01 Key data Austria and European Union                      DATABASE
-## 12  ¦       ¦--02 Key data Federal provinces                               DATABASE
-## 13  ¦       ¦--03 Key data on economic branches                            DATABASE
-## 14  ¦       ¦--04 Key data on economic branches by enterprise size classes DATABASE
-## 15  ¦       ¦--05 Key data on economic branches compared with the EU       DATABASE
-## 16  ¦       ¦--06 Key data on economic branches by federal provinces       DATABASE
-## 17  ¦       ¦--07 Key data industry                                        DATABASE
-## 18  ¦       ¦--08 Key data construction                                    DATABASE
-## 19  ¦       ¦--09 Key data trade                                           DATABASE
-## 20  ¦       ¦--10 Key data tourism                                         DATABASE
-## 21  ¦       ¦--11 Key data transport                                       DATABASE
-## 22  ¦       ¦--12 Key data foreign trade                                   DATABASE
-## 23  ¦       °--13 Key data agriculture and foresty                         DATABASE
-## 24  °--Statistics                                                            FOLDER
-## 25      ¦--Labour Market                                                     FOLDER
-## 26      ¦   ¦--Job Vacancies                                                 FOLDER
-## 27      ¦   ¦   ¦--Offene Stellen (Jahresdurchschnitt) ab 2009             DATABASE
-## 28      ¦   ¦   °--Offene Stellen Quartale ab 2009                         DATABASE
-## 29      ¦   ¦--Working hours (Labour Force Survey)                         DATABASE
-## 30      ¦   °--... 3 nodes w/ 0 sub                                                
-## 31      °--... 18 nodes w/ 621 sub</code></pre>
-<p>Now <code>my_catalogue</code> can be used to obtain database ids.</p>
+<pre class="r-output"><code>FOLDER: Extern V9
+<span style="color: #555555;"># A data frame: 8 × 2</span>
+  <span style="font-weight: bold;">child</span>                     <span style="font-weight: bold;">type</span>  
+  <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span> 
+<span style="color: #555555;">1</span> Examples                  FOLDER
+<span style="color: #555555;">2</span> Publications and services FOLDER
+<span style="color: #555555;">3</span> Default Tables            FOLDER
+<span style="color: #555555;">4</span> Statistics                FOLDER
+<span style="color: #555555;">5</span> ts_tourism                TABLE 
+<span style="color: #555555;">6</span> krankenbewegungen         TABLE 
+<span style="color: #555555;">7</span> tourism_ts                TABLE 
+<span style="color: #555555;">8</span> entlassungen              TABLE </code></pre>
+<p>We see that the catalog has 8 child nodes: Four childs of type <code>FOLDER</code> and four childs of type <code>TABLE</code>. To get access to the child nodes use <code>my_catalogue${child_label}</code></p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span></code></pre></div>
+<pre class="r-output"><code>FOLDER: Statistics
+<span style="color: #555555;"># A data frame: 20 × 2</span>
+   <span style="font-weight: bold;">child</span>                                      <span style="font-weight: bold;">type</span>  
+   <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                                      <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span> 
+<span style="color: #555555;"> 1</span> Labour Market                              FOLDER
+<span style="color: #555555;"> 2</span> Foreign Trade                              FOLDER
+<span style="color: #555555;"> 3</span> Population                                 FOLDER
+<span style="color: #555555;"> 4</span> Education, Culture                         FOLDER
+<span style="color: #555555;"> 5</span> Energy, Environment                        FOLDER
+<span style="color: #555555;"> 6</span> European Indicators                        FOLDER
+<span style="color: #555555;"> 7</span> Research and Development (R&amp;D), Innovation FOLDER
+<span style="color: #555555;"> 8</span> Health                                     FOLDER
+<span style="color: #555555;"> 9</span> Information society                        FOLDER
+<span style="color: #555555;">10</span> Agriculture and forestry                   FOLDER
+<span style="color: #555555;">11</span> Prices                                     FOLDER
+<span style="color: #555555;">12</span> Production and Services                    FOLDER
+<span style="color: #555555;">13</span> Regional                                   FOLDER
+<span style="color: #555555;">14</span> Social Statistics                          FOLDER
+<span style="color: #555555;">15</span> Tourism                                    FOLDER
+<span style="color: #555555;">16</span> Enterprises, Census of local units         FOLDER
+<span style="color: #555555;">17</span> Transport                                  FOLDER
+<span style="color: #555555;">18</span> National Accounts                          FOLDER
+<span style="color: #555555;">19</span> Dwellings, Buildings                       FOLDER
+<span style="color: #555555;">20</span> Public Finance, Taxes                      FOLDER</code></pre>
+<p>The child node <code>Statistics</code> is also of class <code>sc_schema</code> and shows all entries of the subfolder. Inside the catalogue, the leafs of the tree are mostly of type <code>DATABASE</code> and <code>TABLE</code>. Here is an example for a <code>TABLE</code> node.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span><span class="op">$</span><span class="va">`Labour Market`</span></code></pre></div>
-<pre><code>##                                                        levelName     type
-## 1 Labour Market                                                    FOLDER
-## 2  ¦--Job Vacancies                                                FOLDER
-## 3  ¦   ¦--Offene Stellen (Jahresdurchschnitt) ab 2009            DATABASE
-## 4  ¦   °--Offene Stellen Quartale ab 2009                        DATABASE
-## 5  ¦--Working hours (Labour Force Survey)                        DATABASE
-## 6  ¦--Austrian Micro census - Labour Force Survey Yearly Data    DATABASE
-## 7  ¦--Austrian Micro census - Labour Force Survey Quarterly Data DATABASE
-## 8  °--Microcensus Time Series since 1974                         DATABASE</code></pre>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span><span class="op">$</span><span class="va">`Labour Market`</span><span class="op">$</span><span class="va">`Standardtabelle / Default table (defaulttable_deake005)`</span></code></pre></div>
+<pre class="r-output"><code>TABLE: Standardtabelle / Default table (defaulttable_deake005)
+Get the data with `sc_table_saved('str:table:defaulttable_deake005')` </code></pre>
+<p>As suggested by the output, tables can be used with the <code>/table</code> endpoint via <code><a href="../reference/sc_table.html">sc_table_saved()</a></code>. See the <a href="sc_table_saved.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
+  &lt;b&gt;Saved Tables&lt;/b&gt;
+  &lt;br/&gt;
+  STATcube allows you to save tables in the GUI. You can directly import those saved tables using sc_table_saved()
+
+&lt;/div&gt;'>saved tables article</a> for more details.</p>
+<p>Here is an example for a <code>DATABASE</code> node.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span><span class="op">$</span><span class="va">`Labour Market`</span><span class="op">$</span><span class="va">`Working hours (Labour Force Survey)`</span></code></pre></div>
-<pre><code>## $id
-## [1] "str:database:deake005"
-## 
-## $label
-## [1] "Working hours (Labour Force Survey)"
-## 
-## $location
-## [1] "http://sdbext:8082/statistik.at/ext/statcube/rest/v1/schema/str:database:deake005"
-## 
-## $type
-## [1] "DATABASE"
-## 
-## $lastModified
-## [1] 1.628679e+12
-## 
-## $recordViewEnabled
-## [1] FALSE</code></pre>
+<pre class="r-output"><code>DATABASE: Working hours (Labour Force Survey)
+# Get more info with `sc_schema_db('str:database:deake005')` </code></pre>
 </div>
 <div id="database-infos" class="section level2">
 <h2 class="hasAnchor">
 <a href="#database-infos" class="anchor"></a>Database infos</h2>
-<p>To get more information about this database, you can pass the <code>id</code> to <code><a href="../reference/sc_schema.html">sc_schema_db()</a></code>. Again, the contents do have a tree structure which is similar to the sidebar of the “Tabellenansicht” view.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<p>To get information about a specific database, you can pass the database <code>id</code> to <code><a href="../reference/sc_schema.html">sc_schema_db()</a></code>. Again, the contents do have a tree structure which is similar to the sidebar of the “Tabellenansicht” view.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_db_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_db</a></span><span class="op">(</span><span class="st">"deake005"</span><span class="op">)</span>
 <span class="va">my_db_info</span></code></pre></div>
-<pre><code>##                                                                                   levelName     type
-## 1  Working hours (Labour Force Survey)                                                      DATABASE
-## 2   ¦--Factors                                                                                 GROUP
-## 3   ¦   ¦--Average hours actually worked per week                                            MEASURE
-## 4   ¦   ¦   °--Average hours actually worked per week                                            SUM
-## 5   ¦   ¦--Average hours usually worked per week                                             MEASURE
-## 6   ¦   ¦   °--Average hours usually worked per week                                             SUM
-## 7   ¦   ¦--Volume of hours worked in the main job per year in million hours                  MEASURE
-## 8   ¦   ¦   °--Volume of hours worked in the main job per year in million hours                  SUM
-## 9   ¦   ¦--Volume of hours worked overtime (paid) per year in million hours                  MEASURE
-## 10  ¦   ¦   °--Volume of hours worked overtime (paid) per year in million hours                  SUM
-## 11  ¦   ¦--Volume of hours worked overtime (unpaid) per year in million hours                MEASURE
-## 12  ¦   ¦   °--Volume of hours worked overtime (unpaid) per year in million hours                SUM
-## 13  ¦   ¦--Volume of hours worked overtime (paid/unpaid) per year in million hours           MEASURE
-## 14  ¦   ¦   °--Volume of hours worked overtime (paid/unpaid) per year in million hours           SUM
-## 15  ¦   ¦--Volume of hours worked in the second job per year in million hours                MEASURE
-## 16  ¦   ¦   °--Volume of hours worked in the second job per year in million hours                SUM
-## 17  ¦   ¦--Average hours worked overtime per week related to the total of employees          MEASURE
-## 18  ¦   ¦   °--Average hours worked overtime per week related to the total of employees          SUM
-## 19  ¦   °--Average hours worked overtime per week related to employees working overtime      MEASURE
-## 20  ¦       °--Average hours worked overtime per week related to employees working overtime      SUM
-## 21  ¦--Facts                                                                                   GROUP
-## 22  ¦   ¦--GEWTATJAHR                                                                        MEASURE
-## 23  ¦   ¦   °--GEWTATJAHR                                                                        SUM
-## 24  ¦   ¦--GEWJAHR                                                                           MEASURE
-## 25  ¦   ¦   °--GEWJAHR                                                                           SUM
-## 26  ¦   ¦--TATSTUNDMALGEW                                                                    MEASURE
-## 27  ¦   ¦   °--TATSTUNDMALGEW                                                                    SUM
-## 28  ¦   ¦--STUNDMALGEW                                                                       MEASURE
-## 29  ¦   ¦   °--STUNDMALGEW                                                                       SUM
-## 30  ¦   °--... 13 nodes w/ 13 sub                                                                   
-## 31  °--... 7 nodes w/ 105 sub</code></pre>
+<pre class="r-output"><code>DATABASE: Working hours (Labour Force Survey)
+<span style="color: #555555;"># A data frame: 9 × 2</span>
+  <span style="font-weight: bold;">child</span>                                <span style="font-weight: bold;">type</span> 
+  <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                                <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>
+<span style="color: #555555;">1</span> Factors                              GROUP
+<span style="color: #555555;">2</span> Facts                                GROUP
+<span style="color: #555555;">3</span> Datensätze/Records                   GROUP
+<span style="color: #555555;">4</span> Time (mandatory field)               GROUP
+<span style="color: #555555;">5</span> Demographic Characteristics          GROUP
+<span style="color: #555555;">6</span> Employment Characteristics           GROUP
+<span style="color: #555555;">7</span> Working Time                         GROUP
+<span style="color: #555555;">8</span> Characteristics of second employment GROUP
+<span style="color: #555555;">9</span> Geographic Characteristics           GROUP</code></pre>
 <p><code>my_db_info</code> can be used in a similar fashion as <code>my_catalogue</code> to obtain details about the resources in the tree. For example, the <code>VALUESET</code> with the label “Gender” can be viewed like this.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_db_info</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span></code></pre></div>
-<pre><code>##                                                                                          levelName     type
-## 1  Demographic Characteristics                                                                        GROUP
-## 2   ¦--Gender                                                                                         FIELD
-## 3   ¦   °--Gender                                                                                  VALUESET
-## 4   ¦--Age in years-groups                                                                            FIELD
-## 5   ¦   ¦--Age in years-groups                                                                     VALUESET
-## 6   ¦   ¦--Alter in Jahresgruppen                                                                  VALUESET
-## 7   ¦   °--Alter (Ebene +1)                                                                        VALUESET
-## 8   ¦--Highest level of training completed (national classification)                                  FIELD
-## 9   ¦   ¦--Highest level of training completed (national classification)                           VALUESET
-## 10  ¦   °--Höchste abgeschlossene Schulbildung - nationale Gliederung (Ebene +1)                   VALUESET
-## 11  ¦--Highest level of training completed (ISCED 97)                                                 FIELD
-## 12  ¦   ¦--Highest level of training completed (ISCED 97)                                          VALUESET
-## 13  ¦   °--Höchste abgeschlossene Ausbildung (ISCED-97) (Ebene +1)                                 VALUESET
-## 14  ¦--Highest level of training completed (ISCED 2011)                                               FIELD
-## 15  ¦   ¦--Highest level of training completed (ISCED 2011)                                        VALUESET
-## 16  ¦   °--Höchste abgeschlossene Schulbildung - internationale Gliederung (ISCED 2011) (Ebene +1) VALUESET
-## 17  ¦--Nationality                                                                                    FIELD
-## 18  ¦   ¦--Nationality                                                                             VALUESET
-## 19  ¦   °--Staatsangehörigkeit                                                                     VALUESET
-## 20  ¦--Country of birth                                                                               FIELD
-## 21  ¦   ¦--Country of birth                                                                        VALUESET
-## 22  ¦   °--Geburtsland Österreich                                                                  VALUESET
-## 23  °--Migration background                                                                           FIELD
-## 24      ¦--Migration background                                                                    VALUESET
-## 25      °--Migrationshintergrund (Ebene +1)                                                        VALUESET</code></pre>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<pre class="r-output"><code>GROUP: Demographic Characteristics
+<span style="color: #555555;"># A data frame: 8 × 2</span>
+  <span style="font-weight: bold;">child</span>                                                         <span style="font-weight: bold;">type</span> 
+  <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                                                         <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>
+<span style="color: #555555;">1</span> Gender                                                        FIELD
+<span style="color: #555555;">2</span> Age in years-groups                                           FIELD
+<span style="color: #555555;">3</span> Highest level of training completed (national classification) FIELD
+<span style="color: #555555;">4</span> Highest level of training completed (ISCED 97)                FIELD
+<span style="color: #555555;">5</span> Highest level of training completed (ISCED 2011)              FIELD
+<span style="color: #555555;">6</span> Nationality                                                   FIELD
+<span style="color: #555555;">7</span> Country of birth                                              FIELD
+<span style="color: #555555;">8</span> Migration background                                          FIELD</code></pre>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_db_info</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span><span class="op">$</span><span class="va">Gender</span><span class="op">$</span><span class="va">Gender</span></code></pre></div>
-<pre><code>##                  levelName     type
-## 1 Gender                   VALUESET
-## 2  ¦--male                    VALUE
-## 3  ¦--female                  VALUE
-## 4  °--Not classifiable &lt;0&gt;    VALUE</code></pre>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<pre class="r-output"><code>VALUESET: Gender
+<span style="color: #555555;"># A data frame: 3 × 2</span>
+  <span style="font-weight: bold;">child</span>                <span style="font-weight: bold;">type</span> 
+  <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>
+<span style="color: #555555;">1</span> male                 VALUE
+<span style="color: #555555;">2</span> female               VALUE
+<span style="color: #555555;">3</span> Not classifiable &lt;0&gt; VALUE</code></pre>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_db_info</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span><span class="op">$</span><span class="va">Gender</span><span class="op">$</span><span class="va">Gender</span><span class="op">$</span><span class="va">male</span></code></pre></div>
-<pre><code>## $id
-## [1] "str:value:deake005:F-DATA:C-C11-0:C-C11-0:C11-1"
-## 
-## $label
-## [1] "male"
-## 
-## $location
-## [1] "http://sdbext:8082/statistik.at/ext/statcube/rest/v1/schema/str:value:deake005:F-DATA:C-C11-0:C-C11-0:C11-1"
-## 
-## $type
-## [1] "VALUE"</code></pre>
+<pre class="r-output"><code>VALUE: male</code></pre>
+<p>The leafs of database schemas are mostly of type <code>VALUE</code> and <code>MEASURE</code>.</p>
+</div>
+<div id="data-structure-od-sc_schema-objects" class="section level2">
+<h2 class="hasAnchor">
+<a href="#data-structure-od-sc_schema-objects" class="anchor"></a>Data structure od sc_schema objects</h2>
+<p>As shown above, <code>sc_schema</code> objets have a tree like structure. Each <code>sc_schema</code> object has <code>id</code>, <code>label</code>, <code>location</code> and <code>type</code> as the last four entries</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">my_db_info</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## List of 4
+##  $ id      : chr "str:group:deake005:X_B1"
+##  $ label   : chr "Demographic Characteristics"
+##  $ location: chr "http://sdbext:8082/statistik.at/ext/statcube/rest/v1/schema/str:group:deake005:X_B1"
+##  $ type    : chr "GROUP"</code></pre>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## List of 4
+##  $ id      : chr "str:folder:festat"
+##  $ label   : chr "Statistics"
+##  $ location: chr "http://sdbext:8082/statistik.at/ext/statcube/rest/v1/schema/str:folder:festat"
+##  $ type    : chr "FOLDER"</code></pre>
+<p>Schema objects can have an arbitrary amount of childs. Childs are always of type <code>sc_schema</code>. <code>x$type</code> determines the type of the schema object. See the <a href="https://docs.wingarc.com.au/superstar/9.11/open-data-api/open-data-api-reference/schema-endpoint">SuperSTAR API documentation</a> for a complete list of schema types.</p>
 </div>
 <div id="other-resources" class="section level2">
 <h2 class="hasAnchor">
 <a href="#other-resources" class="anchor"></a>Other resources</h2>
 <p>Information about resources other than databases and the catalogue can be obtained by passing the resource id to <code><a href="../reference/sc_schema.html">sc_schema()</a></code>.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_db_info</span><span class="op">$</span><span class="va">Facts</span><span class="op">$</span><span class="va">id</span></code></pre></div>
 <pre><code>## [1] "str:group:deake005:M_F2"</code></pre>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">group_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema</a></span><span class="op">(</span><span class="va">my_db_info</span><span class="op">$</span><span class="va">Facts</span><span class="op">$</span><span class="va">id</span><span class="op">)</span>
 <span class="va">group_info</span></code></pre></div>
-<pre><code>##                                                     levelName    type
-## 1  Facts                                                        GROUP
-## 2   ¦--GEWTATJAHR                                             MEASURE
-## 3   ¦--GEWJAHR                                                MEASURE
-## 4   ¦--TATSTUNDMALGEW                                         MEASURE
-## 5   ¦--STUNDMALGEW                                            MEASURE
-## 6   ¦--Zweittät: tats. gel. Arbeitszeit                       MEASURE
-## 7   ¦--Zweittät: Normalarbeitszeit                            MEASURE
-## 8   ¦--ETATSTUNDMALGEW                                        MEASURE
-## 9   ¦--DTUBEZMALGEW                                           MEASURE
-## 10  ¦--DTUNBEZMALGEW                                          MEASURE
-## 11  ¦--DTUSTDMALGEW                                           MEASURE
-## 12  ¦--ESTUNDMALGEW                                           MEASURE
-## 13  ¦--unselbst. Erwerbsttät. Satzanzahl                      MEASURE
-## 14  ¦--Überstundenleistende Satzanzahl                        MEASURE
-## 15  ¦--Überstunden gesamt                                     MEASURE
-## 16  ¦--tatsächlich geleistete Überstungen im Jahr             MEASURE
-## 17  ¦--tats.gel. Überst.im Jahr in unselbst. Erwerbstätigkeit MEASURE
-## 18  °--unbezahlte Überstunden                                 MEASURE</code></pre>
-<p>Note that the tree returned only has depth 1, i.e. the child nodes of measures are not returned. However, ids of the child nodes can be obtained with <code>$id</code>.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<pre class="r-output"><code>GROUP: Facts
+<span style="color: #555555;"># A data frame: 17 × 2</span>
+   <span style="font-weight: bold;">child</span>                                                  <span style="font-weight: bold;">type</span>   
+   <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                                                  <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>  
+<span style="color: #555555;"> 1</span> GEWTATJAHR                                             MEASURE
+<span style="color: #555555;"> 2</span> GEWJAHR                                                MEASURE
+<span style="color: #555555;"> 3</span> TATSTUNDMALGEW                                         MEASURE
+<span style="color: #555555;"> 4</span> STUNDMALGEW                                            MEASURE
+<span style="color: #555555;"> 5</span> Zweittät: tats. gel. Arbeitszeit                       MEASURE
+<span style="color: #555555;"> 6</span> Zweittät: Normalarbeitszeit                            MEASURE
+<span style="color: #555555;"> 7</span> ETATSTUNDMALGEW                                        MEASURE
+<span style="color: #555555;"> 8</span> DTUBEZMALGEW                                           MEASURE
+<span style="color: #555555;"> 9</span> DTUNBEZMALGEW                                          MEASURE
+<span style="color: #555555;">10</span> DTUSTDMALGEW                                           MEASURE
+<span style="color: #555555;">11</span> ESTUNDMALGEW                                           MEASURE
+<span style="color: #555555;">12</span> unselbst. Erwerbsttät. Satzanzahl                      MEASURE
+<span style="color: #555555;">13</span> Überstundenleistende Satzanzahl                        MEASURE
+<span style="color: #555555;">14</span> Überstunden gesamt                                     MEASURE
+<span style="color: #555555;">15</span> tatsächlich geleistete Überstungen im Jahr             MEASURE
+<span style="color: #555555;">16</span> tats.gel. Überst.im Jahr in unselbst. Erwerbstätigkeit MEASURE
+<span style="color: #555555;">17</span> unbezahlte Überstunden                                 MEASURE</code></pre>
+<p>Note that the tree returned only has depth 1, i.e. the child nodes of measures are not available in <code>group_info</code>. However, ids of the child nodes can be obtained with <code>$id</code>. These ids can be used to send another request to the <code>/schema</code> endpoint</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">group_info</span><span class="op">$</span><span class="va">GEWTATJAHR</span><span class="op">$</span><span class="va">id</span></code></pre></div>
 <pre><code>## [1] "str:measure:deake005:F-DATA:F-GEWTATJAHR"</code></pre>
+<p>Alternatively, use the <code>depth</code> parameter of <code>sc_schema</code>.</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">group_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema</a></span><span class="op">(</span><span class="va">my_db_info</span><span class="op">$</span><span class="va">Facts</span><span class="op">$</span><span class="va">id</span>, depth <span class="op">=</span> <span class="st">"valueset"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="printing-with-data-tree" class="section level2">
+<h2 class="hasAnchor">
+<a href="#printing-with-data-tree" class="anchor"></a>Printing with data.tree</h2>
+<p>If the <a href="http://github.com/gluc/data.tree">data.tree</a> package is installed, it can be used for an alternative print mehtod.</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">my_catalogue</span>, tree <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<pre><code>##                                                                         levelName     type
+## 1  Extern V9                                                                        FOLDER
+## 2   ¦--Examples                                                                     FOLDER
+## 3   ¦   ¦--Communes (Demo)                                                        DATABASE
+## 4   ¦   ¦--People                                                                 DATABASE
+## 5   ¦   ¦--People multilingual                                                    DATABASE
+## 6   ¦   ¦--Retail Banking ML en                                                   DATABASE
+## 7   ¦   ¦--Monitoring                                                                TABLE
+## 8   ¦   ¦--Standardtabelle / Default table (defaulttable_depeopleml)                 TABLE
+## 9   ¦   ¦--Standardtabelle / Default table (defaulttable_dedemo)                     TABLE
+## 10  ¦   ¦--E-A_nach_Bundeslaendern_dedemo                                            TABLE
+## 11  ¦   °--Jahre_nach_NUTS_dedemo                                                    TABLE
+## 12  ¦--Publications and services                                                    FOLDER
+## 13  ¦   ¦--Economic Trend Monitor                                                   FOLDER
+## 14  ¦   ¦   ¦--Economic Trend Monitor                                             DATABASE
+## 15  ¦   ¦   °--Standardtabelle / Default table (defaulttable_dekonjunkturmonitor)    TABLE
+## 16  ¦   °--Austrian Economic Atlas                                                  FOLDER
+## 17  ¦       ¦--01 Key data Austria and European Union                             DATABASE
+## 18  ¦       ¦--02 Key data Federal provinces                                      DATABASE
+## 19  ¦       ¦--03 Key data on economic branches                                   DATABASE
+## 20  ¦       ¦--04 Key data on economic branches by enterprise size classes        DATABASE
+## 21  ¦       ¦--05 Key data on economic branches compared with the EU              DATABASE
+## 22  ¦       ¦--06 Key data on economic branches by federal provinces              DATABASE
+## 23  ¦       ¦--07 Key data industry                                               DATABASE
+## 24  ¦       ¦--08 Key data construction                                           DATABASE
+## 25  ¦       ¦--09 Key data trade                                                  DATABASE
+## 26  ¦       ¦--10 Key data tourism                                                DATABASE
+## 27  ¦       ¦--11 Key data transport                                              DATABASE
+## 28  ¦       ¦--12 Key data foreign trade                                          DATABASE
+## 29  ¦       ¦--13 Key data agriculture and foresty                                DATABASE
+## 30  ¦       °--... 13 nodes w/ 0 sub                                                      
+## 31  °--... 6 nodes w/ 1286 sub</code></pre>
+<p>The data.tree implementation can be set as a default with <code><a href="https://rdrr.io/r/base/options.html">options()</a></code></p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>STATcubeR.print_tree <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span></code></pre></div>
+<pre class="r-output"><code>                                                                     levelName     type
+1  Statistics                                                                    FOLDER
+2   ¦--Labour Market                                                             FOLDER
+3   ¦   ¦--Job Seeker                                                            FOLDER
+4   ¦   ¦--Labour Market Policy                                                  FOLDER
+5   ¦   ¦--Working Time                                                          FOLDER
+6   ¦   ¦--Activity Status                                                       FOLDER
+7   ¦   ¦--Employment                                                            FOLDER
+8   ¦   ¦--Job Vacancies                                                         FOLDER
+9   ¦   ¦   ¦--Offene Stellen (Jahresdurchschnitt) ab 2009                     DATABASE
+10  ¦   ¦   ¦--Offene Stellen Quartale ab 2009                                 DATABASE
+11  ¦   ¦   ¦--Standardtabelle / Default table (defaulttable_deoffstelljd)        TABLE
+12  ¦   ¦   °--Standardtabelle / Default table (defaulttable_deoffstell)          TABLE
+13  ¦   ¦--Working hours (Labour Force Survey)                                 DATABASE
+14  ¦   ¦--Austrian Micro census - Labour Force Survey Yearly Data             DATABASE
+15  ¦   ¦--Austrian Micro census - Labour Force Survey Quarterly Data          DATABASE
+16  ¦   ¦--Microcensus Time Series since 1974                                  DATABASE
+17  ¦   ¦--Standardtabelle / Default table (defaulttable_deake001j)               TABLE
+18  ¦   ¦--Standardtabelle / Default table (defaulttable_deake003j)               TABLE
+19  ¦   ¦--Standardtabelle / Default table (defaulttable_deake005)                TABLE
+20  ¦   °--Standardtabelle / Default table (defaulttable_deake002q)               TABLE
+21  ¦--Foreign Trade                                                             FOLDER
+22  ¦   ¦--TEC - Trade by enterprise characteristics                             FOLDER
+23  ¦   ¦   ¦--Trade by number of partner countries and activity sector (NACE) DATABASE
+24  ¦   ¦   ¦--Trade by type of trader and activity sector (NACE)              DATABASE
+25  ¦   ¦   ¦--Trade by partner countries and enterprise size class            DATABASE
+26  ¦   ¦   ¦--Trade by enterprise size class and activity sector (NACE)       DATABASE
+27  ¦   ¦   ¦--Trade by type of ownership and activity sector (NACE)           DATABASE
+28  ¦   ¦   ¦--Trade by exports intensity and activity sector (NACE)           DATABASE
+29  ¦   ¦   ¦--Trade by commodity (CPA) and activity sector (NACE)             DATABASE
+30  ¦   ¦   °--... 13 nodes w/ 0 sub                                                   
+31  ¦   °--... 3 nodes w/ 31 sub                                                       
+32  °--... 18 nodes w/ 1227 sub                                                        </code></pre>
 </div>
   </div>
 

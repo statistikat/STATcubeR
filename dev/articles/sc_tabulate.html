@@ -204,7 +204,7 @@
 <span style="color: #555555;"># … with 67 more rows</span></code></pre>
 <p>If more than one measure is included in the dataset, all measures will be aggregated. <a href="../index.html" data-tippy-content="
   &lt;b&gt;R Package for all things STATcube&lt;/b&gt;&lt;br/&gt;
-  Get data From the STATcube REST API or from the Open Data portal into your R sessions
+  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
   " class="STATcubeR">STATcubeR</a> uses <code><a href="https://rdrr.io/r/base/rowsum.html">rowsum()</a></code> to ensure a good performance with big datasets. It is also possible to use partial matching or use codes.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cancer</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"Reporting"</span>, <span class="st">"C-KRE"</span><span class="op">)</span></code></pre></div>
@@ -219,7 +219,7 @@
 <span style="color: #555555;"># … with 67 more rows</span></code></pre>
 <p><a href="../index.html" data-tippy-content="
   &lt;b&gt;R Package for all things STATcube&lt;/b&gt;&lt;br/&gt;
-  Get data From the STATcube REST API or from the Open Data portal into your R sessions
+  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
   " class="STATcubeR">STATcubeR</a> will use <code><a href="https://rdrr.io/r/base/pmatch.html">pmatch()</a></code> to match the supplied strings with the metadata to identify the variables that should be used for aggregation.</p>
 </div>
 <div id="totals" class="section level3">
@@ -236,7 +236,7 @@
 ## Measures:   Arithmetic mean, 1st quartile, 2nd quartile (median), 3rd quartile, Number of employees 
 ## Fields:     Sex, Citizenship, Region (NUTS2), Form of employment 
 ## 
-## Request:    2021-08-11 13:56:37 
+## Request:    2021-08-12 20:00:35 
 ## STATcubeR:  0.2.2</code></pre>
 <p>As we can see from the <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> output, the measures contain means and quartiles. Therefore, aggregating the data via <code><a href="https://rdrr.io/r/base/rowsum.html">rowsum()</a></code> is not meaningful. However, this dataset contains a “total code” for every field.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -303,7 +303,7 @@
 <div id="including-totals-in-the-oputput" class="section level3">
 <h3 class="hasAnchor">
 <a href="#including-totals-in-the-oputput" class="anchor"></a>Including totals in the oputput</h3>
-<p>It is not necessary that all fields have totals. For example, suppose we want to include the totals for <code>Sex</code> in the output table. We can just remove the toal code before running <code>od_tabulate()</code>. The special symbol <code>NA</code> can be used to unset a total code.</p>
+<p>It is not necessary that all fields have totals. For example, suppose we want to include the totals for <code>Sex</code> in the output table. We can just remove the toal code before running <code><a href="../reference/sc_tabulate.html">sc_tabulate()</a></code>. The special symbol <code>NA</code> can be used to unset a total code.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">earnings</span><span class="op">$</span><span class="fu">total_codes</span><span class="op">(</span>Sex <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span>
 <span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"Sex"</span><span class="op">)</span></code></pre></div>
@@ -358,7 +358,7 @@
 <a href="#programmatic-usage" class="anchor"></a>Programmatic usage</h2>
 <p>Notice that we used the german label for the column <code>"Sex"</code> in the last calls to <code><a href="https://rdrr.io/r/base/tabulate.html">tabulate()</a></code>. This is necessary because only the “active” labels are available to define the tabulation. If you want to use <a href="../index.html" data-tippy-content="
   &lt;b&gt;R Package for all things STATcube&lt;/b&gt;&lt;br/&gt;
-  Get data From the STATcube REST API or from the Open Data portal into your R sessions
+  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
   " class="STATcubeR">STATcubeR</a> programatically, always use codes to define the tabulation and also use the <code>.list</code> parameter if you want to pass several codes.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">earnings</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"C-A11-0"</span><span class="op">)</span></code></pre></div>

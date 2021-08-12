@@ -189,9 +189,11 @@ STATcube REST API.</p>
 
 <dt><code>raw</code></dt><dd><p>the raw response content</p></dd>
 
-<dt><code>annotation_legend</code></dt><dd><p>list of all annotations occuring in the data</p></dd>
+<dt><code>annotation_legend</code></dt><dd><p>list of all annotations occuring in the data as a <code>data.frame</code> with
+two columns for the annotation keys and annotation labels.</p></dd>
 
-<dt><code>rate_limit</code></dt><dd><p>how much requests were left after the POST request for this table was sent?</p></dd>
+<dt><code>rate_limit</code></dt><dd><p>how much requests were left after the POST request for this table was sent?
+Uses the same format as <code><a href='other_endpoints.html'>sc_rate_limit_table()</a></code>.</p></dd>
 
 <dt><code>json</code></dt><dd><p>an object of class <code>sc_json</code> based the json file used in the request</p></dd>
 

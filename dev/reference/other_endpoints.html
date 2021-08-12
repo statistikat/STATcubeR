@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>List available Opendata datasets — od_list • STATcubeR</title>
+<title>Other endpoints of the STATcube REST API — other_endpoints • STATcubeR</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,9 +48,10 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="List available Opendata datasets — od_list" />
-<meta property="og:description" content="od_list() returns a data.frame  containing all datasets published at
-data.statistik.gv.at" />
+<meta property="og:title" content="Other endpoints of the STATcube REST API — other_endpoints" />
+<meta property="og:description" content="Utilize the simple endpoints /info and /table_rate_limit. Those provide
+information about available locales and the amount of requests available
+for calls against the /table endpoint." />
 <meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.png" />
 
 
@@ -167,70 +168,56 @@ data.statistik.gv.at" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>List available Opendata datasets</h1>
-    <small class="dont-index">Source: <a href='https://github.com/statistikat/STATcubeR/blob/master/R/od_list.R'><code>R/od_list.R</code></a></small>
-    <div class="hidden name"><code>od_list.Rd</code></div>
+    <h1>Other endpoints of the STATcube REST API</h1>
+    <small class="dont-index">Source: <a href='https://github.com/statistikat/STATcubeR/blob/master/R/other_endpoints.R'><code>R/other_endpoints.R</code></a></small>
+    <div class="hidden name"><code>other_endpoints.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>od_list()</code> returns a <code>data.frame </code> containing all datasets published at
-<a href='https://data.statistik.gv.at'>data.statistik.gv.at</a></p>
+    <p>Utilize the simple endpoints <code>/info</code> and <code>/table_rate_limit</code>. Those provide
+information about available locales and the amount of requests available
+for calls against the <code>/table</code> endpoint.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>od_list</span><span class='op'>(</span>unique <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>sc_info</span><span class='op'>(</span>language <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"en"</span>, <span class='st'>"de"</span><span class='op'>)</span>, key <span class='op'>=</span> <span class='fu'><a href='sc_key.html'>sc_key</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'>sc_rate_limit_table</span><span class='op'>(</span>language <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"en"</span>, <span class='st'>"de"</span><span class='op'>)</span>, key <span class='op'>=</span> <span class='fu'><a href='sc_key.html'>sc_key</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>unique</th>
-      <td><p>some datasets are pulbished under multiple groups.
-They will only be listed once with the first group they appear in unless
-this parameter is set to <code>FALSE</code>.</p></td>
+      <th>language</th>
+      <td><p>The language to be used for labeling. <code>"en"</code> or <code>"de"</code></p></td>
+    </tr>
+    <tr>
+      <th>key</th>
+      <td><p>(<code>string</code>) An API key. To display your key, call
+<code><a href='sc_browse.html'>sc_browse_preferences()</a></code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a <code>data.frame</code> with two columns</p><ul>
-<li><p><code>"category"</code>: Grouping under which a dataset is listed</p></li>
-<li><p><code>"id"</code>: Name of the dataset which can later be used in
-<code><a href='od_table.html'>od_table()</a></code></p></li>
-<li><p><code>"label"</code>: Description of the dataset</p></li>
+    
+<ul>
+<li><p><code>sc_info</code> returns information about all available database languages</p></li>
+<li><p><code>sc_rate_limit_table()</code> returns a <code>3x1</code> dataframe with the following columns</p><ul>
+<li><p><code>remaining</code> how much requests can be sent to the <code>/table</code> endpoint until
+the rate limit is reached.</p></li>
+<li><p><code>limit</code> the number of requests allowed per hour.</p></li>
+<li><p><code>reset</code> a tiestamp when the rate limit will be reset. Ususally, this
+should be less than one hour `after the current time.</p></li>
+</ul></li>
 </ul>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'>od_list</span><span class='op'>(</span><span class='op'>)</span>
-<span class='va'>df</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A data frame: 268 × 3</span>
-#&gt;    category    id                                         label                 
-#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>       <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                                      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                 
-#&gt; <span style='color: #BCBCBC;'> 1</span> Arbeit      OGD_konjunkturmonitor_KonMon_1             Konjunkturmonitor     
-#&gt; <span style='color: #BCBCBC;'> 2</span> Arbeit      OGD_veste309_Veste309_1                    Verdienststrukturerhe…
-#&gt; <span style='color: #BCBCBC;'> 3</span> Arbeit      OGD_veste307_Veste307_1                    Verdienststrukturerhe…
-#&gt; <span style='color: #BCBCBC;'> 4</span> Arbeit      OGD_veste305_Veste305_1                    Verdienststrukturerhe…
-#&gt; <span style='color: #BCBCBC;'> 5</span> Arbeit      OGD_veste303_Veste203_1                    Verdienststrukturerhe…
-#&gt; <span style='color: #BCBCBC;'> 6</span> Arbeit      OGD_aeapp_biber_abschl_ext_BIBER_ABSCHL_1  BibEr Monitoring 2020…
-#&gt; <span style='color: #BCBCBC;'> 7</span> Arbeit      OGD_aest_erv_statw_haupt_ERV_STATWECHSEL_1 Erwerbsverläufe - Sta…
-#&gt; <span style='color: #BCBCBC;'> 8</span> Bevölkerung OGD_rate_kalwobez_GEST_KALWOCHE_STR_BZ_100 Altersstandardisierte…
-#&gt; <span style='color: #BCBCBC;'> 9</span> Bevölkerung OGD_rate_kalwo_GEST_KALWOCHE_STR_100       Altersstandardisierte…
-#&gt; <span style='color: #BCBCBC;'>10</span> Bevölkerung OGD_gest_kalwo_GEST_KALWOCHE_100           Gestorbene in Österre…
-#&gt; <span style='color: #949494;'># … with 258 more rows</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>category</span> <span class='op'>==</span> <span class='st'>"Bildung und Forschung"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A data frame: 38 × 3</span>
-#&gt;    category              id                            label                    
-#&gt;  <span style='color: #BCBCBC;'>*</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                 <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                    
-#&gt; <span style='color: #BCBCBC;'> 1</span> Bildung und Forschung OGD_unistud5_ext_UNI_STUD5_1  Studierende in Österreich
-#&gt; <span style='color: #BCBCBC;'> 2</span> Bildung und Forschung OGD_unistud4_ext_UNI_STUD4_2  Studierende an öffentlic…
-#&gt; <span style='color: #BCBCBC;'> 3</span> Bildung und Forschung OGD_unistud3_ext_UNI_STUD3_1  Studierende an öffentlic…
-#&gt; <span style='color: #BCBCBC;'> 4</span> Bildung und Forschung OGD_unistud2_ext_UNI_STUD2_1  Studierende an öffentlic…
-#&gt; <span style='color: #BCBCBC;'> 5</span> Bildung und Forschung OGD_unistud1_ext_UNI_STUD1_1  Studien an öffentlichen …
-#&gt; <span style='color: #BCBCBC;'> 6</span> Bildung und Forschung OGD_uniabs_ext_UNI_OEFF_ABS_1 Studienabschlüsse an öff…
-#&gt; <span style='color: #BCBCBC;'> 7</span> Bildung und Forschung OGD_fhsstud_ext_FHS_S_1       Studien an Fachhochschul…
-#&gt; <span style='color: #BCBCBC;'> 8</span> Bildung und Forschung OGD_fhsabs_ext_FHS_A_1        Studienabschlüsse an Fac…
-#&gt; <span style='color: #BCBCBC;'> 9</span> Bildung und Forschung OGD_uptstud_ext_UPT_S_1       Studierende an Privatuni…
-#&gt; <span style='color: #BCBCBC;'>10</span> Bildung und Forschung OGD_uptabs_ext_UPT_A_1        Studienabschlüsse an Pri…
-#&gt; <span style='color: #949494;'># … with 28 more rows</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>sc_info</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   locale displayName
+#&gt; 1     de     Deutsch
+#&gt; 2     en     English</div><div class='input'><span class='fu'>sc_rate_limit_table</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in sc_rate_limit_table(): could not find function "sc_rate_limit_table"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

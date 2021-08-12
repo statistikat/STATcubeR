@@ -19,7 +19,10 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
 <meta property="og:title" content="STATcubeR">
-<meta property="og:description" content="R Interface for the STATcube REST API.">
+<meta property="og:description" content="Import data from the STATcube REST API or from the open data
+    portal of Statistics Austria. This package includes a client for API
+    requests as well as parsing utilities for data which originates from
+    STATcube.">
 <meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.png">
 <meta name="robots" content="noindex">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -140,25 +143,24 @@
 <div id="open-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#open-data" class="anchor"></a>Open Data</h2>
-<p>To import datasets from <a href="https://data.statistik.gv.at" class="uri">https://data.statistik.gv.at</a>, simply pass the dataset id to the <code><a href="reference/od_table.html">od_table()</a></code> function. For example, the OGD data from the <a href="https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_veste309_Veste309_1">structure of earnings survey</a> can be accessed as follows.</p>
+<p>To import datasets from <a href="https://data.statistik.gv.at" class="uri">https://data.statistik.gv.at</a>, pass the dataset id to the <code><a href="reference/od_table.html">od_table()</a></code> function. For example, OGD about the <a href="https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_bevstandjbab2002_BevStand_2020">austrian population in 2020</a> can be accessed as follows.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">earnings</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/od_table.html">od_table</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span><span class="op">)</span>
-<span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code># A STATcubeR tibble: 72 x 9
-  Sex    Citizenship `Region (NUTS2)` `Form of employment`   `Arithmetic mea… `1st quartile`
-* &lt;fct&gt;  &lt;fct&gt;       &lt;fct&gt;            &lt;fct&gt;                             &lt;int&gt;          &lt;int&gt;
-1 Sum t… Total       Total            "Total"                              18             12
-2 Sum t… Total       Total            "Standard employment "               19             13
-3 Sum t… Total       Total            "Non-standard employm…               15             10
-4 Sum t… Total       Total            "Non-standard employm…               16             11
-# … with 68 more rows, and 3 more variables: 2nd quartile (median) &lt;int&gt;,
-#   3rd quartile &lt;int&gt;, Number of employees &lt;int&gt;</code></pre>
+<code class="sourceCode R"><span class="va">population</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/od_table.html">od_table</a></span><span class="op">(</span><span class="st">"OGD_bevstandjbab2002_BevStand_2020"</span><span class="op">)</span>
+<span class="va">population</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code># A STATcubeR tibble: 392,508 x 5
+  `Time section` Sex   `Commune (aggregation by political distri… `Age in single year… Number
+* &lt;date&gt;         &lt;fct&gt; &lt;fct&gt;                                      &lt;fct&gt;                 &lt;int&gt;
+1 2020-01-01     male  Eisenstadt &lt;10101&gt;                         under 1 year old         77
+2 2020-01-01     male  Eisenstadt &lt;10101&gt;                         1 year old               75
+3 2020-01-01     male  Eisenstadt &lt;10101&gt;                         2 years old              70
+4 2020-01-01     male  Eisenstadt &lt;10101&gt;                         3 years old              83
+# … with 392,504 more rows</code></pre>
 <p>The resulting object contains labeled data (see above), raw data, metadata and more. See the <a href="https://statistikat.github.io/STATcubeR/articles/od_table.html">OGD Article</a> for further details.</p>
 </div>
 <div id="statcube-api" class="section level2">
 <h2 class="hasAnchor">
 <a href="#statcube-api" class="anchor"></a>STATcube API</h2>
-<p>In order to use the REST API, it is required to set up an API key. See the <a href="https://statistikat.github.io/STATcubeR/articles/articles/sc_key.html">setup article</a> for more details. The API is currently only available for employees of Statistics Austria. Support for external users will be added in the near future.</p>
+<p>In order to use the REST API, it is required to set up an API key. See the <a href="https://statistikat.github.io/STATcubeR/articles/sc_key.html">api key article</a> for more details. The API is currently only available for employees of Statistics Austria. Support for external users will be added in the near future.</p>
 <p>There are four main functions that interact with the API</p>
 <ul>
 <li>
@@ -171,6 +173,24 @@
 <code><a href="reference/sc_table.html">sc_table_saved()</a></code> requests a table based on an id</li>
 </ul>
 <p>More information about the first two functions can be found in the <a href="https://statistikat.github.io/STATcubeR/articles/sc_schema.html">schema article</a>. <code><a href="reference/sc_table.html">sc_table()</a></code> and <code><a href="reference/sc_table.html">sc_table_saved()</a></code> have their own articles <a href="https://statistikat.github.io/STATcubeR/articles/sc_table.html">here</a> and <a href="https://statistikat.github.io/STATcubeR/articles/sc_table_saved.html">here</a>.</p>
+</div>
+<div id="consistent-data-formats" class="section level2">
+<h2 class="hasAnchor">
+<a href="#consistent-data-formats" class="anchor"></a>Consistent data formats</h2>
+<p>Both OGD data and data form the <code>/table</code> endpoint are wrapped into an <a href="https://r6.r-lib.org">R6</a> class to provide easy acces to data and metadata. For example, the <code>$tabulate()</code> method is also available for tables from the REST API.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># https://statcube.at/statcube/openinfopage?id=debevstandjbab2002</span>
+<span class="va">population</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sc_table.html">sc_table_saved</a></span><span class="op">(</span><span class="st">"str:table:defaulttable_debevstandjbab2002"</span><span class="op">)</span>
+<span class="va">population</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code># A STATcubeR tibble: 10 x 3
+  `Time section` `Commune (aggregation by political district)`  Number
+  &lt;date&gt;         &lt;fct&gt;                                           &lt;dbl&gt;
+1 2021-01-01     Burgenland &lt;AT11&gt;                              296010
+2 2021-01-01     Carinthia &lt;AT21&gt;                               562089
+3 2021-01-01     Lower Austria &lt;AT12&gt;                          1690879
+4 2021-01-01     Upper Austria &lt;AT31&gt;                          1495608
+# … with 6 more rows</code></pre>
+<p>See the <a href="https://statistikat.github.io/STATcubeR/articles/sc_data.html">base class article</a> for more information about the features of this class.</p>
 </div>
 </div>
   </div>

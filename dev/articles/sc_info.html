@@ -134,18 +134,22 @@
 
     
     
-<p>Apart form <code>/table</code> and <code>/schema</code>, there is also support for the simple endpoints <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/info-endpoint"><code>/info</code></a> and <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/rate-limit"><code>/rate_limit</code></a>.</p>
+<script src="https://unpkg.com/@popperjs/core@2"></script><script src="https://unpkg.com/tippy.js@6"></script><link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light.css">
+<script>$(document).ready(function () {
+    window.setTimeout("tippy('.STATcubeR', {allowHTML: true, theme:'light rounded'});", 50);
+    });
+    </script><p>Apart form <code>/table</code> and <code>/schema</code>, there is also support for the simple endpoints <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/info-endpoint"><code>/info</code></a> and <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/rate-limit"><code>/rate_limit</code></a>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/info_and_rate_limit.html">sc_info</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>##   locale displayName
-## 1     de     Deutsch
-## 2     en     English</code></pre>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/info_and_rate_limit.html">sc_rate_limit</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## remaining: 100/100
-## reset:     2021-08-11 14:55:37</code></pre>
+<code class="sourceCode R"><span class="fu"><a href="../reference/other_endpoints.html">sc_info</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre class="r-output"><code>  locale displayName
+1     de     Deutsch
+2     en     English</code></pre>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/other_endpoints.html">sc_rate_limit_table</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## remaining: 99/100
+## reset:     2021-08-12 20:44:52</code></pre>
 <p>Rate limits can also be obtained from the response of the <code>/table</code> endpoint with <code>$rate_limit</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"population_timeseries.json"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">table</span><span class="op">$</span><span class="va">rate_limit</span></code></pre></div>
 <pre><code>## remaining: 99/100
