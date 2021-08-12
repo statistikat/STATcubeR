@@ -96,7 +96,7 @@ sc_table_class <- R6::R6Class(
     },
     #' @field rate_limit
     #' how much requests were left after the POST request for this table was sent?
-    #' Uses the same format as `sc_ratelimit()`.
+    #' Uses the same format as `sc_rate_limit_table()`.
     rate_limit = function() {
       headers <- self$response$headers
       res <- data.frame(
@@ -104,7 +104,7 @@ sc_table_class <- R6::R6Class(
         limit     = headers$`x-ratelimit-table`,
         reset     = headers$`x-ratelimit-reset-table`
       )
-      class(res) <- "sc_rate_limit"
+      class(res) <- "sc_rate_limit_table"
       res
     },
     #' @field json

@@ -3,12 +3,12 @@
 \name{other_endpoints}
 \alias{other_endpoints}
 \alias{sc_info}
-\alias{sc_rate_limit}
+\alias{sc_rate_limit_table}
 \title{Other endpoints of the STATcube REST API}
 \usage{
 sc_info(language = c("en", "de"), key = sc_key())
 
-sc_rate_limit(language = c("en", "de"), key = sc_key())
+sc_rate_limit_table(language = c("en", "de"), key = sc_key())
 }
 \arguments{
 \item{language}{The language to be used for labeling. \code{"en"} or \code{"de"}}
@@ -16,12 +16,25 @@ sc_rate_limit(language = c("en", "de"), key = sc_key())
 \item{key}{(\code{string}) An API key. To display your key, call
 \code{\link[=sc_browse_preferences]{sc_browse_preferences()}}.}
 }
+\value{
+\itemize{
+\item \code{sc_info} returns information about all available database languages
+\item \code{sc_rate_limit_table()} returns a \verb{3x1} dataframe with the following columns
+\itemize{
+\item \code{remaining} how much requests can be sent to the \verb{/table} endpoint until
+the rate limit is reached.
+\item \code{limit} the number of requests allowed per hour.
+\item \code{reset} a tiestamp when the rate limit will be reset. Ususally, this
+should be less than one hour `after the current time.
+}
+}
+}
 \description{
-Utilize the simple endpoints \verb{/info} and \verb{/ratelimit}. Those provide
+Utilize the simple endpoints \verb{/info} and \verb{/table_rate_limit}. Those provide
 information about available locales and the amount of requests available
 for calls against the \verb{/table} endpoint.
 }
 \examples{
 sc_info()
-sc_rate_limit()
+sc_rate_limit_table()
 }
