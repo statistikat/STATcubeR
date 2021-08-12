@@ -36,9 +36,9 @@ od_resource_check_id <- function(id) {
 #' @export
 od_cache_dir <- function(dir = NULL) {
   if (is.null(dir))
-    Sys.getenv("od_cache_dir", paste0(tempdir(), "/STATcubeR/open_data/"))
+    Sys.getenv("OD_CACHE_DIR", paste0(tempdir(), "/STATcubeR/open_data/"))
   else
-    Sys.setenv(od_cache_dir = paste0(gsub("/$", "", dir), "/"))
+    Sys.setenv(OD_CACHE_DIR = paste0(gsub("/$", "", dir), "/"))
 }
 
 #' @name od_resource
