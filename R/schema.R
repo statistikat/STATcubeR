@@ -34,51 +34,56 @@ sc_schema <- function(resource_id = NULL, depth = NULL,
   x
 }
 
-#' @param value show resources of type `VALUE`?
-#' @param x object to be printed
-#' @param limit maximum number of entries to be printed
-#' @param recursive should the whole tree be shown? Alternatively, only display
-#'   the direct children of the current resource.
-#' @param ... ignored
+print_schema_with_tree <- function(x, ...) {
+  stopifnot(requireNamespace("data.tree"))
+  x <- unclass(x) %>% data.tree::as.Node(nodeName = x$label, check = "no-check")
+  print(x, ..., "type")
+  invisible(x)
+}
+
 #' @rdname sc_schema
+#' @param x object to be printed
+#' @param tree wether to use the `data.tree` package for printing.
+#' @param limit,... passed to [data.tree::print.Node()]
+#' @section Printing with data.tree:
+#' `limit` and `...` will simply be ignored if `tree` is set to `FALSE`, which is
+#' the default. The printing via `data.tree` can take longer than the default
+#' implementation because `x` will need to be converted into a `data.tree` node.
+#' To use `data.tree` printing permanently, use
+#' ```r
+#' options(STATcubeR.print_tree = TRUE)
+#' ````
 #' @export
-print.sc_schema <- function(x, limit = 30, value = FALSE, recursive = TRUE, ...) {
-  if (!any(sapply(x, is.list)))
-    print(unclass(x))
-  else {
-    if (x$type == "VALUESET")
-      value <- TRUE
-    if (!value)
-      x <- drop_values(x)
-    x <- unclass(x) %>% data.tree::as.Node(nodeName = x$label, check = "no-check")
-    if (!recursive)
-      data.tree::Prune(x, function(node) { length(node$path) <= 2 })
-    data.tree::Prune(x, function(node) {
-      !is.null(node$type) &&
-        !(recursive && node$type == "FOLDER" && length(node$children) == 0) &&
-        !(node$type == "TABLE")
-    })
-    data.tree::Do(data.tree::Traverse(x), function(node) {
-      if (!is.null(node$type) && node$type == "STAT_FUNCTION")
-        node$type <- node$location %>% strsplit(":") %>% .[[1]] %>%
-          utils::tail(1)
-    })
-    print(x, limit = limit, ..., "type")
-  }
+print.sc_schema <- function(x, tree = NULL, ..., limit = 30) {
+  if (is.null(tree))
+    tree <- getOption("STATcubeR.print_tree", FALSE)
+  classes <- sapply(x, class)
+  if (tree && any(classes == "sc_schema"))
+    return(print_schema_with_tree(x, limit = 30, ...))
+  cat(x$type, ": ", x$label, "\n", sep = "")
+  sc_schema_print_children(x, message_empty = switch(
+    x$type,
+    DATABASE = paste0("# Get more info with `sc_schema_db('", x$id, "')`"),
+    TABLE = paste0("Get the data with `sc_table_saved('", x$id, "')`"),
+    NULL
+  ))
 }
 
-drop_values <- function(x) {
-  if (!is.list(x))
-    return(x)
-  if (!is.null(x$type) && x$type == "VALUE")
-    return(NULL)
-  lapply(x, drop_values)
+sc_schema_print_children <- function(x, message_empty = NULL) {
+  classes <- sapply(x, class)
+  child_schemas <- names(x)[classes == "sc_schema"]
+  if (length(child_schemas) > 0) {
+    data.frame(
+      child = child_schemas,
+      type = sapply(x[child_schemas], function(x) x$type),
+      stringsAsFactors = FALSE
+    ) %>% `class<-`(c("tbl", "data.frame")) %>% `row.names<-`(NULL) %>% print()
+  } else if (!is.null(message_empty))
+    cat(message_empty, "\n")
 }
 
-sc_as_nested_list <- function(db, drop_value = FALSE) {
+sc_as_nested_list <- function(db) {
   ret <- lapply(db$children, function(x) {
-    if (x$type == "VALUE")
-      return(x)
     sc_as_nested_list(x)
   })
   names(ret) <- sapply(db$children, function(x) x$label)

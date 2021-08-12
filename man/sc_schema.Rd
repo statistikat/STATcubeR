@@ -14,7 +14,7 @@ sc_schema(
   key = sc_key()
 )
 
-\method{print}{sc_schema}(x, limit = 30, value = FALSE, recursive = TRUE, ...)
+\method{print}{sc_schema}(x, tree = NULL, ..., limit = 30)
 
 sc_schema_catalogue(depth = "folder", language = c("en", "de"), key = sc_key())
 
@@ -40,14 +40,9 @@ are applicable.}
 
 \item{x}{object to be printed}
 
-\item{limit}{maximum number of entries to be printed}
+\item{tree}{wether to use the \code{data.tree} package for printing.}
 
-\item{value}{show resources of type \code{VALUE}?}
-
-\item{recursive}{should the whole tree be shown? Alternatively, only display
-the direct children of the current resource.}
-
-\item{...}{ignored}
+\item{limit, ...}{passed to \code{\link[data.tree:print.Node]{data.tree::print.Node()}}}
 
 \item{db_id}{a database id}
 }
@@ -59,6 +54,15 @@ recurse into all valuesets and return a list of all resources available
 tor the specific dataset. The return values can be displayed as a
 tree object.
 }
+\section{Printing with data.tree}{
+
+\code{limit} and \code{...} will simply be ignored if \code{tree} is set to \code{FALSE}, which is
+the default. The printing via \code{data.tree} can take longer than the default
+implementation because \code{x} will need to be converted into a \code{data.tree} node.
+To use \code{data.tree} printing permanently, use\if{html}{\out{<div class="r">}}\preformatted{options(STATcubeR.print_tree = TRUE)
+}\if{html}{\out{</div>}}
+}
+
 \examples{
 my_catalogue <- sc_schema_catalogue()
 
@@ -84,5 +88,8 @@ my_response <- attr(db_schema, "response")
 my_response$headers$date
 my_content <- httr::content(my_response)
 my_content$label
+
+# print with data.tree
+print(my_catalogue, tree = TRUE)
 }
 \concept{functions for /schema}

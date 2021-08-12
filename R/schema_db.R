@@ -16,6 +16,9 @@
 #' my_response$headers$date
 #' my_content <- httr::content(my_response)
 #' my_content$label
+#'
+#' # print with data.tree
+#' print(my_catalogue, tree = TRUE)
 #' @rdname sc_schema
 #' @export
 sc_schema_db <- function(db_id, depth = "valueset", language = c("en", "de"),
