@@ -13,15 +13,6 @@ sc_json_class <- R6::R6Class(
     write = function(file) {
       writeLines(text = self$content, con = file)
       private$file_ <- file
-    },
-    edit = function() {
-      if (is.null(self$file)) {
-        temp_file <- tempfile(fileext = ".json")
-        message("creating ", shQuote(temp_file))
-        self$write(temp_file)
-      }
-      rstudioapi::navigateToFile(self$file)
-      message("after editing, use $update() to resend the request")
     }
   ),
   active = list(
