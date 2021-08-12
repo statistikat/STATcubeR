@@ -35,18 +35,20 @@ sc_table_class <- R6::R6Class(
     initialize = function(response, json = NULL, file = NULL) {
       stopifnot(inherits(response, "response"))
       private$httr_response <- response
+      content <- httr::content(response)
+
       if (is.null(json) && is.null(file))
         json <- jsonlite::toJSON(
-          self$raw$query, auto_unbox = TRUE, pretty = TRUE) %>% toString()
+          content$query, auto_unbox = TRUE, pretty = TRUE) %>% toString()
       private$json_content <- sc_json_class$new(json, file)
 
-      meta <- sc_meta(self)
+      meta <- sc_meta(content)
       meta$source$lang <- response$headers$`content-language`
       super$initialize(
-        data = sc_table_create_data(self),
+        data = sc_table_create_data(content),
         meta = meta,
         field = lapply(seq_len(nrow(meta$fields)), function(i) {
-          sc_meta_field(self, i)
+          sc_meta_field(content$fields[[i]])
         })
       )
     },
@@ -74,7 +76,7 @@ sc_table_class <- R6::R6Class(
     browse = function() {
       browseURL(paste0(
         "https://statcube.at/statcube/openinfopage?id=",
-        self$raw$database$id
+        self$meta$source$code
       ))
     }
   ),
@@ -159,13 +161,10 @@ sc_example <- function(filename) {
 
 #' @export
 print.sc_table <- function(x, ...) {
-  content <- x$raw
   cat("An object of class sc_table\n\n")
-  cat("Database:     ", content$source$label, "\n")
-  cat("Measures:     ", content$measures %>% sapply(function(x) x$label) %>%
-        paste(collapse = ", "), "\n")
-  cat("Fields:       ", content$fields %>% sapply(function(x) x$label) %>%
-        paste(collapse = ", "), "\n\n")
+  cat("Database:     ", x$meta$source$label, "\n")
+  cat("Measures:     ", x$meta$measures$label %>% paste(collapse = ", "), "\n")
+  cat("Fields:       ", x$meta$fields$label   %>% paste(collapse = ", "), "\n\n")
   cat("Request:      ", format(x$response$date), "\n")
   cat("STATcubeR:    ", x$meta$source$scr_version)
 }

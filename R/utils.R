@@ -10,28 +10,19 @@
 #' @usage lhs \%>\% rhs
 NULL
 
+sc_parse_time <- function(timestamp) {
+  (as.numeric(timestamp)/1000) %>% as.POSIXct(origin = "1970-01-01")
+}
+
 #' Utility Functions
 #'
 #' Supporting functions for STATcubeR
 #'
 #' @rdname utils
+#' @name utils
 #' @param response an object of class `sc_table`
 #' @param file A filename, under which the json should be saved.
-#' @description * `sc_write_json()` saves the api request for a table as
-#'   a json file. The resulting json file can be passed to [sc_table()]
 #' @family functions for /table
-#' @keywords internal
-sc_write_json <- function(response, file) {
-  response$raw$query %>%
-    jsonlite::write_json(path = file, auto_unbox = TRUE, pretty = TRUE)
-}
-
-sc_parse_time <- function(timestamp) {
-  (as.numeric(timestamp)/1000) %>% as.POSIXct(origin = "1970-01-01")
-}
-
-# get ratelimit based on /table response
-#' @rdname utils
 #' @description * `sc_table_rate_limit()` is similar to `sc_ratelimit()` but
 #'   uses the header of the `/table` response rather than a seperate API
 #'   call.
@@ -48,6 +39,7 @@ sc_table_rate_limit <- function(response) {
 }
 
 #' @rdname utils
+#' @name utils
 #' @description * `sc_annotation_legend()` lists all annotations occurring in
 #'   a table together with descriptions of the annotations.
 #' @keywords internal

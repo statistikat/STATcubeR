@@ -9,8 +9,8 @@ get_var_code <- function(x, split_minus = FALSE) {
   res
 }
 
-summarize_annotations <- function(x, i) {
-  annotations <- x$raw$cubes[[i]]$annotations
+summarize_annotations <- function(content, i) {
+  annotations <- content$cubes[[i]]$annotations
   if (is.null(annotations))
     return("")
   freq <- table(unlist(annotations))
@@ -18,15 +18,7 @@ summarize_annotations <- function(x, i) {
     ")")}) %>% paste(collapse = ", ")
 }
 
-#' Get metadata for a STATcube table
-#'
-#' Functions to extract metadata from a `sc_table` object.
-#'
-#' @param response An object of class `sc_table`
-#' @family functions for /table
-#' @keywords internal
-sc_meta <- function(response) {
-  content <- response$raw
+sc_meta <- function(content) {
   measure_info <- lapply(seq_along(content$measures), function(i) {
     measure <- content$measures[[i]]
     data.frame(
@@ -34,7 +26,7 @@ sc_meta <- function(response) {
       code = get_var_code(measure$measure),
       fun = measure$`function`,
       precision = content$cubes[[i]]$precision,
-      annotations = summarize_annotations(response, i),
+      annotations = summarize_annotations(content, i),
       NAs = sum(unlist(content$cubes[[i]]$values) == 0),
       stringsAsFactors = FALSE
     )
@@ -59,12 +51,7 @@ sc_meta <- function(response) {
   list(source = db_info, measures = measure_info, fields = field_info)
 }
 
-#' @rdname sc_meta
-#' @param i index of the field, for which further metadata are desired
-#' @keywords internal
-sc_meta_field <- function(response, i = 1) {
-  content <- response$raw
-  field <- content$fields[[i]]
+sc_meta_field <- function(field) {
   res <- lapply(field$items, function(item) {
     data.frame(
       label = item$labels[[1]],

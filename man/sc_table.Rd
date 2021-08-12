@@ -113,7 +113,6 @@ as.data.frame(my_response) \%>\% head()
 }
 \seealso{
 Other functions for /table: 
-\code{\link{sc_meta}()},
-\code{\link{sc_write_json}()}
+\code{\link{utils}}
 }
 \concept{functions for /table}
