@@ -18,9 +18,11 @@ STATcube REST API.
 
 \item{\code{raw}}{the raw response content}
 
-\item{\code{annotation_legend}}{list of all annotations occuring in the data}
+\item{\code{annotation_legend}}{list of all annotations occuring in the data as a \code{data.frame} with
+two columns for the annotation keys and annotation labels.}
 
-\item{\code{rate_limit}}{how much requests were left after the POST request for this table was sent?}
+\item{\code{rate_limit}}{how much requests were left after the POST request for this table was sent?
+Uses the same format as \code{sc_ratelimit()}.}
 
 \item{\code{json}}{an object of class \code{sc_json} based the json file used in the request}
 }

@@ -88,11 +88,25 @@ sc_table_class <- R6::R6Class(
     #' the raw response content
     raw = function() httr::content(self$response),
     #' @field annotation_legend
-    #' list of all annotations occuring in the data
-    annotation_legend = function() sc_annotation_legend(self),
+    #' list of all annotations occuring in the data as a `data.frame` with
+    #' two columns for the annotation keys and annotation labels.
+    annotation_legend = function() {
+      am <- self$raw$annotationMap
+      data.frame(annotation = names(am), label = unlist(am), row.names = NULL)
+    },
     #' @field rate_limit
     #' how much requests were left after the POST request for this table was sent?
-    rate_limit = function() sc_table_rate_limit(self),
+    #' Uses the same format as `sc_ratelimit()`.
+    rate_limit = function() {
+      headers <- self$response$headers
+      res <- data.frame(
+        remaining = headers$`x-ratelimit-remaining-table`,
+        limit     = headers$`x-ratelimit-table`,
+        reset     = headers$`x-ratelimit-reset-table`
+      )
+      class(res) <- "sc_rate_limit"
+      res
+    },
     #' @field json
     #' an object of class `sc_json` based the json file used in the request
     json = function() private$json_content

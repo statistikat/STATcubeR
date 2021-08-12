@@ -111,8 +111,4 @@ table_uri <- saved_tables$id[1]
 my_response <- sc_table_saved(table_uri)
 as.data.frame(my_response) \%>\% head()
 }
-\seealso{
-Other functions for /table: 
-\code{\link{utils}}
-}
 \concept{functions for /table}
