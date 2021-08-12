@@ -126,7 +126,7 @@ earnings$tabulate("Sex", "Form of employment")
 
 It is not necessary that all fields have totals.
 For example, suppose we want to include the totals for `Sex` in the output table.
-We can just remove the toal code before running `od_tabulate()`.
+We can just remove the toal code before running `sc_tabulate()`.
 The special symbol `NA` can be used to unset a total code.
 
 ```{r}
