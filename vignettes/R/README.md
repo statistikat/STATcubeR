@@ -21,13 +21,13 @@ provides some functionalities for adding tooltips
 
 ````
 # tooltip to other articles
-See the `r ticle("od_tabulate")`
+See the `r ticle("sc_tabulate")` for more details
 
 # tooltip for od_table objects
-The `r tooltip_data(od_table_object)` has three measures
+We can see that `r tippy_dataset(od_table("OGD_krebs_ext_KREBS_1"))` has four fields
 
 # STATcubeR tooltip
-Another awesome package: `r STATcubeR`
+Initially, I was using `r STATcubeR` but later I switched to MS-paint
 
 # OGD tooltip
 We will take use data from `ogd_portal` for this example

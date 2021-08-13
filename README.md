@@ -15,7 +15,7 @@ bytes](https://img.shields.io/github/languages/code-size/statistikat/STATcubeR?l
 
 R client for all things [STATcube](http://sdbext:8081/statistik.at/ext/statcube/jsf/dataCatalogueExplorer.xhtml).
 Get data from the STATcube REST API or via the open government data portal at
-https://data.statistik.gv.at. STATcubeR makes it easy to include both those
+https://data.statistik.gv.at. `{STATcubeR}` makes it easy to include both those
 datasources into your R projects.
 
 ## Installation
@@ -29,10 +29,11 @@ remotes::install_github("statistikat/STATcubeR")
 ## Open Data
 
 To import datasets from https://data.statistik.gv.at, pass the dataset
-id to the `od_table()` function. For example, OGD about the [austrian population in 2020](https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_bevstandjbab2002_BevStand_2020)
+id to the `od_table()` function. For example, OGD data about the [austrian population in 2020](https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_bevstandjbab2002_BevStand_2020)
 can be accessed as follows.
 
 ```r
+library(STATcubeR)
 population <- od_table("OGD_bevstandjbab2002_BevStand_2020")
 population$tabulate()
 ```
@@ -48,15 +49,17 @@ population$tabulate()
 # … with 392,504 more rows
 ```
 
-The resulting object contains labeled data (see above), raw data, metadata and
-more. See the [OGD Article](https://statistikat.github.io/STATcubeR/articles/od_table.html) for further details.
+The resulting object contains labeled data (see above), raw data, metadata and more.
+See the [OGD article](https://statistikat.github.io/STATcubeR/articles/od_table.html) for further details.
+The [available datasets article](https://statistikat.github.io/STATcubeR/articles/od_list.html) provides
+an overview of the 268 datasets that are compatible with `od_table()`.
 
 ## STATcube API
 
-In order to use the REST API, it is required to set up an API key. See the
-[api key article](https://statistikat.github.io/STATcubeR/articles/sc_key.html)
-for more details. The API is currently only available for employees of
-Statistics Austria. Support for external users will be added in the near
+In order to use the REST API, it is required to set up an API key. As mentioned in the
+[api key article](https://statistikat.github.io/STATcubeR/articles/sc_key.html),
+keys are only available for employees of
+Statistics Austria at the moment. Support for external users will be added in the near
 future.
 
 There are four main functions that interact with the API
@@ -77,8 +80,8 @@ and
 
 ## Consistent data formats
 
-Both OGD data and data form the `/table` endpoint are wrapped into an `{R6}`
-class to provide easy acces to data and metadata. For example, the
+Both OGD data and tables form the REST API are wrapped into an `{R6}`
+class to provide easy access to data and metadata. For example, the
 `$tabulate()` method is also available for tables from the REST API.
 
 ```r
