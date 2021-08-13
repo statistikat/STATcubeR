@@ -1,4 +1,4 @@
-#' Experimental: turn `data.frame` objects into `sc_data`
+#' Experimental: turn data.frame objects into sc_data
 #'
 #' Adapter function to initialize `sc_data` objects based on a `data.frame`.
 #' Currently, there are heavy restrictions on how the data should look

@@ -15,7 +15,7 @@ options(tibble.print_min = 5)
 The class [sc_data] defines a common interface for open data datasets and responses from the `/table` endpoint of the STATcube REST API.
 It defines methods that are applicable to both datasources like aquiring metadata, labeling the data and aggregating results.
 
-## Constructing `sc_data` objects
+## Constructing sc_data objects
 
 The [sc_data] class itself is not exported in `r STATcubeR`.
 Therefore, objects of the class should be created with one of the following functions
