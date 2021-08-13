@@ -34,7 +34,7 @@ account. Saved tables from other accounts can not be listed or requested.
 
 ## Converting saved tables to JSON requests
 
-To make the table available for later use or for other users of `STATcubeR`,
+To make the table available for later use or for other users of `r `STATcubeR`,
 the response can be exported into a json.
 
 ```{r}
