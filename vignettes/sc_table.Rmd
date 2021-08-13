@@ -32,7 +32,7 @@ create a table. See the [STATcube manual] for details.
 Choose "Open Data API Abfrage (.json)" in the [download options]. This will
 save a json file on your local file system.
 
- <img src="download_json.png" />
+ <img src="img/download_json.png" />
  
 It might be the case thatthis download option is not listed as a download format.
 This means that the current user is not permitted to use the API.
