@@ -29,7 +29,7 @@ Ignored if \code{raw} is set to \code{TRUE}.}
 \item{recode_zeros}{turn zero values into \code{NA}s}
 }
 \description{
-\code{sc_tabulate()} extracts the data in the table and turns it into a tidy
+\code{\link[=sc_tabulate]{sc_tabulate()}} extracts the data in the table and turns it into a tidy
 data.frame. It applies labeling of the data and transforms time variables
 into a \code{Date} format if they satisfy certain STATcube Standards.
 

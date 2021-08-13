@@ -22,7 +22,7 @@ STATcube REST API.
 two columns for the annotation keys and annotation labels.}
 
 \item{\code{rate_limit}}{how much requests were left after the POST request for this table was sent?
-Uses the same format as \code{sc_rate_limit_table()}.}
+Uses the same format as \code{\link[=sc_rate_limit_table]{sc_rate_limit_table()}}.}
 
 \item{\code{json}}{an object of class \code{sc_json} based the json file used in the request}
 }
@@ -61,7 +61,7 @@ match with \code{response}.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{response}}{a response from \code{httr::POST()} against the /table
+\item{\code{response}}{a response from \code{\link[httr:POST]{httr::POST()}} against the /table
 endpoint.}
 
 \item{\code{json}}{the json file used in the request as a string.}

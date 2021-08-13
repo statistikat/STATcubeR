@@ -2,12 +2,12 @@
 % Please edit documentation in R/df_table.R
 \name{df_table}
 \alias{df_table}
-\title{Experimental: turn \code{data.frame} objects into \code{sc_data}}
+\title{Experimental: turn data.frame objects into sc_data}
 \usage{
 df_table(x, label = "data")
 }
 \arguments{
-\item{x}{a \code{data.frame} or an object that is compatible with \code{as.data.frame}}
+\item{x}{a \code{data.frame} or an object that is compatible with \code{\link[=as.data.frame]{as.data.frame()}}}
 
 \item{label}{a character vector of length one that will be used as a
 display label for the dataset.}
@@ -25,7 +25,7 @@ and \code{character}.
 There are several improvements that need to be made before this will be
 an exported function
 \itemize{
-\item \code{sc_tabulate()} currently assumes that each combination of field
+\item \code{\link[=sc_tabulate]{sc_tabulate()}} currently assumes that each combination of field
 values occurs once in the data. This is not necessarily the case here.
 \item Time columns are not supported.
 }

@@ -14,7 +14,7 @@ od_downloads()
 Functions to inspect the contents of the current cache.
 }
 \details{
-\code{od_cache_summary()} provides an overview of all contents of the cache through
+\code{\link[=od_cache_summary]{od_cache_summary()}} provides an overview of all contents of the cache through
 a data.frame. It hasone row for each dataset and the following columns.
 All file sizes are given in bytes
 \itemize{
@@ -27,7 +27,7 @@ All file sizes are given in bytes
 \item \strong{\code{n_fields}} the number of field files
 }
 
-\code{od_downloads()} shows a download history for the current cache
+\code{\link[=od_downloads]{od_downloads()}} shows a download history for the current cache
 \itemize{
 \item \strong{\code{time}} a timestamp for the download
 \item \strong{\code{file}} the filename

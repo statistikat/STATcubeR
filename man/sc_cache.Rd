@@ -18,10 +18,10 @@ sc_cache_clear()
 }
 \description{
 Functions to cache requested resources in the directory \verb{~/.STATcubeR_cache}
-and reuse them in calls to \code{sc_table()}, \code{sc_table_custom()} \code{sc_schema()} and so forth.
+and reuse them in calls to \code{\link[=sc_table]{sc_table()}}, \code{\link[=sc_table_custom]{sc_table_custom()}} \code{\link[=sc_schema]{sc_schema()}} and so forth.
 These functions are designed for testing and documentation and should not be
 regarded as part of the STATcubeR interface. The caching logic is likely to
-change in the future in which case \code{sc_cache_clear()} is required to purge
+change in the future in which case \code{\link[=sc_cache_clear]{sc_cache_clear()}} is required to purge
 old cache entries.
 }
 \details{

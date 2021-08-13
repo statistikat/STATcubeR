@@ -18,8 +18,8 @@ sc_rate_limit_table(language = c("en", "de"), key = sc_key())
 }
 \value{
 \itemize{
-\item \code{sc_info} returns information about all available database languages
-\item \code{sc_rate_limit_table()} returns a \verb{3x1} dataframe with the following columns
+\item \code{\link[=sc_info]{sc_info()}} returns information about all available database languages
+\item \code{\link[=sc_rate_limit_table]{sc_rate_limit_table()}} returns a \verb{3x1} dataframe with the following columns
 \itemize{
 \item \code{remaining} how much requests can be sent to the \verb{/table} endpoint until
 the rate limit is reached.

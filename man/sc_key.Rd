@@ -30,20 +30,20 @@ against the STATcube API.
 }
 \details{
 \itemize{
-\item \code{sc_key()} forwards to \code{sc_key_get()} if the key is already present.
-Otherwise, \code{sc_key_prompt()} will be invoked.
+\item \code{\link[=sc_key]{sc_key()}} forwards to \code{\link[=sc_key_get]{sc_key_get()}} if the key is already present.
+Otherwise, \code{\link[=sc_key_prompt]{sc_key_prompt()}} will be invoked.
 }
 
 \itemize{
-\item \code{sc_key_set()} can be used to pass the key as a parameter (\code{string})
+\item \code{\link[=sc_key_set]{sc_key_set()}} can be used to pass the key as a parameter (\code{string})
 }
 
 \itemize{
-\item \code{sc_key_get()} returns the key, if it exists. Otherwise,
+\item \code{\link[=sc_key_get]{sc_key_get()}} returns the key, if it exists. Otherwise,
 an error is thrown.
 }
 
 \itemize{
-\item \code{sc_key_prompt()} prompts for a key via \code{\link[=readline]{readline()}}
+\item \code{\link[=sc_key_prompt]{sc_key_prompt()}} prompts for a key via \code{\link[=readline]{readline()}}
 }
 }

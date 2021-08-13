@@ -35,7 +35,7 @@ sc_table_saved(table_uri, language = c("en", "de"), key = sc_key())
 }
 \arguments{
 \item{json_file}{path to a json file, which was downloaded via the STATcube
-gui ("Open Data API Abfrage")}
+GUI ("Open Data API Abfrage")}
 
 \item{language}{The language to be used for labeling. \code{"en"} or \code{"de"}}
 
@@ -69,9 +69,9 @@ provides member functions to parse this response object. See
 Send requests against the \strong{\verb{/table}} endpoint of the STATcube REST API. The
 requests can use three formats with corresponding functions
 \itemize{
-\item \code{sc_table()} uses a json file downloaded via the STATcube GUI
-\item \code{sc_table_custom()} uses the ids of a database, measures and fields
-\item \code{sc_table_saved()} uses a table uri of a saved table.
+\item \code{\link[=sc_table]{sc_table()}} uses a json file downloaded via the STATcube GUI
+\item \code{\link[=sc_table_custom]{sc_table_custom()}} uses the ids of a database, measures and fields
+\item \code{\link[=sc_table_saved]{sc_table_saved()}} uses a table uri of a saved table.
 }
 
 Those three functions all return an object of class \code{"sc_table"}.
@@ -86,7 +86,7 @@ my_table
 my_table$meta
 
 # get a data.frame
-as.data.frame(my_table) \%>\% head()
+as.data.frame(my_table)
 
 # get metadata for field 2
 my_table$field(2)
@@ -109,6 +109,6 @@ table_uri <- saved_tables$id[1]
 
 # get a table based on one of these ids
 my_response <- sc_table_saved(table_uri)
-as.data.frame(my_response) \%>\% head()
+as.data.frame(my_response)
 }
 \concept{functions for /table}

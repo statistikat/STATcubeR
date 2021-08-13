@@ -47,9 +47,9 @@ are applicable.}
 \item{db_id}{a database id}
 }
 \description{
-Invoke the /schema endpoint of the STATcube REST API. In case of
-\code{sc_schema_catalogue()}, recurse into all datasets and tables and return a
-nested list with ids and labels for all resources. For \code{sc_schema_db()},
+Invoke the \strong{/schema} endpoint of the STATcube REST API. In case of
+\code{\link[=sc_schema_catalogue]{sc_schema_catalogue()}}, recurse into all datasets and tables and return a
+nested list with ids and labels for all resources. For \code{\link[=sc_schema_db]{sc_schema_db()}},
 recurse into all valuesets and return a list of all resources available
 tor the specific dataset. The return values can be displayed as a
 tree object.
