@@ -29,9 +29,12 @@ my_catalogue
 ```
 
 We see that the catalog has 8 child nodes: Four childs of type `FOLDER` and four childs of type `TABLE`.
-The folders include all folders from the root level in the GUI.
+The folders include all folders from the root level in the GUI:
+"Statistics", "Publication and Services" as well as "Examples".
 
-<img src="img/catalogue.png"/>
+```{r,fig.align='center', out.width='35%', echo=FALSE}
+knitr::include_graphics("img/catalogue.png")
+```
 
 To get access to the child nodes use `my_catalogue${child_label}`
 
@@ -45,6 +48,15 @@ my_catalogue$Statistics
 ```
 
 The child node `Statistics` is also of class `sc_schema` and shows all entries of the subfolder.
+This syntax can be used to navigate through folders.
+In some cases, the API shows more folders than the GUI in which case the folders from the API will be empty.
+
+```{r}
+my_catalogue$`Default Tables`
+```
+
+## Databases and Tables
+
 Inside the catalogue, the leafs of the tree are mostly of type `DATABASE` and `TABLE`.
 Here is an example for a `TABLE` node.
 
