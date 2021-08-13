@@ -82,6 +82,8 @@ navbar:
   - text: News
     href: news/index.html
   right:
+  - icon: fas fa-table fa-lg
+    href: https://data.statistik.gv.at
   - icon: fas fa-cube fa-lg
     href: https://www.statistik.at/web_de/services/statcube/index.html
   - icon: fab fa-github fa-lg
