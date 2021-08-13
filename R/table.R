@@ -28,7 +28,7 @@ sc_table_class <- R6::R6Class(
     #'   [sc_table_custom()]. If this constructor is invoked directly,
     #'   either omit the parameters `json` and `file` or make sure that they
     #'   match with `response`.
-    #' @param response a response from `httr::POST()` against the /table
+    #' @param response a response from [httr::POST()] against the /table
     #'   endpoint.
     #' @param json the json file used in the request as a string.
     #' @param file the file path to the json file
@@ -96,7 +96,7 @@ sc_table_class <- R6::R6Class(
     },
     #' @field rate_limit
     #' how much requests were left after the POST request for this table was sent?
-    #' Uses the same format as `sc_rate_limit_table()`.
+    #' Uses the same format as [sc_rate_limit_table()].
     rate_limit = function() {
       headers <- self$response$headers
       res <- data.frame(
@@ -121,9 +121,9 @@ sc_table_class <- R6::R6Class(
 #' @description
 #' Send requests against the **`/table`** endpoint of the STATcube REST API. The
 #' requests can use three formats with corresponding functions
-#' * `sc_table()` uses a json file downloaded via the STATcube GUI
-#' * `sc_table_custom()` uses the ids of a database, measures and fields
-#' * `sc_table_saved()` uses a table uri of a saved table.
+#' * [sc_table()] uses a json file downloaded via the STATcube GUI
+#' * [sc_table_custom()] uses the ids of a database, measures and fields
+#' * [sc_table_saved()] uses a table uri of a saved table.
 #'
 #' Those three functions all return an object of class `"sc_table"`.
 #' @param json_file path to a json file, which was downloaded via the STATcube

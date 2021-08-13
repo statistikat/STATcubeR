@@ -11,8 +11,8 @@
 #' @inheritParams sc_key
 #' @inheritParams sc_table
 #' @return
-#' * `sc_info` returns information about all available database languages
-#' * `sc_rate_limit_table()` returns a `3x1` dataframe with the following columns
+#' * [sc_info()] returns information about all available database languages
+#' * [sc_rate_limit_table()] returns a `3x1` dataframe with the following columns
 #'     * `remaining` how much requests can be sent to the `/table` endpoint until
 #'       the rate limit is reached.
 #'     * `limit` the number of requests allowed per hour.

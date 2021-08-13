@@ -10,10 +10,10 @@
 #'
 #' There are several improvements that need to be made before this will be
 #' an exported function
-#' * `sc_tabulate()` currently assumes that each combination of field
+#' * [sc_tabulate()] currently assumes that each combination of field
 #'   values occurs once in the data. This is not necessarily the case here.
 #' * Time columns are not supported.
-#' @param x a `data.frame` or an object that is compatible with `as.data.frame`
+#' @param x a `data.frame` or an object that is compatible with [as.data.frame()]
 #' @param label a character vector of length one that will be used as a
 #'   display label for the dataset.
 #' @examples

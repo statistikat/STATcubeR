@@ -3,7 +3,7 @@
 #' @description
 #' This class represents a common interface for datasets returned from the
 #' STATcube REST API and OGD datasets. `sc_data` obects are usually created with
-#' [od_table()], [sc_table()] or `df_table()`.
+#' [od_table()], [sc_table()] or [df_table()].
 #' @examples
 #' ## create a new sc_data object via od_table()
 #' x <- od_table("OGD_krebs_ext_KREBS_1")
@@ -18,11 +18,11 @@ sc_data <- R6::R6Class(
   "sc_data",
   public = list(
     #' @description
-    #' This class is not exported. Use `od_table()`, `sc_table()` or
-    #' `df_table()` to initialize objects of class `sc_data`.
+    #' This class is not exported. Use [od_table()], [sc_table()] or
+    #' [df_table()] to initialize objects of class `sc_data`.
     #' @param data,meta,fields raw data, metadata and field information.
-    #'   Do not use directly but initialize objects with `sc_table`,
-    #'   `od_table()` or `df_table()`
+    #'   Do not use directly but initialize objects with [sc_table()],
+    #'   [od_table()] or [df_table()]
     initialize = function(data, meta, fields) {
       meta$source$scr_version <- sc_version()
       meta$source <- sc_tibble_meta(meta$source, "lang")
@@ -38,7 +38,7 @@ sc_data <- R6::R6Class(
     #'   codes and labels for each level of the field.
     #' @param i specifier for the field. Integer or character. If an interger
     #'   is provided, it should match the row number in `$meta$fields`. If
-    #'   a character is provided, the field is matched using `pmatch()` on
+    #'   a character is provided, the field is matched using [pmatch()] on
     #'   all available codes and labels.
     #' @examples
     #' x <- od_table("OGD_krebs_ext_KREBS_1")

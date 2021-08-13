@@ -3,9 +3,9 @@
 #'
 #' @description
 #' Helper functions for caching and parsing open.data resources.
-#' @return For `od_cache_file()` and `od_resource()`, the returned objects
+#' @return For [od_cache_file()] and [od_resource()], the returned objects
 #'   contain a hidden attribute `attr(., "od")` about the time used for
-#'   downloading and parsing the resource. `od_resource_all()` converts these
+#'   downloading and parsing the resource. [od_resource_all()] converts these
 #'   hidden attribute into columns.
 #' @importFrom magrittr %<>%
 NULL
@@ -172,7 +172,7 @@ od_normalize_columns <- function(x, suffix) {
 #' @details
 #' By default, downloaded json files will "expire" in one hour or 3600 seconds.
 #' That is, if a json is requested, it will be reused from the cache unless the
-#' `file.ctime()` is more than one hour behind `Sys.time()`.
+#' [file.mtime()] is more than one hour behind [Sys.time()].
 #' @export
 od_json <- function(id, timestamp = Sys.time() - 3600) {
   file <- od_cache_file(id, NULL, timestamp = timestamp, ext = "json")

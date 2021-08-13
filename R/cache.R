@@ -1,10 +1,10 @@
 #' Cache responses from the STATcube REST API
 #'
 #' Functions to cache requested resources in the directory `~/.STATcubeR_cache`
-#' and reuse them in calls to `sc_table()`, `sc_table_custom()` `sc_schema()` and so forth.
+#' and reuse them in calls to [sc_table()], [sc_table_custom()] [sc_schema()] and so forth.
 #' These functions are designed for testing and documentation and should not be
 #' regarded as part of the STATcubeR interface. The caching logic is likely to
-#' change in the future in which case `sc_cache_clear()` is required to purge
+#' change in the future in which case [sc_cache_clear()] is required to purge
 #' old cache entries.
 #'
 #' Caching can be set up using environment variables. To set up a persistent cache

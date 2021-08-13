@@ -1,7 +1,7 @@
 #' Turn sc_data objects into tidy data frames
 #'
 #' @description
-#' `sc_tabulate()` extracts the data in the table and turns it into a tidy
+#' [sc_tabulate()] extracts the data in the table and turns it into a tidy
 #' data.frame. It applies labeling of the data and transforms time variables
 #' into a `Date` format if they satisfy certain STATcube Standards.
 #'

@@ -12,7 +12,7 @@
 #' od_cache_summary()
 #' od_downloads()
 #' @details
-#' `od_cache_summary()` provides an overview of all contents of the cache through
+#' [od_cache_summary()] provides an overview of all contents of the cache through
 #' a data.frame. It hasone row for each dataset and the following columns.
 #' All file sizes are given in bytes
 #' - **`id`** the dataset id
@@ -23,7 +23,7 @@
 #' - **`fields`** the total file size of all files belonging to fields (`{id}_C*.csv`).
 #' - **`n_fields`** the number of field files
 #'
-#' `od_downloads()` shows a download history for the current cache
+#' [od_downloads()] shows a download history for the current cache
 #'
 #' - **`time`** a timestamp for the download
 #' - **`file`** the filename
