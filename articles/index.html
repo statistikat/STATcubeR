@@ -49,7 +49,7 @@
   
 
 <meta property="og:title" content="Articles" />
-<meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.svg" />
+<meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.png" />
 
 
 
@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">STATcubeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
       </span>
     </div>
 
@@ -89,79 +89,72 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="../articles/Setup.html">Setup</a>
-</li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    /schema
+    Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/Schema.html">Schema</a>
+      <a href="../articles/index.html">Show All Articles ...</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">STATcube REST API</li>
     <li>
-      <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/schema-endpoint">
-        <span class="fas fa fas fa-link"></span>
-         
-        API Reference
-      </a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    /table
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/JSON-requests.html">JSON requests</a>
+      <a href="../articles/sc_key.html">All about the API Key</a>
     </li>
     <li>
-      <a href="../articles/Saved-Tables.html">Saved Tables</a>
+      <a href="../articles/sc_table.html">Get Data via JSON Requests</a>
     </li>
     <li>
-      <a href="../articles/Custom-Tables.html">Custom tables</a>
-    </li>
-    <li>
-      <a href="../articles/Metadata.html">Metadata</a>
+      <a href="../articles/sc_schema.html">Metadata with the /schema Endpoint</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">Open Goventment Data</li>
     <li>
-      <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint">
-        <span class="fas fa fas fa-link"></span>
-         
-        API reference
-      </a>
+      <a href="../articles/od_table.html">Getting Started with OGD Data</a>
+    </li>
+    <li>
+      <a href="../articles/od_list.html">Available Datasets</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">The STATcubeR Data Class</li>
+    <li>
+      <a href="../articles/sc_data.html">A Common Class for OGD and API Data</a>
+    </li>
+    <li>
+      <a href="../articles/sc_tabulate.html">Tabulation of Data</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../articles/Misc.html">Misc</a>
+  <a href="../news/index.html">News</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="https://data.statistik.gv.at">
+    <span class="fas fa-table fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="https://www.statistik.at/web_de/services/statcube/index.html">
-    <span class="fas fa fas fa-cube fa-lg"></span>
+    <span class="fas fa-cube fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="https://github.com/statistikat/STATcubeR/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -182,26 +175,46 @@
     </div>
 
     <div class="section ">
-      <h3>All vignettes</h3>
+      <h3>STATcube REST API</h3>
+      <p class="section-desc"><p>Transfer data from STATcube into your R session</p></p>
+
+      <dl>
+        <dt><a href="sc_key.html">Setup the API Key</a></dt>
+        <dd><p>Set up authentication to the STATcube REST API by setting your API key for the session or persistently.</p></dt>
+        <dt><a href="sc_table.html">Get Data via JSON Requests</a></dt>
+        <dd><p>Hands-on guide about transfering data from the STATcube GUI (table view) to R sessions via a the download option “open data api request”.</p></dt>
+        <dt><a href="sc_table_saved.html">Load Saved Tables</a></dt>
+        <dd><p>STATcube allows you to save tables in the GUI. You can import those saved tables using <code><a href="../reference/sc_table.html">sc_table_saved()</a></code>. This function can also be used to import default tables for databases.</p></dt>
+        <dt><a href="sc_table_custom.html">Define Custom Tables</a></dt>
+        <dd><p>Define custom requests against the <code>/table</code> endpoint programatically by providing character vectors with ids of databases, measures and fields.</p></dt>
+        <dt><a href="sc_schema.html">Metadata with the Schema Endpoint</a></dt>
+        <dd><p>The <code>/schema</code> endpoint of the REST API provides metadata about databases and can also be used to retrieve a catalogue with all available databases</p></dt>
+        <dt><a href="sc_info.html">Other REST API endpoints</a></dt>
+        <dd><p>How to use the (rather simple) endpoints <code>/info</code> and <code>/rate_limit_table</code></p></dt>
+      </dl>
+    </div>
+    <div class="section ">
+      <h3>Open Government Data</h3>
+      <p class="section-desc"><p>Articles about the import of OGD datasets into your R session</p></p>
+
+      <dl>
+        <dt><a href="od_table.html">Open Government Data</a></dt>
+        <dd><p>Overview about all functionalities regarding OGD Datasets</p></dt>
+        <dt><a href="od_resources.html">File Management</a></dt>
+        <dd><p>Learn how <a href="https://statistikat.github.io/STATcubeR">STATcubeR</a> caches data from the OGD portal</p></dt>
+        <dt><a href="od_list.html">Available Datasets</a></dt>
+        <dd><p>List all datasets from the OGD portal of Statistics Austria</p></dt>
+      </dl>
+    </div>
+    <div class="section ">
+      <h3>Data Class</h3>
       <p class="section-desc"></p>
 
       <dl>
-        <dt><a href="Custom-Tables.html">Custom Tables</a></dt>
-        <dd></dt>
-        <dt><a href="JSON-requests.html">JSON requests</a></dt>
-        <dd></dt>
-        <dt><a href="Metadata.html">Metadata</a></dt>
-        <dd></dt>
-        <dt><a href="Misc.html">Misc</a></dt>
-        <dd></dt>
-        <dt><a href="Saved-Tables.html">Saved Tables</a></dt>
-        <dd></dt>
-        <dt><a href="Schema.html">Schema</a></dt>
-        <dd></dt>
-        <dt><a href="Setup.html">Setup</a></dt>
-        <dd></dt>
-        <dt><a href="devops.html">DevOps and R</a></dt>
-        <dd></dt>
+        <dt><a href="sc_data.html">The STATcubeR Data Class</a></dt>
+        <dd><p>The base class for Open Data and STATcube datasets</p></dt>
+        <dt><a href="sc_tabulate.html">Tabulating STATcubeR Datasets</a></dt>
+        <dd><p>Learn how to turn sc_table objects into tidy data frames using the <code><a href="https://rdrr.io/r/base/tabulate.html">tabulate()</a></code> method.</p></dt>
       </dl>
     </div>
   </div>
@@ -210,7 +223,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Gregor de Cillia.</p>
+  <p>Developed by <a href='https://github.com/GregorDeCillia'>Gregor de Cillia</a>, <a href='https://github.com/bernhard-da'>Bernhard Meindl</a>.</p>
 </div>
 
 <div class="pkgdown">

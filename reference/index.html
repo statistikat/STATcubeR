@@ -49,7 +49,7 @@
   
 
 <meta property="og:title" content="Function reference" />
-<meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.svg" />
+<meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.png" />
 
 
 
@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">STATcubeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
       </span>
     </div>
 
@@ -89,79 +89,72 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="../articles/Setup.html">Setup</a>
-</li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    /schema
+    Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/Schema.html">Schema</a>
+      <a href="../articles/index.html">Show All Articles ...</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">STATcube REST API</li>
     <li>
-      <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/schema-endpoint">
-        <span class="fas fa fas fa-link"></span>
-         
-        API Reference
-      </a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    /table
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/JSON-requests.html">JSON requests</a>
+      <a href="../articles/sc_key.html">All about the API Key</a>
     </li>
     <li>
-      <a href="../articles/Saved-Tables.html">Saved Tables</a>
+      <a href="../articles/sc_table.html">Get Data via JSON Requests</a>
     </li>
     <li>
-      <a href="../articles/Custom-Tables.html">Custom tables</a>
-    </li>
-    <li>
-      <a href="../articles/Metadata.html">Metadata</a>
+      <a href="../articles/sc_schema.html">Metadata with the /schema Endpoint</a>
     </li>
     <li class="divider"></li>
+    <li class="dropdown-header">Open Goventment Data</li>
     <li>
-      <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint">
-        <span class="fas fa fas fa-link"></span>
-         
-        API reference
-      </a>
+      <a href="../articles/od_table.html">Getting Started with OGD Data</a>
+    </li>
+    <li>
+      <a href="../articles/od_list.html">Available Datasets</a>
+    </li>
+    <li class="divider"></li>
+    <li class="dropdown-header">The STATcubeR Data Class</li>
+    <li>
+      <a href="../articles/sc_data.html">A Common Class for OGD and API Data</a>
+    </li>
+    <li>
+      <a href="../articles/sc_tabulate.html">Tabulation of Data</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../articles/Misc.html">Misc</a>
+  <a href="../news/index.html">News</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="https://data.statistik.gv.at">
+    <span class="fas fa-table fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="https://www.statistik.at/web_de/services/statcube/index.html">
-    <span class="fas fa fas fa-cube fa-lg"></span>
+    <span class="fas fa-cube fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="https://github.com/statistikat/STATcubeR/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -192,8 +185,8 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
+          <h2 id="section-open-government-data" class="hasAnchor"><a href="#section-open-government-data" class="anchor"></a>Open Government Data</h2>
+          <p class="section-desc"><p>Get resources from the open govenment data portal from Statistics Austria. See the <a href="../articles/od_table.html">OGD Article</a> for a hands-on documentation.</p></p>
         </th>
       </tr>
       
@@ -204,15 +197,46 @@
       <tr>
         
         <td>
-          <p><code><a href="info_and_rate_limit.html">sc_info()</a></code> <code><a href="info_and_rate_limit.html">sc_rate_limit()</a></code> </p>
+          <p><code><a href="od_cache.html">od_cache_summary()</a></code> <code><a href="od_cache.html">od_downloads()</a></code> </p>
         </td>
-        <td><p>Info and rate limit</p></td>
+        <td><p>Cache management for Open Data</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="sc_browse.html">sc_browse()</a></code> <code><a href="sc_browse.html">sc_browse_preferences()</a></code> </p>
+          <p><code><a href="od_list.html">od_list()</a></code> </p>
         </td>
-        <td><p>Links to important STATcube pages</p></td>
+        <td><p>List available Opendata datasets</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="od_resource.html">od_cache_dir()</a></code> <code><a href="od_resource.html">od_cache_clear()</a></code> <code><a href="od_resource.html">od_cache_file()</a></code> <code><a href="od_resource.html">od_resource()</a></code> <code><a href="od_resource.html">od_json()</a></code> <code><a href="od_resource.html">od_resource_all()</a></code> </p>
+        </td>
+        <td><p>Resource management for open.data</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="od_table.html">od_table()</a></code> </p>
+        </td>
+        <td><p>Create a table-instance from an open-data dataset</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-statcube-rest-api" class="hasAnchor"><a href="#section-statcube-rest-api" class="anchor"></a>STATcube REST API</h2>
+          <p class="section-desc"><p>Get resources from the REAST API of STATcube. See the <a href="../articles/sc_key.html">API key article</a> for instructions about the API Key and the <a href="../articles/sc_table.html">json requests article</a> for a hands-on documentation.</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="sc_table.html">sc_table()</a></code> <code><a href="sc_table.html">sc_examples_list()</a></code> <code><a href="sc_table.html">sc_example()</a></code> <code><a href="sc_table.html">sc_table_custom()</a></code> <code><a href="sc_table.html">sc_table_saved_list()</a></code> <code><a href="sc_table.html">sc_table_saved()</a></code> </p>
+        </td>
+        <td><p>Create a request against the /table endpoint</p></td>
       </tr><tr>
         
         <td>
@@ -222,27 +246,46 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="sc_meta.html">sc_meta()</a></code> <code><a href="sc_meta.html">sc_meta_field()</a></code> </p>
-        </td>
-        <td><p>Get metadata for a STATcube table</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="sc_schema.html">sc_schema()</a></code> <code><a href="sc_schema.html">print(<i>&lt;sc_schema&gt;</i>)</a></code> <code><a href="sc_schema.html">sc_schema_catalogue()</a></code> <code><a href="sc_schema.html">sc_schema_db()</a></code> </p>
         </td>
         <td><p>Create a request against the /schema endpoint</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="sc_table.html">sc_table()</a></code> <code><a href="sc_table.html">sc_example()</a></code> <code><a href="sc_table.html">as.data.frame(<i>&lt;sc_table&gt;</i>)</a></code> <code><a href="sc_table.html">sc_table_custom()</a></code> <code><a href="sc_table.html">sc_table_saved_list()</a></code> <code><a href="sc_table.html">sc_table_saved()</a></code> </p>
+          <p><code><a href="other_endpoints.html">sc_info()</a></code> <code><a href="other_endpoints.html">sc_rate_limit_table()</a></code> </p>
         </td>
-        <td><p>Create a request against the /table endpoint</p></td>
+        <td><p>Other endpoints of the STATcube REST API</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-general" class="hasAnchor"><a href="#section-general" class="anchor"></a>General</h2>
+          <p class="section-desc"><p>Other functionalities including the <a href="../articles/sc_data.html">STATcubeR data class</a>.</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="sc_data.html">sc_data</a></code> </p>
+        </td>
+        <td><p>Common interface for STATcubeR datasets</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="utils.html">sc_write_json()</a></code> <code><a href="utils.html">sc_table_rate_limit()</a></code> <code><a href="utils.html">sc_annotation_legend()</a></code> </p>
+          <p><code><a href="sc_browse.html">sc_browse()</a></code> <code><a href="sc_browse.html">sc_browse_preferences()</a></code> <code><a href="sc_browse.html">sc_browse_ogd()</a></code> </p>
         </td>
-        <td><p>Utility Functions</p></td>
+        <td><p>Links to important STATcube and OGD pages</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="sc_tabulate.html">sc_tabulate()</a></code> </p>
+        </td>
+        <td><p>Turn sc_data objects into tidy data frames</p></td>
       </tr>
     </tbody>
     </table>
@@ -258,7 +301,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Gregor de Cillia.</p>
+  <p>Developed by <a href='https://github.com/GregorDeCillia'>Gregor de Cillia</a>, <a href='https://github.com/bernhard-da'>Bernhard Meindl</a>.</p>
 </div>
 
 <div class="pkgdown">
