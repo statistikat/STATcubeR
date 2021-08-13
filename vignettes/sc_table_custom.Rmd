@@ -1,8 +1,8 @@
 ---
-title: "Custom Tables"
+title: "Define Custom Tables"
 description: >
-  Define custom requests against the `/table` endpoint by defining ids of
-  requested resources as character vectors.
+  Define custom requests against the `/table` endpoint programatically
+  by providing character vectors with ids of databases, measures and fields.
 ---
 
 ```{r, echo = FALSE}

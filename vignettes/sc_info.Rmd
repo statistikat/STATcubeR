@@ -1,5 +1,5 @@
 ---
-title: "Info and Rate limit"
+title: "Other REST API endpoints"
 description: >
   How to use the (rather simple) endpoints `/info` and `/rate_limit_table`
 ---

@@ -1,8 +1,9 @@
 ---
-title: "Saved Tables"
+title: "Load Saved Tables"
 description: > 
-  STATcube allows you to save tables in the GUI. You can directly import those
-  saved tables using sc_table_saved()
+  STATcube allows you to save tables in the GUI.
+  You can import those saved tables using `sc_table_saved()`.
+  This function can also be used to import default tables for databases.
 link_text: "saved tables article"
 ---
 

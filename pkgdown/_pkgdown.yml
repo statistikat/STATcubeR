@@ -16,8 +16,7 @@ authors:
 articles:
 - title: STATcube REST API
   desc: >
-    Learn how to use the STATcube REST API to bring your STATcube tables
-    into your R session
+    Transfer data from STATcube into your R session
   contents:
   - sc_key
   - sc_table

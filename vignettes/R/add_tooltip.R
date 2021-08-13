@@ -37,7 +37,10 @@ ticle <- function(x) {
     `data-tippy-content` = tags$div(
       style = "font-size: 14px; text-align: left;",
       tags$b(fm$title), tags$br(),
-      fm$description
+      downlit::downlit_md_string(fm$description) %>%
+        markdown::renderMarkdown(text = .) %>%
+        substr(4, nchar(.) - 5) %>%
+        htmltools::HTML()
     )
   )
 }
@@ -46,7 +49,7 @@ STATcubeR <- tags$a(
   "STATcubeR",
   href = "../index.html",
   `data-tippy-content` = "
-  <b>R Package for all things STATcube</b><br/>
+  <b>R package for all things STATcube</b><br/>
   Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
   ",
   class = "STATcubeR"

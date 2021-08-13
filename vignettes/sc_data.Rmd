@@ -1,5 +1,5 @@
 ---
-title: "The STATcubeR data class"
+title: "The STATcubeR Data Class"
 description: "The base class for Open Data and STATcube datasets"
 link_text: "STATcubeR data article"
 ---
