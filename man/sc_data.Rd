@@ -6,7 +6,7 @@
 \description{
 This class represents a common interface for datasets returned from the
 STATcube REST API and OGD datasets. \code{sc_data} obects are usually created with
-\code{\link[=od_table]{od_table()}}, \code{\link[=sc_table]{sc_table()}} or \code{df_table()}.
+\code{\link[=od_table]{od_table()}}, \code{\link[=sc_table]{sc_table()}} or \code{\link[=df_table]{df_table()}}.
 }
 \examples{
 ## create a new sc_data object via od_table()
@@ -79,8 +79,8 @@ the total codes. Derived classes might add additional columns
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
-This class is not exported. Use \code{od_table()} or \code{sc_table()} to
-initialize objects of class \code{sc_data}.
+This class is not exported. Use \code{\link[=od_table]{od_table()}}, \code{\link[=sc_table]{sc_table()}} or
+\code{\link[=df_table]{df_table()}} to initialize objects of class \code{sc_data}.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{sc_data$new(data, meta, fields)}\if{html}{\out{</div>}}
 }
@@ -89,8 +89,8 @@ initialize objects of class \code{sc_data}.
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{data, meta, fields}}{raw data, metadata and field information.
-Do not use directly but initialize objects with \code{sc_table},
-\code{od_table()} or \code{df_table()}}
+Do not use directly but initialize objects with \code{\link[=sc_table]{sc_table()}},
+\code{\link[=od_table]{od_table()}} or \code{\link[=df_table]{df_table()}}}
 }
 \if{html}{\out{</div>}}
 }
@@ -99,7 +99,9 @@ Do not use directly but initialize objects with \code{sc_table},
 \if{html}{\out{<a id="method-field"></a>}}
 \if{latex}{\out{\hypertarget{method-field}{}}}
 \subsection{Method \code{field()}}{
-get information about a specific field
+get information about a specific field. The format of
+the reurn value is similar to \verb{$meta}. A \code{data.frame} that includes
+codes and labels for each level of the field.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{sc_data$field(i = 1)}\if{html}{\out{</div>}}
 }
@@ -109,7 +111,7 @@ get information about a specific field
 \describe{
 \item{\code{i}}{specifier for the field. Integer or character. If an interger
 is provided, it should match the row number in \verb{$meta$fields}. If
-a character is provided, the field is matched using \code{pmatch()} on
+a character is provided, the field is matched using \code{\link[=pmatch]{pmatch()}} on
 all available codes and labels.}
 }
 \if{html}{\out{</div>}}
@@ -129,7 +131,7 @@ x$field("Sex")
 \if{html}{\out{<a id="method-tabulate"></a>}}
 \if{latex}{\out{\hypertarget{method-tabulate}{}}}
 \subsection{Method \code{tabulate()}}{
-create a tidy dataset
+create a tidy dataset. See \code{\link[=sc_tabulate]{sc_tabulate()}} for details.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{sc_data$tabulate(...)}\if{html}{\out{</div>}}
 }

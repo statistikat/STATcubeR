@@ -3,7 +3,7 @@
 #' @description
 #' This class represents a common interface for datasets returned from the
 #' STATcube REST API and OGD datasets. `sc_data` obects are usually created with
-#' [od_table()], [sc_table()] or `df_table()`.
+#' [od_table()], [sc_table()] or [df_table()].
 #' @examples
 #' ## create a new sc_data object via od_table()
 #' x <- od_table("OGD_krebs_ext_KREBS_1")
@@ -18,14 +18,14 @@ sc_data <- R6::R6Class(
   "sc_data",
   public = list(
     #' @description
-    #' This class is not exported. Use `od_table()` or `sc_table()` to
-    #' initialize objects of class `sc_data`.
+    #' This class is not exported. Use [od_table()], [sc_table()] or
+    #' [df_table()] to initialize objects of class `sc_data`.
     #' @param data,meta,fields raw data, metadata and field information.
-    #'   Do not use directly but initialize objects with `sc_table`,
-    #'   `od_table()` or `df_table()`
+    #'   Do not use directly but initialize objects with [sc_table()],
+    #'   [od_table()] or [df_table()]
     initialize = function(data, meta, fields) {
       meta$source$scr_version <- sc_version()
-      meta$source <- sc_tibble_meta(meta$source)
+      meta$source <- sc_tibble_meta(meta$source, "lang")
       meta$measures <- sc_tibble_meta(meta$measures, "NAs")
       meta$fields <- sc_tibble_meta(meta$fields, "total_code")
       private$p_data <- sc_tibble(data)
@@ -33,10 +33,12 @@ sc_data <- R6::R6Class(
       private$p_fields <- fields
       private$version <- sc_version()
     },
-    #' @description get information about a specific field
+    #' @description get information about a specific field. The format of
+    #'   the reurn value is similar to `$meta`. A `data.frame` that includes
+    #'   codes and labels for each level of the field.
     #' @param i specifier for the field. Integer or character. If an interger
     #'   is provided, it should match the row number in `$meta$fields`. If
-    #'   a character is provided, the field is matched using `pmatch()` on
+    #'   a character is provided, the field is matched using [pmatch()] on
     #'   all available codes and labels.
     #' @examples
     #' x <- od_table("OGD_krebs_ext_KREBS_1")
@@ -47,7 +49,7 @@ sc_data <- R6::R6Class(
         i <- od_match_codes(self$meta$fields, i)
       sc_tibble_meta(private$p_fields[[i]], "parsed")
     },
-    #' @description create a tidy dataset
+    #' @description create a tidy dataset. See [sc_tabulate()] for details.
     #' @param ... arguments that are passed down to [sc_tabulate()]
     #' @examples
     #' x <- od_table("OGD_krebs_ext_KREBS_1")

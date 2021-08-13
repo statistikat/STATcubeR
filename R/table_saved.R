@@ -24,11 +24,11 @@ sc_table_saved_list <- function() {
 #'
 #' # get a table based on one of these ids
 #' my_response <- sc_table_saved(table_uri)
-#' as.data.frame(my_response) %>% head()
+#' as.data.frame(my_response)
 #' @export
 sc_table_saved <- function(table_uri, language = c("en", "de"), key = sc_key()) {
-  httr::GET(
+  sc_with_cache(list(table_uri, language, key), function() { httr::GET(
     url = paste0(base_url, "/table/saved/", table_uri),
     config = sc_headers(language, key)
-  ) %>% sc_table_class$new()
+  )}) %>% sc_table_class$new()
 }

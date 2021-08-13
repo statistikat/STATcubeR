@@ -28,24 +28,27 @@ sc_table_class <- R6::R6Class(
     #'   [sc_table_custom()]. If this constructor is invoked directly,
     #'   either omit the parameters `json` and `file` or make sure that they
     #'   match with `response`.
-    #' @param response a response from `httr::POST()` against the /table
+    #' @param response a response from [httr::POST()] against the /table
     #'   endpoint.
     #' @param json the json file used in the request as a string.
     #' @param file the file path to the json file
     initialize = function(response, json = NULL, file = NULL) {
       stopifnot(inherits(response, "response"))
       private$httr_response <- response
+      content <- httr::content(response)
+
       if (is.null(json) && is.null(file))
         json <- jsonlite::toJSON(
-          self$raw$query, auto_unbox = TRUE, pretty = TRUE) %>% toString()
+          content$query, auto_unbox = TRUE, pretty = TRUE) %>% toString()
       private$json_content <- sc_json_class$new(json, file)
 
-      meta <- sc_meta(self)
+      meta <- sc_meta(content)
+      meta$source$lang <- response$headers$`content-language`
       super$initialize(
-        data = sc_table_create_data(self),
+        data = sc_table_create_data(content),
         meta = meta,
         field = lapply(seq_len(nrow(meta$fields)), function(i) {
-          sc_meta_field(self, i)
+          sc_meta_field(content$fields[[i]])
         })
       )
     },
@@ -73,7 +76,7 @@ sc_table_class <- R6::R6Class(
     browse = function() {
       browseURL(paste0(
         "https://statcube.at/statcube/openinfopage?id=",
-        self$raw$database$id
+        self$meta$source$code
       ))
     }
   ),
@@ -85,11 +88,25 @@ sc_table_class <- R6::R6Class(
     #' the raw response content
     raw = function() httr::content(self$response),
     #' @field annotation_legend
-    #' list of all annotations occuring in the data
-    annotation_legend = function() sc_annotation_legend(self),
+    #' list of all annotations occuring in the data as a `data.frame` with
+    #' two columns for the annotation keys and annotation labels.
+    annotation_legend = function() {
+      am <- self$raw$annotationMap
+      data.frame(annotation = names(am), label = unlist(am), row.names = NULL)
+    },
     #' @field rate_limit
     #' how much requests were left after the POST request for this table was sent?
-    rate_limit = function() sc_table_rate_limit(self),
+    #' Uses the same format as [sc_rate_limit_table()].
+    rate_limit = function() {
+      headers <- self$response$headers
+      res <- data.frame(
+        remaining = headers$`x-ratelimit-remaining-table`,
+        limit     = headers$`x-ratelimit-table`,
+        reset     = headers$`x-ratelimit-reset-table`
+      )
+      class(res) <- "sc_rate_limit_table"
+      res
+    },
     #' @field json
     #' an object of class `sc_json` based the json file used in the request
     json = function() private$json_content
@@ -104,13 +121,13 @@ sc_table_class <- R6::R6Class(
 #' @description
 #' Send requests against the **`/table`** endpoint of the STATcube REST API. The
 #' requests can use three formats with corresponding functions
-#' * `sc_table()` uses a json file downloaded via the STATcube GUI
-#' * `sc_table_custom()` uses the ids of a database, measures and fields
-#' * `sc_table_saved()` uses a table uri of a saved table.
+#' * [sc_table()] uses a json file downloaded via the STATcube GUI
+#' * [sc_table_custom()] uses the ids of a database, measures and fields
+#' * [sc_table_saved()] uses a table uri of a saved table.
 #'
 #' Those three functions all return an object of class `"sc_table"`.
 #' @param json_file path to a json file, which was downloaded via the STATcube
-#'   gui ("Open Data API Abfrage")
+#'   GUI ("Open Data API Abfrage")
 #' @param add_totals Should totals be added for each measure in the json
 #'   request?
 #' @return An object of class `sc_table` which contains the return
@@ -130,7 +147,7 @@ sc_table_class <- R6::R6Class(
 #' my_table$meta
 #'
 #' # get a data.frame
-#' as.data.frame(my_table) %>% head()
+#' as.data.frame(my_table)
 #'
 #' # get metadata for field 2
 #' my_table$field(2)
@@ -158,13 +175,10 @@ sc_example <- function(filename) {
 
 #' @export
 print.sc_table <- function(x, ...) {
-  content <- x$raw
   cat("An object of class sc_table\n\n")
-  cat("Database:     ", content$source$label, "\n")
-  cat("Measures:     ", content$measures %>% sapply(function(x) x$label) %>%
-        paste(collapse = ", "), "\n")
-  cat("Fields:       ", content$fields %>% sapply(function(x) x$label) %>%
-        paste(collapse = ", "), "\n\n")
+  cat("Database:     ", x$meta$source$label, "\n")
+  cat("Measures:     ", x$meta$measures$label %>% paste(collapse = ", "), "\n")
+  cat("Fields:       ", x$meta$fields$label   %>% paste(collapse = ", "), "\n\n")
   cat("Request:      ", format(x$response$date), "\n")
   cat("STATcubeR:    ", x$meta$source$scr_version)
 }

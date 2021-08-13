@@ -3,9 +3,9 @@
 #'
 #' @description
 #' Helper functions for caching and parsing open.data resources.
-#' @return For `od_cache_file()` and `od_resource()`, the returned objects
+#' @return For [od_cache_file()] and [od_resource()], the returned objects
 #'   contain a hidden attribute `attr(., "od")` about the time used for
-#'   downloading and parsing the resource. `od_resource_all()` converts this
+#'   downloading and parsing the resource. [od_resource_all()] converts these
 #'   hidden attribute into columns.
 #' @importFrom magrittr %<>%
 NULL
@@ -36,14 +36,15 @@ od_resource_check_id <- function(id) {
 #' @export
 od_cache_dir <- function(dir = NULL) {
   if (is.null(dir))
-    Sys.getenv("od_cache_dir", paste0(tempdir(), "/STATcubeR/open_data/"))
+    Sys.getenv("OD_CACHE_DIR", paste0(tempdir(), "/STATcubeR/open_data/"))
   else
-    Sys.setenv(od_cache_dir = paste0(gsub("/$", "", dir), "/"))
+    Sys.setenv(OD_CACHE_DIR = paste0(gsub("/$", "", dir), "/"))
 }
 
 #' @name od_resource
 #' @details
 #' `od_cache_clear(id)` removes all files belonging to the specified id.
+#' @export
 od_cache_clear <- function(id) {
   od_resource_check_id(id)
   files <- od_cache_dir() %>% dir(id, full.names = TRUE)
@@ -170,8 +171,8 @@ od_normalize_columns <- function(x, suffix) {
 #' @name od_resource
 #' @details
 #' By default, downloaded json files will "expire" in one hour or 3600 seconds.
-#' That is, if a json is requested, it will be reused from the cahce unless the
-#' `file.ctime()` is more than one hour behind `Sys.time()`.
+#' That is, if a json is requested, it will be reused from the cache unless the
+#' [file.mtime()] is more than one hour behind [Sys.time()].
 #' @export
 od_json <- function(id, timestamp = Sys.time() - 3600) {
   file <- od_cache_file(id, NULL, timestamp = timestamp, ext = "json")
@@ -179,6 +180,7 @@ od_json <- function(id, timestamp = Sys.time() - 3600) {
   json <- jsonlite::read_json(file)
   t <- Sys.time() - t
   attr(json, "od") <- c(attr(file, "od"), list(parsed = t))
+  class(json) <- c("od_json", "list")
   json
 }
 

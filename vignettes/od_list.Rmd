@@ -1,0 +1,139 @@
+---
+title: "Available Datasets"
+description: "List all datasets from the OGD portal of Statistics Austria"
+link_text: "available datasets article"
+---
+
+```{r, echo=FALSE}
+source("R/setup.R")$value
+```
+
+```{r, include=FALSE}
+library(reactable)
+library(tidyverse)
+all_datasets <- od_list()
+```
+
+At the time of writing this article, there are 268 datasets that are assumed to be compatible with `od_table()`.
+Since some of the metadata contained in the OGD JSON files is only available in german, the following overview uses german labels.
+Click on the individual table cells to get more information.
+
+```{r, echo = FALSE}
+ids <- all_datasets$id
+## <- timestamp=NULL means reuse available jsons
+jsons <- lapply(ids, od_json, NULL)
+od_index <- tibble(
+  ## general
+  label = map_chr(jsons, "title"),
+  description = map_chr(jsons, "notes"),
+  ## timing
+  resource = map(jsons, "resources") %>% map(1),
+  last_modified = map_chr(resource, "last_modified") %>%
+    as.POSIXct(format = "%Y-%m-%dT%H:%M:%OS"),
+  created = map_chr(resource, "created") %>% as.POSIXct(format = "%Y-%m-%dT%H:%M:%OS"),
+  update_frequency = map_chr(jsons, c("extras", "update_frequency")),
+  ## tags and categories
+  categories = map(jsons, c("extras", "categorization")) %>% map(unlist),
+  tags = map(jsons, "tags") %>% map(unlist),
+  id_sc = map(jsons, c("extras", "metadata_linkage")) %>% map(1) %>%
+    map_if(~ grepl("statcube", .x), ~ strsplit(.x, "=")[[1]][2], .else = ~ "") %>%
+    map_chr(1),
+  id_od = map_chr(resource, "name")
+) %>% select(-resource)
+
+descs_parsed <- map(jsons, STATcubeR:::od_attr)
+od_index$measures <- lapply(descs_parsed, function(x) {
+  x[substr(x$code, 1, 1) == "F", ]
+})
+
+od_index$fields <- lapply(descs_parsed, function(x) {
+  x[substr(x$code, 1, 1) == "C", ]
+})
+
+## rendering
+hide_col <- colDef(show = FALSE)
+tpy <- function(x, y) {
+  tags$span(x, `data-tippy-content` = y)
+}
+
+od_index %>% 
+  mutate(
+    n_fields = purrr::map_int(fields, nrow),
+    n_measures = purrr::map_int(measures, nrow)
+  ) %>%
+  reactable(
+    columns = list(
+      label = colDef(
+        name = "Bezeichnung", html = TRUE,
+        details = JS("od_table.details.label")
+      ),
+      description = hide_col,
+      last_modified = colDef(
+        name = "Stand", width = 90, align = "right",
+        cell = JS("od_table.parse_time"), html = TRUE,
+        header = function(value) {tpy(value, "Zeitpunkt der letzten Aktualisierung")},
+        details = JS("od_table.details.last_modified")
+      ),
+      created = hide_col,
+      update_frequency = hide_col,
+      categories = colDef(
+        name = "Kat.", width = 70, html = TRUE,
+        header = function(value) { tpy(value, "Primäre Kategorie des Datensatzes") },
+        cell = function(value) {
+          value[[1]] %>% switch(
+            Arbeit = "ARB", Bevölkerung = "BEV", `Bildung und Forschung` = "B&F",
+            `Finanzen und Rechnungswesen` = "F&R", `Geographie und Planung` = "G&P",
+            `Gesellschaft und Soziales` = "G&S", Gesundheit = "GES", Umwelt = "UMW",
+            `Verkehr und Technik` = "V&T", `Wirtschaft und Tourismus` = "W&T") %>%
+            tpy(value[[1]])
+        },
+        details = JS("od_table.details.category")
+      ),
+      tags = hide_col,
+      id_sc = hide_col,
+      id_od = hide_col,
+      measures = hide_col,
+      fields = hide_col,
+      n_measures = colDef(
+        name = "M", width = 50, html = TRUE,
+        header = function(x) {tpy("M", "Messwerte")},
+        details = reactable::JS("od_table.details.measures")
+      ),
+      n_fields = colDef(
+        name = "K", width = 50, html = TRUE,
+        header = function(x) {tpy("K", "Klassifikationen")},
+        details = JS("od_table.details.fields")
+      )
+    ),
+    wrap = FALSE, searchable = TRUE, striped = TRUE, minRows = 10, highlight = TRUE
+  ) %>% htmlwidgets::appendContent(
+    htmltools::includeCSS("od_list/od_reactable.css"),
+    htmltools::includeScript("od_list/od_reactable.js"))
+```
+
+To get a simplified viersion of this summary, use the `od_list()` function.
+It uses webscraping techniques to ger dataset ids and german labels based on the contents of https://data.statistik.gv.at/web/catalog.jsp.
+
+```{r, eval = FALSE}
+all_datasets <- od_list()
+all_datasets
+```
+
+```{r, echo = FALSE}
+all_datasets
+```
+
+If you identify an interesting dataset, consider downloading the metadata json to get more details.
+The json contains links to further metadata including a link to `r ogd_portal`.
+
+```{r}
+(id <- all_datasets$id[2])
+json <- od_json(id)
+json
+```
+
+The json can also be used programatically to getdetails which are ommited in the `print()` output.
+
+```{r}
+json$extras$update_frequency
+```

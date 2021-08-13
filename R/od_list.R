@@ -17,6 +17,7 @@
 #' df
 #' subset(df, category == "Bildung und Forschung")
 od_list <- function(unique = TRUE) {
+  stopifnot(requireNamespace("xml2"))
   url <- "https://data.statistik.gv.at/web/catalog.jsp"
   r <- httr::GET(url)
   if (httr::http_error(r)) {

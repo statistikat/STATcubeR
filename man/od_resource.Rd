@@ -38,9 +38,9 @@ it will be downloaded only if it does not exist in the cache.}
 \item{json}{The JSON file belonging to the dataset}
 }
 \value{
-For \code{od_cache_file()} and \code{od_resource()}, the returned objects
+For \code{\link[=od_cache_file]{od_cache_file()}} and \code{\link[=od_resource]{od_resource()}}, the returned objects
 contain a hidden attribute \code{attr(., "od")} about the time used for
-downloading and parsing the resource. \code{od_resource_all()} converts this
+downloading and parsing the resource. \code{\link[=od_resource_all]{od_resource_all()}} converts these
 hidden attribute into columns.
 }
 \description{
@@ -50,8 +50,8 @@ Helper functions for caching and parsing open.data resources.
 \code{od_cache_clear(id)} removes all files belonging to the specified id.
 
 By default, downloaded json files will "expire" in one hour or 3600 seconds.
-That is, if a json is requested, it will be reused from the cahce unless the
-\code{file.ctime()} is more than one hour behind \code{Sys.time()}.
+That is, if a json is requested, it will be reused from the cache unless the
+\code{\link[=file.mtime]{file.mtime()}} is more than one hour behind \code{\link[=Sys.time]{Sys.time()}}.
 }
 \examples{
 # get the current cache directory

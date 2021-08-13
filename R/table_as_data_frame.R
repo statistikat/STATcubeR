@@ -5,8 +5,7 @@ unlist_n <- function(x, times) {
   unlist_n(x, times - 1)
 }
 
-get_annotations <- function(x, i = 1) {
-  content <- x$raw
+get_annotations <- function(content, i = 1) {
   cube <- content$cubes[[i]]$annotations
   if (is.null(cube)) {
     n_values <- content$cubes[[i]]$values %>% unlist() %>% length()
@@ -32,8 +31,7 @@ sc_model_matrix <- function(dims) {
   as.data.frame(out)
 }
 
-sc_table_create_data <- function(x) {
-  content <- x$raw
+sc_table_create_data <- function(content) {
   dims_fields <- content$fields %>%
     lapply(function(x) x$items) %>%
     sapply(length)
@@ -50,7 +48,7 @@ sc_table_create_data <- function(x) {
     measure <- content$measures[[i]]
     label <- get_var_code(measure$measure)
     values <- unlist(content$cubes[[i]]$values)
-    annotations <- get_annotations(x, i)
+    annotations <- get_annotations(content, i)
     df[[label]] <- values
     attr(df[[label]], "annotations") <- annotations
   }

@@ -3,8 +3,8 @@
 #' Functions to get/set the STATcube API key and make them available for calls
 #' against the STATcube API.
 #'
-#' * `sc_key()` forwards to `sc_key_get()` if the key is already present.
-#'   Otherwise, `sc_key_prompt()` will be invoked.
+#' * [sc_key()] forwards to [sc_key_get()] if the key is already present.
+#'   Otherwise, [sc_key_prompt()] will be invoked.
 #' @param key (`string`) An API key. To display your key, call
 #'   [sc_browse_preferences()].
 #' @return All functions return the key (invisibly)
@@ -34,7 +34,7 @@ sc_key_valid <- function(key = sc_key()) {
 #' @rdname sc_key
 #' @param test Use a test-requst to verify the key?
 #' @details
-#' * `sc_key_set()` can be used to pass the key as a parameter (`string`)
+#' * [sc_key_set()] can be used to pass the key as a parameter (`string`)
 #' @export
 sc_key_set <- function(key, test = TRUE) {
   if (test && !sc_key_valid(key))
@@ -48,7 +48,7 @@ sc_key_set <- function(key, test = TRUE) {
 
 #' @rdname sc_key
 #' @details
-#' * `sc_key_get()` returns the key, if it exists. Otherwise,
+#' * [sc_key_get()] returns the key, if it exists. Otherwise,
 #'   an error is thrown.
 #' @export
 sc_key_get <- function() {
@@ -59,7 +59,7 @@ sc_key_get <- function() {
 
 #' @rdname sc_key
 #' @details
-#' * `sc_key_prompt()` prompts for a key via [readline()]
+#' * [sc_key_prompt()] prompts for a key via [readline()]
 #' @export
 sc_key_prompt <- function(test = TRUE) {
   key <- readline("Provide your API key: \n")

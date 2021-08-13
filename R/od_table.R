@@ -77,6 +77,7 @@ od_table_class <- R6::R6Class(
       res <- od_create_data(id, json, language)
       private$cache <- res[c("header", "resources")]
       res$meta$source$requested <- stime
+      res$meta$source$lang <- language
       super$initialize(res$data, res$meta, res$fields)
       self$language <- language
       invisible(self)

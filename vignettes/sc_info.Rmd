@@ -1,9 +1,11 @@
 ---
-title: "Misc"
+title: "Other REST API endpoints"
+description: >
+  How to use the (rather simple) endpoints `/info` and `/rate_limit_table`
 ---
 
-```{r, include = FALSE}
-pkgload::load_all(export_all = FALSE, reset = FALSE, helpers = FALSE) 
+```{r, echo = FALSE}
+source("R/setup.R")$value
 ```
 
 Apart form `/table` and `/schema`, there is also support for the simple
@@ -11,15 +13,15 @@ endpoints [`/info`] and [`/rate_limit`].
 
 ```{r}
 sc_info()
-sc_rate_limit()
+sc_rate_limit_table()
 ```
 
 Rate limits can also be obtained from the response of the `/table` endpoint
-with `sc_table_rate_limit()`
+with `$rate_limit`.
 
-```{r, cache = TRUE}
+```{r}
 table <- sc_table(sc_example("population_timeseries.json"))
-sc_table_rate_limit(table)
+table$rate_limit
 ```
 
 STATcube uses caching for the `/table` endpoint by default. If the same

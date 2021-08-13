@@ -1,0 +1,78 @@
+---
+title: "Get Data via JSON Requests"
+description: >
+  Hands-on guide about transfering data from the STATcube GUI (table view) to R sessions
+  via a the download option "open data api request".
+link_text: JSON requests article
+---
+
+```{r, echo = FALSE}
+source("R/setup.R")$value
+```
+
+
+In the following example, a table will be exported from STATcube into an
+R session. This process involves four steps
+
+* create a table with the STATcube GUI (table view)
+* download an "API request" for the table (format: `*.json`).
+* send the `json` file to the API using `sc_table()`.
+* convert the return value into a `data.frame`
+
+It is assumed that you already provided your API key as described in the `r ticle("sc_key")`.
+
+## Create a table with the STATcube GUI
+
+Use the graphical user interface of STATcube to create a table. Visit
+[STATcube] and select a database. This will open the table view where you can 
+create a table. See the [STATcube manual] for details.
+
+## Download an API request
+
+Choose "Open Data API Abfrage (.json)" in the [download options]. This will
+save a json file on your local file system.
+
+ <img src="img/download_json.png" />
+ 
+It might be the case thatthis download option is not listed as a download format.
+This means that the current user is not permitted to use the API.
+
+## Send the json to the API
+
+Provide the path to the downloaded as a string file in `sc_table()`.
+
+``` r
+my_table <- sc_table(json_file = "path/to/api_request.json")
+```
+
+The object `my_table` is created via the raw API response from `httr::POST()` against the [`/table` endpoint].
+Printing the object will summarize the request.
+We will demonstrate this with an example json via `sc_example()`.
+ 
+```{r}
+(json_path <- sc_example("population_timeseries.json"))
+my_table <- sc_table(json_path)
+my_table
+```
+
+## Convert the response into a data frame
+
+The return value of `sc_table()` can be converted into a `data.frame`.
+To do that, use the `$tabulate()` method.
+
+```{r}
+my_table$tabulate()
+```
+
+This will produce a tidy table, which contains a column for each field of the table.
+Furthermore, one column will be present for each measure.
+
+## Further reading
+
+* Functionalities of the returned object are explained in the `r ticle("sc_data")`.
+* The `r ticle("sc_table_saved")` shows an alternative way of importing tables.
+
+[`/table` endpoint]: https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint
+[download options]: https://docs.wingarc.com.au/superstar/latest/superweb2/user-guide/download-tables
+[STATcube]: http://sdbext:8081/statistik.at/ext/statcube/home
+[STATcube manual]: http://www.statistik.at/wcm/idc/idcplg?IdcService=GET_PDF_FILE&dDocName=105692
