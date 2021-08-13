@@ -127,7 +127,7 @@ sc_table_class <- R6::R6Class(
 #'
 #' Those three functions all return an object of class `"sc_table"`.
 #' @param json_file path to a json file, which was downloaded via the STATcube
-#'   gui ("Open Data API Abfrage")
+#'   GUI ("Open Data API Abfrage")
 #' @param add_totals Should totals be added for each measure in the json
 #'   request?
 #' @return An object of class `sc_table` which contains the return
@@ -147,7 +147,7 @@ sc_table_class <- R6::R6Class(
 #' my_table$meta
 #'
 #' # get a data.frame
-#' as.data.frame(my_table) %>% head()
+#' as.data.frame(my_table)
 #'
 #' # get metadata for field 2
 #' my_table$field(2)
