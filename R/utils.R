@@ -15,5 +15,6 @@ sc_parse_time <- function(timestamp) {
 }
 
 sc_headers <- function(language = c("en", "de"), key = sc_key(), ...) {
-  httr::add_headers(APIKey = key, `Accept-Language` = match.arg(language), ...)
+  httr::add_headers(APIKey = key, `Accept-Language` = match.arg(language), ...,
+                    `User-Agent` = "https://github.com/statistikat/STATcubeR")
 }
