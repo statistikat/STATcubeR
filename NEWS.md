@@ -1,3 +1,11 @@
+# STATcubeR 0.2.4
+
+* add user-agent according to `vignette("api-packages", "httr")`
+* error handling
+   * check for content types and http status consistently
+   * document error handling in `?sc_last_error`
+   * new export: `sc_last_error()`
+
 # STATcubeR 0.2.3
 
 Almost all changes between 0.2.2 and 0.2.3 are included in #13
