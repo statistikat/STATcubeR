@@ -41,24 +41,21 @@ home:
   title: STATcubeR
   links:
   - text: Use the STATcube GUI
-    href: https://www.statistik.at/web_de/services/statcube/index.html
+    href: https://www.statistik.at/web_de/services/statcube/
   - text: Find open govenment data
     href: https://data.statistik.gv.at
   - text: Read the API reference
     href: https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/
 
 navbar:
-  title: modelsummary
   type: default
   left:
-  - icon: fas fa-home fa-lg
-    href: index.html
   - text: Reference
-    href: reference/index.html
+    href: reference/
   - text: Articles
     menu:
     - text: Show All Articles ...
-      href: articles/index.html
+      href: articles/
     - text: ---------------------
     - text: STATcube REST API
     - text: All about the API Key
@@ -79,13 +76,13 @@ navbar:
       href: articles/sc_data.html
     - text: Tabulation of Data
       href: articles/sc_tabulate.html
-  - text: News
-    href: news/index.html
+  - text: Changelog
+    href: news/
   right:
   - icon: fas fa-table fa-lg
     href: https://data.statistik.gv.at
   - icon: fas fa-cube fa-lg
-    href: https://www.statistik.at/web_de/services/statcube/index.html
+    href: https://www.statistik.at/web_de/services/statcube/
   - icon: fab fa-github fa-lg
     href: https://github.com/statistikat/STATcubeR/
 

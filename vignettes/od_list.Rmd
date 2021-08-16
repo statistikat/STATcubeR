@@ -15,6 +15,9 @@ all_datasets <- od_list()
 ```
 
 At the time of writing this article, there are 268 datasets that are assumed to be compatible with `od_table()`.
+
+## Interactive overview
+
 Since some of the metadata contained in the OGD JSON files is only available in german, the following overview uses german labels.
 Click on the individual table cells to get more information.
 
@@ -111,8 +114,10 @@ od_index %>%
     htmltools::includeScript("od_list/od_reactable.js"))
 ```
 
+## CLI usage
+
 To get a simplified viersion of this summary, use the `od_list()` function.
-It uses webscraping techniques to ger dataset ids and german labels based on the contents of https://data.statistik.gv.at/web/catalog.jsp.
+It uses webscraping techniques to get dataset ids and german labels based on the contents of https://data.statistik.gv.at/web/catalog.jsp.
 
 ```{r, eval = FALSE}
 all_datasets <- od_list()
@@ -123,6 +128,8 @@ all_datasets
 all_datasets
 ```
 
+## Overview via json
+
 If you identify an interesting dataset, consider downloading the metadata json to get more details.
 The json contains links to further metadata including a link to `r ogd_portal`.
 
@@ -132,7 +139,7 @@ json <- od_json(id)
 json
 ```
 
-The json can also be used programatically to getdetails which are ommited in the `print()` output.
+The json can also be used programatically to get details which are ommited in the `print()` output.
 
 ```{r}
 json$extras$update_frequency

@@ -156,7 +156,7 @@ See the [github issues] for some development goals regarding labeling.
 
 ## Subsetting columns
 
-In the previous examples, we only supplied names ando/or codes of fields to `sc_tabulate()`.
+In the previous examples, we only supplied names and/or codes of fields to `sc_tabulate()`.
 It is also possible to include measures in which case the unlisted measures will be omitted.
 
 ```{r}

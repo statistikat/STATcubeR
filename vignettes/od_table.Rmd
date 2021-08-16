@@ -12,8 +12,8 @@ source("R/setup.R")$value
 table <- od_table("OGD_krebs_ext_KREBS_1")
 ```
 
-`od_table()` makes it easy to import datasets from the `r ogd_portal` into your R sessions.
-This function does use direct downloads from the fileserver.
+`od_table()` makes it easy to import datasets from `r ogd_portal` into your R sessions.
+This function uses direct downloads from the fileserver.
 Therefore no API key is required.
 
 In this example, we will use a `r tippy_dataset(table, "data set about cancer statistics")`.
@@ -101,7 +101,7 @@ table$language
 table$language <- "de"
 ```
 
-This option affects the print method as well as the output of `$data`.
+This option affects the `print()` method as well as the output of `$data`.
 If no english labels are available, the german labels are used as a fallback mechanism.
 
 ```{r}
