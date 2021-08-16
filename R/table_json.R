@@ -49,15 +49,10 @@ sc_table_json_post <- function(json, language = c("en", "de"),
       sc_json_add_totals() %>%
       jsonlite::toJSON(pretty = TRUE, auto_unbox = TRUE)
   sc_with_cache(list(json, language), function() {
-    response <- httr::POST(
+    httr::POST(
       url = paste0(base_url, "/table"),
       body = json,
       config = sc_headers(language, key)
-    )
-    if (response$status_code != 200) {
-      sc_set_last_error(response)
-      stop(httr::content(response)$message)
-    }
-    response
+    ) %>% sc_check_response()
   })
 }

@@ -4,16 +4,6 @@ sc_version <- function() {
 
 base_url <- "http://sdbext:8082/statistik.at/ext/statcube/rest/v1"
 
-sc_env <- new.env(parent = emptyenv())
-
-sc_get_last_error <- function() {
-  sc_env$last_error
-}
-
-sc_set_last_error <- function(x) {
-  sc_env$last_error <- x
-}
-
 #' @title  Class for /table responses
 #' @description R6 Class for all responses of the /table endpoint of the
 #'   STATcube REST API.
