@@ -166,9 +166,9 @@ sc_example <- function(filename) {
 #' @export
 print.sc_table <- function(x, ...) {
   cat("An object of class sc_table\n\n")
-  cat("Database:     ", x$meta$source$label, "\n")
-  cat("Measures:     ", x$meta$measures$label %>% paste(collapse = ", "), "\n")
-  cat("Fields:       ", x$meta$fields$label   %>% paste(collapse = ", "), "\n\n")
-  cat("Request:      ", format(x$response$date), "\n")
-  cat("STATcubeR:    ", x$meta$source$scr_version)
+  cat("Database   ", x$meta$source$label, "\n")
+  cat("Measures   ", with_wrap(x$meta$measures$label), "\n")
+  cat("Fields     ", with_wrap(x$meta$fields$label), "\n\n")
+  cat("Request    ", format(x$response$date), "\n")
+  cat("STATcubeR  ", x$meta$source$scr_version)
 }
