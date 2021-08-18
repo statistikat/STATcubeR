@@ -7,7 +7,8 @@
 #'   Otherwise, [sc_key_prompt()] will be invoked.
 #' @param key (`string`) An API key. To display your key, call
 #'   [sc_browse_preferences()].
-#' @return All functions return the key (invisibly)
+#' @return All functions return the key (invisibly) except `sc_key_exists()`,
+#'   which returns a [logical()] of length one.
 #' @export
 sc_key <- function() {
   if (!sc_key_exists()) {
@@ -17,10 +18,6 @@ sc_key <- function() {
       stop("No STATcube API key available")
   }
   sc_key_get()
-}
-
-sc_key_exists <- function() {
-  Sys.getenv("STATCUBE_KEY") != ""
 }
 
 sc_key_valid <- function(key = sc_key()) {
@@ -64,4 +61,12 @@ sc_key_get <- function() {
 sc_key_prompt <- function(test = TRUE) {
   key <- readline("Provide your API key: \n")
   sc_key_set(key, test = test)
+}
+
+#' @rdname sc_key
+#' @details
+#' * `sc_key_exists()` returns `TRUE` if a key was set and `FALSE` otherwise.
+#' @export
+sc_key_exists <- function() {
+  Sys.getenv("STATCUBE_KEY") != ""
 }

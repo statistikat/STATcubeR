@@ -5,6 +5,7 @@
 \alias{sc_key_set}
 \alias{sc_key_get}
 \alias{sc_key_prompt}
+\alias{sc_key_exists}
 \title{Manage your API Key}
 \usage{
 sc_key()
@@ -14,6 +15,8 @@ sc_key_set(key, test = TRUE)
 sc_key_get()
 
 sc_key_prompt(test = TRUE)
+
+sc_key_exists()
 }
 \arguments{
 \item{key}{(\code{string}) An API key. To display your key, call
@@ -22,7 +25,8 @@ sc_key_prompt(test = TRUE)
 \item{test}{Use a test-requst to verify the key?}
 }
 \value{
-All functions return the key (invisibly)
+All functions return the key (invisibly) except \code{sc_key_exists()},
+which returns a \code{\link[=logical]{logical()}} of length one.
 }
 \description{
 Functions to get/set the STATcube API key and make them available for calls
@@ -45,5 +49,9 @@ an error is thrown.
 
 \itemize{
 \item \code{\link[=sc_key_prompt]{sc_key_prompt()}} prompts for a key via \code{\link[=readline]{readline()}}
+}
+
+\itemize{
+\item \code{sc_key_exists()} returns \code{TRUE} if a key was set and \code{FALSE} otherwise.
 }
 }
