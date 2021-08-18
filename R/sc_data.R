@@ -81,6 +81,7 @@ sc_data <- R6::R6Class(
           value <- od_match_codes(self$field(key), value, codes = TRUE)
         private$p_meta$fields$total_code[key] <- value
       }
+      invisible(self)
     }
   ),
   active = list(
