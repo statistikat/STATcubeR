@@ -26,7 +26,7 @@ var od_table = {
     let time_value = new Date(cellInfo.value),
       time_tooltip = od_table.format_time(time_value),
       time_pretty = od_table.format_time_compact(time_value);
-    od_table.activate_tooltips('[data-tippy-content]');
+    od_table.activate_tooltips('.reactable [data-tippy-content]');
     return `<span data-tippy-content="${time_tooltip}">${time_pretty}</span>`;
   },
   details: {
