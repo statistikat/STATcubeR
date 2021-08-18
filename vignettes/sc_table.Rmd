@@ -10,6 +10,10 @@ link_text: JSON requests article
 source("R/setup.R")$value
 ```
 
+```{r, include = FALSE}
+if (!sc_key_exists())
+  knitr::opts_chunk$set(eval = FALSE)
+```
 
 In the following example, a table will be exported from STATcube into an
 R session. This process involves four steps

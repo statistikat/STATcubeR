@@ -11,6 +11,11 @@ link_text: "saved tables article"
 source("R/setup.R")$value
 ```
 
+```{r, include = FALSE}
+if (!sc_key_exists())
+  knitr::opts_chunk$set(eval = FALSE)
+```
+
 If [saved tables] are present in STATcube, those can be imported without
 downloading a json file. All saved tables can be shown with
 `sc_table_saved_list()`.

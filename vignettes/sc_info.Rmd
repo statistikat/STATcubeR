@@ -8,6 +8,11 @@ description: >
 source("R/setup.R")$value
 ```
 
+```{r, include = FALSE}
+if (!sc_key_exists())
+  knitr::opts_chunk$set(eval = FALSE)
+```
+
 Apart form `/table` and `/schema`, there is also support for the simple
 endpoints [`/info`] and [`/rate_limit`].
 

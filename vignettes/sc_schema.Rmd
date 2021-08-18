@@ -10,6 +10,11 @@ link_text: "schema article"
 source("R/setup.R")$value
 ```
 
+```{r, include = FALSE}
+if (!sc_key_exists())
+  knitr::opts_chunk$set(eval = FALSE)
+```
+
 There are currently three functions in `r STATcubeR` that utilize the `/schema`
 endpoint.
 

@@ -9,6 +9,11 @@ description: >
 source("R/setup.R")$value
 ```
 
+```{r, include = FALSE}
+if (!sc_key_exists())
+  knitr::opts_chunk$set(eval = FALSE)
+```
+
 Another way to import STATcube Data into R is the use of a custom table. This
 function requires the three arguments.
 
