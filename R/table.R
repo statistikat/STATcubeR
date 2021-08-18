@@ -1,5 +1,9 @@
 sc_version <- function() {
-  toString(utils::packageVersion(utils::packageName()))
+  pd <- utils::packageDescription("STATcubeR")
+  version <- pd$Version
+  if (!is.null(pd$RemoteSha))
+    version <- paste0(version, " (@", substr(pd$RemoteSha, 1, 7), ")")
+  version
 }
 
 base_url <- "http://sdbext:8082/statistik.at/ext/statcube/rest/v1"
