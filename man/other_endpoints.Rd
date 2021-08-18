@@ -35,6 +35,10 @@ information about available locales and the amount of requests available
 for calls against the \verb{/table} endpoint.
 }
 \examples{
+if (sc_key_exists()) {
+
 sc_info()
 sc_rate_limit_table()
+
+}
 }

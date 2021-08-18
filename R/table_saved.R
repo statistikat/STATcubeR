@@ -16,15 +16,6 @@ sc_table_saved_list <- function() {
 #' @param table_uri Identifier of a saved table as returned by
 #'   [sc_table_saved_list()]
 #' @rdname sc_table
-#' @examples
-#'
-#' # get the ids and labels of all saved tables
-#' (saved_tables <- sc_table_saved_list())
-#' table_uri <- saved_tables$id[1]
-#'
-#' # get a table based on one of these ids
-#' my_response <- sc_table_saved(table_uri)
-#' as.data.frame(my_response)
 #' @export
 sc_table_saved <- function(table_uri, language = c("en", "de"), key = sc_key()) {
   sc_with_cache(list(table_uri, language, key), function() {

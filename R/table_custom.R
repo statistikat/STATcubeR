@@ -5,19 +5,6 @@
 #'   either of type `FIELD` or type `VALUESET`. Those entries are referred to
 #'   as `fields` in the parsed API response
 #' @rdname sc_table
-#' @examples
-#'
-#' sc_table_custom(
-#'   db = "str:database:detouextregsai",
-#'   measures = c(
-#'     "str:statfn:detouextregsai:F-DATA1:F-ANK:SUM",
-#'     "str:measure:detouextregsai:F-DATA1:F-UEB"
-#'   ),
-#'   dimensions = c(
-#'     "str:field:detouextregsai:F-DATA1:C-SDB_TIT-0",
-#'     "str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93SUM-0"
-#'   )
-#' )
 #' @export
 sc_table_custom <- function(db, measures, dimensions, language = c("en", "de"),
                             add_totals = TRUE, key = sc_key()) {

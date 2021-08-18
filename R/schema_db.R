@@ -1,5 +1,15 @@
 #' @param db_id a database id
 #' @examples
+#' if (sc_key_exists()) {
+#'
+#' my_catalogue <- sc_schema_catalogue()
+#'
+#' ## print
+#' my_catalogue
+#'
+#' ## access the parsed catalogue
+#' my_catalogue$Statistics$`Labour Market`
+#' my_catalogue$Statistics$`Labour Market`$`Working hours (Labour Force Survey)`
 #'
 #' db_schema <- sc_schema_db("deake005")
 #'
@@ -19,6 +29,8 @@
 #'
 #' # print with data.tree
 #' print(my_catalogue$Examples, tree = TRUE)
+#'
+#' }
 #' @rdname sc_schema
 #' @export
 sc_schema_db <- function(db_id, depth = "valueset", language = c("en", "de"),

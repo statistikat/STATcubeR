@@ -77,6 +77,8 @@ requests can use three formats with corresponding functions
 Those three functions all return an object of class \code{"sc_table"}.
 }
 \examples{
+if (sc_key_exists()) {
+
 my_table <- sc_table(json_file = sc_example("population_timeseries.json"))
 
 # print
@@ -110,5 +112,7 @@ table_uri <- saved_tables$id[1]
 # get a table based on one of these ids
 my_response <- sc_table_saved(table_uri)
 as.data.frame(my_response)
+
+}
 }
 \concept{functions for /table}

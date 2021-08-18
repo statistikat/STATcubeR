@@ -64,6 +64,8 @@ To use \code{data.tree} printing permanently, use\if{html}{\out{<div class="r">}
 }
 
 \examples{
+if (sc_key_exists()) {
+
 my_catalogue <- sc_schema_catalogue()
 
 ## print
@@ -91,5 +93,7 @@ my_content$label
 
 # print with data.tree
 print(my_catalogue$Examples, tree = TRUE)
+
+}
 }
 \concept{functions for /schema}

@@ -112,6 +112,8 @@ sc_tabulate(table, "C-A11-0")
 
 ######################### STATcube REST API #################################
 
+if (sc_key_exists()) {
+
 table_tourism <- sc_example("accomodation.json") \%>\% sc_table("de")
 
 table_tourism$tabulate()
@@ -126,6 +128,8 @@ if (FALSE) {
                     annotations = TRUE)
   tt
   tt[['Import, Wert in Euro_a']] \%>\% str()
+}
+
 }
 }
 \seealso{

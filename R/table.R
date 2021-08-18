@@ -132,6 +132,8 @@ sc_table_class <- R6::R6Class(
 #' @param language The language to be used for labeling. `"en"` or `"de"`
 #' @family functions for /table
 #' @examples
+#' if (sc_key_exists()) {
+#'
 #' my_table <- sc_table(json_file = sc_example("population_timeseries.json"))
 #'
 #' # print
@@ -145,6 +147,28 @@ sc_table_class <- R6::R6Class(
 #'
 #' # get metadata for field 2
 #' my_table$field(2)
+#'
+#' sc_table_custom(
+#'   db = "str:database:detouextregsai",
+#'   measures = c(
+#'     "str:statfn:detouextregsai:F-DATA1:F-ANK:SUM",
+#'     "str:measure:detouextregsai:F-DATA1:F-UEB"
+#'   ),
+#'   dimensions = c(
+#'     "str:field:detouextregsai:F-DATA1:C-SDB_TIT-0",
+#'     "str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93SUM-0"
+#'   )
+#' )
+#'
+#' # get the ids and labels of all saved tables
+#' (saved_tables <- sc_table_saved_list())
+#' table_uri <- saved_tables$id[1]
+#'
+#' # get a table based on one of these ids
+#' my_response <- sc_table_saved(table_uri)
+#' as.data.frame(my_response)
+#'
+#' }
 #' @export
 sc_table <- function(json_file, language = c("en", "de"), add_totals = TRUE,
                      key = sc_key()) {

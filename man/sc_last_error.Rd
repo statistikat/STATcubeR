@@ -23,7 +23,11 @@ For that purpose, it is possible to use \code{\link[=sc_last_error]{sc_last_erro
 the httr response object for the last unsuccessfull request.
 }
 \examples{
+if (sc_key_exists()) {
+
 try(sc_table_saved("invalid_id"))
 last_error <- sc_last_error()
 httr::http_status(last_error)
+
+}
 }

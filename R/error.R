@@ -12,9 +12,13 @@
 #' the httr response object for the last unsuccessfull request.
 #' @return The return value from `httr::GET()` or `httr::POST()`.
 #' @examples
+#' if (sc_key_exists()) {
+#'
 #' try(sc_table_saved("invalid_id"))
 #' last_error <- sc_last_error()
 #' httr::http_status(last_error)
+#'
+#' }
 #' @export
 sc_last_error <- function() {
   sc_env$last_error
