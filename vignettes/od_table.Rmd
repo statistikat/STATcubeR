@@ -55,15 +55,50 @@ table$header
 Additional metadata can be obtained via `$meta`.
 See the `r ticle("sc_data")` for more details.
 
+### Field infos {.unlisted .unnumbered .tabset .tabset-pills}
+
+```{r, include=FALSE}
+options(tibble.print_max = 5)
+options(tibble.print_min = 5)
+```
+
+
 The method `table$field()` can be used to get information about specific fields.
-For example, the information from [`OGD_krebs_ext_KREBS_1_C-KRE_GESCHLECHT-0.csv`] is available through this call.
+Thise contain data from `{dataset_id}_{field_code}.csv`.
+Unlike the metadata in `sc_table`, the `od_table` class always contains german and english labels.
+Both can be used to label the dataset.
+
+#### Tumor type
+
+```{r}
+table$field("C-TUM_ICD10_3ST-0")
+```
+
+https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_C-TUM_ICD10_3ST-0.csv
+
+#### Year
+
+```{r}
+table$field("C-BERJ-0")
+```
+
+https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_C-BERJ-0.csv
+
+#### Province
+
+```{r}
+table$field("C-BUNDESLAND-0")
+```
+
+https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_C-BUNDESLAND-0.csv
+
+#### Sex
 
 ```{r}
 table$field("C-KRE_GESCHLECHT-0")
 ```
 
-Unlike the metadata in `sc_table`, the `od_table` class always contains german and english labels.
-Both can be used to label the dataset.
+https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_C-KRE_GESCHLECHT-0.csv
 
 ## Table Contents
 

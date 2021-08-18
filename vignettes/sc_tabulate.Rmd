@@ -116,10 +116,44 @@ The `$tabulate()` method also works with more than one variable.
 
 ```{r, echo = FALSE}
 options(tibble.print_min = 12)
+options(tibble.print_max = 12)
 ```
+
+#### {.tabset .tabset-pills .tabset-fade}
+
+##### Sex & Form of employment
 
 ```{r}
 earnings$tabulate("Sex", "Form of employment")
+```
+
+##### Sex & Citizenship
+
+```{r}
+earnings$tabulate("Sex", "Citizenship")
+```
+
+##### Sex & Region
+
+```{r}
+earnings$tabulate("Sex", "Region")
+```
+
+##### Citizenship & Region
+
+```{r}
+earnings$tabulate("Citizenship", "Region")
+```
+
+We get an empty table because this cross tabulation is not included in the OGD dataset.
+The same will happen for Citizenship & Form of employment as well as Region & Form of employment.
+
+```{r}
+earnings$tabulate("Citizenship", "Form of employment") %>% dim()
+```
+
+```{r}
+earnings$tabulate("Region", "Form of employment") %>% dim()
 ```
 
 ### Including totals in the oputput

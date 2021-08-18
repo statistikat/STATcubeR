@@ -83,6 +83,36 @@ It includes the codes and labels as well as the total code registered for the pa
 x$meta$fields
 ```
 
+## Field information
+
+To get more info about specific fields, use the `$field()` method.
+
+### {.tabset .tabset-pills .tabset-fade}
+
+#### Tumor types
+
+```{r}
+x$field("Tumore")
+```
+
+#### Year
+
+```{r}
+x$field("Reporting year")
+```
+
+#### Province
+
+```{r}
+x$field("Province")
+```
+
+#### Sex
+
+```{r}
+x$field("Sex")
+```
+
 ## Tabulation
 
 The method `$tabulate()` can be used to turn `sc_table` objects into tidy data.frames.

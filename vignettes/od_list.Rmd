@@ -144,3 +144,69 @@ The json can also be used programatically to get details which are ommited in th
 ```{r}
 json$extras$update_frequency
 ```
+
+## Showcase {.tabset .tabset-pills .tabset-fade}
+
+### Population
+
+```{r, include = FALSE}
+x <- od_table("OGD_bevstandjbab2002_BevStand_2020")
+```
+
+The `r tippy_dataset(x, "population dataset")` measures the austrian population
+for `r nrow(x$field("Commune"))` different regions.
+
+```{r}
+od_table("OGD_bevstandjbab2002_BevStand_2020")$tabulate()
+```
+
+### Hospitalizations
+
+```{r, include = FALSE}
+x <- od_table("OGD_krankenbewegungen_ex_LEISTUNGEN_1")
+```
+
+The `r tippy_dataset(x, "hospitalizations dataset")` is a timeseries from 2009 to 2019
+for `r nrow(x$field("Med"))` different medical procedures.
+
+```{r}
+od_table("OGD_krankenbewegungen_ex_LEISTUNGEN_1")$tabulate()
+```
+
+### Earnings
+
+```{r, include = FALSE}
+x <- od_table("OGD_veste309_Veste309_1")
+```
+
+The `r tippy_dataset(x, "structure of earnings dataset")` showcases average earnings by four different classifications.
+See the `r ticle("sc_tabulate")` for some usage examples with this dataset.
+
+```{r}
+od_table("OGD_veste309_Veste309_1")$tabulate()
+```
+
+### Household forecast
+
+```{r, include=FALSE}
+x <- od_table("OGD_f1741_HH_Proj_2")
+```
+
+The `r tippy_dataset(x, "household forecast")` contains predictions about the
+number of private households by 4 household characteristics from 2011 to 2080.
+
+```{r}
+od_table("OGD_f1741_HH_Proj_2")$tabulate()
+```
+
+### Gross regional product
+
+```{r, include=FALSE}
+x <- od_table("OGD_vgrrgr104_RGR104_1")
+```
+
+The `r tippy_dataset(x, "GRP dataset")` contains GRP for all NUTS-3 regions between 2000 and 2019.
+
+```{r}
+od_table("OGD_vgrrgr104_RGR104_1")$tabulate()
+```

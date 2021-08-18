@@ -1,4 +1,5 @@
 template:
+  bootstrap: 4
   params:
     bootswatch: cosmo
 
@@ -8,6 +9,8 @@ development:
 url: https://statistikat.github.io/STATcubeR
 
 authors:
+  sidebar:
+    roles: [aut, ctb]
   Gregor de Cillia:
     href: https://github.com/GregorDeCillia
   Bernhard Meindl:
