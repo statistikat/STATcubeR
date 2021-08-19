@@ -50,13 +50,19 @@ od_create_data <- function(id, json = od_json(id), lang = c("en", "de"),
     if (verbose && length(udc) != nrow(fld))
       message("dropping unused levels in ", shQuote(code), ": ",
               paste(shQuote(setdiff(fld$code, udc)), collapse = ", "))
-    fld[fld$code %in% udc, ]
+    fld <- fld[fld$code %in% udc, ]
+    fld$label_en[is.na(fld$label_en)] <- fld$label_de[is.na(fld$label_en)]
+    fld
   })
 
   meta$measures$NAs <- sapply(dat[meta$measures$code], function(x) sum(is.na(x)))
   meta$fields$nitems <- sapply(fields, nrow)
   meta$fields$type <- sapply(fields, function(x) sc_field_type(x$code))
   meta$fields$total_code <- NA_character_
+  meta$fields$label_en[is.na(meta$fields$label_en)] <-
+    meta$fields$label_de[is.na(meta$fields$label_en)]
+  meta$measures$label_en[is.na(meta$measures$label_en)] <-
+    meta$measures$label_de[is.na(meta$measures$label_en)]
 
   for (i in seq_along(fields)) {
     fields[[i]]$parsed <- switch(
