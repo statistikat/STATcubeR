@@ -105,8 +105,7 @@ od_table_class <- R6::R6Class(
   private = list(
     id = NULL,
     p_json = NULL,
-    cache = NULL,
-    lang = NULL
+    cache = NULL
   )
 )
 
