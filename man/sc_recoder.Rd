@@ -23,8 +23,16 @@ x$recode$
   label_measure("F-KRE", "en", "NUMBER")$
   level("C-KRE_GESCHLECHT-0", "GESCHLECHT-1", "en", "MALE")
 
-x$language <- "en"
 x$tabulate("C-KRE_GESCHLECHT-0", "F-KRE")
+
+earnings <- od_table("OGD_veste309_Veste309_1")
+earnings$recode$
+  total_codes("C-A11-0", "A11-1")$
+  total_codes("C-STAATS-0", "STAATS-9")$
+  total_codes("C-VEBDL-0", "VEBDL-10")$
+  total_codes("C-BESCHV-0", "BESCHV-1")
+
+earnings$total_codes()
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -33,6 +41,7 @@ x$tabulate("C-KRE_GESCHLECHT-0", "F-KRE")
 \item \href{#method-label_field}{\code{sc_recoder$label_field()}}
 \item \href{#method-label_measure}{\code{sc_recoder$label_measure()}}
 \item \href{#method-level}{\code{sc_recoder$level()}}
+\item \href{#method-total_codes}{\code{sc_recoder$total_codes()}}
 }
 }
 \if{html}{\out{<hr>}}
@@ -114,6 +123,27 @@ Change the labels of a level
 \item{\code{language}}{a language "de" or "en"}
 
 \item{\code{new}}{the new label for the level}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-total_codes"></a>}}
+\if{latex}{\out{\hypertarget{method-total_codes}{}}}
+\subsection{Method \code{total_codes()}}{
+Cheange the total code for a field
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{sc_recoder$total_codes(field, level, new)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{field}}{a field code}
+
+\item{\code{level}}{a level code for the field}
+
+\item{\code{new}}{the new total code}
 }
 \if{html}{\out{</div>}}
 }

@@ -21,8 +21,16 @@
 #'   label_measure("F-KRE", "en", "NUMBER")$
 #'   level("C-KRE_GESCHLECHT-0", "GESCHLECHT-1", "en", "MALE")
 #'
-#' x$language <- "en"
 #' x$tabulate("C-KRE_GESCHLECHT-0", "F-KRE")
+#'
+#' earnings <- od_table("OGD_veste309_Veste309_1")
+#' earnings$recode$
+#'   total_codes("C-A11-0", "A11-1")$
+#'   total_codes("C-STAATS-0", "STAATS-9")$
+#'   total_codes("C-VEBDL-0", "VEBDL-10")$
+#'   total_codes("C-BESCHV-0", "BESCHV-1")
+#'
+#' earnings$total_codes()
 sc_recoder <- R6::R6Class(
   cloneable = FALSE,
   "sc_recoder",
@@ -63,6 +71,16 @@ sc_recoder <- R6::R6Class(
       j <- match(level, private$x$p_fields[[i]]$code)
       stopifnot(!is.na(j))
       private$x$p_fields[[i]][j, private$l(language)] <- new
+      invisible(self)
+    },
+    #' @description Cheange the total code for a field
+    #' @param field a field code
+    #' @param level a level code for the field
+    #' @param new the new total code
+    total_codes = function(field, level, new) {
+      i <- private$match_index(field, "fields")
+      stopifnot(is.na(level) || level %in% private$x$p_fields[[i]]$code)
+      private$x$p_meta$fields$total_code[i] <- level
       invisible(self)
     }
   ),
