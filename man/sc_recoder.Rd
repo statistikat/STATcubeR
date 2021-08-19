@@ -133,7 +133,7 @@ Change the labels of a level
 \subsection{Method \code{total_codes()}}{
 Cheange the total code for a field
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{sc_recoder$total_codes(field, level, new)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{sc_recoder$total_codes(field, new)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -141,9 +141,8 @@ Cheange the total code for a field
 \describe{
 \item{\code{field}}{a field code}
 
-\item{\code{level}}{a level code for the field}
-
-\item{\code{new}}{the new total code}
+\item{\code{new}}{a level code for the field or \code{NA}. Will be used as the
+new total code. In case of \code{NA}, the total code will be unset.}
 }
 \if{html}{\out{</div>}}
 }

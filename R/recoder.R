@@ -75,12 +75,12 @@ sc_recoder <- R6::R6Class(
     },
     #' @description Cheange the total code for a field
     #' @param field a field code
-    #' @param level a level code for the field
-    #' @param new the new total code
-    total_codes = function(field, level, new) {
+    #' @param new a level code for the field or `NA`. Will be used as the
+    #'   new total code. In case of `NA`, the total code will be unset.
+    total_codes = function(field, new) {
       i <- private$match_index(field, "fields")
-      stopifnot(is.na(level) || level %in% private$x$p_fields[[i]]$code)
-      private$x$p_meta$fields$total_code[i] <- level
+      stopifnot(is.na(new) || new %in% private$x$p_fields[[i]]$code)
+      private$x$p_meta$fields$total_code[i] <- new
       invisible(self)
     }
   ),
