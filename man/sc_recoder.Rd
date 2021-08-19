@@ -33,6 +33,10 @@ earnings$recode$
   total_codes("C-BESCHV-0", "BESCHV-1")
 
 earnings$total_codes()
+
+earnings$tabulate("C-STAATS-0")
+earnings$recode$visible("C-STAATS-0", "STAATS-8", FALSE)
+earnings$tabulate("C-STAATS-0")
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -42,6 +46,7 @@ earnings$total_codes()
 \item \href{#method-label_measure}{\code{sc_recoder$label_measure()}}
 \item \href{#method-level}{\code{sc_recoder$level()}}
 \item \href{#method-total_codes}{\code{sc_recoder$total_codes()}}
+\item \href{#method-visible}{\code{sc_recoder$visible()}}
 }
 }
 \if{html}{\out{<hr>}}
@@ -143,6 +148,28 @@ Cheange the total code for a field
 
 \item{\code{new}}{a level code for the field or \code{NA}. Will be used as the
 new total code. In case of \code{NA}, the total code will be unset.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-visible"></a>}}
+\if{latex}{\out{\hypertarget{method-visible}{}}}
+\subsection{Method \code{visible()}}{
+set the visibility of a level. Invisible levels are
+ommited in the output of \verb{$tabulate()} but don't affect aggregation
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{sc_recoder$visible(field, level, new)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{field}}{a field code}
+
+\item{\code{level}}{a level code for the field}
+
+\item{\code{new}}{visibility. \code{TRUE} or \code{FALSE}}
 }
 \if{html}{\out{</div>}}
 }

@@ -33,6 +33,11 @@ sc_data_tabulate <- function(table, ..., .list = NULL, raw = FALSE, parse_time =
       rowsum(x[measures], group = grouping_var, reorder = FALSE)
     ) %>% sc_tibble()
   }
+  for (field_code in fields) {
+    visible <- table$field(field_code)$visible
+    if (!all(visible))
+      x <- x[as.integer(x[[field_code]]) %in% which(visible), ]
+  }
   if (!raw)
     x <- od_label_data(table, x, parse_time)
   x

@@ -31,6 +31,10 @@
 #'   total_codes("C-BESCHV-0", "BESCHV-1")
 #'
 #' earnings$total_codes()
+#'
+#' earnings$tabulate("C-STAATS-0")
+#' earnings$recode$visible("C-STAATS-0", "STAATS-8", FALSE)
+#' earnings$tabulate("C-STAATS-0")
 sc_recoder <- R6::R6Class(
   cloneable = FALSE,
   "sc_recoder",
@@ -81,6 +85,19 @@ sc_recoder <- R6::R6Class(
       i <- private$match_index(field, "fields")
       stopifnot(is.na(new) || new %in% private$x$p_fields[[i]]$code)
       private$x$p_meta$fields$total_code[i] <- new
+      invisible(self)
+    },
+    #' @description set the visibility of a level. Invisible levels are
+    #'   ommited in the output of `$tabulate()` but don't affect aggregation
+    #' @param field a field code
+    #' @param level a level code for the field
+    #' @param new visibility. `TRUE` or `FALSE`
+    visible = function(field, level, new) {
+      stopifnot(is.logical(new), length(new) > 0)
+      i <- private$match_index(field, "fields")
+      j <- match(level, private$x$p_fields[[i]]$code)
+      stopifnot(!is.na(j))
+      private$x$p_fields[[i]]$visible[j] <- new
       invisible(self)
     }
   ),
