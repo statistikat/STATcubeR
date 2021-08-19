@@ -34,9 +34,16 @@ sc_data_tabulate <- function(table, ..., .list = NULL, raw = FALSE, parse_time =
     ) %>% sc_tibble()
   }
   for (field_code in fields) {
-    visible <- table$field(field_code)$visible
+    field <- table$field(field_code)
+    visible <- field$visible
     if (!all(visible))
       x <- x[as.integer(x[[field_code]]) %in% which(visible), ]
+    order <- field$order
+    if (!identical(order, seq_len(nrow(field)))) {
+      x[[field_code]] <- order[x[[field_code]]]
+      levels(x[[field_code]]) <- field$code[order(order)]
+      class(x[[field_code]]) <- "factor"
+    }
   }
   if (!raw)
     x <- od_label_data(table, x, parse_time)

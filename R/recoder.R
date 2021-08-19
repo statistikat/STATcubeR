@@ -35,6 +35,9 @@
 #' earnings$tabulate("C-STAATS-0")
 #' earnings$recode$visible("C-STAATS-0", "STAATS-8", FALSE)
 #' earnings$tabulate("C-STAATS-0")
+#'
+#' earnings$recode$
+#'   order("C-A11-0", c("A11-3", "A11-1", "A11-2"))
 sc_recoder <- R6::R6Class(
   cloneable = FALSE,
   "sc_recoder",
@@ -98,6 +101,19 @@ sc_recoder <- R6::R6Class(
       j <- match(level, private$x$p_fields[[i]]$code)
       stopifnot(!is.na(j))
       private$x$p_fields[[i]]$visible[j] <- new
+      invisible(self)
+    },
+    #' @description set the order of levels.
+    #' @param field a field code
+    #' @param new the new order. A permutation of all level codes for the field.
+    #'   alternatively, an integer vector that defines the permutation.
+    order = function(field, new) {
+      i <- private$match_index(field, "fields")
+      if (is.character(new))
+        new <- match(private$x$p_fields[[i]]$code, new)
+      stopifnot(is.integer(new), !is.na(new),
+                sort(new) == seq_len(nrow(private$x$p_fields[[i]])))
+      private$x$p_fields[[i]]$order <- new
       invisible(self)
     }
   ),

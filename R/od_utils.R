@@ -78,16 +78,18 @@ od_create_data <- function(id, json = od_json(id), lang = c("en", "de"),
 }
 
 od_label_data <- function(table, x = table$data, parse_time = TRUE) {
-  for (i in which(table$meta$fields$code %in% names(x))) {
+  field_codes <- table$meta$fields$code
+  for (i in which(field_codes %in% names(x))) {
     field <- table$field(i)
-    code <- table$meta$fields$code[i]
+    code <- field_codes[i]
+    order <- field$order
     if (is.character(field$parsed))
-      levels(x[[code]]) <- field$parsed
+      levels(x[[code]]) <- field$parsed[order(order)]
     else {
       if (parse_time)
-        x[[code]] <- field$parsed[x[[code]]]
+        x[[code]] <- field$parsed[order(order)][x[[code]]]
       else
-        levels(x[[code]]) <- field$label
+        levels(x[[code]]) <- field$label[order(order)]
     }
   }
 

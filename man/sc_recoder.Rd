@@ -37,6 +37,9 @@ earnings$total_codes()
 earnings$tabulate("C-STAATS-0")
 earnings$recode$visible("C-STAATS-0", "STAATS-8", FALSE)
 earnings$tabulate("C-STAATS-0")
+
+earnings$recode$
+  order("C-A11-0", c("A11-3", "A11-1", "A11-2"))
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -47,6 +50,7 @@ earnings$tabulate("C-STAATS-0")
 \item \href{#method-level}{\code{sc_recoder$level()}}
 \item \href{#method-total_codes}{\code{sc_recoder$total_codes()}}
 \item \href{#method-visible}{\code{sc_recoder$visible()}}
+\item \href{#method-order}{\code{sc_recoder$order()}}
 }
 }
 \if{html}{\out{<hr>}}
@@ -170,6 +174,26 @@ ommited in the output of \verb{$tabulate()} but don't affect aggregation
 \item{\code{level}}{a level code for the field}
 
 \item{\code{new}}{visibility. \code{TRUE} or \code{FALSE}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-order"></a>}}
+\if{latex}{\out{\hypertarget{method-order}{}}}
+\subsection{Method \code{order()}}{
+set the order of levels.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{sc_recoder$order(field, new)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{field}}{a field code}
+
+\item{\code{new}}{the new order. A permutation of all level codes for the field.
+alternatively, an integer vector that defines the permutation.}
 }
 \if{html}{\out{</div>}}
 }

@@ -30,8 +30,10 @@ sc_data <- R6::R6Class(
       meta$fields <- sc_tibble_meta(meta$fields, "total_code")
       private$p_data <- sc_tibble(data)
       private$p_meta <- meta
-      for (i in seq_along(fields))
+      for (i in seq_along(fields)) {
         fields[[i]]$visible <- TRUE
+        fields[[i]]$order <- seq_len(nrow(fields[[i]]))
+      }
       private$p_fields <- fields
       private$version <- sc_version()
       private$recoder <- sc_recoder$new(private)
