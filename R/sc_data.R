@@ -92,6 +92,16 @@ sc_data <- R6::R6Class(
     data = function() {
       private$p_data
     },
+    #' @field language
+    #' language to be used for labeling. `"en"` or `"de"`
+    language = function(value) {
+      if (missing(value)) {
+        private$lang
+      } else {
+        match.arg(value, c("de", "en"))
+        private$lang <- value
+      }
+    },
     #' @field meta
     #' A list containing metadata about the dataset. It has at least the
     #' following entries
@@ -119,6 +129,7 @@ sc_data <- R6::R6Class(
     p_data = NULL,
     p_meta = NULL,
     p_fields = NULL,
-    recoder = NULL
+    recoder = NULL,
+    lang = NULL
   )
 )

@@ -45,6 +45,7 @@ sc_table_class <- R6::R6Class(
           sc_meta_field(content$fields[[i]])
         })
       )
+      private$lang <- response$headers$`content-language`
     },
     #' @description Update the data by re-sending the json to the API. This
     #'   is still experimental and could break the object in case new levels
