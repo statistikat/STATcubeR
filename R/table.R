@@ -38,11 +38,19 @@ sc_table_class <- R6::R6Class(
 
       meta <- sc_meta(content)
       meta$source$lang <- response$headers$`content-language`
+      meta$fields$label_de <- meta$fields$label
+      meta$fields$label_en <- meta$fields$label
+      meta$measures$label_de <- meta$measures$label
+      meta$measures$label_en <- meta$measures$label
+
       super$initialize(
         data = sc_table_create_data(content),
         meta = meta,
         field = lapply(seq_len(nrow(meta$fields)), function(i) {
-          sc_meta_field(content$fields[[i]])
+          field <- sc_meta_field(content$fields[[i]])
+          field$label_de <- field$label
+          field$label_en <- field$label
+          field
         })
       )
       private$lang <- response$headers$`content-language`
