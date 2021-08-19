@@ -38,6 +38,8 @@ sc_table_class <- R6::R6Class(
 
       meta <- sc_meta(content)
       meta$source$lang <- response$headers$`content-language`
+      meta$source$label_de <- meta$source$label
+      meta$source$label_en <- meta$source$label
       meta$fields$label_de <- meta$fields$label
       meta$fields$label_en <- meta$fields$label
       meta$measures$label_de <- meta$measures$label

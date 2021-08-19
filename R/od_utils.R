@@ -20,15 +20,6 @@ od_attr <- function(json) {
   data.frame(label = label, code = code, stringsAsFactors = FALSE)
 }
 
-od_get_labels <- function(x, lang = c("en", "de")) {
-  lang <- match.arg(lang)
-  if (lang == "de")
-    return(x$label_de)
-  out <- x$label_en
-  out[is.na(out) | out == ""] <- x$label_de[is.na(out) | out == ""]
-  out
-}
-
 od_create_data <- function(id, json = od_json(id), lang = c("en", "de"),
                            verbose = FALSE) {
   lang <- match.arg(lang)
