@@ -32,6 +32,7 @@ sc_data <- R6::R6Class(
       private$p_meta <- meta
       private$p_fields <- fields
       private$version <- sc_version()
+      private$recoder <- sc_recoder$new(private)
     },
     #' @description get information about a specific field. The format of
     #'   the reurn value is similar to `$meta`. A `data.frame` that includes
@@ -105,12 +106,19 @@ sc_data <- R6::R6Class(
     #'   the total codes. Derived classes might add additional columns
     meta = function() {
       private$p_meta
+    },
+    #' @field recode
+    #' An object of class [sc_recoder] that can be used to change labels
+    #'  and perform other recoding operations.
+    recode = function() {
+      private$recoder
     }
   ),
   private = list(
     version = NULL,
     p_data = NULL,
     p_meta = NULL,
-    p_fields = NULL
+    p_fields = NULL,
+    recoder = NULL
   )
 )

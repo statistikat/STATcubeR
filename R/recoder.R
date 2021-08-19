@@ -1,0 +1,82 @@
+#' @title Recode sc_table objects
+#' @description
+#' A collection of methods that can be used to modify an object of class
+#' sc_table by reference. Typical usage is to acces the `recode` binding
+#' of an `sc_table` object and then use method chaining to perform recode
+#' operations.
+#'
+#' ````
+#' x <- od_table("OGD_krebs_ext_KREBS_1")
+#' x$recode$
+#'   label_field("C-BERJ-0", "de", "JAHR")$
+#'   label_measure("F-KRE", "de", "Anzahl")
+#' ````
+#'
+#' See the example section for more details.
+#' @examples
+#' x <- od_table("OGD_krebs_ext_KREBS_1")
+#'
+#' x$recode$
+#'   label_field("C-KRE_GESCHLECHT-0", "en", "SEX")$
+#'   label_measure("F-KRE", "en", "NUMBER")$
+#'   level("C-KRE_GESCHLECHT-0", "GESCHLECHT-1", "en", "MALE")
+#'
+#' x$language <- "en"
+#' x$tabulate("C-KRE_GESCHLECHT-0", "F-KRE")
+sc_recoder <- R6::R6Class(
+  cloneable = FALSE,
+  "sc_recoder",
+  list(
+    #' @description
+    #' Create a new recoder instance. This will automatically
+    #'   be performed during the setup of `sc_data` objects
+    #' @param x the private environment of an `sc_data` object
+    initialize = function(x) {
+      stopifnot(is.environment(x))
+      private$x <- x
+    },
+    #' @description Change the label of a field variable
+    #' @param field a field code
+    #' @param language a language, "de" or "en"
+    #' @param new the new label
+    label_field = function(field, language, new) {
+      i <- private$match_index(field, "fields")
+      private$x$p_meta$fields[i, private$l(language)] <- new
+      invisible(self)
+    },
+    #' @description Change the label of a measure variable
+    #' @param measure a measure code
+    #' @param language a language "de" or "en"
+    #' @param new the new label
+    label_measure = function(measure, language, new) {
+      i <- private$match_index(measure, "measures")
+      private$x$p_meta$measures[i, private$l(language)] <- new
+      invisible(self)
+    },
+    #' @description Change the labels of a level
+    #' @param field a field code
+    #' @param level a level code for the field
+    #' @param language a language "de" or "en"
+    #' @param new the new label for the level
+    level = function(field, level, language, new) {
+      i <- private$match_index(field, "fields")
+      j <- match(level, private$x$p_fields[[i]]$code)
+      stopifnot(!is.na(j))
+      private$x$p_fields[[i]][j, private$l(language)] <- new
+      invisible(self)
+    }
+  ),
+  list(
+    x = NULL,
+    # convert language param into a column name
+    l = function(language) {
+      switch(language, de = "label_de", en = "label_en", stop("invalid language"))
+    },
+    match_index = function(code, type = c("measures", "fields")) {
+      type <- match.arg(type)
+      i <- match(code, private$x$p_meta[[type]]$code)
+      stopifnot(!is.na(i))
+      i
+    }
+  )
+)

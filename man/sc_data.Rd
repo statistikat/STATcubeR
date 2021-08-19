@@ -62,6 +62,9 @@ the number of \code{NAs}. Derived classes might add additional columns.
 dataset. It contains codes and labels for each measure as well as
 the total codes. Derived classes might add additional columns
 }}
+
+\item{\code{recode}}{An object of class \link{sc_recoder} that can be used to change labels
+and perform other recoding operations.}
 }
 \if{html}{\out{</div>}}
 }
