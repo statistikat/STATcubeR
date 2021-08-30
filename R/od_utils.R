@@ -87,7 +87,7 @@ od_label_data <- function(table, x = table$data, parse_time = TRUE, language = N
     code <- field_codes[i]
     order <- field$order
     if (is.character(field$parsed))
-      levels(x[[code]]) <- field$parsed[order(order)]
+      levels(x[[code]]) <- field[[column]][order(order)]
     else {
       if (parse_time)
         x[[code]] <- field$parsed[order(order)][x[[code]]]

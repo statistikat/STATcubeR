@@ -121,19 +121,23 @@ sc_tabulate <- function(table, ..., .list = NULL, raw = FALSE,
 ## implementation for class sc_table
 sc_table_tabulate <- function(table, ..., .list = NULL, parse_time = TRUE,
                         round = TRUE, recode_zeros = TRUE,
-                        annotations = FALSE, raw = FALSE) {
+                        annotations = FALSE, raw = FALSE, language = NULL) {
   ## use the generic implementation and apply some post-processing
   data <- sc_data_tabulate(table, ..., .list = .list, parse_time = parse_time,
-                           recode_zeros = recode_zeros, raw = raw)
+                           recode_zeros = recode_zeros, raw = raw, language = language)
 
   codes <- od_tabulate_handle_dots(table, ..., .list = .list)
   measures <- codes$measures
+
+  if (is.null(language))
+    language <- table$language
+  column <- paste0("label_", language)
 
   if (round)
     for (measure in measures) {
       meta_m <- table$meta$measures
       meta_m <- meta_m[meta_m$code == measure, ]
-      measure <- ifelse(raw, meta_m$code, meta_m$label)
+      measure <- ifelse(raw, meta_m$code, meta_m[[column]])
       data[[measure]] <- round(data[[measure]], meta_m$precision)
     }
   if (annotations) {
