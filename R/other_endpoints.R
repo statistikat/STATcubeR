@@ -13,7 +13,7 @@
 #' @name other_endpoints
 #' @rdname other_endpoints
 #' @inheritParams sc_key
-#' @inheritParams sc_table
+#' @inheritParams sc_schema
 #' @return
 #' * [sc_info()] returns information about all available database languages
 #' * [sc_rate_limit_table()] returns a `3x1` dataframe with the following columns
