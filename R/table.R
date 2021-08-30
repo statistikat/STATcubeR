@@ -155,7 +155,9 @@ sc_table_class <- R6::R6Class(
 #'   provides member functions to parse this response object. See
 #'   [sc_table_class] for the class documentation.
 #' @inheritParams sc_key
-#' @param language The language to be used for labeling. `"en"` or `"de"`
+#' @param language The language to be used for labeling. `"en"` or `"de"`.
+#'   The third option `"both"` will import both languages by sending two requests
+#'   to the `/table` endpoint.
 #' @family functions for /table
 #' @examples
 #' if (sc_key_exists()) {
@@ -196,10 +198,17 @@ sc_table_class <- R6::R6Class(
 #'
 #' }
 #' @export
-sc_table <- function(json_file, language = c("en", "de"), add_totals = TRUE,
+sc_table <- function(json_file, language = c("en", "de", "both"), add_totals = TRUE,
                      key = sc_key()) {
-  sc_table_json_post(readLines(json_file, warn = FALSE), language, add_totals, key) %>%
+  language <- match.arg(language)
+  both <- language == "both"
+  if (both)
+    language <- "de"
+  res <- sc_table_json_post(readLines(json_file, warn = FALSE), language, add_totals, key) %>%
     sc_table_class$new(file = json_file)
+  if (both)
+    res$add_language("en")
+  res
 }
 
 #' @export
