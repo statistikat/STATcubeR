@@ -83,6 +83,19 @@ sc_table_class <- R6::R6Class(
         "https://statcube.at/statcube/openinfopage?id=",
         self$meta$source$code
       ))
+    },
+    add_language = function(language = c("de", "en")) {
+      language <- match.arg(language)
+      response <- sc_table_json_post(self$json$content, language = language)
+      content <- httr::content(response)
+      column <- paste0("label_", language)
+      private$p_meta$source[[column]] <- content$database$label
+      private$p_meta$measures[[column]] <- sapply(content$measures, function(x) x$label)
+      private$p_meta$fields[[column]] <- sapply(content$fields, function(x) x$label)
+      for (i in seq_along(private$p_fields)) {
+        private$p_fields[[i]][[column]] <- sapply(
+          content$fields[[i]]$items, function(item) { item$labels[[1]] })
+      }
     }
   ),
   active = list(
