@@ -21,6 +21,8 @@
 #' @param .list allows to define the arguments for `...` as a character vector.
 #' @param raw If FALSE (the default), apply labeling to the dataset.
 #'   Otherwise, return codes.
+#' @param language The language to be used for labelling. By default, the
+#'   dataset language (`table$language`) is used.
 #' @details
 #' Aggregation is done as follows
 #'
@@ -110,9 +112,10 @@
 #' }
 #' @export
 sc_tabulate <- function(table, ..., .list = NULL, raw = FALSE,
-                        parse_time = TRUE, recode_zeros = inherits(table, "sc_table")) {
+                        parse_time = TRUE, recode_zeros = inherits(table, "sc_table"),
+                        language = NULL) {
   table$tabulate(..., .list = .list, raw = raw, parse_time = parse_time,
-                 recode_zeros = recode_zeros)
+                 recode_zeros = recode_zeros, language = language)
 }
 
 ## implementation for class sc_table

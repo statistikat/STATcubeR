@@ -1,5 +1,5 @@
 sc_data_tabulate <- function(table, ..., .list = NULL, raw = FALSE, parse_time = TRUE,
-                        recode_zeros = FALSE) {
+                        recode_zeros = FALSE, language = NULL) {
   stopifnot(inherits(table, "sc_data"))
   codes <- od_tabulate_handle_dots(table, ..., .list = .list)
   fields <- codes$fields
@@ -46,7 +46,7 @@ sc_data_tabulate <- function(table, ..., .list = NULL, raw = FALSE, parse_time =
     }
   }
   if (!raw)
-    x <- od_label_data(table, x, parse_time)
+    x <- od_label_data(table, x, parse_time, language)
   x
 }
 
