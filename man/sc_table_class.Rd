@@ -35,6 +35,7 @@ Uses the same format as \code{\link[=sc_rate_limit_table]{sc_rate_limit_table()}
 \item \href{#method-update}{\code{sc_table_class$update()}}
 \item \href{#method-tabulate}{\code{sc_table_class$tabulate()}}
 \item \href{#method-browse}{\code{sc_table_class$browse()}}
+\item \href{#method-add_language}{\code{sc_table_class$add_language()}}
 }
 }
 \if{html}{
@@ -117,5 +118,22 @@ open the dataset in a browser
 \if{html}{\out{<div class="r">}}\preformatted{sc_table_class$browse()}\if{html}{\out{</div>}}
 }
 
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-add_language"></a>}}
+\if{latex}{\out{\hypertarget{method-add_language}{}}}
+\subsection{Method \code{add_language()}}{
+add a second language to the dataset
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{sc_table_class$add_language(language = c("en", "de"))}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{language}}{a language to add. \code{"en"} or \code{"de"}.}
+}
+\if{html}{\out{</div>}}
+}
 }
 }

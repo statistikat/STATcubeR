@@ -84,7 +84,9 @@ sc_table_class <- R6::R6Class(
         self$meta$source$code
       ))
     },
-    add_language = function(language = c("de", "en")) {
+    #' @description add a second language to the dataset
+    #' @param language a language to add. `"en"` or `"de"`.
+    add_language = function(language = c("en", "de")) {
       language <- match.arg(language)
       response <- sc_table_json_post(self$json$content, language = language)
       content <- httr::content(response)
