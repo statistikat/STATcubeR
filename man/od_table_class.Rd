@@ -19,8 +19,6 @@ R6 Class open data datasets.
 
 Similar contents can be found in \verb{$meta}.}
 
-\item{\code{language}}{language to be used for labeling. \code{"en"} or \code{"de"}}
-
 \item{\code{resources}}{lists all files downloaded from the server to contruct this table}
 }
 \if{html}{\out{</div>}}

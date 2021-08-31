@@ -20,15 +20,6 @@ od_attr <- function(json) {
   data.frame(label = label, code = code, stringsAsFactors = FALSE)
 }
 
-od_get_labels <- function(x, lang = c("en", "de")) {
-  lang <- match.arg(lang)
-  if (lang == "de")
-    return(x$label_de)
-  out <- x$label_en
-  out[is.na(out) | out == ""] <- x$label_de[is.na(out) | out == ""]
-  out
-}
-
 od_create_data <- function(id, json = od_json(id), lang = c("en", "de"),
                            verbose = FALSE) {
   lang <- match.arg(lang)
@@ -50,13 +41,19 @@ od_create_data <- function(id, json = od_json(id), lang = c("en", "de"),
     if (verbose && length(udc) != nrow(fld))
       message("dropping unused levels in ", shQuote(code), ": ",
               paste(shQuote(setdiff(fld$code, udc)), collapse = ", "))
-    fld[fld$code %in% udc, ]
+    fld <- fld[fld$code %in% udc, ]
+    fld$label_en[is.na(fld$label_en)] <- fld$label_de[is.na(fld$label_en)]
+    fld
   })
 
   meta$measures$NAs <- sapply(dat[meta$measures$code], function(x) sum(is.na(x)))
   meta$fields$nitems <- sapply(fields, nrow)
   meta$fields$type <- sapply(fields, function(x) sc_field_type(x$code))
   meta$fields$total_code <- NA_character_
+  meta$fields$label_en[is.na(meta$fields$label_en)] <-
+    meta$fields$label_de[is.na(meta$fields$label_en)]
+  meta$measures$label_en[is.na(meta$measures$label_en)] <-
+    meta$measures$label_de[is.na(meta$measures$label_en)]
 
   for (i in seq_along(fields)) {
     fields[[i]]$parsed <- switch(
@@ -80,22 +77,27 @@ od_create_data <- function(id, json = od_json(id), lang = c("en", "de"),
        header = header)
 }
 
-od_label_data <- function(table, x = table$data, parse_time = TRUE) {
-  for (i in which(table$meta$fields$code %in% names(x))) {
+od_label_data <- function(table, x = table$data, parse_time = TRUE, language = NULL) {
+  if (is.null(language))
+    language <- table$language
+  column <- paste0("label_", language)
+  field_codes <- table$meta$fields$code
+  for (i in which(field_codes %in% names(x))) {
     field <- table$field(i)
-    code <- table$meta$fields$code[i]
+    code <- field_codes[i]
+    order <- field$order
     if (is.character(field$parsed))
-      levels(x[[code]]) <- field$parsed
+      levels(x[[code]]) <- field[[column]][order(order)]
     else {
       if (parse_time)
-        x[[code]] <- field$parsed[x[[code]]]
+        x[[code]] <- field$parsed[order(order)][x[[code]]]
       else
-        levels(x[[code]]) <- field$label
+        levels(x[[code]]) <- field[[column]][order(order)]
     }
   }
 
   idx <- match(names(x), c(table$meta$measures$code, table$meta$fields$code))
-  names(x) <- c(table$meta$measures$label, table$meta$fields$label)[idx]
+  names(x) <- c(table$meta$measures[[column]], table$meta$fields[[column]])[idx]
 
   x
 }

@@ -38,13 +38,24 @@ sc_table_class <- R6::R6Class(
 
       meta <- sc_meta(content)
       meta$source$lang <- response$headers$`content-language`
+      meta$source$label_de <- meta$source$label
+      meta$source$label_en <- meta$source$label
+      meta$fields$label_de <- meta$fields$label
+      meta$fields$label_en <- meta$fields$label
+      meta$measures$label_de <- meta$measures$label
+      meta$measures$label_en <- meta$measures$label
+
       super$initialize(
         data = sc_table_create_data(content),
         meta = meta,
         field = lapply(seq_len(nrow(meta$fields)), function(i) {
-          sc_meta_field(content$fields[[i]])
+          field <- sc_meta_field(content$fields[[i]])
+          field$label_de <- field$label
+          field$label_en <- field$label
+          field
         })
       )
+      private$lang <- response$headers$`content-language`
     },
     #' @description Update the data by re-sending the json to the API. This
     #'   is still experimental and could break the object in case new levels
@@ -72,6 +83,21 @@ sc_table_class <- R6::R6Class(
         "https://statcube.at/statcube/openinfopage?id=",
         self$meta$source$code
       ))
+    },
+    #' @description add a second language to the dataset
+    #' @param language a language to add. `"en"` or `"de"`.
+    add_language = function(language = c("en", "de")) {
+      language <- match.arg(language)
+      response <- sc_table_json_post(self$json$content, language = language)
+      content <- httr::content(response)
+      column <- paste0("label_", language)
+      private$p_meta$source[[column]] <- content$database$label
+      private$p_meta$measures[[column]] <- sapply(content$measures, function(x) x$label)
+      private$p_meta$fields[[column]] <- sapply(content$fields, function(x) x$label)
+      for (i in seq_along(private$p_fields)) {
+        private$p_fields[[i]][[column]] <- sapply(
+          content$fields[[i]]$items, function(item) { item$labels[[1]] })
+      }
     }
   ),
   active = list(
@@ -129,7 +155,9 @@ sc_table_class <- R6::R6Class(
 #'   provides member functions to parse this response object. See
 #'   [sc_table_class] for the class documentation.
 #' @inheritParams sc_key
-#' @param language The language to be used for labeling. `"en"` or `"de"`
+#' @param language The language to be used for labeling. `"en"` or `"de"`.
+#'   The third option `"both"` will import both languages by sending two requests
+#'   to the `/table` endpoint.
 #' @family functions for /table
 #' @examples
 #' if (sc_key_exists()) {
@@ -170,10 +198,17 @@ sc_table_class <- R6::R6Class(
 #'
 #' }
 #' @export
-sc_table <- function(json_file, language = c("en", "de"), add_totals = TRUE,
+sc_table <- function(json_file, language = c("en", "de", "both"), add_totals = TRUE,
                      key = sc_key()) {
-  sc_table_json_post(readLines(json_file, warn = FALSE), language, add_totals, key) %>%
+  language <- match.arg(language)
+  both <- language == "both"
+  if (both)
+    language <- "de"
+  res <- sc_table_json_post(readLines(json_file, warn = FALSE), language, add_totals, key) %>%
     sc_table_class$new(file = json_file)
+  if (both)
+    res$add_language("en")
+  res
 }
 
 #' @export

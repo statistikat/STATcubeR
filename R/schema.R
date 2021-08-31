@@ -8,6 +8,7 @@
 #' tree object.
 #' @inheritParams sc_key
 #' @inheritParams sc_table
+#' @param language The language to be used for labeling. `"en"` or `"de"`
 #' @param resource_id A resource identifier in uid format
 #' @param depth If provided, the request will recurse into the given level.
 #'   For datasets, available options are `NULL` (no recursion), `"folder"`,

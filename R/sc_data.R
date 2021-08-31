@@ -30,8 +30,13 @@ sc_data <- R6::R6Class(
       meta$fields <- sc_tibble_meta(meta$fields, "total_code")
       private$p_data <- sc_tibble(data)
       private$p_meta <- meta
+      for (i in seq_along(fields)) {
+        fields[[i]]$visible <- TRUE
+        fields[[i]]$order <- seq_len(nrow(fields[[i]]))
+      }
       private$p_fields <- fields
       private$version <- sc_version()
+      private$recoder <- sc_recoder$new(private)
     },
     #' @description get information about a specific field. The format of
     #'   the reurn value is similar to `$meta`. A `data.frame` that includes
@@ -47,7 +52,12 @@ sc_data <- R6::R6Class(
     field = function(i = 1) {
       if (!is.numeric(i))
         i <- od_match_codes(self$meta$fields, i)
-      sc_tibble_meta(private$p_fields[[i]], "parsed")
+      field <- private$p_fields[[i]]
+      field$label <- switch(self$language, en = field$label_en,
+                            de = field$label_de)
+      if (is.character(field$parsed))
+        field$parsed <- field$label
+      sc_tibble_meta(field, "parsed")
     },
     #' @description create a tidy dataset. See [sc_tabulate()] for details.
     #' @param ... arguments that are passed down to [sc_tabulate()]
@@ -91,6 +101,16 @@ sc_data <- R6::R6Class(
     data = function() {
       private$p_data
     },
+    #' @field language
+    #' language to be used for labeling. `"en"` or `"de"`
+    language = function(value) {
+      if (missing(value)) {
+        private$lang
+      } else {
+        match.arg(value, c("de", "en"))
+        private$lang <- value
+      }
+    },
     #' @field meta
     #' A list containing metadata about the dataset. It has at least the
     #' following entries
@@ -104,13 +124,28 @@ sc_data <- R6::R6Class(
     #'   dataset. It contains codes and labels for each measure as well as
     #'   the total codes. Derived classes might add additional columns
     meta = function() {
-      private$p_meta
+      meta <- private$p_meta
+      meta$source$label <- switch(private$lang, en = meta$source$label_en,
+                                  de = meta$source$label_de)
+      meta$measures$label <- switch(private$lang, en = meta$measures$label_en,
+                                    de = meta$measures$label_de)
+      meta$fields$label <- switch(private$lang, en = meta$fields$label_en,
+                                  de = meta$fields$label_de)
+      meta
+    },
+    #' @field recode
+    #' An object of class [sc_recoder] that can be used to change labels
+    #'  and perform other recoding operations.
+    recode = function() {
+      private$recoder
     }
   ),
   private = list(
     version = NULL,
     p_data = NULL,
     p_meta = NULL,
-    p_fields = NULL
+    p_fields = NULL,
+    recoder = NULL,
+    lang = NULL
   )
 )

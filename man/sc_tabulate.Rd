@@ -10,7 +10,8 @@ sc_tabulate(
   .list = NULL,
   raw = FALSE,
   parse_time = TRUE,
-  recode_zeros = inherits(table, "sc_table")
+  recode_zeros = inherits(table, "sc_table"),
+  language = NULL
 )
 }
 \arguments{
@@ -27,6 +28,9 @@ Otherwise, return codes.}
 Ignored if \code{raw} is set to \code{TRUE}.}
 
 \item{recode_zeros}{turn zero values into \code{NA}s}
+
+\item{language}{The language to be used for labelling. By default, the
+dataset language (\code{table$language}) is used.}
 }
 \description{
 \code{\link[=sc_tabulate]{sc_tabulate()}} extracts the data in the table and turns it into a tidy

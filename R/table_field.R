@@ -33,6 +33,8 @@ sc_field_type <- function(field) {
   )
   if ((time_type == "quarter") && all(substr(varcodes, 5, 5) %in% 5:6))
     time_type <- "half-year"
+  if ((time_type == "month") && any(as.numeric(substr(varcodes, 5, 6)) > 12))
+    time_type <- "week"
   paste0("Time (", time_type, ")")
 }
 
@@ -59,6 +61,14 @@ sc_field_parse_time_month <- function(remainder) {
   }
 }
 
+sc_field_parse_week <- function(year, week) {
+  ## Simplified version of ISOweek::ISOweek2date()
+  first_day <- as.Date(paste(year, 1, 1, sep = "-"), "%Y-%W-%w")
+  first_day2 <- as.numeric(substr(first_day, 9, 11))
+  first_day[first_day2 %in% 5:7] <- first_day[first_day2 %in% 5:7] - 7
+  first_day + 7*(as.numeric(week)-1)
+}
+
 sc_field_parse_time <- function(field) {
   if (is.character(field))
     varcodes <- sapply(field, function(x) utils::tail(strsplit(x, "-")[[1]], 1))
@@ -67,6 +77,8 @@ sc_field_parse_time <- function(field) {
   varcodes[varcodes == "SC_TOTAL"] <- NA
   year <- substr(varcodes, 1, 4)
   remainder <- substr(varcodes, 5, 8)
+  if (any(remainder > 12, na.rm = TRUE))
+    return(sc_field_parse_week(year, remainder))
   month <- sc_field_parse_time_month(remainder)
 
   parsed <- as.Date(rep(NA, length(varcodes)))

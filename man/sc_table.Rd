@@ -11,7 +11,7 @@
 \usage{
 sc_table(
   json_file,
-  language = c("en", "de"),
+  language = c("en", "de", "both"),
   add_totals = TRUE,
   key = sc_key()
 )
@@ -37,7 +37,9 @@ sc_table_saved(table_uri, language = c("en", "de"), key = sc_key())
 \item{json_file}{path to a json file, which was downloaded via the STATcube
 GUI ("Open Data API Abfrage")}
 
-\item{language}{The language to be used for labeling. \code{"en"} or \code{"de"}}
+\item{language}{The language to be used for labeling. \code{"en"} or \code{"de"}.
+The third option \code{"both"} will import both languages by sending two requests
+to the \verb{/table} endpoint.}
 
 \item{add_totals}{Should totals be added for each measure in the json
 request?}

@@ -50,6 +50,8 @@ earnings$tabulate("Sex", "Form of employment")
 \item{\code{data}}{the raw data. A data.frame that uses codes for all field variables and
 for all column names. To obtain labeled data, use \verb{$tabulate()}.}
 
+\item{\code{language}}{language to be used for labeling. \code{"en"} or \code{"de"}}
+
 \item{\code{meta}}{A list containing metadata about the dataset. It has at least the
 following entries
 \itemize{
@@ -62,6 +64,9 @@ the number of \code{NAs}. Derived classes might add additional columns.
 dataset. It contains codes and labels for each measure as well as
 the total codes. Derived classes might add additional columns
 }}
+
+\item{\code{recode}}{An object of class \link{sc_recoder} that can be used to change labels
+and perform other recoding operations.}
 }
 \if{html}{\out{</div>}}
 }
