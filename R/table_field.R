@@ -77,7 +77,7 @@ sc_field_parse_time <- function(field) {
   varcodes[varcodes == "SC_TOTAL"] <- NA
   year <- substr(varcodes, 1, 4)
   remainder <- substr(varcodes, 5, 8)
-  if (any(remainder > 12, na.rm = TRUE))
+  if (any(as.numeric(remainder) > 12, na.rm = TRUE))
     return(sc_field_parse_week(year, remainder))
   month <- sc_field_parse_time_month(remainder)
 
