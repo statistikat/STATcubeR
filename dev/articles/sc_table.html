@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="../deps/bs3compat-0.2.5.1/tabs.js"></script><script src="../deps/bs3compat-0.2.5.1/bs3compat.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="../deps/bs3compat-0.3.0/transition.js"></script><script src="../deps/bs3compat-0.3.0/tabs.js"></script><script src="../deps/bs3compat-0.3.0/bs3compat.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <link href="../syntax-highlighting.css" rel="stylesheet">
@@ -41,7 +41,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <button type="button" id="version-badge" class="badge badge-danger d-none d-lg-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="In-development version">0.2.4</button>
+    <button type="button" id="version-badge" class="badge badge-danger d-none d-lg-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="In-development version">0.2.8</button>
 
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto ml-3">
@@ -72,7 +72,7 @@
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control mr-sm-2" aria-label="Search" name="search-input" data-search-index="/dev/search.json" id="search-input" placeholder="Search..." autocomplete="off">
+        <input type="search" class="form-control mr-sm-2" aria-label="Search" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search..." autocomplete="off">
 </form>
 
       <ul class="navbar-nav ml-1">
@@ -98,7 +98,7 @@
 </div>
   </div>
 </nav><div class="container template-article">
-<script src="sc_table_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
+<script src="sc_table_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <img src="../package-logo.png" class="pkg-logo" alt=""><div class="page-header pb-2 mt-4 mb-2 border-bottom toc-ignore">
       <h1 class="display-4" data-toc-skip>Get Data via JSON Requests</h1>
@@ -148,16 +148,40 @@
 <code class="sourceCode R"><span class="va">my_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span>json_file <span class="op">=</span> <span class="st">"path/to/api_request.json"</span><span class="op">)</span></code></pre></div>
 <p>The object <code>my_table</code> is created via the raw API response from <code><a href="https://httr.r-lib.org/reference/POST.html" class="external-link">httr::POST()</a></code> against the <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint" class="external-link"><code>/table</code> endpoint</a>. Printing the object will summarize the request. We will demonstrate this with an example json via <code><a href="../reference/sc_table.html">sc_example()</a></code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="va">json_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"population_timeseries.json"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">my_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="va">json_path</span><span class="op">)</span>
+<code class="sourceCode R"><span class="op">(</span><span class="va">json_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"population_timeseries.json"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] "/data/home/decill/STATgraph/STATcubeR/inst/json_examples/population_timeseries.json"</code></pre>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">my_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="va">json_path</span><span class="op">)</span>
 <span class="va">my_table</span></code></pre></div>
+<pre><code>## An object of class sc_table
+## 
+## Database    Population at the beginning of the quarter since 2002 
+## Measures    Number of persons 
+## Fields      Quarter, Age in single years &lt;96&gt;, Sex &lt;2&gt;, Commune &lt;2383&gt; (Province-District) 
+## 
+## Request     2021-08-30 08:58:29 
+## STATcubeR   0.2.8</code></pre>
 </div>
 <div id="convert-the-response-into-a-data-frame" class="section level2">
 <h2 class="hasAnchor">
 <a href="#convert-the-response-into-a-data-frame" class="anchor" aria-hidden="true"></a>Convert the response into a data frame</h2>
 <p>The return value of <code><a href="../reference/sc_table.html">sc_table()</a></code> can be converted into a <code>data.frame</code>. To do that, use the <code>$tabulate()</code> method.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_table</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre class="r-output"><code><span style="color: #555555;"># A STATcubeR tibble: 8,316 x 5</span>
+   <span style="font-weight: bold;">Quarter</span>    <span style="font-weight: bold;">`Age in single years &lt;96&gt;`</span> <span style="font-weight: bold;">`Sex &lt;2&gt;`</span> <span style="font-weight: bold;">`Commune &lt;2383&gt; (Province-District)`</span> <span style="font-weight: bold;">`Number of persons`</span>
+ <span style="color: #555555;">*</span> <span style="color: #555555; font-style: italic;">&lt;date&gt;</span>     <span style="color: #555555; font-style: italic;">&lt;fct&gt;</span>                      <span style="color: #555555; font-style: italic;">&lt;fct&gt;</span>     <span style="color: #555555; font-style: italic;">&lt;fct&gt;</span>                                              <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>
+<span style="color: #555555;"> 1</span> 2002-01-01 Up to 14 years old         male      Burgenland &lt;AT11&gt;                                  <span style="text-decoration: underline;">21</span>287
+<span style="color: #555555;"> 2</span> 2002-01-01 Up to 14 years old         male      Carinthia &lt;AT21&gt;                                   <span style="text-decoration: underline;">47</span>230
+<span style="color: #555555;"> 3</span> 2002-01-01 Up to 14 years old         male      Vienna &lt;AT13&gt;                                     <span style="text-decoration: underline;">117</span>920
+<span style="color: #555555;"> 4</span> 2002-01-01 Up to 14 years old         male      Vorarlberg &lt;AT34&gt;                                  <span style="text-decoration: underline;">34</span>798
+<span style="color: #555555;"> 5</span> 2002-01-01 Up to 14 years old         male      Tyrol &lt;AT33&gt;                                       <span style="text-decoration: underline;">62</span>794
+<span style="color: #555555;"> 6</span> 2002-01-01 Up to 14 years old         male      Styria &lt;AT22&gt;                                      <span style="text-decoration: underline;">97</span>538
+<span style="color: #555555;"> 7</span> 2002-01-01 Up to 14 years old         male      Salzburg &lt;AT32&gt;                                    <span style="text-decoration: underline;">46</span>955
+<span style="color: #555555;"> 8</span> 2002-01-01 Up to 14 years old         male      Upper Austria &lt;AT31&gt;                              <span style="text-decoration: underline;">127</span>316
+<span style="color: #555555;"> 9</span> 2002-01-01 Up to 14 years old         male      Lower Austria &lt;AT12&gt;                              <span style="text-decoration: underline;">133</span>928
+<span style="color: #555555;">10</span> 2002-01-01 Up to 14 years old         female    Burgenland &lt;AT11&gt;                                  <span style="text-decoration: underline;">20</span>405
+<span style="color: #555555;"># … with 8,306 more rows</span></code></pre>
 <p>This will produce a tidy table, which contains a column for each field of the table. Furthermore, one column will be present for each measure.</p>
 </div>
 <div id="further-reading" class="section level2">

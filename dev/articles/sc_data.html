@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="../deps/bs3compat-0.2.5.1/tabs.js"></script><script src="../deps/bs3compat-0.2.5.1/bs3compat.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="../deps/bs3compat-0.3.0/transition.js"></script><script src="../deps/bs3compat-0.3.0/tabs.js"></script><script src="../deps/bs3compat-0.3.0/bs3compat.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <link href="../syntax-highlighting.css" rel="stylesheet">
@@ -39,7 +39,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <button type="button" id="version-badge" class="badge badge-danger d-none d-lg-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="In-development version">0.2.4</button>
+    <button type="button" id="version-badge" class="badge badge-danger d-none d-lg-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="In-development version">0.2.8</button>
 
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto ml-3">
@@ -70,7 +70,7 @@
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control mr-sm-2" aria-label="Search" name="search-input" data-search-index="/dev/search.json" id="search-input" placeholder="Search..." autocomplete="off">
+        <input type="search" class="form-control mr-sm-2" aria-label="Search" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search..." autocomplete="off">
 </form>
 
       <ul class="navbar-nav ml-1">
@@ -96,7 +96,7 @@
 </div>
   </div>
 </nav><div class="container template-article">
-<script src="sc_data_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
+<script src="sc_data_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <img src="../package-logo.png" class="pkg-logo" alt=""><div class="page-header pb-2 mt-4 mb-2 border-bottom toc-ignore">
       <h1 class="display-4" data-toc-skip>The STATcubeR Data Class</h1>
@@ -187,7 +187,7 @@
 <code class="sourceCode R"><span class="va">x</span><span class="op">$</span><span class="va">meta</span><span class="op">$</span><span class="va">source</span></code></pre></div>
 <pre class="r-output"><code><span style="color: #555555;"># STATcubeR metadata: 1 x 7</span>
   <span style="font-weight: bold;">code</span>                  <span style="font-weight: bold;">label</span>                                                                                 <span style="font-weight: bold;">lang</span> 
-  <span style="color: #555555; font-style: italic;">&lt;fct&gt;</span>                 <span style="color: #555555; font-style: italic;">&lt;fct&gt;</span>                                                                                 <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>
+  <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                                                                                 <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>
 <span style="color: #555555;">1</span> OGD_krebs_ext_KREBS_1 Cancer statistics by reporting year, province of residence and localisation of cancer en   
 <span style="color: #949494;"># … with 4 more columns: 'label_de', 'label_en', 'requested', 'scr_version'</span></code></pre>
 <p>On the bottom, we see that additional information about the source is available, namely <code>label_en</code>, <code>label_de</code>, etc. These metadata were added from the derived class <code>od_table</code> and are not part of the <code>sc_table</code> interface.</p>
@@ -241,22 +241,22 @@
 
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"Tumore"</span><span class="op">)</span></code></pre></div>
-<pre class="r-output"><code><span style="color: #555555;"># STATcubeR metadata: 94 x 5</span>
-  <span style="font-weight: bold;">code</span>              <span style="font-weight: bold;">label</span>                                             <span style="font-weight: bold;">parsed</span>                                          
-  <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                                             <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                                           
-<span style="color: #555555;">1</span> TUM_ICD10_3ST-C00 &lt;C00&gt; Bösartige Neubildung der Lippe              &lt;C00&gt; Bösartige Neubildung der Lippe            
-<span style="color: #555555;">2</span> TUM_ICD10_3ST-C01 &lt;C01&gt; Bösartige Neubildung des Zungengrundes      &lt;C01&gt; Bösartige Neubildung des Zungengrundes    
-<span style="color: #555555;">3</span> TUM_ICD10_3ST-C02 &lt;C02&gt; Bösartige Neubildung sonstiger und nicht n… &lt;C02&gt; Bösartige Neubildung sonstiger und nicht …
-<span style="color: #555555;">4</span> TUM_ICD10_3ST-C03 &lt;C03&gt; Bösartige Neubildung des Zahnfleisches      &lt;C03&gt; Bösartige Neubildung des Zahnfleisches    
-<span style="color: #555555;">5</span> TUM_ICD10_3ST-C04 &lt;C04&gt; Bösartige Neubildung des Mundbodens         &lt;C04&gt; Bösartige Neubildung des Mundbodens       
+<pre class="r-output"><code><span style="color: #555555;"># STATcubeR metadata: 94 x 7</span>
+  <span style="font-weight: bold;">code</span>              <span style="font-weight: bold;">label</span>                                              <span style="font-weight: bold;">parsed</span>                                           
+  <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                                              <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                                            
+<span style="color: #555555;">1</span> TUM_ICD10_3ST-C00 &lt;C00&gt; Bösartige Neubildung der Lippe               &lt;C00&gt; Bösartige Neubildung der Lippe             
+<span style="color: #555555;">2</span> TUM_ICD10_3ST-C01 &lt;C01&gt; Bösartige Neubildung des Zungengrundes       &lt;C01&gt; Bösartige Neubildung des Zungengrundes     
+<span style="color: #555555;">3</span> TUM_ICD10_3ST-C02 &lt;C02&gt; Bösartige Neubildung sonstiger und nicht nä… &lt;C02&gt; Bösartige Neubildung sonstiger und nicht n…
+<span style="color: #555555;">4</span> TUM_ICD10_3ST-C03 &lt;C03&gt; Bösartige Neubildung des Zahnfleisches       &lt;C03&gt; Bösartige Neubildung des Zahnfleisches     
+<span style="color: #555555;">5</span> TUM_ICD10_3ST-C04 &lt;C04&gt; Bösartige Neubildung des Mundbodens          &lt;C04&gt; Bösartige Neubildung des Mundbodens        
 <span style="color: #555555;"># … with 89 more rows</span>
-<span style="color: #949494;"># … with 2 more columns: 'label_de', 'label_en'</span></code></pre>
+<span style="color: #949494;"># … with 4 more columns: 'label_de', 'label_en', 'visible', 'order'</span></code></pre>
 </div>
 <div id="year" class="fade tab-pane" role="tabpanel"  aria-labelledby="year">
 
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"Reporting year"</span><span class="op">)</span></code></pre></div>
-<pre class="r-output"><code><span style="color: #555555;"># STATcubeR metadata: 36 x 5</span>
+<pre class="r-output"><code><span style="color: #555555;"># STATcubeR metadata: 36 x 7</span>
   <span style="font-weight: bold;">code</span>      <span style="font-weight: bold;">label</span> <span style="font-weight: bold;">parsed</span>    
   <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span> <span style="color: #555555; font-style: italic;">&lt;date&gt;</span>    
 <span style="color: #555555;">1</span> BERJ-1983 1983  1983-01-01
@@ -265,13 +265,13 @@
 <span style="color: #555555;">4</span> BERJ-1986 1986  1986-01-01
 <span style="color: #555555;">5</span> BERJ-1987 1987  1987-01-01
 <span style="color: #555555;"># … with 31 more rows</span>
-<span style="color: #949494;"># … with 2 more columns: 'label_de', 'label_en'</span></code></pre>
+<span style="color: #949494;"># … with 4 more columns: 'label_de', 'label_en', 'visible', 'order'</span></code></pre>
 </div>
 <div id="province" class="fade tab-pane" role="tabpanel"  aria-labelledby="province">
 
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"Province"</span><span class="op">)</span></code></pre></div>
-<pre class="r-output"><code><span style="color: #555555;"># STATcubeR metadata: 9 x 5</span>
+<pre class="r-output"><code><span style="color: #555555;"># STATcubeR metadata: 9 x 7</span>
   <span style="font-weight: bold;">code</span>         <span style="font-weight: bold;">label</span>           <span style="font-weight: bold;">parsed</span>         
   <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>          
 <span style="color: #555555;">1</span> BUNDESLAND-1 <span style="color: #555555;">"</span>Burgenland <span style="color: #555555;">"</span>   <span style="color: #555555;">"</span>Burgenland <span style="color: #555555;">"</span>  
@@ -283,18 +283,18 @@
 <span style="color: #555555;">7</span> BUNDESLAND-7 <span style="color: #555555;">"</span>Tyrol<span style="color: #555555;">"</span>         <span style="color: #555555;">"</span>Tyrol<span style="color: #555555;">"</span>        
 <span style="color: #555555;">8</span> BUNDESLAND-8 <span style="color: #555555;">"</span>Vorarlberg<span style="color: #555555;">"</span>    <span style="color: #555555;">"</span>Vorarlberg<span style="color: #555555;">"</span>   
 <span style="color: #555555;">9</span> BUNDESLAND-9 <span style="color: #555555;">"</span>Vienna<span style="color: #555555;">"</span>        <span style="color: #555555;">"</span>Vienna<span style="color: #555555;">"</span>       
-<span style="color: #949494;"># … with 2 more columns: 'label_de', 'label_en'</span></code></pre>
+<span style="color: #949494;"># … with 4 more columns: 'label_de', 'label_en', 'visible', 'order'</span></code></pre>
 </div>
 <div id="sex" class="fade tab-pane" role="tabpanel"  aria-labelledby="sex">
 
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"Sex"</span><span class="op">)</span></code></pre></div>
-<pre class="r-output"><code><span style="color: #555555;"># STATcubeR metadata: 2 x 5</span>
+<pre class="r-output"><code><span style="color: #555555;"># STATcubeR metadata: 2 x 7</span>
   <span style="font-weight: bold;">code</span>         <span style="font-weight: bold;">label</span>  <span style="font-weight: bold;">parsed</span>
   <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span> 
 <span style="color: #555555;">1</span> GESCHLECHT-1 male   male  
 <span style="color: #555555;">2</span> GESCHLECHT-2 female female
-<span style="color: #949494;"># … with 2 more columns: 'label_de', 'label_en'</span></code></pre>
+<span style="color: #949494;"># … with 4 more columns: 'label_de', 'label_en', 'visible', 'order'</span></code></pre>
 </div>
 </div>
 </div>
