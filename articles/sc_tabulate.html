@@ -4,7 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Learn how to turn sc_table objects into tidy data frames using the `tabulate()` method.
+">
 <title>Tabulating STATcubeR Datasets • STATcubeR</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -12,11 +14,12 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="../deps/bs3compat-0.3.0/transition.js"></script><script src="../deps/bs3compat-0.3.0/tabs.js"></script><script src="../deps/bs3compat-0.3.0/bs3compat.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<link href="../syntax-highlighting.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Tabulating STATcubeR Datasets">
 <meta property="og:description" content="Learn how to turn sc_table objects into tidy data frames using the `tabulate()` method.
@@ -27,114 +30,81 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">STATcubeR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3</span>
-      </span>
-    </div>
+<body data-spy="scroll" data-target="#toc" data-headroom>
+    
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
+      <nav class="navbar fixed-top navbar-default navbar-expand-lg bg-light"><div class="container">
+    <a class="navbar-brand mb-0 h1" href="../index.html">STATcubeR</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <button type="button" id="version-badge" class="badge badge-default d-none d-lg-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Released version">0.2.8</button>
+
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto ml-3">
+<li class="nav-item">
+  <a class="nav-link" href="../reference/">Reference</a>
 </li>
-<li>
-  <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/index.html">Show All Articles ...</a>
-    </li>
-    <li class="divider">
-    <li class="dropdown-header">STATcube REST API</li>
-    <li>
-      <a href="../articles/sc_key.html">All about the API Key</a>
-    </li>
-    <li>
-      <a href="../articles/sc_table.html">Get Data via JSON Requests</a>
-    </li>
-    <li>
-      <a href="../articles/sc_schema.html">Metadata with the /schema Endpoint</a>
-    </li>
-    <li class="divider">
-    <li class="dropdown-header">Open Goventment Data</li>
-    <li>
-      <a href="../articles/od_table.html">Getting Started with OGD Data</a>
-    </li>
-    <li>
-      <a href="../articles/od_list.html">Available Datasets</a>
-    </li>
-    <li class="divider">
-    <li class="dropdown-header">The STATcubeR Data Class</li>
-    <li>
-      <a href="../articles/sc_data.html">A Common Class for OGD and API Data</a>
-    </li>
-    <li>
-      <a href="../articles/sc_tabulate.html">Tabulation of Data</a>
-    </li>
-  </ul>
-</li>
-<li>
-  <a href="../news/index.html">News</a>
-</li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://data.statistik.gv.at">
-    <span class="fas fa-table fa-lg"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="https://www.statistik.at/web_de/services/statcube/index.html">
-    <span class="fas fa-cube fa-lg"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="https://github.com/statistikat/STATcubeR/">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul>
-</div>
-<!--/.nav-collapse -->
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/">Show All Articles ...</a>
+    <div class="dropdown-divider"></div>
+    <h6 class="dropdown-header" data-toc-skip>STATcube REST API</h6>
+    <a class="dropdown-item" href="../articles/sc_key.html">All about the API Key</a>
+    <a class="dropdown-item" href="../articles/sc_table.html">Get Data via JSON Requests</a>
+    <a class="dropdown-item" href="../articles/sc_schema.html">Metadata with the /schema Endpoint</a>
+    <div class="dropdown-divider"></div>
+    <h6 class="dropdown-header" data-toc-skip>Open Goventment Data</h6>
+    <a class="dropdown-item" href="../articles/od_table.html">Getting Started with OGD Data</a>
+    <a class="dropdown-item" href="../articles/od_list.html">Available Datasets</a>
+    <div class="dropdown-divider"></div>
+    <h6 class="dropdown-header" data-toc-skip>The STATcubeR Data Class</h6>
+    <a class="dropdown-item" href="../articles/sc_data.html">A Common Class for OGD and API Data</a>
+    <a class="dropdown-item" href="../articles/sc_tabulate.html">Tabulation of Data</a>
   </div>
-<!--/.container -->
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/">Changelog</a>
+</li>
+      </ul>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control mr-sm-2" aria-label="Search" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search..." autocomplete="off">
+</form>
+
+      <ul class="navbar-nav ml-1">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://data.statistik.gv.at">
+    <span class="fas fa fas fa-table fa-lg"></span>
+     
+  </a>
+</li>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/">
+    <span class="fas fa fas fa-cube fa-lg"></span>
+     
+  </a>
+</li>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/statistikat/STATcubeR/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
-<!--/.navbar -->
-
-      
-
-      </header><script src="sc_tabulate_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
+  </div>
+</nav><div class="container template-article">
+<script src="sc_tabulate_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Tabulating STATcubeR Datasets</h1>
+    <img src="../package-logo.png" class="pkg-logo" alt=""><div class="page-header pb-2 mt-4 mb-2 border-bottom toc-ignore">
+      <h1 class="display-4" data-toc-skip>Tabulating STATcubeR Datasets</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/statistikat/STATcubeR/blob/master/vignettes/sc_tabulate.Rmd"><code>vignettes/sc_tabulate.Rmd</code></a></small>
-      <div class="hidden name"><code>sc_tabulate.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/statistikat/STATcubeR/blob/master/vignettes/sc_tabulate.Rmd" class="external-link"><code>vignettes/sc_tabulate.Rmd</code></a></small>
+      <div class="d-none name"><code>sc_tabulate.Rmd</code></div>
 
     </div>
 
@@ -171,7 +141,7 @@
 <p>Notice that these tabulation methods can also be used with the STATcube REST API. This means that objects created by <code><a href="../reference/sc_table.html">sc_table()</a></code> also have a <code>$tabulate()</code> method.</p>
 <div id="tabulate" class="section level2">
 <h2 class="hasAnchor">
-<a href="#tabulate" class="anchor"></a>Tabulating Data</h2>
+<a href="#tabulate" class="anchor" aria-hidden="true"></a>Tabulating Data</h2>
 <p>Calling the <code>$tabulate()</code> method with no arguments produces a table with the same dimensions as <code>$data</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cancer</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -185,16 +155,16 @@
 <span style="color: #555555;">5</span> &lt;C00&gt; Bösartige Neubildung der Lippe 1983-01-01       <span style="color: #555555;">"</span>Lower Austria<span style="color: #555555;">"</span>         female                         2
 <span style="color: #555555;"># … with 45,054 more rows</span></code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/identical.html">identical</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">cancer</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">cancer</span><span class="op">$</span><span class="va">data</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">cancer</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">cancer</span><span class="op">$</span><span class="va">data</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<p>Instead of <code>cancer$tabulate(...)</code> it is also possible to use <code><a href="../reference/sc_tabulate.html">sc_tabulate(cancer, ...)</a></code>. All available parameters for the <code>$tabulate()</code> method are documented in <code><a href="../reference/sc_tabulate.html">?sc_tabulate</a></code>.</p>
+<p>Instead of <code>cancer$tabulate(...)</code> it is also possible to use <code>sc_tabulate(cancer, ...)</code>. All available parameters for the <code>$tabulate()</code> method are documented in <code><a href="../reference/sc_tabulate.html">?sc_tabulate</a></code>.</p>
 </div>
 <div id="aggregation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#aggregation" class="anchor"></a>Aggregation</h2>
+<a href="#aggregation" class="anchor" aria-hidden="true"></a>Aggregation</h2>
 <div id="aggregating-with-sums" class="section level3">
 <h3 class="hasAnchor">
-<a href="#aggregating-with-sums" class="anchor"></a>Aggregating with sums</h3>
+<a href="#aggregating-with-sums" class="anchor" aria-hidden="true"></a>Aggregating with sums</h3>
 <p>To get the number of cases by reporting year and sex, use the labels of those variables as arguments.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cancer</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"Reporting year"</span>, <span class="st">"Sex"</span><span class="op">)</span></code></pre></div>
@@ -210,7 +180,7 @@
 <p>If more than one measure is included in the dataset, all measures will be aggregated. <a href="../index.html" data-tippy-content="
   &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
   Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
-  " class="STATcubeR">STATcubeR</a> uses <code><a href="https://rdrr.io/r/base/rowsum.html">rowsum()</a></code> to ensure a good performance with big datasets. It is also possible to use partial matching or use codes.</p>
+  " class="STATcubeR">STATcubeR</a> uses <code><a href="https://rdrr.io/r/base/rowsum.html" class="external-link">rowsum()</a></code> to ensure a good performance with big datasets. It is also possible to use partial matching or use codes.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cancer</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"Reporting"</span>, <span class="st">"C-KRE"</span><span class="op">)</span></code></pre></div>
 <pre class="r-output"><code><span style="color: #555555;"># A STATcubeR tibble: 72 x 3</span>
@@ -225,25 +195,25 @@
 <p><a href="../index.html" data-tippy-content="
   &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
   Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
-  " class="STATcubeR">STATcubeR</a> will use <code><a href="https://rdrr.io/r/base/pmatch.html">pmatch()</a></code> to match the supplied strings with the metadata to identify the variables that should be used for aggregation.</p>
+  " class="STATcubeR">STATcubeR</a> will use <code><a href="https://rdrr.io/r/base/pmatch.html" class="external-link">pmatch()</a></code> to match the supplied strings with the metadata to identify the variables that should be used for aggregation.</p>
 </div>
 <div id="totals" class="section level3">
 <h3 class="hasAnchor">
-<a href="#totals" class="anchor"></a>Limitations of sums</h3>
-<p>In some cases, datasets cannot be aggregated using the <code><a href="https://rdrr.io/r/base/rowsum.html">rowsum()</a></code> approach. As an example, take the structure of earnings survey.</p>
+<a href="#totals" class="anchor" aria-hidden="true"></a>Limitations of sums</h3>
+<p>In some cases, datasets cannot be aggregated using the <code><a href="https://rdrr.io/r/base/rowsum.html" class="external-link">rowsum()</a></code> approach. As an example, take the structure of earnings survey.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">earnings</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/od_table.html">od_table</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span><span class="op">)</span>
 <span class="va">earnings</span></code></pre></div>
 <pre><code>## An object of class od_table
 ## 
-## Database:   Structure of Earnings Survey (SES) 2018 Gross hourly earnings in EUR by citizenship, region (NUTS 2) and
+## Dataset     Structure of Earnings Survey (SES) 2018 Gross hourly earnings in EUR by citizenship, region (NUTS 2) and
 ##             form of employment 
-## Measures:   Arithmetic mean, 1st quartile, 2nd quartile (median), 3rd quartile, Number of employees 
-## Fields:     Sex, Citizenship, Region (NUTS2), Form of employment 
+## Measures    Arithmetic mean, 1st quartile, 2nd quartile (median), 3rd quartile, Number of employees 
+## Fields      Sex, Citizenship, Region (NUTS2), Form of employment 
 ## 
-## Request:    2021-08-13 14:03:28 
-## STATcubeR:  0.2.2</code></pre>
-<p>As we can see from the <code><a href="https://rdrr.io/r/base/print.html">print()</a></code> output, the measures contain means and quartiles. Therefore, aggregating the data via <code><a href="https://rdrr.io/r/base/rowsum.html">rowsum()</a></code> is not meaningful. However, this dataset contains a “total code” for every field.</p>
+## Request     2021-09-17 15:37:38 
+## STATcubeR   0.2.8</code></pre>
+<p>As we can see from the <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> output, the measures contain means and quartiles. Therefore, aggregating the data via <code><a href="https://rdrr.io/r/base/rowsum.html" class="external-link">rowsum()</a></code> is not meaningful. However, this dataset contains a “total code” for every field.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre class="r-output"><code><span style="color: #555555;"># A STATcubeR tibble: 72 x 9</span>
@@ -263,7 +233,7 @@
 </div>
 <div id="aggregating-via-total-codes" class="section level3">
 <h3 class="hasAnchor">
-<a href="#aggregating-via-total-codes" class="anchor"></a>Aggregating via total codes</h3>
+<a href="#aggregating-via-total-codes" class="anchor" aria-hidden="true"></a>Aggregating via total codes</h3>
 <p>These total codes can be used to aggregate the data with <code>$tabulate()</code>. In order to do that, the total codes need to be specified using <code>$total_codes()</code>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">earnings</span><span class="op">$</span><span class="fu">total_codes</span><span class="op">(</span>Sex <span class="op">=</span> <span class="st">"Sum total"</span>, Citizenship <span class="op">=</span> <span class="st">"Total"</span>, 
@@ -280,12 +250,27 @@
 <span style="color: #555555;">4</span> <span style="color: #555555;">"</span>Non-standard employment: fixed-te…               17             10                13             19            <span style="text-decoration: underline;">125</span>491
 <span style="color: #555555;">5</span> <span style="color: #555555;">"</span>Non-standard employment: marginal…               12              9                10             12            <span style="text-decoration: underline;">141</span>213
 <span style="color: #555555;">6</span> <span style="color: #555555;">"</span>Non-standard employment: temporar…               14             12                14             16            <span style="text-decoration: underline;">100</span>435</code></pre>
-<p>As we can see, the method extracted rows 2 to 7 from the data. The logic for selecting those rows is equivalent to the following <a href="https://dplyr.tidyverse.org">dplyr</a> expression.</p>
+<p>As we can see, the method extracted rows 2 to 7 from the data. The logic for selecting those rows is equivalent to the following <a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a> expression.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">earnings</span><span class="op">$</span><span class="va">data</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Sex</span> <span class="op">==</span> <span class="st">"Sum total"</span> <span class="op">&amp;</span> <span class="va">Citizenship</span> <span class="op">==</span> <span class="st">"Total"</span> <span class="op">&amp;</span> 
-  <span class="va">`Region (NUTS2)`</span> <span class="op">==</span> <span class="st">"Total"</span> <span class="op">&amp;</span> <span class="va">`Form of employment`</span> <span class="op">!=</span> <span class="st">"Total"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">Sex</span>, <span class="op">-</span><span class="va">Citizenship</span>, <span class="op">-</span><span class="va">`Region (NUTS2)`</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">earnings</span><span class="op">$</span><span class="va">data</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Sex</span> <span class="op">==</span> <span class="st">"Sum total"</span> <span class="op">&amp;</span> <span class="va">Citizenship</span> <span class="op">==</span> <span class="st">"Total"</span> <span class="op">&amp;</span> 
+  <span class="va">`Region (NUTS2)`</span> <span class="op">==</span> <span class="st">"Total"</span> <span class="op">&amp;</span> <span class="va">`Form of employment`</span> <span class="op">!=</span> <span class="st">"Total"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">Sex</span>, <span class="op">-</span><span class="va">Citizenship</span>, <span class="op">-</span><span class="va">`Region (NUTS2)`</span><span class="op">)</span></code></pre></div>
 <p>The <code>$tabulate()</code> method also works with more than one variable.</p>
+<div id="section" class="section level4 tabset tabset-pills tabset-fade">
+<h4 class="tabset tabset-pills tabset-fade"></h4>
+
+
+
+
+<ul class="nav nav-pills nav-row" id="section" role="tablist">
+<li role="presentation" class="nav-item"><a data-toggle="tab" href="#sex-form-of-employment" role="tab" aria-controls="sex-form-of-employment" aria-selected="false" class="active nav-link">Sex &amp; Form of employment</a></li>
+<li role="presentation" class="nav-item"><a data-toggle="tab" href="#sex-citizenship" role="tab" aria-controls="sex-citizenship" aria-selected="false" class="nav-link">Sex &amp; Citizenship</a></li>
+<li role="presentation" class="nav-item"><a data-toggle="tab" href="#sex-region" role="tab" aria-controls="sex-region" aria-selected="false" class="nav-link">Sex &amp; Region</a></li>
+<li role="presentation" class="nav-item"><a data-toggle="tab" href="#citizenship-region" role="tab" aria-controls="citizenship-region" aria-selected="false" class="nav-link">Citizenship &amp; Region</a></li>
+</ul>
+<div class="tab-content">
+<div id="sex-form-of-employment" class="show active fade tab-pane" role="tabpanel"  aria-labelledby="sex-form-of-employment">
+
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"Sex"</span>, <span class="st">"Form of employment"</span><span class="op">)</span></code></pre></div>
 <pre class="r-output"><code><span style="color: #555555;"># A STATcubeR tibble: 12 x 7</span>
@@ -305,11 +290,71 @@
 <span style="color: #555555;">12</span> Female <span style="color: #555555;">"</span>Non-standard employment: temporary agenc…               13             10                   12             15
 <span style="color: #555555;"># … with 1 more variable: </span><span style="color: #555555; font-weight: bold;">Number of employees</span><span style="color: #555555;"> &lt;int&gt;</span></code></pre>
 </div>
+<div id="sex-citizenship" class="fade tab-pane" role="tabpanel"  aria-labelledby="sex-citizenship">
+
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"Sex"</span>, <span class="st">"Citizenship"</span><span class="op">)</span></code></pre></div>
+<pre class="r-output"><code><span style="color: #555555;"># A STATcubeR tibble: 16 x 7</span>
+   <span style="font-weight: bold;">Sex</span>    <span style="font-weight: bold;">Citizenship</span>                                <span style="font-weight: bold;">`Arithmetic mea…</span> <span style="font-weight: bold;">`1st quartile`</span> <span style="font-weight: bold;">`2nd quartile (medi…</span> <span style="font-weight: bold;">`3rd quartile`</span>
+ <span style="color: #555555;">*</span> <span style="color: #555555; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #555555; font-style: italic;">&lt;fct&gt;</span>                                                 <span style="color: #555555; font-style: italic;">&lt;int&gt;</span>          <span style="color: #555555; font-style: italic;">&lt;int&gt;</span>                <span style="color: #555555; font-style: italic;">&lt;int&gt;</span>          <span style="color: #555555; font-style: italic;">&lt;int&gt;</span>
+<span style="color: #555555;"> 1</span> Male   <span style="color: #555555;">"</span>Austrian<span style="color: #555555;">"</span>                                               20             14                   17             24
+<span style="color: #555555;"> 2</span> Male   <span style="color: #555555;">"</span>Non-Austrian <span style="color: #555555;">"</span>                                          15             11                   13             17
+<span style="color: #555555;"> 3</span> Male   <span style="color: #555555;">"</span>EU-28/EWR/Switzerland (without Austria)<span style="color: #555555;">"</span>                16             11                   14             17
+<span style="color: #555555;"> 4</span> Male   <span style="color: #555555;">"</span>EU-15/EWR before 2004/Switzerland<span style="color: #555555;">"</span>                      21             13                   17             24
+<span style="color: #555555;"> 5</span> Male   <span style="color: #555555;">"</span>EU-13 EU Member States after 2004<span style="color: #555555;">"</span>                      14             10                   13             15
+<span style="color: #555555;"> 6</span> Male   <span style="color: #555555;">"</span>Former Yugoslavia (without Slovenia and …               14             11                   14             16
+<span style="color: #555555;"> 7</span> Male   <span style="color: #555555;">"</span>Turkey<span style="color: #555555;">"</span>                                                 13             10                   13             15
+<span style="color: #555555;"> 8</span> Male   <span style="color: #555555;">"</span>Other<span style="color: #555555;">"</span>                                                  14              9                   11             15
+<span style="color: #555555;"> 9</span> Female <span style="color: #555555;">"</span>Austrian<span style="color: #555555;">"</span>                                               16             11                   14             18
+<span style="color: #555555;">10</span> Female <span style="color: #555555;">"</span>Non-Austrian <span style="color: #555555;">"</span>                                          13              9                   11             14
+<span style="color: #555555;">11</span> Female <span style="color: #555555;">"</span>EU-28/EWR/Switzerland (without Austria)<span style="color: #555555;">"</span>                14              9                   11             15
+<span style="color: #555555;">12</span> Female <span style="color: #555555;">"</span>EU-15/EWR before 2004/Switzerland<span style="color: #555555;">"</span>                      17             11                   15             20
+<span style="color: #555555;"># … with 4 more rows, and 1 more variable: </span><span style="color: #555555; font-weight: bold;">Number of employees</span><span style="color: #555555;"> &lt;int&gt;</span></code></pre>
+</div>
+<div id="sex-region" class="fade tab-pane" role="tabpanel"  aria-labelledby="sex-region">
+
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"Sex"</span>, <span class="st">"Region"</span><span class="op">)</span></code></pre></div>
+<pre class="r-output"><code><span style="color: #555555;"># A STATcubeR tibble: 18 x 7</span>
+   <span style="font-weight: bold;">Sex</span>    <span style="font-weight: bold;">`Region (NUTS2)`</span>   <span style="font-weight: bold;">`Arithmetic mean`</span> <span style="font-weight: bold;">`1st quartile`</span> <span style="font-weight: bold;">`2nd quartile (median)`</span> <span style="font-weight: bold;">`3rd quartile`</span> <span style="font-weight: bold;">`Number of employe…</span>
+ <span style="color: #555555;">*</span> <span style="color: #555555; font-style: italic;">&lt;fct&gt;</span>  <span style="color: #555555; font-style: italic;">&lt;fct&gt;</span>                          <span style="color: #555555; font-style: italic;">&lt;int&gt;</span>          <span style="color: #555555; font-style: italic;">&lt;int&gt;</span>                   <span style="color: #555555; font-style: italic;">&lt;int&gt;</span>          <span style="color: #555555; font-style: italic;">&lt;int&gt;</span>               <span style="color: #555555; font-style: italic;">&lt;int&gt;</span>
+<span style="color: #555555;"> 1</span> Male   AT11 Burgenland                   17             12                      14             18               <span style="text-decoration: underline;">35</span>941
+<span style="color: #555555;"> 2</span> Male   AT12 Lower Austria                18             12                      15             20              <span style="text-decoration: underline;">257</span>912
+<span style="color: #555555;"> 3</span> Male   AT13 Vienna                       21             12                      17             25              <span style="text-decoration: underline;">353</span>371
+<span style="color: #555555;"> 4</span> Male   AT21 Carinthia                    18             13                      16             21               <span style="text-decoration: underline;">79</span>189
+<span style="color: #555555;"> 5</span> Male   AT22 Styria                       18             13                      16             21              <span style="text-decoration: underline;">219</span>265
+<span style="color: #555555;"> 6</span> Male   AT31 Upper Austria                20             14                      17             23              <span style="text-decoration: underline;">295</span>783
+<span style="color: #555555;"> 7</span> Male   AT32 Salzburg                     19             13                      16             22              <span style="text-decoration: underline;">105</span>792
+<span style="color: #555555;"> 8</span> Male   AT33 Tyrol                        19             13                      16             21              <span style="text-decoration: underline;">128</span>282
+<span style="color: #555555;"> 9</span> Male   AT34 Vorarlberg                   20             15                      18             24               <span style="text-decoration: underline;">69</span>053
+<span style="color: #555555;">10</span> Female AT11 Burgenland                   15             10                      13             17               <span style="text-decoration: underline;">29</span>448
+<span style="color: #555555;">11</span> Female AT12 Lower Austria                14             10                      13             16              <span style="text-decoration: underline;">164</span>107
+<span style="color: #555555;">12</span> Female AT13 Vienna                       17             11                      15             20              <span style="text-decoration: underline;">280</span>267
+<span style="color: #555555;"># … with 6 more rows</span></code></pre>
+</div>
+<div id="citizenship-region" class="fade tab-pane" role="tabpanel"  aria-labelledby="citizenship-region">
+
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"Citizenship"</span>, <span class="st">"Region"</span><span class="op">)</span></code></pre></div>
+<pre class="r-output"><code><span style="color: #555555;"># A STATcubeR tibble: 0 x 7</span>
+<span style="color: #555555;"># … with 7 variables: </span><span style="color: #555555; font-weight: bold;">Citizenship</span><span style="color: #555555;"> &lt;fct&gt;, </span><span style="color: #555555; font-weight: bold;">Region (NUTS2)</span><span style="color: #555555;"> &lt;fct&gt;, </span><span style="color: #555555; font-weight: bold;">Arithmetic mean</span><span style="color: #555555;"> &lt;int&gt;, </span><span style="color: #555555; font-weight: bold;">1st quartile</span><span style="color: #555555;"> &lt;int&gt;,</span>
+<span style="color: #555555;">#   </span><span style="color: #555555; font-weight: bold;">2nd quartile (median)</span><span style="color: #555555;"> &lt;int&gt;, </span><span style="color: #555555; font-weight: bold;">3rd quartile</span><span style="color: #555555;"> &lt;int&gt;, </span><span style="color: #555555; font-weight: bold;">Number of employees</span><span style="color: #555555;"> &lt;int&gt;</span></code></pre>
+<p>We get an empty table because this cross tabulation is not included in the OGD dataset. The same will happen for Citizenship &amp; Form of employment as well as Region &amp; Form of employment.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"Citizenship"</span>, <span class="st">"Form of employment"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0 7</code></pre>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"Region"</span>, <span class="st">"Form of employment"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## [1] 0 7</code></pre>
+</div>
+</div>
+</div>
+</div>
 <div id="including-totals-in-the-oputput" class="section level3">
 <h3 class="hasAnchor">
-<a href="#including-totals-in-the-oputput" class="anchor"></a>Including totals in the oputput</h3>
+<a href="#including-totals-in-the-oputput" class="anchor" aria-hidden="true"></a>Including totals in the oputput</h3>
 <p>It is not necessary that all fields have totals. For example, suppose we want to include the totals for <code>Sex</code> in the output table. We can just remove the toal code before running <code><a href="../reference/sc_tabulate.html">sc_tabulate()</a></code>. The special symbol <code>NA</code> can be used to unset a total code.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">earnings</span><span class="op">$</span><span class="fu">total_codes</span><span class="op">(</span>Sex <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span>
 <span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"Sex"</span><span class="op">)</span></code></pre></div>
 <pre class="r-output"><code><span style="color: #555555;"># A STATcubeR tibble: 3 x 6</span>
@@ -322,9 +367,9 @@
 </div>
 <div id="german-labels-and-codes" class="section level2">
 <h2 class="hasAnchor">
-<a href="#german-labels-and-codes" class="anchor"></a>German Labels and Codes</h2>
+<a href="#german-labels-and-codes" class="anchor" aria-hidden="true"></a>German Labels and Codes</h2>
 <p>For OGD datasets, it is possible to switch the language used for labeling the data. This can be done by setting <code>$language</code> to <code>"de"</code> or <code>"en"</code>.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">earnings</span><span class="op">$</span><span class="va">language</span> <span class="op">&lt;-</span> <span class="st">"de"</span>
 <span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"Geschlecht"</span><span class="op">)</span></code></pre></div>
 <pre class="r-output"><code><span style="color: #555555;"># A STATcubeR tibble: 3 x 6</span>
@@ -334,7 +379,7 @@
 <span style="color: #555555;">2</span> männlich                        19           13                    16           22                         1<span style="text-decoration: underline;">544</span>588
 <span style="color: #555555;">3</span> weiblich                        15           10                    13           18                         1<span style="text-decoration: underline;">106</span>350</code></pre>
 <p>To skip labelling altogether and use variable codes in the output, use <code>raw=TRUE</code>.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"Geschlecht"</span>, raw <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre class="r-output"><code><span style="color: #555555;"># A STATcubeR tibble: 3 x 6</span>
   <span style="font-weight: bold;">`C-A11-0`</span> <span style="font-weight: bold;">`F-VESTE_AM`</span> <span style="font-weight: bold;">`F-VESTE_Q25`</span> <span style="font-weight: bold;">`F-VESTE_Q50`</span> <span style="font-weight: bold;">`F-VESTE_Q75`</span> <span style="font-weight: bold;">`F-VESTE_UB`</span>
@@ -342,13 +387,13 @@
 <span style="color: #555555;">1</span> A11-1               18            12            15            20      2<span style="text-decoration: underline;">650</span>938
 <span style="color: #555555;">2</span> A11-2               19            13            16            22      1<span style="text-decoration: underline;">544</span>588
 <span style="color: #555555;">3</span> A11-3               15            10            13            18      1<span style="text-decoration: underline;">106</span>350</code></pre>
-<p>Switching languages is currently only available for <code><a href="../reference/od_table.html">od_table()</a></code> objects. For <code><a href="../reference/sc_table.html">sc_table()</a></code> objects this would require more support for the <code><a href="../reference/sc_schema.html">sc_schema()</a></code> endpoint. See the <a href="https://github.com/statistikat/STATcubeR/labels/label">github issues</a> for some development goals regarding labeling.</p>
+<p>Switching languages is currently only available for <code><a href="../reference/od_table.html">od_table()</a></code> objects. For <code><a href="../reference/sc_table.html">sc_table()</a></code> objects this would require more support for the <code><a href="../reference/sc_schema.html">sc_schema()</a></code> endpoint. See the <a href="https://github.com/statistikat/STATcubeR/labels/label" class="external-link">github issues</a> for some development goals regarding labeling.</p>
 </div>
 <div id="subsetting-columns" class="section level2">
 <h2 class="hasAnchor">
-<a href="#subsetting-columns" class="anchor"></a>Subsetting columns</h2>
-<p>In the previous examples, we only supplied names ando/or codes of fields to <code><a href="../reference/sc_tabulate.html">sc_tabulate()</a></code>. It is also possible to include measures in which case the unlisted measures will be omitted.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<a href="#subsetting-columns" class="anchor" aria-hidden="true"></a>Subsetting columns</h2>
+<p>In the previous examples, we only supplied names and/or codes of fields to <code><a href="../reference/sc_tabulate.html">sc_tabulate()</a></code>. It is also possible to include measures in which case the unlisted measures will be omitted.</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"Geschlecht"</span>, <span class="st">"Arithmetisches Mittel"</span>, <span class="st">"2. Quartil"</span><span class="op">)</span></code></pre></div>
 <pre class="r-output"><code><span style="color: #555555;"># A STATcubeR tibble: 3 x 3</span>
   <span style="font-weight: bold;">Geschlecht</span> <span style="font-weight: bold;">`Arithmetisches Mittel`</span> <span style="font-weight: bold;">`2. Quartil (Median)`</span>
@@ -360,23 +405,23 @@
 </div>
 <div id="programmatic-usage" class="section level2">
 <h2 class="hasAnchor">
-<a href="#programmatic-usage" class="anchor"></a>Programmatic usage</h2>
-<p>Notice that we used the german label for the column <code>"Sex"</code> in the last calls to <code><a href="https://rdrr.io/r/base/tabulate.html">tabulate()</a></code>. This is necessary because only the “active” labels are available to define the tabulation. If you want to use <a href="../index.html" data-tippy-content="
+<a href="#programmatic-usage" class="anchor" aria-hidden="true"></a>Programmatic usage</h2>
+<p>Notice that we used the german label for the column <code>"Sex"</code> in the last calls to <code><a href="https://rdrr.io/r/base/tabulate.html" class="external-link">tabulate()</a></code>. This is necessary because only the “active” labels are available to define the tabulation. If you want to use <a href="../index.html" data-tippy-content="
   &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
   Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
   " class="STATcubeR">STATcubeR</a> programatically, always use codes to define the tabulation and also use the <code>.list</code> parameter if you want to pass several codes.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">earnings</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"C-A11-0"</span><span class="op">)</span></code></pre></div>
-<pre class="r-output"><code><span style="color: #555555;"># STATcubeR metadata: 3 x 5</span>
+<pre class="r-output"><code><span style="color: #555555;"># STATcubeR metadata: 3 x 7</span>
   <span style="font-weight: bold;">code</span>  <span style="font-weight: bold;">label</span>     <span style="font-weight: bold;">parsed</span>   
   <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span> <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>    
 <span style="color: #555555;">1</span> A11-1 insgesamt insgesamt
 <span style="color: #555555;">2</span> A11-2 männlich  männlich 
 <span style="color: #555555;">3</span> A11-3 weiblich  weiblich 
-<span style="color: #949494;"># … with 2 more columns: 'label_de', 'label_en'</span></code></pre>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<span style="color: #949494;"># … with 4 more columns: 'label_de', 'label_en', 'visible', 'order'</span></code></pre>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">earnings</span><span class="op">$</span><span class="fu">total_codes</span><span class="op">(</span>`C-A11-0` <span class="op">=</span> <span class="st">"A11-1"</span><span class="op">)</span>
-<span class="va">vars_to_tabulate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"C-A11-0"</span>, <span class="st">"C-BESCHV-0"</span><span class="op">)</span>
+<span class="va">vars_to_tabulate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"C-A11-0"</span>, <span class="st">"C-BESCHV-0"</span><span class="op">)</span>
 <span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span>.list <span class="op">=</span> <span class="va">vars_to_tabulate</span><span class="op">)</span></code></pre></div>
 <pre class="r-output"><code><span style="color: #555555;"># A STATcubeR tibble: 12 x 7</span>
   <span style="font-weight: bold;">Geschlecht</span> <span style="font-weight: bold;">`Form des Beschäftigungsverhä…</span> <span style="font-weight: bold;">`Arithmetisches…</span> <span style="font-weight: bold;">`1. Quartil`</span> <span style="font-weight: bold;">`2. Quartil (Me…</span> <span style="font-weight: bold;">`3. Quartil`</span> <span style="font-weight: bold;">`Zahl d unselbs…</span>
@@ -389,26 +434,29 @@
 <span style="color: #555555;">6</span> männlich   <span style="color: #555555;">"</span>Atypisch: Leih- und Zeitarbe…               14           12               14           16            <span style="text-decoration: underline;">75</span>880
 <span style="color: #555555;">7</span> weiblich   <span style="color: #555555;">"</span>Normalarbeitsverhältnis<span style="color: #555555;">"</span>                    16           11               14           19           <span style="text-decoration: underline;">459</span>949
 <span style="color: #555555;"># … with 5 more rows</span></code></pre>
-<p><code>$total_codes()</code> currently uses an ellipsis (<code>...</code>) parameter to define total codes. In the future, programmatic updates of <code>sc_data</code> objects should be defined in <code>$recodes</code>. See <a href="https://github.com/statistikat/STATcubeR/issues/17">#17</a>.</p>
+<p><code>$total_codes()</code> currently uses an ellipsis (<code>...</code>) parameter to define total codes. In the future, programmatic updates of <code>sc_data</code> objects should be defined in <code>$recodes</code>. See <a href="https://github.com/statistikat/STATcubeR/issues/17" class="external-link">#17</a>.</p>
 </div>
   </div>
+ <div class="col-md-3 d-none d-md-block" id="pkgdown-sidebar">
+        <div class="sticky-top">
+    <nav id="toc"><h2 data-toc-skip>Contents</h2>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
     </nav>
 </div>
+      </div>
 
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p>Developed by <a href="https://github.com/GregorDeCillia">Gregor de Cillia</a>, <a href="https://github.com/bernhard-da">Bernhard Meindl</a>.</p>
+      <footer><div class="pkgdown-footer-left">
+  <p></p>
+<p>Developed by <a href="https://github.com/GregorDeCillia" class="external-link external-link">Gregor de Cillia</a>.</p>
 </div>
 
-<div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+<div class="pkgdown-footer-right">
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
 </div>
 
       </footer>
@@ -416,6 +464,7 @@
 
   
 
+  
 
   </body>
 </html>

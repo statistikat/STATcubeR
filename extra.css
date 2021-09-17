@@ -4,7 +4,7 @@ h1, h2, h3, h4, h5{
   color: #293c55;
 }
 
-p>a, a{
+p>a, a, code a{
   color: #ab0813;
 }
 
@@ -14,6 +14,7 @@ body{
 
 code{
   font-family: 'Ubuntu Mono', monospace;
+  border-radius: 5px;
 }
 
 pre {
@@ -41,10 +42,45 @@ pre {
     border-width: 0 1px 4px 1px;
 }
 
-.st {
+span.st {
     color: #B03A5B;
 }
 
 a code {
   color: #ab0813
+}
+
+.pkg-logo{
+  display: none;
+}
+
+div.pb-2.mt-4.mb-2.border-bottom {
+    min-height: 0px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu {
+    width: max(100%, 25rem);
+}
+
+pre code {
+  word-wrap: normal;
+  white-space: pre;
+}
+
+.tabset-pills .tab-content {
+  border: 0px;
+  padding: 0px;
+  padding-top: 1rem;
+}
+
+.nav-pills .nav-link.active{
+  background-color: #ab0813;
+}
+
+li code, p code {
+  box-shadow: rgb(0 0 0 / 23%) 0 0px 1px 1px;
+}
+
+.navbar.navbar-default .navbar-nav .nav-link {
+  color: #f8f9fa;
 }
