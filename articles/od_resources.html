@@ -133,7 +133,7 @@ The open data portal provides datasets from Statistics Austria according to open
   " class="external-link STATcubeR">data.statistik.gv.at</a> in the temporary directory of the current R session.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/od_resource.html">od_cache_dir</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "/tmp/RtmpDy4tGn/STATcubeR/open_data/"</code></pre>
+<pre><code>## [1] "/tmp/RtmpUX0Nqp/STATcubeR/open_data/"</code></pre>
 <p>Let’s examine for example what happens when the data from the structure of earnings suvey (SES) is requested.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">earnings</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/od_table.html">od_table</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span><span class="op">)</span></code></pre></div>
@@ -143,13 +143,13 @@ The open data portal provides datasets from Statistics Austria according to open
 <pre class="r-output"><code><span style="color: #555555;"># A data frame: 7 × 6</span>
   <span style="font-weight: bold;">name</span>                                   <span style="font-weight: bold;">last_modified</span>       <span style="font-weight: bold;">cached</span>               <span style="font-weight: bold;">size</span> <span style="font-weight: bold;">download</span> <span style="font-weight: bold;">parsed</span>
   <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                                  <span style="color: #555555; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #555555; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>
-<span style="color: #555555;">1</span> OGD_veste309_Veste309_1.json           2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-17 <span style="color: #555555;">15:37:04</span>  <span style="text-decoration: underline;">4</span>071    47.2  <span style="color: #BB0000;">NA</span>    
-<span style="color: #555555;">2</span> OGD_veste309_Veste309_1.csv            2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-17 <span style="color: #555555;">15:37:04</span>  <span style="text-decoration: underline;">3</span>857     2.65  1.80 
-<span style="color: #555555;">3</span> OGD_veste309_Veste309_1_HEADER.csv     2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-17 <span style="color: #555555;">15:37:04</span>   516     1.48  9.48 
-<span style="color: #555555;">4</span> OGD_veste309_Veste309_1_C-A11-0.csv    2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-17 <span style="color: #555555;">15:37:04</span>   159     1.60  0.625
-<span style="color: #555555;">5</span> OGD_veste309_Veste309_1_C-STAATS-0.csv 2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-17 <span style="color: #555555;">15:37:04</span>   697     1.73  4.85 
-<span style="color: #555555;">6</span> OGD_veste309_Veste309_1_C-VEBDL-0.csv  2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-17 <span style="color: #555555;">15:37:04</span>   518     1.53  0.558
-<span style="color: #555555;">7</span> OGD_veste309_Veste309_1_C-BESCHV-0.csv 2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-17 <span style="color: #555555;">15:37:04</span>   641     1.52  0.584</code></pre>
+<span style="color: #555555;">1</span> OGD_veste309_Veste309_1.json           2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-22 <span style="color: #555555;">15:39:48</span>  <span style="text-decoration: underline;">4</span>071    46.0  <span style="color: #BB0000;">NA</span>    
+<span style="color: #555555;">2</span> OGD_veste309_Veste309_1.csv            2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-22 <span style="color: #555555;">15:39:48</span>  <span style="text-decoration: underline;">3</span>857     3.14  1.81 
+<span style="color: #555555;">3</span> OGD_veste309_Veste309_1_HEADER.csv     2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-22 <span style="color: #555555;">15:39:48</span>   516     2.10  9.18 
+<span style="color: #555555;">4</span> OGD_veste309_Veste309_1_C-A11-0.csv    2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-22 <span style="color: #555555;">15:39:48</span>   159     1.81  0.629
+<span style="color: #555555;">5</span> OGD_veste309_Veste309_1_C-STAATS-0.csv 2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-22 <span style="color: #555555;">15:39:48</span>   697     1.45  5.05 
+<span style="color: #555555;">6</span> OGD_veste309_Veste309_1_C-VEBDL-0.csv  2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-22 <span style="color: #555555;">15:39:48</span>   518     1.76  0.560
+<span style="color: #555555;">7</span> OGD_veste309_Veste309_1_C-BESCHV-0.csv 2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-22 <span style="color: #555555;">15:39:48</span>   641     1.67  0.598</code></pre>
 <p><code>last_modified</code> tells us when the resource was changed on the fileserver. If a resource does not exist in the cache or if the last modified entry in the json is newer than the cached file, it will be dowloaded from the server. Otherwise, the cached version is reused.</p>
 </div>
 <div id="access-and-updates" class="section level2">
@@ -158,10 +158,10 @@ The open data portal provides datasets from Statistics Austria according to open
 <p>Cached files can be acessed with <code><a href="../reference/od_resource.html">od_cache_file()</a></code>. If the specified file exists in the cache, a path to the file will be returned. Otherwise, the file is downloaded to the cache and then the path is returned. The files use the same naming conventions as the open data fileserver.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/od_resource.html">od_cache_file</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "/tmp/RtmpDy4tGn/STATcubeR/open_data/OGD_veste309_Veste309_1.csv"</code></pre>
+<pre><code>## [1] "/tmp/RtmpUX0Nqp/STATcubeR/open_data/OGD_veste309_Veste309_1.csv"</code></pre>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/od_resource.html">od_cache_file</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span>, <span class="st">"C-A11-0"</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "/tmp/RtmpDy4tGn/STATcubeR/open_data/OGD_veste309_Veste309_1_C-A11-0.csv"</code></pre>
+<pre><code>## [1] "/tmp/RtmpUX0Nqp/STATcubeR/open_data/OGD_veste309_Veste309_1_C-A11-0.csv"</code></pre>
 <p>To read files from the cache as <code>data.frame</code>s, use <code><a href="../reference/od_resource.html">od_resource()</a></code> with same parameters as in <code><a href="../reference/od_resource.html">od_cache_file()</a></code>. This will apply a special parser to the dataset which drops unneeded columns and normalizes column names.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/od_resource.html">od_resource</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span>, <span class="st">"C-A11-0"</span><span class="op">)</span></code></pre></div>
@@ -183,7 +183,7 @@ The open data portal provides datasets from Statistics Austria according to open
 <p><code>od_cache_clear(id)</code> can be used to clear the cache from all files belonging to the passed dataset id. We saw that <code>earnings$resources</code> contains 7 rows, therefore 7 files will be deleted during cleanup.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/od_resource.html">od_cache_clear</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span><span class="op">)</span></code></pre></div>
-<pre><code>## deleted 7 files from '/tmp/RtmpDy4tGn/STATcubeR/open_data/'</code></pre>
+<pre><code>## deleted 7 files from '/tmp/RtmpUX0Nqp/STATcubeR/open_data/'</code></pre>
 <p>If you want to use a persistent directory like <code>~/.cache/STATcubeR/open_data/</code> for caching, the directory can be changed with <code>od_cache_dir(new)</code>.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/od_resource.html">od_cache_dir</a></span><span class="op">(</span><span class="st">"~/.cache/STATcubeR/open_data/"</span><span class="op">)</span></code></pre></div>
@@ -197,13 +197,13 @@ The open data portal provides datasets from Statistics Austria according to open
 <pre class="r-output"><code><span style="color: #555555;"># A data frame: 7 × 6</span>
   <span style="font-weight: bold;">name</span>                                   <span style="font-weight: bold;">last_modified</span>       <span style="font-weight: bold;">cached</span>               <span style="font-weight: bold;">size</span> <span style="font-weight: bold;">download</span> <span style="font-weight: bold;">parsed</span>
   <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                                  <span style="color: #555555; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #555555; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>
-<span style="color: #555555;">1</span> OGD_veste309_Veste309_1.json           2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-17 <span style="color: #555555;">15:37:04</span>  <span style="text-decoration: underline;">4</span>071    47.2  <span style="color: #BB0000;">NA</span>    
-<span style="color: #555555;">2</span> OGD_veste309_Veste309_1.csv            2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-17 <span style="color: #555555;">15:37:04</span>  <span style="text-decoration: underline;">3</span>857     2.65  1.80 
-<span style="color: #555555;">3</span> OGD_veste309_Veste309_1_HEADER.csv     2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-17 <span style="color: #555555;">15:37:04</span>   516     1.48  9.48 
-<span style="color: #555555;">4</span> OGD_veste309_Veste309_1_C-A11-0.csv    2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-17 <span style="color: #555555;">15:37:04</span>   159     1.60  0.625
-<span style="color: #555555;">5</span> OGD_veste309_Veste309_1_C-STAATS-0.csv 2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-17 <span style="color: #555555;">15:37:04</span>   697     1.73  4.85 
-<span style="color: #555555;">6</span> OGD_veste309_Veste309_1_C-VEBDL-0.csv  2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-17 <span style="color: #555555;">15:37:04</span>   518     1.53  0.558
-<span style="color: #555555;">7</span> OGD_veste309_Veste309_1_C-BESCHV-0.csv 2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-17 <span style="color: #555555;">15:37:04</span>   641     1.52  0.584</code></pre>
+<span style="color: #555555;">1</span> OGD_veste309_Veste309_1.json           2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-22 <span style="color: #555555;">15:39:48</span>  <span style="text-decoration: underline;">4</span>071    46.0  <span style="color: #BB0000;">NA</span>    
+<span style="color: #555555;">2</span> OGD_veste309_Veste309_1.csv            2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-22 <span style="color: #555555;">15:39:48</span>  <span style="text-decoration: underline;">3</span>857     3.14  1.81 
+<span style="color: #555555;">3</span> OGD_veste309_Veste309_1_HEADER.csv     2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-22 <span style="color: #555555;">15:39:48</span>   516     2.10  9.18 
+<span style="color: #555555;">4</span> OGD_veste309_Veste309_1_C-A11-0.csv    2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-22 <span style="color: #555555;">15:39:48</span>   159     1.81  0.629
+<span style="color: #555555;">5</span> OGD_veste309_Veste309_1_C-STAATS-0.csv 2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-22 <span style="color: #555555;">15:39:48</span>   697     1.45  5.05 
+<span style="color: #555555;">6</span> OGD_veste309_Veste309_1_C-VEBDL-0.csv  2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-22 <span style="color: #555555;">15:39:48</span>   518     1.76  0.560
+<span style="color: #555555;">7</span> OGD_veste309_Veste309_1_C-BESCHV-0.csv 2021-03-24 <span style="color: #555555;">11:32:41</span> 2021-09-22 <span style="color: #555555;">15:39:48</span>   641     1.67  0.598</code></pre>
 <p>We already looked at <strong><code>name</code></strong> and <strong><code>last_modified</code></strong>. The remaining columns can be interpreted as follows</p>
 <ul>
 <li>
@@ -239,7 +239,7 @@ The open data portal provides datasets from Statistics Austria according to open
 <span style="color: #555555;"> 4</span> OGD_bevstandjbab2002_BevStand_2008         2021-08-26 <span style="color: #555555;">16:29:35</span>  <span style="text-decoration: underline;">3</span>929 17<span style="text-decoration: underline;">779</span>213    303 <span style="text-decoration: underline;">102</span>908        4
 <span style="color: #555555;"> 5</span> OGD_bevstandjbab2002_BevStand_2012         2021-08-13 <span style="color: #555555;">19:04:33</span>  <span style="text-decoration: underline;">3</span>929 17<span style="text-decoration: underline;">934</span>370    303 <span style="text-decoration: underline;">102</span>908        4
 <span style="color: #555555;"> 6</span> OGD_bevstandjbab2002_BevStand_2015         2021-08-13 <span style="color: #555555;">19:04:45</span>  <span style="text-decoration: underline;">3</span>929 18<span style="text-decoration: underline;">048</span>955    303 <span style="text-decoration: underline;">102</span>908        4
-<span style="color: #555555;"> 7</span> OGD_bevstandjbab2002_BevStand_2020         2021-09-17 <span style="color: #555555;">15:02:27</span>  <span style="text-decoration: underline;">3</span>930 18<span style="text-decoration: underline;">226</span>893    303 <span style="text-decoration: underline;">102</span>908        4
+<span style="color: #555555;"> 7</span> OGD_bevstandjbab2002_BevStand_2020         2021-09-22 <span style="color: #555555;">15:39:42</span>  <span style="text-decoration: underline;">3</span>930 18<span style="text-decoration: underline;">226</span>893    303 <span style="text-decoration: underline;">102</span>908        4
 <span style="color: #555555;"> 8</span> OGD_bevwan020_AUSSENWAND_100               2021-09-08 <span style="color: #555555;">11:16:25</span>  <span style="text-decoration: underline;">3</span>756 10<span style="text-decoration: underline;">227</span>834    441  <span style="text-decoration: underline;">15</span>324        4
 <span style="color: #555555;"> 9</span> OGD_bevwan020_AUSSENWAND_201               2021-08-19 <span style="color: #555555;">17:48:26</span>  <span style="text-decoration: underline;">3</span>876 29<span style="text-decoration: underline;">505</span>360    544  <span style="text-decoration: underline;">99</span>475        4
 <span style="color: #555555;">10</span> OGD_bevwan020_AUSSENWAND_300               2021-08-13 <span style="color: #555555;">18:59:27</span>  <span style="text-decoration: underline;">3</span>903  3<span style="text-decoration: underline;">725</span>683    483  <span style="text-decoration: underline;">10</span>733        4
@@ -255,13 +255,13 @@ The open data portal provides datasets from Statistics Austria according to open
 <pre class="r-output"><code><span style="color: #555555;"># A data frame: 7 × 3</span>
   <span style="font-weight: bold;">time</span>                <span style="font-weight: bold;">file</span>                                   <span style="font-weight: bold;">downloaded</span>
 <span style="color: #555555;">*</span> <span style="color: #555555; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                                       <span style="color: #555555; font-style: italic;">&lt;dbl&gt;</span>
-<span style="color: #555555;">1</span> 2021-09-17 <span style="color: #555555;">15:37:04</span> OGD_veste309_Veste309_1_C-BESCHV-0.csv       1.52
-<span style="color: #555555;">2</span> 2021-09-17 <span style="color: #555555;">15:37:04</span> OGD_veste309_Veste309_1_C-VEBDL-0.csv        1.53
-<span style="color: #555555;">3</span> 2021-09-17 <span style="color: #555555;">15:37:04</span> OGD_veste309_Veste309_1_C-STAATS-0.csv       1.73
-<span style="color: #555555;">4</span> 2021-09-17 <span style="color: #555555;">15:37:04</span> OGD_veste309_Veste309_1_C-A11-0.csv          1.60
-<span style="color: #555555;">5</span> 2021-09-17 <span style="color: #555555;">15:37:04</span> OGD_veste309_Veste309_1_HEADER.csv           1.48
-<span style="color: #555555;">6</span> 2021-09-17 <span style="color: #555555;">15:37:04</span> OGD_veste309_Veste309_1.csv                  2.65
-<span style="color: #555555;">7</span> 2021-09-17 <span style="color: #555555;">15:37:04</span> OGD_veste309_Veste309_1.json                47.2 </code></pre>
+<span style="color: #555555;">1</span> 2021-09-22 <span style="color: #555555;">15:39:48</span> OGD_veste309_Veste309_1_C-BESCHV-0.csv       1.67
+<span style="color: #555555;">2</span> 2021-09-22 <span style="color: #555555;">15:39:48</span> OGD_veste309_Veste309_1_C-VEBDL-0.csv        1.76
+<span style="color: #555555;">3</span> 2021-09-22 <span style="color: #555555;">15:39:48</span> OGD_veste309_Veste309_1_C-STAATS-0.csv       1.45
+<span style="color: #555555;">4</span> 2021-09-22 <span style="color: #555555;">15:39:48</span> OGD_veste309_Veste309_1_C-A11-0.csv          1.81
+<span style="color: #555555;">5</span> 2021-09-22 <span style="color: #555555;">15:39:48</span> OGD_veste309_Veste309_1_HEADER.csv           2.10
+<span style="color: #555555;">6</span> 2021-09-22 <span style="color: #555555;">15:39:48</span> OGD_veste309_Veste309_1.csv                  3.14
+<span style="color: #555555;">7</span> 2021-09-22 <span style="color: #555555;">15:39:48</span> OGD_veste309_Veste309_1.json                46.0 </code></pre>
 </div>
   </div>
  <div class="col-md-3 d-none d-md-block" id="pkgdown-sidebar">
