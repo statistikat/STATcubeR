@@ -45,15 +45,20 @@ sc_table_class <- R6::R6Class(
       meta$measures$label_de <- meta$measures$label
       meta$measures$label_en <- meta$measures$label
 
+      data <- sc_table_create_data(content)
+      meta_fields <- lapply(seq_len(nrow(meta$fields)), function(i) {
+        field <- sc_meta_field(content$fields[[i]])
+        field$label_de <- field$label
+        field$label_en <- field$label
+        field
+      })
+      if (!all(meta$fields$type == "Category"))
+        data <- sc_table_modify_totals(data, meta, meta_fields)
+
       super$initialize(
-        data = sc_table_create_data(content),
+        data = data,
         meta = meta,
-        field = lapply(seq_len(nrow(meta$fields)), function(i) {
-          field <- sc_meta_field(content$fields[[i]])
-          field$label_de <- field$label
-          field$label_en <- field$label
-          field
-        })
+        field = meta_fields
       )
       private$lang <- response$headers$`content-language`
     },

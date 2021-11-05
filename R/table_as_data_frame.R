@@ -59,3 +59,16 @@ sc_table_create_data <- function(content) {
 as.data.frame.sc_table <- function(x, ...) {
   sc_tabulate(x)
 }
+
+sc_table_modify_totals <- function(data, meta, meta_fields) {
+  ind <- which(meta$fields$type != "Category")
+  for (i in ind) {
+    mf <- meta_fields[[i]]
+    ind_total <- which(mf$code == "SC_TOTAL")
+    ind_latest <- which(mf$parsed == max(mf$parsed, na.rm = TRUE))
+    numeric_columns <- seq(length(meta_fields) + 1, ncol(data))
+    data[as.numeric(data[[i]]) == ind_total, numeric_columns] <-
+      data[as.numeric(data[[i]]) == ind_latest, numeric_columns]
+  }
+  data
+}
