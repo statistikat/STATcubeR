@@ -1,18 +1,26 @@
 sc_data_tabulate <- function(table, ..., .list = NULL, raw = FALSE, parse_time = TRUE,
                         recode_zeros = FALSE, language = NULL) {
+  # coerce arguments
   stopifnot(inherits(table, "sc_data"))
   codes <- od_tabulate_handle_dots(table, ..., .list = .list)
+  # extract data
   fields <- codes$fields
   measures <- codes$measures
   mf <- table$meta$fields
   x <- table$data
-  x <- x[, setdiff(names(x), setdiff(table$meta$measures$code, measures))]
-  fields_to_aggregate <- setdiff(mf$code, fields)
-  has_total <- mf$code[!is.na(mf$total_code)]
-  x <- x[, setdiff(names(x), setdiff(fields_to_aggregate, has_total))]
+  unused_measures <- setdiff(table$meta$measures$code, measures)
+  x <- x[, setdiff(names(x), unused_measures)]
   if (recode_zeros)
     x[measures][0 == x[measures]] <- NA
+  # define aggregation modes
+  fields_to_aggregate <- setdiff(mf$code, fields)
+  has_total <- mf$code[!is.na(mf$total_code)]
+  is_time <- mf$code[mf$type != "Category" & is.na(mf$total_code)]
   aggregate_via_total <- intersect(fields_to_aggregate, has_total)
+  aggregate_via_sum <- setdiff(fields_to_aggregate, aggregate_via_total)
+  aggregate_via_max_time <- intersect(aggregate_via_sum, is_time)
+  aggregate_via_sum <- setdiff(aggregate_via_sum, aggregate_via_max_time)
+  # apply aggregation
   for (field_code in aggregate_via_total) {
     i <- match(field_code, mf$code)
     x <- x[x[[field_code]] == mf$total_code[i], ]
@@ -25,7 +33,14 @@ sc_data_tabulate <- function(table, ..., .list = NULL, raw = FALSE, parse_time =
     x <- x[x[[field_code]] != mf$total_code[i], ]
   }
 
-  aggregate_via_sum <- setdiff(fields_to_aggregate, aggregate_via_total)
+  for (field_code in aggregate_via_max_time) {
+    field <- table$field(field_code)
+    max_time <- max(field$parsed[field$visible])
+    max_time_code <- which(field$parsed == max_time)
+    x <- x[as.numeric(x[[field_code]]) == max_time_code, ]
+  }
+
+  x <- x[, setdiff(names(x), setdiff(fields_to_aggregate, has_total))]
   if (length(aggregate_via_sum) > 0) {
     grouping_var <- do.call(paste, x[fields])
     x <- cbind(
@@ -33,6 +48,7 @@ sc_data_tabulate <- function(table, ..., .list = NULL, raw = FALSE, parse_time =
       rowsum(x[measures], group = grouping_var, reorder = FALSE)
     ) %>% sc_tibble()
   }
+  # post process aggregated data
   for (field_code in fields) {
     field <- table$field(field_code)
     visible <- field$visible
