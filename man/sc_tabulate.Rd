@@ -11,7 +11,8 @@ sc_tabulate(
   raw = FALSE,
   parse_time = TRUE,
   recode_zeros = inherits(table, "sc_table"),
-  language = NULL
+  language = NULL,
+  sort = FALSE
 )
 }
 \arguments{
@@ -31,6 +32,9 @@ Ignored if \code{raw} is set to \code{TRUE}.}
 
 \item{language}{The language to be used for labelling. By default, the
 dataset language (\code{table$language}) is used.}
+
+\item{sort}{If \code{TRUE}, the resulting data will be sorted by all provided
+field values}
 }
 \description{
 \code{\link[=sc_tabulate]{sc_tabulate()}} extracts the data in the table and turns it into a tidy

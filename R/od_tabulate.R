@@ -1,5 +1,5 @@
 sc_data_tabulate <- function(table, ..., .list = NULL, raw = FALSE, parse_time = TRUE,
-                        recode_zeros = FALSE, language = NULL) {
+                        recode_zeros = FALSE, language = NULL, sort = FALSE) {
   # coerce arguments
   stopifnot(inherits(table, "sc_data"))
   codes <- od_tabulate_handle_dots(table, ..., .list = .list)
@@ -61,6 +61,8 @@ sc_data_tabulate <- function(table, ..., .list = NULL, raw = FALSE, parse_time =
       class(x[[field_code]]) <- "factor"
     }
   }
+  if (sort)
+    x <- x[do.call(base::order, x[fields]), ]
   if (!raw)
     x <- od_label_data(table, x, parse_time, language)
   x
