@@ -55,7 +55,8 @@ sc_meta_field <- function(field) {
   res <- lapply(field$items, function(item) {
     data.frame(
       label = item$labels[[1]],
-      code = get_var_code(item$uris[[1]])
+      code = get_var_code(item$uris[[1]]),
+      stringsAsFactors = FALSE
     )
   }) %>% do.call(rbind, .)
   res$parsed <- sc_field_parse(field)

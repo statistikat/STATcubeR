@@ -28,7 +28,8 @@ od_create_data <- function(id, json = od_json(id), lang = c("en", "de"),
   header <- resources$data[[2]]
   meta <- list(
     source = data.frame(code = id, label = NA, label_de = json$title,
-                        label_en = json$extras$en_title_and_desc),
+                        label_en = json$extras$en_title_and_desc,
+                        stringsAsFactors = FALSE),
     measures = header[substr(header$code, 1, 1) == "F", ],
     fields   = header[substr(header$code, 1, 1) == "C", ]
   )
