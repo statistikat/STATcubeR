@@ -23,6 +23,8 @@
 #'   Otherwise, return codes.
 #' @param language The language to be used for labelling. By default, the
 #'   dataset language (`table$language`) is used.
+#' @param sort If `TRUE`, the resulting data will be sorted by all provided
+#'   field values
 #' @details
 #' Aggregation is done as follows
 #'
@@ -113,9 +115,9 @@
 #' @export
 sc_tabulate <- function(table, ..., .list = NULL, raw = FALSE,
                         parse_time = TRUE, recode_zeros = inherits(table, "sc_table"),
-                        language = NULL) {
+                        language = NULL, sort = FALSE) {
   table$tabulate(..., .list = .list, raw = raw, parse_time = parse_time,
-                 recode_zeros = recode_zeros, language = language)
+                 recode_zeros = recode_zeros, language = language, sort = FALSE)
 }
 
 ## implementation for class sc_table
