@@ -125,13 +125,15 @@ open the dataset in a browser
 \subsection{Method \code{add_language()}}{
 add a second language to the dataset
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{sc_table_class$add_language(language = c("en", "de"))}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{sc_table_class$add_language(language = c("en", "de"), key = sc_key())}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{language}}{a language to add. \code{"en"} or \code{"de"}.}
+
+\item{\code{key}}{an API key}
 }
 \if{html}{\out{</div>}}
 }
