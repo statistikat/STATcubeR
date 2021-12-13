@@ -117,12 +117,12 @@ sc_tabulate <- function(table, ..., .list = NULL, raw = FALSE,
                         parse_time = TRUE, recode_zeros = inherits(table, "sc_table"),
                         language = NULL, sort = FALSE) {
   table$tabulate(..., .list = .list, raw = raw, parse_time = parse_time,
-                 recode_zeros = recode_zeros, language = language, sort = FALSE)
+                 recode_zeros = recode_zeros, language = language, sort = sort)
 }
 
 ## implementation for class sc_table
 sc_table_tabulate <- function(table, ..., .list = NULL, parse_time = TRUE,
-                        round = TRUE, recode_zeros = TRUE,
+                        round = TRUE, recode_zeros = TRUE, sort = FALSE,
                         annotations = FALSE, raw = FALSE, language = NULL) {
   ## use the generic implementation and apply some post-processing
   data <- sc_data_tabulate(table, ..., .list = .list, parse_time = parse_time,
