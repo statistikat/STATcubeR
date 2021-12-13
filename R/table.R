@@ -91,9 +91,10 @@ sc_table_class <- R6::R6Class(
     },
     #' @description add a second language to the dataset
     #' @param language a language to add. `"en"` or `"de"`.
-    add_language = function(language = c("en", "de")) {
+    #' @param key an API key
+    add_language = function(language = c("en", "de"), key = sc_key()) {
       language <- match.arg(language)
-      response <- sc_table_json_post(self$json$content, language = language)
+      response <- sc_table_json_post(self$json$content, language = language, key = key)
       content <- httr::content(response)
       column <- paste0("label_", language)
       private$p_meta$source[[column]] <- content$database$label
@@ -212,7 +213,7 @@ sc_table <- function(json_file, language = c("en", "de", "both"), add_totals = T
   res <- sc_table_json_post(readLines(json_file, warn = FALSE), language, add_totals, key) %>%
     sc_table_class$new(file = json_file)
   if (both)
-    res$add_language("en")
+    res$add_language("en", key)
   res
 }
 
