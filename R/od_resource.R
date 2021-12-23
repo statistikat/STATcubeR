@@ -10,6 +10,11 @@
 #' @importFrom magrittr %<>%
 NULL
 
+od_is_local <- function(id) {
+  id <- gsub("file://", "", id)
+  tools::file_ext(id) != ""
+}
+
 od_resource_blacklist <- c(
   # bad whitespace in attribute_description
   # only two columns in HEADER
@@ -20,11 +25,16 @@ od_resource_blacklist <- c(
 )
 
 od_resource_check_id <- function(id) {
-  if (substr(id, 1, 4) != "OGD_")
-    stop("Dataset ids must begin with \"OGD_\": ", shQuote(id), call. = FALSE)
-  if (id %in% od_resource_blacklist)
-    stop("Dataset ", shQuote(id), " was blacklisted in STATcubeR ",
-         "because of inconsistent formats", call. = FALSE)
+  if (substr(basename(id), 1, 4) == "OGD_") {
+    if (id %in% od_resource_blacklist)
+      stop("Dataset ", shQuote(id), " was blacklisted in STATcubeR ",
+           "because of inconsistent formats", call. = FALSE)
+    return(invisible(TRUE))
+  } else if (substr(basename(id), 1, 7) == "OGDGEN_") {
+    return(invisible(TRUE))
+  } else {
+    stop("Dataset ids must begin with \"OGD_\" or \"OGDGEN_\": ", shQuote(id), call. = FALSE)
+  }
 }
 
 #' @name od_resource
@@ -55,6 +65,17 @@ od_cache_clear <- function(id) {
 od_cache_update <- function(url, filename) {
   cache_file <- paste0(od_cache_dir(), filename)
   dir.create(dirname(cache_file), recursive = TRUE, showWarnings = FALSE)
+
+  # for local files, we simply overwrite
+  is_local <- od_is_local(url)
+  if (is_local) {
+    if (!file.exists(url)) {
+      stop("Resource not available: ", url, call. = FALSE)
+    }
+    file.copy(url, cache_file, overwrite = TRUE)
+    return(50)
+  }
+
   r <- httr::GET(url, httr::write_disk(cache_file, overwrite = TRUE))
   if (httr::http_error(r) || identical(r$headers$`content-length`, "0")) {
     file.remove(cache_file)
@@ -80,16 +101,28 @@ od_cache_update <- function(url, filename) {
 #' od_cache_file("OGD_veste309_Veste309_1", "C-A11-0")
 #' @export
 od_cache_file <- function(id, suffix = NULL, timestamp = NULL, ...) {
+  is_local <- od_is_local(id)
+
   ext <- match.arg(list(...)$ext, c("csv", "json"))
   stopifnot(is.character(id) && length(id) > 0)
   od_resource_check_id(id)
-  filename <- c(id, suffix) %>% paste(collapse = "_") %>% paste0(".", ext)
+  if (!is_local) {
+    filename <- c(id, suffix) %>% paste(collapse = "_") %>% paste0(".", ext)
+  } else {
+    filename <- basename(id)
+  }
   cache_file <- paste0(od_cache_dir(), filename)
   download <- NA_real_
+
   if (!file.exists(cache_file) || !is.null(timestamp) &&
       timestamp > file.mtime(cache_file)) {
-    url <- ifelse(ext == "csv", paste0("https://data.statistik.gv.at/data/", filename),
-                  paste0("https://data.statistik.gv.at/ogd/json?dataset=", id))
+
+    if (is_local) {
+      url <- id
+    } else {
+      url <- ifelse(ext == "csv", paste0("https://data.statistik.gv.at/data/", filename),
+                    paste0("https://data.statistik.gv.at/ogd/json?dataset=", id))
+    }
     download <- od_cache_update(url, filename)
   }
   structure(cache_file, class = c("character", "od_cache_file"), od = list(
@@ -121,12 +154,19 @@ od_resource <- function(id, suffix = NULL, timestamp = NULL) {
 }
 
 od_resource_parse_all <- function(resources) {
-  parsed <- resources %>% lapply(function(x) {
-    last_modified <- as.POSIXct(x$last_modified, format = "%Y-%m-%dT%H:%M:%OS")
-    od_resource(x$name, timestamp = last_modified)
-  })
-  od <- lapply(parsed, attr, "od")
+  if (attributes(resources)$local == TRUE) {
+    parsed <- resources %>% lapply(function(x) {
+      last_modified <- as.POSIXct(x$last_modified, format = "%Y-%m-%dT%H:%M:%OS")
+      od_resource(gsub("file://", "", x$url), timestamp = last_modified)
+    })
+  } else {
+    parsed <- resources %>% lapply(function(x) {
+      last_modified <- as.POSIXct(x$last_modified, format = "%Y-%m-%dT%H:%M:%OS")
+      od_resource(x$name, timestamp = last_modified)
+    })
+  }
 
+  od <- lapply(parsed, attr, "od")
   data.frame(
     name = sapply(resources, function(x) x$name),
     last_modified = lapply(od, function(x) x$last_modified) %>% do.call(c, .),
@@ -180,6 +220,7 @@ od_json <- function(id, timestamp = Sys.time() - 3600) {
   json <- jsonlite::read_json(file)
   t <- Sys.time() - t
   attr(json, "od") <- c(attr(file, "od"), list(parsed = t))
+  attr(json$resources, "local") <- od_is_local(id)
   class(json) <- c("od_json", "list")
   json
 }

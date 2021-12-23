@@ -18,15 +18,21 @@ documentation.
 }
 \description{
 \code{od_table(id)} returns an \code{R6}-class object containing all relevant data
-and metadata from https://data.statistik.gv.at/data/
+and metadata from either https://data.statistik.gv.at/data/ or a locally
+generated json-file (using \code{STATgraphUtils::od_generator()}. In the later
+case it is assumed that all related files are located in the same folder.
 }
 \section{Components}{
-\tabular{ll}{
-   \strong{Component} \tab \strong{Corresponding File on Server} \cr
-   \verb{$data         } \tab \verb{https://data.statistik.gv.at/data/$\{id\}.csv} \cr
-   \verb{$header       } \tab \verb{https://data.statistik.gv.at/data/$\{id\}_HEADER.csv} \cr
-   \verb{$field(code)  } \tab \verb{https://data.statistik.gv.at/data/$\{id\}_$\{code\}.csv} \cr
-   \verb{$json         } \tab \verb{https://data.statistik.gv.at/ogd/json?dataset=$\{id\}} \cr
+\tabular{lll}{
+   \strong{Component} \tab \strong{Corresponding File on Server} \tab \strong{Type} \cr
+   \verb{$data         } \tab \verb{https://data.statistik.gv.at/data/$\{id\}.csv} \tab \code{remote} \cr
+   \verb{$header       } \tab \verb{https://data.statistik.gv.at/data/$\{id\}_HEADER.csv} \tab \code{remote} \cr
+   \verb{$field(code)  } \tab \verb{https://data.statistik.gv.at/data/$\{id\}_$\{code\}.csv} \tab \code{remote} \cr
+   \verb{$json         } \tab \verb{https://data.statistik.gv.at/ogd/json?dataset=$\{id\}} \tab \code{remote} \cr
+   \verb{$data         } \tab \verb{/path/to/\{id\}.csv} \tab \code{local} \cr
+   \verb{$header       } \tab \verb{/path/to/\{id\}_HEADER.csv} \tab \code{local} \cr
+   \verb{$field(code)  } \tab \verb{/path/to/\{id\}_$\{code\}.csv} \tab \code{local} \cr
+   \verb{$json         } \tab \verb{/path/to/\{id\}.json} \tab \code{local} \cr
 }
 }
 

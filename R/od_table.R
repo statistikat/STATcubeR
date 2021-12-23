@@ -3,16 +3,22 @@
 #' @description
 #'
 #' `od_table(id)` returns an `R6`-class object containing all relevant data
-#' and metadata from https://data.statistik.gv.at/data/
+#' and metadata from either https://data.statistik.gv.at/data/ or a locally
+#' generated json-file (using `STATgraphUtils::od_generator()`. In the later
+#' case it is assumed that all related files are located in the same folder.
 #'
 #' @section Components:
 #'
-#' **Component**   | **Corresponding File on Server**
-#' --------------  | ---------------------------------
-#' `$data         `| `https://data.statistik.gv.at/data/${id}.csv`
-#' `$header       `| `https://data.statistik.gv.at/data/${id}_HEADER.csv`
-#' `$field(code)  `| `https://data.statistik.gv.at/data/${id}_${code}.csv`
-#' `$json         `| `https://data.statistik.gv.at/ogd/json?dataset=${id}`
+#' **Component**   | **Corresponding File on Server** | **Type**
+#' --------------  | ---------------------------------|----------
+#' `$data         `| `https://data.statistik.gv.at/data/${id}.csv`         | `remote`
+#' `$header       `| `https://data.statistik.gv.at/data/${id}_HEADER.csv`  | `remote`
+#' `$field(code)  `| `https://data.statistik.gv.at/data/${id}_${code}.csv` | `remote`
+#' `$json         `| `https://data.statistik.gv.at/ogd/json?dataset=${id}` | `remote`
+#' `$data         `| `/path/to/{id}.csv`                                   | `local`
+#' `$header       `| `/path/to/{id}_HEADER.csv`                            | `local`
+#' `$field(code)  `| `/path/to/{id}_${code}.csv`                           | `local`
+#' `$json         `| `/path/to/{id}.json`                                  | `local`
 #'
 #' @param id the id of the data-set that should be accessed
 #' @param language language to be used for labeling. `"en"` or `"de"`
@@ -71,7 +77,13 @@ od_table_class <- R6::R6Class(
       language <- match.arg(language)
       stime <- Sys.time()
       stopifnot(rlang::is_scalar_character(id))
-      private$id <- id
+      is_local <- file.exists(id) # falls true, ist id ein json-file
+      if (is_local) {
+        stopifnot(tools::file_ext(id) == "json")
+        private$id <- tools::file_path_sans_ext(basename(id))
+      } else {
+        private$id <- id
+      }
       json <- od_json(id)
       private$p_json <- json
       res <- od_create_data(id, json, language)

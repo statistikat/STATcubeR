@@ -23,7 +23,7 @@ od_attr <- function(json) {
 od_create_data <- function(id, json = od_json(id), lang = c("en", "de"),
                            verbose = FALSE) {
   lang <- match.arg(lang)
-  resources <- od_resource_all(json = json)
+  resources <- od_resource_all(id = id, json = json)
   dat <- resources$data[[1]]
   header <- resources$data[[2]]
   meta <- list(
