@@ -26,7 +26,7 @@
 #' sc_cache_enable()
 #' @rdname sc_cache
 #' @name sc_cache
-#' @keywords internal
+#' @export
 sc_cache_enable <- function() {
   Sys.setenv(STATCUBE_CACHE = TRUE)
   message(paste0(
@@ -41,6 +41,7 @@ sc_cache_enable <- function() {
 #' @usage
 #' ## disable caching for the current R session
 #' sc_cache_disable()
+#' @export
 sc_cache_disable <- function() {
   Sys.unsetenv("STATCUBE_CACHE")
 }
@@ -74,6 +75,7 @@ sc_cache_file <- function(params, ext = ".rds") {
 #' @usage
 #' ## remove all files from the cache
 #' sc_cache_clear()
+#' @export
 sc_cache_clear <- function() {
   if (dir.exists(sc_cache_dir()))
     unlink(sc_cache_dir(), recursive = TRUE)
