@@ -65,19 +65,39 @@ od_table_local <- function(file) {
   utils::untar(file, exdir = import_dir)
   oldwd <- setwd(import_dir)
   on.exit(setwd(oldwd), add = TRUE)
+  paths <- od_table_local_paths()
+  cache <- "temporary_cache/"
+  dir.create(cache)
+  file.rename(paths$classifications, paste0(cache, paths$id, "_", basename(paths$classifications)))
+  file.rename(paths$data, paste0(cache, paths$id, '.csv'))
+  file.rename(paths$header, paste0(cache, paths$id, '_HEADER.csv'))
+  file.rename(paths$meta, paste0(cache, paths$id, '.json'))
+  old_cache_dir <- od_cache_dir()
+  od_cache_dir(cache)
+  on.exit(od_cache_dir(old_cache_dir), add = TRUE)
+  od_table(paths$id)
+}
+
+od_table_local_paths <- function() {
   extracted <- dir()
   stopifnot(length(extracted) == 1)
   json <- jsonlite::read_json(file.path(extracted, "meta.json"))
   id <- json$resources[[1]]$name
-  tmp_cache <- "cache"
-  dir.create(tmp_cache)
-  classification_files <- dir(file.path(extracted, 'classifications'), full.names = TRUE)
-  file.rename(classification_files, paste0("cache/", id, "_", basename(classification_files)))
-  file.rename(file.path(extracted, 'data.csv'), paste0('cache/', id, '.csv'))
-  file.rename(file.path(extracted, 'header.csv'), paste0('cache/', id, '_HEADER.csv'))
-  file.rename(file.path(extracted, 'meta.json'), paste0('cache/', id, '.json'))
-  old_cache_dir <- od_cache_dir()
-  od_cache_dir('cache')
-  on.exit(od_cache_dir(old_cache_dir), add = TRUE)
-  od_table(id)
+  stopifnot(is.character(id), length(id) == 1)
+  timestamps <- sapply(json$resources, function(x) x$last_modified) %>%
+    as.POSIXct(format = "%Y-%m-%dT%H:%M:%OS")
+  stopifnot(all(timestamps <= Sys.time()))
+  paths <- list(
+    classifications = dir(file.path(extracted, 'classifications'), full.names = TRUE),
+    data = file.path(extracted, 'data.csv'),
+    header = file.path(extracted, 'header.csv'),
+    meta = file.path(extracted, 'meta.json'),
+    id = id
+  )
+  stopifnot(all(file.exists(c(paths$data, paths$header, paths$meta))))
+  # check if json "attribute description" matches the contents of classifications/
+  columns <- od_attr(json)$code
+  classifications <- columns[substr(columns, 1, 1) == "C"]
+  stopifnot(setequal(paste0(classifications, ".csv"), basename(paths$classifications)))
+  paths
 }
