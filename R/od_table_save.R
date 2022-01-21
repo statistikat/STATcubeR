@@ -71,6 +71,7 @@ od_table_local <- function(file) {
   file.rename(paths$classifications, paste0(cache, paths$id, "_", basename(paths$classifications)))
   file.rename(paths$data, paste0(cache, paths$id, '.csv'))
   file.rename(paths$header, paste0(cache, paths$id, '_HEADER.csv'))
+  Sys.setFileTime(paths$meta, Sys.time())
   file.rename(paths$meta, paste0(cache, paths$id, '.json'))
   old_cache_dir <- od_cache_dir()
   od_cache_dir(cache)
