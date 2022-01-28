@@ -51,7 +51,8 @@ od_table_save <- function(x, file = NULL) {
   outfile <- tempfile(fileext = ".tar.gz")
   utils::tar(outfile, files = id, compression = "gzip")
   setwd(oldwd)
-  file.rename(outfile, file)
+  file.copy(outfile, file)
+  file.remove(outfile)
   invisible(file)
 }
 
