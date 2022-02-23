@@ -26,8 +26,6 @@ Therefore, objects of the class should be created with one of the following func
   See the `r ticle("sc_table")`
     * `sc_table_saved()` and `sc_table_custom()` also use the `/table` endpoint.
        However, the request is specified via ids rather than a json file.
-* `df_table()` creates a [sc_data] object based on a data.frame.
-  The function was developed to make `r STATcubeR` data and data frames interchangable for an internal project.
 
 To illustrate, we will use one of the OGD datasets to showcase the functionalities of this class.
 Notice however, that objects created with `sc_table()` can be used interchangibly.
