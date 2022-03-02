@@ -9,6 +9,21 @@ get_var_code <- function(x, split_minus = FALSE) {
   res
 }
 
+get_item_code <- function(item, split_minus = FALSE) {
+  if (item$type == "Total")
+    return("SC_TOTAL")
+  stopifnot(item$type == "RecodeItem")
+  uris <- item$uris
+  codes <- as.character(uris) %>%
+    strsplit(":") %>%
+    lapply(tail, 1)
+  if (split_minus)
+    codes <- as.character(codes) %>%
+    strsplit("-") %>%
+    lapply(utils::tail(1))
+  paste(codes, collapse = ";")
+}
+
 summarize_annotations <- function(content, i) {
   annotations <- content$cubes[[i]]$annotations
   if (is.null(annotations))
@@ -54,8 +69,8 @@ sc_meta <- function(content) {
 sc_meta_field <- function(field) {
   res <- lapply(field$items, function(item) {
     data.frame(
-      label = item$labels[[1]],
-      code = get_var_code(item$uris[[1]]),
+      label = paste(item$labels, collapse = ";"),
+      code = get_item_code(item),
       stringsAsFactors = FALSE
     )
   }) %>% do.call(rbind, .)
