@@ -26,7 +26,7 @@ sc_table_class <- R6::R6Class(
     #'   endpoint.
     #' @param json the json file used in the request as a string.
     #' @param file the file path to the json file
-    initialize = function(response, json = NULL, file = NULL, add_totals = TRUE) {
+    initialize = function(response, json = NULL, file = NULL, add_totals = FALSE) {
       stopifnot(inherits(response, "response"))
       private$httr_response <- response
       content <- httr::content(response)
