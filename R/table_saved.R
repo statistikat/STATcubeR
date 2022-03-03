@@ -1,7 +1,7 @@
 #' @rdname sc_table
 #' @export
-sc_table_saved_list <- function() {
-  schema <- sc_schema()
+sc_table_saved_list <- function(key = sc_key()) {
+  schema = sc_schema(key  = key)
   schema <- schema %>% attr("response") %>% httr::content()
   schema <- schema$children
 
