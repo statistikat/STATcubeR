@@ -59,7 +59,7 @@ tree object.
 \code{limit} and \code{...} will simply be ignored if \code{tree} is set to \code{FALSE}, which is
 the default. The printing via \code{data.tree} can take longer than the default
 implementation because \code{x} will need to be converted into a \code{data.tree} node.
-To use \code{data.tree} printing permanently, use\if{html}{\out{<div class="r">}}\preformatted{options(STATcubeR.print_tree = TRUE)
+To use \code{data.tree} printing permanently, use\if{html}{\out{<div class="sourceCode r">}}\preformatted{options(STATcubeR.print_tree = TRUE)
 }\if{html}{\out{</div>}}
 }
 

@@ -4,6 +4,7 @@
 \alias{sc_cache}
 \alias{sc_cache_enable}
 \alias{sc_cache_disable}
+\alias{sc_cache_enabled}
 \alias{sc_cache_clear}
 \title{Cache responses from the STATcube REST API}
 \usage{
@@ -12,6 +13,8 @@ sc_cache_enable()
 
 ## disable caching for the current R session
 sc_cache_disable()
+
+sc_cache_enabled()
 
 ## remove all files from the cache
 sc_cache_clear()
@@ -37,4 +40,8 @@ Note that the caches are always used and there is no check to verify if the
 resources are unchanged in the server. Caching is not implemented for the
 endpoints \code{\link[=sc_info]{sc_info()}} and \code{\link[=sc_rate_limit_table]{sc_rate_limit_table()}}.``
 }
-\keyword{internal}
+\section{Functions}{
+\itemize{
+\item \code{sc_cache_enabled}: informs wether the cahce is currently enabled
+}}
+

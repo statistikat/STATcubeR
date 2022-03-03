@@ -29,7 +29,7 @@ sc_table_custom(
   key = sc_key()
 )
 
-sc_table_saved_list()
+sc_table_saved_list(key = sc_key())
 
 sc_table_saved(table_uri, language = c("en", "de"), key = sc_key())
 }

@@ -56,7 +56,7 @@ one of the factory methods \code{\link[=sc_table]{sc_table()}}, \code{\link[=sc_
 either omit the parameters \code{json} and \code{file} or make sure that they
 match with \code{response}.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{sc_table_class$new(response, json = NULL, file = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{sc_table_class$new(response, json = NULL, file = NULL, add_totals = TRUE)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
