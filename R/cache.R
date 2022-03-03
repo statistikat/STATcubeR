@@ -25,15 +25,18 @@
 #' ## enable caching for the current R session
 #' sc_cache_enable()
 #' @rdname sc_cache
+#' @param verbose print instuctions on how to set up caching persistently
+#'   via environment variables?
 #' @name sc_cache
 #' @export
-sc_cache_enable <- function() {
+sc_cache_enable <- function(verbose = TRUE) {
   Sys.setenv(STATCUBE_CACHE = TRUE)
-  message(paste0(
-    "Caching will be available for this session. Add\n\n",
-    "  STATCUBE_CACHE=TRUE\n\nto your .Renviron to enable",
-    " caching persistently. \nCache directory: '", sc_cache_dir(), "'"
-  ))
+  if (verbose)
+    message(paste0(
+      "Caching will be available for this session. Add\n\n",
+      "  STATCUBE_CACHE=TRUE\n\nto your .Renviron to enable",
+      " caching persistently. \nCache directory: '", sc_cache_dir(), "'"
+    ))
   invisible(sc_cache_dir())
 }
 
