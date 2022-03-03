@@ -46,6 +46,8 @@ sc_cache_disable <- function() {
   Sys.unsetenv("STATCUBE_CACHE")
 }
 
+#' @describeIn sc_cache informs wether the cache is currently enabled
+#' @export
 sc_cache_enabled <- function() {
   Sys.getenv("STATCUBE_CACHE") != ""
 }
