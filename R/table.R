@@ -26,7 +26,7 @@ sc_table_class <- R6::R6Class(
     #'   endpoint.
     #' @param json the json file used in the request as a string.
     #' @param file the file path to the json file
-    initialize = function(response, json = NULL, file = NULL) {
+    initialize = function(response, json = NULL, file = NULL, add_totals = TRUE) {
       stopifnot(inherits(response, "response"))
       private$httr_response <- response
       content <- httr::content(response)
@@ -34,7 +34,7 @@ sc_table_class <- R6::R6Class(
       if (is.null(json) && is.null(file))
         json <- jsonlite::toJSON(
           content$query, auto_unbox = TRUE, pretty = TRUE) %>% toString()
-      private$json_content <- sc_json_class$new(json, file)
+      private$json_content <- sc_json_class$new(json, file, add_totals)
 
       meta <- sc_meta(content)
       meta$source$lang <- response$headers$`content-language`
@@ -94,7 +94,8 @@ sc_table_class <- R6::R6Class(
     #' @param key an API key
     add_language = function(language = c("en", "de"), key = sc_key()) {
       language <- match.arg(language)
-      response <- sc_table_json_post(self$json$content, language = language, key = key)
+      response <- sc_table_json_post(self$json$content, language = language,
+                                     key = key, add_totals = self$json$totals)
       content <- httr::content(response)
       column <- paste0("label_", language)
       private$p_meta$source[[column]] <- content$database$label
@@ -211,7 +212,7 @@ sc_table <- function(json_file, language = c("en", "de", "both"), add_totals = T
   if (both)
     language <- "de"
   res <- sc_table_json_post(readLines(json_file, warn = FALSE), language, add_totals, key) %>%
-    sc_table_class$new(file = json_file)
+    sc_table_class$new(file = json_file, add_totals = add_totals)
   if (both)
     res$add_language("en", key)
   res

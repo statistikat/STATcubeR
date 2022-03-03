@@ -3,7 +3,7 @@
 #' @description
 #' This class represents a common interface for datasets returned from the
 #' STATcube REST API and OGD datasets. `sc_data` obects are usually created with
-#' [od_table()], [sc_table()] or [df_table()].
+#' [od_table()] or [sc_table()].
 #' @examples
 #' ## create a new sc_data object via od_table()
 #' x <- od_table("OGD_krebs_ext_KREBS_1")
@@ -18,11 +18,11 @@ sc_data <- R6::R6Class(
   "sc_data",
   public = list(
     #' @description
-    #' This class is not exported. Use [od_table()], [sc_table()] or
-    #' [df_table()] to initialize objects of class `sc_data`.
+    #' This class is not exported. Use [od_table()] or [sc_table()]
+    #' to initialize objects of class `sc_data`.
     #' @param data,meta,fields raw data, metadata and field information.
-    #'   Do not use directly but initialize objects with [sc_table()],
-    #'   [od_table()] or [df_table()]
+    #'   Do not use directly but initialize objects with [sc_table()] or
+    #'   [od_table()]
     initialize = function(data, meta, fields) {
       meta$source$scr_version <- sc_version()
       meta$source <- sc_tibble_meta(meta$source, "lang")

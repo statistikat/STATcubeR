@@ -1,7 +1,7 @@
 Type: Package
 Package: STATcubeR
 Title: Tools for importing STATcube and OGD data
-Version: 0.3.1
+Version: 0.3.3
 Authors@R: 
     c(person(given = "Gregor",
              family = "de Cillia",

@@ -1,11 +1,12 @@
 sc_json_class <- R6::R6Class(
   "sc_json", cloneable = FALSE,
   list(
-    initialize = function(json = NULL, file = NULL) {
+    initialize = function(json = NULL, file = NULL, add_totals = TRUE) {
       if (!is.null(file))
         json <- readLines(file, warn = FALSE)
       private$json_content <- json
       private$file_ <- file
+      private$add_totals <- add_totals
     },
     print = function() {
       cat(self$content, sep = "\n")
@@ -25,12 +26,14 @@ sc_json_class <- R6::R6Class(
     },
     database = function() private$parse()$database,
     dimensions = function() unlist(private$parse()$dimensions),
-    measures = function() unlist(private$parse()$measures)
+    measures = function() unlist(private$parse()$measures),
+    totals = function() private$add_totals
   ),
   private = list(
     json_content = NULL, file_ = NULL, parse = function() {
       jsonlite::parse_json(self$content)
-    }
+    },
+    add_totals = TRUE
   )
 )
 
