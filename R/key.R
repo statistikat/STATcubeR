@@ -1,72 +1,79 @@
-#' Manage your API Key
+#' Manage your API Keys
 #'
-#' Functions to get/set the STATcube API key and make them available for calls
+#' Functions to get/set the STATcube API keys and make them available for calls
 #' against the STATcube API.
 #'
-#' * [sc_key()] forwards to [sc_key_get()] if the key is already present.
+#' @describeIn sc_key forwards to [sc_key_get()] if the key is already present.
 #'   Otherwise, [sc_key_prompt()] will be invoked.
 #' @param key (`string`) An API key. To display your key, call
 #'   [sc_browse_preferences()].
-#' @return All functions return the key (invisibly) except `sc_key_exists()`,
-#'   which returns a [logical()] of length one.
+#' @param server A STATcube API server. Defaults to the external Server via
+#'   `"ext"`. Oher options are `"red"` for the editing server and `"prod"` for
+#'   the production server.
+#' @return All functions return the key (invisibly) except for
+#'   `sc_key_exists()` and `sc_key_valid()`, which return a [logical()] of
+#'   length one.
 #' @export
-sc_key <- function() {
-  if (!sc_key_exists()) {
+sc_key <- function(server = "ext", test = FALSE) {
+  if (!sc_key_exists(server)) {
     if (interactive())
-      sc_key_prompt()
+      sc_key_prompt(server, test)
     else
       stop("No STATcube API key available")
   }
-  sc_key_get()
+  sc_key_get(server)
 }
 
-sc_key_valid <- function(key = sc_key()) {
+#' @param test Use `sc_key_valid()` to verify the key? If the key is
+#'   invalid, an error is returned and the key will not be set or updated.
+#' @describeIn sc_key can be used to pass the key as a parameter (`string`)
+#' @export
+sc_key_set <- function(key, server = "ext", test = TRUE) {
+  if (test && !sc_key_valid(key, server))
+    stop("The key could not be verified")
+  do.call(Sys.setenv, as.list(setNames(key, sc_key_env_var(server))))
+  message("The provided key will be available for this R session. Add",
+          "\n\n  ", sc_key_env_var(server), "=XXXX\n\nto your .Renviron to set ",
+          "the key persistently")
+  invisible(key)
+}
+
+#' @describeIn sc_key returns the key, if it exists. Otherwise,
+#'   an error is thrown.
+#' @export
+sc_key_get <- function(server = "ext") {
+  if (!sc_key_exists())
+    stop("No STATcube key available. Set key with sc_key_set()")
+  invisible(Sys.getenv(sc_key_env_var(server)))
+}
+
+#' @describeIn sc_key prompts for a key via [readline()]
+#' @export
+sc_key_prompt <- function(server = "ext", test = TRUE) {
+  key <- readline("Provide your API key: \n")
+  sc_key_set(key, test = test)
+}
+
+#' @describeIn sc_key returns `TRUE` if a key was set and `FALSE` otherwise.
+#' @export
+sc_key_exists <- function(server = "ext") {
+  Sys.getenv(sc_key_env_var(server)) != ""
+}
+
+sc_key_env_var <- function(server = "ext") {
+  paste0("STATCUBE_KEY_", toupper(server))
+}
+
+#' @describeIn sc_key performs a test request and returns `TRUE` if the
+#'   key is valid and `FALSE` otherwise.
+sc_key_valid <- function(key = NULL, server = "ext") {
+  if (is.null(key))
+    key <- sc_key(server)
   response <- httr::GET(
-    url = paste0(base_url, "/info"),
+    url = paste0(base_url(server), "/info"),
     config = sc_headers(key = key)
   )
   response$status_code == "200"
 }
 
-#' @rdname sc_key
-#' @param test Use a test-requst to verify the key?
-#' @details
-#' * [sc_key_set()] can be used to pass the key as a parameter (`string`)
-#' @export
-sc_key_set <- function(key, test = TRUE) {
-  if (test && !sc_key_valid(key))
-    stop("The key could not be verified")
-  Sys.setenv(STATCUBE_KEY = key)
-  message("The provided key will be available for this R session. Add",
-          "\n\n  STATCUBE_KEY=XXXX\n\nto your .Renviron to set ",
-          "the key persistently")
-  invisible(key)
-}
-
-#' @rdname sc_key
-#' @details
-#' * [sc_key_get()] returns the key, if it exists. Otherwise,
-#'   an error is thrown.
-#' @export
-sc_key_get <- function() {
-  if (!sc_key_exists())
-    stop("No STATcube key available. Set key with sc_key_set()")
-  invisible(Sys.getenv("STATCUBE_KEY"))
-}
-
-#' @rdname sc_key
-#' @details
-#' * [sc_key_prompt()] prompts for a key via [readline()]
-#' @export
-sc_key_prompt <- function(test = TRUE) {
-  key <- readline("Provide your API key: \n")
-  sc_key_set(key, test = test)
-}
-
-#' @rdname sc_key
-#' @details
-#' * `sc_key_exists()` returns `TRUE` if a key was set and `FALSE` otherwise.
-#' @export
-sc_key_exists <- function() {
-  Sys.getenv("STATCUBE_KEY") != ""
-}
+sc_servers <- c("ext", "red", "prod")
