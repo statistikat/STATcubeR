@@ -23,9 +23,11 @@
 #'     * `reset` a tiestamp when the rate limit will be reset. Ususally, this
 #'       should be less than one hour `after the current time.
 #' @export
-sc_info <- function(language = c("en", "de"), key = sc_key()) {
+sc_info <- function(language = c("en", "de"), key = NULL, server = "ext") {
+  if (is.null(key))
+    key <- sc_key(server)
   response <- httr::GET(
-    url = paste0(base_url, "/info"),
+    url = paste0(base_url(server), "/info"),
     config = sc_headers(language, key)
   )
   info_content <- httr::content(response)
@@ -37,9 +39,11 @@ sc_info <- function(language = c("en", "de"), key = sc_key()) {
 
 #' @rdname other_endpoints
 #' @export
-sc_rate_limit_table <- function(language = c("en", "de"), key = sc_key()) {
+sc_rate_limit_table <- function(language = c("en", "de"), key = NULL, server = 'ext') {
+  if (is.null(key))
+    key <- sc_key(server)
   response <- httr::GET(
-    url = paste0(base_url, "/rate_limit_table"),
+    url = paste0(base_url(server), "/rate_limit_table"),
     config = sc_headers(language, key)
   )
   rate_limit <- httr::content(response)

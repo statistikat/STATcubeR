@@ -14,7 +14,7 @@ sc_parse_time <- function(timestamp) {
   (as.numeric(timestamp)/1000) %>% as.POSIXct(origin = "1970-01-01")
 }
 
-sc_headers <- function(language = c("en", "de"), key = sc_key(), ...) {
+sc_headers <- function(language = c("en", "de"), key, ...) {
   httr::add_headers(APIKey = key, `Accept-Language` = match.arg(language), ...,
                     `User-Agent` = "https://github.com/statistikat/STATcubeR")
 }

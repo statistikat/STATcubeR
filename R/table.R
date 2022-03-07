@@ -6,7 +6,9 @@ sc_version <- function() {
   version
 }
 
-base_url <- "http://sdbext:8082/statistik.at/ext/statcube/rest/v1"
+base_url <- function(server = "ext") {
+  sprintf("http://sdb%s:8082/statistik.at/%s/statcube/rest/v1", server, server)
+}
 
 #' @title  Class for /table responses
 #' @description R6 Class for all responses of the /table endpoint of the
@@ -92,7 +94,7 @@ sc_table_class <- R6::R6Class(
     #' @description add a second language to the dataset
     #' @param language a language to add. `"en"` or `"de"`.
     #' @param key an API key
-    add_language = function(language = c("en", "de"), key = sc_key()) {
+    add_language = function(language = c("en", "de"), key = NULL) {
       language <- match.arg(language)
       response <- sc_table_json_post(self$json$content, language = language,
                                      key = key, add_totals = self$json$totals)
@@ -206,7 +208,7 @@ sc_table_class <- R6::R6Class(
 #' }
 #' @export
 sc_table <- function(json_file, language = c("en", "de", "both"), add_totals = TRUE,
-                     key = sc_key()) {
+                     key = NULL) {
   language <- match.arg(language)
   both <- language == "both"
   if (both)
