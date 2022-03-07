@@ -13,7 +13,7 @@ sc_table(
   json_file,
   language = c("en", "de", "both"),
   add_totals = TRUE,
-  key = sc_key()
+  key = NULL
 )
 
 sc_examples_list()
@@ -26,12 +26,12 @@ sc_table_custom(
   dimensions,
   language = c("en", "de"),
   add_totals = TRUE,
-  key = sc_key()
+  key = NULL
 )
 
-sc_table_saved_list(key = sc_key())
+sc_table_saved_list(key = NULL, server = "ext")
 
-sc_table_saved(table_uri, language = c("en", "de"), key = sc_key())
+sc_table_saved(table_uri, language = c("en", "de"), key = NULL, server = "ext")
 }
 \arguments{
 \item{json_file}{path to a json file, which was downloaded via the STATcube
@@ -57,6 +57,10 @@ type \code{MEASURE} or of type \code{STAT_FUNCTION}}
 \item{dimensions}{A character vector of dimensions for the cube. Can be
 either of type \code{FIELD} or type \code{VALUESET}. Those entries are referred to
 as \code{fields} in the parsed API response}
+
+\item{server}{A STATcube API server. Defaults to the external Server via
+\code{"ext"}. Oher options are \code{"red"} for the editing server and \code{"prod"} for
+the production server.}
 
 \item{table_uri}{Identifier of a saved table as returned by
 \code{\link[=sc_table_saved_list]{sc_table_saved_list()}}}

@@ -11,19 +11,20 @@ sc_schema(
   resource_id = NULL,
   depth = NULL,
   language = c("en", "de"),
-  key = sc_key()
+  key = NULL,
+  server = "ext"
 )
 
 \method{print}{sc_schema}(x, tree = NULL, ..., limit = 30)
 
-sc_schema_catalogue(depth = "folder", language = c("en", "de"), key = sc_key())
-
-sc_schema_db(
-  db_id,
-  depth = "valueset",
+sc_schema_catalogue(
+  depth = "folder",
   language = c("en", "de"),
-  key = sc_key()
+  key = NULL,
+  server = "ext"
 )
+
+sc_schema_db(db_id, depth = "valueset", language = c("en", "de"), key = NULL)
 }
 \arguments{
 \item{resource_id}{A resource identifier in uid format}
@@ -37,6 +38,10 @@ are applicable.}
 
 \item{key}{(\code{string}) An API key. To display your key, call
 \code{\link[=sc_browse_preferences]{sc_browse_preferences()}}.}
+
+\item{server}{A STATcube API server. Defaults to the external Server via
+\code{"ext"}. Oher options are \code{"red"} for the editing server and \code{"prod"} for
+the production server.}
 
 \item{x}{object to be printed}
 

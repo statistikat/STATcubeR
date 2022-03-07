@@ -56,7 +56,7 @@ one of the factory methods \code{\link[=sc_table]{sc_table()}}, \code{\link[=sc_
 either omit the parameters \code{json} and \code{file} or make sure that they
 match with \code{response}.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{sc_table_class$new(response, json = NULL, file = NULL, add_totals = TRUE)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{sc_table_class$new(response, json = NULL, file = NULL, add_totals = FALSE)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -68,6 +68,11 @@ endpoint.}
 \item{\code{json}}{the json file used in the request as a string.}
 
 \item{\code{file}}{the file path to the json file}
+
+\item{\code{add_totals}}{was the json request modified by adding totals via
+the add_toals parameter in one of the factory functions (\code{sc_table()},
+\code{sc_table_custom()}). Necessary, in order to also request totals via
+the \verb{$add_language()} method.}
 }
 \if{html}{\out{</div>}}
 }
@@ -125,7 +130,7 @@ open the dataset in a browser
 \subsection{Method \code{add_language()}}{
 add a second language to the dataset
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{sc_table_class$add_language(language = c("en", "de"), key = sc_key())}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{sc_table_class$add_language(language = c("en", "de"), key = NULL)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{

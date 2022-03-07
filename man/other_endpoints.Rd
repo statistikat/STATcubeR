@@ -6,15 +6,19 @@
 \alias{sc_rate_limit_table}
 \title{Other endpoints of the STATcube REST API}
 \usage{
-sc_info(language = c("en", "de"), key = sc_key())
+sc_info(language = c("en", "de"), key = NULL, server = "ext")
 
-sc_rate_limit_table(language = c("en", "de"), key = sc_key())
+sc_rate_limit_table(language = c("en", "de"), key = NULL, server = "ext")
 }
 \arguments{
 \item{language}{The language to be used for labeling. \code{"en"} or \code{"de"}}
 
 \item{key}{(\code{string}) An API key. To display your key, call
 \code{\link[=sc_browse_preferences]{sc_browse_preferences()}}.}
+
+\item{server}{A STATcube API server. Defaults to the external Server via
+\code{"ext"}. Oher options are \code{"red"} for the editing server and \code{"prod"} for
+the production server.}
 }
 \value{
 \itemize{

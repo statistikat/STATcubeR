@@ -51,6 +51,7 @@ earnings$recode$
 \item \href{#method-total_codes}{\code{sc_recoder$total_codes()}}
 \item \href{#method-visible}{\code{sc_recoder$visible()}}
 \item \href{#method-order}{\code{sc_recoder$order()}}
+\item \href{#method-currency}{\code{sc_recoder$currency()}}
 }
 }
 \if{html}{\out{<hr>}}
@@ -194,6 +195,26 @@ set the order of levels.
 
 \item{\code{new}}{the new order. A permutation of all level codes for the field.
 alternatively, an integer vector that defines the permutation.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-currency"></a>}}
+\if{latex}{\out{\hypertarget{method-currency}{}}}
+\subsection{Method \code{currency()}}{
+mark measures as currencies
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{sc_recoder$currency(measure, new)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{measure}}{a measure code}
+
+\item{\code{new}}{a true/false value which marks/unmarks the measure as a
+currency}
 }
 \if{html}{\out{</div>}}
 }
