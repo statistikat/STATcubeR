@@ -6,6 +6,9 @@
 #' @param unique some datasets are pulbished under multiple groups.
 #'   They will only be listed once with the first group they appear in unless
 #'   this parameter is set to `FALSE`.
+#' @param server the open data server to use. Either `ext` for the external
+#'   server (the default) or `red` for the editing server. The editing server
+#'   is only accessible for employees of Statistics Austria
 #' @return a `data.frame` with two columns
 #' - `"category"`: Grouping under which a dataset is listed
 #' - `"id"`: Name of the dataset which can later be used in
@@ -16,9 +19,10 @@
 #' df <- od_list()
 #' df
 #' subset(df, category == "Bildung und Forschung")
-od_list <- function(unique = TRUE) {
+od_list <- function(unique = TRUE, server = c('ext', 'red')) {
   stopifnot(requireNamespace("xml2"))
-  url <- "https://data.statistik.gv.at/web/catalog.jsp"
+  server <- match.arg(server)
+  url <- od_url(server, "web", "catalog.jsp")
   r <- httr::GET(url)
   if (httr::http_error(r)) {
     stop("Error while reading ", shQuote(url), call. = FALSE)

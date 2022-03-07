@@ -1,6 +1,10 @@
-od_url <- function(id) {
-  baseurl <- "https://data.statistik.gv.at"
-  file.path(baseurl, paste0("ogd/json?dataset=", id))
+od_url <- function(server = c('ext', 'red'), ...) {
+  base_url <- switch(
+    match.arg(server),
+    ext = "https://data.statistik.gv.at",
+    red = "http://sdbred:8080/data.statistik.gv.at"
+  )
+  paste(base_url, ..., sep = "/")
 }
 
 od_attr <- function(json) {
