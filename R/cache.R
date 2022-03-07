@@ -23,7 +23,7 @@
 #' endpoints [sc_info()] and [sc_rate_limit_table()].``
 #' @usage
 #' ## enable caching for the current R session
-#' sc_cache_enable()
+#' sc_cache_enable(verbose)
 #' @rdname sc_cache
 #' @param verbose print instuctions on how to set up caching persistently
 #'   via environment variables?

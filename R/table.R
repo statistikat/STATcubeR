@@ -28,6 +28,10 @@ sc_table_class <- R6::R6Class(
     #'   endpoint.
     #' @param json the json file used in the request as a string.
     #' @param file the file path to the json file
+    #' @param add_totals was the json request modified by adding totals via
+    #'   the add_toals parameter in one of the factory functions (`sc_table()`,
+    #'   `sc_table_custom()`). Necessary, in order to also request totals via
+    #'   the `$add_language()` method.
     initialize = function(response, json = NULL, file = NULL, add_totals = FALSE) {
       stopifnot(inherits(response, "response"))
       private$httr_response <- response

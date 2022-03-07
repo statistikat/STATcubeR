@@ -5,7 +5,7 @@
 #' @examples
 #' # Show starting page
 #' sc_browse()
-#'
+#' @inheritParams sc_key
 #' @export
 sc_browse <- function(server = "ext") {
   utils::browseURL(sprintf(

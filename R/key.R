@@ -31,7 +31,7 @@ sc_key <- function(server = "ext", test = FALSE) {
 sc_key_set <- function(key, server = "ext", test = TRUE) {
   if (test && !sc_key_valid(key, server))
     stop("The key could not be verified")
-  do.call(Sys.setenv, as.list(setNames(key, sc_key_env_var(server))))
+  do.call(Sys.setenv, as.list(stats::setNames(key, sc_key_env_var(server))))
   message("The provided key will be available for this R session. Add",
           "\n\n  ", sc_key_env_var(server), "=XXXX\n\nto your .Renviron to set ",
           "the key persistently")
