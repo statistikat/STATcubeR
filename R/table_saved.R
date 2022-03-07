@@ -19,7 +19,7 @@ sc_table_saved_list <- function(key = NULL, server = "ext") {
 #'   [sc_table_saved_list()]
 #' @rdname sc_table
 #' @export
-sc_table_saved <- function(table_uri, language = c("en", "de"), key = NULL, sever = 'ext') {
+sc_table_saved <- function(table_uri, language = c("en", "de"), key = NULL, server = 'ext') {
   if (is.null(key))
     key <- sc_key(server)
   sc_with_cache(list(table_uri, language, key), function() {
