@@ -7,8 +7,10 @@
 #' sc_browse()
 #'
 #' @export
-sc_browse <- function() {
-  utils::browseURL("http://sdbext:8081/statistik.at/ext/statcube/home")
+sc_browse <- function(server = "ext") {
+  utils::browseURL(sprintf(
+    "http://sdb%s:8081/statistik.at/%s/statcube/home", server, server
+  ))
 }
 
 #' @rdname sc_browse
@@ -17,8 +19,11 @@ sc_browse <- function() {
 #' sc_browse_preferences()
 #'
 #' @export
-sc_browse_preferences <- function() {
-  utils::browseURL("http://sdbext:8081/statistik.at/ext/statcube/jsf/preferences/editPreferences.xhtml")
+sc_browse_preferences <- function(server = "ext") {
+  utils::browseURL(sprintf(
+    "http://sdb%s:8081/statistik.at/%s/statcube/jsf/preferences/editPreferences.xhtml",
+    server, server
+  ))
 }
 
 #' @rdname sc_browse
