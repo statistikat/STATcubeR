@@ -1,10 +1,10 @@
-od_url <- function(server = c('ext', 'red'), ...) {
+od_url <- function(server = c('ext', 'red'), ..., sep = "/") {
   base_url <- switch(
     match.arg(server),
     ext = "https://data.statistik.gv.at",
     red = "http://sdbred:8080/data.statistik.gv.at"
   )
-  paste(base_url, ..., sep = "/")
+  paste(base_url, ..., sep = sep)
 }
 
 od_attr <- function(json) {
@@ -25,9 +25,9 @@ od_attr <- function(json) {
 }
 
 od_create_data <- function(id, json = od_json(id), lang = c("en", "de"),
-                           verbose = FALSE) {
+                           server = "ext", verbose = FALSE) {
   lang <- match.arg(lang)
-  resources <- od_resource_all(json = json)
+  resources <- od_resource_all(id, json, server)
   dat <- resources$data[[1]]
   header <- resources$data[[2]]
   meta <- list(

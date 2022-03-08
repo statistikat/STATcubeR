@@ -62,8 +62,8 @@ od_cache_summary <- function() {
 #' @rdname od_cache
 #' @importFrom magrittr %T>%
 #' @export
-od_downloads <- function() {
-  x <- od_cache_dir() %>% paste0("/downloads.log") %T>%
+od_downloads <- function(server = 'ext') {
+  x <- od_cache_path(server, "downloads.log") %T>%
     (function(x) {if(!file.exists(x)) stop("No file 'dowloads.log' in cahce")}) %>%
     utils::read.csv(header = FALSE) %>% `names<-`(c("time", "file", "downloaded"))
   x$time <- as.POSIXct(x$time)

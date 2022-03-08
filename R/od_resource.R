@@ -41,19 +41,26 @@ od_cache_dir <- function(dir = NULL) {
     Sys.setenv(OD_CACHE_DIR = paste0(gsub("/$", "", dir), "/"))
 }
 
+od_cache_path <- function(server = "ext", ...) {
+  dir <- od_cache_dir()
+  if (server == "red")
+    dir <- paste0(dir, "red/")
+  paste0(dir, paste(..., collapse = "/"))
+}
+
 #' @name od_resource
 #' @details
 #' `od_cache_clear(id)` removes all files belonging to the specified id.
 #' @export
-od_cache_clear <- function(id) {
+od_cache_clear <- function(id, server = "ext") {
   od_resource_check_id(id)
-  files <- od_cache_dir() %>% dir(id, full.names = TRUE)
+  files <- od_cache_path(server) %>% dir(id, full.names = TRUE)
   file.remove(files)
-  message("deleted ", length(files), " files from ", shQuote(od_cache_dir()))
+  message("deleted ", length(files), " files from ", shQuote(od_cache_path(server)))
 }
 
-od_cache_update <- function(url, filename) {
-  cache_file <- paste0(od_cache_dir(), filename)
+od_cache_update <- function(url, filename, server = "ext") {
+  cache_file <- od_cache_path(server, filename)
   dir.create(dirname(cache_file), recursive = TRUE, showWarnings = FALSE)
   r <- httr::GET(url, httr::write_disk(cache_file, overwrite = TRUE))
   if (httr::http_error(r) || identical(r$headers$`content-length`, "0")) {
@@ -62,7 +69,7 @@ od_cache_update <- function(url, filename) {
   }
   t <- r$times[["total"]]*1000
   cat(format(Sys.time()), ",", filename, ",", t, "\n", append = TRUE,
-      file = paste0(od_cache_dir(), "/downloads.log"), sep = "")
+      file = od_cache_path(server, "downloads.log"), sep = "")
   t
 }
 
@@ -79,18 +86,18 @@ od_cache_update <- function(url, filename) {
 #' od_cache_file("OGD_veste309_Veste309_1")
 #' od_cache_file("OGD_veste309_Veste309_1", "C-A11-0")
 #' @export
-od_cache_file <- function(id, suffix = NULL, timestamp = NULL, ...) {
+od_cache_file <- function(id, suffix = NULL, timestamp = NULL, ..., server = "ext") {
   ext <- match.arg(list(...)$ext, c("csv", "json"))
   stopifnot(is.character(id) && length(id) > 0)
   od_resource_check_id(id)
   filename <- c(id, suffix) %>% paste(collapse = "_") %>% paste0(".", ext)
-  cache_file <- paste0(od_cache_dir(), filename)
+  cache_file <- od_cache_path(server, filename)
   download <- NA_real_
   if (!file.exists(cache_file) || !is.null(timestamp) &&
       timestamp > file.mtime(cache_file)) {
-    url <- ifelse(ext == "csv", paste0("https://data.statistik.gv.at/data/", filename),
-                  paste0("https://data.statistik.gv.at/ogd/json?dataset=", id))
-    download <- od_cache_update(url, filename)
+    url <- ifelse(ext == "csv", od_url(server, "data", filename),
+                  od_url(server, "/ogd/json?dataset=", id, sep = ""))
+    download <- od_cache_update(url, filename, server)
   }
   structure(cache_file, class = c("character", "od_cache_file"), od = list(
     download = download, size = file.size(cache_file), cached = file.mtime(cache_file),
@@ -108,8 +115,8 @@ print.od_cache_file <- function(x, ...) {
 #' # get a parsed verison of the resource
 #' od_resource("OGD_veste309_Veste309_1", "C-A11-0")
 #' @export
-od_resource <- function(id, suffix = NULL, timestamp = NULL) {
-  cache_file <- od_cache_file(id, suffix, timestamp, ext = "csv")
+od_resource <- function(id, suffix = NULL, timestamp = NULL, server = "ext") {
+  cache_file <- od_cache_file(id, suffix, timestamp, ext = "csv", server = server)
   t <- Sys.time()
   x <- utils::read.csv2(cache_file, na.strings = c("", ":"),
                         check.names = FALSE, stringsAsFactors = FALSE) %>%
@@ -120,10 +127,10 @@ od_resource <- function(id, suffix = NULL, timestamp = NULL) {
             class = c("tbl", "data.frame"))
 }
 
-od_resource_parse_all <- function(resources) {
+od_resource_parse_all <- function(resources, server = "ext") {
   parsed <- resources %>% lapply(function(x) {
     last_modified <- as.POSIXct(x$last_modified, format = "%Y-%m-%dT%H:%M:%OS")
-    od_resource(x$name, timestamp = last_modified)
+    od_resource(x$name, timestamp = last_modified, server = server)
   })
   od <- lapply(parsed, attr, "od")
 
@@ -174,8 +181,8 @@ od_normalize_columns <- function(x, suffix) {
 #' That is, if a json is requested, it will be reused from the cache unless the
 #' [file.mtime()] is more than one hour behind [Sys.time()].
 #' @export
-od_json <- function(id, timestamp = Sys.time() - 3600) {
-  file <- od_cache_file(id, NULL, timestamp = timestamp, ext = "json")
+od_json <- function(id, timestamp = Sys.time() - 3600, server = "ext") {
+  file <- od_cache_file(id, NULL, timestamp = timestamp, ext = "json", server = server)
   t <- Sys.time()
   json <- jsonlite::read_json(file)
   t <- Sys.time() - t
@@ -191,9 +198,9 @@ od_json <- function(id, timestamp = Sys.time() - 3600) {
 #' # Bundle all resources
 #' od_resource_all("OGD_veste309_Veste309_1")
 #' @export
-od_resource_all <- function(id, json = od_json(id)) {
+od_resource_all <- function(id, json = od_json(id), server = "ext") {
   check_header <- od_resources_check(json)
-  out <- od_resource_parse_all(json$resources)
+  out <- od_resource_parse_all(json$resources, server = server)
   check_header(out$data[[2]])
   out$data[[2]] %<>% od_normalize_columns("HEADER")
   out$data[seq(3, nrow(out))] %<>% lapply(od_normalize_columns, "FIELD")
