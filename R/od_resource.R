@@ -80,6 +80,9 @@ od_cache_update <- function(url, filename, server = "ext") {
 #'   cached resource will be updated if it is older than that value. Otherwise
 #'   it will be downloaded only if it does not exist in the cache.
 #' @param ... For internal use
+#' @param server the OGD-Server to use to load update the resources in case they
+#'   are outdated. `"ext"` for the external server (the default) od `"red"` for
+#'   the editing server.
 #' @examples
 #'
 #' # Get paths to cached files

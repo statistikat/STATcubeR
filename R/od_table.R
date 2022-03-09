@@ -16,6 +16,8 @@
 #'
 #' @param id the id of the data-set that should be accessed
 #' @param language language to be used for labeling. `"en"` or `"de"`
+#' @param server the OGD-server to be used. `"ext"` (the default) for the
+#'   external server or `prod` for the production server
 #'
 #' @return
 #' The returned objects is of class `sc_table` and inherits several parsing
@@ -67,6 +69,7 @@ od_table_class <- R6::R6Class(
     #' initialize objects of class `od_table`.
     #' @param id the id of the data-set that should be accessed
     #' @param language language to be used for labeling. `"en"` or `"de"`
+    #' @param server the OGD-Server server to be used
     initialize = function(id, language = c("en", "de"), server = "ext") {
       language <- match.arg(language)
       stime <- Sys.time()
@@ -102,6 +105,8 @@ od_table_class <- R6::R6Class(
     resources = function() {
       private$cache$resources %>% `class<-`(c("tbl", "data.frame"))
     },
+    #' @field od_server
+    #' The server used for initialization (see to `?od_table`)
     od_server = function() {
       private$p_server
     }
