@@ -20,6 +20,8 @@ R6 Class open data datasets.
 Similar contents can be found in \verb{$meta}.}
 
 \item{\code{resources}}{lists all files downloaded from the server to contruct this table}
+
+\item{\code{od_server}}{The server used for initialization (see to \code{?od_table})}
 }
 \if{html}{\out{</div>}}
 }
@@ -45,7 +47,7 @@ Similar contents can be found in \verb{$meta}.}
 This class is not exported. Use \code{\link[=od_table]{od_table()}} to
 initialize objects of class \code{od_table}.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{od_table_class$new(id, language = c("en", "de"))}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{od_table_class$new(id, language = c("en", "de"), server = "ext")}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -54,6 +56,8 @@ initialize objects of class \code{od_table}.
 \item{\code{id}}{the id of the data-set that should be accessed}
 
 \item{\code{language}}{language to be used for labeling. \code{"en"} or \code{"de"}}
+
+\item{\code{server}}{the OGD-Server server to be used}
 }
 \if{html}{\out{</div>}}
 }

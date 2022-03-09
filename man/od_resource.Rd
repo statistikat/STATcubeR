@@ -11,21 +11,25 @@
 \usage{
 od_cache_dir(dir = NULL)
 
-od_cache_clear(id)
+od_cache_clear(id, server = "ext")
 
-od_cache_file(id, suffix = NULL, timestamp = NULL, ...)
+od_cache_file(id, suffix = NULL, timestamp = NULL, ..., server = "ext")
 
-od_resource(id, suffix = NULL, timestamp = NULL)
+od_resource(id, suffix = NULL, timestamp = NULL, server = "ext")
 
-od_json(id, timestamp = Sys.time() - 3600)
+od_json(id, timestamp = Sys.time() - 3600, server = "ext")
 
-od_resource_all(id, json = od_json(id))
+od_resource_all(id, json = od_json(id), server = "ext")
 }
 \arguments{
 \item{dir}{If \code{NULL}, the cache directory is returned. Otherwise, the
 cache directory will be updated to \code{dir}.}
 
 \item{id}{A database id}
+
+\item{server}{the OGD-Server to use to load update the resources in case they
+are outdated. \code{"ext"} for the external server (the default) od \code{"red"} for
+the editing server.}
 
 \item{suffix}{A suffix for the resource: \code{"HEADER"} or a field code.}
 

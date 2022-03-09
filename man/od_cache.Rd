@@ -6,9 +6,13 @@
 \alias{od_downloads}
 \title{Cache management for Open Data}
 \usage{
-od_cache_summary()
+od_cache_summary(server = "ext")
 
-od_downloads()
+od_downloads(server = "ext")
+}
+\arguments{
+\item{server}{the OGD-Server to use. \code{"ext"} for the external server (the
+default) or \code{"red"} for the editing server}
 }
 \description{
 Functions to inspect the contents of the current cache.
