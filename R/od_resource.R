@@ -167,13 +167,16 @@ od_resources_check <- function(json) {
 
 od_normalize_columns <- function(x, suffix) {
   if (!is.null(suffix)) {
-    index_label_en <- ifelse(suffix == "HEADER", 3, 4)
-    x <- x[, c(1, 2, 2, index_label_en)] %>%
-      `names<-`(c("code", "label", "label_de", "label_en"))
+    col_indices <- c(1, 2, 2, switch(suffix, HEADER = 3, c(4, 3)))
+    col_names <- c("code", "label", "label_de", "label_en",
+                   switch(suffix, HEADER = NULL, "parent"))
+    x <- x[, col_indices] %>% `names<-`(col_names)
     x$label <- NA_character_
     x$label_en <- as.character(x$label_en)
     x$label_de <- as.character(x$label_de)
     x$code <- as.character(x$code)
+    if (suffix != "HEADER")
+      x$parent <- factor(x$parent, levels = x$code)
   }
   x
 }
