@@ -7,6 +7,14 @@ od_url <- function(server = c('ext', 'red'), ..., sep = "/") {
   paste(base_url, ..., sep = sep)
 }
 
+od_get_total_code <- function(code, parent) {
+  if (sum(is.na(parent)) == 1) {
+    code[which(is.na(parent))]
+  } else {
+    NA_character_
+  }
+}
+
 od_attr <- function(json) {
   desc <- json$extras$attribute_description %>% paste0(";", .)
   index_c <- gregexpr(";C-", desc) %>% .[[1]]
@@ -68,6 +76,7 @@ od_create_data <- function(id, json = od_json(id), lang = c("en", "de"),
     )
     j <- match(meta$fields$code[i], names(dat))
     dat[[j]] <- factor(dat[[j]], fields[[i]]$code)
+    meta$fields$total_code[i] <- od_get_total_code(fields[[i]]$code, fields[[i]]$parent)
   }
 
   resources$name <- paste0(resources$name, ".csv")
