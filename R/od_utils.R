@@ -8,7 +8,7 @@ od_url <- function(server = c('ext', 'red'), ..., sep = "/") {
 }
 
 od_get_total_code <- function(code, parent) {
-  if (sum(is.na(parent)) == 1) {
+  if (length(parent) > 1 && sum(is.na(parent)) == 1) {
     code[which(is.na(parent))]
   } else {
     NA_character_
