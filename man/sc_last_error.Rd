@@ -2,9 +2,12 @@
 % Please edit documentation in R/error.R
 \name{sc_last_error}
 \alias{sc_last_error}
+\alias{sc_last_error_parsed}
 \title{Error handling for the STATcube REST API}
 \usage{
 sc_last_error()
+
+sc_last_error_parsed()
 }
 \value{
 The return value from \code{httr::GET()} or \code{httr::POST()}.
@@ -22,12 +25,19 @@ In some cases it is useful to get direct access to a faulty response object.
 For that purpose, it is possible to use \code{\link[=sc_last_error]{sc_last_error()}} which will provide
 the httr response object for the last unsuccessfull request.
 }
+\section{Functions}{
+\itemize{
+\item \code{sc_last_error_parsed}: returns the last error as a list containing
+the response content and the response status
+}}
+
 \examples{
 if (sc_key_exists()) {
 
 try(sc_table_saved("invalid_id"))
 last_error <- sc_last_error()
 httr::http_status(last_error)
+sc_last_error_parsed()
 
 }
 }

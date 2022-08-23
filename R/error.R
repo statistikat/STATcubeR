@@ -17,11 +17,23 @@
 #' try(sc_table_saved("invalid_id"))
 #' last_error <- sc_last_error()
 #' httr::http_status(last_error)
+#' sc_last_error_parsed()
 #'
 #' }
 #' @export
 sc_last_error <- function() {
   sc_env$last_error
+}
+
+#' @describeIn sc_last_error returns the last error as a list containing
+#'   the response content and the response status
+#' @export
+sc_last_error_parsed <- function() {
+  last_error <- sc_last_error()
+  list(
+    content = httr::content(last_error),
+    status = httr::http_status(last_error)
+  )
 }
 
 sc_env <- new.env(parent = emptyenv())
