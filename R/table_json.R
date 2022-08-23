@@ -44,6 +44,16 @@ sc_json_add_totals <- function(json_content) {
   json_content
 }
 
+#' Get the server from a json request
+#'
+#' parses a json request and returns a short string representing
+#' the corresponding STATcube server
+#' @return `"ext"`, `"red"` or `"prod"` depending on the database uri in the
+#'   json request
+#' @param json path to a request json
+#' @examples
+#' sc_example('accomodation') %>% sc_json_get_server()
+#' @export
 sc_json_get_server <- function(json) {
   parsed <- jsonlite::fromJSON(json, simplifyVector = FALSE)
   sc_database_get_server(database_uri = parsed$database)

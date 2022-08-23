@@ -27,6 +27,7 @@ articles:
   - sc_table_custom
   - sc_schema
   - sc_info
+  - sc_json_get_server
 - title: Open Government Data
   desc: >
     Articles about the import of OGD datasets into your R session
