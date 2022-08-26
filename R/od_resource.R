@@ -197,6 +197,12 @@ od_json <- function(id, timestamp = Sys.time() - 3600, server = "ext") {
   json
 }
 
+#' @export
+as.character.od_json <- function(x, ...) {
+  jsonlite::toJSON(x, pretty = TRUE, auto_unbox = TRUE) %>%
+    paste(...)
+}
+
 #' @name od_resource
 #' @param json The JSON file belonging to the dataset
 #' @examples

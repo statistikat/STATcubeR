@@ -37,6 +37,11 @@ sc_json_class <- R6::R6Class(
   )
 )
 
+#' @export
+as.character.sc_json <- function(x, ..., collapse = "\n") {
+  x$content %>% paste(..., collapse = collapse)
+}
+
 sc_json_add_totals <- function(json_content) {
   measures <- unlist(json_content$dimensions)
   for (measure in measures)
