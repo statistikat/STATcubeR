@@ -172,9 +172,7 @@ sc_table_class <- R6::R6Class(
 #'   The third option `"both"` will import both languages by sending two requests
 #'   to the `/table` endpoint.
 #' @family functions for /table
-#' @examples
-#' if (sc_key_exists()) {
-#'
+#' @examplesIf sc_key_exists()
 #' my_table <- sc_table(json_file = sc_example("population_timeseries.json"))
 #'
 #' # print
@@ -208,8 +206,6 @@ sc_table_class <- R6::R6Class(
 #' # get a table based on one of these ids
 #' my_response <- sc_table_saved(table_uri)
 #' as.data.frame(my_response)
-#'
-#' }
 #' @export
 sc_table <- function(json_file, language = c("en", "de", "both"), add_totals = TRUE,
                      key = NULL) {
