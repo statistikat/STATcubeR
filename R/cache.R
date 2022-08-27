@@ -11,7 +11,7 @@
 #' for both Open Data and the REST API, the following lines in `.Renviron` can
 #' be used.
 #'
-#' ```
+#' ```sh
 #' STATCUBE_KEY       = YOUR_API_KEY_GOES_HERE
 #' STATCUBE_CACHE     = TRUE
 #' OD_CACHE_DIR       = "~/.cache/STATcubeR/open_data/"
@@ -20,7 +20,7 @@
 #'
 #' Note that the caches are always used and there is no check to verify if the
 #' resources are unchanged in the server. Caching is not implemented for the
-#' endpoints [sc_info()] and [sc_rate_limit_table()].``
+#' endpoints [sc_info()] and [sc_rate_limit_table()].
 #' @usage
 #' ## enable caching for the current R session
 #' sc_cache_enable(verbose)
