@@ -1,6 +1,6 @@
 Type: Package
 Package: STATcubeR
-Title: Tools for importing STATcube and OGD data
+Title: R interface for the STATcube REST API and Open Government Data
 Version: 0.3.4.4
 Authors@R: 
     c(person(given = "Gregor",
