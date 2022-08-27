@@ -15,15 +15,16 @@ Instructions for the first-time use of the STATcube REST API.
 
 ## Adding an API key
 
-In order to use the REST API of STATcube it is necessary to provide
-an API key. If your STATcube account is configured to use a key,
-the following address can be used to view your key
+In order to use the REST API of STATcube it is necessary to provide an API key.
+This means that you will need a subscription for STATcube.
+Subscribed users will automatically get access to the STATcube API.
+The API key can be displayed under the preferences menu of STATcube
 
 ```
 http://sdbext:8081/statistik.at/ext/statcube/jsf/preferences/editPreferences.xhtml
 ```
 
-To make the key available to `r STATcubeR`, use the function
+To make the key available for `r STATcubeR`, use the function
 `sc_key_set()`. Replace `"XXXX"` with your key.
 
 ```r

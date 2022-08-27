@@ -121,8 +121,8 @@ Information about resources other than databases and the catalogue can
 be obtained by passing the resource id to `sc_schema()`.
 
 ```{r}
-my_db_info$Facts$id
-group_info <- sc_schema(my_db_info$Facts$id)
+my_db_info$Factors$id
+group_info <- sc_schema(my_db_info$Factors$id)
 group_info
 ```
 
@@ -131,13 +131,13 @@ However, ids of the child nodes can be obtained with `$id`.
 These ids can be used to send another request to the `/schema` endpoint
 
 ```{r}
-group_info$GEWTATJAHR$id
+group_info$`Average hours usually worked per week`$id
 ```
 
 Alternatively, use the `depth` parameter of `sc_schema`.
 
 ```r
-group_info <- sc_schema(my_db_info$Facts$id, depth = "valueset")
+group_info <- sc_schema(my_db_info$Factors$id, depth = "valueset")
 ```
 
 ## Printing with data.tree
@@ -153,5 +153,4 @@ The data.tree implementation can be set as a default with `options()`
 
 ```{r}
 options(STATcubeR.print_tree = TRUE)
-my_catalogue$Statistics
 ```

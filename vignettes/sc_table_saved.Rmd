@@ -27,8 +27,8 @@ sc_table_saved_list()
 Subsequently the `id` of a saved table can be used to import the table into R.
 
 ```{r}
-tourism_ts <- sc_table_saved("str:table:eec7dd70-25c4-4e5a-a6ae-1a9cd15d3c4c")
-tourism_ts
+wine <- sc_table_saved("str:table:4520fba3-dffd-4f2a-9cd1-d46d710b6da4")
+wine
 ```
 
 ## Keys and accounts
@@ -39,22 +39,22 @@ account. Saved tables from other accounts can not be listed or requested.
 
 ## Converting saved tables to JSON requests
 
-To make the table available for later use or for other users of `r `STATcubeR`,
+To make the table available for later use or for other users of `r STATcubeR`,
 the response can be exported into a json.
 
 ```{r}
-tourism_ts$json$write("tourism_ts.json")
+wine$json$write("wine.json")
 ```
 
 ```{r, include=FALSE}
-on.exit(fs::file_delete("tourism_ts.json"))
+on.exit(fs::file_delete("wine.json"))
 ```
 
 The generated json file contains an API request that can be used in
 `sc_table()`.
 
 ```r
-my_response <- sc_table("tourism_ts.json")
+my_response <- sc_table("wine.json")
 ```
 
 [saved tables]: https://docs.wingarc.com.au/superstar/latest/superweb2/user-guide/save-and-reload-tables
