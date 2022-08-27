@@ -3,13 +3,9 @@
 #' Utilize the simple endpoints `/info` and `/table_rate_limit`. Those provide
 #' information about available locales and the amount of requests available
 #' for calls against the `/table` endpoint.
-#' @examples
-#' if (sc_key_exists()) {
-#'
+#' @examplesIf sc_key_exists()
 #' sc_info()
 #' sc_rate_limit_table()
-#'
-#' }
 #' @name other_endpoints
 #' @rdname other_endpoints
 #' @inheritParams sc_key

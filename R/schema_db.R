@@ -1,7 +1,5 @@
 #' @param db_id a database id
-#' @examples
-#' if (sc_key_exists()) {
-#'
+#' @examplesIf sc_key_exists()
 #' my_catalogue <- sc_schema_catalogue()
 #'
 #' ## print
@@ -29,8 +27,6 @@
 #'
 #' # print with data.tree
 #' print(my_catalogue$Examples, tree = TRUE)
-#'
-#' }
 #' @rdname sc_schema
 #' @export
 sc_schema_db <- function(db_id, depth = "valueset", language = c("en", "de"),

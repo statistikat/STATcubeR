@@ -93,8 +93,7 @@
 #'
 #' ######################### STATcube REST API #################################
 #'
-#' if (sc_key_exists()) {
-#'
+#' @examplesIf sc_key_exists()
 #' table_tourism <- sc_example("accomodation.json") %>% sc_table("de")
 #'
 #' table_tourism$tabulate()
@@ -109,8 +108,6 @@
 #'                     annotations = TRUE)
 #'   tt
 #'   tt[['Import, Wert in Euro_a']] %>% str()
-#' }
-#'
 #' }
 #' @export
 sc_tabulate <- function(table, ..., .list = NULL, raw = FALSE,
