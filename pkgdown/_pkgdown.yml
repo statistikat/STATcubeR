@@ -1,7 +1,9 @@
 template:
-  bootstrap: 4
-  params:
-    bootswatch: cosmo
+  bootstrap: 5
+  bootswatch: flatly
+
+code:
+  width: 70
 
 development:
   mode: devel
@@ -27,7 +29,6 @@ articles:
   - sc_table_custom
   - sc_schema
   - sc_info
-  - sc_json_get_server
 - title: Open Government Data
   desc: >
     Articles about the import of OGD datasets into your R session
@@ -116,3 +117,7 @@ reference:
   - 'sc_data'
   - 'sc_browse'
   - 'sc_tabulate'
+  - 'sc_json_get_server'
+  - 'sc_last_error'
+  - 'sc_cache'
+
