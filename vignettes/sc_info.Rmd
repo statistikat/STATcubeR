@@ -33,5 +33,5 @@ STATcube uses caching for the `/table` endpoint by default. If the same
 request to `sc_table()` is sent several times, this will not count
 towards the rate-limit (100 requests per hour).
 
-[`/info`]: https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/info-endpoint
-[`/rate_limit`]: https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/rate-limit
+[`/info`]: https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/info-endpoint
+[`/rate_limit`]: https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/rate-limit

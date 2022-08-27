@@ -57,5 +57,5 @@ The generated json file contains an API request that can be used in
 my_response <- sc_table("wine.json")
 ```
 
-[saved tables]: https://docs.wingarc.com.au/superstar/latest/superweb2/user-guide/save-and-reload-tables
+[saved tables]: https://docs.wingarc.com.au/superstar/9.12/superweb2/user-guide/save-and-reload-tables
 

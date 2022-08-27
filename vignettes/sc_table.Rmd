@@ -76,7 +76,7 @@ Furthermore, one column will be present for each measure.
 * Functionalities of the returned object are explained in the `r ticle("sc_data")`.
 * The `r ticle("sc_table_saved")` shows an alternative way of importing tables.
 
-[`/table` endpoint]: https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint
-[download options]: https://docs.wingarc.com.au/superstar/latest/superweb2/user-guide/download-tables
+[`/table` endpoint]: https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/table-endpoint
+[download options]: https://docs.wingarc.com.au/superstar/9.12/superweb2/user-guide/download-tables
 [STATcube]: http://sdbext:8081/statistik.at/ext/statcube/home
 [STATcube manual]: http://www.statistik.at/wcm/idc/idcplg?IdcService=GET_PDF_FILE&dDocName=105692

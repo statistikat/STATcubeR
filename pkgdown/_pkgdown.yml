@@ -50,7 +50,7 @@ home:
   - text: Find open govenment data
     href: https://data.statistik.gv.at
   - text: Read the API reference
-    href: https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/
+    href: https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/
 
 navbar:
   type: default

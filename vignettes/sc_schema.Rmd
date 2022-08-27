@@ -113,7 +113,7 @@ str(tail(my_catalogue$Statistics, 4))
 Schema objects can have an arbitrary amount of childs.
 Childs are always of type `sc_schema`.
 `x$type` determines the type of the schema object.
-See the [SuperSTAR API documentation](https://docs.wingarc.com.au/superstar/9.11/open-data-api/open-data-api-reference/schema-endpoint) for a complete list of schema types.
+See the [SuperSTAR API documentation](https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/schema-endpoint) for a complete list of schema types.
 
 ## Other resources
 
