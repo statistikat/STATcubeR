@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content='Hands-on guide about transfering data from the STATcube GUI (table view) to R sessions via a the download option "open data api request".
 '>
-<title>Get Data via JSON Requests • STATcubeR</title>
+<title>Get Tables via JSON Requests • STATcubeR</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -19,7 +19,7 @@
 <script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
-<meta property="og:title" content="Get Data via JSON Requests">
+<meta property="og:title" content="Get Tables via JSON Requests">
 <meta property="og:description" content='Hands-on guide about transfering data from the STATcube GUI (table view) to R sessions via a the download option "open data api request".
 '>
 <meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.png">
@@ -104,7 +104,7 @@
 
 <div class="row">
   <main id="main"><div class="page-header">
-      <img src="../logo.png" class="logo" alt=""><h1>Get Data via JSON Requests</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>Get Tables via JSON Requests</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/statistikat/STATcubeR/blob/HEAD/vignettes/sc_table.Rmd" class="external-link"><code>vignettes/sc_table.Rmd</code></a></small>
@@ -131,9 +131,9 @@ an R session. This process involves four steps</p>
 <p>It is assumed that you already provided your API key as described in
 the
 <a href="sc_key.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Setup the API Key&lt;/b&gt;
+  &lt;b&gt;Set Up the API Key&lt;/b&gt;
   &lt;br/&gt;
-  Set up authentication to the STATcube REST API by setting your API key for the session or persistently.
+  Learn how get access to an API key and set up authentication to the STATcube REST API by making the key available for STATcubeR.
 &lt;/div&gt;'>API key article</a>.</p>
 <div class="section level2">
 <h2 id="create-a-table-with-the-statcube-gui">Create a table with the STATcube GUI<a class="anchor" aria-label="anchor" href="#create-a-table-with-the-statcube-gui"></a>
@@ -147,7 +147,7 @@ manual</a> for details.</p>
 <div class="section level2">
 <h2 id="download-an-api-request">Download an API request<a class="anchor" aria-label="anchor" href="#download-an-api-request"></a>
 </h2>
-<p>Choose “Open Data API Abfrage (.json)” in the <a href="https://docs.wingarc.com.au/superstar/latest/superweb2/user-guide/download-tables" class="external-link">download
+<p>Choose “Open Data API Abfrage (.json)” in the <a href="https://docs.wingarc.com.au/superstar/9.12/superweb2/user-guide/download-tables" class="external-link">download
 options</a>. This will save a json file on your local file system.</p>
 <p><img src="img/download_json.png"></p>
 <p>It might be the case thatthis download option is not listed as a
@@ -162,13 +162,13 @@ use the API.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span>json_file <span class="op">=</span> <span class="st">"path/to/api_request.json"</span><span class="op">)</span></code></pre></div>
 <p>The object <code>my_table</code> is created via the raw API response
-from <code><a href="https://httr.r-lib.org/reference/POST.html" class="external-link">httr::POST()</a></code> against the <a href="https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/table-endpoint" class="external-link"><code>/table</code>
+from <code><a href="https://httr.r-lib.org/reference/POST.html" class="external-link">httr::POST()</a></code> against the <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/table-endpoint" class="external-link"><code>/table</code>
 endpoint</a>. Printing the object will summarize the request. We will
 demonstrate this with an example json via <code><a href="../reference/sc_table.html">sc_example()</a></code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="va">json_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"population_timeseries.json"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] "/home/gregor/workspace/STATgraph/STATcubeR/inst/json_examples/population_timeseries.json"</span></code></pre>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">(</span><span class="va">json_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"population_timeseries.json"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">## [1] ~/R/3.6/STATcubeR/json_examples/population_timeseries.json</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="va">json_path</span><span class="op">)</span>
 <span class="va">my_table</span></code></pre></div>
 <pre><code><span class="co">## An object of class sc_table</span>
@@ -187,7 +187,7 @@ demonstrate this with an example json via <code><a href="../reference/sc_table.h
 <p>The return value of <code><a href="../reference/sc_table.html">sc_table()</a></code> can be converted into a
 <code>data.frame</code>. To do that, use the <code>$tabulate()</code>
 method.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_table</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 8,316 x 5</span>
    <span style="font-weight: bold;">Quarter</span>    <span style="font-weight: bold;">`Age in single ye…</span> <span style="font-weight: bold;">`Sex &lt;2&gt;`</span> <span style="font-weight: bold;">`Commune &lt;2383&gt; (Pr…</span> <span style="font-weight: bold;">`Number of pers…</span>
@@ -215,7 +215,7 @@ measure.</p>
 <a href="sc_data.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
   &lt;b&gt;The STATcubeR Data Class&lt;/b&gt;
   &lt;br/&gt;
-  The base class for Open Data and STATcube datasets
+  STATcubeR uses a common base class for OGD datasets and datasets from the STATcube REST API. This article explains the core functionalities and allows you to use both datasources more flexibly.
 &lt;/div&gt;'>STATcubeR data article</a>.</li>
 <li>The
 <a href="sc_table_saved.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;

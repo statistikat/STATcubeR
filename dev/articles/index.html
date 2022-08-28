@@ -76,52 +76,72 @@
 
     <div class="section ">
       <h3>STATcube REST API</h3>
-      <p class="section-desc"></p><p>Transfer data from STATcube into your R session</p>
+      <p class="section-desc"></p><p>Import tables from STATcube and use them as <code>data.frame</code>s
+in your R projects. You can also use the API to discover available
+databases as well as their metadata.</p>
 
-      <dl><dt><a href="sc_key.html">Setup the API Key</a></dt>
-        <dd><p>Set up authentication to the STATcube REST API by setting your API
-key for the session or persistently.</p>
-        </dd><dt><a href="sc_table.html">Get Data via JSON Requests</a></dt>
+      <dl><dt><a href="sc_key.html">Set Up the API Key</a></dt>
+        <dd><p>Learn how get access to an API key and set up authentication to the
+STATcube REST API by making the key available for STATcubeR.</p>
+        </dd><dt><a href="sc_table.html">Get Tables via JSON Requests</a></dt>
         <dd><p>Hands-on guide about transfering data from the STATcube GUI (table
 view) to R sessions via a the download option “open data api
 request”.</p>
+        </dd><dt><a href="sc_schema.html">Get Metadata with the Schema Endpoint</a></dt>
+        <dd><p>The <code>/schema</code> endpoint of the REST API provides metadata
+about databases and can also be used to retrieve a catalogue with all
+available databases.</p>
         </dd><dt><a href="sc_table_saved.html">Load Saved Tables</a></dt>
         <dd><p>STATcube allows you to save tables in the GUI. You can import those
 saved tables using <code><a href="../reference/sc_table.html">sc_table_saved()</a></code>. This function can also
 be used to import default tables for databases.</p>
-        </dd><dt><a href="sc_table_custom.html">Define Custom Tables</a></dt>
-        <dd><p>Define custom requests against the <code>/table</code> endpoint
-programatically by providing character vectors with ids of databases,
-measures and fields.</p>
-        </dd><dt><a href="sc_schema.html">Metadata with the Schema Endpoint</a></dt>
-        <dd><p>The <code>/schema</code> endpoint of the REST API provides metadata
-about databases and can also be used to retrieve a catalogue with all
-available databases</p>
-        </dd><dt><a href="sc_info.html">Other REST API endpoints</a></dt>
+        </dd><dt><a href="sc_info.html">Other REST API Endpoints</a></dt>
         <dd><p>How to use the (rather simple) endpoints <code>/info</code> and
-<code>/rate_limit_table</code></p>
+<code>/rate_limit_table</code>.</p>
       </dd></dl></div>
     <div class="section ">
       <h3>Open Government Data</h3>
-      <p class="section-desc"></p><p>Articles about the import of OGD datasets into your R session</p>
+      <p class="section-desc"></p><p>Articles about STATcubeR functions that interact with the open
+government portal of Statistics Austria (<a href="https://data.statistik.gv.at" class="external-link uri">https://data.statistik.gv.at</a>).</p>
 
       <dl><dt><a href="od_table.html">Open Government Data</a></dt>
-        <dd><p>Overview about all functionalities regarding OGD Datasets</p>
-        </dd><dt><a href="od_resources.html">File Management</a></dt>
-        <dd><p>Learn how <a href="https://statistikat.github.io/STATcubeR">STATcubeR</a> caches data from the OGD
-portal</p>
+        <dd><p>Hands-on guide on how to get and use datasets from the OGD portal.
+This article also contains a short introduction on tabulation and
+translation of datasets.</p>
         </dd><dt><a href="od_list.html">Available Datasets</a></dt>
-        <dd><p>List all datasets from the OGD portal of Statistics Austria</p>
+        <dd><p>A concise overview about the 315 datasets from the OGD portal which
+are compatible with STATcubeR. Learn how to discover useful datasets and
+read OGD metadata.</p>
+        </dd><dt><a href="od_resources.html">File Management</a></dt>
+        <dd><p>Learn how STATcubeR caches resources from the OGD portal in the local
+file system. Understanding this allows you to enable persistent caches
+and directly use cached resources.</p>
       </dd></dl></div>
     <div class="section ">
       <h3>Data Class</h3>
       <p class="section-desc"></p>
 
       <dl><dt><a href="sc_data.html">The STATcubeR Data Class</a></dt>
-        <dd><p>The base class for Open Data and STATcube datasets</p>
+        <dd><p>STATcubeR uses a common base class for OGD datasets and datasets from
+the STATcube REST API. This article explains the core functionalities
+and allows you to use both datasources more flexibly.</p>
         </dd><dt><a href="sc_tabulate.html">Tabulating STATcubeR Datasets</a></dt>
-        <dd><p>Learn how to turn sc_table objects into tidy data frames using the
-<code><a href="https://rdrr.io/r/base/tabulate.html" class="external-link">tabulate()</a></code> method.</p>
+        <dd><p>Learn how to turn datasets from the REST API or from the OGD portal
+into tidy <code>data.frame</code>s by using the tabulate() method.</p>
+      </dd></dl></div>
+    <div class="section ">
+      <h3>Advanced Usage</h3>
+      <p class="section-desc"></p><p>Articles that are only relevant for users who are already familiar
+with the core functionalities of STATcubeR.</p>
+
+      <dl><dt><a href="sc_cache.html">Caching API Responses</a></dt>
+        <dd><p>STATcubeR can be configured to cache API responses and reuse them
+later. This article describes the necessary setup as well as potential
+usecases.</p>
+        </dd><dt><a href="sc_table_custom.html">Define Custom Tables</a></dt>
+        <dd><p>Define custom requests against the <code>/table</code> endpoint
+programatically by providing character vectors with ids of databases,
+measures and classification fields.</p>
       </dd></dl></div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>

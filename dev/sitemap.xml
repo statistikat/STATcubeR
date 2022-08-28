@@ -19,6 +19,9 @@
     <loc>https://statistikat.github.io/STATcubeR/dev/articles/od_table.html</loc>
   </url>
   <url>
+    <loc>https://statistikat.github.io/STATcubeR/dev/articles/sc_cache.html</loc>
+  </url>
+  <url>
     <loc>https://statistikat.github.io/STATcubeR/dev/articles/sc_data.html</loc>
   </url>
   <url>
@@ -113,8 +116,5 @@
   </url>
   <url>
     <loc>https://statistikat.github.io/STATcubeR/dev/reference/sc_tabulate.html</loc>
-  </url>
-  <url>
-    <loc>https://statistikat.github.io/STATcubeR/dev/reference/sg_data.html</loc>
   </url>
 </urlset>

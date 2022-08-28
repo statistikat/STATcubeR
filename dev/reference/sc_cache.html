@@ -105,6 +105,10 @@ old cache entries.</p>
 
 <span class="fu">sc_cache_enabled</span><span class="op">(</span><span class="op">)</span>
 
+<span class="fu">sc_cache_dir</span><span class="op">(</span>dir <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
+
+<span class="fu">sc_cache_files</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+
 <span class="co">## remove all files from the cache</span>
 <span class="fu">sc_cache_clear</span><span class="op">(</span><span class="op">)</span></code></pre></div>
     </div>
@@ -114,6 +118,10 @@ old cache entries.</p>
     <dl><dt>verbose</dt>
 <dd><p>print instuctions on how to set up caching persistently
 via environment variables?</p></dd>
+<dt>dir</dt>
+<dd><p>a chace directory</p></dd>
+<dt>x</dt>
+<dd><p>an object of class <code>sc_table</code> or <code>sc_schema</code></p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -132,6 +140,8 @@ endpoints <code><a href="other_endpoints.html">sc_info()</a></code> and <code><a
     <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a></h2>
     
 <ul><li><p><code>sc_cache_enabled</code>: informs wether the cache is currently enabled</p></li>
+<li><p><code>sc_cache_dir</code>: get/set the directory used for caching</p></li>
+<li><p><code>sc_cache_files</code>: get the cache file associated with an object</p></li>
 </ul></div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

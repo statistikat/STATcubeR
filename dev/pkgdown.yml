@@ -5,6 +5,7 @@ articles:
   od_list: od_list.html
   od_resources: od_resources.html
   od_table: od_table.html
+  sc_cache: sc_cache.html
   sc_data: sc_data.html
   sc_info: sc_info.html
   sc_key: sc_key.html
@@ -14,7 +15,7 @@ articles:
   sc_table_custom: sc_table_custom.html
   sc_table_saved: sc_table_saved.html
   sc_tabulate: sc_tabulate.html
-last_built: 2022-08-27T14:39Z
+last_built: 2022-08-28T14:13Z
 urls:
   reference: https://statistikat.github.io/STATcubeR/reference
   article: https://statistikat.github.io/STATcubeR/articles

@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Learn how to turn sc_table objects into tidy data frames using the `tabulate()` method.
+<meta name="description" content="Learn how to turn datasets from the REST API or from the OGD portal into tidy `data.frame`s by using the tabulate() method.
 ">
 <title>Tabulating STATcubeR Datasets • STATcubeR</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Tabulating STATcubeR Datasets">
-<meta property="og:description" content="Learn how to turn sc_table objects into tidy data frames using the `tabulate()` method.
+<meta property="og:description" content="Learn how to turn datasets from the REST API or from the OGD portal into tidy `data.frame`s by using the tabulate() method.
 ">
 <meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.png">
 <meta name="robots" content="noindex">
@@ -133,7 +133,7 @@ from the
 <a href="od_table.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
   &lt;b&gt;Open Government Data&lt;/b&gt;
   &lt;br/&gt;
-  Overview about all functionalities regarding OGD Datasets
+  Hands-on guide on how to get and use datasets from the OGD portal. This article also contains a short introduction on tabulation and translation of datasets.
 &lt;/div&gt;'>OGD article</a>.
 After that, other features of <code>$tabulate()</code> will be
 demonstrated with the data from the
@@ -240,7 +240,7 @@ earnings survey.</p>
 <span class="co">##             Number of employees </span>
 <span class="co">## Fields      Sex, Citizenship, Region (NUTS2), Form of employment </span>
 <span class="co">## </span>
-<span class="co">## Request     2022-08-27 16:40:37 </span>
+<span class="co">## Request     2022-08-28 16:14:18 </span>
 <span class="co">## STATcubeR   0.3.4.4</span></code></pre>
 <p>As we can see from the <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> output, the measures
 contain means and quartiles. Therefore, aggregating the data via

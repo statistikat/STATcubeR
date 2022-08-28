@@ -5,7 +5,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Overview about all functionalities regarding OGD Datasets">
+<meta name="description" content="Hands-on guide on how to get and use datasets from the OGD portal. This article also contains a short introduction on tabulation and translation of datasets.
+">
 <title>Open Government Data • STATcubeR</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -19,7 +20,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Open Government Data">
-<meta property="og:description" content="Overview about all functionalities regarding OGD Datasets">
+<meta property="og:description" content="Hands-on guide on how to get and use datasets from the OGD portal. This article also contains a short introduction on tabulation and translation of datasets.
+">
 <meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.png">
 <meta name="robots" content="noindex">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -160,7 +162,7 @@ method.</p>
 <span class="co">## Measures    Number of records F-KRE </span>
 <span class="co">## Fields      Tumore ICD/10 3-Steller, Reporting year, Province of residence, Sex </span>
 <span class="co">## </span>
-<span class="co">## Request     2022-08-27 16:40:01 </span>
+<span class="co">## Request     2022-08-28 16:13:38 </span>
 <span class="co">## STATcubeR   0.3.4.4</span></code></pre>
 </div>
 <div class="section level2">
@@ -182,7 +184,7 @@ can be obtained via <code>$header</code>.</p>
 <a href="sc_data.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
   &lt;b&gt;The STATcubeR Data Class&lt;/b&gt;
   &lt;br/&gt;
-  The base class for Open Data and STATcube datasets
+  STATcubeR uses a common base class for OGD datasets and datasets from the STATcube REST API. This article explains the core functionalities and allows you to use both datasources more flexibly.
 &lt;/div&gt;'>STATcubeR data article</a>
 for more details.</p>
 <div class="section level3 unlisted unnumbered tabset tabset-pills">
@@ -310,7 +312,7 @@ if they satisfy certain STATcube standards. You can read more about
 <a href="sc_tabulate.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
   &lt;b&gt;Tabulating STATcubeR Datasets&lt;/b&gt;
   &lt;br/&gt;
-  Learn how to turn sc_table objects into tidy data frames using the &lt;a href="https://rdrr.io/r/base/tabulate.html"&gt;&lt;code&gt;tabulate()&lt;/code&gt;&lt;/a&gt; method.
+  Learn how to turn datasets from the REST API or from the OGD portal into tidy &lt;code&gt;data.frame&lt;/code&gt;s by using the tabulate() method.
 &lt;/div&gt;'>tabulation article</a>.</p>
 </div>
 <div class="section level2">
@@ -326,8 +328,8 @@ and <code>"de"</code> for german.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">table</span><span class="op">$</span><span class="va">language</span> <span class="op">&lt;-</span> <span class="st">"de"</span></code></pre></div>
 <p>This option affects the <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> method as well as the
-output of <code>$data</code>. If no english labels are available, the
-german labels are used as a fallback mechanism.</p>
+output of <code>$tabulate()</code>. If no english labels are available,
+the german labels are used as a fallback mechanism.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">table</span></code></pre></div>
 <pre><code><span class="co">## An object of class od_table</span>
@@ -336,7 +338,7 @@ german labels are used as a fallback mechanism.</p>
 <span class="co">## Measures    Anzahl der Datensätze F-KRE </span>
 <span class="co">## Fields      Tumore ICD/10 3-Steller, Berichtsjahr, Bundesland, Geschlecht </span>
 <span class="co">## </span>
-<span class="co">## Request     2022-08-27 16:40:01 </span>
+<span class="co">## Request     2022-08-28 16:13:38 </span>
 <span class="co">## STATcubeR   0.3.4.4</span></code></pre>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">table</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -359,7 +361,7 @@ german labels are used as a fallback mechanism.</p>
 <a href="od_list.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
   &lt;b&gt;Available Datasets&lt;/b&gt;
   &lt;br/&gt;
-  List all datasets from the OGD portal of Statistics Austria
+  A concise overview about the 315 datasets from the OGD portal which are compatible with STATcubeR. Learn how to discover useful datasets and read OGD metadata.
 &lt;/div&gt;'>available datasets article</a>
 to list all datasets that are compatible with
 <code><a href="../reference/od_table.html">od_table()</a></code>.</li>
@@ -368,7 +370,7 @@ the
 <a href="sc_tabulate.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
   &lt;b&gt;Tabulating STATcubeR Datasets&lt;/b&gt;
   &lt;br/&gt;
-  Learn how to turn sc_table objects into tidy data frames using the &lt;a href="https://rdrr.io/r/base/tabulate.html"&gt;&lt;code&gt;tabulate()&lt;/code&gt;&lt;/a&gt; method.
+  Learn how to turn datasets from the REST API or from the OGD portal into tidy &lt;code&gt;data.frame&lt;/code&gt;s by using the tabulate() method.
 &lt;/div&gt;'>tabulation article</a>
 to see how they can be summarized into a more compact form.</li>
 <li>
@@ -380,7 +382,7 @@ caches all files requested from the server under the hood. The
 <a href="od_resources.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
   &lt;b&gt;File Management&lt;/b&gt;
   &lt;br/&gt;
-  Learn how &lt;a href="https://statistikat.github.io/STATcubeR"&gt;STATcubeR&lt;/a&gt; caches data from the OGD portal
+  Learn how STATcubeR caches resources from the OGD portal in the local file system. Understanding this allows you to enable persistent caches and directly use cached resources.
 &lt;/div&gt;'>caching article</a>
 explains where and how those caches are stored.</li>
 </ul>

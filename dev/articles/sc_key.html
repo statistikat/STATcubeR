@@ -5,9 +5,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Set up authentication to the STATcube REST API by setting your API key for the session or persistently.
+<meta name="description" content="Learn how get access to an API key and set up authentication to the STATcube REST API by making the key available for STATcubeR.
 ">
-<title>Setup the API Key • STATcubeR</title>
+<title>Set Up the API Key • STATcubeR</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -19,8 +19,8 @@
 <script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
-<meta property="og:title" content="Setup the API Key">
-<meta property="og:description" content="Set up authentication to the STATcube REST API by setting your API key for the session or persistently.
+<meta property="og:title" content="Set Up the API Key">
+<meta property="og:description" content="Learn how get access to an API key and set up authentication to the STATcube REST API by making the key available for STATcubeR.
 ">
 <meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.png">
 <meta name="robots" content="noindex">
@@ -104,7 +104,7 @@
 
 <div class="row">
   <main id="main"><div class="page-header">
-      <img src="../logo.png" class="logo" alt=""><h1>Setup the API Key</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>Set Up the API Key</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/statistikat/STATcubeR/blob/HEAD/vignettes/sc_key.Rmd" class="external-link"><code>vignettes/sc_key.Rmd</code></a></small>
@@ -156,7 +156,7 @@ unsuccessfull.</p>
 </h2>
 <p>See the
 <a href="sc_table.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Get Data via JSON Requests&lt;/b&gt;
+  &lt;b&gt;Get Tables via JSON Requests&lt;/b&gt;
   &lt;br/&gt;
   Hands-on guide about transfering data from the STATcube GUI (table view) to R sessions via a the download option &amp;ldquo;open data api request&amp;rdquo;.
 &lt;/div&gt;'>JSON requests article</a>
@@ -174,15 +174,15 @@ For more advanced usage of
   " class="STATcubeR">STATcubeR</a>,
 see the
 <a href="sc_schema.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Metadata with the Schema Endpoint&lt;/b&gt;
+  &lt;b&gt;Get Metadata with the Schema Endpoint&lt;/b&gt;
   &lt;br/&gt;
-  The &lt;code&gt;/schema&lt;/code&gt; endpoint of the REST API provides metadata about databases and can also be used to retrieve a catalogue with all available databases
+  The &lt;code&gt;/schema&lt;/code&gt; endpoint of the REST API provides metadata about databases and can also be used to retrieve a catalogue with all available databases.
 &lt;/div&gt;'>schema article</a>
 and
 <a href="sc_table_custom.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
   &lt;b&gt;Define Custom Tables&lt;/b&gt;
   &lt;br/&gt;
-  Define custom requests against the &lt;code&gt;/table&lt;/code&gt; endpoint programatically by providing character vectors with ids of databases, measures and fields.
+  Define custom requests against the &lt;code&gt;/table&lt;/code&gt; endpoint programatically by providing character vectors with ids of databases, measures and classification fields.
 &lt;/div&gt;'>custom tables article</a></p>
 </div>
 <div class="section level2">
