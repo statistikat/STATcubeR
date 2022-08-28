@@ -40,8 +40,8 @@ are applicable.}
 \code{\link[=sc_browse_preferences]{sc_browse_preferences()}}.}
 
 \item{server}{A STATcube API server. Defaults to the external Server via
-\code{"ext"}. Oher options are \code{"red"} for the editing server and \code{"prod"} for
-the production server.}
+\code{"ext"}. Other options are \code{"red"} for the editing server and \code{"prod"} for
+the production server. External users should always use the default option \code{"ext"}.}
 
 \item{x}{object to be printed}
 
@@ -64,13 +64,14 @@ tree object.
 \code{limit} and \code{...} will simply be ignored if \code{tree} is set to \code{FALSE}, which is
 the default. The printing via \code{data.tree} can take longer than the default
 implementation because \code{x} will need to be converted into a \code{data.tree} node.
-To use \code{data.tree} printing permanently, use\if{html}{\out{<div class="sourceCode r">}}\preformatted{options(STATcubeR.print_tree = TRUE)
+To use \code{data.tree} printing permanently, use
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{options(STATcubeR.print_tree = TRUE)
 }\if{html}{\out{</div>}}
 }
 
 \examples{
-if (sc_key_exists()) {
-
+\dontshow{if (sc_key_exists()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 my_catalogue <- sc_schema_catalogue()
 
 ## print
@@ -98,7 +99,6 @@ my_content$label
 
 # print with data.tree
 print(my_catalogue$Examples, tree = TRUE)
-
-}
+\dontshow{\}) # examplesIf}
 }
 \concept{functions for /schema}

@@ -28,21 +28,21 @@ Similar contents can be found in \verb{$meta}.}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{od_table_class$new()}}
+\item \href{#method-od_table-new}{\code{od_table_class$new()}}
 }
 }
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="field">}\href{../../STATcubeR/html/sc_data.html#method-field}{\code{STATcubeR::sc_data$field()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="tabulate">}\href{../../STATcubeR/html/sc_data.html#method-tabulate}{\code{STATcubeR::sc_data$tabulate()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="total_codes">}\href{../../STATcubeR/html/sc_data.html#method-total_codes}{\code{STATcubeR::sc_data$total_codes()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="field"><a href='../../STATcubeR/html/sc_data.html#method-sc_data-field'><code>STATcubeR::sc_data$field()</code></a></li>
+<li><span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="tabulate"><a href='../../STATcubeR/html/sc_data.html#method-sc_data-tabulate'><code>STATcubeR::sc_data$tabulate()</code></a></li>
+<li><span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="total_codes"><a href='../../STATcubeR/html/sc_data.html#method-sc_data-total_codes'><code>STATcubeR::sc_data$total_codes()</code></a></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-od_table-new"></a>}}
+\if{latex}{\out{\hypertarget{method-od_table-new}{}}}
 \subsection{Method \code{new()}}{
 This class is not exported. Use \code{\link[=od_table]{od_table()}} to
 initialize objects of class \code{od_table}.

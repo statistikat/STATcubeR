@@ -17,8 +17,8 @@ sc_rate_limit_table(language = c("en", "de"), key = NULL, server = "ext")
 \code{\link[=sc_browse_preferences]{sc_browse_preferences()}}.}
 
 \item{server}{A STATcube API server. Defaults to the external Server via
-\code{"ext"}. Oher options are \code{"red"} for the editing server and \code{"prod"} for
-the production server.}
+\code{"ext"}. Other options are \code{"red"} for the editing server and \code{"prod"} for
+the production server. External users should always use the default option \code{"ext"}.}
 }
 \value{
 \itemize{
@@ -39,10 +39,8 @@ information about available locales and the amount of requests available
 for calls against the \verb{/table} endpoint.
 }
 \examples{
-if (sc_key_exists()) {
-
+\dontshow{if (sc_key_exists()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 sc_info()
 sc_rate_limit_table()
-
-}
+\dontshow{\}) # examplesIf}
 }

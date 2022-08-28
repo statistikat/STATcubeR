@@ -120,8 +120,7 @@ sc_tabulate(table, "C-A11-0")
 
 ######################### STATcube REST API #################################
 
-if (sc_key_exists()) {
-
+\dontshow{if (sc_key_exists()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 table_tourism <- sc_example("accomodation.json") \%>\% sc_table("de")
 
 table_tourism$tabulate()
@@ -137,8 +136,7 @@ if (FALSE) {
   tt
   tt[['Import, Wert in Euro_a']] \%>\% str()
 }
-
-}
+\dontshow{\}) # examplesIf}
 }
 \seealso{
 sc_table_class

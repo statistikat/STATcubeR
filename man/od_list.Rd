@@ -32,4 +32,6 @@ a \code{data.frame} with two columns
 df <- od_list()
 df
 subset(df, category == "Bildung und Forschung")
+# use an id to load a dataset
+od_table("OGD_fhsstud_ext_FHS_S_1")
 }

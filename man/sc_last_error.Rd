@@ -32,12 +32,10 @@ the response content and the response status
 }}
 
 \examples{
-if (sc_key_exists()) {
-
+\dontshow{if (sc_key_exists()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 try(sc_table_saved("invalid_id"))
 last_error <- sc_last_error()
 httr::http_status(last_error)
 sc_last_error_parsed()
-
-}
+\dontshow{\}) # examplesIf}
 }

@@ -31,24 +31,24 @@ Uses the same format as \code{\link[=sc_rate_limit_table]{sc_rate_limit_table()}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{sc_table_class$new()}}
-\item \href{#method-update}{\code{sc_table_class$update()}}
-\item \href{#method-tabulate}{\code{sc_table_class$tabulate()}}
-\item \href{#method-browse}{\code{sc_table_class$browse()}}
-\item \href{#method-add_language}{\code{sc_table_class$add_language()}}
+\item \href{#method-sc_table-new}{\code{sc_table_class$new()}}
+\item \href{#method-sc_table-update}{\code{sc_table_class$update()}}
+\item \href{#method-sc_table-tabulate}{\code{sc_table_class$tabulate()}}
+\item \href{#method-sc_table-browse}{\code{sc_table_class$browse()}}
+\item \href{#method-sc_table-add_language}{\code{sc_table_class$add_language()}}
 }
 }
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="field">}\href{../../STATcubeR/html/sc_data.html#method-field}{\code{STATcubeR::sc_data$field()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="total_codes">}\href{../../STATcubeR/html/sc_data.html#method-total_codes}{\code{STATcubeR::sc_data$total_codes()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="field"><a href='../../STATcubeR/html/sc_data.html#method-sc_data-field'><code>STATcubeR::sc_data$field()</code></a></li>
+<li><span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="total_codes"><a href='../../STATcubeR/html/sc_data.html#method-sc_data-total_codes'><code>STATcubeR::sc_data$total_codes()</code></a></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-sc_table-new"></a>}}
+\if{latex}{\out{\hypertarget{method-sc_table-new}{}}}
 \subsection{Method \code{new()}}{
 Ususally, objects of class \code{sc_table} are generated with
 one of the factory methods \code{\link[=sc_table]{sc_table()}}, \code{\link[=sc_table_saved]{sc_table_saved()}} or
@@ -78,8 +78,8 @@ the \verb{$add_language()} method.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-update"></a>}}
-\if{latex}{\out{\hypertarget{method-update}{}}}
+\if{html}{\out{<a id="method-sc_table-update"></a>}}
+\if{latex}{\out{\hypertarget{method-sc_table-update}{}}}
 \subsection{Method \code{update()}}{
 Update the data by re-sending the json to the API. This
 is still experimental and could break the object in case new levels
@@ -91,8 +91,8 @@ added to a timeseries
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-tabulate"></a>}}
-\if{latex}{\out{\hypertarget{method-tabulate}{}}}
+\if{html}{\out{<a id="method-sc_table-tabulate"></a>}}
+\if{latex}{\out{\hypertarget{method-sc_table-tabulate}{}}}
 \subsection{Method \code{tabulate()}}{
 An extension of \code{\link[=sc_tabulate]{sc_tabulate()}} with additional
 parameters.
@@ -115,8 +115,8 @@ table. This parameter is currently broken and needs to be re-implemented}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-browse"></a>}}
-\if{latex}{\out{\hypertarget{method-browse}{}}}
+\if{html}{\out{<a id="method-sc_table-browse"></a>}}
+\if{latex}{\out{\hypertarget{method-sc_table-browse}{}}}
 \subsection{Method \code{browse()}}{
 open the dataset in a browser
 \subsection{Usage}{
@@ -125,8 +125,8 @@ open the dataset in a browser
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-add_language"></a>}}
-\if{latex}{\out{\hypertarget{method-add_language}{}}}
+\if{html}{\out{<a id="method-sc_table-add_language"></a>}}
+\if{latex}{\out{\hypertarget{method-sc_table-add_language}{}}}
 \subsection{Method \code{add_language()}}{
 add a second language to the dataset
 \subsection{Usage}{

@@ -23,8 +23,8 @@ sc_key_valid(key = NULL, server = "ext")
 }
 \arguments{
 \item{server}{A STATcube API server. Defaults to the external Server via
-\code{"ext"}. Oher options are \code{"red"} for the editing server and \code{"prod"} for
-the production server.}
+\code{"ext"}. Other options are \code{"red"} for the editing server and \code{"prod"} for
+the production server. External users should always use the default option \code{"ext"}.}
 
 \item{test}{Use \code{sc_key_valid()} to verify the key? If the key is
 invalid, an error is returned and the key will not be set or updated.}
