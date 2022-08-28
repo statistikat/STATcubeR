@@ -25,7 +25,7 @@ sc_info <- function(language = c("en", "de"), key = NULL, server = "ext") {
   response <- httr::GET(
     url = paste0(base_url(server), "/info"),
     config = sc_headers(language, key)
-  )
+  ) %>% sc_check_response()
   info_content <- httr::content(response)
   info_content$languages %>%
     lapply(function(x)
@@ -41,7 +41,7 @@ sc_rate_limit_table <- function(language = c("en", "de"), key = NULL, server = '
   response <- httr::GET(
     url = paste0(base_url(server), "/rate_limit_table"),
     config = sc_headers(language, key)
-  )
+  ) %>% sc_check_response()
   rate_limit <- httr::content(response)
   class(rate_limit) <- "sc_rate_limit_table"
   rate_limit
