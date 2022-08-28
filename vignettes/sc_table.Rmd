@@ -53,8 +53,12 @@ The object `my_table` is created via the raw API response from `httr::POST()` ag
 Printing the object will summarize the request.
 We will demonstrate this with an example json via `sc_example()`.
  
-```{r}
+```{r, results='hide'}
 (json_path <- sc_example("population_timeseries.json"))
+## [1] ~/R/3.6/STATcubeR/json_examples/population_timeseries.json
+```
+
+```{r}
 my_table <- sc_table(json_path)
 my_table
 ```
