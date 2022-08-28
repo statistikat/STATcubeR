@@ -111,6 +111,9 @@ sc_table_class <- R6::R6Class(
         private$p_fields[[i]][[column]] <- sapply(
           content$fields[[i]]$items, function(item) { item$labels[[1]] })
       }
+      attr(private$httr_response, "sc_cache_file") <- c(
+        attr(private$httr_response, "sc_cache_file"), attr(response, "sc_cache_file")
+      )
     }
   ),
   active = list(

@@ -82,6 +82,17 @@ sc_checksum <- function(x) {
   as.character(tools::md5sum(temp_file))
 }
 
+#' @describeIn sc_cache get the cache file associated with an object
+#' @param x an object of class `sc_table` or `sc_schema`
+#' @export
+sc_cache_files <- function(x) {
+  if (inherits(x, "sc_table"))
+    return(x$response %>% attr("sc_cache_file"))
+  if (inherits(x, "sc_schema"))
+    return(x %>% attr("response") %>% attr("sc_cache_file"))
+  stop("sc_cache_file() can only be used with sc_table and sc_schema objects")
+}
+
 sc_cache_file <- function(params, ext = ".rds") {
   sc_checksum(params) %>%
     paste0(sc_cache_dir(), "/", ., ext)
@@ -102,10 +113,10 @@ sc_with_cache <- function(params, fun) {
     return(fun())
   cache_file <- sc_cache_file(params)
   if (file.exists(cache_file))
-    return(readRDS(cache_file))
+    return(`attr<-`(readRDS(cache_file), "sc_cache_file", cache_file))
   if (!dir.exists(sc_cache_dir()))
-    dir.create(sc_cache_dir())
+    dir.create(sc_cache_dir(), recursive = TRUE)
   return_value <- fun()
   saveRDS(return_value, cache_file)
-  return(return_value)
+  return(`attr<-`(return_value, "sc_cache_file", cache_file))
 }
