@@ -41,5 +41,6 @@ sc_check_response <- function(response) {
     httr::stop_for_status(response)
     stop("API did not return json")
   }
+  response$request$headers["APIKey"] <- "HIDDEN"
   invisible(response)
 }
