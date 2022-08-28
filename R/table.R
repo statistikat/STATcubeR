@@ -1,7 +1,7 @@
-sc_version <- function() {
+sc_version <- function(sha = TRUE) {
   pd <- utils::packageDescription("STATcubeR")
   version <- pd$Version
-  if (!is.null(pd$RemoteSha))
+  if (sha && !is.null(pd$RemoteSha))
     version <- paste0(version, " (@", substr(pd$RemoteSha, 1, 7), ")")
   version
 }

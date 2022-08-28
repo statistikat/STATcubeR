@@ -15,6 +15,10 @@ sc_parse_time <- function(timestamp) {
 }
 
 sc_headers <- function(language = c("en", "de"), key, ...) {
-  httr::add_headers(APIKey = key, `Accept-Language` = match.arg(language), ...,
-                    `User-Agent` = "https://github.com/statistikat/STATcubeR")
+  httr::add_headers(
+    APIKey = key, `Accept-Language` = match.arg(language), ...,
+    `User-Agent` = paste0("STATcubeR/", sc_version(FALSE),
+                          " (http://github.com/statistikat/STATcubeR)",
+                          " httr/", packageVersion("httr"),
+                          " R/", R.version$major, ".", R.version$minor))
 }
