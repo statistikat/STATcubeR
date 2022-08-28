@@ -1,8 +1,8 @@
 ---
-title: "Metadata with the Schema Endpoint"
+title: "Get Metadata with the Schema Endpoint"
 description: >
   The `/schema` endpoint of the REST API provides metadata about databases and
-  can also be used to retrieve a catalogue with all available databases
+  can also be used to retrieve a catalogue with all available databases.
 link_text: "schema article"
 ---
 

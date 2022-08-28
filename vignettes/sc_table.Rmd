@@ -1,5 +1,5 @@
 ---
-title: "Get Data via JSON Requests"
+title: "Get Tables via JSON Requests"
 description: >
   Hands-on guide about transfering data from the STATcube GUI (table view) to R sessions
   via a the download option "open data api request".

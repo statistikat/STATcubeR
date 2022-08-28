@@ -1,6 +1,8 @@
 ---
 title: "Open Government Data"
-description: Overview about all functionalities regarding OGD Datasets
+description: >
+  Hands-on guide on how to get and use datasets from the OGD portal.
+  This article also contains a short introduction on tabulation and translation of datasets.
 link_text: OGD article
 ---
 
@@ -136,7 +138,7 @@ table$language
 table$language <- "de"
 ```
 
-This option affects the `print()` method as well as the output of `$data`.
+This option affects the `print()` method as well as the output of `$tabulate()`.
 If no english labels are available, the german labels are used as a fallback mechanism.
 
 ```{r}

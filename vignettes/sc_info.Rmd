@@ -1,7 +1,7 @@
 ---
-title: "Other REST API endpoints"
+title: "Other REST API Endpoints"
 description: >
-  How to use the (rather simple) endpoints `/info` and `/rate_limit_table`
+  How to use the (rather simple) endpoints `/info` and `/rate_limit_table`.
 ---
 
 ```{r, echo = FALSE}

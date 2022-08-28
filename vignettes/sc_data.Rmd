@@ -1,6 +1,8 @@
 ---
 title: "The STATcubeR Data Class"
-description: "The base class for Open Data and STATcube datasets"
+description: >
+  STATcubeR uses a common base class for OGD datasets and datasets from the STATcube REST API.
+  This article explains the core functionalities and allows you to use both datasources more flexibly.
 link_text: "STATcubeR data article"
 ---
 

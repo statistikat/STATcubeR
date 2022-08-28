@@ -21,26 +21,34 @@ authors:
 articles:
 - title: STATcube REST API
   desc: >
-    Transfer data from STATcube into your R session
+    Import tables from STATcube and use them as `data.frame`s in your R projects.
+    You can also use the API to discover available databases as well as their metadata.
   contents:
   - sc_key
   - sc_table
-  - sc_table_saved
-  - sc_table_custom
   - sc_schema
+  - sc_table_saved
   - sc_info
 - title: Open Government Data
   desc: >
-    Articles about the import of OGD datasets into your R session
+    Articles about STATcubeR functions that interact with the open government
+    portal of Statistics Austria (https://data.statistik.gv.at).
   navbar: open data
   contents:
   - od_table
-  - od_resources
   - od_list
+  - od_resources
 - title: Data Class
   contents:
   - sc_data
   - sc_tabulate
+- title: Advanced Usage
+  desc: >
+    Articles that are only relevant for users who are already familiar with
+    the core functionalities of STATcubeR.
+  contents:
+  - sc_cache
+  - sc_table_custom
 
 home:
   title: STATcubeR

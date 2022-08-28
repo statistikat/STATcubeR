@@ -1,7 +1,8 @@
 ---
 title: "File Management"
 description: >
-  Learn how `{STATcubeR}` caches data from the OGD portal
+  Learn how STATcubeR caches resources from the OGD portal in the local file system.
+  Understanding this allows you to enable persistent caches and directly use cached resources.
 link_text: "caching article"
 ---
 
