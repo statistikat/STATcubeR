@@ -56,7 +56,17 @@ sc_cache_enabled <- function() {
   Sys.getenv("STATCUBE_CACHE") != ""
 }
 
-sc_cache_dir <- function() {
+#' @export
+#' @param dir a chace directory
+#' @describeIn sc_cache get/set the directory used for caching
+sc_cache_dir <- function(dir = NULL) {
+  if (is.null(dir))
+    return(sc_cache_dir_get())
+  Sys.setenv(STATCUBE_CACHE_DIR = dir)
+  invisible(dir)
+}
+
+sc_cache_dir_get <- function() {
   cache_dir <- Sys.getenv("STATCUBE_CACHE_DIR")
   if ("" == cache_dir)
     cache_dir <- "~/.STATcubeR_cache"
