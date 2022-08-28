@@ -8,8 +8,8 @@
 #' @param key (`string`) An API key. To display your key, call
 #'   [sc_browse_preferences()].
 #' @param server A STATcube API server. Defaults to the external Server via
-#'   `"ext"`. Oher options are `"red"` for the editing server and `"prod"` for
-#'   the production server.
+#'   `"ext"`. Other options are `"red"` for the editing server and `"prod"` for
+#'   the production server. External users should always use the default option `"ext"`.
 #' @return All functions return the key (invisibly) except for
 #'   `sc_key_exists()` and `sc_key_valid()`, which return a [logical()] of
 #'   length one.
