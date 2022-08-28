@@ -1,3 +1,18 @@
+# STATcubeR 0.4.0
+
+* Documentation updates
+* Document and export caching of API responses (#23)
+* Update URLs for the API release (#29)
+* Add support for multiple API servers (#25)
+* Automatically add totals to OGD datasets (#28)
+
+# STATcubeR 0.3.0
+
+* Allow recodes of `sc_data` objects (#17)
+* Better parsing of time variables (#15, #16)
+* Use bootstrap 5  and `{pkgdown}` 2.0.0 for the website
+* Allow export and import of open data using tar archves (#20)
+
 # STATcubeR 0.2.4
 
 * add user-agent according to `vignette("api-packages", "httr")`
