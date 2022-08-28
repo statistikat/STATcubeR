@@ -135,7 +135,8 @@ sc_table_class <- R6::R6Class(
       res <- data.frame(
         remaining = headers$`x-ratelimit-remaining-table`,
         limit     = headers$`x-ratelimit-table`,
-        reset     = headers$`x-ratelimit-reset-table`
+        reset     = headers$`x-ratelimit-reset-table`,
+        stringsAsFactors = FALSE
       )
       class(res) <- "sc_rate_limit_table"
       res
