@@ -1,0 +1,82 @@
+---
+title: "Caching API Responses"
+description: "STATcubeR can be configured to cache API responses and reuse them later. This article describes the necessary setup as well as potential usecases"
+link_text: "API cache article"
+---
+
+```{r, echo=FALSE}
+source("R/setup.R")$value
+```
+
+```{r, include=FALSE}
+sc_cache_dir("~/.STATcubeR_cache")
+```
+
+`r STATcubeR` allows you to cache responses from the STATcube REST API.
+This means, for example, that responses for the /table endpoint can be reused.
+
+## Setup
+
+Caching is disabled by default.
+In order to activate or deactivate caching, use the functions `sc_cache_enable()` and `sc_cache_disable()`
+
+```{r}
+sc_cache_enable()
+```
+
+The caching directory can be displayed or changed using `sc_cache_dir()`
+
+```{r}
+sc_cache_dir()
+sc_cache_dir("~/.cache/STATcubeR/api")
+sc_cache_dir()
+```
+
+## Using the cache
+
+Caching will affect all calls to `sc_table()` and `sc_schema()` as well as their "derived" functions:
+`sc_table_saved()`, `sc_table_custom()`, `sc_schema_db()`, `sc_schema_catalogue()`.
+
+If the same resource is requested several times, the last valid API response is reused.
+Invalid resposes (such as 404 responses) will not be added to the cache.
+
+Cache files always contain unparsed API responses as returned by `httr::GET()` or `httr::POST()`.
+Responses are stored in an `rds` format.
+If caching is enabled, the corresponding cache files to an object of class `sc_schema` or `sc_table` can be retieved using `sc_cache_files()`.
+
+```{r}
+sc_example("accomodation") %>% sc_table(language = "both") %>% sc_cache_files()
+sc_schema_catalogue() %>% sc_cache_files()
+```
+
+Note that the first call to `sc_cache_files()` returned two paths.
+Since the table was requested in two languages, two api responses are necessary to construct the table object.
+
+The content of the cache files can be parsed using `readRDS()` and `httr::content()`.
+This gives direct access to the API response in a `list()` format.
+For example, the following syntax can be used to extract the database info from the response.
+
+```{r}
+sc_example("accomodation") %>% sc_table() %>% sc_cache_files() %>% 
+  readRDS() %>% httr::content() %>% .[["database"]] %>% str()
+```
+
+## Cleaning the cache
+
+Cache files can be deleted individually using the paths returned by `sc_cache_files()`.
+Alternatively, use `sc_cache_clear()` to delete all files from the cache.
+
+```{r, eval=FALSE}
+sc_cache_clear()
+#> deleted 12 entries from the cache
+```
+
+## Should I use caching?
+
+If you are using `r STATcubeR` interactively, the answer is probably no.
+However, when building applications that rely on STATcube data caching can be a usefiul way to decrease the traffic with the STATcube server.
+Another usecase for caching is if you are writing `{rmarkdown}` documents that rely on STATcube data.
+Caching makes those documents both reproducible and quicker to render.
+
+Please note that there is currently no reliable way to invalidate the cache.
+Therefore, API responses will be reused even if resources get updated on the server.
