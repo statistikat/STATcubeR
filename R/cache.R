@@ -34,8 +34,9 @@ sc_cache_enable <- function(verbose = TRUE) {
   if (verbose)
     message(paste0(
       "Caching will be available for this session. Add\n\n",
-      "  STATCUBE_CACHE=TRUE\n\nto your .Renviron to enable",
-      " caching persistently. \nCache directory: '", sc_cache_dir(), "'"
+      "  STATCUBE_CACHE     = TRUE\n  STATCUBE_CACHE_DIR = \"", sc_cache_dir(),
+      "\"\n\nto your .Renviron to enable",
+      " caching persistently."
     ))
   invisible(sc_cache_dir())
 }
