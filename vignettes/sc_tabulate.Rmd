@@ -2,7 +2,7 @@
 title: "Tabulating STATcubeR Datasets"
 description: >
   Learn how to turn datasets from the REST API or from the OGD portal into tidy
-  `data.frame`s by using the `$tabulate()` method.
+  `data.frame`s by using the tabulate() method.
 link_text: "tabulation article"
 ---
 
