@@ -52,14 +52,14 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
-      - name: "Set environmental variables"
-        run:  |
-          Rscript -e "cat(paste0('STATCUBE_CACHE_DIR=', rappdirs::user_cache_dir("STATcubeR")),
-             file = Sys.getenv('GITHUB_ENV'), append = TRUE)"
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::rcmdcheck
           needs: check
+      - name: "Set environmental variables"
+        run:  |
+          Rscript -e "cat(paste0('STATCUBE_CACHE_DIR=', rappdirs::user_cache_dir("STATcubeR")),
+             file = Sys.getenv('GITHUB_ENV'), append = TRUE)"
       - name: cache API responses
         uses: actions/cache@v3
         with:
