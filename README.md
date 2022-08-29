@@ -11,6 +11,8 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 commit](https://img.shields.io/github/last-commit/statistikat/STATcubeR.svg?logo=github)](https://github.com/statistikat/STATcubeR/commits/master)
 [![GitHub code size in
 bytes](https://img.shields.io/github/languages/code-size/statistikat/STATcubeR?logo=github)](https://github.com/statistikat/STATcubeR)
+[![R-CMD-check](https://github.com/statistikat/STATcubeR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/statistikat/STATcubeR/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/statistikat/STATcubeR/branch/master/graph/badge.svg)](https://app.codecov.io/gh/statistikat/STATcubeR?branch=master)
 <!-- badges: end -->
 
 R client for all things [STATcube](http://sdbext:8081/statistik.at/ext/statcube/jsf/dataCatalogueExplorer.xhtml).

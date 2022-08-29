@@ -18,6 +18,7 @@ Imports:
     jsonlite,
     magrittr
 Suggests: 
+    covr,
     data.tree,
     pillar,
     xml2
