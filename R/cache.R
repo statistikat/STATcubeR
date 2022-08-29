@@ -70,7 +70,7 @@ sc_cache_dir <- function(dir = NULL) {
 sc_cache_dir_get <- function() {
   cache_dir <- Sys.getenv("STATCUBE_CACHE_DIR")
   if ("" == cache_dir)
-    cache_dir <- "~/.STATcubeR_cache"
+    cache_dir <- rappdirs::user_cache_dir("STATcubeR")
   cache_dir
 }
 
