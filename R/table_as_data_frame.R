@@ -56,8 +56,8 @@ sc_table_create_data <- function(content) {
 }
 
 #' @export
-as.data.frame.sc_table <- function(x, ...) {
-  sc_tabulate(x)
+as.data.frame.sc_data <- function(x, ...) {
+  od_label_data(x, ...)
 }
 
 sc_table_modify_totals <- function(data, meta, meta_fields) {
