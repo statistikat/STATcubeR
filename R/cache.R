@@ -101,8 +101,10 @@ sc_cache_file <- function(params, ext = ".rds") {
 #' sc_cache_clear()
 #' @export
 sc_cache_clear <- function() {
+  nfiles <- length(dir(sc_cache_dir()))
   if (dir.exists(sc_cache_dir()))
     unlink(sc_cache_dir(), recursive = TRUE)
+  message("deleted ", nfiles, " files from '", sc_cache_dir(), "'")
 }
 
 sc_with_cache <- function(params, fun) {
