@@ -42,9 +42,6 @@ jobs:
       STATCUBE_KEY_EXT: ${{ secrets.STATCUBE_KEY_EXT }}
       STATCUBE_CACHE: TRUE
     steps:
-      - name: "Set environmental variables"
-        run:  |
-          echo "STATCUBE_CACHE_DIR=$GITHUB_WORKSPACE/.STATcubeR_cache" >> $GITHUB_ENV
       - uses: actions/checkout@v2
 
       - uses: r-lib/actions/setup-pandoc@v2
@@ -55,6 +52,10 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
+      - name: "Set environmental variables"
+        run:  |
+          Rscript -e "writeLines(paste0("STATCUBE_CACHE_DIR=", STATcubeR::sc_cache_dir()),
+             Sys.getenv('GITHUB_ENV'), append = TRUE)"
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::rcmdcheck
