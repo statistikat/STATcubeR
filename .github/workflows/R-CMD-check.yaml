@@ -54,7 +54,7 @@ jobs:
 
       - name: "Set environmental variables"
         run:  |
-          Rscript -e "writeLines(paste0("STATCUBE_CACHE_DIR=", STATcubeR::sc_cache_dir()),
+          Rscript -e "cat(paste0("STATCUBE_CACHE_DIR=", STATcubeR::sc_cache_dir()),
              Sys.getenv('GITHUB_ENV'), append = TRUE)"
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
