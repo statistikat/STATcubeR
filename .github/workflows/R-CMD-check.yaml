@@ -43,6 +43,9 @@ jobs:
       STATCUBE_CACHE_DIR: $GITHUB_ACTION_PATH/.STATcubeR_cache
       STATCUBE_CACHE: TRUE
     steps:
+      - name: "Set environmental variables"
+        run:  |
+          echo "STATCUBE_CACHE_DIR=$GITHUB_ACTION_PATH/.STATcubeR_cache" >> $GITHUB_ENV
       - uses: actions/checkout@v2
 
       - uses: r-lib/actions/setup-pandoc@v2
@@ -60,7 +63,7 @@ jobs:
       - name: cache API responses
         uses: actions/cache@v3
         with:
-          path: $STATCUBE_CACHE_DIR
+          path: ${{ env.STATCUBE_CACHE_DIR }}
           key: STATcubeR_cache
       - uses: r-lib/actions/check-r-package@v2
         with:
