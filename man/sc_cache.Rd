@@ -58,10 +58,10 @@ endpoints \code{\link[=sc_info]{sc_info()}} and \code{\link[=sc_rate_limit_table
 }
 \section{Functions}{
 \itemize{
-\item \code{sc_cache_enabled}: informs wether the cache is currently enabled
+\item \code{sc_cache_enabled()}: informs wether the cache is currently enabled
 
-\item \code{sc_cache_dir}: get/set the directory used for caching
+\item \code{sc_cache_dir()}: get/set the directory used for caching
 
-\item \code{sc_cache_files}: get the cache file associated with an object
+\item \code{sc_cache_files()}: get the cache file associated with an object
+
 }}
-

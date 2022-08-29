@@ -27,10 +27,10 @@ the httr response object for the last unsuccessfull request.
 }
 \section{Functions}{
 \itemize{
-\item \code{sc_last_error_parsed}: returns the last error as a list containing
+\item \code{sc_last_error_parsed()}: returns the last error as a list containing
 the response content and the response status
-}}
 
+}}
 \examples{
 \dontshow{if (sc_key_exists()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 try(sc_table_saved("invalid_id"))

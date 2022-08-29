@@ -34,9 +34,9 @@ Similar contents can be found in \verb{$meta}.}
 \if{html}{\out{
 <details open><summary>Inherited methods</summary>
 <ul>
-<li><span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="field"><a href='../../STATcubeR/html/sc_data.html#method-sc_data-field'><code>STATcubeR::sc_data$field()</code></a></li>
-<li><span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="tabulate"><a href='../../STATcubeR/html/sc_data.html#method-sc_data-tabulate'><code>STATcubeR::sc_data$tabulate()</code></a></li>
-<li><span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="total_codes"><a href='../../STATcubeR/html/sc_data.html#method-sc_data-total_codes'><code>STATcubeR::sc_data$total_codes()</code></a></li>
+<li><span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="field"><a href='../../STATcubeR/html/sc_data.html#method-sc_data-field'><code>STATcubeR::sc_data$field()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="tabulate"><a href='../../STATcubeR/html/sc_data.html#method-sc_data-tabulate'><code>STATcubeR::sc_data$tabulate()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="total_codes"><a href='../../STATcubeR/html/sc_data.html#method-sc_data-total_codes'><code>STATcubeR::sc_data$total_codes()</code></a></span></li>
 </ul>
 </details>
 }}

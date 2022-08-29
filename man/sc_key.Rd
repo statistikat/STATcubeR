@@ -43,19 +43,19 @@ against the STATcube API.
 }
 \section{Functions}{
 \itemize{
-\item \code{sc_key}: forwards to \code{\link[=sc_key_get]{sc_key_get()}} if the key is already present.
+\item \code{sc_key()}: forwards to \code{\link[=sc_key_get]{sc_key_get()}} if the key is already present.
 Otherwise, \code{\link[=sc_key_prompt]{sc_key_prompt()}} will be invoked.
 
-\item \code{sc_key_set}: can be used to pass the key as a parameter (\code{string})
+\item \code{sc_key_set()}: can be used to pass the key as a parameter (\code{string})
 
-\item \code{sc_key_get}: returns the key, if it exists. Otherwise,
+\item \code{sc_key_get()}: returns the key, if it exists. Otherwise,
 an error is thrown.
 
-\item \code{sc_key_prompt}: prompts for a key via \code{\link[=readline]{readline()}}
+\item \code{sc_key_prompt()}: prompts for a key via \code{\link[=readline]{readline()}}
 
-\item \code{sc_key_exists}: returns \code{TRUE} if a key was set and \code{FALSE} otherwise.
+\item \code{sc_key_exists()}: returns \code{TRUE} if a key was set and \code{FALSE} otherwise.
 
-\item \code{sc_key_valid}: performs a test request and returns \code{TRUE} if the
+\item \code{sc_key_valid()}: performs a test request and returns \code{TRUE} if the
 key is valid and \code{FALSE} otherwise.
-}}
 
+}}
