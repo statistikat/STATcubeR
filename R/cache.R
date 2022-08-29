@@ -62,6 +62,7 @@ sc_cache_enabled <- function() {
 sc_cache_dir <- function(dir = NULL) {
   if (is.null(dir))
     return(sc_cache_dir_get())
+  dir <- gsub("/$", "", dir)
   Sys.setenv(STATCUBE_CACHE_DIR = dir)
   invisible(dir)
 }
