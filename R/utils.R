@@ -19,6 +19,6 @@ sc_headers <- function(language = c("en", "de"), key, ...) {
     APIKey = key, `Accept-Language` = match.arg(language), ...,
     `User-Agent` = paste0("STATcubeR/", sc_version(FALSE),
                           " (http://github.com/statistikat/STATcubeR)",
-                          " httr/", packageVersion("httr"),
+                          " httr/", utils::packageVersion("httr"),
                           " R/", R.version$major, ".", R.version$minor))
 }
