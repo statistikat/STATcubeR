@@ -21,6 +21,7 @@ Suggests:
     covr,
     data.tree,
     pillar,
+    rappdirs,
     xml2
 Encoding: UTF-8
 LazyData: true
