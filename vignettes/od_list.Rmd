@@ -23,7 +23,7 @@ At the time of writing this article, there are 268 datasets that are assumed to 
 Since some of the metadata contained in the OGD JSON files is only available in german, the following overview uses german labels.
 Click on the individual table cells to get more information.
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, eval = FALSE}
 ids <- all_datasets$id
 ## <- timestamp=NULL means reuse available jsons
 jsons <- lapply(ids, od_json, NULL)
