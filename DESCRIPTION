@@ -2,15 +2,10 @@ Type: Package
 Package: STATcubeR
 Title: R interface for the STATcube REST API and Open Government Data
 Version: 0.3.4.4
-Authors@R: 
-    c(person(given = "Gregor",
-             family = "de Cillia",
-             role = c("aut", "cre"),
-             email = "Gregor.deCillia@statistik.gv.at"),
-      person(given = "Bernhard",
-             family = "Meindl",
-             role = "ctb",
-             email = "Bernhard.Meindl@statistik.gv.at"))
+Authors@R: c(
+    person("Gregor", "de Cillia", , "Gregor.deCillia@statistik.gv.at", role = c("aut", "cre")),
+    person("Bernhard", "Meindl", , "Bernhard.Meindl@statistik.gv.at", role = "ctb")
+  )
 Description: Import data from the STATcube REST API or from the open data
     portal of Statistics Austria. This package includes a client for API
     requests as well as parsing utilities for data which originates from
