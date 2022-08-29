@@ -21,6 +21,7 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       STATCUBE_KEY_EXT: ${{ secrets.STATCUBE_KEY_EXT }}
       STATCUBE_CACHE_DIR: ~/.cache/STATcubeR_cache
+      STATCUBE_CACHE: TRUE
     steps:
       - uses: actions/checkout@v2
 
