@@ -20,9 +20,10 @@ sc_table_saved_list <- function(key = NULL, server = "ext") {
 #' @rdname sc_table
 #' @export
 sc_table_saved <- function(table_uri, language = c("en", "de"), key = NULL, server = 'ext') {
+  language <- match.arg(language)
   if (is.null(key))
     key <- sc_key(server)
-  sc_with_cache(list(table_uri, language, key), function() {
+  sc_with_cache(c("sc_table_saved", table_uri, language, key), function() {
     httr::GET(
       url = paste0(base_url(server), "/table/saved/", table_uri),
       config = sc_headers(language, key)

@@ -74,12 +74,8 @@ sc_cache_dir_get <- function() {
 }
 
 sc_checksum <- function(x) {
-  temp_file <- tempfile()
-  on.exit(file.remove(temp_file))
-  file_connection <- file(temp_file, "w")
-  serialize(x, file_connection)
-  close(file_connection)
-  as.character(tools::md5sum(temp_file))
+  httr::sha1_hash(NULL, x) %>%
+    gsub("/", "-", .)
 }
 
 #' @describeIn sc_cache get the cache file associated with an object

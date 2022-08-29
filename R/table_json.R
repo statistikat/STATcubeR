@@ -77,6 +77,7 @@ sc_database_get_server <- function(database_uri) {
 
 sc_table_json_post <- function(json, language = c("en", "de"),
                                add_totals = TRUE, key = NULL) {
+  language <- match.arg(language)
   server <- sc_json_get_server(json)
   if (is.null(key))
     key <- sc_key(server)
@@ -85,7 +86,7 @@ sc_table_json_post <- function(json, language = c("en", "de"),
       jsonlite::fromJSON(simplifyVector = FALSE) %>%
       sc_json_add_totals() %>%
       jsonlite::toJSON(pretty = TRUE, auto_unbox = TRUE)
-  sc_with_cache(list(json, language), function() {
+  sc_with_cache(c("sc_table_json_post", json, language, add_totals), function() {
     httr::POST(
       url = paste0(base_url(server), "/table"),
       body = json,

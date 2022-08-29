@@ -18,10 +18,11 @@
 #' @export
 sc_schema <- function(resource_id = NULL, depth = NULL,
                       language = c("en", "de"), key = NULL, server = 'ext') {
+  language <- match.arg(language)
   if (is.null(key))
     key <- sc_key(server)
   response <- sc_with_cache(
-    list(resource_id, depth, language, key), function() {
+    c("sc_schema", resource_id, depth, language, key), function() {
       httr::GET(
         url = paste0(
           base_url(server), "/schema",
