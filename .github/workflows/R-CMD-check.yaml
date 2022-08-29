@@ -22,11 +22,11 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: macOS-latest,   r: 'release'}
+          #- {os: macOS-latest,   r: 'release'}
 
           #- {os: windows-latest, r: 'release'}
           # Use 3.6 to trigger usage of RTools35
-          - {os: windows-latest, r: '3.6'}
+          #- {os: windows-latest, r: '3.6'}
 
           # Use older ubuntu to maximise backward compatibility
           - {os: ubuntu-20.04,   r: 'devel', http-user-agent: 'release'}
@@ -40,12 +40,11 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
       STATCUBE_KEY_EXT: ${{ secrets.STATCUBE_KEY_EXT }}
-      STATCUBE_CACHE_DIR: $GITHUB_ACTION_PATH/.STATcubeR_cache
       STATCUBE_CACHE: TRUE
     steps:
       - name: "Set environmental variables"
         run:  |
-          echo "STATCUBE_CACHE_DIR=$GITHUB_ACTION_PATH/.STATcubeR_cache" >> $GITHUB_ENV
+          echo "STATCUBE_CACHE_DIR=$GITHUB_WORKSPACE/.STATcubeR_cache" >> $GITHUB_ENV
       - uses: actions/checkout@v2
 
       - uses: r-lib/actions/setup-pandoc@v2
