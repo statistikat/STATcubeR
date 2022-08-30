@@ -84,7 +84,11 @@ my_table$data
 ## Further reading
 
 * Functionalities of the returned object are explained in the `r ticle("sc_data")`.
+* `sc_tabulate()`  provides a more flixble way of turning STATcube tables into
+  `data.frame`s. See the `r ticle("sc_tabulate")` for more details.
 * The `r ticle("sc_table_saved")` shows an alternative way of importing tables.
+* If you are interested in other API endpoints, see the `r ticle("sc_schema")`
+  ot the `r ticle("sc_info")`
 
 [`/table` endpoint]: https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/table-endpoint
 [download options]: https://docs.wingarc.com.au/superstar/9.12/superweb2/user-guide/download-tables
