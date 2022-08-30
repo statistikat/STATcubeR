@@ -6,7 +6,7 @@ code:
   width: 70
 
 development:
-  mode: devel
+  mode: release
 
 url: https://statistikat.github.io/STATcubeR
 
