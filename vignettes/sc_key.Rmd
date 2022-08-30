@@ -34,7 +34,7 @@ sc_key_set("XXXX")
 ```
 
 As suggested by the code output, the key will be used for any API requests that happen in the same R session.
-You can be set persistently by modifying `.Renviron`.
+You can set the key persistently by modifying `.Renviron`.
 This can be done easily with `usethis::edit_r_environ()`.
 
 By default, `sc_key_set()` will perform a test request to verify that the key is valid
