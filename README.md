@@ -11,7 +11,7 @@ commit](https://img.shields.io/github/last-commit/statistikat/STATcubeR.svg?logo
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
-R client for all things [STATcube](http://sdbext:8081/statistik.at/ext/statcube/jsf/dataCatalogueExplorer.xhtml).
+R client for all things [STATcube](https://statcube.at).
 Get data from the STATcube REST API or via the open government data portal at
 https://data.statistik.gv.at. `{STATcubeR}` makes it easy to include both those
 datasources into your R projects.
