@@ -26,7 +26,7 @@ endpoint.
 
 The first function shows the catalogue, which lists all available
 databases in a tree form. The tree structure is determined by the API and
-closely resembles the "Katalog" view in the GUI.
+closely resembles the "Catalogue" view in the GUI.
 
 ```{r}
 my_catalogue <- sc_schema_catalogue()
@@ -81,7 +81,7 @@ my_catalogue$Statistics$`Labour Market`$`Working hours (Labour Force Survey)`
 ## Database infos
 
 To get information about a specific database, you can pass the database `id` to `sc_schema_db()`.
-Again, the contents do have a tree structure which is similar to the sidebar of the "Tabellenansicht" view.
+Again, the contents do have a tree structure which is similar to the sidebar of the "Table View" in the GUI.
 
 ```{r load_data}
 my_db_info <- sc_schema_db("deake005")
@@ -100,7 +100,7 @@ my_db_info$`Demographic Characteristics`$Gender$Gender$male
 
 The leafs of database schemas are mostly of type `VALUE` and `MEASURE`.
 
-## Data structure od sc_schema objects
+## Data structure of sc_schema objects
 
 As shown above, `sc_schema` objets have a tree like structure.
 Each `sc_schema` object has `id`, `label`, `location` and `type` as the last four entries
@@ -110,8 +110,8 @@ str(tail(my_db_info$`Demographic Characteristics`, 4))
 str(tail(my_catalogue$Statistics, 4))
 ```
 
-Schema objects can have an arbitrary amount of childs.
-Childs are always of type `sc_schema`.
+Schema objects can have an arbitrary amount of children.
+Children are always of type `sc_schema`.
 `x$type` determines the type of the schema object.
 See the [SuperSTAR API documentation](https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/schema-endpoint) for a complete list of schema types.
 
@@ -135,9 +135,12 @@ group_info$`Average hours usually worked per week`$id
 ```
 
 Alternatively, use the `depth` parameter of `sc_schema`.
+This will make sure that the enties of the tree are returned up to the `"valueset"` level.
+See `?sc_schema` for all available options of the `depth` parameter.
 
-```r
-group_info <- sc_schema(my_db_info$Factors$id, depth = "valueset")
+```{r}
+group_info <- my_db_info$`Demographic Characteristics`$id %>% 
+  sc_schema(depth = "valueset")
 ```
 
 ## Printing with data.tree
@@ -146,10 +149,10 @@ If the `{data.tree}` package is installed, it can be used for an alternative
 print mehtod.
 
 ```{r}
-print(my_catalogue, tree = TRUE)
+print(group_info, tree = TRUE)
 ```
 
-The data.tree implementation can be set as a default with `options()`
+The `{data.tree}` implementation of the print method can be set as a default using the option `STATcubeR.print_tree`
 
 ```{r}
 options(STATcubeR.print_tree = TRUE)
