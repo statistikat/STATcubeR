@@ -53,7 +53,8 @@ For more advanced usage of `r STATcubeR`, see the `r ticle('sc_schema')` and `r 
 
 ## For employees of Statistics Austria
 
-All employees can log into the external STATcube server using their statportal credentials and use the API like a user with a subscrption.
-Additionaly, there are internal STATcube servers that can be used with `r STATcubeR`.
-Please refer to the following internal confluence documentation if you want to send requests to one of our internal servers:
-https://confluence.com/xkakjff
+Employees should use one of our internal STATcube servers for API requests.
+Please refer to the following internal confluence documentation for more information
+on how to get started:
+
+https://statportal.statistik.local/statistik.at/confluence/x/uDiTAQ
