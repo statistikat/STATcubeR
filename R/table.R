@@ -9,6 +9,8 @@ sc_version <- function(sha = TRUE) {
 base_url <- function(server = "ext") {
   if (server == "ext")
     return("https://statcubeapi.statistik.at/statistik.at/ext/statcube/rest/v1")
+  if (server == "test")
+    return("https://statcubeapit.statistik.local/statistik.at/lxdev/statcube/rest/v1")
   sprintf("http://sdb%s:8082/statistik.at/%s/statcube/rest/v1", server, server)
 }
 
