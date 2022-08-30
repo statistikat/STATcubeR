@@ -11,6 +11,8 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 commit](https://img.shields.io/github/last-commit/statistikat/STATcubeR.svg?logo=github)](https://github.com/statistikat/STATcubeR/commits/master)
 [![GitHub code size in
 bytes](https://img.shields.io/github/languages/code-size/statistikat/STATcubeR?logo=github)](https://github.com/statistikat/STATcubeR)
+[![R-CMD-check](https://github.com/statistikat/STATcubeR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/statistikat/STATcubeR/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/statistikat/STATcubeR/branch/master/graph/badge.svg)](https://app.codecov.io/gh/statistikat/STATcubeR?branch=master)
 <!-- badges: end -->
 
 R client for all things [STATcube](http://sdbext:8081/statistik.at/ext/statcube/jsf/dataCatalogueExplorer.xhtml).
@@ -40,27 +42,25 @@ population$tabulate()
 
 ```
 # A STATcubeR tibble: 392,508 x 5
-  `Time section` Sex   `Commune (aggregation by political distri… `Age in single year… Number
-* <date>         <fct> <fct>                                      <fct>                 <int>
-1 2020-01-01     male  Eisenstadt <10101>                         under 1 year old         77
-2 2020-01-01     male  Eisenstadt <10101>                         1 year old               75
-3 2020-01-01     male  Eisenstadt <10101>                         2 years old              70
-4 2020-01-01     male  Eisenstadt <10101>                         3 years old              83
+  `Time section` Sex   `Commune (aggregation by polit… `Age in single ye… Number
+* <date>         <fct> <fct>                           <fct>               <int>
+1 2020-01-01     male  Eisenstadt <10101>              under 1 year old       77
+2 2020-01-01     male  Eisenstadt <10101>              1 year old             75
+3 2020-01-01     male  Eisenstadt <10101>              2 years old            70
+4 2020-01-01     male  Eisenstadt <10101>              3 years old            83
 # … with 392,504 more rows
 ```
 
 The resulting object contains labeled data (see above), raw data, metadata and more.
 See the [OGD article](https://statistikat.github.io/STATcubeR/articles/od_table.html) for further details.
 The [available datasets article](https://statistikat.github.io/STATcubeR/articles/od_list.html) provides
-an overview of the 268 datasets that are compatible with `od_table()`.
+an overview of the 315 datasets that are compatible with `od_table()`.
 
 ## STATcube API
 
 In order to use the REST API, it is required to set up an API key. As mentioned in the
 [api key article](https://statistikat.github.io/STATcubeR/articles/sc_key.html),
-keys are only available for employees of
-Statistics Austria at the moment. Support for external users will be added in the near
-future.
+this requres a STATcube subscription.
 
 There are four main functions that interact with the API
 

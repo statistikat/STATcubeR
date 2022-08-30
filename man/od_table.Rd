@@ -4,12 +4,15 @@
 \alias{od_table}
 \title{Create a table-instance from an open-data dataset}
 \usage{
-od_table(id, language = c("en", "de"))
+od_table(id, language = c("en", "de"), server = "ext")
 }
 \arguments{
 \item{id}{the id of the data-set that should be accessed}
 
 \item{language}{language to be used for labeling. \code{"en"} or \code{"de"}}
+
+\item{server}{the OGD-server to be used. \code{"ext"} (the default) for the
+external server or \code{prod} for the production server}
 }
 \value{
 The returned objects is of class \code{sc_table} and inherits several parsing

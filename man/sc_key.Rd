@@ -6,52 +6,56 @@
 \alias{sc_key_get}
 \alias{sc_key_prompt}
 \alias{sc_key_exists}
-\title{Manage your API Key}
+\alias{sc_key_valid}
+\title{Manage your API Keys}
 \usage{
-sc_key()
+sc_key(server = "ext", test = FALSE)
 
-sc_key_set(key, test = TRUE)
+sc_key_set(key, server = "ext", test = TRUE)
 
-sc_key_get()
+sc_key_get(server = "ext")
 
-sc_key_prompt(test = TRUE)
+sc_key_prompt(server = "ext", test = TRUE)
 
-sc_key_exists()
+sc_key_exists(server = "ext")
+
+sc_key_valid(key = NULL, server = "ext")
 }
 \arguments{
+\item{server}{A STATcube API server. Defaults to the external Server via
+\code{"ext"}. Other options are \code{"red"} for the editing server and \code{"prod"} for
+the production server. External users should always use the default option \code{"ext"}.}
+
+\item{test}{Use \code{sc_key_valid()} to verify the key? If the key is
+invalid, an error is returned and the key will not be set or updated.}
+
 \item{key}{(\code{string}) An API key. To display your key, call
 \code{\link[=sc_browse_preferences]{sc_browse_preferences()}}.}
-
-\item{test}{Use a test-requst to verify the key?}
 }
 \value{
-All functions return the key (invisibly) except \code{sc_key_exists()},
-which returns a \code{\link[=logical]{logical()}} of length one.
+All functions return the key (invisibly) except for
+\code{sc_key_exists()} and \code{sc_key_valid()}, which return a \code{\link[=logical]{logical()}} of
+length one.
 }
 \description{
-Functions to get/set the STATcube API key and make them available for calls
+Functions to get/set the STATcube API keys and make them available for calls
 against the STATcube API.
 }
-\details{
+\section{Functions}{
 \itemize{
-\item \code{\link[=sc_key]{sc_key()}} forwards to \code{\link[=sc_key_get]{sc_key_get()}} if the key is already present.
+\item \code{sc_key()}: forwards to \code{\link[=sc_key_get]{sc_key_get()}} if the key is already present.
 Otherwise, \code{\link[=sc_key_prompt]{sc_key_prompt()}} will be invoked.
-}
 
-\itemize{
-\item \code{\link[=sc_key_set]{sc_key_set()}} can be used to pass the key as a parameter (\code{string})
-}
+\item \code{sc_key_set()}: can be used to pass the key as a parameter (\code{string})
 
-\itemize{
-\item \code{\link[=sc_key_get]{sc_key_get()}} returns the key, if it exists. Otherwise,
+\item \code{sc_key_get()}: returns the key, if it exists. Otherwise,
 an error is thrown.
-}
 
-\itemize{
-\item \code{\link[=sc_key_prompt]{sc_key_prompt()}} prompts for a key via \code{\link[=readline]{readline()}}
-}
+\item \code{sc_key_prompt()}: prompts for a key via \code{\link[=readline]{readline()}}
 
-\itemize{
-\item \code{sc_key_exists()} returns \code{TRUE} if a key was set and \code{FALSE} otherwise.
-}
-}
+\item \code{sc_key_exists()}: returns \code{TRUE} if a key was set and \code{FALSE} otherwise.
+
+\item \code{sc_key_valid()}: performs a test request and returns \code{TRUE} if the
+key is valid and \code{FALSE} otherwise.
+
+}}

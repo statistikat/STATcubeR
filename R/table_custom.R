@@ -7,7 +7,7 @@
 #' @rdname sc_table
 #' @export
 sc_table_custom <- function(db, measures, dimensions, language = c("en", "de"),
-                            add_totals = TRUE, key = sc_key()) {
+                            add_totals = TRUE, key = NULL) {
   json_list <- list(database = db, measures = as.list(measures),
                     dimensions = lapply(dimensions, list))
   json <- jsonlite::toJSON(json_list, auto_unbox = TRUE, pretty = TRUE)

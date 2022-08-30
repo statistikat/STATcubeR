@@ -1,6 +1,8 @@
 ---
 title: "Available Datasets"
-description: "List all datasets from the OGD portal of Statistics Austria"
+description: >
+   A concise overview about the 315 datasets from the OGD portal which are compatible with STATcubeR.
+   Learn how to discover useful datasets and read OGD metadata.
 link_text: "available datasets article"
 ---
 

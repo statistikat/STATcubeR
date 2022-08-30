@@ -1,8 +1,8 @@
 ---
 title: "Tabulating STATcubeR Datasets"
 description: >
-  Learn how to turn sc_table objects into tidy data frames using the
-  `tabulate()` method.
+  Learn how to turn datasets from the REST API or from the OGD portal into tidy
+  `data.frame`s by using the tabulate() method.
 link_text: "tabulation article"
 ---
 
@@ -17,7 +17,7 @@ earnings <- od_table("OGD_veste309_Veste309_1")
 ```
 
 This article contains the most important aspects of the method `$tabulate()`.
-This method aggregate s`sc_data` objects.
+This method aggregates `sc_data` objects.
 The first part will use the `r tippy_dataset(cancer, "cancer dataset")` from the `r ticle("od_table")`.
 After that, other features of `$tabulate()` will be demonstrated with the data from the `r tippy_dataset(earnings, "structure of earnings survey (SES)")`.
 
@@ -156,6 +156,16 @@ earnings$tabulate("Citizenship", "Form of employment") %>% dim()
 earnings$tabulate("Region", "Form of employment") %>% dim()
 ```
 
+### Totals and the REST API
+
+By default, `r STATcubeR` will always add totals for datasets from the REST API
+and use those totals to aggregate the datasets.
+
+```{r}
+x <- sc_table(sc_example("accomodation"))
+x$meta$fields
+```
+
 ### Including totals in the oputput
 
 It is not necessary that all fields have totals.
@@ -170,7 +180,7 @@ earnings$tabulate("Sex")
 
 ## German Labels and Codes
 
-For OGD datasets, it is possible to switch the language used for labeling the data.
+It is possible to switch the language used for labeling the data.
 This can be done by setting `$language` to `"de"` or `"en"`.
 
 ```{r}
@@ -184,9 +194,17 @@ To skip labelling altogether and use variable codes in the output, use `raw=TRUE
 earnings$tabulate("Geschlecht", raw = TRUE)
 ```
 
-Switching languages is currently only available for `od_table()` objects.
-For `sc_table()` objects this would require more support for the `sc_schema()` endpoint.
-See the [github issues] for some development goals regarding labeling.
+Switching languages is always available for `od_table()` objects.
+For `sc_table()`, it depends on whcih languages were requested.
+
+```{r}
+# default: get labels in german and english 
+x <- sc_table(sc_example("accomodation"))
+# only get english labels
+x <- sc_table(sc_example("accomodation"), lang = "en")
+# only get german labels
+x <- sc_table(sc_example("accomodation"), lang = "de")
+```
 
 ## Subsetting columns
 

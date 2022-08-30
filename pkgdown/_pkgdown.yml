@@ -1,7 +1,9 @@
 template:
-  bootstrap: 4
-  params:
-    bootswatch: cosmo
+  bootstrap: 5
+  bootswatch: flatly
+
+code:
+  width: 70
 
 development:
   mode: devel
@@ -19,36 +21,44 @@ authors:
 articles:
 - title: STATcube REST API
   desc: >
-    Transfer data from STATcube into your R session
+    Import tables from STATcube and use them as `data.frame`s in your R projects.
+    You can also use the API to discover available databases as well as their metadata.
   contents:
   - sc_key
   - sc_table
-  - sc_table_saved
-  - sc_table_custom
   - sc_schema
+  - sc_table_saved
   - sc_info
 - title: Open Government Data
   desc: >
-    Articles about the import of OGD datasets into your R session
+    Articles about STATcubeR functions that interact with the open government
+    portal of Statistics Austria (https://data.statistik.gv.at).
   navbar: open data
   contents:
   - od_table
-  - od_resources
   - od_list
+  - od_resources
 - title: Data Class
   contents:
   - sc_data
   - sc_tabulate
+- title: Advanced Usage
+  desc: >
+    Articles that are only relevant for users who are already familiar with
+    the core functionalities of STATcubeR.
+  contents:
+  - sc_cache
+  - sc_table_custom
 
 home:
   title: STATcubeR
   links:
   - text: Use the STATcube GUI
-    href: https://www.statistik.at/datenbanken/statcube-statistische-datenbank
+    href: https://www.statistik.at/datenbanken/statcube-statistische-datenbank/login
   - text: Find open govenment data
     href: https://data.statistik.gv.at
   - text: Read the API reference
-    href: https://docs.wingarc.com.au/superstar/latest/open-data-api/open-data-api-reference/
+    href: https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/
 
 navbar:
   type: default
@@ -115,3 +125,7 @@ reference:
   - 'sc_data'
   - 'sc_browse'
   - 'sc_tabulate'
+  - 'sc_json_get_server'
+  - 'sc_last_error'
+  - 'sc_cache'
+

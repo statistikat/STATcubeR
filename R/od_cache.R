@@ -3,6 +3,8 @@
 #' Functions to inspect the contents of the current cache.
 #' @name od_cache
 #' @rdname od_cache
+#' @param server the OGD-Server to use. `"ext"` for the external server (the
+#'   default) or `"red"` for the editing server
 #' @examples
 #' ## make sure the cache is not empty
 #' od_table("OGD_krebs_ext_KREBS_1")
@@ -29,8 +31,9 @@
 #' - **`file`** the filename
 #' - **`downloaded`** the download time in milliseconds
 #' @export
-od_cache_summary <- function() {
-  files <- dir(od_cache_dir(), pattern = ".csv")
+od_cache_summary <- function(server = "ext") {
+  cache_dir <- od_cache_path(server)
+  files <- dir(cache_dir, pattern = ".csv")
   pos_underscore <- as.integer(gregexpr("_C-", files))
   is_field <- pos_underscore != -1
   field <- substr(files[is_field], 1 + pos_underscore[is_field], nchar(files[is_field]) - 4)
@@ -47,10 +50,10 @@ od_cache_summary <- function() {
   all_ids <- unique(c(id_data, id_header, fields$id))
   data.frame(
     id = all_ids,
-    updated = file.mtime(paste0(od_cache_dir(), all_ids, ".json")),
-    json = file.size(paste0(od_cache_dir(), all_ids, ".json")),
-    data = file.size(paste0(od_cache_dir(), all_ids, ".csv")),
-    header = file.size(paste0(od_cache_dir(), all_ids, "_HEADER.csv")),
+    updated = file.mtime(paste0(cache_dir, all_ids, ".json")),
+    json = file.size(paste0(cache_dir, all_ids, ".json")),
+    data = file.size(paste0(cache_dir, all_ids, ".csv")),
+    header = file.size(paste0(cache_dir, all_ids, "_HEADER.csv")),
     fields = sizes_fields[match(unique(fields$id), all_ids)],
     n_fields = match(fields$id, all_ids) %>% factor(seq_along(all_ids)) %>%
       table() %>% as.integer(),
@@ -62,8 +65,8 @@ od_cache_summary <- function() {
 #' @rdname od_cache
 #' @importFrom magrittr %T>%
 #' @export
-od_downloads <- function() {
-  x <- od_cache_dir() %>% paste0("/downloads.log") %T>%
+od_downloads <- function(server = 'ext') {
+  x <- od_cache_path(server, "downloads.log") %T>%
     (function(x) {if(!file.exists(x)) stop("No file 'dowloads.log' in cahce")}) %>%
     utils::read.csv(header = FALSE) %>% `names<-`(c("time", "file", "downloaded"))
   x$time <- as.POSIXct(x$time)

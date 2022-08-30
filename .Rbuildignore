@@ -12,3 +12,5 @@
 ^LICENSE$
 ^\.travis\.yml$
 ^inst/json_examples/README\.md$
+^\.github$
+^codecov\.yml$

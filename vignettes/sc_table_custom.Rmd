@@ -2,7 +2,8 @@
 title: "Define Custom Tables"
 description: >
   Define custom requests against the `/table` endpoint programatically
-  by providing character vectors with ids of databases, measures and fields.
+  by providing character vectors with ids of databases, measures and classification fields.
+link_text: "custom tables article"
 ---
 
 ```{r, echo = FALSE}

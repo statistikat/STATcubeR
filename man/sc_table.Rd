@@ -13,7 +13,7 @@ sc_table(
   json_file,
   language = c("en", "de", "both"),
   add_totals = TRUE,
-  key = sc_key()
+  key = NULL
 )
 
 sc_examples_list()
@@ -26,12 +26,12 @@ sc_table_custom(
   dimensions,
   language = c("en", "de"),
   add_totals = TRUE,
-  key = sc_key()
+  key = NULL
 )
 
-sc_table_saved_list()
+sc_table_saved_list(key = NULL, server = "ext")
 
-sc_table_saved(table_uri, language = c("en", "de"), key = sc_key())
+sc_table_saved(table_uri, language = c("en", "de"), key = NULL, server = "ext")
 }
 \arguments{
 \item{json_file}{path to a json file, which was downloaded via the STATcube
@@ -58,6 +58,10 @@ type \code{MEASURE} or of type \code{STAT_FUNCTION}}
 either of type \code{FIELD} or type \code{VALUESET}. Those entries are referred to
 as \code{fields} in the parsed API response}
 
+\item{server}{A STATcube API server. Defaults to the external Server via
+\code{"ext"}. Other options are \code{"red"} for the editing server and \code{"prod"} for
+the production server. External users should always use the default option \code{"ext"}.}
+
 \item{table_uri}{Identifier of a saved table as returned by
 \code{\link[=sc_table_saved_list]{sc_table_saved_list()}}}
 }
@@ -79,8 +83,7 @@ requests can use three formats with corresponding functions
 Those three functions all return an object of class \code{"sc_table"}.
 }
 \examples{
-if (sc_key_exists()) {
-
+\dontshow{if (sc_key_exists()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 my_table <- sc_table(json_file = sc_example("population_timeseries.json"))
 
 # print
@@ -114,7 +117,6 @@ table_uri <- saved_tables$id[1]
 # get a table based on one of these ids
 my_response <- sc_table_saved(table_uri)
 as.data.frame(my_response)
-
-}
+\dontshow{\}) # examplesIf}
 }
 \concept{functions for /table}

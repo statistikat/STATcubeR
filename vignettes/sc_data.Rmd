@@ -1,6 +1,8 @@
 ---
 title: "The STATcubeR Data Class"
-description: "The base class for Open Data and STATcube datasets"
+description: >
+  STATcubeR uses a common base class for OGD datasets and datasets from the STATcube REST API.
+  This article explains the core functionalities and allows you to use both datasources more flexibly.
 link_text: "STATcubeR data article"
 ---
 
@@ -61,11 +63,11 @@ x$meta$source
 ```
 
 On the bottom, we see that additional information about the source is available, namely `label_en`, `label_de`, etc.
-These metadata were added from the derived class `od_table` and are not part of the `sc_table` interface.
+These additional metadata entries might not be available for `sc_table` objects.
 
 ### Measures
 
-This part of the metadata is a data.frame with one row for each measure.
+This part of the metadata is a `data.frame` with one row for each measure.
 It contains codes and labels as well as the number of NAs found in `$data` for that particular column.
 
 ```{r}
@@ -74,7 +76,7 @@ x$meta$measures
 
 ### Fields
 
-The fields entry summarizes all categorical variables.
+The fields entry summarizes all classification fields i.e. categorical variables.
 It includes the codes and labels as well as the total code registered for the particular field.
 
 ```{r}
@@ -84,6 +86,7 @@ x$meta$fields
 ## Field information
 
 To get more info about specific fields, use the `$field()` method.
+This will return all classification elements as a `data.frame`.
 
 ### {.tabset .tabset-pills .tabset-fade}
 

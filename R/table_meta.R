@@ -16,7 +16,7 @@ get_item_code <- function(item, split_minus = FALSE) {
   uris <- item$uris
   codes <- as.character(uris) %>%
     strsplit(":") %>%
-    lapply(tail, 1)
+    lapply(utils::tail, 1)
   if (split_minus)
     codes <- as.character(codes) %>%
     strsplit("-") %>%

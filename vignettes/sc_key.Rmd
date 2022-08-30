@@ -1,8 +1,8 @@
 ---
-title: "Setup the API Key"
+title: "Set Up the API Key"
 description: >
-  Set up authentication to the STATcube REST API by setting your API key
-  for the session or persistently.
+  Learn how get access to an API key and set up authentication to the STATcube
+  REST API by making the key available for STATcubeR.
 link_text: "API key article"
 ---
 
@@ -12,40 +12,49 @@ source("R/setup.R")$value
 
 
 Instructions for the first-time use of the STATcube REST API.
+See also the [wingarc docs](https://docs.wingarc.com.au/superstar/9.12/open-data-api/api-keys) for the vendor documentation on API keys.
 
 ## Adding an API key
 
-In order to use the REST API of STATcube it is necessary to provide
-an API key. If your STATcube account is configured to use a key,
-the following address can be used to view your key
+In order to use the REST API of STATcube it is necessary to provide an API key.
+This means that you will need a subscription for STATcube.
+Subscribed users will automatically get access to the STATcube API.
+The API key can be displayed under the [preferences menu](https://statcube.at/statistik.at/ext/statcube/jsf/preferences/editPreferences.xhtml) ^[The link to the preferences will only work if you are already logged in into STATcube] of STATcube.
 
-```
-http://sdbext:8081/statistik.at/ext/statcube/jsf/preferences/editPreferences.xhtml
-```
-
-To make the key available to `r STATcubeR`, use the function
+To make the key available for `r STATcubeR`, use the function
 `sc_key_set()`. Replace `"XXXX"` with your key.
 
 ```r
 sc_key_set("XXXX")
 #> The provided key will be available for this R session. Add
 #>
-#>   STATCUBE_KEY=XXXX
+#>   STATCUBE_KEY_EXT = XXXX
 #>
 #> to your .Renviron to set the key persistently
 ```
 
-As suggested by the code output, the key can be set persistently by modifying
-`.Renviron`. This can be done easily with `usethis::edit_r_environ()`.
+As suggested by the code output, the key will be used for any API requests that happen in the same R session.
+You can be set persistently by modifying `.Renviron`.
+This can be done easily with `usethis::edit_r_environ()`.
 
-## How do I get an API key?
+By default, `sc_key_set()` will perform a test request to verify that the key is valid
+and throw an error if the test request is unsuccessfull.
 
-Currently, the api is only available inside the firewall of statistics austria.
-Therefore, api keys can only be requested by our employees. Api access for
-external users with a statcube subscription is planned in the near future.
-Please get into contact with the package maintainers of `r STATcubeR` for details.
+```r
+sc_key_set('wrong key')
+#> Error in sc_key_set("wrong key") : The key could not be verified
+```
 
 ## Next Steps
 
 See the `r ticle('sc_table')` to see how tables can be defined in the STATcube GUI and imported into R.
 Alternatively, import a saved table by following the `r ticle('sc_table_saved')`.
+For more advanced usage of `r STATcubeR`, see the `r ticle('sc_schema')` and `r ticle('sc_table_custom')`
+
+## For employees of Statistics Austria
+
+Employees should use one of our internal STATcube servers for API requests.
+Please refer to the following internal confluence documentation for more information
+on how to get started:
+
+https://statportal.statistik.local/statistik.at/confluence/x/uDiTAQ

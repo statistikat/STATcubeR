@@ -37,6 +37,11 @@ sc_json_class <- R6::R6Class(
   )
 )
 
+#' @export
+as.character.sc_json <- function(x, ..., collapse = "\n") {
+  x$content %>% paste(..., collapse = collapse)
+}
+
 sc_json_add_totals <- function(json_content) {
   measures <- unlist(json_content$dimensions)
   for (measure in measures)
@@ -44,16 +49,46 @@ sc_json_add_totals <- function(json_content) {
   json_content
 }
 
+#' Get the server from a json request
+#'
+#' parses a json request and returns a short string representing
+#' the corresponding STATcube server
+#' @return `"ext"`, `"red"` or `"prod"` depending on the database uri in the
+#'   json request
+#' @param json path to a request json
+#' @examples
+#' sc_example('accomodation') %>% sc_json_get_server()
+#' @export
+sc_json_get_server <- function(json) {
+  parsed <- jsonlite::fromJSON(json, simplifyVector = FALSE)
+  sc_database_get_server(database_uri = parsed$database)
+}
+
+sc_database_get_server <- function(database_uri) {
+  switch(
+    substring(database_uri, 14, 15),
+    de = "ext",
+    di = "red",
+    db = "prod",
+    stop('database uri \033[1m"', database_uri, '"\033[22m could not be ',
+         'assigned to a STATcube server')
+  )
+}
+
 sc_table_json_post <- function(json, language = c("en", "de"),
-                               add_totals = TRUE, key = sc_key()) {
+                               add_totals = TRUE, key = NULL) {
+  language <- match.arg(language)
+  server <- sc_json_get_server(json)
+  if (is.null(key))
+    key <- sc_key(server)
   if (add_totals)
     json <- json %>%
       jsonlite::fromJSON(simplifyVector = FALSE) %>%
       sc_json_add_totals() %>%
       jsonlite::toJSON(pretty = TRUE, auto_unbox = TRUE)
-  sc_with_cache(list(json, language), function() {
+  sc_with_cache(c("sc_table_json_post", json, language, add_totals), function() {
     httr::POST(
-      url = paste0(base_url, "/table"),
+      url = paste0(base_url(server), "/table"),
       body = json,
       config = sc_headers(language, key)
     ) %>% sc_check_response()

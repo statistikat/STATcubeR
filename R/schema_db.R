@@ -1,7 +1,5 @@
 #' @param db_id a database id
-#' @examples
-#' if (sc_key_exists()) {
-#'
+#' @examplesIf sc_key_exists()
 #' my_catalogue <- sc_schema_catalogue()
 #'
 #' ## print
@@ -29,14 +27,16 @@
 #'
 #' # print with data.tree
 #' print(my_catalogue$Examples, tree = TRUE)
-#'
-#' }
 #' @rdname sc_schema
 #' @export
 sc_schema_db <- function(db_id, depth = "valueset", language = c("en", "de"),
-                         key = sc_key()) {
+                         key = NULL) {
   stopifnot(is.character(db_id) && length(db_id) == 1)
   if (substr(db_id, 1, 3) != "str")
     db_id <- paste0("str:database:", db_id)
-  sc_schema(resource_id = db_id, depth = depth, key = key, language = language)
+  server <- sc_database_get_server(db_id)
+  if (is.null(key))
+    key <- sc_key(server)
+  sc_schema(resource_id = db_id, depth = depth, key = key, language = language,
+            server = server)
 }

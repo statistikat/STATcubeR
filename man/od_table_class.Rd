@@ -20,32 +20,34 @@ R6 Class open data datasets.
 Similar contents can be found in \verb{$meta}.}
 
 \item{\code{resources}}{lists all files downloaded from the server to contruct this table}
+
+\item{\code{od_server}}{The server used for initialization (see to \code{?od_table})}
 }
 \if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{od_table_class$new()}}
+\item \href{#method-od_table-new}{\code{od_table_class$new()}}
 }
 }
-\if{html}{
-\out{<details open ><summary>Inherited methods</summary>}
-\itemize{
-\item \out{<span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="field">}\href{../../STATcubeR/html/sc_data.html#method-field}{\code{STATcubeR::sc_data$field()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="tabulate">}\href{../../STATcubeR/html/sc_data.html#method-tabulate}{\code{STATcubeR::sc_data$tabulate()}}\out{</span>}
-\item \out{<span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="total_codes">}\href{../../STATcubeR/html/sc_data.html#method-total_codes}{\code{STATcubeR::sc_data$total_codes()}}\out{</span>}
-}
-\out{</details>}
-}
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="field"><a href='../../STATcubeR/html/sc_data.html#method-sc_data-field'><code>STATcubeR::sc_data$field()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="tabulate"><a href='../../STATcubeR/html/sc_data.html#method-sc_data-tabulate'><code>STATcubeR::sc_data$tabulate()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="total_codes"><a href='../../STATcubeR/html/sc_data.html#method-sc_data-total_codes'><code>STATcubeR::sc_data$total_codes()</code></a></span></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-od_table-new"></a>}}
+\if{latex}{\out{\hypertarget{method-od_table-new}{}}}
 \subsection{Method \code{new()}}{
 This class is not exported. Use \code{\link[=od_table]{od_table()}} to
 initialize objects of class \code{od_table}.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{od_table_class$new(id, language = c("en", "de"))}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{od_table_class$new(id, language = c("en", "de"), server = "ext")}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -54,6 +56,8 @@ initialize objects of class \code{od_table}.
 \item{\code{id}}{the id of the data-set that should be accessed}
 
 \item{\code{language}}{language to be used for labeling. \code{"en"} or \code{"de"}}
+
+\item{\code{server}}{the OGD-Server server to be used}
 }
 \if{html}{\out{</div>}}
 }

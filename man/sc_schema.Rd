@@ -11,19 +11,20 @@ sc_schema(
   resource_id = NULL,
   depth = NULL,
   language = c("en", "de"),
-  key = sc_key()
+  key = NULL,
+  server = "ext"
 )
 
 \method{print}{sc_schema}(x, tree = NULL, ..., limit = 30)
 
-sc_schema_catalogue(depth = "folder", language = c("en", "de"), key = sc_key())
-
-sc_schema_db(
-  db_id,
-  depth = "valueset",
+sc_schema_catalogue(
+  depth = "folder",
   language = c("en", "de"),
-  key = sc_key()
+  key = NULL,
+  server = "ext"
 )
+
+sc_schema_db(db_id, depth = "valueset", language = c("en", "de"), key = NULL)
 }
 \arguments{
 \item{resource_id}{A resource identifier in uid format}
@@ -37,6 +38,10 @@ are applicable.}
 
 \item{key}{(\code{string}) An API key. To display your key, call
 \code{\link[=sc_browse_preferences]{sc_browse_preferences()}}.}
+
+\item{server}{A STATcube API server. Defaults to the external Server via
+\code{"ext"}. Other options are \code{"red"} for the editing server and \code{"prod"} for
+the production server. External users should always use the default option \code{"ext"}.}
 
 \item{x}{object to be printed}
 
@@ -59,13 +64,14 @@ tree object.
 \code{limit} and \code{...} will simply be ignored if \code{tree} is set to \code{FALSE}, which is
 the default. The printing via \code{data.tree} can take longer than the default
 implementation because \code{x} will need to be converted into a \code{data.tree} node.
-To use \code{data.tree} printing permanently, use\if{html}{\out{<div class="r">}}\preformatted{options(STATcubeR.print_tree = TRUE)
+To use \code{data.tree} printing permanently, use
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{options(STATcubeR.print_tree = TRUE)
 }\if{html}{\out{</div>}}
 }
 
 \examples{
-if (sc_key_exists()) {
-
+\dontshow{if (sc_key_exists()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 my_catalogue <- sc_schema_catalogue()
 
 ## print
@@ -93,7 +99,6 @@ my_content$label
 
 # print with data.tree
 print(my_catalogue$Examples, tree = TRUE)
-
-}
+\dontshow{\}) # examplesIf}
 }
 \concept{functions for /schema}

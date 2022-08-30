@@ -7,11 +7,13 @@
 A collection of methods that can be used to modify an object of class
 sc_table by reference. Typical usage is to acces the \code{recode} binding
 of an \code{sc_table} object and then use method chaining to perform recode
-operations.\preformatted{x <- od_table("OGD_krebs_ext_KREBS_1")
+operations.
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{x <- od_table("OGD_krebs_ext_KREBS_1")
 x$recode$
   label_field("C-BERJ-0", "de", "JAHR")$
   label_measure("F-KRE", "de", "Anzahl")
-}
+}\if{html}{\out{</div>}}
 
 See the example section for more details.
 }
@@ -44,18 +46,18 @@ earnings$recode$
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{sc_recoder$new()}}
-\item \href{#method-label_field}{\code{sc_recoder$label_field()}}
-\item \href{#method-label_measure}{\code{sc_recoder$label_measure()}}
-\item \href{#method-level}{\code{sc_recoder$level()}}
-\item \href{#method-total_codes}{\code{sc_recoder$total_codes()}}
-\item \href{#method-visible}{\code{sc_recoder$visible()}}
-\item \href{#method-order}{\code{sc_recoder$order()}}
+\item \href{#method-sc_recoder-new}{\code{sc_recoder$new()}}
+\item \href{#method-sc_recoder-label_field}{\code{sc_recoder$label_field()}}
+\item \href{#method-sc_recoder-label_measure}{\code{sc_recoder$label_measure()}}
+\item \href{#method-sc_recoder-level}{\code{sc_recoder$level()}}
+\item \href{#method-sc_recoder-total_codes}{\code{sc_recoder$total_codes()}}
+\item \href{#method-sc_recoder-visible}{\code{sc_recoder$visible()}}
+\item \href{#method-sc_recoder-order}{\code{sc_recoder$order()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-sc_recoder-new"></a>}}
+\if{latex}{\out{\hypertarget{method-sc_recoder-new}{}}}
 \subsection{Method \code{new()}}{
 Create a new recoder instance. This will automatically
 be performed during the setup of \code{sc_data} objects
@@ -72,8 +74,8 @@ be performed during the setup of \code{sc_data} objects
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-label_field"></a>}}
-\if{latex}{\out{\hypertarget{method-label_field}{}}}
+\if{html}{\out{<a id="method-sc_recoder-label_field"></a>}}
+\if{latex}{\out{\hypertarget{method-sc_recoder-label_field}{}}}
 \subsection{Method \code{label_field()}}{
 Change the label of a field variable
 \subsection{Usage}{
@@ -93,8 +95,8 @@ Change the label of a field variable
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-label_measure"></a>}}
-\if{latex}{\out{\hypertarget{method-label_measure}{}}}
+\if{html}{\out{<a id="method-sc_recoder-label_measure"></a>}}
+\if{latex}{\out{\hypertarget{method-sc_recoder-label_measure}{}}}
 \subsection{Method \code{label_measure()}}{
 Change the label of a measure variable
 \subsection{Usage}{
@@ -114,8 +116,8 @@ Change the label of a measure variable
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-level"></a>}}
-\if{latex}{\out{\hypertarget{method-level}{}}}
+\if{html}{\out{<a id="method-sc_recoder-level"></a>}}
+\if{latex}{\out{\hypertarget{method-sc_recoder-level}{}}}
 \subsection{Method \code{level()}}{
 Change the labels of a level
 \subsection{Usage}{
@@ -137,8 +139,8 @@ Change the labels of a level
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-total_codes"></a>}}
-\if{latex}{\out{\hypertarget{method-total_codes}{}}}
+\if{html}{\out{<a id="method-sc_recoder-total_codes"></a>}}
+\if{latex}{\out{\hypertarget{method-sc_recoder-total_codes}{}}}
 \subsection{Method \code{total_codes()}}{
 Cheange the total code for a field
 \subsection{Usage}{
@@ -157,8 +159,8 @@ new total code. In case of \code{NA}, the total code will be unset.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-visible"></a>}}
-\if{latex}{\out{\hypertarget{method-visible}{}}}
+\if{html}{\out{<a id="method-sc_recoder-visible"></a>}}
+\if{latex}{\out{\hypertarget{method-sc_recoder-visible}{}}}
 \subsection{Method \code{visible()}}{
 set the visibility of a level. Invisible levels are
 ommited in the output of \verb{$tabulate()} but don't affect aggregation
@@ -179,8 +181,8 @@ ommited in the output of \verb{$tabulate()} but don't affect aggregation
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-order"></a>}}
-\if{latex}{\out{\hypertarget{method-order}{}}}
+\if{html}{\out{<a id="method-sc_recoder-order"></a>}}
+\if{latex}{\out{\hypertarget{method-sc_recoder-order}{}}}
 \subsection{Method \code{order()}}{
 set the order of levels.
 \subsection{Usage}{

@@ -16,6 +16,8 @@
 #'
 #' @param id the id of the data-set that should be accessed
 #' @param language language to be used for labeling. `"en"` or `"de"`
+#' @param server the OGD-server to be used. `"ext"` (the default) for the
+#'   external server or `prod` for the production server
 #'
 #' @return
 #' The returned objects is of class `sc_table` and inherits several parsing
@@ -50,8 +52,8 @@
 #' od_table("OGD_f1741_HH_Proj_1")
 #' od_table("OGD_veste303_Veste203_1")
 #' @export
-od_table <- function(id, language = c("en", "de")) {
-  od_table_class$new(id, language)
+od_table <- function(id, language = c("en", "de"), server = "ext") {
+  od_table_class$new(id, language, server = server)
 }
 
 #' @title Create a table-instance from an open-data dataset
@@ -67,14 +69,16 @@ od_table_class <- R6::R6Class(
     #' initialize objects of class `od_table`.
     #' @param id the id of the data-set that should be accessed
     #' @param language language to be used for labeling. `"en"` or `"de"`
-    initialize = function(id, language = c("en", "de")) {
+    #' @param server the OGD-Server server to be used
+    initialize = function(id, language = c("en", "de"), server = "ext") {
       language <- match.arg(language)
       stime <- Sys.time()
       stopifnot(rlang::is_scalar_character(id))
       private$id <- id
-      json <- od_json(id)
+      private$p_server <- server
+      json <- od_json(id, server = server)
       private$p_json <- json
-      res <- od_create_data(id, json, language)
+      res <- od_create_data(id, json, language, server = server)
       private$cache <- res[c("header", "resources")]
       res$meta$source$requested <- stime
       res$meta$source$lang <- language
@@ -100,12 +104,18 @@ od_table_class <- R6::R6Class(
     #' lists all files downloaded from the server to contruct this table
     resources = function() {
       private$cache$resources %>% `class<-`(c("tbl", "data.frame"))
+    },
+    #' @field od_server
+    #' The server used for initialization (see to `?od_table`)
+    od_server = function() {
+      private$p_server
     }
   ),
   private = list(
     id = NULL,
     p_json = NULL,
-    cache = NULL
+    cache = NULL,
+    p_server = NULL
   )
 )
 

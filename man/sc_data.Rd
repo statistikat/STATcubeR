@@ -73,16 +73,16 @@ and perform other recoding operations.}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{sc_data$new()}}
-\item \href{#method-field}{\code{sc_data$field()}}
-\item \href{#method-tabulate}{\code{sc_data$tabulate()}}
-\item \href{#method-total_codes}{\code{sc_data$total_codes()}}
-\item \href{#method-clone}{\code{sc_data$clone()}}
+\item \href{#method-sc_data-new}{\code{sc_data$new()}}
+\item \href{#method-sc_data-field}{\code{sc_data$field()}}
+\item \href{#method-sc_data-tabulate}{\code{sc_data$tabulate()}}
+\item \href{#method-sc_data-total_codes}{\code{sc_data$total_codes()}}
+\item \href{#method-sc_data-clone}{\code{sc_data$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-sc_data-new"></a>}}
+\if{latex}{\out{\hypertarget{method-sc_data-new}{}}}
 \subsection{Method \code{new()}}{
 This class is not exported. Use \code{\link[=od_table]{od_table()}} or \code{\link[=sc_table]{sc_table()}}
 to initialize objects of class \code{sc_data}.
@@ -101,8 +101,8 @@ Do not use directly but initialize objects with \code{\link[=sc_table]{sc_table(
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-field"></a>}}
-\if{latex}{\out{\hypertarget{method-field}{}}}
+\if{html}{\out{<a id="method-sc_data-field"></a>}}
+\if{latex}{\out{\hypertarget{method-sc_data-field}{}}}
 \subsection{Method \code{field()}}{
 get information about a specific field. The format of
 the reurn value is similar to \verb{$meta}. A \code{data.frame} that includes
@@ -133,8 +133,8 @@ x$field("Sex")
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-tabulate"></a>}}
-\if{latex}{\out{\hypertarget{method-tabulate}{}}}
+\if{html}{\out{<a id="method-sc_data-tabulate"></a>}}
+\if{latex}{\out{\hypertarget{method-sc_data-tabulate}{}}}
 \subsection{Method \code{tabulate()}}{
 create a tidy dataset. See \code{\link[=sc_tabulate]{sc_tabulate()}} for details.
 \subsection{Usage}{
@@ -159,8 +159,8 @@ x$tabulate("Reporting year", "Sex")
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-total_codes"></a>}}
-\if{latex}{\out{\hypertarget{method-total_codes}{}}}
+\if{html}{\out{<a id="method-sc_data-total_codes"></a>}}
+\if{latex}{\out{\hypertarget{method-sc_data-total_codes}{}}}
 \subsection{Method \code{total_codes()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{sc_data$total_codes(...)}\if{html}{\out{</div>}}
@@ -190,8 +190,8 @@ earnings$tabulate("Sex", "Form of employment")
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-sc_data-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-sc_data-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

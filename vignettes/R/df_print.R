@@ -2,7 +2,7 @@ library(magrittr)
 library(pillar)
 
 knit_print.data.frame = function(x, ...) {
-  out <- capture.output(print((x))) %>%
+  out <- capture.output(print(x, ...)) %>%
     htmltools::htmlEscape() %>%
     fansi::sgr_to_html() %>%
     paste(collapse = "\n") %>%
@@ -28,4 +28,4 @@ registerS3method(
 options(crayon.enabled = TRUE)
 options(pillar.min_chars = 30)
 options(pillar.bold = TRUE)
-options(width = 120)
+options(width = 80)

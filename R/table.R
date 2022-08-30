@@ -1,12 +1,18 @@
-sc_version <- function() {
+sc_version <- function(sha = TRUE) {
   pd <- utils::packageDescription("STATcubeR")
   version <- pd$Version
-  if (!is.null(pd$RemoteSha))
+  if (sha && !is.null(pd$RemoteSha))
     version <- paste0(version, " (@", substr(pd$RemoteSha, 1, 7), ")")
   version
 }
 
-base_url <- "http://sdbext:8082/statistik.at/ext/statcube/rest/v1"
+base_url <- function(server = "ext") {
+  if (server == "ext")
+    return("https://statcubeapi.statistik.at/statistik.at/ext/statcube/rest/v1")
+  if (server == "test")
+    return("https://statcubeapit.statistik.local/statistik.at/lxdev/statcube/rest/v1")
+  sprintf("http://sdb%s:8082/statistik.at/%s/statcube/rest/v1", server, server)
+}
 
 #' @title  Class for /table responses
 #' @description R6 Class for all responses of the /table endpoint of the
@@ -26,7 +32,11 @@ sc_table_class <- R6::R6Class(
     #'   endpoint.
     #' @param json the json file used in the request as a string.
     #' @param file the file path to the json file
-    initialize = function(response, json = NULL, file = NULL, add_totals = TRUE) {
+    #' @param add_totals was the json request modified by adding totals via
+    #'   the add_toals parameter in one of the factory functions (`sc_table()`,
+    #'   `sc_table_custom()`). Necessary, in order to also request totals via
+    #'   the `$add_language()` method.
+    initialize = function(response, json = NULL, file = NULL, add_totals = FALSE) {
       stopifnot(inherits(response, "response"))
       private$httr_response <- response
       content <- httr::content(response)
@@ -84,15 +94,13 @@ sc_table_class <- R6::R6Class(
     },
     #' @description open the dataset in a browser
     browse = function() {
-      browseURL(paste0(
-        "https://statcube.at/statcube/openinfopage?id=",
-        self$meta$source$code
-      ))
+      sc_json_get_server(self$json$content) %>% sc_url_gui() %>%
+        paste0("openinfopage?id=", self$meta$source$code) %>% sc_url()
     },
     #' @description add a second language to the dataset
     #' @param language a language to add. `"en"` or `"de"`.
     #' @param key an API key
-    add_language = function(language = c("en", "de"), key = sc_key()) {
+    add_language = function(language = c("en", "de"), key = NULL) {
       language <- match.arg(language)
       response <- sc_table_json_post(self$json$content, language = language,
                                      key = key, add_totals = self$json$totals)
@@ -105,6 +113,9 @@ sc_table_class <- R6::R6Class(
         private$p_fields[[i]][[column]] <- sapply(
           content$fields[[i]]$items, function(item) { item$labels[[1]] })
       }
+      attr(private$httr_response, "sc_cache_file") <- c(
+        attr(private$httr_response, "sc_cache_file"), attr(response, "sc_cache_file")
+      )
     }
   ),
   active = list(
@@ -129,7 +140,8 @@ sc_table_class <- R6::R6Class(
       res <- data.frame(
         remaining = headers$`x-ratelimit-remaining-table`,
         limit     = headers$`x-ratelimit-table`,
-        reset     = headers$`x-ratelimit-reset-table`
+        reset     = headers$`x-ratelimit-reset-table`,
+        stringsAsFactors = FALSE
       )
       class(res) <- "sc_rate_limit_table"
       res
@@ -166,9 +178,7 @@ sc_table_class <- R6::R6Class(
 #'   The third option `"both"` will import both languages by sending two requests
 #'   to the `/table` endpoint.
 #' @family functions for /table
-#' @examples
-#' if (sc_key_exists()) {
-#'
+#' @examplesIf sc_key_exists()
 #' my_table <- sc_table(json_file = sc_example("population_timeseries.json"))
 #'
 #' # print
@@ -202,11 +212,9 @@ sc_table_class <- R6::R6Class(
 #' # get a table based on one of these ids
 #' my_response <- sc_table_saved(table_uri)
 #' as.data.frame(my_response)
-#'
-#' }
 #' @export
 sc_table <- function(json_file, language = c("en", "de", "both"), add_totals = TRUE,
-                     key = sc_key()) {
+                     key = NULL) {
   language <- match.arg(language)
   both <- language == "both"
   if (both)
