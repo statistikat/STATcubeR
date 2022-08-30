@@ -50,6 +50,8 @@ od_list <- function(unique = TRUE, server = c('ext', 'red')) {
     stringsAsFactors = FALSE
   )
 
+  df <- df[!(df$label %in% c("[Alle öffnen]", "[Alle schließen]")), ]
+
   tt <- diff(c(which(is.na(df$id)), nrow(df) + 1))
   df$category <- rep(grp, tt)
   df <- df[!is.na(df$id), ]
