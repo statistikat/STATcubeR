@@ -5,6 +5,9 @@
 * Update URLs for the API release (#29)
 * Add support for multiple API servers (#25)
 * Automatically add totals to OGD datasets (#28)
+* Use `rappdirs::user_cache_dir()` to determine the
+  default value for caching.
+* Set up continuous integration via github actions
 
 # STATcubeR 0.3.0
 
