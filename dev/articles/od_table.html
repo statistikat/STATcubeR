@@ -15,8 +15,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Open Government Data">
@@ -44,7 +44,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
   <a class="nav-link" href="../reference/">Reference</a>
@@ -102,8 +102,11 @@
   </div>
 </nav><div class="container template-article">
 
+
+
+
 <div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Open Government Data</h1>
             
       
@@ -149,21 +152,21 @@ tippy("#ogd", {allowHTML: true, interactive: true, theme: 'light rounded', conte
 </h2>
 <p>To import a dataset, provide the dataset id as an argument.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/od_table.html">od_table</a></span><span class="op">(</span><span class="st">"OGD_krebs_ext_KREBS_1"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/od_table.html">od_table</a></span><span class="op">(</span><span class="st">"OGD_krebs_ext_KREBS_1"</span><span class="op">)</span></span></code></pre></div>
 <p>The returned object is of class <a href="../reference/od_table_class.html"><code>od_table</code></a>. It
 provides an overview of the dataset via the <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code>
 method.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">table</span></code></pre></div>
-<pre><code><span class="co">## An object of class od_table</span>
-<span class="co">## </span>
-<span class="co">## Dataset     Cancer statistics by reporting year, province of residence and</span>
-<span class="co">##             localisation of cancer </span>
-<span class="co">## Measures    Number of records F-KRE </span>
-<span class="co">## Fields      Tumore ICD/10 3-Steller, Reporting year, Province of residence, Sex </span>
-<span class="co">## </span>
-<span class="co">## Request     2022-08-28 16:13:38 </span>
-<span class="co">## STATcubeR   0.3.4.4</span></code></pre>
+<code class="sourceCode R"><span><span class="va">table</span></span></code></pre></div>
+<pre><code><span><span class="co">## An object of class od_table</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Dataset     Cancer statistics by reporting year, province of residence and</span></span>
+<span><span class="co">##             localisation of cancer </span></span>
+<span><span class="co">## Measures    Number of records F-KRE </span></span>
+<span><span class="co">## Fields      Tumore ICD/10 3-Steller, Reporting year, Province of residence, Sex </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Request     2022-08-30 14:18:20 </span></span>
+<span><span class="co">## STATcubeR   0.3.4.4</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="metadata">Metadata<a class="anchor" aria-label="anchor" href="#metadata"></a>
@@ -171,7 +174,7 @@ method.</p>
 <p>Information from <a href="https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_HEADER.csv" class="external-link"><code>OGD_krebs_ext_KREBS_1_HEADER.csv</code></a>
 can be obtained via <code>$header</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">table</span><span class="op">$</span><span class="va">header</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="va">header</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># STATcubeR metadata: 5 x 4</span>
   <span style="font-weight: bold;">code</span>               <span style="font-weight: bold;">label</span> <span style="font-weight: bold;">label_de</span>                    <span style="font-weight: bold;">label_en</span>               
   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  
@@ -209,7 +212,7 @@ german and english labels. Both can be used to label the dataset.</p>
 <div class="active  tab-pane" id="tumor-type" role="tabpanel" aria-labelledby="tumor-type-tab">
 
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"C-TUM_ICD10_3ST-0"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"C-TUM_ICD10_3ST-0"</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># STATcubeR metadata: 95 x 8</span>
   <span style="font-weight: bold;">code</span>              <span style="font-weight: bold;">label</span>                                                       
   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                       
@@ -225,7 +228,7 @@ german and english labels. Both can be used to label the dataset.</p>
 <div class="tab-pane" id="year" role="tabpanel" aria-labelledby="year-tab">
 
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"C-BERJ-0"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"C-BERJ-0"</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># STATcubeR metadata: 37 x 8</span>
   <span style="font-weight: bold;">code</span>      <span style="font-weight: bold;">label</span> <span style="font-weight: bold;">parsed</span>    
   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>    
@@ -241,7 +244,7 @@ german and english labels. Both can be used to label the dataset.</p>
 <div class="tab-pane" id="province" role="tabpanel" aria-labelledby="province-tab">
 
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"C-BUNDESLAND-0"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"C-BUNDESLAND-0"</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># STATcubeR metadata: 9 x 8</span>
   <span style="font-weight: bold;">code</span>         <span style="font-weight: bold;">label</span>           <span style="font-weight: bold;">parsed</span>         
   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          
@@ -257,7 +260,7 @@ german and english labels. Both can be used to label the dataset.</p>
 <div class="tab-pane" id="sex" role="tabpanel" aria-labelledby="sex-tab">
 
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"C-KRE_GESCHLECHT-0"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"C-KRE_GESCHLECHT-0"</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># STATcubeR metadata: 2 x 8</span>
   <span style="font-weight: bold;">code</span>         <span style="font-weight: bold;">label</span>  <span style="font-weight: bold;">parsed</span>
   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> 
@@ -276,7 +279,7 @@ german and english labels. Both can be used to label the dataset.</p>
 use <code>table$data</code>. The output is similar to what is returned
 from <code>read.csv2("OGD_krebs_ext_KREBS_1.csv")</code>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">table</span><span class="op">$</span><span class="va">data</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="va">data</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 46,479 x 5</span>
   <span style="font-weight: bold;">`C-TUM_ICD10_3ST-0`</span> <span style="font-weight: bold;">`C-BERJ-0`</span> <span style="font-weight: bold;">`C-BUNDESLAND-0`</span> <span style="font-weight: bold;">`C-KRE_GESCHLECHT-0`</span> <span style="font-weight: bold;">`F-KRE`</span>
 <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>
@@ -289,23 +292,24 @@ from <code>read.csv2("OGD_krebs_ext_KREBS_1.csv")</code>.</p>
 <p><code><a href="../reference/od_table.html">od_table()</a></code> makes sure that the levels of all factor
 columns are in the same order as in the metadata.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="va">table</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">`C-BUNDESLAND-0`</span><span class="op">)</span> <span class="op">==</span> <span class="va">table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"C-BUNDESLAND-0"</span><span class="op">)</span><span class="op">$</span><span class="va">code</span></code></pre></div>
-<pre><code><span class="co">## [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="va">table</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">`C-BUNDESLAND-0`</span><span class="op">)</span> <span class="op">==</span> <span class="va">table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"C-BUNDESLAND-0"</span><span class="op">)</span><span class="op">$</span><span class="va">code</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</span></span></code></pre>
 <p>If you want to use labels rather than codes, a labelled version of
 the data can be obtained via <code>table$tabulate()</code>. The
 labelling is done by mapping codes to english names using the
 previsously mentioned metadata.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">table</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 46,479 x 5</span>
-  <span style="font-weight: bold;">`Tumore ICD/10 3-Steller`</span>            <span style="font-weight: bold;">`Reporting year`</span> <span style="font-weight: bold;">`Province of res…</span> <span style="font-weight: bold;">Sex</span>   
-<span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                                <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> 
-<span style="color: #BCBCBC;">1</span> &lt;C00&gt; Bösartige Neubildung der Lippe 1983-01-01       <span style="color: #949494;">"</span>Burgenland <span style="color: #949494;">"</span>     male  
-<span style="color: #BCBCBC;">2</span> &lt;C00&gt; Bösartige Neubildung der Lippe 1983-01-01       <span style="color: #949494;">"</span>Carinthia<span style="color: #949494;">"</span>       male  
-<span style="color: #BCBCBC;">3</span> &lt;C00&gt; Bösartige Neubildung der Lippe 1983-01-01       <span style="color: #949494;">"</span>Carinthia<span style="color: #949494;">"</span>       female
-<span style="color: #BCBCBC;">4</span> &lt;C00&gt; Bösartige Neubildung der Lippe 1983-01-01       <span style="color: #949494;">"</span>Lower Austria<span style="color: #949494;">"</span>   male  
-<span style="color: #BCBCBC;">5</span> &lt;C00&gt; Bösartige Neubildung der Lippe 1983-01-01       <span style="color: #949494;">"</span>Lower Austria<span style="color: #949494;">"</span>   female
-<span style="color: #949494;"># … with 46,474 more rows, and 1 more variable: </span><span style="color: #949494; font-weight: bold;">Number of records F-KRE</span><span style="color: #949494;"> &lt;int&gt;</span></code></pre>
+  <span style="font-weight: bold;">`Tumore ICD/10 3-Steller`</span>            <span style="font-weight: bold;">Reportin…¹</span> <span style="font-weight: bold;">Province of r…²</span> <span style="font-weight: bold;">Sex</span>    <span style="font-weight: bold;">Numbe…³</span>
+<span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                                <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>
+<span style="color: #BCBCBC;">1</span> &lt;C00&gt; Bösartige Neubildung der Lippe 1983-01-01 <span style="color: #949494;">"</span>Burgenland <span style="color: #949494;">"</span>   male         2
+<span style="color: #BCBCBC;">2</span> &lt;C00&gt; Bösartige Neubildung der Lippe 1983-01-01 <span style="color: #949494;">"</span>Carinthia<span style="color: #949494;">"</span>     male         8
+<span style="color: #BCBCBC;">3</span> &lt;C00&gt; Bösartige Neubildung der Lippe 1983-01-01 <span style="color: #949494;">"</span>Carinthia<span style="color: #949494;">"</span>     female       2
+<span style="color: #BCBCBC;">4</span> &lt;C00&gt; Bösartige Neubildung der Lippe 1983-01-01 <span style="color: #949494;">"</span>Lower Austria<span style="color: #949494;">"</span> male         6
+<span style="color: #BCBCBC;">5</span> &lt;C00&gt; Bösartige Neubildung der Lippe 1983-01-01 <span style="color: #949494;">"</span>Lower Austria<span style="color: #949494;">"</span> female       2
+<span style="color: #949494;"># … with 46,474 more rows, and abbreviated variable names ¹​`Reporting year`,</span>
+<span style="color: #949494;">#   ²​`Province of residence`, ³​`Number of records F-KRE`</span></code></pre>
 <p>Time variables are converted into a <code>&lt;date&gt;</code> format
 if they satisfy certain STATcube standards. You can read more about
 <code>$tabulate()</code> in the
@@ -323,35 +327,35 @@ using the <code>$language</code> field. This field can be used to get
 and set the language. Allowed options are <code>"en"</code> for english
 and <code>"de"</code> for german.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">table</span><span class="op">$</span><span class="va">language</span></code></pre></div>
-<pre><code><span class="co">## [1] "en"</span></code></pre>
+<code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="va">language</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "en"</span></span></code></pre>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">table</span><span class="op">$</span><span class="va">language</span> <span class="op">&lt;-</span> <span class="st">"de"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="va">language</span> <span class="op">&lt;-</span> <span class="st">"de"</span></span></code></pre></div>
 <p>This option affects the <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> method as well as the
 output of <code>$tabulate()</code>. If no english labels are available,
 the german labels are used as a fallback mechanism.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">table</span></code></pre></div>
-<pre><code><span class="co">## An object of class od_table</span>
-<span class="co">## </span>
-<span class="co">## Dataset     Krebsstatistik </span>
-<span class="co">## Measures    Anzahl der Datensätze F-KRE </span>
-<span class="co">## Fields      Tumore ICD/10 3-Steller, Berichtsjahr, Bundesland, Geschlecht </span>
-<span class="co">## </span>
-<span class="co">## Request     2022-08-28 16:13:38 </span>
-<span class="co">## STATcubeR   0.3.4.4</span></code></pre>
+<code class="sourceCode R"><span><span class="va">table</span></span></code></pre></div>
+<pre><code><span><span class="co">## An object of class od_table</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Dataset     Krebsstatistik </span></span>
+<span><span class="co">## Measures    Anzahl der Datensätze F-KRE </span></span>
+<span><span class="co">## Fields      Tumore ICD/10 3-Steller, Berichtsjahr, Bundesland, Geschlecht </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Request     2022-08-30 14:18:20 </span></span>
+<span><span class="co">## STATcubeR   0.3.4.4</span></span></code></pre>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">table</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 46,479 x 5</span>
-  <span style="font-weight: bold;">`Tumore ICD/10 3-Steller`</span>            <span style="font-weight: bold;">Berichtsjahr</span> <span style="font-weight: bold;">Bundesland</span>       <span style="font-weight: bold;">Geschlecht</span>
-<span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                                <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>     
-<span style="color: #BCBCBC;">1</span> &lt;C00&gt; Bösartige Neubildung der Lippe 1983-01-01   Burgenland       männlich  
-<span style="color: #BCBCBC;">2</span> &lt;C00&gt; Bösartige Neubildung der Lippe 1983-01-01   Kärnten          männlich  
-<span style="color: #BCBCBC;">3</span> &lt;C00&gt; Bösartige Neubildung der Lippe 1983-01-01   Kärnten          weiblich  
-<span style="color: #BCBCBC;">4</span> &lt;C00&gt; Bösartige Neubildung der Lippe 1983-01-01   Niederösterreich männlich  
-<span style="color: #BCBCBC;">5</span> &lt;C00&gt; Bösartige Neubildung der Lippe 1983-01-01   Niederösterreich weiblich  
-<span style="color: #949494;"># … with 46,474 more rows, and 1 more variable:</span>
-<span style="color: #949494;">#   </span><span style="color: #949494; font-weight: bold;">Anzahl der Datensätze F-KRE</span><span style="color: #949494;"> &lt;int&gt;</span></code></pre>
+  <span style="font-weight: bold;">`Tumore ICD/10 3-Steller`</span>         <span style="font-weight: bold;">Berichts…¹</span> <span style="font-weight: bold;">Bundesland</span>       <span style="font-weight: bold;">Geschl…²</span> <span style="font-weight: bold;">Anzah…³</span>
+<span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                             <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>
+<span style="color: #BCBCBC;">1</span> &lt;C00&gt; Bösartige Neubildung der L… 1983-01-01 Burgenland       männlich       2
+<span style="color: #BCBCBC;">2</span> &lt;C00&gt; Bösartige Neubildung der L… 1983-01-01 Kärnten          männlich       8
+<span style="color: #BCBCBC;">3</span> &lt;C00&gt; Bösartige Neubildung der L… 1983-01-01 Kärnten          weiblich       2
+<span style="color: #BCBCBC;">4</span> &lt;C00&gt; Bösartige Neubildung der L… 1983-01-01 Niederösterreich männlich       6
+<span style="color: #BCBCBC;">5</span> &lt;C00&gt; Bösartige Neubildung der L… 1983-01-01 Niederösterreich weiblich       2
+<span style="color: #949494;"># … with 46,474 more rows, and abbreviated variable names ¹​Berichtsjahr,</span>
+<span style="color: #949494;">#   ²​Geschlecht, ³​`Anzahl der Datensätze F-KRE`</span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="further-reading">Further reading<a class="anchor" aria-label="anchor" href="#further-reading"></a>
@@ -395,14 +399,12 @@ explains where and how those caches are stored.</li>
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by <a href="https://github.com/GregorDeCillia" class="external-link">Gregor de
-Cillia</a>.</p>
+<p>Developed by <a href="https://github.com/GregorDeCillia" class="external-link">Gregor de Cillia</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.0.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>

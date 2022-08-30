@@ -15,8 +15,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Load Saved Tables">
@@ -44,7 +44,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
   <a class="nav-link" href="../reference/">Reference</a>
@@ -102,8 +102,11 @@
   </div>
 </nav><div class="container template-article">
 
+
+
+
 <div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Load Saved Tables</h1>
             
       
@@ -122,7 +125,7 @@ tables</a> are present in STATcube, those can be imported without
 downloading a json file. All saved tables can be shown with
 <code><a href="../reference/sc_table.html">sc_table_saved_list()</a></code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/sc_table.html">sc_table_saved_list</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_table.html">sc_table_saved_list</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code>            label                                             id
 1   Bier auf Wein str:table:4520fba3-dffd-4f2a-9cd1-d46d710b6da4
 2    hierarchical str:table:1529fb5c-8f71-425c-bc95-a017f6534c8f
@@ -132,16 +135,16 @@ downloading a json file. All saved tables can be shown with
 <p>Subsequently the <code>id</code> of a saved table can be used to
 import the table into R.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">wine</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table_saved</a></span><span class="op">(</span><span class="st">"str:table:4520fba3-dffd-4f2a-9cd1-d46d710b6da4"</span><span class="op">)</span>
-<span class="va">wine</span></code></pre></div>
-<pre><code><span class="co">## An object of class sc_table</span>
-<span class="co">## </span>
-<span class="co">## Database    Wine production as of 1970 </span>
-<span class="co">## Measures    Production in hectolitres, Area in hectares </span>
-<span class="co">## Fields      Year, Wine colour </span>
-<span class="co">## </span>
-<span class="co">## Request     2022-08-26 22:35:33 </span>
-<span class="co">## STATcubeR   0.3.4.4</span></code></pre>
+<code class="sourceCode R"><span><span class="va">wine</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table_saved</a></span><span class="op">(</span><span class="st">"str:table:4520fba3-dffd-4f2a-9cd1-d46d710b6da4"</span><span class="op">)</span></span>
+<span><span class="va">wine</span></span></code></pre></div>
+<pre><code><span><span class="co">## An object of class sc_table</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Database    Wine production as of 1970 </span></span>
+<span><span class="co">## Measures    Production in hectolitres, Area in hectares </span></span>
+<span><span class="co">## Fields      Year, Wine colour </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Request     2022-08-29 09:52:18 </span></span>
+<span><span class="co">## STATcubeR   0.3.4.4</span></span></code></pre>
 <div class="section level2">
 <h2 id="keys-and-accounts">Keys and accounts<a class="anchor" aria-label="anchor" href="#keys-and-accounts"></a>
 </h2>
@@ -160,11 +163,11 @@ requested.</p>
   " class="STATcubeR">STATcubeR</a>,
 the response can be exported into a json.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">wine</span><span class="op">$</span><span class="va">json</span><span class="op">$</span><span class="fu">write</span><span class="op">(</span><span class="st">"wine.json"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">wine</span><span class="op">$</span><span class="va">json</span><span class="op">$</span><span class="fu">write</span><span class="op">(</span><span class="st">"wine.json"</span><span class="op">)</span></span></code></pre></div>
 <p>The generated json file contains an API request that can be used in
 <code><a href="../reference/sc_table.html">sc_table()</a></code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="st">"wine.json"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">my_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="st">"wine.json"</span><span class="op">)</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -174,14 +177,12 @@ the response can be exported into a json.</p>
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by <a href="https://github.com/GregorDeCillia" class="external-link">Gregor de
-Cillia</a>.</p>
+<p>Developed by <a href="https://github.com/GregorDeCillia" class="external-link">Gregor de Cillia</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.0.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>

@@ -1,5 +1,5 @@
-pandoc: 2.17.1.1
-pkgdown: 2.0.0
+pandoc: '2.18'
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   od_list: od_list.html
@@ -9,13 +9,12 @@ articles:
   sc_data: sc_data.html
   sc_info: sc_info.html
   sc_key: sc_key.html
-  sc_recode: sc_recode.html
   sc_schema: sc_schema.html
   sc_table: sc_table.html
   sc_table_custom: sc_table_custom.html
   sc_table_saved: sc_table_saved.html
   sc_tabulate: sc_tabulate.html
-last_built: 2022-08-28T14:13Z
+last_built: 2022-08-30T12:17Z
 urls:
   reference: https://statistikat.github.io/STATcubeR/reference
   article: https://statistikat.github.io/STATcubeR/articles

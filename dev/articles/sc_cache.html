@@ -15,8 +15,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Caching API Responses">
@@ -44,7 +44,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
   <a class="nav-link" href="../reference/">Reference</a>
@@ -102,8 +102,11 @@
   </div>
 </nav><div class="container template-article">
 
+
+
+
 <div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Caching API Responses</h1>
             
       
@@ -130,22 +133,22 @@ for example, that responses for the /table endpoint can be reused.</p>
 caching, use the functions <code><a href="../reference/sc_cache.html">sc_cache_enable()</a></code> and
 <code><a href="../reference/sc_cache.html">sc_cache_disable()</a></code></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/sc_cache.html">sc_cache_enable</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Caching will be available for this session. Add</span>
-<span class="co">## </span>
-<span class="co">##   STATCUBE_CACHE     = TRUE</span>
-<span class="co">##   STATCUBE_CACHE_DIR = "~/.STATcubeR_cache"</span>
-<span class="co">## </span>
-<span class="co">## to your .Renviron to enable caching persistently.</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_cache.html">sc_cache_enable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Caching will be available for this session. Add</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##   STATCUBE_CACHE     = TRUE</span></span>
+<span><span class="co">##   STATCUBE_CACHE_DIR = "~/.STATcubeR_cache"</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## to your .Renviron to enable caching persistently.</span></span></code></pre>
 <p>The caching directory can be displayed or changed using
 <code><a href="../reference/sc_cache.html">sc_cache_dir()</a></code></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/sc_cache.html">sc_cache_dir</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] "~/.STATcubeR_cache"</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_cache.html">sc_cache_dir</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "~/.STATcubeR_cache"</span></span></code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/sc_cache.html">sc_cache_dir</a></span><span class="op">(</span><span class="st">"~/.cache/STATcubeR/api"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/sc_cache.html">sc_cache_dir</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] "~/.cache/STATcubeR/api"</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_cache.html">sc_cache_dir</a></span><span class="op">(</span><span class="st">"~/.cache/STATcubeR/api"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/sc_cache.html">sc_cache_dir</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "~/.cache/STATcubeR/api"</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="using-the-cache">Using the cache<a class="anchor" aria-label="anchor" href="#using-the-cache"></a>
@@ -164,12 +167,12 @@ corresponding cache files to an object of class <code>sc_schema</code>
 or <code>sc_table</code> can be retieved using
 <code><a href="../reference/sc_cache.html">sc_cache_files()</a></code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"accomodation"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span>language <span class="op">=</span> <span class="st">"both"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/sc_cache.html">sc_cache_files</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] "~/.cache/STATcubeR/api/7f906b4348f5c53569a42d5affde5545.rds"</span>
-<span class="co">## [2] "~/.cache/STATcubeR/api/a28ed2ba2dd3206c1dc2ecb0958fe629.rds"</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"accomodation"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span>language <span class="op">=</span> <span class="st">"both"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/sc_cache.html">sc_cache_files</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "~/.cache/STATcubeR/api/3Ks85P6Vxkk-GGbnYJd6d3+st8A=.rds"</span></span>
+<span><span class="co">## [2] "~/.cache/STATcubeR/api/vM1s-as1gKR9YGp25eRQQeIEosY=.rds"</span></span></code></pre>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/sc_schema.html">sc_schema_catalogue</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/sc_cache.html">sc_cache_files</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] "~/.cache/STATcubeR/api/67bea1953adc96a2df77eec233a5127b.rds"</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_schema.html">sc_schema_catalogue</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/sc_cache.html">sc_cache_files</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "~/.cache/STATcubeR/api/4rWB+6cBgJGs21wu059iNOI1LDQ=.rds"</span></span></code></pre>
 <p>Note that the first call to <code><a href="../reference/sc_cache.html">sc_cache_files()</a></code> returned
 two paths. Since the table was requested in two languages, two api
 responses are necessary to construct the table object.</p>
@@ -179,14 +182,14 @@ direct access to the API response in a <code><a href="https://rdrr.io/r/base/lis
 example, the following syntax can be used to extract the database info
 from the response.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"accomodation"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/sc_cache.html">sc_cache_files</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html" class="external-link">content</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="va">.</span><span class="op">[[</span><span class="st">"database"</span><span class="op">]</span><span class="op">]</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## List of 4</span>
-<span class="co">##  $ id            : chr "detouextregsai"</span>
-<span class="co">##  $ uri           : chr "str:database:detouextregsai"</span>
-<span class="co">##  $ label         : chr "Accomodation statistics as of 1974 according to seasons"</span>
-<span class="co">##  $ annotationKeys:List of 1</span>
-<span class="co">##   ..$ : chr "Q"</span></code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"accomodation"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/sc_cache.html">sc_cache_files</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html" class="external-link">content</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="va">.</span><span class="op">[[</span><span class="st">"database"</span><span class="op">]</span><span class="op">]</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## List of 4</span></span>
+<span><span class="co">##  $ id            : chr "detouextregsai"</span></span>
+<span><span class="co">##  $ uri           : chr "str:database:detouextregsai"</span></span>
+<span><span class="co">##  $ label         : chr "Accomodation statistics as of 1974 according to seasons"</span></span>
+<span><span class="co">##  $ annotationKeys:List of 1</span></span>
+<span><span class="co">##   ..$ : chr "Q"</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="cleaning-the-cache">Cleaning the cache<a class="anchor" aria-label="anchor" href="#cleaning-the-cache"></a>
@@ -195,8 +198,8 @@ from the response.</p>
 <code><a href="../reference/sc_cache.html">sc_cache_files()</a></code>. Alternatively, use
 <code><a href="../reference/sc_cache.html">sc_cache_clear()</a></code> to delete all files from the cache.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/sc_cache.html">sc_cache_clear</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; deleted 12 entries from the cache</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_cache.html">sc_cache_clear</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; deleted 12 entries from the cache</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="should-i-use-caching">Should I use caching?<a class="anchor" aria-label="anchor" href="#should-i-use-caching"></a>
@@ -224,14 +227,12 @@ updated on the server.</p>
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by <a href="https://github.com/GregorDeCillia" class="external-link">Gregor de
-Cillia</a>.</p>
+<p>Developed by <a href="https://github.com/GregorDeCillia" class="external-link">Gregor de Cillia</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.0.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>
