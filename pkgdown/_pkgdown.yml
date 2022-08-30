@@ -54,7 +54,7 @@ home:
   title: STATcubeR
   links:
   - text: Use the STATcube GUI
-    href: https://www.statistik.at/datenbanken/statcube-statistische-datenbank
+    href: https://www.statistik.at/datenbanken/statcube-statistische-datenbank/login
   - text: Find open govenment data
     href: https://data.statistik.gv.at
   - text: Read the API reference
