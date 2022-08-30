@@ -5,9 +5,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="The `/schema` endpoint of the REST API provides metadata about databases and can also be used to retrieve a catalogue with all available databases
+<meta name="description" content="The `/schema` endpoint of the REST API provides metadata about databases and can also be used to retrieve a catalogue with all available databases.
 ">
-<title>Metadata with the Schema Endpoint • STATcubeR</title>
+<title>Get Metadata with the Schema Endpoint • STATcubeR</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -15,14 +15,12 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="../deps/bs3compat-0.3.0/transition.js"></script><script src="../deps/bs3compat-0.3.0/tabs.js"></script><script src="../deps/bs3compat-0.3.0/bs3compat.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<link href="../syntax-highlighting.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
-<meta property="og:title" content="Metadata with the Schema Endpoint">
-<meta property="og:description" content="The `/schema` endpoint of the REST API provides metadata about databases and can also be used to retrieve a catalogue with all available databases
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
+<meta property="og:title" content="Get Metadata with the Schema Endpoint">
+<meta property="og:description" content="The `/schema` endpoint of the REST API provides metadata about databases and can also be used to retrieve a catalogue with all available databases.
 ">
 <meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -30,25 +28,28 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc" data-headroom>
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-      <nav class="navbar fixed-top navbar-default navbar-expand-lg bg-light"><div class="container">
-    <a class="navbar-brand mb-0 h1" href="../index.html">STATcubeR</a>
+    <nav class="navbar fixed-top navbar-default navbar-expand-lg bg-primary"><div class="container">
+    
+    <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.0</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <button type="button" id="version-badge" class="badge badge-default d-none d-lg-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Released version">0.2.8</button>
-
-    <div id="navbar" class="collapse navbar-collapse">
-      <ul class="navbar-nav mr-auto ml-3">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
 <li class="nav-item">
   <a class="nav-link" href="../reference/">Reference</a>
 </li>
 <li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/">Show All Articles ...</a>
     <div class="dropdown-divider"></div>
@@ -71,10 +72,10 @@
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control mr-sm-2" aria-label="Search" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search..." autocomplete="off">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
 </form>
 
-      <ul class="navbar-nav ml-1">
+      <ul class="navbar-nav">
 <li class="nav-item">
   <a class="external-link nav-link" href="https://data.statistik.gv.at">
     <span class="fas fa fas fa-table fa-lg"></span>
@@ -95,17 +96,21 @@
 </li>
       </ul>
 </div>
+
+    
   </div>
 </nav><div class="container template-article">
-<script src="sc_schema_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
-  <div class="col-md-9 contents">
-    <img src="../package-logo.png" class="pkg-logo" alt=""><div class="page-header pb-2 mt-4 mb-2 border-bottom toc-ignore">
-      <h1 class="display-4" data-toc-skip>Metadata with the Schema Endpoint</h1>
+
+
+
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+      <img src="../logo.png" class="logo" alt=""><h1>Get Metadata with the Schema Endpoint</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/statistikat/STATcubeR/blob/master/vignettes/sc_schema.Rmd" class="external-link"><code>vignettes/sc_schema.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/statistikat/STATcubeR/blob/HEAD/vignettes/sc_schema.Rmd" class="external-link"><code>vignettes/sc_schema.Rmd</code></a></small>
       <div class="d-none name"><code>sc_schema.Rmd</code></div>
-
     </div>
 
     
@@ -114,268 +119,274 @@
 <script>$(document).ready(function () {
     window.setTimeout("tippy('.STATcubeR', {allowHTML: true, theme:'light rounded'});", 50);
     });
-    </script><p>There are currently three functions in <a href="../index.html" data-tippy-content="
+    </script><p>There are currently three functions in
+<a href="../index.html" data-tippy-content="
   &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
   Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
-  " class="STATcubeR">STATcubeR</a> that utilize the <code>/schema</code> endpoint.</p>
+  " class="STATcubeR">STATcubeR</a>
+that utilize the <code>/schema</code> endpoint.</p>
 <ul>
 <li>
-<code><a href="../reference/sc_schema.html">sc_schema_catalogue()</a></code> returns an overview of all available databases and tables.</li>
+<code><a href="../reference/sc_schema.html">sc_schema_catalogue()</a></code> returns an overview of all
+available databases and tables.</li>
 <li>
-<code><a href="../reference/sc_schema.html">sc_schema_db()</a></code> can be used to inspect all fields and measures for a database.</li>
+<code><a href="../reference/sc_schema.html">sc_schema_db()</a></code> can be used to inspect all fields and
+measures for a database.</li>
 <li>
 <code><a href="../reference/sc_schema.html">sc_schema()</a></code> returns metadata about any resource.</li>
 </ul>
-<div id="browsing-the-catalogue" class="section level2">
-<h2 class="hasAnchor">
-<a href="#browsing-the-catalogue" class="anchor" aria-hidden="true"></a>Browsing the Catalogue</h2>
-<p>The first function shows the catalogue, which lists all available databases in a tree form. The tree structure is determined by the API and closely resembles the “Katalog” view in the GUI.</p>
+<div class="section level2">
+<h2 id="browsing-the-catalogue">Browsing the Catalogue<a class="anchor" aria-label="anchor" href="#browsing-the-catalogue"></a>
+</h2>
+<p>The first function shows the catalogue, which lists all available
+databases in a tree form. The tree structure is determined by the API
+and closely resembles the “Catalogue” view in the GUI.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_catalogue</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_catalogue</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">my_catalogue</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">my_catalogue</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_catalogue</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">my_catalogue</span></span></code></pre></div>
 <pre class="r-output"><code>FOLDER: Extern V9
-<span style="color: #555555;"># A data frame: 8 × 2</span>
+<span style="color: #949494;"># A data frame: 9 × 2</span>
   <span style="font-weight: bold;">child</span>                     <span style="font-weight: bold;">type</span>  
-  <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span> 
-<span style="color: #555555;">1</span> Examples                  FOLDER
-<span style="color: #555555;">2</span> Publications and services FOLDER
-<span style="color: #555555;">3</span> Default Tables            FOLDER
-<span style="color: #555555;">4</span> Statistics                FOLDER
-<span style="color: #555555;">5</span> ts_tourism                TABLE 
-<span style="color: #555555;">6</span> krankenbewegungen         TABLE 
-<span style="color: #555555;">7</span> tourism_ts                TABLE 
-<span style="color: #555555;">8</span> entlassungen              TABLE </code></pre>
-<p>We see that the catalog has 8 child nodes: Four childs of type <code>FOLDER</code> and four childs of type <code>TABLE</code>. The folders include all folders from the root level in the GUI: “Statistics”, “Publication and Services” as well as “Examples”.</p>
+  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> 
+<span style="color: #BCBCBC;">1</span> Examples                  FOLDER
+<span style="color: #BCBCBC;">2</span> Publications and services FOLDER
+<span style="color: #BCBCBC;">3</span> Default Tables            FOLDER
+<span style="color: #BCBCBC;">4</span> Statistics                FOLDER
+<span style="color: #BCBCBC;">5</span> Bier auf Wein             TABLE 
+<span style="color: #BCBCBC;">6</span> hierarchical              TABLE 
+<span style="color: #BCBCBC;">7</span> neu                       TABLE 
+<span style="color: #BCBCBC;">8</span> lebenserwartung           TABLE 
+<span style="color: #BCBCBC;">9</span> test123                   TABLE </code></pre>
+<p>We see that the catalog has 8 child nodes: Four childs of type
+<code>FOLDER</code> and four childs of type <code>TABLE</code>. The
+folders include all folders from the root level in the GUI:
+“Statistics”, “Publication and Services” as well as “Examples”.</p>
 <p><img src="img/catalogue.png" width="35%" style="display: block; margin: auto;"></p>
-<p>To get access to the child nodes use <code>my_catalogue${child_label}</code></p>
+<p>To get access to the child nodes use
+<code>my_catalogue${child_label}</code></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span></span></code></pre></div>
 <pre class="r-output"><code>FOLDER: Statistics
-<span style="color: #555555;"># A data frame: 20 × 2</span>
+<span style="color: #949494;"># A data frame: 20 × 2</span>
   <span style="font-weight: bold;">child</span>               <span style="font-weight: bold;">type</span>  
-  <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span> 
-<span style="color: #555555;">1</span> Labour Market       FOLDER
-<span style="color: #555555;">2</span> Foreign Trade       FOLDER
-<span style="color: #555555;">3</span> Population          FOLDER
-<span style="color: #555555;">4</span> Education, Culture  FOLDER
-<span style="color: #555555;">5</span> Energy, Environment FOLDER
-<span style="color: #555555;"># … with 15 more rows</span></code></pre>
-<p>The child node <code>Statistics</code> is also of class <code>sc_schema</code> and shows all entries of the subfolder. This syntax can be used to navigate through folders. In some cases, the API shows more folders than the GUI in which case the folders from the API will be empty.</p>
+  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> 
+<span style="color: #BCBCBC;">1</span> Labour Market       FOLDER
+<span style="color: #BCBCBC;">2</span> Foreign Trade       FOLDER
+<span style="color: #BCBCBC;">3</span> Population          FOLDER
+<span style="color: #BCBCBC;">4</span> Education, Culture  FOLDER
+<span style="color: #BCBCBC;">5</span> Energy, Environment FOLDER
+<span style="color: #949494;"># … with 15 more rows</span></code></pre>
+<p>The child node <code>Statistics</code> is also of class
+<code>sc_schema</code> and shows all entries of the subfolder. This
+syntax can be used to navigate through folders. In some cases, the API
+shows more folders than the GUI in which case the folders from the API
+will be empty.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_catalogue</span><span class="op">$</span><span class="va">`Default Tables`</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">my_catalogue</span><span class="op">$</span><span class="va">`Default Tables`</span></span></code></pre></div>
 <pre class="r-output"><code>FOLDER: Default Tables</code></pre>
 </div>
-<div id="databases-and-tables" class="section level2">
-<h2 class="hasAnchor">
-<a href="#databases-and-tables" class="anchor" aria-hidden="true"></a>Databases and Tables</h2>
-<p>Inside the catalogue, the leafs of the tree are mostly of type <code>DATABASE</code> and <code>TABLE</code>. Here is an example for a <code>TABLE</code> node.</p>
+<div class="section level2">
+<h2 id="databases-and-tables">Databases and Tables<a class="anchor" aria-label="anchor" href="#databases-and-tables"></a>
+</h2>
+<p>Inside the catalogue, the leafs of the tree are mostly of type
+<code>DATABASE</code> and <code>TABLE</code>. Here is an example for a
+<code>TABLE</code> node.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span><span class="op">$</span><span class="va">`Labour Market`</span><span class="op">$</span><span class="va">`Standardtabelle / Default table (defaulttable_deake005)`</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span><span class="op">$</span><span class="va">`Labour Market`</span><span class="op">$</span><span class="va">`Standardtabelle / Default table (defaulttable_deake005)`</span></span></code></pre></div>
 <pre class="r-output"><code>TABLE: Standardtabelle / Default table (defaulttable_deake005)
 Get the data with `sc_table_saved('str:table:defaulttable_deake005')` </code></pre>
-<p>As suggested by the output, tables can be used with the <code>/table</code> endpoint via <code><a href="../reference/sc_table.html">sc_table_saved()</a></code>. See the <a href="sc_table_saved.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
+<p>As suggested by the output, tables can be used with the
+<code>/table</code> endpoint via <code><a href="../reference/sc_table.html">sc_table_saved()</a></code>. See the
+<a href="sc_table_saved.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
   &lt;b&gt;Load Saved Tables&lt;/b&gt;
   &lt;br/&gt;
   STATcube allows you to save tables in the GUI. You can import those saved tables using &lt;code&gt;sc_table_saved()&lt;/code&gt;. This function can also be used to import default tables for databases.
-&lt;/div&gt;'>saved tables article</a> for more details.</p>
+&lt;/div&gt;'>saved tables article</a>
+for more details.</p>
 <p>Here is an example for a <code>DATABASE</code> node.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span><span class="op">$</span><span class="va">`Labour Market`</span><span class="op">$</span><span class="va">`Working hours (Labour Force Survey)`</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span><span class="op">$</span><span class="va">`Labour Market`</span><span class="op">$</span><span class="va">`Working hours (Labour Force Survey)`</span></span></code></pre></div>
 <pre class="r-output"><code>DATABASE: Working hours (Labour Force Survey)
 # Get more info with `sc_schema_db('str:database:deake005')` </code></pre>
 </div>
-<div id="database-infos" class="section level2">
-<h2 class="hasAnchor">
-<a href="#database-infos" class="anchor" aria-hidden="true"></a>Database infos</h2>
-<p>To get information about a specific database, you can pass the database <code>id</code> to <code><a href="../reference/sc_schema.html">sc_schema_db()</a></code>. Again, the contents do have a tree structure which is similar to the sidebar of the “Tabellenansicht” view.</p>
+<div class="section level2">
+<h2 id="database-infos">Database infos<a class="anchor" aria-label="anchor" href="#database-infos"></a>
+</h2>
+<p>To get information about a specific database, you can pass the
+database <code>id</code> to <code><a href="../reference/sc_schema.html">sc_schema_db()</a></code>. Again, the
+contents do have a tree structure which is similar to the sidebar of the
+“Table View” in the GUI.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_db_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_db</a></span><span class="op">(</span><span class="st">"deake005"</span><span class="op">)</span>
-<span class="va">my_db_info</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">my_db_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_db</a></span><span class="op">(</span><span class="st">"deake005"</span><span class="op">)</span></span>
+<span><span class="va">my_db_info</span></span></code></pre></div>
 <pre class="r-output"><code>DATABASE: Working hours (Labour Force Survey)
-<span style="color: #555555;"># A data frame: 9 × 2</span>
+<span style="color: #949494;"># A data frame: 8 × 2</span>
   <span style="font-weight: bold;">child</span>                       <span style="font-weight: bold;">type</span> 
-  <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>
-<span style="color: #555555;">1</span> Factors                     GROUP
-<span style="color: #555555;">2</span> Facts                       GROUP
-<span style="color: #555555;">3</span> Datensätze/Records          GROUP
-<span style="color: #555555;">4</span> Time (mandatory field)      GROUP
-<span style="color: #555555;">5</span> Demographic Characteristics GROUP
-<span style="color: #555555;"># … with 4 more rows</span></code></pre>
-<p><code>my_db_info</code> can be used in a similar fashion as <code>my_catalogue</code> to obtain details about the resources in the tree. For example, the <code>VALUESET</code> with the label “Gender” can be viewed like this.</p>
+  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>
+<span style="color: #BCBCBC;">1</span> Factors                     GROUP
+<span style="color: #BCBCBC;">2</span> Datensätze/Records          GROUP
+<span style="color: #BCBCBC;">3</span> Time (mandatory field)      GROUP
+<span style="color: #BCBCBC;">4</span> Demographic Characteristics GROUP
+<span style="color: #BCBCBC;">5</span> Employment Characteristics  GROUP
+<span style="color: #949494;"># … with 3 more rows</span></code></pre>
+<p><code>my_db_info</code> can be used in a similar fashion as
+<code>my_catalogue</code> to obtain details about the resources in the
+tree. For example, the <code>VALUESET</code> with the label “Gender” can
+be viewed like this.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_db_info</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">my_db_info</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span></span></code></pre></div>
 <pre class="r-output"><code>GROUP: Demographic Characteristics
-<span style="color: #555555;"># A data frame: 8 × 2</span>
+<span style="color: #949494;"># A data frame: 8 × 2</span>
   <span style="font-weight: bold;">child</span>                                                         <span style="font-weight: bold;">type</span> 
-  <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                                                         <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>
-<span style="color: #555555;">1</span> Gender                                                        FIELD
-<span style="color: #555555;">2</span> Age in years-groups                                           FIELD
-<span style="color: #555555;">3</span> Highest level of training completed (national classification) FIELD
-<span style="color: #555555;">4</span> Highest level of training completed (ISCED 97)                FIELD
-<span style="color: #555555;">5</span> Highest level of training completed (ISCED 2011)              FIELD
-<span style="color: #555555;"># … with 3 more rows</span></code></pre>
+  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>
+<span style="color: #BCBCBC;">1</span> Gender                                                        FIELD
+<span style="color: #BCBCBC;">2</span> Age in years-groups                                           FIELD
+<span style="color: #BCBCBC;">3</span> Highest level of training completed (national classification) FIELD
+<span style="color: #BCBCBC;">4</span> Highest level of training completed (ISCED 97)                FIELD
+<span style="color: #BCBCBC;">5</span> Highest level of training completed (ISCED 2011)              FIELD
+<span style="color: #949494;"># … with 3 more rows</span></code></pre>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_db_info</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span><span class="op">$</span><span class="va">Gender</span><span class="op">$</span><span class="va">Gender</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">my_db_info</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span><span class="op">$</span><span class="va">Gender</span><span class="op">$</span><span class="va">Gender</span></span></code></pre></div>
 <pre class="r-output"><code>VALUESET: Gender
-<span style="color: #555555;"># A data frame: 3 × 2</span>
+<span style="color: #949494;"># A data frame: 3 × 2</span>
   <span style="font-weight: bold;">child</span>                <span style="font-weight: bold;">type</span> 
-  <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>
-<span style="color: #555555;">1</span> male                 VALUE
-<span style="color: #555555;">2</span> female               VALUE
-<span style="color: #555555;">3</span> Not classifiable &lt;0&gt; VALUE</code></pre>
+  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>
+<span style="color: #BCBCBC;">1</span> male                 VALUE
+<span style="color: #BCBCBC;">2</span> female               VALUE
+<span style="color: #BCBCBC;">3</span> Not classifiable &lt;0&gt; VALUE</code></pre>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_db_info</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span><span class="op">$</span><span class="va">Gender</span><span class="op">$</span><span class="va">Gender</span><span class="op">$</span><span class="va">male</span></code></pre></div>
-<pre class="r-output"><code>VALUE: male</code></pre>
-<p>The leafs of database schemas are mostly of type <code>VALUE</code> and <code>MEASURE</code>.</p>
+<code class="sourceCode R"><span><span class="va">my_db_info</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span><span class="op">$</span><span class="va">Gender</span><span class="op">$</span><span class="va">Gender</span><span class="op">$</span><span class="va">male</span></span></code></pre></div>
+<pre class="r-output"><code><span><span class="va">VALUE</span><span class="op">:</span> <span class="va">male</span></span></code></pre>
+<p>The leafs of database schemas are mostly of type <code>VALUE</code>
+and <code>MEASURE</code>.</p>
 </div>
-<div id="data-structure-od-sc_schema-objects" class="section level2">
-<h2 class="hasAnchor">
-<a href="#data-structure-od-sc_schema-objects" class="anchor" aria-hidden="true"></a>Data structure od sc_schema objects</h2>
-<p>As shown above, <code>sc_schema</code> objets have a tree like structure. Each <code>sc_schema</code> object has <code>id</code>, <code>label</code>, <code>location</code> and <code>type</code> as the last four entries</p>
+<div class="section level2">
+<h2 id="data-structure-of-sc_schema-objects">Data structure of sc_schema objects<a class="anchor" aria-label="anchor" href="#data-structure-of-sc_schema-objects"></a>
+</h2>
+<p>As shown above, <code>sc_schema</code> objets have a tree like
+structure. Each <code>sc_schema</code> object has <code>id</code>,
+<code>label</code>, <code>location</code> and <code>type</code> as the
+last four entries</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">my_db_info</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## List of 4
-##  $ id      : chr "str:group:deake005:X_B1"
-##  $ label   : chr "Demographic Characteristics"
-##  $ location: chr "http://sdbext:8082/statistik.at/ext/statcube/rest/v1/schema/str:group:deake005:X_B1"
-##  $ type    : chr "GROUP"</code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">my_db_info</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## List of 4</span></span>
+<span><span class="co">##  $ id      : chr "str:group:deake005:X_B1"</span></span>
+<span><span class="co">##  $ label   : chr "Demographic Characteristics"</span></span>
+<span><span class="co">##  $ location: chr "http://statcubeapi.statistik.at/statistik.at/ext/statcube/rest/v1/schema/str:group:deake005:X_B1"</span></span>
+<span><span class="co">##  $ type    : chr "GROUP"</span></span></code></pre>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## List of 4
-##  $ id      : chr "str:folder:festat"
-##  $ label   : chr "Statistics"
-##  $ location: chr "http://sdbext:8082/statistik.at/ext/statcube/rest/v1/schema/str:folder:festat"
-##  $ type    : chr "FOLDER"</code></pre>
-<p>Schema objects can have an arbitrary amount of childs. Childs are always of type <code>sc_schema</code>. <code>x$type</code> determines the type of the schema object. See the <a href="https://docs.wingarc.com.au/superstar/9.11/open-data-api/open-data-api-reference/schema-endpoint" class="external-link">SuperSTAR API documentation</a> for a complete list of schema types.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## List of 4</span></span>
+<span><span class="co">##  $ id      : chr "str:folder:festat"</span></span>
+<span><span class="co">##  $ label   : chr "Statistics"</span></span>
+<span><span class="co">##  $ location: chr "http://statcubeapi.statistik.at/statistik.at/ext/statcube/rest/v1/schema/str:folder:festat"</span></span>
+<span><span class="co">##  $ type    : chr "FOLDER"</span></span></code></pre>
+<p>Schema objects can have an arbitrary amount of children. Children are
+always of type <code>sc_schema</code>. <code>x$type</code> determines
+the type of the schema object. See the <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/schema-endpoint" class="external-link">SuperSTAR
+API documentation</a> for a complete list of schema types.</p>
 </div>
-<div id="other-resources" class="section level2">
-<h2 class="hasAnchor">
-<a href="#other-resources" class="anchor" aria-hidden="true"></a>Other resources</h2>
-<p>Information about resources other than databases and the catalogue can be obtained by passing the resource id to <code><a href="../reference/sc_schema.html">sc_schema()</a></code>.</p>
+<div class="section level2">
+<h2 id="other-resources">Other resources<a class="anchor" aria-label="anchor" href="#other-resources"></a>
+</h2>
+<p>Information about resources other than databases and the catalogue
+can be obtained by passing the resource id to
+<code><a href="../reference/sc_schema.html">sc_schema()</a></code>.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_db_info</span><span class="op">$</span><span class="va">Facts</span><span class="op">$</span><span class="va">id</span></code></pre></div>
-<pre><code>## [1] "str:group:deake005:M_F2"</code></pre>
+<code class="sourceCode R"><span><span class="va">my_db_info</span><span class="op">$</span><span class="va">Factors</span><span class="op">$</span><span class="va">id</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "str:group:deake005:M_F1"</span></span></code></pre>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">group_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema</a></span><span class="op">(</span><span class="va">my_db_info</span><span class="op">$</span><span class="va">Facts</span><span class="op">$</span><span class="va">id</span><span class="op">)</span>
-<span class="va">group_info</span></code></pre></div>
-<pre class="r-output"><code>GROUP: Facts
-<span style="color: #555555;"># A data frame: 17 × 2</span>
-  <span style="font-weight: bold;">child</span>                            <span style="font-weight: bold;">type</span>   
-  <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>                            <span style="color: #555555; font-style: italic;">&lt;chr&gt;</span>  
-<span style="color: #555555;">1</span> GEWTATJAHR                       MEASURE
-<span style="color: #555555;">2</span> GEWJAHR                          MEASURE
-<span style="color: #555555;">3</span> TATSTUNDMALGEW                   MEASURE
-<span style="color: #555555;">4</span> STUNDMALGEW                      MEASURE
-<span style="color: #555555;">5</span> Zweittät: tats. gel. Arbeitszeit MEASURE
-<span style="color: #555555;"># … with 12 more rows</span></code></pre>
-<p>Note that the tree returned only has depth 1, i.e. the child nodes of measures are not available in <code>group_info</code>. However, ids of the child nodes can be obtained with <code>$id</code>. These ids can be used to send another request to the <code>/schema</code> endpoint</p>
+<code class="sourceCode R"><span><span class="va">group_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema</a></span><span class="op">(</span><span class="va">my_db_info</span><span class="op">$</span><span class="va">Factors</span><span class="op">$</span><span class="va">id</span><span class="op">)</span></span>
+<span><span class="va">group_info</span></span></code></pre></div>
+<pre class="r-output"><code>GROUP: Factors
+<span style="color: #949494;"># A data frame: 9 × 2</span>
+  <span style="font-weight: bold;">child</span>                                                              <span style="font-weight: bold;">type</span>   
+  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  
+<span style="color: #BCBCBC;">1</span> Average hours actually worked per week                             MEASURE
+<span style="color: #BCBCBC;">2</span> Average hours usually worked per week                              MEASURE
+<span style="color: #BCBCBC;">3</span> Volume of hours worked in the main job per year in million hours   MEASURE
+<span style="color: #BCBCBC;">4</span> Volume of hours worked overtime (paid) per year in million hours   MEASURE
+<span style="color: #BCBCBC;">5</span> Volume of hours worked overtime (unpaid) per year in million hours MEASURE
+<span style="color: #949494;"># … with 4 more rows</span></code></pre>
+<p>Note that the tree returned only has depth 1, i.e. the child nodes of
+measures are not available in <code>group_info</code>. However, ids of
+the child nodes can be obtained with <code>$id</code>. These ids can be
+used to send another request to the <code>/schema</code> endpoint</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">group_info</span><span class="op">$</span><span class="va">GEWTATJAHR</span><span class="op">$</span><span class="va">id</span></code></pre></div>
-<pre><code>## [1] "str:measure:deake005:F-DATA:F-GEWTATJAHR"</code></pre>
-<p>Alternatively, use the <code>depth</code> parameter of <code>sc_schema</code>.</p>
+<code class="sourceCode R"><span><span class="va">group_info</span><span class="op">$</span><span class="va">`Average hours usually worked per week`</span><span class="op">$</span><span class="va">id</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "str:measure:deake005:F-DATA:F-FAKTOR2"</span></span></code></pre>
+<p>Alternatively, use the <code>depth</code> parameter of
+<code>sc_schema</code>. This will make sure that the enties of the tree
+are returned up to the <code>"valueset"</code> level. See
+<code><a href="../reference/sc_schema.html">?sc_schema</a></code> for all available options of the
+<code>depth</code> parameter.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">group_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema</a></span><span class="op">(</span><span class="va">my_db_info</span><span class="op">$</span><span class="va">Facts</span><span class="op">$</span><span class="va">id</span>, depth <span class="op">=</span> <span class="st">"valueset"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">group_info</span> <span class="op">&lt;-</span> <span class="va">my_db_info</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span><span class="op">$</span><span class="va">id</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/sc_schema.html">sc_schema</a></span><span class="op">(</span>depth <span class="op">=</span> <span class="st">"valueset"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="printing-with-data-tree" class="section level2">
-<h2 class="hasAnchor">
-<a href="#printing-with-data-tree" class="anchor" aria-hidden="true"></a>Printing with data.tree</h2>
-<p>If the <a href="http://github.com/gluc/data.tree" class="external-link">data.tree</a> package is installed, it can be used for an alternative print mehtod.</p>
+<div class="section level2">
+<h2 id="printing-with-data-tree">Printing with data.tree<a class="anchor" aria-label="anchor" href="#printing-with-data-tree"></a>
+</h2>
+<p>If the <a href="http://github.com/gluc/data.tree" class="external-link">data.tree</a> package is installed, it can be used
+for an alternative print mehtod.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">my_catalogue</span>, tree <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<pre><code>##                                                                         levelName     type
-## 1  Extern V9                                                                        FOLDER
-## 2   ¦--Examples                                                                     FOLDER
-## 3   ¦   ¦--Communes (Demo)                                                        DATABASE
-## 4   ¦   ¦--People                                                                 DATABASE
-## 5   ¦   ¦--People multilingual                                                    DATABASE
-## 6   ¦   ¦--Retail Banking ML en                                                   DATABASE
-## 7   ¦   ¦--Monitoring                                                                TABLE
-## 8   ¦   ¦--Standardtabelle / Default table (defaulttable_depeopleml)                 TABLE
-## 9   ¦   ¦--Standardtabelle / Default table (defaulttable_dedemo)                     TABLE
-## 10  ¦   ¦--E-A_nach_Bundeslaendern_dedemo                                            TABLE
-## 11  ¦   °--Jahre_nach_NUTS_dedemo                                                    TABLE
-## 12  ¦--Publications and services                                                    FOLDER
-## 13  ¦   ¦--Economic Trend Monitor                                                   FOLDER
-## 14  ¦   ¦   ¦--Economic Trend Monitor                                             DATABASE
-## 15  ¦   ¦   °--Standardtabelle / Default table (defaulttable_dekonjunkturmonitor)    TABLE
-## 16  ¦   °--Austrian Economic Atlas                                                  FOLDER
-## 17  ¦       ¦--01 Key data Austria and European Union                             DATABASE
-## 18  ¦       ¦--02 Key data Federal provinces                                      DATABASE
-## 19  ¦       ¦--03 Key data on economic branches                                   DATABASE
-## 20  ¦       ¦--04 Key data on economic branches by enterprise size classes        DATABASE
-## 21  ¦       ¦--05 Key data on economic branches compared with the EU              DATABASE
-## 22  ¦       ¦--06 Key data on economic branches by federal provinces              DATABASE
-## 23  ¦       ¦--07 Key data industry                                               DATABASE
-## 24  ¦       ¦--08 Key data construction                                           DATABASE
-## 25  ¦       ¦--09 Key data trade                                                  DATABASE
-## 26  ¦       ¦--10 Key data tourism                                                DATABASE
-## 27  ¦       ¦--11 Key data transport                                              DATABASE
-## 28  ¦       ¦--12 Key data foreign trade                                          DATABASE
-## 29  ¦       ¦--13 Key data agriculture and foresty                                DATABASE
-## 30  ¦       °--... 13 nodes w/ 0 sub                                                      
-## 31  °--... 6 nodes w/ 1288 sub</code></pre>
-<p>The data.tree implementation can be set as a default with <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options()</a></code></p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">group_info</span>, tree <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##                           levelName     type</span></span>
+<span><span class="co">## 1  Demographic Characteristics         GROUP</span></span>
+<span><span class="co">## 2   ¦--Gender                          FIELD</span></span>
+<span><span class="co">## 3   ¦   °--Gender                   VALUESET</span></span>
+<span><span class="co">## 4   ¦       ¦--male                    VALUE</span></span>
+<span><span class="co">## 5   ¦       ¦--female                  VALUE</span></span>
+<span><span class="co">## 6   ¦       °--Not classifiable &lt;0&gt;    VALUE</span></span>
+<span><span class="co">## 7   ¦--Age in years-groups             FIELD</span></span>
+<span><span class="co">## 8   ¦   ¦--Age in years-groups      VALUESET</span></span>
+<span><span class="co">## 9   ¦   ¦   ¦--Under 15 years          VALUE</span></span>
+<span><span class="co">## 10  ¦   ¦   ¦--15 to 19 years          VALUE</span></span>
+<span><span class="co">## 11  ¦   ¦   ¦--20 to 24 years          VALUE</span></span>
+<span><span class="co">## 12  ¦   ¦   ¦--25 to 29 years          VALUE</span></span>
+<span><span class="co">## 13  ¦   ¦   ¦--30 to 34 years          VALUE</span></span>
+<span><span class="co">## 14  ¦   ¦   ¦--35 to 39 years          VALUE</span></span>
+<span><span class="co">## 15  ¦   ¦   ¦--40 to 44 years          VALUE</span></span>
+<span><span class="co">## 16  ¦   ¦   ¦--45 to 49 years          VALUE</span></span>
+<span><span class="co">## 17  ¦   ¦   ¦--50 to 54 years          VALUE</span></span>
+<span><span class="co">## 18  ¦   ¦   ¦--55 to 59 years          VALUE</span></span>
+<span><span class="co">## 19  ¦   ¦   ¦--60 to 64 years          VALUE</span></span>
+<span><span class="co">## 20  ¦   ¦   ¦--65 to 69 years          VALUE</span></span>
+<span><span class="co">## 21  ¦   ¦   ¦--70 to 74 years          VALUE</span></span>
+<span><span class="co">## 22  ¦   ¦   ¦--75 years and older      VALUE</span></span>
+<span><span class="co">## 23  ¦   ¦   °--Not classifiable &lt;0&gt;    VALUE</span></span>
+<span><span class="co">## 24  ¦   ¦--Alter in Jahresgruppen   VALUESET</span></span>
+<span><span class="co">## 25  ¦   ¦   ¦--Under 15 years          VALUE</span></span>
+<span><span class="co">## 26  ¦   ¦   ¦--15 to 24 years          VALUE</span></span>
+<span><span class="co">## 27  ¦   ¦   ¦--25 to 34 years          VALUE</span></span>
+<span><span class="co">## 28  ¦   ¦   ¦--35 to 44 years          VALUE</span></span>
+<span><span class="co">## 29  ¦   ¦   ¦--45 to 54 years          VALUE</span></span>
+<span><span class="co">## 30  ¦   ¦   °--... 3 nodes w/ 0 sub         </span></span>
+<span><span class="co">## 31  ¦   °--... 1 nodes w/ 6 sub             </span></span>
+<span><span class="co">## 32  °--... 6 nodes w/ 80 sub</span></span></code></pre>
+<p>The <a href="http://github.com/gluc/data.tree" class="external-link">data.tree</a> implementation of the print method can
+be set as a default using the option
+<code>STATcubeR.print_tree</code></p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>STATcubeR.print_tree <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span></code></pre></div>
-<pre class="r-output"><code>                                                                     levelName     type
-1  Statistics                                                                    FOLDER
-2   ¦--Labour Market                                                             FOLDER
-3   ¦   ¦--Job Seeker                                                            FOLDER
-4   ¦   ¦--Labour Market Policy                                                  FOLDER
-5   ¦   ¦--Working Time                                                          FOLDER
-6   ¦   ¦--Activity Status                                                       FOLDER
-7   ¦   ¦--Employment                                                            FOLDER
-8   ¦   ¦--Job Vacancies                                                         FOLDER
-9   ¦   ¦   ¦--Offene Stellen (Jahresdurchschnitt) ab 2009                     DATABASE
-10  ¦   ¦   ¦--Offene Stellen Quartale ab 2009                                 DATABASE
-11  ¦   ¦   ¦--Standardtabelle / Default table (defaulttable_deoffstelljd)        TABLE
-12  ¦   ¦   °--Standardtabelle / Default table (defaulttable_deoffstell)          TABLE
-13  ¦   ¦--Working hours (Labour Force Survey)                                 DATABASE
-14  ¦   ¦--Austrian Micro census - Labour Force Survey Yearly Data             DATABASE
-15  ¦   ¦--Austrian Micro census - Labour Force Survey Quarterly Data          DATABASE
-16  ¦   ¦--Microcensus Time Series since 1974                                  DATABASE
-17  ¦   ¦--Standardtabelle / Default table (defaulttable_deake001j)               TABLE
-18  ¦   ¦--Standardtabelle / Default table (defaulttable_deake003j)               TABLE
-19  ¦   ¦--Standardtabelle / Default table (defaulttable_deake005)                TABLE
-20  ¦   °--Standardtabelle / Default table (defaulttable_deake002q)               TABLE
-21  ¦--Foreign Trade                                                             FOLDER
-22  ¦   ¦--TEC - Trade by enterprise characteristics                             FOLDER
-23  ¦   ¦   ¦--Trade by number of partner countries and activity sector (NACE) DATABASE
-24  ¦   ¦   ¦--Trade by type of trader and activity sector (NACE)              DATABASE
-25  ¦   ¦   ¦--Trade by partner countries and enterprise size class            DATABASE
-26  ¦   ¦   ¦--Trade by enterprise size class and activity sector (NACE)       DATABASE
-27  ¦   ¦   ¦--Trade by type of ownership and activity sector (NACE)           DATABASE
-28  ¦   ¦   ¦--Trade by exports intensity and activity sector (NACE)           DATABASE
-29  ¦   ¦   ¦--Trade by commodity (CPA) and activity sector (NACE)             DATABASE
-30  ¦   ¦   °--... 13 nodes w/ 0 sub                                                   
-31  ¦   °--... 3 nodes w/ 31 sub                                                       
-32  °--... 18 nodes w/ 1229 sub                                                        </code></pre>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>STATcubeR.print_tree <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
-  </div>
- <div class="col-md-3 d-none d-md-block" id="pkgdown-sidebar">
-        <div class="sticky-top">
-    <nav id="toc"><h2 data-toc-skip>Contents</h2>
-
-    </nav>
-</div>
-      </div>
-
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="pkgdown-footer-left">
+    <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by <a href="https://github.com/GregorDeCillia" class="external-link external-link">Gregor de Cillia</a>.</p>
+<p>Developed by <a href="https://github.com/GregorDeCillia" class="external-link">Gregor de Cillia</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   

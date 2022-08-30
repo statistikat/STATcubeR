@@ -5,9 +5,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Set up authentication to the STATcube REST API by setting your API key for the session or persistently.
+<meta name="description" content="Learn how get access to an API key and set up authentication to the STATcube REST API by making the key available for STATcubeR.
 ">
-<title>Setup the API Key • STATcubeR</title>
+<title>Set Up the API Key • STATcubeR</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -15,14 +15,12 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="../deps/bs3compat-0.3.0/transition.js"></script><script src="../deps/bs3compat-0.3.0/tabs.js"></script><script src="../deps/bs3compat-0.3.0/bs3compat.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<link href="../syntax-highlighting.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
-<meta property="og:title" content="Setup the API Key">
-<meta property="og:description" content="Set up authentication to the STATcube REST API by setting your API key for the session or persistently.
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
+<meta property="og:title" content="Set Up the API Key">
+<meta property="og:description" content="Learn how get access to an API key and set up authentication to the STATcube REST API by making the key available for STATcubeR.
 ">
 <meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -30,25 +28,28 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc" data-headroom>
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-      <nav class="navbar fixed-top navbar-default navbar-expand-lg bg-light"><div class="container">
-    <a class="navbar-brand mb-0 h1" href="../index.html">STATcubeR</a>
+    <nav class="navbar fixed-top navbar-default navbar-expand-lg bg-primary"><div class="container">
+    
+    <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.0</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <button type="button" id="version-badge" class="badge badge-default d-none d-lg-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Released version">0.2.8</button>
-
-    <div id="navbar" class="collapse navbar-collapse">
-      <ul class="navbar-nav mr-auto ml-3">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
 <li class="nav-item">
   <a class="nav-link" href="../reference/">Reference</a>
 </li>
 <li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/">Show All Articles ...</a>
     <div class="dropdown-divider"></div>
@@ -71,10 +72,10 @@
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control mr-sm-2" aria-label="Search" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search..." autocomplete="off">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
 </form>
 
-      <ul class="navbar-nav ml-1">
+      <ul class="navbar-nav">
 <li class="nav-item">
   <a class="external-link nav-link" href="https://data.statistik.gv.at">
     <span class="fas fa fas fa-table fa-lg"></span>
@@ -95,17 +96,21 @@
 </li>
       </ul>
 </div>
+
+    
   </div>
 </nav><div class="container template-article">
-<script src="sc_key_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
-  <div class="col-md-9 contents">
-    <img src="../package-logo.png" class="pkg-logo" alt=""><div class="page-header pb-2 mt-4 mb-2 border-bottom toc-ignore">
-      <h1 class="display-4" data-toc-skip>Setup the API Key</h1>
+
+
+
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+      <img src="../logo.png" class="logo" alt=""><h1>Set Up the API Key</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/statistikat/STATcubeR/blob/master/vignettes/sc_key.Rmd" class="external-link"><code>vignettes/sc_key.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/statistikat/STATcubeR/blob/HEAD/vignettes/sc_key.Rmd" class="external-link"><code>vignettes/sc_key.Rmd</code></a></small>
       <div class="d-none name"><code>sc_key.Rmd</code></div>
-
     </div>
 
     
@@ -114,70 +119,103 @@
 <script>$(document).ready(function () {
     window.setTimeout("tippy('.STATcubeR', {allowHTML: true, theme:'light rounded'});", 50);
     });
-    </script><p>Instructions for the first-time use of the STATcube REST API.</p>
-<div id="adding-an-api-key" class="section level2">
-<h2 class="hasAnchor">
-<a href="#adding-an-api-key" class="anchor" aria-hidden="true"></a>Adding an API key</h2>
-<p>In order to use the REST API of STATcube it is necessary to provide an API key. If your STATcube account is configured to use a key, the following address can be used to view your key</p>
-<pre><code>http://sdbext:8081/statistik.at/ext/statcube/jsf/preferences/editPreferences.xhtml</code></pre>
-<p>To make the key available to <a href="../index.html" data-tippy-content="
+    </script><p>Instructions for the first-time use of the STATcube REST API. See
+also the <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/api-keys" class="external-link">wingarc
+docs</a> for the vendor documentation on API keys.</p>
+<div class="section level2">
+<h2 id="adding-an-api-key">Adding an API key<a class="anchor" aria-label="anchor" href="#adding-an-api-key"></a>
+</h2>
+<p>In order to use the REST API of STATcube it is necessary to provide
+an API key. This means that you will need a subscription for STATcube.
+Subscribed users will automatically get access to the STATcube API. The
+API key can be displayed under the <a href="https://statcube.at/statistik.at/ext/statcube/jsf/preferences/editPreferences.xhtml" class="external-link">preferences
+menu</a> <a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content="&lt;p&gt;The link to the preferences will only work if you are
+already logged in into STATcube&lt;/p&gt;"><sup>1</sup></a> of STATcube.</p>
+<p>To make the key available for
+<a href="../index.html" data-tippy-content="
   &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
   Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
-  " class="STATcubeR">STATcubeR</a>, use the function <code><a href="../reference/sc_key.html">sc_key_set()</a></code>. Replace <code>"XXXX"</code> with your key.</p>
+  " class="STATcubeR">STATcubeR</a>,
+use the function <code><a href="../reference/sc_key.html">sc_key_set()</a></code>. Replace <code>"XXXX"</code>
+with your key.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_key.html">sc_key_set</a></span><span class="op">(</span><span class="st">"XXXX"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; The provided key will be available for this R session. Add</span></span>
+<span><span class="co">#&gt;</span></span>
+<span><span class="co">#&gt;   STATCUBE_KEY_EXT = XXXX</span></span>
+<span><span class="co">#&gt;</span></span>
+<span><span class="co">#&gt; to your .Renviron to set the key persistently</span></span></code></pre></div>
+<p>As suggested by the code output, the key will be used for any API
+requests that happen in the same R session. You can be set persistently
+by modifying <code>.Renviron</code>. This can be done easily with
+<code><a href="https://usethis.r-lib.org/reference/edit.html" class="external-link">usethis::edit_r_environ()</a></code>.</p>
+<p>By default, <code><a href="../reference/sc_key.html">sc_key_set()</a></code> will perform a test request to
+verify that the key is valid and throw an error if the test request is
+unsuccessfull.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/sc_key.html">sc_key_set</a></span><span class="op">(</span><span class="st">"XXXX"</span><span class="op">)</span>
-<span class="co">#&gt; The provided key will be available for this R session. Add</span>
-<span class="co">#&gt;</span>
-<span class="co">#&gt;   STATCUBE_KEY=XXXX</span>
-<span class="co">#&gt;</span>
-<span class="co">#&gt; to your .Renviron to set the key persistently</span></code></pre></div>
-<p>As suggested by the code output, the key can be set persistently by modifying <code>.Renviron</code>. This can be done easily with <code><a href="https://usethis.r-lib.org/reference/edit.html" class="external-link">usethis::edit_r_environ()</a></code>.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_key.html">sc_key_set</a></span><span class="op">(</span><span class="st">'wrong key'</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in sc_key_set("wrong key") : The key could not be verified</span></span></code></pre></div>
 </div>
-<div id="how-do-i-get-an-api-key" class="section level2">
-<h2 class="hasAnchor">
-<a href="#how-do-i-get-an-api-key" class="anchor" aria-hidden="true"></a>How do I get an API key?</h2>
-<p>Currently, the api is only available inside the firewall of statistics austria. Therefore, api keys can only be requested by our employees. Api access for external users with a statcube subscription is planned in the near future. Please get into contact with the package maintainers of <a href="../index.html" data-tippy-content="
-  &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
-  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
-  " class="STATcubeR">STATcubeR</a> for details.</p>
-</div>
-<div id="next-steps" class="section level2">
-<h2 class="hasAnchor">
-<a href="#next-steps" class="anchor" aria-hidden="true"></a>Next Steps</h2>
-<p>See the <a href="sc_table.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Get Data via JSON Requests&lt;/b&gt;
+<div class="section level2">
+<h2 id="next-steps">Next Steps<a class="anchor" aria-label="anchor" href="#next-steps"></a>
+</h2>
+<p>See the
+<a href="sc_table.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
+  &lt;b&gt;Get Tables via JSON Requests&lt;/b&gt;
   &lt;br/&gt;
   Hands-on guide about transfering data from the STATcube GUI (table view) to R sessions via a the download option &amp;ldquo;open data api request&amp;rdquo;.
-&lt;/div&gt;'>JSON requests article</a> to see how tables can be defined in the STATcube GUI and imported into R. Alternatively, import a saved table by following the <a href="sc_table_saved.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
+&lt;/div&gt;'>JSON requests article</a>
+to see how tables can be defined in the STATcube GUI and imported into
+R. Alternatively, import a saved table by following the
+<a href="sc_table_saved.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
   &lt;b&gt;Load Saved Tables&lt;/b&gt;
   &lt;br/&gt;
   STATcube allows you to save tables in the GUI. You can import those saved tables using &lt;code&gt;sc_table_saved()&lt;/code&gt;. This function can also be used to import default tables for databases.
-&lt;/div&gt;'>saved tables article</a>.</p>
+&lt;/div&gt;'>saved tables article</a>.
+For more advanced usage of
+<a href="../index.html" data-tippy-content="
+  &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
+  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  " class="STATcubeR">STATcubeR</a>,
+see the
+<a href="sc_schema.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
+  &lt;b&gt;Get Metadata with the Schema Endpoint&lt;/b&gt;
+  &lt;br/&gt;
+  The &lt;code&gt;/schema&lt;/code&gt; endpoint of the REST API provides metadata about databases and can also be used to retrieve a catalogue with all available databases.
+&lt;/div&gt;'>schema article</a>
+and
+<a href="sc_table_custom.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
+  &lt;b&gt;Define Custom Tables&lt;/b&gt;
+  &lt;br/&gt;
+  Define custom requests against the &lt;code&gt;/table&lt;/code&gt; endpoint programatically by providing character vectors with ids of databases, measures and classification fields.
+&lt;/div&gt;'>custom tables article</a></p>
 </div>
-  </div>
- <div class="col-md-3 d-none d-md-block" id="pkgdown-sidebar">
-        <div class="sticky-top">
-    <nav id="toc"><h2 data-toc-skip>Contents</h2>
-
-    </nav>
-</div>
-      </div>
-
+<div class="section level2">
+<h2 id="for-employees-of-statistics-austria">For employees of Statistics Austria<a class="anchor" aria-label="anchor" href="#for-employees-of-statistics-austria"></a>
+</h2>
+<p>Employees should use one of our internal STATcube servers for API
+requests. Please refer to the following internal confluence
+documentation for more information on how to get started:</p>
+<p><a href="https://statportal.statistik.local/statistik.at/confluence/x/uDiTAQ" class="external-link uri">https://statportal.statistik.local/statistik.at/confluence/x/uDiTAQ</a></p>
 </div>
 
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
+</div>
 
 
-      <footer><div class="pkgdown-footer-left">
+
+    <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by <a href="https://github.com/GregorDeCillia" class="external-link external-link">Gregor de Cillia</a>.</p>
+<p>Developed by <a href="https://github.com/GregorDeCillia" class="external-link">Gregor de Cillia</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
