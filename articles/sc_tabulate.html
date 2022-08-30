@@ -173,7 +173,7 @@ produces a table with the same dimensions as <code>$data</code>.</p>
 <span style="color: #949494;">#   ²​`Province of residence`, ³​`Number of records F-KRE`</span></code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">cancer</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">cancer</span><span class="op">$</span><span class="va">data</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] TRUE</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; [1] TRUE</span></span></code></pre>
 <p>Instead of <code>cancer$tabulate(...)</code> it is also possible to
 use <code>sc_tabulate(cancer, ...)</code>. All available parameters for
 the <code>$tabulate()</code> method are documented in
@@ -234,17 +234,17 @@ earnings survey.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">earnings</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/od_table.html">od_table</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span><span class="op">)</span></span>
 <span><span class="va">earnings</span></span></code></pre></div>
-<pre><code><span><span class="co">## An object of class od_table</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Dataset     Structure of Earnings Survey (SES) 2018 Gross hourly earnings in</span></span>
-<span><span class="co">##             EUR by citizenship, region (NUTS 2) and form of</span></span>
-<span><span class="co">##             employment </span></span>
-<span><span class="co">## Measures    Arithmetic mean, 1st quartile, 2nd quartile (median), 3rd quartile,</span></span>
-<span><span class="co">##             Number of employees </span></span>
-<span><span class="co">## Fields      Sex, Citizenship, Region (NUTS2), Form of employment </span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Request     2022-08-30 14:50:57 </span></span>
-<span><span class="co">## STATcubeR   0.4.0</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; An object of class od_table</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Dataset     Structure of Earnings Survey (SES) 2018 Gross hourly earnings in</span></span>
+<span><span class="co">#&gt;             EUR by citizenship, region (NUTS 2) and form of</span></span>
+<span><span class="co">#&gt;             employment </span></span>
+<span><span class="co">#&gt; Measures    Arithmetic mean, 1st quartile, 2nd quartile (median), 3rd quartile,</span></span>
+<span><span class="co">#&gt;             Number of employees </span></span>
+<span><span class="co">#&gt; Fields      Sex, Citizenship, Region (NUTS2), Form of employment </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Request     2022-08-30 18:53:02 </span></span>
+<span><span class="co">#&gt; STATcubeR   0.4.0</span></span></code></pre>
 <p>As we can see from the <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> output, the measures
 contain means and quartiles. Therefore, aggregating the data via
 <code><a href="https://rdrr.io/r/base/rowsum.html" class="external-link">rowsum()</a></code> is not meaningful. However, this dataset contains
@@ -395,10 +395,10 @@ in the OGD dataset. The same will happen for Citizenship &amp; Form of
 employment as well as Region &amp; Form of employment.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"Citizenship"</span>, <span class="st">"Form of employment"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] 0 7</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; [1] 0 7</span></span></code></pre>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"Region"</span>, <span class="st">"Form of employment"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] 0 7</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; [1] 0 7</span></span></code></pre>
 </div>
 </div>
 </div>

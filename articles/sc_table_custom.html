@@ -156,20 +156,20 @@ of the function. The same is true if a field has several
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">get_id</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">type</span>, <span class="va">x</span><span class="op">$</span><span class="va">id</span><span class="op">)</span><span class="op">)</span>; <span class="va">x</span><span class="op">$</span><span class="va">id</span><span class="op">}</span></span>
 <span><span class="va">id_arrivals</span> <span class="op">&lt;-</span> <span class="fu">get_id</span><span class="op">(</span><span class="va">db_schema</span><span class="op">$</span><span class="va">Facts</span><span class="op">$</span><span class="va">Arrivals</span><span class="op">$</span><span class="va">Arrivals</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] "STAT_FUNCTION"                              </span></span>
-<span><span class="co">## [2] "str:statfn:detouextregsai:F-DATA1:F-ANK:SUM"</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; [1] "STAT_FUNCTION"                              </span></span>
+<span><span class="co">#&gt; [2] "str:statfn:detouextregsai:F-DATA1:F-ANK:SUM"</span></span></code></pre>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">id_nights_spent</span> <span class="op">&lt;-</span> <span class="fu">get_id</span><span class="op">(</span><span class="va">db_schema</span><span class="op">$</span><span class="va">Facts</span><span class="op">$</span><span class="va">`Nights spent`</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] "MEASURE"                                 </span></span>
-<span><span class="co">## [2] "str:measure:detouextregsai:F-DATA1:F-UEB"</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; [1] "MEASURE"                                 </span></span>
+<span><span class="co">#&gt; [2] "str:measure:detouextregsai:F-DATA1:F-UEB"</span></span></code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">id_time</span> <span class="op">&lt;-</span> <span class="fu">get_id</span><span class="op">(</span><span class="va">db_schema</span><span class="op">$</span><span class="va">`Mandatory fields`</span><span class="op">$</span><span class="va">`Season/Tourism Month`</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] "FIELD"                                       </span></span>
-<span><span class="co">## [2] "str:field:detouextregsai:F-DATA1:C-SDB_TIT-0"</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; [1] "FIELD"                                       </span></span>
+<span><span class="co">#&gt; [2] "str:field:detouextregsai:F-DATA1:C-SDB_TIT-0"</span></span></code></pre>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">id_region</span> <span class="op">&lt;-</span> <span class="fu">get_id</span><span class="op">(</span><span class="va">db_schema</span><span class="op">$</span><span class="va">`Other Classifications`</span><span class="op">$</span><span class="va">`Country of origin`</span><span class="op">$</span><span class="va">`Herkunftsland (Ebene +1)`</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] "VALUESET"                                              </span></span>
-<span><span class="co">## [2] "str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93SUM-0"</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; [1] "VALUESET"                                              </span></span>
+<span><span class="co">#&gt; [2] "str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93SUM-0"</span></span></code></pre>
 <p>Now the ids can be used in <code><a href="../reference/sc_table.html">sc_table_custom()</a></code>. If several
 ids are used for the argument <code>dimensions</code> or
 <code>fields</code>, combine them with <code><a href="https://rdrr.io/r/base/c.html" class="external-link">c()</a></code> to pass a
@@ -181,14 +181,14 @@ character vector of ids.</p>
 <span>  dimensions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">id_time</span>, <span class="va">id_region</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">my_response</span></span></code></pre></div>
-<pre><code><span><span class="co">## An object of class sc_table</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Database    Accomodation statistics as of 1974 according to seasons </span></span>
-<span><span class="co">## Measures    Arrivals, Nights spent </span></span>
-<span><span class="co">## Fields      Season/Tourism Month, Country of origin </span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Request     2022-08-29 09:52:13 </span></span>
-<span><span class="co">## STATcubeR   0.4.0</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; An object of class sc_table</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Database    Accomodation statistics as of 1974 according to seasons </span></span>
+<span><span class="co">#&gt; Measures    Arrivals, Nights spent </span></span>
+<span><span class="co">#&gt; Fields      Season/Tourism Month, Country of origin </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Request     2022-08-29 09:52:13 </span></span>
+<span><span class="co">#&gt; STATcubeR   0.4.0</span></span></code></pre>
   </main>
 </div>
 

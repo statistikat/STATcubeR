@@ -269,18 +269,18 @@ structure. Each <code>sc_schema</code> object has <code>id</code>,
 last four entries</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">my_db_info</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## List of 4</span></span>
-<span><span class="co">##  $ id      : chr "str:group:deake005:X_B1"</span></span>
-<span><span class="co">##  $ label   : chr "Demographic Characteristics"</span></span>
-<span><span class="co">##  $ location: chr "http://statcubeapi.statistik.at/statistik.at/ext/statcube/rest/v1/schema/str:group:deake005:X_B1"</span></span>
-<span><span class="co">##  $ type    : chr "GROUP"</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; List of 4</span></span>
+<span><span class="co">#&gt;  $ id      : chr "str:group:deake005:X_B1"</span></span>
+<span><span class="co">#&gt;  $ label   : chr "Demographic Characteristics"</span></span>
+<span><span class="co">#&gt;  $ location: chr "http://statcubeapi.statistik.at/statistik.at/ext/statcube/rest/v1/schema/str:group:deake005:X_B1"</span></span>
+<span><span class="co">#&gt;  $ type    : chr "GROUP"</span></span></code></pre>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## List of 4</span></span>
-<span><span class="co">##  $ id      : chr "str:folder:festat"</span></span>
-<span><span class="co">##  $ label   : chr "Statistics"</span></span>
-<span><span class="co">##  $ location: chr "http://statcubeapi.statistik.at/statistik.at/ext/statcube/rest/v1/schema/str:folder:festat"</span></span>
-<span><span class="co">##  $ type    : chr "FOLDER"</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; List of 4</span></span>
+<span><span class="co">#&gt;  $ id      : chr "str:folder:festat"</span></span>
+<span><span class="co">#&gt;  $ label   : chr "Statistics"</span></span>
+<span><span class="co">#&gt;  $ location: chr "http://statcubeapi.statistik.at/statistik.at/ext/statcube/rest/v1/schema/str:folder:festat"</span></span>
+<span><span class="co">#&gt;  $ type    : chr "FOLDER"</span></span></code></pre>
 <p>Schema objects can have an arbitrary amount of children. Children are
 always of type <code>sc_schema</code>. <code>x$type</code> determines
 the type of the schema object. See the <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/schema-endpoint" class="external-link">SuperSTAR
@@ -294,7 +294,7 @@ can be obtained by passing the resource id to
 <code><a href="../reference/sc_schema.html">sc_schema()</a></code>.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_db_info</span><span class="op">$</span><span class="va">Factors</span><span class="op">$</span><span class="va">id</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] "str:group:deake005:M_F1"</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; [1] "str:group:deake005:M_F1"</span></span></code></pre>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">group_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema</a></span><span class="op">(</span><span class="va">my_db_info</span><span class="op">$</span><span class="va">Factors</span><span class="op">$</span><span class="va">id</span><span class="op">)</span></span>
 <span><span class="va">group_info</span></span></code></pre></div>
@@ -314,7 +314,7 @@ the child nodes can be obtained with <code>$id</code>. These ids can be
 used to send another request to the <code>/schema</code> endpoint</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">group_info</span><span class="op">$</span><span class="va">`Average hours usually worked per week`</span><span class="op">$</span><span class="va">id</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] "str:measure:deake005:F-DATA:F-FAKTOR2"</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; [1] "str:measure:deake005:F-DATA:F-FAKTOR2"</span></span></code></pre>
 <p>Alternatively, use the <code>depth</code> parameter of
 <code>sc_schema</code>. This will make sure that the enties of the tree
 are returned up to the <code>"valueset"</code> level. See
@@ -331,39 +331,39 @@ are returned up to the <code>"valueset"</code> level. See
 for an alternative print mehtod.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">group_info</span>, tree <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##                           levelName     type</span></span>
-<span><span class="co">## 1  Demographic Characteristics         GROUP</span></span>
-<span><span class="co">## 2   ¦--Gender                          FIELD</span></span>
-<span><span class="co">## 3   ¦   °--Gender                   VALUESET</span></span>
-<span><span class="co">## 4   ¦       ¦--male                    VALUE</span></span>
-<span><span class="co">## 5   ¦       ¦--female                  VALUE</span></span>
-<span><span class="co">## 6   ¦       °--Not classifiable &lt;0&gt;    VALUE</span></span>
-<span><span class="co">## 7   ¦--Age in years-groups             FIELD</span></span>
-<span><span class="co">## 8   ¦   ¦--Age in years-groups      VALUESET</span></span>
-<span><span class="co">## 9   ¦   ¦   ¦--Under 15 years          VALUE</span></span>
-<span><span class="co">## 10  ¦   ¦   ¦--15 to 19 years          VALUE</span></span>
-<span><span class="co">## 11  ¦   ¦   ¦--20 to 24 years          VALUE</span></span>
-<span><span class="co">## 12  ¦   ¦   ¦--25 to 29 years          VALUE</span></span>
-<span><span class="co">## 13  ¦   ¦   ¦--30 to 34 years          VALUE</span></span>
-<span><span class="co">## 14  ¦   ¦   ¦--35 to 39 years          VALUE</span></span>
-<span><span class="co">## 15  ¦   ¦   ¦--40 to 44 years          VALUE</span></span>
-<span><span class="co">## 16  ¦   ¦   ¦--45 to 49 years          VALUE</span></span>
-<span><span class="co">## 17  ¦   ¦   ¦--50 to 54 years          VALUE</span></span>
-<span><span class="co">## 18  ¦   ¦   ¦--55 to 59 years          VALUE</span></span>
-<span><span class="co">## 19  ¦   ¦   ¦--60 to 64 years          VALUE</span></span>
-<span><span class="co">## 20  ¦   ¦   ¦--65 to 69 years          VALUE</span></span>
-<span><span class="co">## 21  ¦   ¦   ¦--70 to 74 years          VALUE</span></span>
-<span><span class="co">## 22  ¦   ¦   ¦--75 years and older      VALUE</span></span>
-<span><span class="co">## 23  ¦   ¦   °--Not classifiable &lt;0&gt;    VALUE</span></span>
-<span><span class="co">## 24  ¦   ¦--Alter in Jahresgruppen   VALUESET</span></span>
-<span><span class="co">## 25  ¦   ¦   ¦--Under 15 years          VALUE</span></span>
-<span><span class="co">## 26  ¦   ¦   ¦--15 to 24 years          VALUE</span></span>
-<span><span class="co">## 27  ¦   ¦   ¦--25 to 34 years          VALUE</span></span>
-<span><span class="co">## 28  ¦   ¦   ¦--35 to 44 years          VALUE</span></span>
-<span><span class="co">## 29  ¦   ¦   ¦--45 to 54 years          VALUE</span></span>
-<span><span class="co">## 30  ¦   ¦   °--... 3 nodes w/ 0 sub         </span></span>
-<span><span class="co">## 31  ¦   °--... 1 nodes w/ 6 sub             </span></span>
-<span><span class="co">## 32  °--... 6 nodes w/ 80 sub</span></span></code></pre>
+<pre><code><span><span class="co">#&gt;                           levelName     type</span></span>
+<span><span class="co">#&gt; 1  Demographic Characteristics         GROUP</span></span>
+<span><span class="co">#&gt; 2   ¦--Gender                          FIELD</span></span>
+<span><span class="co">#&gt; 3   ¦   °--Gender                   VALUESET</span></span>
+<span><span class="co">#&gt; 4   ¦       ¦--male                    VALUE</span></span>
+<span><span class="co">#&gt; 5   ¦       ¦--female                  VALUE</span></span>
+<span><span class="co">#&gt; 6   ¦       °--Not classifiable &lt;0&gt;    VALUE</span></span>
+<span><span class="co">#&gt; 7   ¦--Age in years-groups             FIELD</span></span>
+<span><span class="co">#&gt; 8   ¦   ¦--Age in years-groups      VALUESET</span></span>
+<span><span class="co">#&gt; 9   ¦   ¦   ¦--Under 15 years          VALUE</span></span>
+<span><span class="co">#&gt; 10  ¦   ¦   ¦--15 to 19 years          VALUE</span></span>
+<span><span class="co">#&gt; 11  ¦   ¦   ¦--20 to 24 years          VALUE</span></span>
+<span><span class="co">#&gt; 12  ¦   ¦   ¦--25 to 29 years          VALUE</span></span>
+<span><span class="co">#&gt; 13  ¦   ¦   ¦--30 to 34 years          VALUE</span></span>
+<span><span class="co">#&gt; 14  ¦   ¦   ¦--35 to 39 years          VALUE</span></span>
+<span><span class="co">#&gt; 15  ¦   ¦   ¦--40 to 44 years          VALUE</span></span>
+<span><span class="co">#&gt; 16  ¦   ¦   ¦--45 to 49 years          VALUE</span></span>
+<span><span class="co">#&gt; 17  ¦   ¦   ¦--50 to 54 years          VALUE</span></span>
+<span><span class="co">#&gt; 18  ¦   ¦   ¦--55 to 59 years          VALUE</span></span>
+<span><span class="co">#&gt; 19  ¦   ¦   ¦--60 to 64 years          VALUE</span></span>
+<span><span class="co">#&gt; 20  ¦   ¦   ¦--65 to 69 years          VALUE</span></span>
+<span><span class="co">#&gt; 21  ¦   ¦   ¦--70 to 74 years          VALUE</span></span>
+<span><span class="co">#&gt; 22  ¦   ¦   ¦--75 years and older      VALUE</span></span>
+<span><span class="co">#&gt; 23  ¦   ¦   °--Not classifiable &lt;0&gt;    VALUE</span></span>
+<span><span class="co">#&gt; 24  ¦   ¦--Alter in Jahresgruppen   VALUESET</span></span>
+<span><span class="co">#&gt; 25  ¦   ¦   ¦--Under 15 years          VALUE</span></span>
+<span><span class="co">#&gt; 26  ¦   ¦   ¦--15 to 24 years          VALUE</span></span>
+<span><span class="co">#&gt; 27  ¦   ¦   ¦--25 to 34 years          VALUE</span></span>
+<span><span class="co">#&gt; 28  ¦   ¦   ¦--35 to 44 years          VALUE</span></span>
+<span><span class="co">#&gt; 29  ¦   ¦   ¦--45 to 54 years          VALUE</span></span>
+<span><span class="co">#&gt; 30  ¦   ¦   °--... 3 nodes w/ 0 sub         </span></span>
+<span><span class="co">#&gt; 31  ¦   °--... 1 nodes w/ 6 sub             </span></span>
+<span><span class="co">#&gt; 32  °--... 6 nodes w/ 80 sub</span></span></code></pre>
 <p>The <a href="http://github.com/gluc/data.tree" class="external-link">data.tree</a> implementation of the print method can
 be set as a default using the option
 <code>STATcubeR.print_tree</code></p>

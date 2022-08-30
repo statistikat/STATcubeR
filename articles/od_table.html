@@ -157,15 +157,15 @@ provides an overview of the dataset via the <code><a href="https://rdrr.io/r/bas
 method.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span></span></code></pre></div>
-<pre><code><span><span class="co">## An object of class od_table</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Dataset     Cancer statistics by reporting year, province of residence and</span></span>
-<span><span class="co">##             localisation of cancer </span></span>
-<span><span class="co">## Measures    Number of records F-KRE </span></span>
-<span><span class="co">## Fields      Tumore ICD/10 3-Steller, Reporting year, Province of residence, Sex </span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Request     2022-08-30 14:49:08 </span></span>
-<span><span class="co">## STATcubeR   0.4.0</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; An object of class od_table</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Dataset     Cancer statistics by reporting year, province of residence and</span></span>
+<span><span class="co">#&gt;             localisation of cancer </span></span>
+<span><span class="co">#&gt; Measures    Number of records F-KRE </span></span>
+<span><span class="co">#&gt; Fields      Tumore ICD/10 3-Steller, Reporting year, Province of residence, Sex </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Request     2022-08-30 18:51:14 </span></span>
+<span><span class="co">#&gt; STATcubeR   0.4.0</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="metadata">Metadata<a class="anchor" aria-label="anchor" href="#metadata"></a>
@@ -292,7 +292,7 @@ from <code>read.csv2("OGD_krebs_ext_KREBS_1.csv")</code>.</p>
 columns are in the same order as in the metadata.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="va">table</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">`C-BUNDESLAND-0`</span><span class="op">)</span> <span class="op">==</span> <span class="va">table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"C-BUNDESLAND-0"</span><span class="op">)</span><span class="op">$</span><span class="va">code</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</span></span></code></pre>
 <p>If you want to use labels rather than codes, a labelled version of
 the data can be obtained via <code>table$tabulate()</code>. The
 labelling is done by mapping codes to english names using the
@@ -327,7 +327,7 @@ and set the language. Allowed options are <code>"en"</code> for english
 and <code>"de"</code> for german.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="va">language</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] "en"</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; [1] "en"</span></span></code></pre>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="va">language</span> <span class="op">&lt;-</span> <span class="st">"de"</span></span></code></pre></div>
 <p>This option affects the <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> method as well as the
@@ -335,14 +335,14 @@ output of <code>$tabulate()</code>. If no english labels are available,
 the german labels are used as a fallback mechanism.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span></span></code></pre></div>
-<pre><code><span><span class="co">## An object of class od_table</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Dataset     Krebsstatistik </span></span>
-<span><span class="co">## Measures    Anzahl der Datensätze F-KRE </span></span>
-<span><span class="co">## Fields      Tumore ICD/10 3-Steller, Berichtsjahr, Bundesland, Geschlecht </span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## Request     2022-08-30 14:49:08 </span></span>
-<span><span class="co">## STATcubeR   0.4.0</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; An object of class od_table</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Dataset     Krebsstatistik </span></span>
+<span><span class="co">#&gt; Measures    Anzahl der Datensätze F-KRE </span></span>
+<span><span class="co">#&gt; Fields      Tumore ICD/10 3-Steller, Berichtsjahr, Bundesland, Geschlecht </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Request     2022-08-30 18:51:14 </span></span>
+<span><span class="co">#&gt; STATcubeR   0.4.0</span></span></code></pre>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 46,479 x 5</span>
