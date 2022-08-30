@@ -2,6 +2,7 @@
 title: "Other REST API Endpoints"
 description: >
   How to use the (rather simple) endpoints `/info` and `/rate_limit_table`.
+link_text: "other API endpoints article"
 ---
 
 ```{r, echo = FALSE}
@@ -13,25 +14,54 @@ if (!sc_key_exists())
   knitr::opts_chunk$set(eval = FALSE)
 ```
 
-Apart form `/table` and `/schema`, there is also support for the simple
+Apart form [`/table`] and [`/schema`], there is also support for the simple
 endpoints [`/info`] and [`/rate_limit`].
+The  [`/info`] endpoint gives and overview about the available languages on the server.
 
-```{r}
+```{r, eval = FALSE}
 sc_info()
+```
+
+```{r, echo = FALSE}
+tibble::tibble(locale = c("de", "en"), displayName = c("Deutsch", "English"))
+```
+
+
+The [`/rate_limit`] endpoint shows the number of calls to the [`/table`]
+endpoint that are remaining. 
+
+```{r, eval = FALSE}
 sc_rate_limit_table()
 ```
 
-Rate limits can also be obtained from the response of the `/table` endpoint
-with `$rate_limit`.
+```{r}
+## remaining: 92/100
+## reset:     2022-08-30 13:53:55
+```
+
+In this case, we see that 8 out of the 100 requests per hour have been used up
+and 92 are still available
+Th rate limit will be reset once per hour.
+In this case this will be at `2022-08-30 13:53:55`.
+The entry under reset should always be less than one
+hour after the request to the [`/rate_limit`] endpoint was sent.
+
+Rate limits can also be obtained from the response of the [`/table`] endpoint
+via `$rate_limit`.
+This will display the rate limits in the same format as `sc_rate_limit_table()`
+and reflects the rate limit when the table was requested.
+No additional API requests are necessary if the rate limit is obtained in this way.
 
 ```{r}
 table <- sc_table(sc_example("population_timeseries.json"))
 table$rate_limit
 ```
 
-STATcube uses caching for the `/table` endpoint by default. If the same
+STATcube uses caching for the [`/table`] endpoint by default. If the same
 request to `sc_table()` is sent several times, this will not count
 towards the rate-limit (100 requests per hour).
 
 [`/info`]: https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/info-endpoint
 [`/rate_limit`]: https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/rate-limit
+[`/schema`]: https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/schema-endpoint
+[`/table`]: https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/table-endpoint
