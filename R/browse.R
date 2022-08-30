@@ -53,7 +53,7 @@ sc_url <- function(...) {
 #' @export
 print.sc_url <- function(x, ...) {
   if (interactive())
-    browseURL(unclass(x))
+    utils::browseURL(unclass(x))
   else
     cat('STATcube url:', x)
 }
