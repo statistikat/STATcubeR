@@ -2,17 +2,13 @@
 # STATcubeR <img src="man/figures/logo_readme.png" align="right" alt="" width="120" />
 
 <!-- badges: start -->
-
-[![Travis build
-status](https://travis-ci.org/statistikat/STATcubeR.svg?branch=master)](https://travis-ci.org/statistikat/STATcubeR)
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![GitHub last
-commit](https://img.shields.io/github/last-commit/statistikat/STATcubeR.svg?logo=github)](https://github.com/statistikat/STATcubeR/commits/master)
+[![R-CMD-check](https://github.com/statistikat/STATcubeR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/statistikat/STATcubeR/actions/workflows/R-CMD-check.yaml)
 [![GitHub code size in
 bytes](https://img.shields.io/github/languages/code-size/statistikat/STATcubeR?logo=github)](https://github.com/statistikat/STATcubeR)
-[![R-CMD-check](https://github.com/statistikat/STATcubeR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/statistikat/STATcubeR/actions/workflows/R-CMD-check.yaml)
-[![Codecov test coverage](https://codecov.io/gh/statistikat/STATcubeR/branch/master/graph/badge.svg)](https://app.codecov.io/gh/statistikat/STATcubeR?branch=master)
+[![GitHub last
+commit](https://img.shields.io/github/last-commit/statistikat/STATcubeR.svg?logo=github)](https://github.com/statistikat/STATcubeR/commits/master)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
 R client for all things [STATcube](http://sdbext:8081/statistik.at/ext/statcube/jsf/dataCatalogueExplorer.xhtml).
