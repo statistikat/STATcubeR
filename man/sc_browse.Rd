@@ -23,6 +23,7 @@ A collection of links, to browse important STATcube pages.
 \examples{
 # Show starting page
 sc_browse()
+
 # Show the preferences page with the API key
 sc_browse_preferences()
 

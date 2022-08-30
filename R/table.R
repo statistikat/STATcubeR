@@ -94,10 +94,8 @@ sc_table_class <- R6::R6Class(
     },
     #' @description open the dataset in a browser
     browse = function() {
-      browseURL(paste0(
-        "https://statcube.at/statcube/openinfopage?id=",
-        self$meta$source$code
-      ))
+      sc_json_get_server(self$json$content) %>% sc_url_gui() %>%
+        paste0("openinfopage?id=", self$meta$source$code) %>% sc_url()
     },
     #' @description add a second language to the dataset
     #' @param language a language to add. `"en"` or `"de"`.
