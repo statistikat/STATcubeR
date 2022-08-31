@@ -64,7 +64,6 @@ sc_rate_limit_schema <- function(language = c("en", "de"), key = NULL, server = 
   rate_limit
 }
 
-#' @export
 extract_rate_limits <- function(response) {
   header <- response$headers
   list(
