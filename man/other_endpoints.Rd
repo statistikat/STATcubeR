@@ -4,11 +4,17 @@
 \alias{other_endpoints}
 \alias{sc_info}
 \alias{sc_rate_limit_table}
+\alias{sc_rate_limit_schema}
+\alias{sc_rate_limits}
 \title{Other endpoints of the STATcube REST API}
 \usage{
 sc_info(language = c("en", "de"), key = NULL, server = "ext")
 
 sc_rate_limit_table(language = c("en", "de"), key = NULL, server = "ext")
+
+sc_rate_limit_schema(language = c("en", "de"), key = NULL, server = "ext")
+
+sc_rate_limits(x)
 }
 \arguments{
 \item{language}{The language to be used for labeling. \code{"en"} or \code{"de"}}
@@ -19,6 +25,9 @@ sc_rate_limit_table(language = c("en", "de"), key = NULL, server = "ext")
 \item{server}{A STATcube API server. Defaults to the external Server via
 \code{"ext"}. Other options are \code{"red"} for the editing server and \code{"prod"} for
 the production server. External users should always use the default option \code{"ext"}.}
+
+\item{x}{either a response-object (package \code{httr}), an object of class
+\code{sc_table} or an object of class \code{sc_schema}}
 }
 \value{
 \itemize{
@@ -38,9 +47,17 @@ Utilize the simple endpoints \verb{/info} and \verb{/table_rate_limit}. Those pr
 information about available locales and the amount of requests available
 for calls against the \verb{/table} endpoint.
 }
+\section{Functions}{
+\itemize{
+\item \code{sc_rate_limits()}: gets rate limits from response headers
+
+}}
 \examples{
 \dontshow{if (sc_key_exists()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 sc_info()
 sc_rate_limit_table()
+sc_rate_limit_schema()
+sc_schema("str:group:deake005:X_B1") \%>\%
+  sc_rate_limits()
 \dontshow{\}) # examplesIf}
 }

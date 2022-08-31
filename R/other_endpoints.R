@@ -7,6 +7,8 @@
 #' sc_info()
 #' sc_rate_limit_table()
 #' sc_rate_limit_schema()
+#' sc_schema("str:group:deake005:X_B1") %>%
+#'   sc_rate_limits()
 #' @name other_endpoints
 #' @rdname other_endpoints
 #' @inheritParams sc_key
@@ -60,6 +62,38 @@ sc_rate_limit_schema <- function(language = c("en", "de"), key = NULL, server = 
   rate_limit <- httr::content(response)
   class(rate_limit) <- "sc_rate_limit_table"
   rate_limit
+}
+
+#' @export
+extract_rate_limits <- function(response) {
+  header <- response$headers
+  list(
+    schema = list(
+      limit = header[["x-ratelimit-schema"]],
+      remaining = header[["x-ratelimit-remaining-schema"]],
+      reset = header[["x-ratelimit-reset-schema"]]
+    ) %>% `class<-`("sc_rate_limit_table"),
+    table = list(
+      limit = header[["x-ratelimit-table"]],
+      remaining = header[["x-ratelimit-remaining-table"]],
+      reset = header[["x-ratelimit-reset-table"]]
+    ) %>% `class<-`("sc_rate_limit_table")
+  )
+}
+
+#' @describeIn other_endpoints gets rate limits from response headers
+#' @param x either a response-object (package `httr`), an object of class
+#'   `sc_table` or an object of class `sc_schema`
+#' @export
+sc_rate_limits <- function(x) {
+  if (inherits(x, "response"))
+    return(extract_rate_limits(x))
+  if (inherits(x, "sc_table"))
+    return(extract_rate_limits(x$response))
+  if (inherits(x, "sc_schema"))
+    return(extract_rate_limits(attr(x, "response")))
+  stop("sc_rate_limits() is only implemented for the classes
+        'response', 'sc_table' and 'sc_schema'")
 }
 
 
