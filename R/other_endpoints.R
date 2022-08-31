@@ -6,6 +6,7 @@
 #' @examplesIf sc_key_exists()
 #' sc_info()
 #' sc_rate_limit_table()
+#' sc_rate_limit_schema()
 #' @name other_endpoints
 #' @rdname other_endpoints
 #' @inheritParams sc_key
@@ -46,6 +47,21 @@ sc_rate_limit_table <- function(language = c("en", "de"), key = NULL, server = '
   class(rate_limit) <- "sc_rate_limit_table"
   rate_limit
 }
+
+#' @rdname other_endpoints
+#' @export
+sc_rate_limit_schema <- function(language = c("en", "de"), key = NULL, server = 'ext') {
+  if (is.null(key))
+    key <- sc_key(server)
+  response <- httr::GET(
+    url = paste0(base_url(server), "/rate_limit_schema"),
+    config = sc_headers(language, key)
+  ) %>% sc_check_response()
+  rate_limit <- httr::content(response)
+  class(rate_limit) <- "sc_rate_limit_table"
+  rate_limit
+}
+
 
 #' @export
 print.sc_rate_limit_table <- function(x, ...) {
