@@ -54,9 +54,9 @@ pillar_shaft.sc_measure <- function(x, ...) {
 format.pillar_shaft_sc_measure <- function(x, width, ...) {
   ret <- NextMethod("format", x, width, ...)
   ind <- x$is_na & x$annotations != ""
-  ret[ind] <- cli::col_red(x$annotations[ind])
+  ret[ind] <- pillar::style_na(x$annotations[ind])
   ind <- !x$is_na & x$annotations != ""
-  ret[ind] <- cli::col_red(ret[ind])
+  ret[ind] <- pillar::style_na(ret[ind])
   ret
 }
 
@@ -71,7 +71,7 @@ pillar_shaft.sc_field <- function(x, ...) {
 format.pillar_shaft_sc_field <- function(x, width, ...) {
   ret <- NextMethod("format", x, width, ...)
   ind <- x$is_total
-  ret[ind] <- cli::col_red(ret[ind])
+  ret[ind] <- pillar::style_na(ret[ind])
   ret
 }
 
