@@ -26,7 +26,9 @@
 #' my_content$label
 #'
 #' # print with data.tree
-#' print(my_catalogue$Examples, tree = TRUE)
+#' "str:group:deake005:X_B1" %>%
+#'   sc_schema(depth = "valueset") %>%
+#'   print(tree = TRUE)
 #' @rdname sc_schema
 #' @export
 sc_schema_db <- function(db_id, depth = "valueset", language = c("en", "de"),

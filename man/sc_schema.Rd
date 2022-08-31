@@ -98,7 +98,9 @@ my_content <- httr::content(my_response)
 my_content$label
 
 # print with data.tree
-print(my_catalogue$Examples, tree = TRUE)
+"str:group:deake005:X_B1" \%>\%
+  sc_schema(depth = "valueset") \%>\%
+  print(tree = TRUE)
 \dontshow{\}) # examplesIf}
 }
 \concept{functions for /schema}
