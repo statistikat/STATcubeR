@@ -46,32 +46,45 @@ sc_rate_limit_table()
 ```
 
 In this case, we see that 8 out of the 100 requests per hour have been used up
-and 92 are still available
-Th rate limit will be reset once per hour.
+and 92 are still available.
+The rate limit will be reset once per hour.
 In this case this will be at `2022-08-30 13:53:55`.
 The entry under reset should always be less than one
 hour after the request to the [`/rate_limit`] endpoint was sent.
-
-Rate limits can also be obtained from the response of the [`/table`] endpoint
-via `$rate_limit`.
-This will display the rate limits in the same format as `sc_rate_limit_table()`
-and reflects the rate limit when the table was requested.
-No additional API requests are necessary if the rate limit is obtained in this way.
-
-```{r}
-table <- sc_table(sc_example("population_timeseries.json"))
-table$rate_limit
-```
 
 ## Rate Limits (Schema)
 
 Schema requests are currently limited to 10000 requests per hour.
 The number of remaining requests can be obtained via `sc_rate_limit_schema()`.
+Rate limits are be returned in the same format as in `sc_rate_limit_table()`.
 
 ```{r, eval = FALSE}
 sc_rate_limit_schema()
 #> remaining: 10000/10000
 #> reset:     2022-08-31 17:51:01
+```
+
+## Rate Limits from headers
+
+All responses from the STATcube API contain rate limit information (including remaining requests) in the response headers^[Responses for unauthorized requests (response status 401) are an exception].
+So instead of using the `/rate_limit*` endpoints shown above, it is also possible to use responses from other endpoints and extract rate limit information from their headers.
+
+The function `sc_rate_limits()` does just that. 
+Any return value from `sc_table()`, `sc_table_saved()` and `sc_table_custom()` can be passed to `sc_rate_limits()` and the rate limits will be extracted from the response headers.
+
+```{r}
+sc_example("population_timeseries.json") %>% 
+  sc_table() %>% 
+  sc_rate_limits()
+```
+
+Note that the function gives rate limits for `/schama` and `/table` even tough only the `/table` endpoint was used.
+
+The function also works with return values from `sc_schema()` and friends.
+
+```{r}
+sc_schema_catalogue() %>% 
+  sc_rate_limits()
 ```
 
 ## Server-Side Caching
