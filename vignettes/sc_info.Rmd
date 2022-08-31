@@ -1,7 +1,8 @@
 ---
 title: "Other REST API Endpoints"
 description: >
-  How to use the (rather simple) endpoints `/info` and `/rate_limit_table`.
+  How to use the (rather simple) endpoints `/info`, `/rate_limit_table` and
+  `/rate_limit_schema`.
 link_text: "other API endpoints article"
 ---
 
@@ -16,6 +17,9 @@ if (!sc_key_exists())
 
 Apart form [`/table`] and [`/schema`], there is also support for the simple
 endpoints [`/info`] and [`/rate_limit`].
+
+## Server Information
+
 The  [`/info`] endpoint gives and overview about the available languages on the server.
 
 ```{r, eval = FALSE}
@@ -23,9 +27,11 @@ sc_info()
 ```
 
 ```{r, echo = FALSE}
-tibble::tibble(locale = c("de", "en"), displayName = c("Deutsch", "English"))
+data.frame(locale = c("de", "en"), displayName = c("Deutsch", "English")) %>% 
+  `class<-`(c("tbl", "data.frame"))
 ```
 
+## Rate Limits (Table)
 
 The [`/rate_limit`] endpoint shows the number of calls to the [`/table`]
 endpoint that are remaining. 
@@ -57,9 +63,25 @@ table <- sc_table(sc_example("population_timeseries.json"))
 table$rate_limit
 ```
 
-STATcube uses caching for the [`/table`] endpoint by default. If the same
+## Rate Limits (Schema)
+
+Schema requests are currently limited to 10000 requests per hour.
+The number of remaining requests can be obtained via `sc_rate_limit_schema()`.
+
+```{r, eval = FALSE}
+sc_rate_limit_schema()
+#> remaining: 10000/10000
+#> reset:     2022-08-31 17:51:01
+```
+
+## Server-Side Caching
+
+~~STATcube uses caching for the [`/table`] endpoint by default. If the same
 request to `sc_table()` is sent several times, this will not count
-towards the rate-limit (100 requests per hour).
+towards the rate-limit (100 requests per hour).~~ 
+
+Server-Side caching of [`/table`] responses is currently disabled due to security reasons.
+Therefore, all requests against the [`/table`] endpoint count towards the ratelimit.
 
 [`/info`]: https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/info-endpoint
 [`/rate_limit`]: https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/rate-limit
