@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="How to use the (rather simple) endpoints `/info` and `/rate_limit_table`.
+<meta name="description" content="How to use the (rather simple) endpoints `/info`, `/rate_limit_table` and `/rate_limit_schema`.
 ">
 <title>Other REST API Endpoints • STATcubeR</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Other REST API Endpoints">
-<meta property="og:description" content="How to use the (rather simple) endpoints `/info` and `/rate_limit_table`.
+<meta property="og:description" content="How to use the (rather simple) endpoints `/info`, `/rate_limit_table` and `/rate_limit_schema`.
 ">
 <meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -36,7 +36,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -122,17 +122,24 @@
     </script><p>Apart form <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/table-endpoint" class="external-link"><code>/table</code></a>
 and <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/schema-endpoint" class="external-link"><code>/schema</code></a>,
 there is also support for the simple endpoints <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/info-endpoint" class="external-link"><code>/info</code></a>
-and <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/rate-limit" class="external-link"><code>/rate_limit</code></a>.
-The <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/info-endpoint" class="external-link"><code>/info</code></a>
+and <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/rate-limit" class="external-link"><code>/rate_limit</code></a>.</p>
+<div class="section level2">
+<h2 id="server-information">Server Information<a class="anchor" aria-label="anchor" href="#server-information"></a>
+</h2>
+<p>The <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/info-endpoint" class="external-link"><code>/info</code></a>
 endpoint gives and overview about the available languages on the
 server.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/other_endpoints.html">sc_info</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre class="r-output"><code><span style="color: #949494;"># A tibble: 2 × 2</span>
+<pre class="r-output"><code><span style="color: #949494;"># A data frame: 2 × 2</span>
   <span style="font-weight: bold;">locale</span> <span style="font-weight: bold;">displayName</span>
   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      
 <span style="color: #BCBCBC;">1</span> de     Deutsch    
 <span style="color: #BCBCBC;">2</span> en     English    </code></pre>
+</div>
+<div class="section level2">
+<h2 id="rate-limits-table">Rate Limits (Table)<a class="anchor" aria-label="anchor" href="#rate-limits-table"></a>
+</h2>
 <p>The <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/rate-limit" class="external-link"><code>/rate_limit</code></a>
 endpoint shows the number of calls to the <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/table-endpoint" class="external-link"><code>/table</code></a>
 endpoint that are remaining.</p>
@@ -142,26 +149,78 @@ endpoint that are remaining.</p>
 <code class="sourceCode R"><span><span class="co">## remaining: 92/100</span></span>
 <span><span class="co">## reset:     2022-08-30 13:53:55</span></span></code></pre></div>
 <p>In this case, we see that 8 out of the 100 requests per hour have
-been used up and 92 are still available Th rate limit will be reset once
-per hour. In this case this will be at <code>2022-08-30 13:53:55</code>.
-The entry under reset should always be less than one hour after the
-request to the <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/rate-limit" class="external-link"><code>/rate_limit</code></a>
+been used up and 92 are still available. The rate limit will be reset
+once per hour. In this case this will be at
+<code>2022-08-30 13:53:55</code>. The entry under reset should always be
+less than one hour after the request to the <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/rate-limit" class="external-link"><code>/rate_limit</code></a>
 endpoint was sent.</p>
-<p>Rate limits can also be obtained from the response of the <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/table-endpoint" class="external-link"><code>/table</code></a>
-endpoint via <code>$rate_limit</code>. This will display the rate limits
-in the same format as <code><a href="../reference/other_endpoints.html">sc_rate_limit_table()</a></code> and reflects
-the rate limit when the table was requested. No additional API requests
-are necessary if the rate limit is obtained in this way.</p>
+</div>
+<div class="section level2">
+<h2 id="rate-limits-schema">Rate Limits (Schema)<a class="anchor" aria-label="anchor" href="#rate-limits-schema"></a>
+</h2>
+<p>Schema requests are currently limited to 10000 requests per hour. The
+number of remaining requests can be obtained via
+<code><a href="../reference/other_endpoints.html">sc_rate_limit_schema()</a></code>. Rate limits are be returned in the
+same format as in <code><a href="../reference/other_endpoints.html">sc_rate_limit_table()</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"population_timeseries.json"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">table</span><span class="op">$</span><span class="va">rate_limit</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; remaining: 97/100</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/other_endpoints.html">sc_rate_limit_schema</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; remaining: 10000/10000</span></span>
+<span><span class="co">#&gt; reset:     2022-08-31 17:51:01</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="rate-limits-from-headers">Rate Limits from headers<a class="anchor" aria-label="anchor" href="#rate-limits-from-headers"></a>
+</h2>
+<p>All responses from the STATcube API contain rate limit information
+(including remaining requests) in the response headers<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content="&lt;p&gt;Responses for unauthorized requests (response status
+401) are an exception&lt;/p&gt;"><sup>1</sup></a>. So instead of using
+the <code>/rate_limit*</code> endpoints shown above, it is also possible
+to use responses from other endpoints and extract rate limit information
+from their headers.</p>
+<p>The function <code><a href="../reference/other_endpoints.html">sc_rate_limits()</a></code> does just that. Any return
+value from <code><a href="../reference/sc_table.html">sc_table()</a></code>, <code><a href="../reference/sc_table.html">sc_table_saved()</a></code> and
+<code><a href="../reference/sc_table.html">sc_table_custom()</a></code> can be passed to
+<code><a href="../reference/other_endpoints.html">sc_rate_limits()</a></code> and the rate limits will be extracted from
+the response headers.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"population_timeseries.json"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/other_endpoints.html">sc_rate_limits</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; $schema</span></span>
+<span><span class="co">#&gt; remaining: 9999/10000</span></span>
+<span><span class="co">#&gt; reset:     2022-08-29 12:46:54</span></span>
+<span><span class="co">#&gt; $table</span></span>
+<span><span class="co">#&gt; remaining: 97/100</span></span>
 <span><span class="co">#&gt; reset:     2022-08-29 12:46:54</span></span></code></pre>
-<p>STATcube uses caching for the <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/table-endpoint" class="external-link"><code>/table</code></a>
+<p>Note that the function gives rate limits for <code>/schama</code> and
+<code>/table</code> even tough only the <code>/table</code> endpoint was
+used.</p>
+<p>The function also works with return values from
+<code><a href="../reference/sc_schema.html">sc_schema()</a></code> and friends.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_schema.html">sc_schema_catalogue</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/other_endpoints.html">sc_rate_limits</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; $schema</span></span>
+<span><span class="co">#&gt; remaining: 10000/10000</span></span>
+<span><span class="co">#&gt; reset:     2022-08-29 12:46:54</span></span>
+<span><span class="co">#&gt; $table</span></span>
+<span><span class="co">#&gt; remaining: 98/100</span></span>
+<span><span class="co">#&gt; reset:     2022-08-29 12:46:54</span></span></code></pre>
+</div>
+<div class="section level2">
+<h2 id="server-side-caching">Server-Side Caching<a class="anchor" aria-label="anchor" href="#server-side-caching"></a>
+</h2>
+<p><del>STATcube uses caching for the <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/table-endpoint" class="external-link"><code>/table</code></a>
 endpoint by default. If the same request to <code><a href="../reference/sc_table.html">sc_table()</a></code> is
 sent several times, this will not count towards the rate-limit (100
-requests per hour).</p>
-  </main>
+requests per hour).</del></p>
+<p>Server-Side caching of <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/table-endpoint" class="external-link"><code>/table</code></a>
+responses is currently disabled due to security reasons. Therefore, all
+requests against the <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/table-endpoint" class="external-link"><code>/table</code></a>
+endpoint count towards the ratelimit.</p>
+</div>
+
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 

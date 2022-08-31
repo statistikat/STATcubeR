@@ -20,7 +20,7 @@ tree object."><meta property="og:image" content="https://statistikat.github.io/S
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -268,29 +268,42 @@ To use <code>data.tree</code> printing permanently, use</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Working hours (Labour Force Survey)"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># print with data.tree</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Examples</span>, tree <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                        levelName</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  Examples                                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2   ¦--Communes (Demo)                                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   ¦--People                                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   ¦--People multilingual                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5   ¦--Retail Banking ML en                                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6   ¦--Monitoring                                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   ¦--Standardtabelle / Default table (defaulttable_depeopleml)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8   ¦--Standardtabelle / Default table (defaulttable_dedemo)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9   ¦--E-A_nach_Bundeslaendern_dedemo                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10  °--Jahre_nach_NUTS_dedemo                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    FOLDER</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  DATABASE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  DATABASE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  DATABASE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  DATABASE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     TABLE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7     TABLE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8     TABLE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9     TABLE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10    TABLE</span>
+<span class="r-in"><span><span class="st">"str:group:deake005:X_B1"</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">sc_schema</span><span class="op">(</span>depth <span class="op">=</span> <span class="st">"valueset"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span>tree <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           levelName     type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  Demographic Characteristics         GROUP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   ¦--Gender                          FIELD</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   ¦   °--Gender                   VALUESET</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   ¦       ¦--male                    VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   ¦       ¦--female                  VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   ¦       °--Not classifiable &lt;0&gt;    VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   ¦--Age in years-groups             FIELD</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   ¦   ¦--Age in years-groups      VALUESET</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9   ¦   ¦   ¦--Under 15 years          VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10  ¦   ¦   ¦--15 to 19 years          VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11  ¦   ¦   ¦--20 to 24 years          VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12  ¦   ¦   ¦--25 to 29 years          VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13  ¦   ¦   ¦--30 to 34 years          VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14  ¦   ¦   ¦--35 to 39 years          VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15  ¦   ¦   ¦--40 to 44 years          VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16  ¦   ¦   ¦--45 to 49 years          VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17  ¦   ¦   ¦--50 to 54 years          VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18  ¦   ¦   ¦--55 to 59 years          VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19  ¦   ¦   ¦--60 to 64 years          VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20  ¦   ¦   ¦--65 to 69 years          VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21  ¦   ¦   ¦--70 to 74 years          VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22  ¦   ¦   ¦--75 years and older      VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23  ¦   ¦   °--Not classifiable &lt;0&gt;    VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24  ¦   ¦--Alter in Jahresgruppen   VALUESET</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25  ¦   ¦   ¦--Under 15 years          VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26  ¦   ¦   ¦--15 to 24 years          VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27  ¦   ¦   ¦--25 to 34 years          VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28  ¦   ¦   ¦--35 to 44 years          VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29  ¦   ¦   ¦--45 to 54 years          VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30  ¦   ¦   °--... 3 nodes w/ 0 sub         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31  ¦   °--... 1 nodes w/ 6 sub             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32  °--... 6 nodes w/ 80 sub                </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
