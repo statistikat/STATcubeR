@@ -41,3 +41,44 @@ tbl_sum.sc_tibble <- function(x, ...) {
   paste0("A STATcubeR tibble: ", format(nrow(x), big.mark = ","), " x ", ncol(x))
 }
 
+pillar_shaft.sc_measure <- function(x, ...) {
+  x[x == 0] <- NA
+  ret <- pillar::pillar_shaft(as.numeric(x), ...)
+  class(ret) <- c("pillar_shaft_sc_measure", class(ret))
+  ret$is_na <- is.na(as.numeric(x))
+  ret$annotations <- attr(x, "annotations") %>% sapply(paste, collapse = ",")
+  ret
+}
+
+#' @export
+format.pillar_shaft_sc_measure <- function(x, width, ...) {
+  ret <- NextMethod("format", x, width, ...)
+  ind <- x$is_na & x$annotations != ""
+  ret[ind] <- cli::col_red(x$annotations[ind])
+  ind <- !x$is_na & x$annotations != ""
+  ret[ind] <- cli::col_red(ret[ind])
+  ret
+}
+
+pillar_shaft.sc_field <- function(x, ...) {
+  ret <- NextMethod("pillar_shaft", x, ...)
+  class(ret) <- c("pillar_shaft_sc_field", class(ret))
+  ret$is_total <- x == "SC_TOTAL"
+  ret
+}
+
+#' @export
+format.pillar_shaft_sc_field <- function(x, width, ...) {
+  ret <- NextMethod("format", x, width, ...)
+  ind <- x$is_total
+  ret[ind] <- cli::col_red(ret[ind])
+  ret
+}
+
+vec_ptype_abbr.sc_measure <- function(x) {
+  "dbl"
+}
+
+print.sc_measure <- function(x, ...) {
+  print(as.numeric(x))
+}

@@ -42,6 +42,7 @@ sc_table_create_data <- function(content) {
     codes <- sc_field_codes(field, split_minus = FALSE)
     df[[i]] <- factor(df[[i]], labels = codes)
     names(df)[i] <- get_var_code(field$uri)
+    class(df[[i]]) <- c("sc_field", class(df[[i]]))
   }
   # add measures
   for (i in seq_along(content$measures)) {
@@ -51,13 +52,30 @@ sc_table_create_data <- function(content) {
     annotations <- get_annotations(content, i)
     df[[label]] <- values
     attr(df[[label]], "annotations") <- annotations
+    class(df[[label]]) <- c("sc_measure", class(df[[label]]))
   }
   df
 }
 
 #' @export
-as.data.frame.sc_data <- function(x, ...) {
-  od_label_data(x, ...)
+`[.sc_measure` <- function(x, i) {
+  ann <- attr(x, "annotations")
+  unclass(x)[i] %>% `attr<-`("annotations", ann[i]) %>% `class<-`(class(x))
+}
+
+#' @export
+`[.sc_field` <- function(x, i) {
+  `class<-`(x, "factor")[i] %>% `class<-`(class(x))
+}
+
+#' @export
+as.data.frame.sc_data <- function(x, ..., recode_zeros = FALSE) {
+  data <- x$data
+  if (recode_zeros) {
+    measures <- x$meta$measures$code
+    data[measures][0 == data[measures]] <- NA
+  }
+  od_label_data(x, data, ...)
 }
 
 sc_table_modify_totals <- function(data, meta, meta_fields) {

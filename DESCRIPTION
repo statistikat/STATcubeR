@@ -18,6 +18,7 @@ Imports:
     jsonlite,
     magrittr
 Suggests: 
+    cli,
     data.tree,
     pillar,
     rappdirs,
