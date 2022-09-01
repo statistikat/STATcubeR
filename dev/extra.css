@@ -11,6 +11,10 @@ a {
   color:#ab0813;
 }
 
+code a:any-link {
+  color: #ab0813;
+}
+
 .bg-light {
   background-color: #373a3c !important;
 }
@@ -67,4 +71,14 @@ a:hover {
 /* https://stackoverflow.com/questions/59975400 */
 .navbar-toggler-icon {
         background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.navbar-brand {
+  font-size: 2rem;
+  margin: -1rem 0;
+  transform: translateY(0.4rem);
+}
+
+.navbar-brand + small {
+  transform: translateY(.4rem);
 }

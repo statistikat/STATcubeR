@@ -8,7 +8,7 @@ x$recode$
   label_field("C-BERJ-0", "de", "JAHR")$
   label_measure("F-KRE", "de", "Anzahl")
 
-See the example section for more details.'><title>Recode sc_table objects — sc_recoder • STATcubeR</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet"><meta property="og:title" content="Recode sc_table objects — sc_recoder"><meta property="og:description" content='A collection of methods that can be used to modify an object of class
+See the example section for more details.'><title>Recode sc_table objects — sc_recoder • STATcubeR</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet"><meta property="og:title" content="Recode sc_table objects — sc_recoder"><meta property="og:description" content='A collection of methods that can be used to modify an object of class
 sc_table by reference. Typical usage is to acces the recode binding
 of an sc_table object and then use method chaining to perform recode
 operations.
@@ -28,7 +28,7 @@ See the example section for more details.'><meta property="og:image" content="ht
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.3.4.4</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.4.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,19 +65,19 @@ See the example section for more details.'><meta property="og:image" content="ht
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
-  <a class="external-link nav-link" href="https://data.statistik.gv.at">
+  <a class="external-link nav-link" href="https://data.statistik.gv.at" aria-label="open data portal">
     <span class="fas fa fas fa-table fa-lg"></span>
      
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/">
+  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/" aria-label="STATcube">
     <span class="fas fa fas fa-cube fa-lg"></span>
      
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/statistikat/STATcubeR/">
+  <a class="external-link nav-link" href="https://github.com/statistikat/STATcubeR/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -125,7 +125,7 @@ operations.</p>
 <p>Create a new recoder instance. This will automatically
 be performed during the setup of <code>sc_data</code> objects</p><div class="section">
 <h4 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va"><a href="../reference/sc_recoder.html">sc_recoder</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va"><a href="../reference/sc_recoder.html">sc_recoder</a></span><span class="op">$</span><span class="fu">new</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -141,7 +141,7 @@ be performed during the setup of <code>sc_data</code> objects</p><div class="sec
 <h3 id="method-label-field-">Method <code>label_field()</code><a class="anchor" aria-label="anchor" href="#method-label-field-"></a></h3>
 <p>Change the label of a field variable</p><div class="section">
 <h4 id="usage-1">Usage<a class="anchor" aria-label="anchor" href="#usage-1"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">sc_recoder</span><span class="op">$</span><span class="fu">label_field</span><span class="op">(</span><span class="va">field</span>, <span class="va">language</span>, <span class="va">new</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">sc_recoder</span><span class="op">$</span><span class="fu">label_field</span><span class="op">(</span><span class="va">field</span>, <span class="va">language</span>, <span class="va">new</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -165,7 +165,7 @@ be performed during the setup of <code>sc_data</code> objects</p><div class="sec
 <h3 id="method-label-measure-">Method <code>label_measure()</code><a class="anchor" aria-label="anchor" href="#method-label-measure-"></a></h3>
 <p>Change the label of a measure variable</p><div class="section">
 <h4 id="usage-2">Usage<a class="anchor" aria-label="anchor" href="#usage-2"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">sc_recoder</span><span class="op">$</span><span class="fu">label_measure</span><span class="op">(</span><span class="va">measure</span>, <span class="va">language</span>, <span class="va">new</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">sc_recoder</span><span class="op">$</span><span class="fu">label_measure</span><span class="op">(</span><span class="va">measure</span>, <span class="va">language</span>, <span class="va">new</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -189,7 +189,7 @@ be performed during the setup of <code>sc_data</code> objects</p><div class="sec
 <h3 id="method-level-">Method <code>level()</code><a class="anchor" aria-label="anchor" href="#method-level-"></a></h3>
 <p>Change the labels of a level</p><div class="section">
 <h4 id="usage-3">Usage<a class="anchor" aria-label="anchor" href="#usage-3"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">sc_recoder</span><span class="op">$</span><span class="fu">level</span><span class="op">(</span><span class="va">field</span>, <span class="va">level</span>, <span class="va">language</span>, <span class="va">new</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">sc_recoder</span><span class="op">$</span><span class="fu">level</span><span class="op">(</span><span class="va">field</span>, <span class="va">level</span>, <span class="va">language</span>, <span class="va">new</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -217,7 +217,7 @@ be performed during the setup of <code>sc_data</code> objects</p><div class="sec
 <h3 id="method-total-codes-">Method <code>total_codes()</code><a class="anchor" aria-label="anchor" href="#method-total-codes-"></a></h3>
 <p>Cheange the total code for a field</p><div class="section">
 <h4 id="usage-4">Usage<a class="anchor" aria-label="anchor" href="#usage-4"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">sc_recoder</span><span class="op">$</span><span class="fu">total_codes</span><span class="op">(</span><span class="va">field</span>, <span class="va">new</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">sc_recoder</span><span class="op">$</span><span class="fu">total_codes</span><span class="op">(</span><span class="va">field</span>, <span class="va">new</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -239,7 +239,7 @@ new total code. In case of <code>NA</code>, the total code will be unset.</p></d
 <p>set the visibility of a level. Invisible levels are
 ommited in the output of <code>$tabulate()</code> but don't affect aggregation</p><div class="section">
 <h4 id="usage-5">Usage<a class="anchor" aria-label="anchor" href="#usage-5"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">sc_recoder</span><span class="op">$</span><span class="fu">visible</span><span class="op">(</span><span class="va">field</span>, <span class="va">level</span>, <span class="va">new</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">sc_recoder</span><span class="op">$</span><span class="fu">visible</span><span class="op">(</span><span class="va">field</span>, <span class="va">level</span>, <span class="va">new</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -263,7 +263,7 @@ ommited in the output of <code>$tabulate()</code> but don't affect aggregation</
 <h3 id="method-order-">Method <code><a href="https://rdrr.io/r/base/order.html" class="external-link">order()</a></code><a class="anchor" aria-label="anchor" href="#method-order-"></a></h3>
 <p>set the order of levels.</p><div class="section">
 <h4 id="usage-6">Usage<a class="anchor" aria-label="anchor" href="#usage-6"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">sc_recoder</span><span class="op">$</span><span class="fu">order</span><span class="op">(</span><span class="va">field</span>, <span class="va">new</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span class="va">sc_recoder</span><span class="op">$</span><span class="fu">order</span><span class="op">(</span><span class="va">field</span>, <span class="va">new</span><span class="op">)</span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
@@ -286,28 +286,28 @@ alternatively, an integer vector that defines the permutation.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="od_table.html">od_table</a></span><span class="op">(</span><span class="st">"OGD_krebs_ext_KREBS_1"</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">x</span><span class="op">$</span><span class="va">recode</span><span class="op">$</span></span></span>
-<span class="r-in"><span>  <span class="fu">label_field</span><span class="op">(</span><span class="st">"C-KRE_GESCHLECHT-0"</span>, <span class="st">"en"</span>, <span class="st">"SEX"</span><span class="op">)</span><span class="op">$</span></span></span>
-<span class="r-in"><span>  <span class="fu">label_measure</span><span class="op">(</span><span class="st">"F-KRE"</span>, <span class="st">"en"</span>, <span class="st">"NUMBER"</span><span class="op">)</span><span class="op">$</span></span></span>
-<span class="r-in"><span>  <span class="fu">level</span><span class="op">(</span><span class="st">"C-KRE_GESCHLECHT-0"</span>, <span class="st">"GESCHLECHT-1"</span>, <span class="st">"en"</span>, <span class="st">"MALE"</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"C-KRE_GESCHLECHT-0"</span>, <span class="st">"F-KRE"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="od_table.html">od_table</a></span><span class="op">(</span><span class="st">"OGD_krebs_ext_KREBS_1"</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="va">x</span><span class="op">$</span><span class="va">recode</span><span class="op">$</span></span>
+<span class="r-in">  <span class="fu">label_field</span><span class="op">(</span><span class="st">"C-KRE_GESCHLECHT-0"</span>, <span class="st">"en"</span>, <span class="st">"SEX"</span><span class="op">)</span><span class="op">$</span></span>
+<span class="r-in">  <span class="fu">label_measure</span><span class="op">(</span><span class="st">"F-KRE"</span>, <span class="st">"en"</span>, <span class="st">"NUMBER"</span><span class="op">)</span><span class="op">$</span></span>
+<span class="r-in">  <span class="fu">level</span><span class="op">(</span><span class="st">"C-KRE_GESCHLECHT-0"</span>, <span class="st">"GESCHLECHT-1"</span>, <span class="st">"en"</span>, <span class="st">"MALE"</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"C-KRE_GESCHLECHT-0"</span>, <span class="st">"F-KRE"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A STATcubeR tibble: 2 x 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">SEX</span>    <span style="font-weight: bold;">NUMBER</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> female  <span style="text-decoration: underline;">25</span>862</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> MALE    <span style="text-decoration: underline;">27</span>580</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">earnings</span> <span class="op">&lt;-</span> <span class="fu"><a href="od_table.html">od_table</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">earnings</span><span class="op">$</span><span class="va">recode</span><span class="op">$</span></span></span>
-<span class="r-in"><span>  <span class="fu">total_codes</span><span class="op">(</span><span class="st">"C-A11-0"</span>, <span class="st">"A11-1"</span><span class="op">)</span><span class="op">$</span></span></span>
-<span class="r-in"><span>  <span class="fu">total_codes</span><span class="op">(</span><span class="st">"C-STAATS-0"</span>, <span class="st">"STAATS-9"</span><span class="op">)</span><span class="op">$</span></span></span>
-<span class="r-in"><span>  <span class="fu">total_codes</span><span class="op">(</span><span class="st">"C-VEBDL-0"</span>, <span class="st">"VEBDL-10"</span><span class="op">)</span><span class="op">$</span></span></span>
-<span class="r-in"><span>  <span class="fu">total_codes</span><span class="op">(</span><span class="st">"C-BESCHV-0"</span>, <span class="st">"BESCHV-1"</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">earnings</span><span class="op">$</span><span class="fu">total_codes</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="va">earnings</span> <span class="op">&lt;-</span> <span class="fu"><a href="od_table.html">od_table</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">earnings</span><span class="op">$</span><span class="va">recode</span><span class="op">$</span></span>
+<span class="r-in">  <span class="fu">total_codes</span><span class="op">(</span><span class="st">"C-A11-0"</span>, <span class="st">"A11-1"</span><span class="op">)</span><span class="op">$</span></span>
+<span class="r-in">  <span class="fu">total_codes</span><span class="op">(</span><span class="st">"C-STAATS-0"</span>, <span class="st">"STAATS-9"</span><span class="op">)</span><span class="op">$</span></span>
+<span class="r-in">  <span class="fu">total_codes</span><span class="op">(</span><span class="st">"C-VEBDL-0"</span>, <span class="st">"VEBDL-10"</span><span class="op">)</span><span class="op">$</span></span>
+<span class="r-in">  <span class="fu">total_codes</span><span class="op">(</span><span class="st">"C-BESCHV-0"</span>, <span class="st">"BESCHV-1"</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="va">earnings</span><span class="op">$</span><span class="fu">total_codes</span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 4 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">code</span>       <span style="font-weight: bold;">total_code</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
@@ -315,8 +315,8 @@ alternatively, an integer vector that defines the permutation.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> C-STAATS-0 STAATS-9  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> C-VEBDL-0  VEBDL-10  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> C-BESCHV-0 BESCHV-1  </span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"C-STAATS-0"</span><span class="op">)</span></span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"C-STAATS-0"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A STATcubeR tibble: 8 x 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">Citizenship</span>                  <span style="font-weight: bold;">Arith…¹</span> <span style="font-weight: bold;">1st q…²</span> <span style="font-weight: bold;">2nd q…³</span> <span style="font-weight: bold;">3rd q…⁴</span> <span style="font-weight: bold;">Numbe…⁵</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -331,8 +331,8 @@ alternatively, an integer vector that defines the permutation.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable names ¹​`Arithmetic mean`,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ²​`1st quartile`, ³​`2nd quartile (median)`, ⁴​`3rd quartile`,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁵​`Number of employees`</span></span>
-<span class="r-in"><span><span class="va">earnings</span><span class="op">$</span><span class="va">recode</span><span class="op">$</span><span class="fu">visible</span><span class="op">(</span><span class="st">"C-STAATS-0"</span>, <span class="st">"STAATS-8"</span>, <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"C-STAATS-0"</span><span class="op">)</span></span></span>
+<span class="r-in"><span class="va">earnings</span><span class="op">$</span><span class="va">recode</span><span class="op">$</span><span class="fu">visible</span><span class="op">(</span><span class="st">"C-STAATS-0"</span>, <span class="st">"STAATS-8"</span>, <span class="cn">FALSE</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"C-STAATS-0"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A STATcubeR tibble: 7 x 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">Citizenship</span>                  <span style="font-weight: bold;">Arith…¹</span> <span style="font-weight: bold;">1st q…²</span> <span style="font-weight: bold;">2nd q…³</span> <span style="font-weight: bold;">3rd q…⁴</span> <span style="font-weight: bold;">Numbe…⁵</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -346,9 +346,9 @@ alternatively, an integer vector that defines the permutation.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable names ¹​`Arithmetic mean`,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ²​`1st quartile`, ³​`2nd quartile (median)`, ⁴​`3rd quartile`,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ⁵​`Number of employees`</span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">earnings</span><span class="op">$</span><span class="va">recode</span><span class="op">$</span></span></span>
-<span class="r-in"><span>  <span class="fu">order</span><span class="op">(</span><span class="st">"C-A11-0"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A11-3"</span>, <span class="st">"A11-1"</span>, <span class="st">"A11-2"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="va">earnings</span><span class="op">$</span><span class="va">recode</span><span class="op">$</span></span>
+<span class="r-in">  <span class="fu">order</span><span class="op">(</span><span class="st">"C-A11-0"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A11-3"</span>, <span class="st">"A11-1"</span>, <span class="st">"A11-2"</span><span class="op">)</span><span class="op">)</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

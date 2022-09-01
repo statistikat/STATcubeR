@@ -25,10 +25,19 @@
     <loc>https://statistikat.github.io/STATcubeR/dev/articles/sc_data.html</loc>
   </url>
   <url>
+    <loc>https://statistikat.github.io/STATcubeR/dev/articles/sc_export.html</loc>
+  </url>
+  <url>
     <loc>https://statistikat.github.io/STATcubeR/dev/articles/sc_info.html</loc>
   </url>
   <url>
     <loc>https://statistikat.github.io/STATcubeR/dev/articles/sc_key.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/dev/articles/sc_last_error.html</loc>
+  </url>
+  <url>
+    <loc>https://statistikat.github.io/STATcubeR/dev/articles/sc_recode.html</loc>
   </url>
   <url>
     <loc>https://statistikat.github.io/STATcubeR/dev/articles/sc_schema.html</loc>

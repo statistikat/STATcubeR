@@ -6,7 +6,7 @@ sc_table_custom() uses the ids of a database, measures and fields
 sc_table_saved() uses a table uri of a saved table.
 
 
-Those three functions all return an object of class "sc_table".'><title>Create a request against the /table endpoint — sc_table • STATcubeR</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet"><meta property="og:title" content="Create a request against the /table endpoint — sc_table"><meta property="og:description" content='Send requests against the /table endpoint of the STATcube REST API. The
+Those three functions all return an object of class "sc_table".'><title>Create a request against the /table endpoint — sc_table • STATcubeR</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet"><meta property="og:title" content="Create a request against the /table endpoint — sc_table"><meta property="og:description" content='Send requests against the /table endpoint of the STATcube REST API. The
 requests can use three formats with corresponding functions
 sc_table() uses a json file downloaded via the STATcube GUI
 sc_table_custom() uses the ids of a database, measures and fields
@@ -24,7 +24,7 @@ Those three functions all return an object of class "sc_table".'><meta property=
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.3.4.4</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.4.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,19 +61,19 @@ Those three functions all return an object of class "sc_table".'><meta property=
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
-  <a class="external-link nav-link" href="https://data.statistik.gv.at">
+  <a class="external-link nav-link" href="https://data.statistik.gv.at" aria-label="open data portal">
     <span class="fas fa fas fa-table fa-lg"></span>
      
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/">
+  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/" aria-label="STATcube">
     <span class="fas fa fas fa-cube fa-lg"></span>
      
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/statistikat/STATcubeR/">
+  <a class="external-link nav-link" href="https://github.com/statistikat/STATcubeR/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -100,29 +100,29 @@ requests can use three formats with corresponding functions</p><ul><li><p><code>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">sc_table</span><span class="op">(</span></span>
-<span>  <span class="va">json_file</span>,</span>
-<span>  language <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"en"</span>, <span class="st">"de"</span>, <span class="st">"both"</span><span class="op">)</span>,</span>
-<span>  add_totals <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  key <span class="op">=</span> <span class="cn">NULL</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">sc_examples_list</span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">sc_example</span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">sc_table_custom</span><span class="op">(</span></span>
-<span>  <span class="va">db</span>,</span>
-<span>  <span class="va">measures</span>,</span>
-<span>  <span class="va">dimensions</span>,</span>
-<span>  language <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"en"</span>, <span class="st">"de"</span><span class="op">)</span>,</span>
-<span>  add_totals <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  key <span class="op">=</span> <span class="cn">NULL</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">sc_table_saved_list</span><span class="op">(</span>key <span class="op">=</span> <span class="cn">NULL</span>, server <span class="op">=</span> <span class="st">"ext"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">sc_table_saved</span><span class="op">(</span><span class="va">table_uri</span>, language <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"en"</span>, <span class="st">"de"</span><span class="op">)</span>, key <span class="op">=</span> <span class="cn">NULL</span>, server <span class="op">=</span> <span class="st">"ext"</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">sc_table</span><span class="op">(</span>
+  <span class="va">json_file</span>,
+  language <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"en"</span>, <span class="st">"de"</span>, <span class="st">"both"</span><span class="op">)</span>,
+  add_totals <span class="op">=</span> <span class="cn">TRUE</span>,
+  key <span class="op">=</span> <span class="cn">NULL</span>
+<span class="op">)</span>
+
+<span class="fu">sc_examples_list</span><span class="op">(</span><span class="op">)</span>
+
+<span class="fu">sc_example</span><span class="op">(</span><span class="va">filename</span><span class="op">)</span>
+
+<span class="fu">sc_table_custom</span><span class="op">(</span>
+  <span class="va">db</span>,
+  <span class="va">measures</span>,
+  <span class="va">dimensions</span>,
+  language <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"en"</span>, <span class="st">"de"</span><span class="op">)</span>,
+  add_totals <span class="op">=</span> <span class="cn">TRUE</span>,
+  key <span class="op">=</span> <span class="cn">NULL</span>
+<span class="op">)</span>
+
+<span class="fu">sc_table_saved_list</span><span class="op">(</span>key <span class="op">=</span> <span class="cn">NULL</span>, server <span class="op">=</span> <span class="st">"ext"</span><span class="op">)</span>
+
+<span class="fu">sc_table_saved</span><span class="op">(</span><span class="va">table_uri</span>, language <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"en"</span>, <span class="st">"de"</span><span class="op">)</span>, key <span class="op">=</span> <span class="cn">NULL</span>, server <span class="op">=</span> <span class="st">"ext"</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -190,10 +190,10 @@ provides member functions to parse this response object. See
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">my_table</span> <span class="op">&lt;-</span> <span class="fu">sc_table</span><span class="op">(</span>json_file <span class="op">=</span> <span class="fu">sc_example</span><span class="op">(</span><span class="st">"population_timeseries.json"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># print</span></span></span>
-<span class="r-in"><span><span class="va">my_table</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">my_table</span> <span class="op">&lt;-</span> <span class="fu">sc_table</span><span class="op">(</span>json_file <span class="op">=</span> <span class="fu">sc_example</span><span class="op">(</span><span class="st">"population_timeseries.json"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># print</span></span>
+<span class="r-in"><span class="va">my_table</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> An object of class sc_table</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Database    Population at the beginning of the quarter since 2002 </span>
@@ -201,11 +201,11 @@ provides member functions to parse this response object. See
 <span class="r-out co"><span class="r-pr">#&gt;</span> Fields      Quarter, Age in single years &lt;96&gt;, Sex &lt;2&gt;, Commune</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;2383&gt; (Province-District) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-08-29 09:52:04 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> STATcubeR   0.3.4.4</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># get matadata for the table</span></span></span>
-<span class="r-in"><span><span class="va">my_table</span><span class="op">$</span><span class="va">meta</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-08-31 10:25:31 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> STATcubeR   0.4.0</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># get matadata for the table</span></span>
+<span class="r-in"><span class="va">my_table</span><span class="op">$</span><span class="va">meta</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $source</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># STATcubeR metadata: 1 x 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">code</span>       <span style="font-weight: bold;">label</span>                                               <span style="font-weight: bold;">lang</span> </span>
@@ -230,9 +230,9 @@ provides member functions to parse this response object. See
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> C-C41-2    Commune &lt;2383&gt; (Province-District) SC_TOTAL  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 4 more columns: 'nitems', 'type', 'label_de', 'label_en'</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># get a data.frame</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">my_table</span><span class="op">)</span></span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># get a data.frame</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">my_table</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A STATcubeR tibble: 17,220 x 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="font-weight: bold;">Quarter</span>    <span style="font-weight: bold;">`Age in single years &lt;96&gt;`</span> <span style="font-weight: bold;">`Sex &lt;2&gt;`</span> <span style="font-weight: bold;">Commune &lt;…¹</span> <span style="font-weight: bold;">Numbe…²</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
@@ -248,9 +248,9 @@ provides member functions to parse this response object. See
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2002-01-01 Up to 14 years old         male      Total        <span style="text-decoration: underline;">689</span>766</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 17,210 more rows, and abbreviated variable names</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ¹​`Commune &lt;2383&gt; (Province-District)`, ²​`Number of persons`</span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># get metadata for field 2</span></span></span>
-<span class="r-in"><span><span class="va">my_table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># get metadata for field 2</span></span>
+<span class="r-in"><span class="va">my_table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># STATcubeR metadata: 7 x 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">code</span>     <span style="font-weight: bold;">label</span>              <span style="font-weight: bold;">parsed</span>            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
@@ -262,40 +262,40 @@ provides member functions to parse this response object. See
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> BESN07-6 75 plus years old  75 plus years old </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> SC_TOTAL Total              Total             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 4 more columns: 'label_de', 'label_en', 'visible', 'order'</span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">sc_table_custom</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  db <span class="op">=</span> <span class="st">"str:database:detouextregsai"</span>,</span></span>
-<span class="r-in"><span>  measures <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="st">"str:statfn:detouextregsai:F-DATA1:F-ANK:SUM"</span>,</span></span>
-<span class="r-in"><span>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-UEB"</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span>,</span></span>
-<span class="r-in"><span>  dimensions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="st">"str:field:detouextregsai:F-DATA1:C-SDB_TIT-0"</span>,</span></span>
-<span class="r-in"><span>    <span class="st">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93SUM-0"</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="fu">sc_table_custom</span><span class="op">(</span></span>
+<span class="r-in">  db <span class="op">=</span> <span class="st">"str:database:detouextregsai"</span>,</span>
+<span class="r-in">  measures <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span class="r-in">    <span class="st">"str:statfn:detouextregsai:F-DATA1:F-ANK:SUM"</span>,</span>
+<span class="r-in">    <span class="st">"str:measure:detouextregsai:F-DATA1:F-UEB"</span></span>
+<span class="r-in">  <span class="op">)</span>,</span>
+<span class="r-in">  dimensions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span class="r-in">    <span class="st">"str:field:detouextregsai:F-DATA1:C-SDB_TIT-0"</span>,</span>
+<span class="r-in">    <span class="st">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93SUM-0"</span></span>
+<span class="r-in">  <span class="op">)</span></span>
+<span class="r-in"><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> An object of class sc_table</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Database    Accomodation statistics as of 1974 according to seasons </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Measures    Arrivals, Nights spent </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Fields      Season/Tourism Month, Country of origin </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-08-29 09:52:13 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> STATcubeR   0.3.4.4</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># get the ids and labels of all saved tables</span></span></span>
-<span class="r-in"><span><span class="op">(</span><span class="va">saved_tables</span> <span class="op">&lt;-</span> <span class="fu">sc_table_saved_list</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-08-31 10:25:43 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> STATcubeR   0.4.0</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># get the ids and labels of all saved tables</span></span>
+<span class="r-in"><span class="op">(</span><span class="va">saved_tables</span> <span class="op">&lt;-</span> <span class="fu">sc_table_saved_list</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             label                                             id</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   Bier auf Wein str:table:4520fba3-dffd-4f2a-9cd1-d46d710b6da4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2    hierarchical str:table:1529fb5c-8f71-425c-bc95-a017f6534c8f</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3             neu str:table:4d55ca7c-e999-49e4-90f4-396163195da5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4 lebenserwartung str:table:b0f4779b-546e-4a6c-88a1-43038cdeaf7b</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5         test123 str:table:9ba81454-32f5-4ab7-b904-c446940946f5</span>
-<span class="r-in"><span><span class="va">table_uri</span> <span class="op">&lt;-</span> <span class="va">saved_tables</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># get a table based on one of these ids</span></span></span>
-<span class="r-in"><span><span class="va">my_response</span> <span class="op">&lt;-</span> <span class="fu">sc_table_saved</span><span class="op">(</span><span class="va">table_uri</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">my_response</span><span class="op">)</span></span></span>
+<span class="r-in"><span class="va">table_uri</span> <span class="op">&lt;-</span> <span class="va">saved_tables</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># get a table based on one of these ids</span></span>
+<span class="r-in"><span class="va">my_response</span> <span class="op">&lt;-</span> <span class="fu">sc_table_saved</span><span class="op">(</span><span class="va">table_uri</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">my_response</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A STATcubeR tibble: 156 x 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="font-weight: bold;">Year</span>       <span style="font-weight: bold;">`Wine colour`</span>     <span style="font-weight: bold;">`Production in hectolitres`</span> <span style="font-weight: bold;">Area in …¹</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
