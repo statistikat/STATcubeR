@@ -22,8 +22,8 @@ sc_example(filename)
 
 sc_table_custom(
   db,
-  measures,
-  dimensions,
+  measures = c(),
+  dimensions = c(),
   language = c("en", "de"),
   add_totals = TRUE,
   key = NULL

@@ -6,7 +6,7 @@
 #'   as `fields` in the parsed API response
 #' @rdname sc_table
 #' @export
-sc_table_custom <- function(db, measures, dimensions, language = c("en", "de"),
+sc_table_custom <- function(db, measures = c(), dimensions = c(), language = c("en", "de"),
                             add_totals = TRUE, key = NULL) {
   json_list <- list(database = db, measures = as.list(measures),
                     dimensions = lapply(dimensions, list))
