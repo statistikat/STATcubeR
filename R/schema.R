@@ -80,6 +80,9 @@ sc_schema_print_children <- function(x, message_empty = NULL) {
     data.frame(
       child = child_schemas,
       type = sapply(x[child_schemas], function(x) x$type),
+      n_childs = sapply(x[child_schemas], function(x) {
+        sum(sapply(x, class) == "sc_schema")
+      }),
       stringsAsFactors = FALSE
     ) %>% `class<-`(c("tbl", "data.frame")) %>% `row.names<-`(NULL) %>% print()
   } else if (!is.null(message_empty))
