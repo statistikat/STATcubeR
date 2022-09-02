@@ -49,6 +49,7 @@ articles:
   contents:
   - sc_cache
   - sc_table_custom
+  - sc_last_error
 
 home:
   title: STATcubeR

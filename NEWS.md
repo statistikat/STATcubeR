@@ -4,6 +4,7 @@
 * add `sc_schema_flatten()`
    * update `vignette("sc_schema")`
 * improve error handling when interacting with the REST API
+   * add `vignette("sc_last_error")`
 
 # STATcubeR 0.4.1
 
