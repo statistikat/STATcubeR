@@ -82,7 +82,7 @@ class to provide easy access to data and metadata. For example, the
 
 ```r
 # https://statcube.at/statcube/openinfopage?id=debevstandjbab2002
-population <- sc_table_saved("str:table:defaulttable_debevstandjbab2002")
+population <- sc_table_saved("defaulttable_debevstandjbab2002")
 population$tabulate()
 ```
 
