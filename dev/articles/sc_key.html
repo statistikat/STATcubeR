@@ -140,22 +140,24 @@ already logged in into STATcube&lt;/p&gt;"><sup>1</sup></a> of STATcube.</p>
 use the function <code><a href="../reference/sc_key.html">sc_key_set()</a></code>. Replace <code>"XXXX"</code>
 with your key.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/sc_key.html">sc_key_set</a></span><span class="op">(</span><span class="st">"XXXX"</span><span class="op">)</span>
-<span class="co">#&gt; The provided key will be available for this R session. Add</span>
-<span class="co">#&gt;</span>
-<span class="co">#&gt;   STATCUBE_KEY_EXT = XXXX</span>
-<span class="co">#&gt;</span>
-<span class="co">#&gt; to your .Renviron to set the key persistently</span></code></pre></div>
-<p>As suggested by the code output, the key will be used for any API
-requests that happen in the same R session. You can set the key
-persistently by modifying <code>.Renviron</code>. This can be done
-easily with <code><a href="https://usethis.r-lib.org/reference/edit.html" class="external-link">usethis::edit_r_environ()</a></code>.</p>
+<code class="sourceCode R"><span class="fu"><a href="../reference/sc_key.html">sc_key_set</a></span><span class="op">(</span><span class="st">"XXXX"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>The provided key will be available <span class="cf">for</span> this R session. Add</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  STATCUBE_KEY_EXT <span class="ot">=</span> XXXX</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>to your .Renviron to set the key persistently</span></code></pre></div>
+<p>As suggested by the code output, the key is checked using a test
+request. If the test request is successfull, the key will be used for
+any API requests that happen in the same R session in which
+<code><a href="../reference/sc_key.html">sc_key_set()</a></code> was called. You can set the key persistently
+by modifying <code>.Renviron</code>. This can be done easily with
+<code><a href="https://usethis.r-lib.org/reference/edit.html" class="external-link">usethis::edit_r_environ()</a></code>.</p>
 <p>By default, <code><a href="../reference/sc_key.html">sc_key_set()</a></code> will perform a test request to
 verify that the key is valid and throw an error if the test request is
 unsuccessfull.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/sc_key.html">sc_key_set</a></span><span class="op">(</span><span class="st">'wrong key'</span><span class="op">)</span>
-<span class="co">#&gt; Error in sc_key_set("wrong key") : The key could not be verified</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/sc_key.html">sc_key_set</a></span><span class="op">(</span><span class="st">"wrong key"</span><span class="op">)</span></code></pre></div>
+<pre><code>Error in sc_key_set("wrong key") : The key could not be verified</code></pre>
 </div>
 <div class="section level2">
 <h2 id="next-steps">Next Steps<a class="anchor" aria-label="anchor" href="#next-steps"></a>

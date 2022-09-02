@@ -86,6 +86,12 @@
 
 <span class="fu">sc_browse_preferences</span><span class="op">(</span>server <span class="op">=</span> <span class="st">"ext"</span><span class="op">)</span>
 
+<span class="fu">sc_browse_table</span><span class="op">(</span><span class="va">table</span>, server <span class="op">=</span> <span class="st">"ext"</span><span class="op">)</span>
+
+<span class="fu">sc_browse_database</span><span class="op">(</span><span class="va">database</span>, server <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
+
+<span class="fu">sc_browse_catalogue</span><span class="op">(</span>server <span class="op">=</span> <span class="st">"ext"</span><span class="op">)</span>
+
 <span class="fu">sc_browse_ogd</span><span class="op">(</span><span class="op">)</span></code></pre></div>
     </div>
 
@@ -96,18 +102,36 @@
 <code>"ext"</code>. Other options are <code>"red"</code> for the editing server and <code>"prod"</code> for
 the production server. External users should always use the default option <code>"ext"</code>.</p></dd>
 
+
+<dt>table</dt>
+<dd><p>a table id</p></dd>
+
+
+<dt>database</dt>
+<dd><p>a database id</p></dd>
+
 </dl></div>
+    <div class="section level2">
+    <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a></h2>
+    
+<ul><li><p><code>sc_browse_table()</code>: shows the info page for a table</p></li>
+<li><p><code>sc_browse_database()</code>: shows the info page for a database</p></li>
+<li><p><code>sc_browse_catalogue()</code>: shows the data catalogue explorer</p></li>
+</ul></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># Show starting page</span></span>
 <span class="r-in"><span class="fu">sc_browse</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://portal.statistik.at/statistik.at/ext/statcube/home"</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Show the preferences page with the API key</span></span>
 <span class="r-in"><span class="fu">sc_browse_preferences</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://portal.statistik.at/statistik.at/ext/statcube/jsf/preferences/editPreferences.xhtml"</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Show the landing page for OGD datasets</span></span>
 <span class="r-in"><span class="fu">sc_browse_ogd</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "https://data.statistik.gv.at/"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

@@ -108,6 +108,8 @@ tree object.</p>
 <span class="co"># S3 method for sc_schema</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span>, tree <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span>, limit <span class="op">=</span> <span class="fl">30</span><span class="op">)</span>
 
+<span class="fu">sc_schema_flatten</span><span class="op">(</span><span class="va">x</span>, <span class="va">type</span><span class="op">)</span>
+
 <span class="fu">sc_schema_catalogue</span><span class="op">(</span>
   depth <span class="op">=</span> <span class="st">"folder"</span>,
   language <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"en"</span>, <span class="st">"de"</span><span class="op">)</span>,
@@ -158,10 +160,20 @@ the production server. External users should always use the default option <code
 <dd><p>passed to <code><a href="https://rdrr.io/pkg/data.tree/man/print.Node.html" class="external-link">data.tree::print.Node()</a></code></p></dd>
 
 
+<dt>type</dt>
+<dd><p>a schema type such as "DATABASE", "VALUE" or "TABLE".
+See <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/schema-endpoint#id-.SchemaOpenDataAPIv9.9.6-SchemaTypesandAssociatedIDSchemes" class="external-link">the API reference</a> for a list of all scheme types.</p></dd>
+
+
 <dt>db_id</dt>
 <dd><p>a database id</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a></h2>
+    
+<ul><li><p><code>sc_schema_flatten()</code>: turns an sc_schema object into a <code>data.frame</code></p></li>
+</ul></div>
     <div class="section level2">
     <h2 id="printing-with-data-tree">Printing with data.tree<a class="anchor" aria-label="anchor" href="#printing-with-data-tree"></a></h2>
     
@@ -180,39 +192,40 @@ To use <code>data.tree</code> printing permanently, use</p>
 <span class="r-in"><span class="co">## print</span></span>
 <span class="r-in"><span class="va">my_catalogue</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> FOLDER: Extern V9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 9 × 2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">child</span>                     <span style="font-weight: bold;">type</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Examples                  FOLDER</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Publications and services FOLDER</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Default Tables            FOLDER</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Statistics                FOLDER</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Bier auf Wein             TABLE </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> hierarchical              TABLE </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> neu                       TABLE </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> lebenserwartung           TABLE </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">9</span> test123                   TABLE </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 9 × 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">child</span>                     <span style="font-weight: bold;">type</span>   <span style="font-weight: bold;">n_childs</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Examples                  FOLDER        9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Publications and services FOLDER        2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Default Tables            FOLDER        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Statistics                FOLDER       20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Bier auf Wein             TABLE         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> hierarchical              TABLE         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> neu                       TABLE         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> lebenserwartung           TABLE         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">9</span> test123                   TABLE         0</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co">## access the parsed catalogue</span></span>
 <span class="r-in"><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span><span class="op">$</span><span class="va">`Labour Market`</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> FOLDER: Labour Market</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 14 × 2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="font-weight: bold;">child</span>                                                      <span style="font-weight: bold;">type</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Job Seeker                                                 FOLDER  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Labour Market Policy                                       FOLDER  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Working Time                                               FOLDER  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Activity Status                                            FOLDER  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Employment                                                 FOLDER  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Job Vacancies                                              FOLDER  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Working hours (Labour Force Survey)                        DATABASE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Austrian Micro census - Labour Force Survey Yearly Data    DATABASE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Austrian Micro census - Labour Force Survey Quarterly Data DATABASE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Mikrozensus-Zeitreihe ab 1974                              DATABASE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> Standardtabelle / Default table (defaulttable_deake002q)   TABLE   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> Standardtabelle / Default table (defaulttable_deake005)    TABLE   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> Standardtabelle / Default table (defaulttable_deake001j)   TABLE   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> Standardtabelle / Default table (defaulttable_deake003j)   TABLE   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 14 × 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="font-weight: bold;">child</span>                                              <span style="font-weight: bold;">type</span>     <span style="font-weight: bold;">n_chi…¹</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Job Seeker                                         FOLDER         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Labour Market Policy                               FOLDER         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Working Time                                       FOLDER         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Activity Status                                    FOLDER         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Employment                                         FOLDER         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Job Vacancies                                      FOLDER         4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Working hours (Labour Force Survey)                DATABASE       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Austrian Micro census - Labour Force Survey Yearl… DATABASE       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Austrian Micro census - Labour Force Survey Quart… DATABASE       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Mikrozensus-Zeitreihe ab 1974                      DATABASE       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> Standardtabelle / Default table (defaulttable_dea… TABLE          0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> Standardtabelle / Default table (defaulttable_dea… TABLE          0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> Standardtabelle / Default table (defaulttable_dea… TABLE          0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> Standardtabelle / Default table (defaulttable_dea… TABLE          0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable name ¹​n_childs</span></span>
 <span class="r-in"><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span><span class="op">$</span><span class="va">`Labour Market`</span><span class="op">$</span><span class="va">`Working hours (Labour Force Survey)`</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> DATABASE: Working hours (Labour Force Survey)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> # Get more info with `sc_schema_db('str:database:deake005')` </span>
@@ -222,40 +235,41 @@ To use <code>data.tree</code> printing permanently, use</p>
 <span class="r-in"><span class="co"># printing</span></span>
 <span class="r-in"><span class="va">db_schema</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> DATABASE: Working hours (Labour Force Survey)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 8 × 2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">child</span>                                <span style="font-weight: bold;">type</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Factors                              GROUP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Datensätze/Records                   GROUP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Time (mandatory field)               GROUP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Demographic Characteristics          GROUP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Employment Characteristics           GROUP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Working Time                         GROUP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> Characteristics of second employment GROUP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> Geographic Characteristics           GROUP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 8 × 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">child</span>                                <span style="font-weight: bold;">type</span>  <span style="font-weight: bold;">n_childs</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Factors                              GROUP        9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Datensätze/Records                   GROUP        1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Time (mandatory field)               GROUP        1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Demographic Characteristics          GROUP        8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Employment Characteristics           GROUP        6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Working Time                         GROUP        5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> Characteristics of second employment GROUP        6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> Geographic Characteristics           GROUP        1</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># access child nodes</span></span>
 <span class="r-in"><span class="va">db_schema</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GROUP: Demographic Characteristics</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 8 × 2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">child</span>                                                         <span style="font-weight: bold;">type</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Gender                                                        FIELD</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Age in years-groups                                           FIELD</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Highest level of training completed (national classification) FIELD</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Highest level of training completed (ISCED 97)                FIELD</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Highest level of training completed (ISCED 2011)              FIELD</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Nationality                                                   FIELD</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> Country of birth                                              FIELD</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> Migration background                                          FIELD</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 8 × 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">child</span>                                                  <span style="font-weight: bold;">type</span>  <span style="font-weight: bold;">n_chi…¹</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Gender                                                 FIELD       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Age in years-groups                                    FIELD       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Highest level of training completed (national classif… FIELD       2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Highest level of training completed (ISCED 97)         FIELD       2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Highest level of training completed (ISCED 2011)       FIELD       2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Nationality                                            FIELD       2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> Country of birth                                       FIELD       2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> Migration background                                   FIELD       2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable name ¹​n_childs</span></span>
 <span class="r-in"><span class="va">db_schema</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span><span class="op">$</span><span class="va">Gender</span><span class="op">$</span><span class="va">Gender</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> VALUESET: Gender</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 3 × 2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">child</span>                <span style="font-weight: bold;">type</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> male                 VALUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> female               VALUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Not classifiable &lt;0&gt; VALUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 3 × 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">child</span>                <span style="font-weight: bold;">type</span>  <span style="font-weight: bold;">n_childs</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> male                 VALUE        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> female               VALUE        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Not classifiable &lt;0&gt; VALUE        0</span>
 <span class="r-in"><span class="va">db_schema</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span><span class="op">$</span><span class="va">Gender</span><span class="op">$</span><span class="va">Gender</span><span class="op">$</span><span class="va">male</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> VALUE: male</span>
 <span class="r-in"></span>

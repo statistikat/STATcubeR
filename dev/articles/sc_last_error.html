@@ -126,14 +126,19 @@ pre, pre code {
 <script>$(document).ready(function () {
     window.setTimeout("tippy('.STATcubeR', {allowHTML: true, theme:'light rounded'});", 50);
     });
-    </script><p>Unlike <a href="https://httr.r-lib.org/" class="external-link">httr</a>,
+    </script><p>This article explains how
 <a href="../index.html" data-tippy-content="
   &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
   Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
   " class="STATcubeR">STATcubeR</a>
-will convert all http errors into R errors. More precisely, the
-following conditions are checked to determine wether a request to the
-STATcube API was successful</p>
+deals with situations where the communication with the STATcube REST API
+leads to exceptions such as error codes.</p>
+<div class="section level2">
+<h2 id="throw-all-the-errors">Throw all the Errors<a class="anchor" aria-label="anchor" href="#throw-all-the-errors"></a>
+</h2>
+<p>All http errors codes from the REST API will be turned into R errors.
+More precisely, the following conditions are checked to determine wether
+a request to the STATcube API was successful</p>
 <ul>
 <li>The response returns <code>FALSE</code> for
 <code><a href="https://httr.r-lib.org/reference/http_error.html" class="external-link">httr::http_error()</a></code> which means the response status is less
@@ -143,6 +148,17 @@ reference</a> for more information about http status codes.</li>
 </ul>
 <p>If at least one of those two conditions is not met, an error is
 thrown.</p>
+<p>This is different from the approach taken by other API clients, which
+will retry requests after certain timeouts or return an “error object”.
+However, the
+<a href="../index.html" data-tippy-content="
+  &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
+  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  " class="STATcubeR">STATcubeR</a>
+developers are of the opinion that throwing errors is a better idea
+because this will interrupt workflow scripts which rely on STATcube
+data.</p>
+</div>
 <div class="section level2">
 <h2 id="get-details-about-errors">Get details about errors<a class="anchor" aria-label="anchor" href="#get-details-about-errors"></a>
 </h2>
@@ -172,10 +188,12 @@ yourself. See <code><a href="https://httr.r-lib.org/reference/content.html" clas
 <div class="section level2">
 <h2 id="common-errors">Common Errors<a class="anchor" aria-label="anchor" href="#common-errors"></a>
 </h2>
-<p>This section showcases the most common types of errors and their
-error messages.</p>
+<p>This section showcases the most common types of errors that you might
+encounter when interacting with the API. Please feel free to open a new
+issue on the <a href="https://github.com/statistikat/STATcubeR/issues" class="external-link">STATcubeR issue
+tracker</a> if you get an error which is not listed here.</p>
 <div class="section level3">
-<h3 id="invalid-api-key">Invalid API key<a class="anchor" aria-label="anchor" href="#invalid-api-key"></a>
+<h3 id="invalid-api-key">Invalid API Key<a class="anchor" aria-label="anchor" href="#invalid-api-key"></a>
 </h3>
 <p>If an invalid API key is used for a request, a 401 status is
 returned.</p>
@@ -183,8 +201,8 @@ returned.</p>
 <code class="sourceCode R"><span class="fu">sc_schema_info</span><span class="op">(</span>key <span class="op">=</span> <span class="st">"wrong key"</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">#&gt; Error: Client error: (401) Unauthorized</span>
 <span class="co">#&gt; {</span>
-<span class="co">#&gt;     "message": "Error authenticating API key. Please contact your system administrator.",</span>
-<span class="co">#&gt;     "errorType": "AUTHENTICATION"</span>
+<span class="co">#&gt;   "message": "Error authenticating API key. Please contact your system administrator.",</span>
+<span class="co">#&gt;   "errorType": "AUTHENTICATION"</span>
 <span class="co">#&gt; }</span>
 <span class="co">#&gt; see <span style="color: #555555;">sc_last_error()</span> for more details</span></code></pre>
 <p>This example passes the API key as a parameter for simplicity. In
@@ -196,12 +214,50 @@ practice, you should set up your key according to the
 &lt;/div&gt;'>API key article</a>.</p>
 </div>
 <div class="section level3">
+<h3 id="api-not-accessible">API Not Accessible<a class="anchor" aria-label="anchor" href="#api-not-accessible"></a>
+</h3>
+<p>This occurs if
+<a href="../index.html" data-tippy-content="
+  &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
+  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  " class="STATcubeR">STATcubeR</a>
+tries to send requests to a server which is not accessible for the
+current environment. This will result in a timout error.</p>
+<pre><code>Error in curl::curl_fetch_memory(url, handle = handle) : 
+  Timeout was reached: [${server}] Resolving timed out after 10000 milliseconds</code></pre>
+<p>Outside of the Statistics Austria firewall, the only working base URL
+is the following.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">STATcubeR</span><span class="fu">:::</span><span class="fu">base_url</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">#&gt; [1] "https://statcubeapi.statistik.at/statistik.at/ext/statcube/rest/v1"</span></code></pre>
+<p>Reasons this error might occur</p>
+<ol style="list-style-type: decimal">
+<li>Your package Version of
+<a href="../index.html" data-tippy-content="
+  &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
+  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  " class="STATcubeR">STATcubeR</a>
+is outdated (version &lt; 0.4.0)</li>
+<li>Your company uses a firewall that blocks API requests from
+leaving.</li>
+<li>You manually set the <code>server</code> parameter in one of the API
+functions (<code><a href="../reference/sc_table.html">sc_table()</a></code>, <code><a href="../reference/sc_schema.html">sc_schema()</a></code>, …) to
+something other than <code>"ext"</code>.</li>
+<li>(Statistics Austria Employees only) You downloaded a json request
+from one of our internal STATcube servers and try to use this request
+with <code><a href="../reference/sc_table.html">sc_table()</a></code> from outside.</li>
+</ol>
+<p>Note to future-self: It might be a good idea to set up some
+environment variables on Statistic Austrias internal R servers to avoid
+(3) and (4).</p>
+</div>
+<div class="section level3">
 <h3 id="rate-limit-exceeded">Rate Limit Exceeded<a class="anchor" aria-label="anchor" href="#rate-limit-exceeded"></a>
 </h3>
 <p>If the rate limit for the amount of requests against the
 <code>/table</code> endpoint is exceeded, the following error will be
 shown.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/sc_table.html">sc_table_saved</a></span><span class="op">(</span><span class="st">"defaulttable_deake005"</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">#&gt; Error: expected a response of type "application/json" but got "text/html"</span>
 <span class="co">#&gt;   possible reasons:</span>
@@ -219,13 +275,13 @@ below). This is why the error message lists two possible reasons.</p>
 </h3>
 <p>Invalid URIs used with <code>sc_schema</code> will be displayed with
 a special error type <code>SCHEMA_COMPONENT_NOT_FOUND</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/sc_schema.html">sc_schema</a></span><span class="op">(</span><span class="st">"invalid_uri"</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">#&gt; Error: Client error: (400) Bad Request</span>
 <span class="co">#&gt; {</span>
-<span class="co">#&gt;     "message": "Could not find the requested component: invalid_uri.",</span>
-<span class="co">#&gt;     "errorType": "SCHEMA_COMPONENT_NOT_FOUND",</span>
-<span class="co">#&gt;     "component": "invalid_uri"</span>
+<span class="co">#&gt;   "message": "Could not find the requested component: invalid_uri.",</span>
+<span class="co">#&gt;   "errorType": "SCHEMA_COMPONENT_NOT_FOUND",</span>
+<span class="co">#&gt;   "component": "invalid_uri"</span>
 <span class="co">#&gt; }</span>
 <span class="co">#&gt; see <span style="color: #555555;">sc_last_error()</span> for more details</span></code></pre>
 </div>
@@ -242,13 +298,13 @@ the function <code><a href="../reference/sc_table.html">sc_table_saved()</a></co
 tables and tables that are saved under the current user. If an invalid
 table URI is passed, the server will respond with a status code of
 400.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/sc_table.html">sc_table_saved</a></span><span class="op">(</span><span class="st">"invalid_uri"</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">#&gt; Error: Client error: (400) Bad Request</span>
 <span class="co">#&gt; {</span>
-<span class="co">#&gt;     "message": "The requested TXD 'str:table:invalid_uri' could not be found for the current user.",</span>
-<span class="co">#&gt;     "errorType": "TXD_NOT_FOUND",</span>
-<span class="co">#&gt;     "component": "str:table:invalid_uri"</span>
+<span class="co">#&gt;   "message": "The requested TXD 'str:table:invalid_uri' could not be found for the current user.",</span>
+<span class="co">#&gt;   "errorType": "TXD_NOT_FOUND",</span>
+<span class="co">#&gt;   "component": "str:table:invalid_uri"</span>
 <span class="co">#&gt; }</span>
 <span class="co">#&gt; see <span style="color: #555555;">sc_last_error()</span> for more details</span></code></pre>
 </div>
@@ -257,16 +313,19 @@ table URI is passed, the server will respond with a status code of
 </h3>
 <p>If a request against the <code>/table</code> endpoint uses an invalid
 URI in the json body, this will trigger a content-type error. To
-showcase this, <code><a href="../reference/sc_table.html">sc_table_custom()</a></code> is used. However, invalid
-URIs that are used with <code><a href="../reference/sc_table.html">sc_table()</a></code> will throw the same
+showcase this, <code><a href="../reference/sc_table.html">sc_table()</a></code> is used. However, invalid URIs
+that are used with <code><a href="../reference/sc_table.html">sc_table_custom()</a></code> will throw the same
 error.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/sc_table.html">sc_table_custom</a></span><span class="op">(</span>
-  <span class="st">"str:database:detouextregsai"</span>, 
-  <span class="st">"str:measure:detouextregsai:F-DATA1:WRONG_URI"</span>, 
-  <span class="st">"str:field:detouextregsai:F-DATA1:C-SDB_TIT-0"</span>
-<span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="st">"request.json"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span>sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"database"</span><span class="fu">:</span> <span class="st">"str:database:detouextregsai"</span><span class="fu">,</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"measures"</span><span class="fu">:</span> <span class="ot">[</span> <span class="st">"str:measure:detouextregsai:F-DATA1:INVALID"</span> <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"dimensions"</span><span class="fu">:</span> <span class="ot">[[</span> <span class="st">"str:field:detouextregsai:F-DATA1:C-SDB_TIT-0"</span> <span class="ot">]]</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="st">"request.json"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#&gt; Error: expected a response of type "application/json" but got "text/html"</span>
 <span class="co">#&gt;   possible reasons:</span>
 <span class="co">#&gt;   - rate limit exceeded. Check with sc_rate_limit_table()</span>
@@ -288,6 +347,34 @@ valid URIs. However, if you either modify the downloaded json requests
 or use <code><a href="../reference/sc_table.html">sc_table_custom()</a></code>, the reason “invalid json body” is
 plausible.</p>
 </div>
+</div>
+<div class="section level2">
+<h2 id="custom-error-handling">Custom Error Handling<a class="anchor" aria-label="anchor" href="#custom-error-handling"></a>
+</h2>
+<p>If you want to use your own error-handling instead of the default
+<a href="../index.html" data-tippy-content="
+  &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
+  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  " class="STATcubeR">STATcubeR</a>
+error handlers, you can get started with the following code sample from
+one of our <a href="https://shiny.rstudio.com/" class="external-link">shiny</a> applications.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">shiny</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/observeEvent.html" class="external-link">observeEvent</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">button_load_data</span>, <span class="op">{</span>
+  <span class="va">table</span> <span class="op">&lt;-</span> <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">STATcubeR</span><span class="fu">::</span><span class="fu"><a href="../reference/sc_table.html">sc_table_saved</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id</span><span class="op">)</span><span class="op">)</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">inherits</a></span><span class="op">(</span><span class="va">table</span>, <span class="st">"try-error"</span><span class="op">)</span><span class="op">)</span>
+    <span class="fu">STATcubeR</span><span class="fu">::</span><span class="fu"><a href="../reference/sc_last_error.html">sc_last_error_parsed</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu">myApp</span><span class="fu">::</span><span class="fu">show_error_prompt</span><span class="op">(</span><span class="op">)</span>
+  <span class="kw">else</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">table</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu">myApp</span><span class="fu">::</span><span class="fu">process_data</span><span class="op">(</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span></code></pre></div>
+<p><code><a href="https://rdrr.io/r/base/try.html" class="external-link">try()</a></code> will turn errors into “error-objects” of class
+<code>"try-error"</code>. A conditional is then used to perform
+different actions for successfull and unsccessfull requests. If an error
+occurs, the error details are fetched via
+<code><a href="../reference/sc_last_error.html">sc_last_error_parsed()</a></code> and then sent to an error handler.
+Otherwise, the return value from <code><a href="../reference/sc_table.html">sc_table_saved()</a></code> is
+processed by the success handler.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
