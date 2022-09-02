@@ -1,3 +1,15 @@
+# STATcubeR 0.4.2
+
+* add `sc_browse_catalogue()`, `sc_browse_database()` and `sc_browse_table()`
+* add `sc_schema_flatten()`
+   * update `vignette("sc_schema")`
+* improve error handling when interacting with the REST API
+
+# STATcubeR 0.4.1
+
+* adapt `od_list()` to data.statistik.at update ([`ea59c71`](https://github.com/statistikat/STATcubeR/commit/ea59c718edec373ba71074005099ef519033bf51))
+* extend support for rate limits and update `vignette("sc_info")`
+
 # STATcubeR 0.4.0
 
 * Documentation updates
