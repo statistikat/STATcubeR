@@ -96,3 +96,30 @@ sc_as_nested_list <- function(x) {
   class(ret) <- "sc_schema"
   ret
 }
+
+#' @describeIn sc_schema turns an sc_schema object into a `data.frame`
+#' @param type a schema type such as "DATABASE", "VALUE" or "TABLE".
+#'   See \href{https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/schema-endpoint#id-.SchemaOpenDataAPIv9.9.6-SchemaTypesandAssociatedIDSchemes}{the API reference} for a list of all scheme types.
+#' @export
+sc_schema_flatten <- function(x, type) {
+  stopifnot(inherits(x, "sc_schema"))
+  response <- attr(x, "response")
+  stopifnot(!is.null(response))
+  response <- httr::content(response)
+  flattened <- sc_schema_flatten_impl(response, type)
+  flattened <- as.data.frame(flattened, stringsAsFactors = FALSE)
+  class(flattened) <- c("tbl", "data.frame")
+  flattened
+}
+
+sc_schema_flatten_impl <- function(resp, type) {
+  if (resp$type == type)
+    return(list(id = resp$id, label = resp$label))
+  if (is.null(resp$children))
+    return(NULL)
+  ret <- lapply(resp$children, sc_schema_flatten_impl, type)
+  list(
+    id = lapply(ret, function(x) { x$id }) %>% unlist(),
+    label = lapply(ret, function(x) { x$label }) %>% unlist()
+  )
+}

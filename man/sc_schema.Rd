@@ -3,6 +3,7 @@
 \name{sc_schema}
 \alias{sc_schema}
 \alias{print.sc_schema}
+\alias{sc_schema_flatten}
 \alias{sc_schema_catalogue}
 \alias{sc_schema_db}
 \title{Create a request against the /schema endpoint}
@@ -16,6 +17,8 @@ sc_schema(
 )
 
 \method{print}{sc_schema}(x, tree = NULL, ..., limit = 30)
+
+sc_schema_flatten(x, type)
 
 sc_schema_catalogue(
   depth = "folder",
@@ -49,6 +52,9 @@ the production server. External users should always use the default option \code
 
 \item{limit, ...}{passed to \code{\link[data.tree:print.Node]{data.tree::print.Node()}}}
 
+\item{type}{a schema type such as "DATABASE", "VALUE" or "TABLE".
+See \href{https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/schema-endpoint#id-.SchemaOpenDataAPIv9.9.6-SchemaTypesandAssociatedIDSchemes}{the API reference} for a list of all scheme types.}
+
 \item{db_id}{a database id}
 }
 \description{
@@ -59,6 +65,11 @@ recurse into all valuesets and return a list of all resources available
 tor the specific dataset. The return values can be displayed as a
 tree object.
 }
+\section{Functions}{
+\itemize{
+\item \code{sc_schema_flatten()}: turns an sc_schema object into a \code{data.frame}
+
+}}
 \section{Printing with data.tree}{
 
 \code{limit} and \code{...} will simply be ignored if \code{tree} is set to \code{FALSE}, which is
