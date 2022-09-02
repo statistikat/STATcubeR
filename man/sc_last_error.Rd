@@ -35,7 +35,7 @@ the response content and the response status
 \dontshow{if (sc_key_exists()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 try(sc_table_saved("invalid_id"))
 last_error <- sc_last_error()
-httr::http_status(last_error)
-sc_last_error_parsed()
+httr::content(last_error)
+sc_last_error_parsed() \%>\% str()
 \dontshow{\}) # examplesIf}
 }

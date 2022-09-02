@@ -14,8 +14,8 @@
 #' @examplesIf sc_key_exists()
 #' try(sc_table_saved("invalid_id"))
 #' last_error <- sc_last_error()
-#' httr::http_status(last_error)
-#' sc_last_error_parsed()
+#' httr::content(last_error)
+#' sc_last_error_parsed() %>% str()
 #' @export
 sc_last_error <- function() {
   sc_env$last_error
@@ -34,12 +34,27 @@ sc_last_error_parsed <- function() {
 
 sc_env <- new.env(parent = emptyenv())
 
+message_sc_last_error <- "see \033[90msc_last_error()\033[39m for more details"
+
 sc_check_response <- function(response) {
   stopifnot(inherits(response, "response"))
-  if (httr::http_error(response) || (httr::http_type(response) != "application/json")) {
+  if (httr::http_error(response)) {
     sc_env$last_error <- response
-    httr::stop_for_status(response)
-    stop("API did not return json")
+    message <- paste0(httr::http_status(response)$message, "\n")
+    if (httr::http_type(response) == "application/json")
+      message <- httr::content(response, as = "text") %>%
+        jsonlite::prettify(indent = 2) %>% paste0(message, .)
+    message <- paste0(message, message_sc_last_error)
+    stop(message, call. = FALSE)
+  }
+  if (httr::http_type(response) != "application/json") {
+    sc_env$last_error <- response
+    stop("expected a response of type \"application/json\" but got \"",
+         httr::http_type(response), "\"\n",
+         "  possible reasons:\n  - rate limit exceeded. ",
+         "Check with \033[90msc_rate_limit_table()\033[39m\n  ",
+         "- invalid json body (sc_table, sc_table_custom)\n  ",
+         message_sc_last_error, call. = FALSE)
   }
   response$request$headers["APIKey"] <- "HIDDEN"
   invisible(response)
