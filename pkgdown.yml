@@ -9,12 +9,13 @@ articles:
   sc_data: sc_data.html
   sc_info: sc_info.html
   sc_key: sc_key.html
+  sc_last_error: sc_last_error.html
   sc_schema: sc_schema.html
   sc_table: sc_table.html
   sc_table_custom: sc_table_custom.html
   sc_table_saved: sc_table_saved.html
   sc_tabulate: sc_tabulate.html
-last_built: 2022-08-31T16:54Z
+last_built: 2022-09-02T12:25Z
 urls:
   reference: https://statistikat.github.io/STATcubeR/reference
   article: https://statistikat.github.io/STATcubeR/articles

@@ -24,7 +24,7 @@ Those three functions all return an object of class "sc_table".'><meta property=
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,19 +61,19 @@ Those three functions all return an object of class "sc_table".'><meta property=
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
-  <a class="external-link nav-link" href="https://data.statistik.gv.at">
+  <a class="external-link nav-link" href="https://data.statistik.gv.at" aria-label="open data portal">
     <span class="fas fa fas fa-table fa-lg"></span>
      
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/">
+  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/" aria-label="STATcube">
     <span class="fas fa fas fa-cube fa-lg"></span>
      
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/statistikat/STATcubeR/">
+  <a class="external-link nav-link" href="https://github.com/statistikat/STATcubeR/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -113,8 +113,8 @@ requests can use three formats with corresponding functions</p><ul><li><p><code>
 <span></span>
 <span><span class="fu">sc_table_custom</span><span class="op">(</span></span>
 <span>  <span class="va">db</span>,</span>
-<span>  <span class="va">measures</span>,</span>
-<span>  <span class="va">dimensions</span>,</span>
+<span>  measures <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  dimensions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  language <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"en"</span>, <span class="st">"de"</span><span class="op">)</span>,</span>
 <span>  add_totals <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  key <span class="op">=</span> <span class="cn">NULL</span></span>
@@ -202,7 +202,7 @@ provides member functions to parse this response object. See
 <span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;2383&gt; (Province-District) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-08-29 09:52:04 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> STATcubeR   0.4.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> STATcubeR   0.4.0 (@425a2f7)</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># get matadata for the table</span></span></span>
 <span class="r-in"><span><span class="va">my_table</span><span class="op">$</span><span class="va">meta</span></span></span>
@@ -281,7 +281,7 @@ provides member functions to parse this response object. See
 <span class="r-out co"><span class="r-pr">#&gt;</span> Fields      Season/Tourism Month, Country of origin </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-08-29 09:52:13 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> STATcubeR   0.4.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> STATcubeR   0.4.0 (@425a2f7)</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># get the ids and labels of all saved tables</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">saved_tables</span> <span class="op">&lt;-</span> <span class="fu">sc_table_saved_list</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>

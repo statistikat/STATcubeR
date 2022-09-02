@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,19 +47,19 @@
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
-  <a class="external-link nav-link" href="https://data.statistik.gv.at">
+  <a class="external-link nav-link" href="https://data.statistik.gv.at" aria-label="open data portal">
     <span class="fas fa fas fa-table fa-lg"></span>
      
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/">
+  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/" aria-label="STATcube">
     <span class="fas fa fas fa-cube fa-lg"></span>
      
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/statistikat/STATcubeR/">
+  <a class="external-link nav-link" href="https://github.com/statistikat/STATcubeR/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -86,6 +86,12 @@
 <span></span>
 <span><span class="fu">sc_browse_preferences</span><span class="op">(</span>server <span class="op">=</span> <span class="st">"ext"</span><span class="op">)</span></span>
 <span></span>
+<span><span class="fu">sc_browse_table</span><span class="op">(</span><span class="va">table</span>, server <span class="op">=</span> <span class="st">"ext"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">sc_browse_database</span><span class="op">(</span><span class="va">database</span>, server <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">sc_browse_catalogue</span><span class="op">(</span>server <span class="op">=</span> <span class="st">"ext"</span><span class="op">)</span></span>
+<span></span>
 <span><span class="fu">sc_browse_ogd</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -96,7 +102,22 @@
 <code>"ext"</code>. Other options are <code>"red"</code> for the editing server and <code>"prod"</code> for
 the production server. External users should always use the default option <code>"ext"</code>.</p></dd>
 
+
+<dt>table</dt>
+<dd><p>a table id</p></dd>
+
+
+<dt>database</dt>
+<dd><p>a database id</p></dd>
+
 </dl></div>
+    <div class="section level2">
+    <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a></h2>
+    
+<ul><li><p><code>sc_browse_table()</code>: shows the info page for a table</p></li>
+<li><p><code>sc_browse_database()</code>: shows the info page for a database</p></li>
+<li><p><code>sc_browse_catalogue()</code>: shows the data catalogue explorer</p></li>
+</ul></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>

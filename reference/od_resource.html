@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,19 +47,19 @@
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
-  <a class="external-link nav-link" href="https://data.statistik.gv.at">
+  <a class="external-link nav-link" href="https://data.statistik.gv.at" aria-label="open data portal">
     <span class="fas fa fas fa-table fa-lg"></span>
      
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/">
+  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/" aria-label="STATcube">
     <span class="fas fa fas fa-cube fa-lg"></span>
      
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/statistikat/STATcubeR/">
+  <a class="external-link nav-link" href="https://github.com/statistikat/STATcubeR/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -173,12 +173,12 @@ That is, if a json is requested, it will be reused from the cache unless the
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 6 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">name</span>    <span style="font-weight: bold;">last_modified</span>       <span style="font-weight: bold;">cached</span>               <span style="font-weight: bold;">size</span> <span style="font-weight: bold;">downl…¹</span> <span style="font-weight: bold;">parsed</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>  <span style="text-decoration: underline;">4</span>931      <span style="color: #BB0000;">NA</span>  0.814</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   516      <span style="color: #BB0000;">NA</span>  0.659</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   159      <span style="color: #BB0000;">NA</span>  0.636</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   697      <span style="color: #BB0000;">NA</span>  0.670</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   518      <span style="color: #BB0000;">NA</span>  0.643</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   641      <span style="color: #BB0000;">NA</span>  0.642</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>  <span style="text-decoration: underline;">4</span>931      <span style="color: #BB0000;">NA</span>  0.860</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   516      <span style="color: #BB0000;">NA</span>  0.549</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   159      <span style="color: #BB0000;">NA</span>  0.494</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   697      <span style="color: #BB0000;">NA</span>  0.505</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   518      <span style="color: #BB0000;">NA</span>  0.504</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   641      <span style="color: #BB0000;">NA</span>  0.489</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 1 more variable: </span><span style="color: #949494; font-weight: bold;">data</span><span style="color: #949494;"> &lt;I&lt;list&gt;&gt;, and abbreviated variable</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   name ¹​download</span></span>
 </code></pre></div>

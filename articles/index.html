@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,19 +47,19 @@
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
-  <a class="external-link nav-link" href="https://data.statistik.gv.at">
+  <a class="external-link nav-link" href="https://data.statistik.gv.at" aria-label="open data portal">
     <span class="fas fa fas fa-table fa-lg"></span>
      
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/">
+  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/" aria-label="STATcube">
     <span class="fas fa fas fa-cube fa-lg"></span>
      
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/statistikat/STATcubeR/">
+  <a class="external-link nav-link" href="https://github.com/statistikat/STATcubeR/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -117,6 +117,8 @@
         <dd><p>STATcubeR can be configured to cache API responses and reuse them later. This article describes the necessary setup as well as potential usecases.</p>
         </dd><dt><a href="sc_table_custom.html">Define Custom Tables</a></dt>
         <dd><p>Define custom requests against the <code>/table</code> endpoint programatically by providing character vectors with ids of databases, measures and classification fields.</p>
+        </dd><dt><a href="sc_last_error.html">Handling API Errors</a></dt>
+        <dd><p>STATcubeR converts all http errors into R errors. This atricle explains how this conversion happens and showcases some common error messages.</p>
       </dd></dl></div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
