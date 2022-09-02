@@ -94,10 +94,13 @@ navbar:
   right:
   - icon: fas fa-table fa-lg
     href: https://data.statistik.gv.at
+    aria-label: open data portal
   - icon: fas fa-cube fa-lg
     href: https://www.statistik.at/web_de/services/statcube/
+    aria-label: STATcube
   - icon: fab fa-github fa-lg
     href: https://github.com/statistikat/STATcubeR/
+    aria-label: github
 
 reference:
 - title: Open Government Data
