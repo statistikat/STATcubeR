@@ -22,6 +22,28 @@ sc_browse_preferences <- function(server = "ext") {
   sc_url(sc_url_gui(server), "jsf/preferences/editPreferences.xhtml")
 }
 
+#' @describeIn sc_browse shows the info page for a table
+#' @param table a table id
+#' @export
+sc_browse_table <- function(table, server = "ext") {
+  sc_url(sc_url_gui(server), "openinfopage?tableId=", table)
+}
+
+#' @describeIn sc_browse shows the info page for a database
+#' @param database a database id
+#' @export
+sc_browse_database <- function(database, server = NULL) {
+  if (is.null(server))
+    server <- sc_database_get_server(paste0("str:database:", database))
+  sc_url(sc_url_gui(server), "?openinfopage?id=", database)
+}
+
+#' @describeIn sc_browse shows the data catalogue explorer
+#' @export
+sc_browse_catalogue <- function(server = "ext") {
+  sc_url(sc_url_gui(server), "jsf/dataCatalogueExplorer.xhtml")
+}
+
 #' @rdname sc_browse
 #' @examples
 #' # Show the landing page for OGD datasets
