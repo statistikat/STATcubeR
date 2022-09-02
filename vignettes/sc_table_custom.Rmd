@@ -15,49 +15,113 @@ if (!sc_key_exists())
   knitr::opts_chunk$set(eval = FALSE)
 ```
 
-Another way to import STATcube Data into R is the use of a custom table. This
-function requires the three arguments.
+The function `sc_table_custom()` allows you to define requests against the `/table` endpoint programatically.
+This can be useful to automate the generation of `/table` request rather than relying on the GUI to do so.
+The function accepts the three arguments.
 
 * A database id
 * ids of measures to be imported (type `MEASURE` or `STAT_FUNCTION`)
 * ids of fields to be imported (type `FIELD` or `VALUESET`)
 
-Based on the database id, the remaining ids can be obtained with `sc_schema()`.
-See the `r ticle('sc_schema')` for more details.
+## Starting Simple
+
+First, we want to just send a database id to `sc_table_custom()`.
+We will use a [database about accomodation](`r sc_browse_database("detouextregsai")`) througout this article.
+This returns a table with one single row.
 
 ```{r}
-id_db <- "str:database:detouextregsai"
-db_schema <- sc_schema_db(id_db)
-db_schema
+database <- "str:database:detouextregsai"
+x <- sc_table_custom(database)
+x$tabulate()
 ```
 
-Browse the schema to extract the desired ids. The basic idea is to extract the
-id components of desired measures and fields. If a measure has more than one
-entry of type `STAT_FUNCTION` either use the id of the measure to utilize
-the default function or provide the id of the function. The same is true if
-a field has several `VALUESET`s
+we see that `r format(x$tabulate()[[2]], big.mark = " ")` nights were spent in austrian tourism establishments in the month of `r x$tabulate()[[1]]`.
+
+## Adding Countries
+
+Now we want to add a classification to the table.
+This can be done by getting the database schema and showing all classification fields.
 
 ```{r}
-get_id <- function(x) {print(c(x$type, x$id)); x$id}
-id_arrivals <- get_id(db_schema$Facts$Arrivals$Arrivals)
-
-id_nights_spent <- get_id(db_schema$Facts$`Nights spent`)
-
-id_time <- get_id(db_schema$`Mandatory fields`$`Season/Tourism Month`)
-
-id_region <- get_id(db_schema$`Other Classifications`$`Country of origin`$`Herkunftsland (Ebene +1)`)
+(fields <- sc_schema_db(database) %>% sc_schema_flatten("FIELD"))
 ```
-Now the ids can be used in `sc_table_custom()`. If several ids are used for the
-argument `dimensions` or `fields`, combine them with `c()` to pass a character
-vector of ids.
+
+If we want to add "Country of origin" we need to include the fouth entry of the `id` column in our request.
 
 ```{r}
-my_response <- sc_table_custom(
-  db = id_db,
-  measures = c(id_arrivals, id_nights_spent),
-  dimensions = c(id_time, id_region)
+x <- sc_table_custom(database, dimensions = fields$id[4])
+x$tabulate()
+```
+
+## Adding Tourism Communes
+
+The `dimensions` parameter in `sc_schema_custom()` accepts vectors of field ids.
+Therefore, we can add the communes easily.
+
+```{r}
+x <- sc_table_custom(database, dimensions = fields$id[c(2, 4)])
+x$tabulate()
+```
+
+## Add Another Measure
+
+Currently, the table only returns the default measure for the database which is the number of nights spent.
+We can add a second measure by again using the database schema and passing a measure id
+
+```{r}
+(measures <- sc_schema_db(database) %>% sc_schema_flatten("MEASURE"))
+```
+
+We can add both measures to the request by using `measures$id`.
+Just like the `dimensions` parameter, the `measures` parameters accepts vectors of resource ids.
+
+```{r}
+x <- sc_table_custom(database, measures = measures$id, 
+                     dimensions = fields$id[c(2, 4)])
+x$tabulate()
+```
+
+## Using Valuesets
+
+We can see in [the GUI](`r sc_browse_database("detouextregsai")`) that "Country of origin" is a hierarchical classification.
+If we look at the table above, only the top level of the hierarchy (Austria, Germany, other) is used.
+This can be changed by providing the the valueset that corresponds to the more granular classification of "country of origin"
+
+```{r,fig.align='center', out.width='50%', echo=FALSE}
+knitr::include_graphics("img/hierarchical_classification.png")
+```
+
+The different valuesets for "country of origin" can be compared by browsing the database schema.
+
+```{r}
+db_schema <- sc_schema_db(database)
+db_schema$`Other Classifications`$`Country of origin`
+```
+
+We can see that the two levels of the hierarchy are represented by the two valuesets.
+The valueset "Herkunftsland" uses 3 classification elements and represents the top level of the hierarchy (Austria, Germany, Other).
+The valueset "Country of origin" uses 87 (10+8+69) classification elements and is the bottom level of the hierarchy.
+For classification with more levels of hierarchies, more valuesets will be present.
+
+We will now use the id for the first valueset in the `dimensions` parmaeter of `sc_table_custom`.
+
+```{r}
+id_valueset <- db_schema$`Other Classifications`$
+  `Country of origin`$`Country of origin`$id
+x <- sc_table_custom(
+  db = "str:database:detouextregsai",
+  measures = measures$id[1:2],
+  dimensions = id_valueset
 )
-my_response
+x$tabulate()
 ```
 
+It is possible to use a mixture of valuesets and fields in the `dimensions` parameter.
 
+## Filtering Data
+
+Omitting certain classification elements from the query is possible with the `recodes` parameter of the `/table` endpoint.
+Currently, `sc_table_custom()` does not provide support for recodes.
+Please issue a [feature request] if you see this as a useful extension of `r STATcubeR`.
+
+[feature request]: https://github.com/statistikat/STATcubeR/issues
