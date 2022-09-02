@@ -3,6 +3,9 @@
 \name{sc_browse}
 \alias{sc_browse}
 \alias{sc_browse_preferences}
+\alias{sc_browse_table}
+\alias{sc_browse_database}
+\alias{sc_browse_catalogue}
 \alias{sc_browse_ogd}
 \title{Links to important STATcube and OGD pages}
 \usage{
@@ -10,16 +13,35 @@ sc_browse(server = "ext")
 
 sc_browse_preferences(server = "ext")
 
+sc_browse_table(table, server = "ext")
+
+sc_browse_database(database, server = NULL)
+
+sc_browse_catalogue(server = "ext")
+
 sc_browse_ogd()
 }
 \arguments{
 \item{server}{A STATcube API server. Defaults to the external Server via
 \code{"ext"}. Other options are \code{"red"} for the editing server and \code{"prod"} for
 the production server. External users should always use the default option \code{"ext"}.}
+
+\item{table}{a table id}
+
+\item{database}{a database id}
 }
 \description{
 A collection of links, to browse important STATcube pages.
 }
+\section{Functions}{
+\itemize{
+\item \code{sc_browse_table()}: shows the info page for a table
+
+\item \code{sc_browse_database()}: shows the info page for a database
+
+\item \code{sc_browse_catalogue()}: shows the data catalogue explorer
+
+}}
 \examples{
 # Show starting page
 sc_browse()
