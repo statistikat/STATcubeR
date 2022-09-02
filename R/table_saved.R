@@ -23,6 +23,8 @@ sc_table_saved <- function(table_uri, language = c("en", "de"), key = NULL, serv
   language <- match.arg(language)
   if (is.null(key))
     key <- sc_key(server)
+  if (substr(table_uri, 1, 3) != "str")
+    table_uri <- paste0("str:table:", table_uri)
   sc_with_cache(c("sc_table_saved", table_uri, language, key), function() {
     httr::GET(
       url = paste0(base_url(server), "/table/saved/", table_uri),
