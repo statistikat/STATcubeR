@@ -120,21 +120,16 @@ the production server. External users should always use the default option <code
 
 </dl></div>
     <div class="section level2">
-    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    
-
-<ul><li><p><code>sc_info()</code> returns information about all available database languages</p></li>
-<li><p><code>sc_rate_limit_table()</code> returns a <code>3x1</code> dataframe with the following columns</p><ul><li><p><code>remaining</code> how much requests can be sent to the <code>/table</code> endpoint until
-the rate limit is reached.</p></li>
-<li><p><code>limit</code> the number of requests allowed per hour.</p></li>
-<li><p><code>reset</code> a tiestamp when the rate limit will be reset. Ususally, this
-should be less than one hour `after the current time.</p></li>
-</ul></li>
-</ul></div>
-    <div class="section level2">
     <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a></h2>
     
-<ul><li><p><code>sc_rate_limits()</code>: gets rate limits from response headers</p></li>
+<ul><li><p><code>sc_info()</code>: returns information about all available database languages</p></li>
+<li><p><code>sc_rate_limit_table()</code>: returns a <code>3x1</code> dataframe with the following columns</p><ul><li><p><code>remaining</code> how much requests can be sent to the <code>/table</code>
+endpoint until the rate limit is reached.</p></li>
+<li><p><code>limit</code> the number of requests allowed per hour.</p></li>
+<li><p><code>reset</code> a tiestamp when the rate limit will be reset.
+Ususally, this should be less than one hour `after the current time.</p></li>
+</ul></li>
+<li><p><code>sc_rate_limits()</code>: gets rate limits from response headers</p></li>
 </ul></div>
 
     <div class="section level2">
@@ -144,13 +139,17 @@ should be less than one hour `after the current time.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1     de     Deutsch</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2     en     English</span>
 <span class="r-in"><span><span class="fu">sc_rate_limit_table</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> remaining: 94/100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> reset:     2022-09-02 15:18:22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 100 / 100 (Resets at 20:01:27)</span>
 <span class="r-in"><span><span class="fu">sc_rate_limit_schema</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in sc_rate_limit_schema():</span> could not find function "sc_rate_limit_schema"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10000 / 10000 (Resets at 20:01:27)</span>
 <span class="r-in"><span><span class="fu"><a href="sc_schema.html">sc_schema</a></span><span class="op">(</span><span class="st">"str:group:deake005:X_B1"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">sc_rate_limits</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in sc_rate_limits(.):</span> could not find function "sc_rate_limits"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $schema</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9999 / 10000 (Resets at 20:18:42)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $table</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 97 / 100 (Resets at 20:18:42)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

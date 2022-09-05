@@ -165,7 +165,7 @@ table nodes correspond to the saved tables as described in the
   &lt;br/&gt;
   STATcube allows you to save tables in the GUI. You can import those saved tables using &lt;code&gt;sc_table_saved()&lt;/code&gt;. This function can also be used to import default tables for databases.
 &lt;/div&gt;'>saved tables article</a>.
-The folders include all folders from the root level in the <a href="http://sdbext:8081/statistik.at/ext/statcube/jsf/dataCatalogueExplorer.xhtml" class="external-link">catalogue
+The folders include all folders from the root level in the <a href="https://portal.statistik.at/statistik.at/ext/statcube/jsf/dataCatalogueExplorer.xhtml" class="external-link">catalogue
 explorer</a>: “Statistics”, “Publication and Services” as well as
 “Examples”.</p>
 <p><img src="img/catalogue2.png" width="70%" style="display: block; margin: auto;"></p>
@@ -211,14 +211,14 @@ the folders from the API will be empty.</p>
 <p>Inside the catalogue, the leafs<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content="&lt;p&gt;In the context of tree-like data structures, leafs are
 used to describe nodes of a tree which have no child nodes&lt;/p&gt;"><sup>1</sup></a> of the tree are mostly of type
 <code>DATABASE</code> and <code>TABLE</code>. Here is an example for the
-<code>DATABASE</code> node <a href="http://sdbext:8081/statistik.at/ext/statcube/?openinfopage?id=deake005" class="external-link"><code>deake005</code></a>.</p>
+<code>DATABASE</code> node <a href="https://portal.statistik.at/statistik.at/ext/statcube/?openinfopage?id=deake005" class="external-link"><code>deake005</code></a>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span><span class="op">$</span><span class="va">`Labour Market`</span><span class="op">$</span><span class="va">`Working hours (Labour Force Survey)`</span></span></code></pre></div>
 <pre class="r-output"><code>DATABASE: Working hours (Labour Force Survey)
 # Get more info with `sc_schema_db('str:database:deake005')` </code></pre>
 <p><img src="img/catalogue_deake005.png" width="70%" style="display: block; margin: auto;"></p>
 <p>The function <code><a href="../reference/sc_schema.html">sc_schema_db()</a></code> will be shown in the next
-section. As an example for a <code>TABLE</code> node, consider the <a href="http://sdbext:8081/statistik.at/ext/statcube/openinfopage?tableId=defaulttable_deake005" class="external-link">default
+section. As an example for a <code>TABLE</code> node, consider the <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?tableId=defaulttable_deake005" class="external-link">default
 table for <code>deake005</code></a>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span><span class="op">$</span><span class="va">`Labour Market`</span><span class="op">$</span></span>
@@ -256,7 +256,7 @@ data structure.</p>
 <span style="color: #BCBCBC;">5</span> Employment Characteristics  GROUP        6
 <span style="color: #949494;"># … with 3 more rows</span></code></pre>
 <p>For comparison, here is a screenshot from the sidebar of the table
-view for <a href="http://sdbext:8081/statistik.at/ext/statcube/?openinfopage?id=deake005" class="external-link"><code>deake005</code></a>
+view for <a href="https://portal.statistik.at/statistik.at/ext/statcube/?openinfopage?id=deake005" class="external-link"><code>deake005</code></a>
 which has a similar (but not identical) structure.</p>
 <p><img src="img/table_view.png" width="70%" style="display: block; margin: auto;"></p>
 <p><code>my_db_info</code> can be used in a similar fashion as
