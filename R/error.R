@@ -27,6 +27,10 @@ sc_last_error <- function() {
 sc_last_error_parsed <- function() {
   last_error <- sc_last_error()
   list(
+    request = list(
+      method = last_error$request$method,
+      url = last_error$request$url
+    ),
     content = httr::content(last_error),
     status = httr::http_status(last_error)
   )

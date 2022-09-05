@@ -38,17 +38,17 @@ This will return the (parsed) response object that triggered the error.
 
 ```{r, eval=FALSE}
 sc_info(key = "wrong key")
-#> Error: Client error: (401) Unauthorized
-#> ...
+#> Error: Client error: (401) Unauthorized ...
 sc_last_error_parsed() %>% str()
-#> List of 2
-#>  $ content:List of 2
-#>   ..$ message  : chr "Error authenticating API key. Please contact your system administrator."
-#>   ..$ errorType: chr "AUTHENTICATION"
-#>  $ status :List of 3
-#>   ..$ category: chr "Client error"
-#>   ..$ reason  : chr "Unauthorized"
-#>   ..$ message : chr "Client error: (401) Unauthorized"
+```
+
+```{r, include=FALSE}
+try(readRDS("sc_last_error/invalid_key.rds") %>% 
+  STATcubeR:::sc_check_response())
+```
+
+```{r, echo=FALSE}
+sc_last_error_parsed() %>% str()
 ```
 
 `sc_last_error()` returns the same response but in the format returned by `httr::GET()`.
