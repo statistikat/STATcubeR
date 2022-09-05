@@ -10,17 +10,12 @@
 #' sc_schema("str:group:deake005:X_B1") %>%
 #'   sc_rate_limits()
 #' @name other_endpoints
-#' @rdname other_endpoints
 #' @inheritParams sc_key
 #' @inheritParams sc_schema
-#' @return
-#' * [sc_info()] returns information about all available database languages
-#' * [sc_rate_limit_table()] returns a `3x1` dataframe with the following columns
-#'     * `remaining` how much requests can be sent to the `/table` endpoint until
-#'       the rate limit is reached.
-#'     * `limit` the number of requests allowed per hour.
-#'     * `reset` a tiestamp when the rate limit will be reset. Ususally, this
-#'       should be less than one hour `after the current time.
+NULL
+
+#' @describeIn other_endpoints
+#' returns information about all available database languages
 #' @export
 sc_info <- function(language = c("en", "de"), key = NULL, server = "ext") {
   if (is.null(key))
@@ -36,7 +31,13 @@ sc_info <- function(language = c("en", "de"), key = NULL, server = "ext") {
     do.call(rbind, .)
 }
 
-#' @rdname other_endpoints
+#' @describeIn other_endpoints
+#' returns a `3x1` dataframe with the following columns
+#' * `remaining` how much requests can be sent to the `/table`
+#'   endpoint until the rate limit is reached.
+#' * `limit` the number of requests allowed per hour.
+#' * `reset` a tiestamp when the rate limit will be reset.
+#'   Ususally, this should be less than one hour `after the current time.
 #' @export
 sc_rate_limit_table <- function(language = c("en", "de"), key = NULL, server = 'ext') {
   if (is.null(key))
@@ -99,8 +100,8 @@ sc_rate_limits <- function(x) {
 #' @export
 print.sc_rate_limit_table <- function(x, ...) {
   cat(
-    "remaining: ", x$remaining, "/", x$limit, "\n",
-    "reset:     ", as.character(sc_parse_time(x$reset)),sep = ""
+    x$remaining, " / ", x$limit, " (Resets at ",
+    sc_parse_time(x$reset) %>% format("%H:%M:%S"), ")", sep = ""
   )
 }
 
