@@ -82,3 +82,7 @@ a:hover {
 .navbar-brand + small {
   transform: translateY(.4rem);
 }
+
+mark, .mark {
+  background: #F0B4B9;
+}
