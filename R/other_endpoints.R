@@ -95,7 +95,7 @@ sc_rate_limits <- function(x) {
 print.sc_rate_limit_table <- function(x, ...) {
   cat(
     x$remaining, " / ", x$limit, " (Resets at ",
-    sc_parse_time(x$reset) %>% format("%H:%M:%S"), ")", sep = ""
+    strftime(sc_parse_time(x$reset), "%H:%M:%S"), ")\n", sep = ""
   )
 }
 
