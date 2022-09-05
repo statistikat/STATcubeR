@@ -29,7 +29,7 @@ sc_schema <- function(resource_id = NULL, depth = NULL,
           ifelse(is.null(resource_id), "", paste0("/", resource_id)),
           ifelse(is.null(depth), "", paste0("?depth=", depth))
         ),
-        config = sc_headers(language, key)
+        config = sc_headers(language, key, server)
       ) %>% sc_check_response()
     })
   content <- httr::content(response)

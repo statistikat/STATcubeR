@@ -67,11 +67,9 @@ sc_key_env_var <- function(server = "ext") {
 #' @describeIn sc_key performs a test request and returns `TRUE` if the
 #'   key is valid and `FALSE` otherwise.
 sc_key_valid <- function(key = NULL, server = "ext") {
-  if (is.null(key))
-    key <- sc_key(server)
   response <- httr::GET(
     url = paste0(base_url(server), "/info"),
-    config = sc_headers(key = key)
+    config = sc_headers("en", key, server)
   )
   response$status_code == "200"
 }

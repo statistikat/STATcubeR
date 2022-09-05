@@ -18,11 +18,9 @@ NULL
 #' returns information about all available database languages
 #' @export
 sc_info <- function(language = c("en", "de"), key = NULL, server = "ext") {
-  if (is.null(key))
-    key <- sc_key(server)
   response <- httr::GET(
     url = paste0(base_url(server), "/info"),
-    config = sc_headers(language, key)
+    config = sc_headers(language, key, server)
   ) %>% sc_check_response()
   info_content <- httr::content(response)
   info_content$languages %>%
@@ -40,11 +38,9 @@ sc_info <- function(language = c("en", "de"), key = NULL, server = "ext") {
 #'   Ususally, this should be less than one hour `after the current time.
 #' @export
 sc_rate_limit_table <- function(language = c("en", "de"), key = NULL, server = 'ext') {
-  if (is.null(key))
-    key <- sc_key(server)
   response <- httr::GET(
     url = paste0(base_url(server), "/rate_limit_table"),
-    config = sc_headers(language, key)
+    config = sc_headers(language, key, server)
   ) %>% sc_check_response()
   rate_limit <- httr::content(response)
   class(rate_limit) <- "sc_rate_limit_table"
@@ -54,11 +50,9 @@ sc_rate_limit_table <- function(language = c("en", "de"), key = NULL, server = '
 #' @rdname other_endpoints
 #' @export
 sc_rate_limit_schema <- function(language = c("en", "de"), key = NULL, server = 'ext') {
-  if (is.null(key))
-    key <- sc_key(server)
   response <- httr::GET(
     url = paste0(base_url(server), "/rate_limit_schema"),
-    config = sc_headers(language, key)
+    config = sc_headers(language, key, server)
   ) %>% sc_check_response()
   rate_limit <- httr::content(response)
   class(rate_limit) <- "sc_rate_limit_table"

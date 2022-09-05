@@ -79,8 +79,6 @@ sc_table_json_post <- function(json, language = c("en", "de"),
                                add_totals = TRUE, key = NULL) {
   language <- match.arg(language)
   server <- sc_json_get_server(json)
-  if (is.null(key))
-    key <- sc_key(server)
   if (add_totals)
     json <- json %>%
       jsonlite::fromJSON(simplifyVector = FALSE) %>%
@@ -90,7 +88,7 @@ sc_table_json_post <- function(json, language = c("en", "de"),
     httr::POST(
       url = paste0(base_url(server), "/table"),
       body = json,
-      config = sc_headers(language, key)
+      config = sc_headers(language, key, server)
     ) %>% sc_check_response()
   })
 }
