@@ -53,7 +53,7 @@ the production server. External users should always use the default option \code
 \item{limit, ...}{passed to \code{\link[data.tree:print.Node]{data.tree::print.Node()}}}
 
 \item{type}{a schema type such as "DATABASE", "VALUE" or "TABLE".
-See \href{https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/schema-endpoint#id-.SchemaOpenDataAPIv9.9.6-SchemaTypesandAssociatedIDSchemes}{the API reference} for a list of all scheme types.}
+See \href{https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/schema-endpoint#id-.SchemaOpenDataAPIv9.9.6-SchemaTypesandAssociatedIDSchemes}{the API reference} for a list of all schema types.}
 
 \item{db_id}{a database id}
 }
