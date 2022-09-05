@@ -7,8 +7,11 @@ sc_version <- function(sha = TRUE) {
 }
 
 base_url <- function(server = "ext") {
+  stopifnot(is.character(server), length(server) == 1)
   if (server == "ext")
     return("https://statcubeapi.statistik.at/statistik.at/ext/statcube/rest/v1")
+  if (!in_stat())
+    warning("Trying to use an internal STATcube API Server")
   if (server == "test")
     return("https://statcubeapit.statistik.local/statistik.at/lxdev/statcube/rest/v1")
   sprintf("http://sdb%s:8082/statistik.at/%s/statcube/rest/v1", server, server)
