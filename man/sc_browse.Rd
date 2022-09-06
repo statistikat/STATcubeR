@@ -35,20 +35,24 @@ A collection of links, to browse important STATcube pages.
 }
 \section{Functions}{
 \itemize{
+\item \code{sc_browse()}: opens the home menu of STATcube
+
+\item \code{sc_browse_preferences()}: opens the preference menu with the api key
+
 \item \code{sc_browse_table()}: shows the info page for a table
 
 \item \code{sc_browse_database()}: shows the info page for a database
 
 \item \code{sc_browse_catalogue()}: shows the data catalogue explorer
 
+\item \code{sc_browse_ogd()}: shows the landing page for OGD datasets
+
 }}
 \examples{
-# Show starting page
 sc_browse()
-
-# Show the preferences page with the API key
 sc_browse_preferences()
-
-# Show the landing page for OGD datasets
+sc_browse_table('defaulttable_deake005')
+sc_browse_database('deake005')
+sc_browse_catalogue()
 sc_browse_ogd()
 }

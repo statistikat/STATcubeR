@@ -2,27 +2,29 @@
 #'
 #' A collection of links, to browse important STATcube pages.
 #'
-#' @examples
-#' # Show starting page
-#' sc_browse()
 #' @inheritParams sc_key
+#' @name sc_browse
+NULL
+
+#' @describeIn sc_browse opens the home menu of STATcube
+#' @examples
+#' sc_browse()
 #' @export
 sc_browse <- function(server = "ext") {
   sc_url(sc_url_gui(server), "home")
 }
 
-#' @rdname sc_browse
+#' @describeIn sc_browse opens the preference menu with the api key
 #' @examples
-#'
-#' # Show the preferences page with the API key
 #' sc_browse_preferences()
-#'
 #' @export
 sc_browse_preferences <- function(server = "ext") {
   sc_url(sc_url_gui(server), "jsf/preferences/editPreferences.xhtml")
 }
 
 #' @describeIn sc_browse shows the info page for a table
+#' @examples
+#' sc_browse_table('defaulttable_deake005')
 #' @param table a table id
 #' @export
 sc_browse_table <- function(table, server = "ext") {
@@ -31,6 +33,8 @@ sc_browse_table <- function(table, server = "ext") {
 
 #' @describeIn sc_browse shows the info page for a database
 #' @param database a database id
+#' @examples
+#' sc_browse_database('deake005')
 #' @export
 sc_browse_database <- function(database, server = NULL) {
   if (is.null(server))
@@ -39,14 +43,15 @@ sc_browse_database <- function(database, server = NULL) {
 }
 
 #' @describeIn sc_browse shows the data catalogue explorer
+#' @examples
+#' sc_browse_catalogue()
 #' @export
 sc_browse_catalogue <- function(server = "ext") {
   sc_url(sc_url_gui(server), "jsf/dataCatalogueExplorer.xhtml")
 }
 
-#' @rdname sc_browse
+#' @describeIn sc_browse shows the landing page for OGD datasets
 #' @examples
-#' # Show the landing page for OGD datasets
 #' sc_browse_ogd()
 #' @export
 sc_browse_ogd <- function() {
