@@ -3,7 +3,7 @@
 sc_table_saved_list <- function(key = NULL, server = "ext") {
   if (is.null(key))
     key <- sc_key(server)
-  schema = sc_schema(key  = key, server = server)
+  schema <- sc_schema(key  = key, server = server)
   schema <- schema %>% attr("response") %>% httr::content()
   schema <- schema$children
 
@@ -19,7 +19,7 @@ sc_table_saved_list <- function(key = NULL, server = "ext") {
 #'   [sc_table_saved_list()]
 #' @rdname sc_table
 #' @export
-sc_table_saved <- function(table_uri, language = c("en", "de"), key = NULL, server = 'ext') {
+sc_table_saved <- function(table_uri, language = c("en", "de"), key = NULL, server = "ext") {
   language <- match.arg(language)
   if (substr(table_uri, 1, 3) != "str")
     table_uri <- paste0("str:table:", table_uri)

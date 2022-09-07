@@ -21,7 +21,7 @@
 #' subset(df, category == "Bildung und Forschung")
 #' # use an id to load a dataset
 #' od_table("OGD_fhsstud_ext_FHS_S_1")
-od_list <- function(unique = TRUE, server = c('ext', 'red')) {
+od_list <- function(unique = TRUE, server = c("ext", "red")) {
   stopifnot(requireNamespace("xml2"))
   server <- match.arg(server)
   url <- od_url(server, "web", "catalog.jsp")

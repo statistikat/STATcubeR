@@ -59,7 +59,7 @@ This gives direct access to the API response in a `list()` format.
 For example, the following syntax can be used to extract the database info from the response.
 
 ```{r}
-sc_example("accomodation") %>% sc_table() %>% sc_cache_files() %>% 
+sc_example("accomodation") %>% sc_table() %>% sc_cache_files() %>%
   readRDS() %>% httr::content() %>% .[["database"]] %>% str()
 ```
 

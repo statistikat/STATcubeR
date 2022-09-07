@@ -71,7 +71,7 @@ sc_database_get_server <- function(database_uri) {
     di = "red",
     db = "prod",
     stop('database uri \033[1m"', database_uri, '"\033[22m could not be ',
-         'assigned to a STATcube server')
+         "assigned to a STATcube server")
   )
 }
 

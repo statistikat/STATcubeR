@@ -53,7 +53,7 @@ sc_field_parse_time_month <- function(remainder) {
     rep(1, length(remainder))
   } else if (nchar(remainder[1]) == 1) {
     if (remainder[1] %in% 1:4)
-      as.numeric(remainder)*3 - 2
+      as.numeric(remainder) * 3 - 2
     else
       ifelse(remainder == "5", 1, 6)
   } else {
@@ -66,7 +66,7 @@ sc_field_parse_week <- function(year, week) {
   first_day <- as.Date(paste(year, 1, 1, sep = "-"), "%Y-%W-%w")
   first_day2 <- as.numeric(substr(first_day, 9, 11))
   first_day[first_day2 %in% 5:7] <- first_day[first_day2 %in% 5:7] - 7
-  first_day + 7*(as.numeric(week)-1)
+  first_day + 7 * (as.numeric(week) - 1)
 }
 
 sc_field_parse_time <- function(field) {

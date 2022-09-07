@@ -26,7 +26,7 @@ sc_model_matrix <- function(dims) {
     each <- each / dims[i]
     out[[paste0("FIELD_", i)]] <- seq_len(dims[i]) %>%
       rep(times = times, each = each)
-    times <- times*dims[i]
+    times <- times * dims[i]
   }
   as.data.frame(out)
 }

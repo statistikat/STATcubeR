@@ -67,7 +67,7 @@ od_cache_update <- function(url, filename, server = "ext") {
     file.remove(cache_file)
     stop("Resource not available: ", url, call. = FALSE)
   }
-  t <- r$times[["total"]]*1000
+  t <- r$times[["total"]] * 1000
   cat(format(Sys.time()), ",", filename, ",", t, "\n", append = TRUE,
       file = od_cache_path(server, "downloads.log"), sep = "")
   t
@@ -125,7 +125,7 @@ od_resource <- function(id, suffix = NULL, timestamp = NULL, server = "ext") {
                         check.names = FALSE, stringsAsFactors = FALSE) %>%
     od_normalize_columns(suffix)
   t <- Sys.time() - t
-  t <- 1000*as.numeric(t)
+  t <- 1000 * as.numeric(t)
   structure(x, od = c(attr(cache_file, "od"), list(parsed = t)),
             class = c("tbl", "data.frame"))
 }

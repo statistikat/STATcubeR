@@ -172,7 +172,7 @@ For example, `depth = "VALUESET"` will use the same level of recursion as `sc_sc
 See `?sc_schema` for all available options of the `depth` parameter.
 
 ```{r}
-group_info <- my_db_info$`Demographic Characteristics`$id %>% 
+group_info <- my_db_info$`Demographic Characteristics`$id %>%
   sc_schema(depth = "valueset")
 ```
 
@@ -197,8 +197,8 @@ The function `sc_schema_flatten()` can be used to turn responses from the `/sche
 The following call extracts all databasess from the catalogue and displays their ids and labels.
 
 ```{r}
-sc_schema_catalogue() %>% 
-  sc_schema_flatten("DATABASE") 
+sc_schema_catalogue() %>%
+  sc_schema_flatten("DATABASE")
 ```
 
 The string `"DATABASE"` in the previous example acts as a filter to make sure only nodes with the schema type `DATABASE` are included in the table.
@@ -214,7 +214,7 @@ If `"DATABASE"` is relaced with `"TABLE"`, all tables will be displayed. This in
 
 
 ```{r}
-sc_schema_catalogue() %>% 
+sc_schema_catalogue() %>%
   sc_schema_flatten("TABLE")
 ```
 
@@ -222,6 +222,6 @@ sc_schema_catalogue() %>%
 The following example shows all available measures from the [economic trend monitor database](https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=dekonjunkturmonitor).
 
 ```{r}
-sc_schema_db('dekonjunkturmonitor') %>% 
+sc_schema_db("dekonjunkturmonitor") %>%
   sc_schema_flatten("MEASURE")
 ```

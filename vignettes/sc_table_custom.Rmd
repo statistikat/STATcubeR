@@ -76,7 +76,7 @@ We can add both measures to the request by using `measures$id`.
 Just like the `dimensions` parameter, the `measures` parameters accepts vectors of resource ids.
 
 ```{r}
-x <- sc_table_custom(database, measures = measures$id, 
+x <- sc_table_custom(database, measures = measures$id,
                      dimensions = fields$id[c(2, 4)])
 x$tabulate()
 ```

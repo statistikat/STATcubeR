@@ -43,7 +43,7 @@ sc_last_error_parsed() %>% str()
 ```
 
 ```{r, include=FALSE}
-try(readRDS("sc_last_error/invalid_key.rds") %>% 
+try(readRDS("sc_last_error/invalid_key.rds") %>%
   STATcubeR:::sc_check_response())
 ```
 
@@ -69,7 +69,7 @@ sc_schema_info(key = "wrong key")
 ```
 
 ```{r, echo = FALSE, error=TRUE}
-readRDS('sc_last_error/invalid_key.rds') %>% STATcubeR:::sc_check_response()
+readRDS("sc_last_error/invalid_key.rds") %>% STATcubeR:::sc_check_response()
 ```
 
 This example passes the API key as a parameter for simplicity.
@@ -110,7 +110,7 @@ sc_table_saved("defaulttable_deake005")
 ```
 
 ```{r, echo = FALSE, error=TRUE}
-readRDS('sc_last_error/rate_limit.rds') %>% STATcubeR:::sc_check_response()
+readRDS("sc_last_error/rate_limit.rds") %>% STATcubeR:::sc_check_response()
 ```
 
 If you encounter this error, please check if the rate limits are in fact a plauible reason by using `sc_rate_limit_table()`.
@@ -126,7 +126,7 @@ sc_schema("invalid_uri")
 ```
 
 ```{r, echo = FALSE, error=TRUE}
-readRDS('sc_last_error/schema.rds') %>% STATcubeR:::sc_check_response()
+readRDS("sc_last_error/schema.rds") %>% STATcubeR:::sc_check_response()
 ```
 
 ### Saved Tables
@@ -140,7 +140,7 @@ sc_table_saved("invalid_uri")
 ```
 
 ```{r, echo = FALSE, error=TRUE}
-readRDS('sc_last_error/table_saved.rds') %>% STATcubeR:::sc_check_response()
+readRDS("sc_last_error/table_saved.rds") %>% STATcubeR:::sc_check_response()
 ```
 
 ### Invalid JSON
@@ -167,7 +167,7 @@ sc_table("request.json")
 ```
 
 ```{r, echo = FALSE, error = TRUE}
-readRDS('sc_last_error/invalid_json.rds') %>% STATcubeR:::sc_check_response()
+readRDS("sc_last_error/invalid_json.rds") %>% STATcubeR:::sc_check_response()
 ```
 
 Unfortunately, the response for invalid json bodies is very generic and can not be differentiated from the response for exceeded rate limits (see above).
@@ -185,10 +185,10 @@ If you want to use your own error-handling instead of the default `r STATcubeR` 
 shiny::observeEvent(input$button_load_data, {
   table <- try(STATcubeR::sc_table_saved(input$id))
   if (inherits(table, "try-error"))
-    STATcubeR::sc_last_error_parsed() %>% 
+    STATcubeR::sc_last_error_parsed() %>%
     myApp::show_error_prompt()
   else
-    as.data.frame(table) %>% 
+    as.data.frame(table) %>%
     myApp::process_data()
 })
 ```

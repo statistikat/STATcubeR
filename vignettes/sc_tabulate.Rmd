@@ -93,7 +93,7 @@ These total codes can be used to aggregate the data with `$tabulate()`.
 In order to do that, the total codes need to be specified using `$total_codes()`. 
 
 ```{r}
-earnings$total_codes(Sex = "Sum total", Citizenship = "Total", 
+earnings$total_codes(Sex = "Sum total", Citizenship = "Total",
                      Region = "Total", `Form of employment` = "Total")
 ```
 
@@ -107,8 +107,8 @@ As we can see, the method extracted rows 2 to 7 from the data. The logic for
 selecting those rows is equivalent to the following `{dplyr}` expression.
 
 ```{r, eval = FALSE}
-earnings$data %>% dplyr::filter(Sex == "Sum total" & Citizenship == "Total" & 
-  `Region (NUTS2)` == "Total" & `Form of employment` != "Total") %>% 
+earnings$data %>% dplyr::filter(Sex == "Sum total" & Citizenship == "Total" &
+  `Region (NUTS2)` == "Total" & `Form of employment` != "Total") %>%
   dplyr::select(-Sex, -Citizenship, -`Region (NUTS2)`)
 ```
 
@@ -198,7 +198,7 @@ Switching languages is always available for `od_table()` objects.
 For `sc_table()`, it depends on whcih languages were requested.
 
 ```{r}
-# default: get labels in german and english 
+# default: get labels in german and english
 x <- sc_table(sc_example("accomodation"))
 # only get english labels
 x <- sc_table(sc_example("accomodation"), lang = "en")

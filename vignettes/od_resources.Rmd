@@ -11,7 +11,7 @@ source("R/setup.R")$value
 ```
 
 ```{r setup, include=FALSE}
-tmp_cache_dir <- file.path(tempdir(), "STATcubeR/open_data") 
+tmp_cache_dir <- file.path(tempdir(), "STATcubeR/open_data")
 dir.create(tmp_cache_dir, recursive = TRUE)
 od_cache_dir(tmp_cache_dir)
 ```
@@ -119,7 +119,7 @@ The returned table contains one row for every dataset.
 We can get a clear picture on how much disk space is used for each dataset.
 
 ```{r}
-od_cache_summary() 
+od_cache_summary()
 ```
 
 Note that `od_cache_summary()` only gathers information from the local file system based on filenames, `file.mtime()` and `file.size()`.

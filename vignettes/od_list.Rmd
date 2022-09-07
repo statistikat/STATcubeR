@@ -61,7 +61,7 @@ tpy <- function(x, y) {
   tags$span(x, `data-tippy-content` = y)
 }
 
-od_index %>% 
+od_index %>%
   mutate(
     n_fields = purrr::map_int(fields, nrow),
     n_measures = purrr::map_int(measures, nrow)

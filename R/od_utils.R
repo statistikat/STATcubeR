@@ -1,4 +1,4 @@
-od_url <- function(server = c('ext', 'red'), ..., sep = "/") {
+od_url <- function(server = c("ext", "red"), ..., sep = "/") {
   base_url <- switch(
     match.arg(server),
     ext = "https://data.statistik.gv.at",
@@ -23,7 +23,7 @@ od_attr <- function(json) {
   index_colon <- gregexpr(":", desc) %>% .[[1]]
   index_end <- c(index_code[-1], 1000000L) - 1
   code <- character(0)
-  label = character(0)
+  label <- character(0)
   for (i in seq_along(index_code)) {
     next_col <- min(index_colon[index_colon > index_code[i]])
     code <- c(code, substr(desc, index_code[i] + 1, next_col - 1))

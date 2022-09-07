@@ -40,4 +40,3 @@ sc_tibble <- function(x) {
 tbl_sum.sc_tibble <- function(x, ...) {
   paste0("A STATcubeR tibble: ", format(nrow(x), big.mark = ","), " x ", ncol(x))
 }
-

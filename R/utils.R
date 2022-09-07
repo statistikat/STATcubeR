@@ -11,7 +11,7 @@
 NULL
 
 sc_parse_time <- function(timestamp) {
-  (as.numeric(timestamp)/1000) %>% as.POSIXct(origin = "1970-01-01")
+  (as.numeric(timestamp) / 1000) %>% as.POSIXct(origin = "1970-01-01")
 }
 
 sc_headers <- function(language = c("en", "de"), key = NULL, server = "ext", ...) {

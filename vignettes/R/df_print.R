@@ -1,12 +1,12 @@
 library(magrittr)
 library(pillar)
 
-knit_print.data.frame = function(x, ...) {
+knit_print.data.frame <- function(x, ...) {
   out <- capture.output(print(x, ...)) %>%
     htmltools::htmlEscape() %>%
     fansi::sgr_to_html() %>%
     paste(collapse = "\n") %>%
-    paste0('<pre class="r-output"><code>', ., '</code></pre>')
+    paste0("<pre class='r-output'><code>", ., "</code></pre>")
   knitr::asis_output(out)
 }
 

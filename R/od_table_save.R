@@ -70,10 +70,10 @@ od_table_local <- function(file) {
   cache <- "temporary_cache/"
   dir.create(cache)
   file.rename(paths$classifications, paste0(cache, paths$id, "_", basename(paths$classifications)))
-  file.rename(paths$data, paste0(cache, paths$id, '.csv'))
-  file.rename(paths$header, paste0(cache, paths$id, '_HEADER.csv'))
+  file.rename(paths$data, paste0(cache, paths$id, ".csv"))
+  file.rename(paths$header, paste0(cache, paths$id, "_HEADER.csv"))
   Sys.setFileTime(paths$meta, Sys.time())
-  file.rename(paths$meta, paste0(cache, paths$id, '.json'))
+  file.rename(paths$meta, paste0(cache, paths$id, ".json"))
   old_cache_dir <- od_cache_dir()
   od_cache_dir(cache)
   on.exit(od_cache_dir(old_cache_dir), add = TRUE)
@@ -90,10 +90,10 @@ od_table_local_paths <- function() {
     as.POSIXct(format = "%Y-%m-%dT%H:%M:%OS")
   stopifnot(all(timestamps <= Sys.time()))
   paths <- list(
-    classifications = dir(file.path(extracted, 'classifications'), full.names = TRUE),
-    data = file.path(extracted, 'data.csv'),
-    header = file.path(extracted, 'header.csv'),
-    meta = file.path(extracted, 'meta.json'),
+    classifications = dir(file.path(extracted, "classifications"), full.names = TRUE),
+    data = file.path(extracted, "data.csv"),
+    header = file.path(extracted, "header.csv"),
+    meta = file.path(extracted, "meta.json"),
     id = id
   )
   stopifnot(all(file.exists(c(paths$data, paths$header, paths$meta))))

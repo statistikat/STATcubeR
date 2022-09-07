@@ -27,7 +27,7 @@ sc_info()
 ```
 
 ```{r, echo = FALSE}
-data.frame(locale = c("de", "en"), displayName = c("Deutsch", "English")) %>% 
+data.frame(locale = c("de", "en"), displayName = c("Deutsch", "English")) %>%
   `class<-`(c("tbl", "data.frame"))
 ```
 
@@ -73,8 +73,8 @@ The function `sc_rate_limits()` does just that.
 Any return value from `sc_table()`, `sc_table_saved()` and `sc_table_custom()` can be passed to `sc_rate_limits()` and the rate limits will be extracted from the response headers.
 
 ```{r}
-sc_example("population_timeseries.json") %>% 
-  sc_table() %>% 
+sc_example("population_timeseries.json") %>%
+  sc_table() %>%
   sc_rate_limits()
 ```
 
@@ -83,7 +83,7 @@ Note that the function gives rate limits for `/schama` and `/table` even tough o
 The function also works with return values from `sc_schema()` and friends.
 
 ```{r}
-sc_schema_catalogue() %>% 
+sc_schema_catalogue() %>%
   sc_rate_limits()
 ```
 

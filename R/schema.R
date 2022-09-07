@@ -17,7 +17,7 @@
 #' @family functions for /schema
 #' @export
 sc_schema <- function(resource_id = NULL, depth = NULL,
-                      language = c("en", "de"), key = NULL, server = 'ext') {
+                      language = c("en", "de"), key = NULL, server = "ext") {
   language <- match.arg(language)
   if (is.null(key))
     key <- sc_key(server)
