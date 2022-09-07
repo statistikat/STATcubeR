@@ -65,3 +65,81 @@ od_list <- function(unique = TRUE, server = c("ext", "red")) {
   attr(df, "od") <- r$times[["total"]]
   df %>% `class<-`(c("tbl", "data.frame"))
 }
+
+#' Get a catalogue for OGD datasets
+#'
+#' **EXPERIMENTAL** This function parses several json metadata files at once
+#' and combines them into a `data.frame` so the datasets can easily be
+#' filtered based on categorizations, tags, number of classifications, etc.
+#'
+#' The naming, ordering and choice of the columns is likely to change.
+#' Currently, the following columns are provided
+#'
+#'  - **`title`** (chr) the title of the dataset
+#'  - **`measures`** (int) number of measure variables
+#'  - **`fields`** (int) number of classification fields
+#'  - **`modified`** (dttm) the timestamp when the dataset was last modified
+#'  - **`created`** (dttm) the timestamp when the dataset was created
+#'  - **`id`** (chr) the OGD identifier
+#'  - **`database`** (chr) the identifier of the corresponding STATcube database
+#'  - **`notes`** (chr) a description for the dataset
+#'  - **`update_frequency`** (chr) how often is the dataset updated?
+#'  - **`tags`** (list) tags assigned
+#'  - **`categorization`** (chr) the category of the dataset
+#'  - **`json`** (list) the full json metadata
+#'
+#' @inheritParams od_table
+#' @param local If `TRUE` (the default), the catalogue is created based on
+#'   cached json metadata. Otherwise, the cache is updated prior to
+#'   creating the catalogue using a "bulk-download" for metadata files.
+#' @examples
+#' catalogue <- od_catalogue()
+#' catalogue
+#' catalogue$update_frequency %>% table()
+#' catalogue$categorization %>% table()
+#' catalogue[catalogue$categorization == "Gesundheit", 1:4]
+#' catalogue[catalogue$measures >= 70, 1:3]
+#' catalogue$json[[1]]
+#' catalogue$database %>% head()
+#' @export
+od_catalogue <- function(server = "ext", local = TRUE) {
+  if (local) {
+    files <- dir(od_cache_path(server), '*.json')
+    ids <- substr(files, 1, nchar(files) - 5)
+  } else {
+    ids <- od_revisions(server = server)
+  }
+  timestamp <- switch(as.character(local), "TRUE" = NULL, "FALSE" = Sys.time())
+  jsons <- lapply(ids, od_json, timestamp, server)
+  as_df_jsons(jsons)
+}
+
+as_df_jsons <- function(jsons) {
+  parse_time <- function(x) {
+    as.POSIXct(x, format = "%Y-%m-%dT%H:%M:%OS")
+  }
+
+  descs <- sapply(jsons, function(x) x$extras$attribute_description) %>% paste0(";", .)
+  out <- data.frame(
+    title = sapply(jsons, function(x) x$title),
+    measures = gregexpr(";F-", descs) %>% sapply(length),
+    fields = gregexpr(";C-", descs) %>% sapply(length),
+    modified = sapply(jsons, function(x) parse_time(x$extras$metadata_modified)),
+    created = sapply(jsons, function(x) parse_time(x$resources[[1]]$created)),
+    id = sapply(jsons, function(x) x$resources[[1]]$name),
+    database = sapply(jsons, function(x) x$extras$metadata_linkage[[1]]) %>%
+      (function(x) {x[!grepl("statcube", x)] <- NA_character_; x}) %>% strsplit("?id=") %>%
+      sapply(function(x) x[2]),
+    title_en = sapply(jsons, function(x) x$extras$en_title_and_desc),
+    notes = sapply(jsons, function(x) x$notes),
+    update_frequency = sapply(jsons, function(x) x$extras$update_frequency),
+    tags = I(lapply(jsons, function(x) unlist(x$tags))),
+    categorization = sapply(jsons, function(x) unlist(x$extras$categorization[1])),
+    json = I(jsons)
+  )
+  out$modified <- as.POSIXct(out$modified, origin = "1970-01-01")
+  out$created <- as.POSIXct(out$created, origin = "1970-01-01")
+  class(out) <- c("tbl", class(out))
+  out
+}
+
