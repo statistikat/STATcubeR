@@ -124,7 +124,8 @@ print.od_json <- function(x, ...) {
   last_modified <- x$extras$metadata_modified  %>%
     as.POSIXct(format = "%Y-%m-%dT%H:%M:%OS") %>% format()
   cat(paste(strwrap(x$title), collapse = "\n"), "\n\n")
-  cat(strwrap(x$notes), sep = "\n")
+  if (x$title != x$notes)
+    cat(strwrap(x$notes), sep = "\n")
   cat("\n")
   cat("Measures:  ", with_wrap(measures), "\n")
   cat("Fields:    ", with_wrap(fields), "\n")
