@@ -36,7 +36,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -243,8 +243,8 @@ earnings survey.</p>
 <span><span class="co">#&gt;             Number of employees </span></span>
 <span><span class="co">#&gt; Fields      Sex, Citizenship, Region (NUTS2), Form of employment </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Request     2022-09-05 19:04:52 </span></span>
-<span><span class="co">#&gt; STATcubeR   0.4.2</span></span></code></pre>
+<span><span class="co">#&gt; Request     2022-09-07 19:07:26 </span></span>
+<span><span class="co">#&gt; STATcubeR   0.4.3</span></span></code></pre>
 <p>As we can see from the <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> output, the measures
 contain means and quartiles. Therefore, aggregating the data via
 <code><a href="https://rdrr.io/r/base/rowsum.html" class="external-link">rowsum()</a></code> is not meaningful. However, this dataset contains
@@ -276,7 +276,7 @@ a “total code” for every field.</p>
 <code>$tabulate()</code>. In order to do that, the total codes need to
 be specified using <code>$total_codes()</code>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">earnings</span><span class="op">$</span><span class="fu">total_codes</span><span class="op">(</span>Sex <span class="op">=</span> <span class="st">"Sum total"</span>, Citizenship <span class="op">=</span> <span class="st">"Total"</span>, </span>
+<code class="sourceCode R"><span><span class="va">earnings</span><span class="op">$</span><span class="fu">total_codes</span><span class="op">(</span>Sex <span class="op">=</span> <span class="st">"Sum total"</span>, Citizenship <span class="op">=</span> <span class="st">"Total"</span>,</span>
 <span>                     Region <span class="op">=</span> <span class="st">"Total"</span>, `Form of employment` <span class="op">=</span> <span class="st">"Total"</span><span class="op">)</span></span></code></pre></div>
 <p>Now <code>$tabulate()</code> will use these total codes to form
 aggregates of the data.</p>
@@ -297,8 +297,8 @@ aggregates of the data.</p>
 logic for selecting those rows is equivalent to the following
 <a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a> expression.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">earnings</span><span class="op">$</span><span class="va">data</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Sex</span> <span class="op">==</span> <span class="st">"Sum total"</span> <span class="op">&amp;</span> <span class="va">Citizenship</span> <span class="op">==</span> <span class="st">"Total"</span> <span class="op">&amp;</span> </span>
-<span>  <span class="va">`Region (NUTS2)`</span> <span class="op">==</span> <span class="st">"Total"</span> <span class="op">&amp;</span> <span class="va">`Form of employment`</span> <span class="op">!=</span> <span class="st">"Total"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">earnings</span><span class="op">$</span><span class="va">data</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Sex</span> <span class="op">==</span> <span class="st">"Sum total"</span> <span class="op">&amp;</span> <span class="va">Citizenship</span> <span class="op">==</span> <span class="st">"Total"</span> <span class="op">&amp;</span></span>
+<span>  <span class="va">`Region (NUTS2)`</span> <span class="op">==</span> <span class="st">"Total"</span> <span class="op">&amp;</span> <span class="va">`Form of employment`</span> <span class="op">!=</span> <span class="st">"Total"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">Sex</span>, <span class="op">-</span><span class="va">Citizenship</span>, <span class="op">-</span><span class="va">`Region (NUTS2)`</span><span class="op">)</span></span></code></pre></div>
 <p>The <code>$tabulate()</code> method also works with more than one
 variable.</p>
@@ -476,7 +476,7 @@ use <code>raw=TRUE</code>.</p>
 objects. For <code><a href="../reference/sc_table.html">sc_table()</a></code>, it depends on whcih languages were
 requested.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># default: get labels in german and english </span></span>
+<code class="sourceCode R"><span><span class="co"># default: get labels in german and english</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"accomodation"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co"># only get english labels</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"accomodation"</span><span class="op">)</span>, lang <span class="op">=</span> <span class="st">"en"</span><span class="op">)</span></span>

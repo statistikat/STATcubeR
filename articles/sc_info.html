@@ -36,7 +36,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -182,8 +182,8 @@ value from <code><a href="../reference/sc_table.html">sc_table()</a></code>, <co
 <code><a href="../reference/other_endpoints.html">sc_rate_limits()</a></code> and the rate limits will be extracted from
 the response headers.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"population_timeseries.json"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"population_timeseries.json"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/other_endpoints.html">sc_rate_limits</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; $schema</span></span>
 <span><span class="co">#&gt; 9999 / 10000 (Resets at 12:46:54)</span></span>
@@ -196,7 +196,7 @@ used.</p>
 <p>The function also works with return values from
 <code><a href="../reference/sc_schema.html">sc_schema()</a></code> and friends.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_schema.html">sc_schema_catalogue</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_schema.html">sc_schema_catalogue</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/other_endpoints.html">sc_rate_limits</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; $schema</span></span>
 <span><span class="co">#&gt; 10000 / 10000 (Resets at 12:46:54)</span></span>

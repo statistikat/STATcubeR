@@ -36,7 +36,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -218,7 +218,7 @@ measure by again using the database schema and passing a measure id</p>
 parameter, the <code>measures</code> parameters accepts vectors of
 resource ids.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table_custom</a></span><span class="op">(</span><span class="va">database</span>, measures <span class="op">=</span> <span class="va">measures</span><span class="op">$</span><span class="va">id</span>, </span>
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table_custom</a></span><span class="op">(</span><span class="va">database</span>, measures <span class="op">=</span> <span class="va">measures</span><span class="op">$</span><span class="va">id</span>,</span>
 <span>                     dimensions <span class="op">=</span> <span class="va">fields</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 321 x 5</span>
