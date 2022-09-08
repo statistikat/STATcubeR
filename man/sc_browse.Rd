@@ -15,7 +15,7 @@ sc_browse_preferences(server = "ext")
 
 sc_browse_table(table, server = "ext")
 
-sc_browse_database(database, server = NULL)
+sc_browse_database(database, server = NULL, open = FALSE)
 
 sc_browse_catalogue(server = "ext")
 
@@ -29,6 +29,9 @@ the production server. External users should always use the default option \code
 \item{table}{a table id}
 
 \item{database}{a database id}
+
+\item{open}{If \code{FaALSE} (the default), open the infopage for the database.
+Otherwise, open the table view.}
 }
 \description{
 A collection of links, to browse important STATcube pages.

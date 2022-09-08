@@ -33,13 +33,16 @@ sc_browse_table <- function(table, server = "ext") {
 
 #' @describeIn sc_browse shows the info page for a database
 #' @param database a database id
+#' @param open If `FALSE` (the default), open the infopage for the database.
+#'   Otherwise, open the table view.
 #' @examples
 #' sc_browse_database('deake005')
 #' @export
-sc_browse_database <- function(database, server = NULL) {
+sc_browse_database <- function(database, server = NULL, open = FALSE) {
   if (is.null(server))
     server <- sc_database_get_server(paste0("str:database:", database))
-  sc_url(sc_url_gui(server), "?openinfopage?id=", database)
+  action <- ifelse(open, "opendatabase", "openinfopage")
+  sc_url(sc_url_gui(server), action, "?id=", database)
 }
 
 #' @describeIn sc_browse shows the data catalogue explorer
