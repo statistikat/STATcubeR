@@ -16,7 +16,7 @@ library(tidyverse)
 all_datasets <- od_list()
 ```
 
-At the time of writing this article, there are 268 datasets that are assumed to be compatible with `od_table()`.
+At the time of writing this article, there are 315 datasets that are assumed to be compatible with `od_table()`.
 
 ## Interactive overview
 
