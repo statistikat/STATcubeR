@@ -1,4 +1,3 @@
-#' @param db_id a database id
 #' @examplesIf sc_key_exists()
 #' my_catalogue <- sc_schema_catalogue()
 #'
@@ -29,16 +28,18 @@
 #' "str:group:deake005:X_B1" %>%
 #'   sc_schema(depth = "valueset") %>%
 #'   print(tree = TRUE)
-#' @rdname sc_schema
+#' @describeIn sc_schema is similar to the
+#'   [table view](`r sc_browse_database('deake005', open = TRUE)`)
+#'   of ths STATcube GUI and gives information about all measures and
+#'   classification fields for a specific database
 #' @export
-sc_schema_db <- function(db_id, depth = "valueset", language = c("en", "de"),
+sc_schema_db <- function(id, depth = "valueset", language = c("en", "de"),
                          key = NULL) {
-  stopifnot(is.character(db_id) && length(db_id) == 1)
-  if (substr(db_id, 1, 3) != "str")
-    db_id <- paste0("str:database:", db_id)
-  server <- sc_database_get_server(db_id)
+  stopifnot(is.character(id) && length(id) == 1)
+  if (substr(id, 1, 3) != "str")
+    id <- paste0("str:database:", id)
+  server <- sc_database_get_server(id)
   if (is.null(key))
     key <- sc_key(server)
-  sc_schema(resource_id = db_id, depth = depth, key = key, language = language,
-            server = server)
+  sc_schema(id, depth, language, key, server)
 }
