@@ -10,24 +10,25 @@
 #' Caching can be set up using environment variables. To set up a persistent cache
 #' for both Open Data and the REST API, the following lines in `.Renviron` can
 #' be used.
+#' The paths in this example are only applicalble for UNIX-based operating systems.
 #'
 #' ```sh
-#' STATCUBE_KEY       = YOUR_API_KEY_GOES_HERE
+#' STATCUBE_KEY_EXT   = YOUR_API_KEY_GOES_HERE
 #' STATCUBE_CACHE     = TRUE
 #' OD_CACHE_DIR       = "~/.cache/STATcubeR/open_data/"
 #' STATCUBE_CACHE_DIR = "~/.cache/STATcubeR/api/"
 #' ```
-#'
-#' Note that the caches are always used and there is no check to verify if the
-#' resources are unchanged in the server. Caching is not implemented for the
+#' If caching is enabled, there is no check to verify if the
+#' resources are unchanged in the server.
+#' Caching is not implemented for the
 #' endpoints [sc_info()] and [sc_rate_limit_table()].
-#' @usage
-#' ## enable caching for the current R session
-#' sc_cache_enable(verbose)
 #' @rdname sc_cache
 #' @param verbose print instuctions on how to set up caching persistently
 #'   via environment variables?
 #' @name sc_cache
+NULL
+
+#' @describeIn sc_cache enables caching for the current R session
 #' @export
 sc_cache_enable <- function(verbose = TRUE) {
   Sys.setenv(STATCUBE_CACHE = TRUE)
@@ -41,9 +42,7 @@ sc_cache_enable <- function(verbose = TRUE) {
   invisible(sc_cache_dir())
 }
 
-#' @rdname sc_cache
-#' @usage
-#' ## disable caching for the current R session
+#' @describeIn sc_cache disables caching for the current R session
 #' sc_cache_disable()
 #' @export
 sc_cache_disable <- function() {
@@ -95,10 +94,7 @@ sc_cache_file <- function(params, ext = ".rds") {
     paste0(sc_cache_dir(), "/", ., ext)
 }
 
-#' @rdname sc_cache
-#' @usage
-#' ## remove all files from the cache
-#' sc_cache_clear()
+#' @describeIn sc_cache removes all files from the cache
 #' @export
 sc_cache_clear <- function() {
   nfiles <- length(dir(sc_cache_dir()))
