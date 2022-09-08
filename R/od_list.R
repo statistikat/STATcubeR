@@ -73,20 +73,26 @@ od_list <- function(unique = TRUE, server = c("ext", "red")) {
 #' filtered based on categorizations, tags, number of classifications, etc.
 #'
 #' The naming, ordering and choice of the columns is likely to change.
-#' Currently, the following columns are provided
+#' Currently, the following columns are provided.
 #'
-#'  - **`title`** (chr) the title of the dataset
-#'  - **`measures`** (int) number of measure variables
-#'  - **`fields`** (int) number of classification fields
-#'  - **`modified`** (dttm) the timestamp when the dataset was last modified
-#'  - **`created`** (dttm) the timestamp when the dataset was created
-#'  - **`id`** (chr) the OGD identifier
-#'  - **`database`** (chr) the identifier of the corresponding STATcube database
-#'  - **`notes`** (chr) a description for the dataset
-#'  - **`update_frequency`** (chr) how often is the dataset updated?
-#'  - **`tags`** (list) tags assigned
-#'  - **`categorization`** (chr) the category of the dataset
-#'  - **`json`** (list) the full json metadata
+#' |**Column**|**Type**       | **Description**
+#' | ---------| -------       | -------------
+#' |title     |`chr`          | Title of the dataset
+#' |measures  |`int`          | Number of measure variables
+#' |fields    |`int`          | Number of classification fields
+#' |modified  |`datetime`     | Timestamp when the dataset was last modified
+#' |created   |`datetime`     | Timestamp when the dataset was created
+#' |database  |`chr`          | ID of the corresponding STATcube database
+#' |title_en  |`chr`          | English title
+#' |notes     |`chr`          | Description for the dataset
+#' |frequency |`chr`          | How often is the dataset updated?
+#' |category  |`chr`          | Category of the dataset
+#' |tags      |`list<chr>`    | tags assigned to the dataset
+#' |json      |`list<od_json>`| Full json metadata
+#'
+#' The type `datetime` refers to the `POSIXct` format as returned by [Sys.time()].
+#' The last column `"json"` containes the full json metadata as returned by
+#' [od_json()].
 #'
 #' @inheritParams od_table
 #' @param local If `TRUE` (the default), the catalogue is created based on

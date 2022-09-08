@@ -21,21 +21,26 @@ filtered based on categorizations, tags, number of classifications, etc.
 }
 \details{
 The naming, ordering and choice of the columns is likely to change.
-Currently, the following columns are provided
-\itemize{
-\item \strong{\code{title}} (chr) the title of the dataset
-\item \strong{\code{measures}} (int) number of measure variables
-\item \strong{\code{fields}} (int) number of classification fields
-\item \strong{\code{modified}} (dttm) the timestamp when the dataset was last modified
-\item \strong{\code{created}} (dttm) the timestamp when the dataset was created
-\item \strong{\code{id}} (chr) the OGD identifier
-\item \strong{\code{database}} (chr) the identifier of the corresponding STATcube database
-\item \strong{\code{notes}} (chr) a description for the dataset
-\item \strong{\code{update_frequency}} (chr) how often is the dataset updated?
-\item \strong{\code{tags}} (list) tags assigned
-\item \strong{\code{categorization}} (chr) the category of the dataset
-\item \strong{\code{json}} (list) the full json metadata
+Currently, the following columns are provided.\tabular{lll}{
+   \strong{Column} \tab \strong{Type} \tab \strong{Description} \cr
+   title \tab \code{chr} \tab Title of the dataset \cr
+   measures \tab \code{int} \tab Number of measure variables \cr
+   fields \tab \code{int} \tab Number of classification fields \cr
+   modified \tab \code{datetime} \tab Timestamp when the dataset was last modified \cr
+   created \tab \code{datetime} \tab Timestamp when the dataset was created \cr
+   database \tab \code{chr} \tab ID of the corresponding STATcube database \cr
+   title_en \tab \code{chr} \tab English title \cr
+   notes \tab \code{chr} \tab Description for the dataset \cr
+   frequency \tab \code{chr} \tab How often is the dataset updated? \cr
+   category \tab \code{chr} \tab Category of the dataset \cr
+   tags \tab \verb{list<chr>} \tab tags assigned to the dataset \cr
+   json \tab \verb{list<od_json>} \tab Full json metadata \cr
 }
+
+
+The type \code{datetime} refers to the \code{POSIXct} format as returned by \code{\link[=Sys.time]{Sys.time()}}.
+The last column \code{"json"} containes the full json metadata as returned by
+\code{\link[=od_json]{od_json()}}.
 }
 \examples{
 catalogue <- od_catalogue()
