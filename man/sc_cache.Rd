@@ -10,10 +10,8 @@
 \alias{sc_cache_clear}
 \title{Cache responses from the STATcube REST API}
 \usage{
-## enable caching for the current R session
-sc_cache_enable(verbose)
+sc_cache_enable(verbose = TRUE)
 
-## disable caching for the current R session
 sc_cache_disable()
 
 sc_cache_enabled()
@@ -22,7 +20,6 @@ sc_cache_dir(dir = NULL)
 
 sc_cache_files(x)
 
-## remove all files from the cache
 sc_cache_clear()
 }
 \arguments{
@@ -45,23 +42,32 @@ old cache entries.
 Caching can be set up using environment variables. To set up a persistent cache
 for both Open Data and the REST API, the following lines in \code{.Renviron} can
 be used.
+The paths in this example are only applicalble for UNIX-based operating systems.
 
-\if{html}{\out{<div class="sourceCode sh">}}\preformatted{STATCUBE_KEY       = YOUR_API_KEY_GOES_HERE
+\if{html}{\out{<div class="sourceCode sh">}}\preformatted{STATCUBE_KEY_EXT   = YOUR_API_KEY_GOES_HERE
 STATCUBE_CACHE     = TRUE
 OD_CACHE_DIR       = "~/.cache/STATcubeR/open_data/"
 STATCUBE_CACHE_DIR = "~/.cache/STATcubeR/api/"
 }\if{html}{\out{</div>}}
 
-Note that the caches are always used and there is no check to verify if the
-resources are unchanged in the server. Caching is not implemented for the
+If caching is enabled, there is no check to verify if the
+resources are unchanged in the server.
+Caching is not implemented for the
 endpoints \code{\link[=sc_info]{sc_info()}} and \code{\link[=sc_rate_limit_table]{sc_rate_limit_table()}}.
 }
 \section{Functions}{
 \itemize{
+\item \code{sc_cache_enable()}: enables caching for the current R session
+
+\item \code{sc_cache_disable()}: disables caching for the current R session
+sc_cache_disable()
+
 \item \code{sc_cache_enabled()}: informs wether the cache is currently enabled
 
 \item \code{sc_cache_dir()}: get/set the directory used for caching
 
 \item \code{sc_cache_files()}: get the cache file associated with an object
+
+\item \code{sc_cache_clear()}: removes all files from the cache
 
 }}
