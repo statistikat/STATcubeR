@@ -124,8 +124,8 @@ as_df_jsons <- function(jsons) {
     title = sapply(jsons, function(x) x$title),
     measures = gregexpr(";F-", descs) %>% sapply(length),
     fields = gregexpr(";C-", descs) %>% sapply(length),
-    modified = sapply(jsons, function(x) parse_time(x$extras$metadata_modified)),
-    created = sapply(jsons, function(x) parse_time(x$resources[[1]]$created)),
+    modified = sapply(jsons, function(x) x$extras$metadata_modified),
+    created = sapply(jsons, function(x) x$resources[[1]]$created),
     id = sapply(jsons, function(x) x$resources[[1]]$name),
     database = sapply(jsons, function(x) x$extras$metadata_linkage[[1]]) %>%
       (function(x) {x[!grepl("statcube", x)] <- NA_character_; x}) %>% strsplit("?id=") %>%
@@ -135,10 +135,11 @@ as_df_jsons <- function(jsons) {
     update_frequency = sapply(jsons, function(x) x$extras$update_frequency),
     tags = I(lapply(jsons, function(x) unlist(x$tags))),
     categorization = sapply(jsons, function(x) unlist(x$extras$categorization[1])),
-    json = I(jsons)
+    json = I(jsons),
+    stringsAsFactors = FALSE
   )
-  out$modified <- as.POSIXct(out$modified, origin = "1970-01-01")
-  out$created <- as.POSIXct(out$created, origin = "1970-01-01")
+  out$modified <- parse_time(out$modified)
+  out$created <- parse_time(out$created)
   class(out) <- c("tbl", class(out))
   out
 }
