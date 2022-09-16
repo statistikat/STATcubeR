@@ -83,6 +83,24 @@ a:hover {
   transform: translateY(.4rem);
 }
 
+.tippy_header {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.tippy_body {
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.tippy_body code {
+  color: #ab0813;
+}
+
+.tippy_body li {
+    margin: -10px;
+}
+
 mark, .mark {
   background: #F0B4B9;
 }

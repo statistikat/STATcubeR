@@ -9,13 +9,15 @@ tippy_dataset <- function(x, text = NULL) {
   url_sc <- x$json$extras$metadata_linkage[[1]]
   tooltip <- glue::glue(
     "<div style=' text-align: left;'>
-  <b> {x$meta$source$label_en} </b><br/><br/>
+  <b class='tippy_header'> {x$meta$source$label_en} </b><br/><br/>
+  <div class='tippy_body'>
   <b>Measures</b>: {paste(x$meta$measures$label, collapse = ', ')}<br/>
   <b>Fields</b>: {paste(x$meta$fields$label, collapse = ', ')}<br/><br/>
   <b>links</b>:
     <a href='{url}' target='_blank'>metadata</a>
     <a href='{url_json}' target='_blank'>json</a>
     <a href='{url_sc}' target='_blank'>STATcube</a>
+  </div>
 </div>
 ")
   tags$u(
@@ -36,11 +38,12 @@ ticle <- function(x) {
     class = "STATcubeR",
     `data-tippy-content` = tags$div(
       style = "font-size: 14px; text-align: left;",
-      tags$b(fm$title), tags$br(),
+      tags$b(fm$title, class = "tippy_header"), tags$br(),
       downlit::downlit_md_string(fm$description) %>%
         markdown::renderMarkdown(text = .) %>%
         substr(4, nchar(.) - 5) %>%
-        htmltools::HTML()
+        htmltools::HTML() %>%
+        tags$div(class = "tippy_body")
     )
   )
 }
@@ -49,8 +52,10 @@ STATcubeR <- tags$a(
   "STATcubeR",
   href = "../index.html",
   `data-tippy-content` = "
-  <b>R package for all things STATcube</b><br/>
-  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  <b class='tippy_header'>R package for all things STATcube</b><br/>
+  <div class='tippy_body'>
+    Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  </div>
   ",
   class = "STATcubeR"
 )
@@ -60,8 +65,10 @@ ogd_portal <- tags$a(
   href = "https://data.statistik.gv.at",
   `data-tippy-allowHTML` = "true",
   `data-tippy-content` = "
-  <b>Open Government Data from Statistics Austria</b><br/>
-The open data portal provides datasets from Statistics Austria according to open data guidelines
+  <b class='tippy_header'>Open Government Data from Statistics Austria</b><br/>
+  <div class='tippy_body'>
+    The open data portal provides datasets from Statistics Austria according to open data guidelines
+  </div>
   ",
   class = "STATcubeR"
 )
