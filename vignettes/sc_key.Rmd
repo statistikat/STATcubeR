@@ -4,8 +4,6 @@ description: >
   Learn how get access to an API key and set up authentication to the STATcube
   REST API by making the key available for STATcubeR.
 link_text: "API key article"
-resource_files:
-  - img/preferences-menu.png
 ---
 
 ```{r, echo = FALSE}
@@ -23,13 +21,17 @@ This means that you will need a subscription for STATcube.
 Subscribed users will automatically get access to the STATcube API.
 The API key can be displayed under the [account preferences](`r sc_browse_preferences()`) ^[The link to the preferences will only work if you are already logged in into STATcube] of STATcube.
 
-```{js, echo = FALSE}
+```{r, include=FALSE}
+img_uri <- knitr::image_uri("img/preferences-menu.png")
+```
+
+<script>
 el = $('.external-link:contains("preferences")');
 tippy(el[0], {
-  content: "<img src='img/preferences-menu.png' style='width: 300px;'>",
+  content: "<img src='`r img_uri`' style='width: 300px;'>",
   allowHTML: true, theme: 'light rounded'
 })
-```
+</script>
 
 To make the key available for `r STATcubeR`, use the function
 `sc_key_set()`. Replace `"XXXX"` with your key.
