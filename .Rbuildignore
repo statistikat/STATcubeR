@@ -13,4 +13,5 @@
 ^\.travis\.yml$
 ^inst/json_examples/README\.md$
 ^\.github$
-^codecov\.yml$
+^dev$
+^icons$
