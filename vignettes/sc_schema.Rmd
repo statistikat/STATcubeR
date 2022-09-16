@@ -166,8 +166,8 @@ These ids can be used to send another request to the `/schema` endpoint
 measure_info <- sc_schema(id)
 ```
 
-Alternatively, use the `depth` parameter of `sc_schema`.
-This will make sure that the enties of the tree are returned recursively up to the a certain level level.
+Alternatively, use the `depth` parameter of `sc_schema()`.
+This will make sure that the entries of the tree are returned recursively up to a certain level.
 For example, `depth = "VALUESET"` will use the same level of recursion as `sc_schema_db()`.
 See `?sc_schema` for all available options of the `depth` parameter.
 
