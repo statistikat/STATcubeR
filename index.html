@@ -87,7 +87,7 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/" aria-label="STATcube">
+  <a class="external-link nav-link" href="https://www.statistik.at/datenbanken/statcube-statistische-datenbank" aria-label="STATcube">
     <span class="fas fa fas fa-cube fa-lg"></span>
      
   </a>
@@ -119,12 +119,18 @@
 <p>This package can be installed directly from github using the <a href="https://remotes.r-lib.org" class="external-link">remotes</a> package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"statistikat/STATcubeR"</span><span class="op">)</span></span></code></pre></div>
+<details><summary>
+Alternative: Install from tar.gz archives
+</summary><p>If you are not able to use <code>install_github()</code> to install <code>STATcubeR</code>, you can also download the package as a tar archive from <a href="https://github.com/statistikat/STATcubeR/tags" class="external-link uri">https://github.com/statistikat/STATcubeR/tags</a>. The package can then be installed by providing a path to the downloaded archive file.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'STATcubeR-0.4.3.tar.gz'</span>, repos <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+</details>
 </div>
 <div class="section level2">
 <h2 id="open-data">Open Data<a class="anchor" aria-label="anchor" href="#open-data"></a>
 </h2>
 <p>To import datasets from <a href="https://data.statistik.gv.at" class="external-link uri">https://data.statistik.gv.at</a>, pass the dataset id to the <code><a href="reference/od_table.html">od_table()</a></code> function. For example, OGD data about the <a href="https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_bevstandjbab2002_BevStand_2020" class="external-link">austrian population in 2020</a> can be accessed as follows.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://statistikat.github.io/STATcubeR">STATcubeR</a></span><span class="op">)</span></span>
 <span><span class="va">population</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/od_table.html">od_table</a></span><span class="op">(</span><span class="st">"OGD_bevstandjbab2002_BevStand_2020"</span><span class="op">)</span></span>
 <span><span class="va">population</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -149,7 +155,7 @@
 <li>
 <code><a href="reference/sc_schema.html">sc_schema_db()</a></code> provides metadata about a specific database</li>
 <li>
-<code><a href="reference/sc_table.html">sc_table()</a></code> requests a table from the API according to a json standard.</li>
+<code><a href="reference/sc_table.html">sc_table()</a></code> requests a table from the API according to a json standard</li>
 <li>
 <code><a href="reference/sc_table.html">sc_table_saved()</a></code> requests a table based on an id</li>
 </ul>
@@ -159,7 +165,7 @@
 <h2 id="consistent-data-formats">Consistent data formats<a class="anchor" aria-label="anchor" href="#consistent-data-formats"></a>
 </h2>
 <p>Both OGD data and tables form the REST API are wrapped into an <a href="https://r6.r-lib.org" class="external-link">R6</a> class to provide easy access to data and metadata. For example, the <code>$tabulate()</code> method is also available for tables from the REST API.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># https://statcube.at/statcube/openinfopage?id=debevstandjbab2002</span></span>
 <span><span class="va">population</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sc_table.html">sc_table_saved</a></span><span class="op">(</span><span class="st">"defaulttable_debevstandjbab2002"</span><span class="op">)</span></span>
 <span><span class="va">population</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>

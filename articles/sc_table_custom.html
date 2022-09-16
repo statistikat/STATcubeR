@@ -83,7 +83,7 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/" aria-label="STATcube">
+  <a class="external-link nav-link" href="https://www.statistik.at/datenbanken/statcube-statistische-datenbank" aria-label="STATcube">
     <span class="fas fa fas fa-cube fa-lg"></span>
      
   </a>
@@ -119,7 +119,7 @@
 <script>$(document).ready(function () {
     window.setTimeout("tippy('.STATcubeR', {allowHTML: true, theme:'light rounded'});", 50);
     });
-    </script><p>The function <code><a href="../reference/sc_table.html">sc_table_custom()</a></code> allows you to define
+    </script><p>The function <code><a href="../reference/sc_table_custom.html">sc_table_custom()</a></code> allows you to define
 requests against the <code>/table</code> endpoint programatically. This
 can be useful to automate the generation of <code>/table</code> request
 rather than relying on the GUI to do so. The function accepts the three
@@ -135,12 +135,12 @@ arguments.</p>
 <h2 id="starting-simple">Starting Simple<a class="anchor" aria-label="anchor" href="#starting-simple"></a>
 </h2>
 <p>First, we want to just send a database id to
-<code><a href="../reference/sc_table.html">sc_table_custom()</a></code>. We will use a <a href="https://portal.statistik.at/statistik.at/ext/statcube/?openinfopage?id=detouextregsai" class="external-link">database
+<code><a href="../reference/sc_table_custom.html">sc_table_custom()</a></code>. We will use a <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=detouextregsai" class="external-link">database
 about accomodation</a> througout this article. This returns a table with
 one single row.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">database</span> <span class="op">&lt;-</span> <span class="st">"str:database:detouextregsai"</span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table_custom</a></span><span class="op">(</span><span class="va">database</span><span class="op">)</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span><span class="va">database</span><span class="op">)</span></span>
 <span><span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 1 x 2</span>
   <span style="font-weight: bold;">`Season/Tourism Month`</span> <span style="font-weight: bold;">`Nights spent`</span>
@@ -166,7 +166,7 @@ getting the database schema and showing all classification fields.</p>
 <p>If we want to add “Country of origin” we need to include the fouth
 entry of the <code>id</code> column in our request.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table_custom</a></span><span class="op">(</span><span class="va">database</span>, dimensions <span class="op">=</span> <span class="va">fields</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span><span class="va">database</span>, dimensions <span class="op">=</span> <span class="va">fields</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 3 x 3</span>
   <span style="font-weight: bold;">`Season/Tourism Month`</span> <span style="font-weight: bold;">`Country of origin`</span> <span style="font-weight: bold;">`Nights spent`</span>
@@ -182,7 +182,7 @@ entry of the <code>id</code> column in our request.</p>
 <code>sc_schema_custom()</code> accepts vectors of field ids. Therefore,
 we can add the communes easily.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table_custom</a></span><span class="op">(</span><span class="va">database</span>, dimensions <span class="op">=</span> <span class="va">fields</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span><span class="va">database</span>, dimensions <span class="op">=</span> <span class="va">fields</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 321 x 4</span>
    <span style="font-weight: bold;">`Season/Tourism Month`</span> <span style="font-weight: bold;">`Tourism commune [ABO]`</span>        <span style="font-weight: bold;">Country of or…¹</span> <span style="font-weight: bold;">Night…²</span>
@@ -218,7 +218,7 @@ measure by again using the database schema and passing a measure id</p>
 parameter, the <code>measures</code> parameters accepts vectors of
 resource ids.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table_custom</a></span><span class="op">(</span><span class="va">database</span>, measures <span class="op">=</span> <span class="va">measures</span><span class="op">$</span><span class="va">id</span>,</span>
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span><span class="va">database</span>, measures <span class="op">=</span> <span class="va">measures</span><span class="op">$</span><span class="va">id</span>,</span>
 <span>                     dimensions <span class="op">=</span> <span class="va">fields</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 321 x 5</span>
@@ -240,7 +240,7 @@ resource ids.</p>
 <div class="section level2">
 <h2 id="using-valuesets">Using Valuesets<a class="anchor" aria-label="anchor" href="#using-valuesets"></a>
 </h2>
-<p>We can see in <a href="https://portal.statistik.at/statistik.at/ext/statcube/?openinfopage?id=detouextregsai" class="external-link">the
+<p>We can see in <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=detouextregsai" class="external-link">the
 GUI</a> that “Country of origin” is a hierarchical classification. If we
 look at the table above, only the top level of the hierarchy (Austria,
 Germany, other) is used. This can be changed by providing the the
@@ -270,7 +270,7 @@ present.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">id_valueset</span> <span class="op">&lt;-</span> <span class="va">db_schema</span><span class="op">$</span><span class="va">`Other Classifications`</span><span class="op">$</span></span>
 <span>  <span class="va">`Country of origin`</span><span class="op">$</span><span class="va">`Country of origin`</span><span class="op">$</span><span class="va">id</span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table_custom</a></span><span class="op">(</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span></span>
 <span>  db <span class="op">=</span> <span class="st">"str:database:detouextregsai"</span>,</span>
 <span>  measures <span class="op">=</span> <span class="va">measures</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>,</span>
 <span>  dimensions <span class="op">=</span> <span class="va">id_valueset</span></span>
@@ -299,7 +299,7 @@ present.</p>
 </h2>
 <p>Omitting certain classification elements from the query is possible
 with the <code>recodes</code> parameter of the <code>/table</code>
-endpoint. Currently, <code><a href="../reference/sc_table.html">sc_table_custom()</a></code> does not provide
+endpoint. Currently, <code><a href="../reference/sc_table_custom.html">sc_table_custom()</a></code> does not provide
 support for recodes. Please issue a <a href="https://github.com/statistikat/STATcubeR/issues" class="external-link">feature
 request</a> if you see this as a useful extension of
 <a href="../index.html" data-tippy-content="

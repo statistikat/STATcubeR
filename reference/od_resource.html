@@ -53,7 +53,7 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/" aria-label="STATcube">
+  <a class="external-link nav-link" href="https://www.statistik.at/datenbanken/statcube-statistische-datenbank" aria-label="STATcube">
     <span class="fas fa fas fa-cube fa-lg"></span>
      
   </a>
@@ -168,17 +168,39 @@ That is, if a json is requested, it will be reused from the cache unless the
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> A11-2 <span style="color: #BB0000;">NA</span>    männlich  Male      <span style="color: #BB0000;">NA</span>    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> A11-3 <span style="color: #BB0000;">NA</span>    weiblich  Female    <span style="color: #BB0000;">NA</span>    </span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># get json metadata about a dataset</span></span></span>
+<span class="r-in"><span><span class="fu">od_json</span><span class="op">(</span><span class="st">'OGD_veste309_Veste309_1'</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Verdienststrukturerhebung 2018 Bruttostundenverdienste in EUR</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> nach Staatsangehörigkeit, Bundesland und</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Beschäftigungsverhältnis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Verdienststruktur nach Geschlecht, Staatsangehörigkeit,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Bundesland und Beschäftigungsverhältnis</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Measures:   Arithmetisches Mittel, 1. Quartil, 2. Quartil (Median),</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             3. Quartil, Zahl d unselbst Beschäftigten </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Fields:     Geschlecht, Staatsangehörigkeit, Bundesland (NUTS 2),</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Form des Beschäftigungsverhältnisses </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Updated:    2022-03-24 11:29:48 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Tags:       Staatsangehörigkeit, Bundesland, Beschäftigungsverhältnis </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Categories: Arbeit, Bevölkerung </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <a href="https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_veste309_Veste309_1" class="external-link">https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_veste309_Veste309_1</a></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <a href="https://statcube.at/statcube/opendatabase?id=deveste309" class="external-link">https://statcube.at/statcube/opendatabase?id=deveste309</a></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <a href="http://www.statistik.at/web_de/dokumentationen/Soziales/index.html" class="external-link">http://www.statistik.at/web_de/dokumentationen/Soziales/index.html</a></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <a href="http://www.statistik.at/web_en/documentations/people_and_society/social_statistics/index.html" class="external-link">http://www.statistik.at/web_en/documentations/people_and_society/social_statistics/index.html</a></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Bundle all resources</span></span></span>
 <span class="r-in"><span><span class="fu">od_resource_all</span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 6 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">name</span>    <span style="font-weight: bold;">last_modified</span>       <span style="font-weight: bold;">cached</span>               <span style="font-weight: bold;">size</span> <span style="font-weight: bold;">downl…¹</span> <span style="font-weight: bold;">parsed</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>  <span style="text-decoration: underline;">4</span>931      <span style="color: #BB0000;">NA</span>  0.651</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   516      <span style="color: #BB0000;">NA</span>  0.470</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   159      <span style="color: #BB0000;">NA</span>  0.446</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   697      <span style="color: #BB0000;">NA</span>  0.458</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   518      <span style="color: #BB0000;">NA</span>  0.456</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   641      <span style="color: #BB0000;">NA</span>  0.444</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>  <span style="text-decoration: underline;">4</span>931      <span style="color: #BB0000;">NA</span>  0.692</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   516      <span style="color: #BB0000;">NA</span>  0.473</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   159      <span style="color: #BB0000;">NA</span>  0.438</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   697      <span style="color: #BB0000;">NA</span>  0.439</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   518      <span style="color: #BB0000;">NA</span>  0.424</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   641      <span style="color: #BB0000;">NA</span>  0.431</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 1 more variable: </span><span style="color: #949494; font-weight: bold;">data</span><span style="color: #949494;"> &lt;I&lt;list&gt;&gt;, and abbreviated variable</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   name ¹​download</span></span>
 </code></pre></div>

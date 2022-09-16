@@ -67,7 +67,7 @@ Those three functions all return an object of class "sc_table".'><meta property=
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/" aria-label="STATcube">
+  <a class="external-link nav-link" href="https://www.statistik.at/datenbanken/statcube-statistische-datenbank" aria-label="STATcube">
     <span class="fas fa fas fa-cube fa-lg"></span>
      
   </a>
@@ -86,39 +86,25 @@ Those three functions all return an object of class "sc_table".'><meta property=
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Create a request against the /table endpoint</h1>
-      <small class="dont-index">Source: <a href="https://github.com/statistikat/STATcubeR/blob/HEAD/R/table.R" class="external-link"><code>R/table.R</code></a>, <a href="https://github.com/statistikat/STATcubeR/blob/HEAD/R/table_custom.R" class="external-link"><code>R/table_custom.R</code></a>, <a href="https://github.com/statistikat/STATcubeR/blob/HEAD/R/table_saved.R" class="external-link"><code>R/table_saved.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/statistikat/STATcubeR/blob/HEAD/R/table.R" class="external-link"><code>R/table.R</code></a>, <a href="https://github.com/statistikat/STATcubeR/blob/HEAD/R/table_saved.R" class="external-link"><code>R/table_saved.R</code></a></small>
       <div class="d-none name"><code>sc_table.Rd</code></div>
     </div>
 
     <div class="ref-description section level2">
     <p>Send requests against the <strong><code>/table</code></strong> endpoint of the STATcube REST API. The
 requests can use three formats with corresponding functions</p><ul><li><p><code>sc_table()</code> uses a json file downloaded via the STATcube GUI</p></li>
-<li><p><code>sc_table_custom()</code> uses the ids of a database, measures and fields</p></li>
+<li><p><code><a href="sc_table_custom.html">sc_table_custom()</a></code> uses the ids of a database, measures and fields</p></li>
 <li><p><code>sc_table_saved()</code> uses a table uri of a saved table.</p></li>
 </ul><p>Those three functions all return an object of class <code>"sc_table"</code>.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">sc_table</span><span class="op">(</span></span>
-<span>  <span class="va">json_file</span>,</span>
-<span>  language <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"en"</span>, <span class="st">"de"</span>, <span class="st">"both"</span><span class="op">)</span>,</span>
-<span>  add_totals <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  key <span class="op">=</span> <span class="cn">NULL</span></span>
-<span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">sc_table</span><span class="op">(</span><span class="va">json_file</span>, language <span class="op">=</span> <span class="st">"en"</span>, add_totals <span class="op">=</span> <span class="cn">TRUE</span>, key <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">sc_examples_list</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">sc_example</span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">sc_table_custom</span><span class="op">(</span></span>
-<span>  <span class="va">db</span>,</span>
-<span>  measures <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  dimensions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  language <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"en"</span>, <span class="st">"de"</span><span class="op">)</span>,</span>
-<span>  add_totals <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  key <span class="op">=</span> <span class="cn">NULL</span></span>
-<span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">sc_table_saved_list</span><span class="op">(</span>key <span class="op">=</span> <span class="cn">NULL</span>, server <span class="op">=</span> <span class="st">"ext"</span><span class="op">)</span></span>
 <span></span>
@@ -133,14 +119,15 @@ GUI ("Open Data API Abfrage")</p></dd>
 
 
 <dt>language</dt>
-<dd><p>The language to be used for labeling. <code>"en"</code> or <code>"de"</code>.
+<dd><p>The language to be used for labeling. <code>"en"</code> (the default)
+will use english. <code>"de"</code> uses german.
 The third option <code>"both"</code> will import both languages by sending two requests
 to the <code>/table</code> endpoint.</p></dd>
 
 
 <dt>add_totals</dt>
-<dd><p>Should totals be added for each measure in the json
-request?</p></dd>
+<dd><p>Should totals be added for each classification field in
+the json request?</p></dd>
 
 
 <dt>key</dt>
@@ -150,21 +137,6 @@ request?</p></dd>
 
 <dt>filename</dt>
 <dd><p>The name of an example json file.</p></dd>
-
-
-<dt>db</dt>
-<dd><p>The uid of a database</p></dd>
-
-
-<dt>measures</dt>
-<dd><p>A character vector of uids for measures. Can be either of
-type <code>MEASURE</code> or of type <code>STAT_FUNCTION</code></p></dd>
-
-
-<dt>dimensions</dt>
-<dd><p>A character vector of dimensions for the cube. Can be
-either of type <code>FIELD</code> or type <code>VALUESET</code>. Those entries are referred to
-as <code>fields</code> in the parsed API response</p></dd>
 
 
 <dt>server</dt>
@@ -263,25 +235,6 @@ provides member functions to parse this response object. See
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> SC_TOTAL Total              Total             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 4 more columns: 'label_de', 'label_en', 'visible', 'order'</span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">sc_table_custom</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  db <span class="op">=</span> <span class="st">"str:database:detouextregsai"</span>,</span></span>
-<span class="r-in"><span>  measures <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="st">"str:statfn:detouextregsai:F-DATA1:F-ANK:SUM"</span>,</span></span>
-<span class="r-in"><span>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-UEB"</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span>,</span></span>
-<span class="r-in"><span>  dimensions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="st">"str:field:detouextregsai:F-DATA1:C-SDB_TIT-0"</span>,</span></span>
-<span class="r-in"><span>    <span class="st">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93SUM-0"</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> An object of class sc_table</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Database    Accomodation statistics as of 1974 according to seasons </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Measures    Arrivals, Nights spent </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Fields      Season/Tourism Month, Country of origin </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-08-29 09:52:13 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> STATcubeR   0.4.3</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># get the ids and labels of all saved tables</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">saved_tables</span> <span class="op">&lt;-</span> <span class="fu">sc_table_saved_list</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>

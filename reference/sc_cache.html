@@ -63,7 +63,7 @@ old cache entries."><meta property="og:image" content="https://statistikat.githu
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/" aria-label="STATcube">
+  <a class="external-link nav-link" href="https://www.statistik.at/datenbanken/statcube-statistische-datenbank" aria-label="STATcube">
     <span class="fas fa fas fa-cube fa-lg"></span>
      
   </a>
@@ -88,7 +88,7 @@ old cache entries."><meta property="og:image" content="https://statistikat.githu
 
     <div class="ref-description section level2">
     <p>Functions to cache requested resources in the directory <code>~/.STATcubeR_cache</code>
-and reuse them in calls to <code><a href="sc_table.html">sc_table()</a></code>, <code><a href="sc_table.html">sc_table_custom()</a></code> <code><a href="sc_schema.html">sc_schema()</a></code> and so forth.
+and reuse them in calls to <code><a href="sc_table.html">sc_table()</a></code>, <code><a href="sc_table_custom.html">sc_table_custom()</a></code> <code><a href="sc_schema.html">sc_schema()</a></code> and so forth.
 These functions are designed for testing and documentation and should not be
 regarded as part of the STATcubeR interface. The caching logic is likely to
 change in the future in which case <code>sc_cache_clear()</code> is required to purge
@@ -97,10 +97,8 @@ old cache entries.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co">## enable caching for the current R session</span></span>
-<span><span class="fu">sc_cache_enable</span><span class="op">(</span><span class="va">verbose</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">sc_cache_enable</span><span class="op">(</span>verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">## disable caching for the current R session</span></span>
 <span><span class="fu">sc_cache_disable</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">sc_cache_enabled</span><span class="op">(</span><span class="op">)</span></span>
@@ -109,7 +107,6 @@ old cache entries.</p>
 <span></span>
 <span><span class="fu">sc_cache_files</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">## remove all files from the cache</span></span>
 <span><span class="fu">sc_cache_clear</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -132,21 +129,27 @@ via environment variables?</p></dd>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Caching can be set up using environment variables. To set up a persistent cache
 for both Open Data and the REST API, the following lines in <code>.Renviron</code> can
-be used.</p>
-<p></p><div class="sourceCode sh"><pre><code><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">STATCUBE_KEY</span>       = YOUR_API_KEY_GOES_HERE</span>
+be used.
+The paths in this example are only applicalble for UNIX-based operating systems.</p>
+<p></p><div class="sourceCode sh"><pre><code><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">STATCUBE_KEY_EXT</span>   = YOUR_API_KEY_GOES_HERE</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">STATCUBE_CACHE</span>     = TRUE</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">OD_CACHE_DIR</span>       = <span class="st">"~/.cache/STATcubeR/open_data/"</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">STATCUBE_CACHE_DIR</span> = <span class="st">"~/.cache/STATcubeR/api/"</span></span></code></pre><p></p></div>
-<p>Note that the caches are always used and there is no check to verify if the
-resources are unchanged in the server. Caching is not implemented for the
+<p>If caching is enabled, there is no check to verify if the
+resources are unchanged in the server.
+Caching is not implemented for the
 endpoints <code><a href="other_endpoints.html">sc_info()</a></code> and <code><a href="other_endpoints.html">sc_rate_limit_table()</a></code>.</p>
     </div>
     <div class="section level2">
     <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a></h2>
     
-<ul><li><p><code>sc_cache_enabled()</code>: informs wether the cache is currently enabled</p></li>
+<ul><li><p><code>sc_cache_enable()</code>: enables caching for the current R session</p></li>
+<li><p><code>sc_cache_disable()</code>: disables caching for the current R session
+sc_cache_disable()</p></li>
+<li><p><code>sc_cache_enabled()</code>: informs wether the cache is currently enabled</p></li>
 <li><p><code>sc_cache_dir()</code>: get/set the directory used for caching</p></li>
 <li><p><code>sc_cache_files()</code>: get the cache file associated with an object</p></li>
+<li><p><code>sc_cache_clear()</code>: removes all files from the cache</p></li>
 </ul></div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

@@ -57,7 +57,7 @@ filtered based on categorizations, tags, number of classifications, etc."><meta 
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/" aria-label="STATcube">
+  <a class="external-link nav-link" href="https://www.statistik.at/datenbanken/statcube-statistische-datenbank" aria-label="STATcube">
     <span class="fas fa fas fa-cube fa-lg"></span>
      
   </a>
@@ -107,19 +107,10 @@ creating the catalogue using a "bulk-download" for metadata files.</p></dd>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The naming, ordering and choice of the columns is likely to change.
-Currently, the following columns are provided</p><ul><li><p><strong><code>title</code></strong> (chr) the title of the dataset</p></li>
-<li><p><strong><code>measures</code></strong> (int) number of measure variables</p></li>
-<li><p><strong><code>fields</code></strong> (int) number of classification fields</p></li>
-<li><p><strong><code>modified</code></strong> (dttm) the timestamp when the dataset was last modified</p></li>
-<li><p><strong><code>created</code></strong> (dttm) the timestamp when the dataset was created</p></li>
-<li><p><strong><code>id</code></strong> (chr) the OGD identifier</p></li>
-<li><p><strong><code>database</code></strong> (chr) the identifier of the corresponding STATcube database</p></li>
-<li><p><strong><code>notes</code></strong> (chr) a description for the dataset</p></li>
-<li><p><strong><code>update_frequency</code></strong> (chr) how often is the dataset updated?</p></li>
-<li><p><strong><code>tags</code></strong> (list) tags assigned</p></li>
-<li><p><strong><code>categorization</code></strong> (chr) the category of the dataset</p></li>
-<li><p><strong><code>json</code></strong> (list) the full json metadata</p></li>
-</ul></div>
+Currently, the following columns are provided.</p><table class="table table"><tr><td><strong>Column</strong></td><td><strong>Type</strong></td><td><strong>Description</strong></td></tr><tr><td>title</td><td><code>chr</code></td><td>Title of the dataset</td></tr><tr><td>measures</td><td><code>int</code></td><td>Number of measure variables</td></tr><tr><td>fields</td><td><code>int</code></td><td>Number of classification fields</td></tr><tr><td>modified</td><td><code>datetime</code></td><td>Timestamp when the dataset was last modified</td></tr><tr><td>created</td><td><code>datetime</code></td><td>Timestamp when the dataset was created</td></tr><tr><td>database</td><td><code>chr</code></td><td>ID of the corresponding STATcube database</td></tr><tr><td>title_en</td><td><code>chr</code></td><td>English title</td></tr><tr><td>notes</td><td><code>chr</code></td><td>Description for the dataset</td></tr><tr><td>frequency</td><td><code>chr</code></td><td>How often is the dataset updated?</td></tr><tr><td>category</td><td><code>chr</code></td><td>Category of the dataset</td></tr><tr><td>tags</td><td><code>list&lt;chr&gt;</code></td><td>tags assigned to the dataset</td></tr><tr><td>json</td><td><code>list&lt;od_json&gt;</code></td><td>Full json metadata</td></tr></table><p>The type <code>datetime</code> refers to the <code>POSIXct</code> format as returned by <code><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time()</a></code>.
+The last column <code>"json"</code> containes the full json metadata as returned by
+<code><a href="od_resource.html">od_json()</a></code>.</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
@@ -168,7 +159,7 @@ Currently, the following columns are provided</p><ul><li><p><strong><code>title<
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Spitalsentlassungen aus Akutkran…       2      4 2022-03-09 <span style="color: #949494;">12:02:24</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Spitalsentlassungen aus Krankena…       2      5 2021-07-28 <span style="color: #949494;">15:33:51</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Spitalsentlassungen aus Krankena…       2      4 2022-03-09 <span style="color: #949494;">12:02:24</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Medizinische Leistungen während …       1      5 2022-03-09 <span style="color: #949494;">12:02:24</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Medizinische Leistungen während …       1      5 2022-09-08 <span style="color: #949494;">10:16:39</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Krebsstatistik                          1      4 2022-09-06 <span style="color: #949494;">14:51:39</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable name ¹​measures</span></span>
 <span class="r-in"><span><span class="va">catalogue</span><span class="op">[</span><span class="va">catalogue</span><span class="op">$</span><span class="va">measures</span> <span class="op">&gt;=</span> <span class="fl">70</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span></span>

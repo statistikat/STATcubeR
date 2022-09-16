@@ -83,7 +83,7 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/" aria-label="STATcube">
+  <a class="external-link nav-link" href="https://www.statistik.at/datenbanken/statcube-statistische-datenbank" aria-label="STATcube">
     <span class="fas fa fas fa-cube fa-lg"></span>
      
   </a>
@@ -115,12 +115,6 @@
 
     
     
-<style type="text/css">
-pre, pre code {
-  white-space: pre;
-  padding-right: 1rem;
-}
-</style>
 <script src="https://unpkg.com/@popperjs/core@2"></script><script src="https://unpkg.com/tippy.js@6"></script><link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light.css">
 <script>$(document).ready(function () {
     window.setTimeout("tippy('.STATcubeR', {allowHTML: true, theme:'light rounded'});", 50);
@@ -191,7 +185,7 @@ tracker</a> if you get an error which is not listed here.</p>
 <p>If an invalid API key is used for a request, a 401 status is
 returned.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">sc_schema_info</span><span class="op">(</span>key <span class="op">=</span> <span class="st">"wrong key"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/other_endpoints.html">sc_info</a></span><span class="op">(</span>key <span class="op">=</span> <span class="st">"wrong key"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; Error: Client error: (401) Unauthorized</span></span>
 <span><span class="co">#&gt; {</span></span>
 <span><span class="co">#&gt;   "message": "Error authenticating API key. Please contact your system administrator.",</span></span>
@@ -307,7 +301,7 @@ table URI is passed, the server will respond with a status code of
 <p>If a request against the <code>/table</code> endpoint uses an invalid
 URI in the json body, this will trigger a content-type error. To
 showcase this, <code><a href="../reference/sc_table.html">sc_table()</a></code> is used. However, invalid URIs
-that are used with <code><a href="../reference/sc_table.html">sc_table_custom()</a></code> will throw the same
+that are used with <code><a href="../reference/sc_table_custom.html">sc_table_custom()</a></code> will throw the same
 error.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="st">"request.json"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span>sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span></code></pre></div>
@@ -336,7 +330,7 @@ reasons.</p>
 it is very likely caused by exceeded rate limits. This is because json
 request that are downloaded by the STATcube GUI should always contain
 valid URIs. However, if you either modify the downloaded json requests
-or use <code><a href="../reference/sc_table.html">sc_table_custom()</a></code>, the reason “invalid json body” is
+or use <code><a href="../reference/sc_table_custom.html">sc_table_custom()</a></code>, the reason “invalid json body” is
 plausible.</p>
 </div>
 </div>

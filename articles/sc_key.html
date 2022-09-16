@@ -83,7 +83,7 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/" aria-label="STATcube">
+  <a class="external-link nav-link" href="https://www.statistik.at/datenbanken/statcube-statistische-datenbank" aria-label="STATcube">
     <span class="fas fa fas fa-cube fa-lg"></span>
      
   </a>
@@ -128,10 +128,16 @@ docs</a> for the vendor documentation on API keys.</p>
 <p>In order to use the REST API of STATcube it is necessary to provide
 an API key. This means that you will need a subscription for STATcube.
 Subscribed users will automatically get access to the STATcube API. The
-API key can be displayed under the <a href="https://statcube.at/statistik.at/ext/statcube/jsf/preferences/editPreferences.xhtml" class="external-link">preferences
-menu</a> <a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content="&lt;p&gt;The link to the preferences will only work if you are
+API key can be displayed under the <a href="https://portal.statistik.at/statistik.at/ext/statcube/jsf/preferences/editPreferences.xhtml" class="external-link">account
+preferences</a> <a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content="&lt;p&gt;The link to the preferences will only work if you are
 already logged in into STATcube&lt;/p&gt;"><sup>1</sup></a> of STATcube.</p>
-<p>To make the key available for
+<script type="text/javascript">
+el = $('.external-link:contains("preferences")');
+tippy(el[0], {
+  content: "<img src='/data/home/decill/STATgraph/STATcubeR2/vignettes/img/preferences-menu.png' style='width: 300px;'>",
+  allowHTML: true, theme: 'light rounded'
+})
+</script><p>To make the key available for
 <a href="../index.html" data-tippy-content="
   &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
   Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
