@@ -124,6 +124,7 @@ reference:
   - 'sc_key'
   - 'sc_schema'
   - 'other_endpoints'
+  - 'sc_table_custom'
 - title: General
   desc: >
     Other functionalities including the [STATcubeR data class](../articles/sc_data.html).
