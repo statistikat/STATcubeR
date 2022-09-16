@@ -170,14 +170,15 @@ sc_table_class <- R6::R6Class(
 #' Those three functions all return an object of class `"sc_table"`.
 #' @param json_file path to a json file, which was downloaded via the STATcube
 #'   GUI ("Open Data API Abfrage")
-#' @param add_totals Should totals be added for each measure in the json
-#'   request?
+#' @param add_totals Should totals be added for each classification field in
+#'   the json request?
 #' @return An object of class `sc_table` which contains the return
 #'   value of the [httr::POST()] request in `obj$response`. The object also
 #'   provides member functions to parse this response object. See
 #'   [sc_table_class] for the class documentation.
 #' @inheritParams sc_key
-#' @param language The language to be used for labeling. `"en"` or `"de"`.
+#' @param language The language to be used for labeling. `"en"` (the default)
+#'   will use english. `"de"` uses german.
 #'   The third option `"both"` will import both languages by sending two requests
 #'   to the `/table` endpoint.
 #' @family functions for /table
@@ -196,17 +197,6 @@ sc_table_class <- R6::R6Class(
 #' # get metadata for field 2
 #' my_table$field(2)
 #'
-#' sc_table_custom(
-#'   db = "str:database:detouextregsai",
-#'   measures = c(
-#'     "str:statfn:detouextregsai:F-DATA1:F-ANK:SUM",
-#'     "str:measure:detouextregsai:F-DATA1:F-UEB"
-#'   ),
-#'   dimensions = c(
-#'     "str:field:detouextregsai:F-DATA1:C-SDB_TIT-0",
-#'     "str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93SUM-0"
-#'   )
-#' )
 #'
 #' # get the ids and labels of all saved tables
 #' (saved_tables <- sc_table_saved_list())
@@ -216,9 +206,9 @@ sc_table_class <- R6::R6Class(
 #' my_response <- sc_table_saved(table_uri)
 #' as.data.frame(my_response)
 #' @export
-sc_table <- function(json_file, language = c("en", "de", "both"), add_totals = TRUE,
+sc_table <- function(json_file, language = "en", add_totals = TRUE,
                      key = NULL) {
-  language <- match.arg(language)
+  language <- match.arg(language, c("en", "de", "both"))
   both <- language == "both"
   if (both)
     language <- "de"
