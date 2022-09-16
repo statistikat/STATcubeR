@@ -132,7 +132,8 @@ print.od_table <- function(x, ...) {
   cat("An object of class od_table\n\n")
   cat("Dataset    ", with_wrap(x$meta$source$label), "\n")
   cat("Measures   ", with_wrap(x$meta$measures$label), "\n")
-  cat("Fields     ", with_wrap(x$meta$fields$label), "\n\n")
+  cat("Fields     ", with_wrap(paste0(
+    x$meta$fields$label, " <", x$meta$fields$nitems, ">")), "\n\n")
   cat("Request    ", format(x$meta$source$requested), "\n")
   cat("STATcubeR  ", x$meta$source$scr_version, "\n")
 }

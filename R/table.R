@@ -237,9 +237,10 @@ sc_example <- function(filename) {
 #' @export
 print.sc_table <- function(x, ...) {
   cat("An object of class sc_table\n\n")
-  cat("Database   ", x$meta$source$label, "\n")
+  cat("Database   ", with_wrap(x$meta$source$label), "\n")
   cat("Measures   ", with_wrap(x$meta$measures$label), "\n")
-  cat("Fields     ", with_wrap(x$meta$fields$label), "\n\n")
+  cat("Fields     ", with_wrap(paste0(
+    x$meta$fields$label, " <", x$meta$fields$nitems, ">")), "\n\n")
   cat("Request    ", format(x$response$date), "\n")
   cat("STATcubeR  ", x$meta$source$scr_version)
 }
