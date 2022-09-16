@@ -6,7 +6,7 @@
 #'   later will be returned. Otherwise, all datasets are retured.
 #'   Can be in either one of the following formats
 #'   * a native R time type that is compatible with `strftime()`
-#'     such as the return values of `Sys.date()`, `Sys.time()` and `file.mtime()`.
+#'     such as the return values of `Sys.Date()`, `Sys.time()` and `file.mtime()`.
 #'   * a string of the form `YYYY-MM-DD` to specify a day.
 #'   * a string of the form `YYYY-MM-DDThh:mm:ss` to specify a day and a time.
 #' @param exclude_ext If `TRUE` (default) exclude all results that have
