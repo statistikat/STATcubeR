@@ -6,13 +6,6 @@ description: >
 link_text: "error handling article"
 ---
 
-```{css, echo = FALSE}
-pre, pre code {
-  white-space: pre;
-  padding-right: 1rem;
-}
-```
-
 ```{r, echo=FALSE}
 source("R/setup.R")$value
 ```
