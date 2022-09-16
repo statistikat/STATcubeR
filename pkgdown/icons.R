@@ -29,5 +29,8 @@ use_icon("internet-explorer", "sc_browse") # :)
 use_icon("table-list", "od_list")
 use_icon("table", "sc_data")
 use_icon("table", "sc_tabulate")
+use_icon("scroll", "od_catalogue")
+use_icon("rotate", "od_revisions")
+use_icon("snowflake", "sc_table_custom")
 
 pkgdown::build_reference_index()
