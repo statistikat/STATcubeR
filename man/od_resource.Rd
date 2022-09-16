@@ -68,6 +68,9 @@ od_cache_file("OGD_veste309_Veste309_1", "C-A11-0")
 # get a parsed verison of the resource
 od_resource("OGD_veste309_Veste309_1", "C-A11-0")
 
+# get json metadata about a dataset
+od_json('OGD_veste309_Veste309_1')
+
 # Bundle all resources
 od_resource_all("OGD_veste309_Veste309_1")
 }

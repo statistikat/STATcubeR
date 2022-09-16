@@ -30,7 +30,7 @@ the production server. External users should always use the default option \code
 
 \item{database}{a database id}
 
-\item{open}{If \code{FaALSE} (the default), open the infopage for the database.
+\item{open}{If \code{FALSE} (the default), open the infopage for the database.
 Otherwise, open the table view.}
 }
 \description{
