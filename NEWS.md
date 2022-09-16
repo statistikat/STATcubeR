@@ -1,3 +1,9 @@
+# STATcubeR 0.4.3
+
+* add `od_revisions()` to check for updates on the OGD server
+* add `od_catalogue()` to combine multiple jsons metadata files
+  into a single catalogue table
+
 # STATcubeR 0.4.2
 
 * add `sc_browse_catalogue()`, `sc_browse_database()` and `sc_browse_table()`
