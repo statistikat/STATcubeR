@@ -27,7 +27,8 @@ sc_data <- R6::R6Class(
       meta$source$scr_version <- sc_version()
       meta$source <- sc_tibble_meta(meta$source, "lang")
       meta$measures <- sc_tibble_meta(meta$measures, "NAs")
-      meta$fields <- sc_tibble_meta(meta$fields, "total_code")
+      meta$fields <- sc_tibble_meta(
+        meta$fields, c("total_code", "nitems", "type"))
       private$p_data <- sc_tibble(data)
       private$p_meta <- meta
       for (i in seq_along(fields)) {
