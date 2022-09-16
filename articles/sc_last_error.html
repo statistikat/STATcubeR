@@ -121,8 +121,10 @@
     });
     </script><p>This article explains how
 <a href="../index.html" data-tippy-content="
-  &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
-  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;b class='tippy_header'&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
+  &lt;div class='tippy_body'&gt;
+    Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;/div&gt;
   " class="STATcubeR">STATcubeR</a>
 deals with situations where the communication with the STATcube REST API
 leads to exceptions such as error codes.</p>
@@ -195,9 +197,9 @@ returned.</p>
 <p>This example passes the API key as a parameter for simplicity. In
 practice, you should set up your key according to the
 <a href="sc_key.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Set Up the API Key&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Set Up the API Key&lt;/b&gt;
   &lt;br/&gt;
-  Learn how get access to an API key and set up authentication to the STATcube REST API by making the key available for STATcubeR.
+  &lt;div class="tippy_body"&gt;Learn how get access to an API key and set up authentication to the STATcube REST API by making the key available for STATcubeR.&lt;/div&gt;
 &lt;/div&gt;'>API key article</a>.</p>
 </div>
 <div class="section level3">
@@ -205,8 +207,10 @@ practice, you should set up your key according to the
 </h3>
 <p>This occurs if
 <a href="../index.html" data-tippy-content="
-  &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
-  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;b class='tippy_header'&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
+  &lt;div class='tippy_body'&gt;
+    Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;/div&gt;
   " class="STATcubeR">STATcubeR</a>
 tries to send requests to a server which is not accessible for the
 current environment. This will result in a timout error.</p>
@@ -221,8 +225,10 @@ is the following.</p>
 <ol style="list-style-type: decimal">
 <li>Your package Version of
 <a href="../index.html" data-tippy-content="
-  &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
-  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;b class='tippy_header'&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
+  &lt;div class='tippy_body'&gt;
+    Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;/div&gt;
   " class="STATcubeR">STATcubeR</a>
 is outdated (version &lt; 0.4.0)</li>
 <li>Your company uses a firewall that blocks API requests from
@@ -277,9 +283,9 @@ a special error type <code>SCHEMA_COMPONENT_NOT_FOUND</code>.</p>
 </h3>
 <p>As mentioned in the
 <a href="sc_table_saved.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Load Saved Tables&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Load Saved Tables&lt;/b&gt;
   &lt;br/&gt;
-  STATcube allows you to save tables in the GUI. You can import those saved tables using &lt;code&gt;sc_table_saved()&lt;/code&gt;. This function can also be used to import default tables for databases.
+  &lt;div class="tippy_body"&gt;STATcube allows you to save tables in the GUI. You can import those saved tables using &lt;code&gt;sc_table_saved()&lt;/code&gt;. This function can also be used to import default tables for databases.&lt;/div&gt;
 &lt;/div&gt;'>saved tables article</a>,
 the function <code><a href="../reference/sc_table.html">sc_table_saved()</a></code> can only access default
 tables and tables that are saved under the current user. If an invalid
@@ -323,9 +329,9 @@ and can not be differentiated from the response for exceeded rate limits
 reasons.</p>
 <p>If you encounter this error during the workflow described in the
 <a href="sc_table.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Get Tables via JSON Requests&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Get Tables via JSON Requests&lt;/b&gt;
   &lt;br/&gt;
-  Hands-on guide about transfering data from the STATcube GUI (table view) to R sessions via a the download option &amp;ldquo;open data api request&amp;rdquo;.
+  &lt;div class="tippy_body"&gt;Hands-on guide about transfering data from the STATcube GUI (table view) to R sessions via a the download option &amp;ldquo;open data api request&amp;rdquo;.&lt;/div&gt;
 &lt;/div&gt;'>JSON requests article</a>,
 it is very likely caused by exceeded rate limits. This is because json
 request that are downloaded by the STATcube GUI should always contain
@@ -339,8 +345,10 @@ plausible.</p>
 </h2>
 <p>If you want to use your own error-handling instead of the default
 <a href="../index.html" data-tippy-content="
-  &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
-  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;b class='tippy_header'&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
+  &lt;div class='tippy_body'&gt;
+    Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;/div&gt;
   " class="STATcubeR">STATcubeR</a>
 error handlers, you can get started with the following code sample from
 one of our <a href="https://shiny.rstudio.com/" class="external-link">shiny</a> applications.</p>

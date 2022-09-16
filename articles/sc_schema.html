@@ -121,8 +121,10 @@
     });
     </script><p>There are currently three functions in
 <a href="../index.html" data-tippy-content="
-  &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
-  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;b class='tippy_header'&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
+  &lt;div class='tippy_body'&gt;
+    Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;/div&gt;
   " class="STATcubeR">STATcubeR</a>
 that utilize the <code>/schema</code> endpoint.</p>
 <ul>
@@ -161,9 +163,9 @@ and closely resembles the “Catalogue” view in the GUI.</p>
 <code>FOLDER</code> and four childs of type <code>TABLE</code>. The
 table nodes correspond to the saved tables as described in the
 <a href="sc_table_saved.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Load Saved Tables&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Load Saved Tables&lt;/b&gt;
   &lt;br/&gt;
-  STATcube allows you to save tables in the GUI. You can import those saved tables using &lt;code&gt;sc_table_saved()&lt;/code&gt;. This function can also be used to import default tables for databases.
+  &lt;div class="tippy_body"&gt;STATcube allows you to save tables in the GUI. You can import those saved tables using &lt;code&gt;sc_table_saved()&lt;/code&gt;. This function can also be used to import default tables for databases.&lt;/div&gt;
 &lt;/div&gt;'>saved tables article</a>.
 The folders include all folders from the root level in the <a href="https://portal.statistik.at/statistik.at/ext/statcube/jsf/dataCatalogueExplorer.xhtml" class="external-link">catalogue
 explorer</a>: “Statistics”, “Publication and Services” as well as
@@ -229,9 +231,9 @@ Get the data with `sc_table_saved('str:table:defaulttable_deake005')` </code></p
 <p>As suggested by the output, tables can be loaded with the
 <code>/table</code> endpoint via <code><a href="../reference/sc_table.html">sc_table_saved()</a></code>. See the
 <a href="sc_table_saved.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Load Saved Tables&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Load Saved Tables&lt;/b&gt;
   &lt;br/&gt;
-  STATcube allows you to save tables in the GUI. You can import those saved tables using &lt;code&gt;sc_table_saved()&lt;/code&gt;. This function can also be used to import default tables for databases.
+  &lt;div class="tippy_body"&gt;STATcube allows you to save tables in the GUI. You can import those saved tables using &lt;code&gt;sc_table_saved()&lt;/code&gt;. This function can also be used to import default tables for databases.&lt;/div&gt;
 &lt;/div&gt;'>saved tables article</a>
 for more details.</p>
 </div>
@@ -349,8 +351,8 @@ used to send another request to the <code>/schema</code> endpoint</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">measure_info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema</a></span><span class="op">(</span><span class="va">id</span><span class="op">)</span></span></code></pre></div>
 <p>Alternatively, use the <code>depth</code> parameter of
-<code>sc_schema</code>. This will make sure that the enties of the tree
-are returned recursively up to the a certain level level. For example,
+<code><a href="../reference/sc_schema.html">sc_schema()</a></code>. This will make sure that the entries of the
+tree are returned recursively up to a certain level. For example,
 <code>depth = "VALUESET"</code> will use the same level of recursion as
 <code><a href="../reference/sc_schema.html">sc_schema_db()</a></code>. See <code><a href="../reference/sc_schema.html">?sc_schema</a></code> for all
 available options of the <code>depth</code> parameter.</p>
@@ -433,9 +435,9 @@ tables will be displayed. This includes</p>
 default table.</li>
 <li>All saved tables for the current user as described in the
 <a href="sc_table_saved.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Load Saved Tables&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Load Saved Tables&lt;/b&gt;
   &lt;br/&gt;
-  STATcube allows you to save tables in the GUI. You can import those saved tables using &lt;code&gt;sc_table_saved()&lt;/code&gt;. This function can also be used to import default tables for databases.
+  &lt;div class="tippy_body"&gt;STATcube allows you to save tables in the GUI. You can import those saved tables using &lt;code&gt;sc_table_saved()&lt;/code&gt;. This function can also be used to import default tables for databases.&lt;/div&gt;
 &lt;/div&gt;'>saved tables article</a>.</li>
 <li>Other saved tables. Some databases do not only provide a default
 table but also several other tables. See <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=degvk_fahrt_2010" class="external-link">this

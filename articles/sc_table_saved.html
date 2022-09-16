@@ -140,7 +140,7 @@ import the table into R.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Database    Wine production as of 1970 </span></span>
 <span><span class="co">#&gt; Measures    Production in hectolitres, Area in hectares </span></span>
-<span><span class="co">#&gt; Fields      Year, Wine colour </span></span>
+<span><span class="co">#&gt; Fields      Year &lt;52&gt;, Wine colour &lt;3&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Request     2022-09-05 17:01:45 </span></span>
 <span><span class="co">#&gt; STATcubeR   0.4.3</span></span></code></pre>
@@ -157,8 +157,10 @@ requested.</p>
 </h2>
 <p>To make the table available for later use or for other users of
 <a href="../index.html" data-tippy-content="
-  &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
-  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;b class='tippy_header'&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
+  &lt;div class='tippy_body'&gt;
+    Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;/div&gt;
   " class="STATcubeR">STATcubeR</a>,
 the response can be exported into a json.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -181,16 +183,16 @@ default tables can also be loaded with
 <span><span class="co">#&gt; Database    Working hours (Labour Force Survey) </span></span>
 <span><span class="co">#&gt; Measures    Average hours actually worked per week, Average hours usually</span></span>
 <span><span class="co">#&gt;             worked per week </span></span>
-<span><span class="co">#&gt; Fields      Time section </span></span>
+<span><span class="co">#&gt; Fields      Time section &lt;1&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Request     2022-09-16 08:56:40 </span></span>
 <span><span class="co">#&gt; STATcubeR   0.4.3</span></span></code></pre>
 <p>All available default tables as well as other saved tables can be
 discovered using <code><a href="../reference/sc_schema.html">sc_schema_catalogue()</a></code>. See the
 <a href="sc_schema.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Get Metadata with the Schema Endpoint&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Get Metadata with the Schema Endpoint&lt;/b&gt;
   &lt;br/&gt;
-  The &lt;code&gt;/schema&lt;/code&gt; endpoint of the REST API provides metadata about databases and can also be used to retrieve a catalogue with all available databases.
+  &lt;div class="tippy_body"&gt;The &lt;code&gt;/schema&lt;/code&gt; endpoint of the REST API provides metadata about databases and can also be used to retrieve a catalogue with all available databases.&lt;/div&gt;
 &lt;/div&gt;'>schema article</a>
 for more details.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">

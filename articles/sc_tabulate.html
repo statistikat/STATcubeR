@@ -123,30 +123,34 @@
 <code>$tabulate()</code>. This method aggregates <code>sc_data</code>
 objects. The first part will use the
 <u class="STATcubeR" data-tippy-content="&lt;div style=' text-align: left;'&gt;
-  &lt;b&gt; Cancer statistics by reporting year, province of residence and localisation of cancer &lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
+  &lt;b class='tippy_header'&gt; Cancer statistics by reporting year, province of residence and localisation of cancer &lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
+  &lt;div class='tippy_body'&gt;
   &lt;b&gt;Measures&lt;/b&gt;: Number of records F-KRE&lt;br/&gt;
   &lt;b&gt;Fields&lt;/b&gt;: Tumore ICD/10 3-Steller, Reporting year, Province of residence, Sex&lt;br/&gt;&lt;br/&gt;
   &lt;b&gt;links&lt;/b&gt;:
     &lt;a href='https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_krebs_ext_KREBS_1' target='_blank'&gt;metadata&lt;/a&gt;
     &lt;a href='https://data.statistik.gv.at/ogd/json?dataset=OGD_krebs_ext_KREBS_1' target='_blank'&gt;json&lt;/a&gt;
     &lt;a href='https://statcube.at/statcube/opendatabase?id=dekrebs_ext' target='_blank'&gt;STATcube&lt;/a&gt;
+  &lt;/div&gt;
 &lt;/div&gt;" data-tippy-interactive="true">cancer dataset</u>
 from the
 <a href="od_table.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Open Government Data&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Open Government Data&lt;/b&gt;
   &lt;br/&gt;
-  Hands-on guide on how to get and use datasets from the OGD portal. This article also contains a short introduction on tabulation and translation of datasets.
+  &lt;div class="tippy_body"&gt;Hands-on guide on how to get and use datasets from the OGD portal. This article also contains a short introduction on tabulation and translation of datasets.&lt;/div&gt;
 &lt;/div&gt;'>OGD article</a>.
 After that, other features of <code>$tabulate()</code> will be
 demonstrated with the data from the
 <u class="STATcubeR" data-tippy-content="&lt;div style=' text-align: left;'&gt;
-  &lt;b&gt; Structure of Earnings Survey (SES) 2018 Gross hourly earnings in EUR by citizenship, region (NUTS 2) and form of employment &lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
+  &lt;b class='tippy_header'&gt; Structure of Earnings Survey (SES) 2018 Gross hourly earnings in EUR by citizenship, region (NUTS 2) and form of employment &lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
+  &lt;div class='tippy_body'&gt;
   &lt;b&gt;Measures&lt;/b&gt;: Arithmetic mean, 1st quartile, 2nd quartile (median), 3rd quartile, Number of employees&lt;br/&gt;
   &lt;b&gt;Fields&lt;/b&gt;: Sex, Citizenship, Region (NUTS2), Form of employment&lt;br/&gt;&lt;br/&gt;
   &lt;b&gt;links&lt;/b&gt;:
     &lt;a href='https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_veste309_Veste309_1' target='_blank'&gt;metadata&lt;/a&gt;
     &lt;a href='https://data.statistik.gv.at/ogd/json?dataset=OGD_veste309_Veste309_1' target='_blank'&gt;json&lt;/a&gt;
     &lt;a href='https://statcube.at/statcube/opendatabase?id=deveste309' target='_blank'&gt;STATcube&lt;/a&gt;
+  &lt;/div&gt;
 &lt;/div&gt;" data-tippy-interactive="true">structure of earnings survey (SES)</u>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cancer</span>   <span class="op">&lt;-</span> <span class="fu"><a href="../reference/od_table.html">od_table</a></span><span class="op">(</span><span class="st">"OGD_krebs_ext_KREBS_1"</span><span class="op">)</span></span>
@@ -201,8 +205,10 @@ of those variables as arguments.</p>
 <p>If more than one measure is included in the dataset, all measures
 will be aggregated.
 <a href="../index.html" data-tippy-content="
-  &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
-  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;b class='tippy_header'&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
+  &lt;div class='tippy_body'&gt;
+    Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;/div&gt;
   " class="STATcubeR">STATcubeR</a>
 uses <code><a href="https://rdrr.io/r/base/rowsum.html" class="external-link">rowsum()</a></code> to ensure a good performance with big
 datasets. It is also possible to use partial matching or use codes.</p>
@@ -218,8 +224,10 @@ datasets. It is also possible to use partial matching or use codes.</p>
 <span style="color: #BCBCBC;">5</span> 1985-01-01       male                       <span style="text-decoration: underline;">14</span>552
 <span style="color: #949494;"># … with 69 more rows</span></code></pre>
 <p><a href="../index.html" data-tippy-content="
-  &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
-  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;b class='tippy_header'&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
+  &lt;div class='tippy_body'&gt;
+    Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;/div&gt;
   " class="STATcubeR">STATcubeR</a>
 will use <code><a href="https://rdrr.io/r/base/pmatch.html" class="external-link">pmatch()</a></code> to match the supplied strings with the
 metadata to identify the variables that should be used for
@@ -241,9 +249,10 @@ earnings survey.</p>
 <span><span class="co">#&gt;             employment </span></span>
 <span><span class="co">#&gt; Measures    Arithmetic mean, 1st quartile, 2nd quartile (median), 3rd quartile,</span></span>
 <span><span class="co">#&gt;             Number of employees </span></span>
-<span><span class="co">#&gt; Fields      Sex, Citizenship, Region (NUTS2), Form of employment </span></span>
+<span><span class="co">#&gt; Fields      Sex &lt;3&gt;, Citizenship &lt;9&gt;, Region (NUTS2) &lt;10&gt;, Form of employment</span></span>
+<span><span class="co">#&gt;             &lt;7&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Request     2022-09-16 11:18:50 </span></span>
+<span><span class="co">#&gt; Request     2022-09-16 18:38:08 </span></span>
 <span><span class="co">#&gt; STATcubeR   0.4.3</span></span></code></pre>
 <p>As we can see from the <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> output, the measures
 contain means and quartiles. Therefore, aggregating the data via
@@ -408,8 +417,10 @@ employment as well as Region &amp; Form of employment.</p>
 </h3>
 <p>By default,
 <a href="../index.html" data-tippy-content="
-  &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
-  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;b class='tippy_header'&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
+  &lt;div class='tippy_body'&gt;
+    Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;/div&gt;
   " class="STATcubeR">STATcubeR</a>
 will always add totals for datasets from the REST API and use those
 totals to aggregate the datasets.</p>
@@ -417,12 +428,12 @@ totals to aggregate the datasets.</p>
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"accomodation"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">x</span><span class="op">$</span><span class="va">meta</span><span class="op">$</span><span class="va">fields</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># STATcubeR metadata: 3 x 7</span>
-  <span style="font-weight: bold;">code</span>          <span style="font-weight: bold;">label</span>                      <span style="font-weight: bold;">total_code</span>
-  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     
-<span style="color: #BCBCBC;">1</span> C-SDB_TIT-0   Season/Tourism Month       SC_TOTAL  
-<span style="color: #BCBCBC;">2</span> C-C93SUM-0    Country of origin          SC_TOTAL  
-<span style="color: #BCBCBC;">3</span> C-BBTR_REG2-0 Accomodation establishment SC_TOTAL  
-<span style="color: #949494;"># … with 4 more columns: 'nitems', 'type', 'label_de', 'label_en'</span></code></pre>
+  <span style="font-weight: bold;">code</span>          <span style="font-weight: bold;">label</span>                      <span style="font-weight: bold;">total_code</span> <span style="font-weight: bold;">nitems</span> <span style="font-weight: bold;">type</span>        
+  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       
+<span style="color: #BCBCBC;">1</span> C-SDB_TIT-0   Season/Tourism Month       SC_TOTAL      273 Time (month)
+<span style="color: #BCBCBC;">2</span> C-C93SUM-0    Country of origin          SC_TOTAL        4 Category    
+<span style="color: #BCBCBC;">3</span> C-BBTR_REG2-0 Accomodation establishment SC_TOTAL        4 Category    
+<span style="color: #949494;"># … with 2 more columns: 'label_de', 'label_en'</span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="including-totals-in-the-oputput">Including totals in the oputput<a class="anchor" aria-label="anchor" href="#including-totals-in-the-oputput"></a>
@@ -509,8 +520,10 @@ codes. In the above example, <code>"2. Quartil"</code> was matched to
 necessary because only the “active” labels are available to define the
 tabulation. If you want to use
 <a href="../index.html" data-tippy-content="
-  &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
-  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;b class='tippy_header'&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
+  &lt;div class='tippy_body'&gt;
+    Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;/div&gt;
   " class="STATcubeR">STATcubeR</a>
 programatically, always use codes to define the tabulation and also use
 the <code>.list</code> parameter if you want to pass several codes.</p>

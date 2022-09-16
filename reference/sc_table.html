@@ -170,8 +170,8 @@ provides member functions to parse this response object. See
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Database    Population at the beginning of the quarter since 2002 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Measures    Number of persons </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Fields      Quarter, Age in single years &lt;96&gt;, Sex &lt;2&gt;, Commune</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;2383&gt; (Province-District) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Fields      Quarter &lt;82&gt;, Age in single years &lt;96&gt; &lt;7&gt;, Sex &lt;2&gt; &lt;3&gt;,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Commune &lt;2383&gt; (Province-District) &lt;10&gt; </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-08-29 09:52:04 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> STATcubeR   0.4.3</span>
@@ -194,13 +194,14 @@ provides member functions to parse this response object. See
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $fields</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># STATcubeR metadata: 4 x 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">code</span>       <span style="font-weight: bold;">label</span>                              <span style="font-weight: bold;">total_code</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> C-A10-0    Quarter                            SC_TOTAL  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> C-BESC51-0 Age in single years &lt;96&gt;           SC_TOTAL  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> C-BESC11-0 Sex &lt;2&gt;                            SC_TOTAL  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> C-C41-2    Commune &lt;2383&gt; (Province-District) SC_TOTAL  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 4 more columns: 'nitems', 'type', 'label_de', 'label_en'</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">code</span>       <span style="font-weight: bold;">label</span>                              <span style="font-weight: bold;">total_c…¹</span> <span style="font-weight: bold;">nitems</span> <span style="font-weight: bold;">type</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> C-A10-0    Quarter                            SC_TOTAL      82 Time…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> C-BESC51-0 Age in single years &lt;96&gt;           SC_TOTAL       7 Cate…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> C-BESC11-0 Sex &lt;2&gt;                            SC_TOTAL       3 Cate…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> C-C41-2    Commune &lt;2383&gt; (Province-District) SC_TOTAL      10 Cate…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable name ¹​total_code</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 2 more columns: 'label_de', 'label_en'</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># get a data.frame</span></span></span>

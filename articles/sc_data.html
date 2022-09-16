@@ -130,8 +130,10 @@ labeling the data and aggregating results.</p>
 <p>The <a href="../reference/sc_data.html">sc_data</a> class itself is
 not exported in
 <a href="../index.html" data-tippy-content="
-  &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
-  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;b class='tippy_header'&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
+  &lt;div class='tippy_body'&gt;
+    Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;/div&gt;
   " class="STATcubeR">STATcubeR</a>.
 Therefore, objects of the class should be created with one of the
 following functions</p>
@@ -139,18 +141,18 @@ following functions</p>
 <li>
 <code><a href="../reference/od_table.html">od_table()</a></code> obtains data from the OGD portal. See the
 <a href="od_table.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Open Government Data&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Open Government Data&lt;/b&gt;
   &lt;br/&gt;
-  Hands-on guide on how to get and use datasets from the OGD portal. This article also contains a short introduction on tabulation and translation of datasets.
+  &lt;div class="tippy_body"&gt;Hands-on guide on how to get and use datasets from the OGD portal. This article also contains a short introduction on tabulation and translation of datasets.&lt;/div&gt;
 &lt;/div&gt;'>OGD article</a>
 </li>
 <li>
 <code><a href="../reference/sc_table.html">sc_table()</a></code> creates a request against the table endpoint
 of the STATcube REST API. See the
 <a href="sc_table.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Get Tables via JSON Requests&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Get Tables via JSON Requests&lt;/b&gt;
   &lt;br/&gt;
-  Hands-on guide about transfering data from the STATcube GUI (table view) to R sessions via a the download option &amp;ldquo;open data api request&amp;rdquo;.
+  &lt;div class="tippy_body"&gt;Hands-on guide about transfering data from the STATcube GUI (table view) to R sessions via a the download option &amp;ldquo;open data api request&amp;rdquo;.&lt;/div&gt;
 &lt;/div&gt;'>JSON requests article</a>
 <ul>
 <li>
@@ -172,13 +174,15 @@ functionalities of this class. Notice however, that objects created with
 <p>The data from the table can be extracted using the active binding
 <code>$data</code>. Notice how
 <u class="STATcubeR" data-tippy-content="&lt;div style=' text-align: left;'&gt;
-  &lt;b&gt; Cancer statistics by reporting year, province of residence and localisation of cancer &lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
+  &lt;b class='tippy_header'&gt; Cancer statistics by reporting year, province of residence and localisation of cancer &lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
+  &lt;div class='tippy_body'&gt;
   &lt;b&gt;Measures&lt;/b&gt;: Number of records F-KRE&lt;br/&gt;
   &lt;b&gt;Fields&lt;/b&gt;: Tumore ICD/10 3-Steller, Reporting year, Province of residence, Sex&lt;br/&gt;&lt;br/&gt;
   &lt;b&gt;links&lt;/b&gt;:
     &lt;a href='https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_krebs_ext_KREBS_1' target='_blank'&gt;metadata&lt;/a&gt;
     &lt;a href='https://data.statistik.gv.at/ogd/json?dataset=OGD_krebs_ext_KREBS_1' target='_blank'&gt;json&lt;/a&gt;
     &lt;a href='https://statcube.at/statcube/opendatabase?id=dekrebs_ext' target='_blank'&gt;STATcube&lt;/a&gt;
+  &lt;/div&gt;
 &lt;/div&gt;" data-tippy-interactive="true">OGD_krebs_ext_KREBS_1</u>
 only includes codes and possibly some totals. The data is always
 provided in a long format with one column for each field and one column
@@ -245,13 +249,13 @@ the total code registered for the particular field.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span><span class="op">$</span><span class="va">meta</span><span class="op">$</span><span class="va">fields</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># STATcubeR metadata: 4 x 7</span>
-  <span style="font-weight: bold;">code</span>               <span style="font-weight: bold;">label</span>                   <span style="font-weight: bold;">total_code</span>
-  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     
-<span style="color: #BCBCBC;">1</span> C-TUM_ICD10_3ST-0  Tumore ICD/10 3-Steller <span style="color: #BB0000;">NA</span>        
-<span style="color: #BCBCBC;">2</span> C-BERJ-0           Reporting year          <span style="color: #BB0000;">NA</span>        
-<span style="color: #BCBCBC;">3</span> C-BUNDESLAND-0     Province of residence   <span style="color: #BB0000;">NA</span>        
-<span style="color: #BCBCBC;">4</span> C-KRE_GESCHLECHT-0 Sex                     <span style="color: #BB0000;">NA</span>        
-<span style="color: #949494;"># … with 4 more columns: 'label_de', 'label_en', 'nitems', 'type'</span></code></pre>
+  <span style="font-weight: bold;">code</span>               <span style="font-weight: bold;">label</span>                   <span style="font-weight: bold;">total_code</span> <span style="font-weight: bold;">nitems</span> <span style="font-weight: bold;">type</span>       
+  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      
+<span style="color: #BCBCBC;">1</span> C-TUM_ICD10_3ST-0  Tumore ICD/10 3-Steller <span style="color: #BB0000;">NA</span>             95 Category   
+<span style="color: #BCBCBC;">2</span> C-BERJ-0           Reporting year          <span style="color: #BB0000;">NA</span>             37 Time (year)
+<span style="color: #BCBCBC;">3</span> C-BUNDESLAND-0     Province of residence   <span style="color: #BB0000;">NA</span>              9 Category   
+<span style="color: #BCBCBC;">4</span> C-KRE_GESCHLECHT-0 Sex                     <span style="color: #BB0000;">NA</span>              2 Category   
+<span style="color: #949494;"># … with 2 more columns: 'label_de', 'label_en'</span></code></pre>
 </div>
 </div>
 <div class="section level2">
@@ -341,9 +345,9 @@ method. This will return all classification elements as a
 <p>The method <code>$tabulate()</code> can be used to turn
 <code>sc_table</code> objects into tidy data.frames. See the
 <a href="sc_tabulate.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Tabulating STATcubeR Datasets&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Tabulating STATcubeR Datasets&lt;/b&gt;
   &lt;br/&gt;
-  Learn how to turn datasets from the REST API or from the OGD portal into tidy &lt;code&gt;data.frame&lt;/code&gt;s by using the tabulate() method.
+  &lt;div class="tippy_body"&gt;Learn how to turn datasets from the REST API or from the OGD portal into tidy &lt;code&gt;data.frame&lt;/code&gt;s by using the tabulate() method.&lt;/div&gt;
 &lt;/div&gt;'>tabulation article</a>
 for more defails.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">

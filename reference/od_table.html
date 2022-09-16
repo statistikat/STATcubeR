@@ -127,10 +127,10 @@ documentation.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dataset     Cancer statistics by reporting year, province of</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             residence and localisation of cancer </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Measures    Number of records F-KRE </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Fields      Tumore ICD/10 3-Steller, Reporting year, Province of</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             residence, Sex </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Fields      Tumore ICD/10 3-Steller &lt;95&gt;, Reporting year &lt;37&gt;,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Province of residence &lt;9&gt;, Sex &lt;2&gt; </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-09-16 11:15:53 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-09-16 18:34:37 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> STATcubeR   0.4.3 </span>
 <span class="r-in"><span><span class="va">x</span><span class="op">$</span><span class="va">meta</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $source</span>
@@ -149,13 +149,13 @@ documentation.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $fields</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># STATcubeR metadata: 4 x 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">code</span>               <span style="font-weight: bold;">label</span>                   <span style="font-weight: bold;">total_code</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> C-TUM_ICD10_3ST-0  Tumore ICD/10 3-Steller <span style="color: #BB0000;">NA</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> C-BERJ-0           Reporting year          <span style="color: #BB0000;">NA</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> C-BUNDESLAND-0     Province of residence   <span style="color: #BB0000;">NA</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> C-KRE_GESCHLECHT-0 Sex                     <span style="color: #BB0000;">NA</span>        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 4 more columns: 'label_de', 'label_en', 'nitems', 'type'</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">code</span>               <span style="font-weight: bold;">label</span>                   <span style="font-weight: bold;">total_code</span> <span style="font-weight: bold;">nitems</span> <span style="font-weight: bold;">type</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> C-TUM_ICD10_3ST-0  Tumore ICD/10 3-Steller <span style="color: #BB0000;">NA</span>             95 Catego…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> C-BERJ-0           Reporting year          <span style="color: #BB0000;">NA</span>             37 Time (…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> C-BUNDESLAND-0     Province of residence   <span style="color: #BB0000;">NA</span>              9 Catego…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> C-KRE_GESCHLECHT-0 Sex                     <span style="color: #BB0000;">NA</span>              2 Catego…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 2 more columns: 'label_de', 'label_en'</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="va">x</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"Sex"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># STATcubeR metadata: 2 x 8</span></span>
@@ -238,10 +238,10 @@ documentation.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dataset     Krebsstatistik </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Measures    Anzahl der Datensätze F-KRE </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Fields      Tumore ICD/10 3-Steller, Berichtsjahr, Bundesland,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             Geschlecht </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Fields      Tumore ICD/10 3-Steller &lt;95&gt;, Berichtsjahr &lt;37&gt;,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Bundesland &lt;9&gt;, Geschlecht &lt;2&gt; </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-09-16 11:15:53 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-09-16 18:34:37 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> STATcubeR   0.4.3 </span>
 <span class="r-in"><span><span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A STATcubeR tibble: 46,479 x 5</span></span>
@@ -270,9 +270,10 @@ documentation.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             2) and form of employment </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Measures    Arithmetic mean, 1st quartile, 2nd quartile (median), 3rd</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             quartile, Number of employees </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Fields      Sex, Citizenship, Region (NUTS2), Form of employment </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Fields      Sex &lt;3&gt;, Citizenship &lt;9&gt;, Region (NUTS2) &lt;10&gt;, Form of</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             employment &lt;7&gt; </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-09-16 11:15:53 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-09-16 18:34:38 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> STATcubeR   0.4.3 </span>
 <span class="r-in"><span><span class="fu">od_table</span><span class="op">(</span><span class="st">"OGD_konjunkturmonitor_KonMon_1"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> An object of class od_table</span>
@@ -288,9 +289,9 @@ documentation.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             employee (2015=100), Productivity Index</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Industry per hours worked (2015=100),</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Industrial Output Price Index (2021=100), ... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Fields      reporting period, value indication </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Fields      reporting period &lt;232&gt;, value indication &lt;3&gt; </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-09-16 11:15:53 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-09-16 18:34:38 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> STATcubeR   0.4.3 </span>
 <span class="r-in"><span><span class="fu">od_table</span><span class="op">(</span><span class="st">"OGD_krankenbewegungen_ex_LEISTUNGEN_1"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> An object of class od_table</span>
@@ -299,11 +300,11 @@ documentation.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             patient characteristics (number of medical</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             procedures) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Measures    Medical procedures </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Fields      Year of discharge, Sex, Age (four classes), NUTS-2 region</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             (place of residence), Medical procedures -</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             subchapters </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Fields      Year of discharge &lt;12&gt;, Sex &lt;2&gt;, Age (four classes) &lt;4&gt;,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             NUTS-2 region (place of residence) &lt;12&gt;,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Medical procedures - subchapters &lt;115&gt; </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-09-16 11:15:53 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-09-16 18:34:38 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> STATcubeR   0.4.3 </span>
 <span class="r-in"><span><span class="fu">od_table</span><span class="op">(</span><span class="st">"OGD_f1741_HH_Proj_1"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> An object of class od_table</span>
@@ -311,12 +312,12 @@ documentation.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dataset     Household forecast </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Measures    Private households at the end of the year, Annual average</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             of private households </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Fields      Time, Province (NUTS 2-Einheit) &lt;9&gt;, Type of household</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;2&gt;, Age of household representative in</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             10-year groups &lt;7&gt;, Sex of household</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             reference person &lt;2&gt; </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Fields      Time &lt;70&gt;, Province (NUTS 2-Einheit) &lt;9&gt; &lt;9&gt;, Type of</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             household &lt;2&gt; &lt;2&gt;, Age of household</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             representative in 10-year groups &lt;7&gt; &lt;15&gt;,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Sex of household reference person &lt;2&gt; &lt;2&gt; </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-09-16 11:15:54 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-09-16 18:34:38 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> STATcubeR   0.4.3 </span>
 <span class="r-in"><span><span class="fu">od_table</span><span class="op">(</span><span class="st">"OGD_veste303_Veste203_1"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> An object of class od_table</span>
@@ -326,10 +327,10 @@ documentation.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             enterprise </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Measures    Arithmetic mean, 1st quartile, 2nd quartile (median), 3rd</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             quartile, Number of employees </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Fields      ÖNACE 2008 (NACE Rev.2), Sex, Regions (Nuts1), Size of</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             the enterprise </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Fields      ÖNACE 2008 (NACE Rev.2) &lt;94&gt;, Sex &lt;3&gt;, Regions (Nuts1)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;4&gt;, Size of the enterprise &lt;6&gt; </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-09-16 11:15:54 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-09-16 18:34:38 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> STATcubeR   0.4.3 </span>
 </code></pre></div>
     </div>

@@ -133,9 +133,9 @@ an R session. This process involves four steps</p>
 <p>It is assumed that you already provided your API key as described in
 the
 <a href="sc_key.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Set Up the API Key&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Set Up the API Key&lt;/b&gt;
   &lt;br/&gt;
-  Learn how get access to an API key and set up authentication to the STATcube REST API by making the key available for STATcubeR.
+  &lt;div class="tippy_body"&gt;Learn how get access to an API key and set up authentication to the STATcube REST API by making the key available for STATcubeR.&lt;/div&gt;
 &lt;/div&gt;'>API key article</a>.</p>
 <div class="section level2">
 <h2 id="create-a-table-with-the-statcube-gui">Create a table with the STATcube GUI<a class="anchor" aria-label="anchor" href="#create-a-table-with-the-statcube-gui"></a>
@@ -179,8 +179,8 @@ contained in the response.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Database    Population at the beginning of the quarter since 2002 </span></span>
 <span><span class="co">#&gt; Measures    Number of persons </span></span>
-<span><span class="co">#&gt; Fields      Quarter, Age in single years &lt;96&gt;, Sex &lt;2&gt;, Commune &lt;2383&gt;</span></span>
-<span><span class="co">#&gt;             (Province-District) </span></span>
+<span><span class="co">#&gt; Fields      Quarter &lt;82&gt;, Age in single years &lt;96&gt; &lt;7&gt;, Sex &lt;2&gt; &lt;3&gt;, Commune</span></span>
+<span><span class="co">#&gt;             &lt;2383&gt; (Province-District) &lt;10&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Request     2022-08-29 09:52:04 </span></span>
 <span><span class="co">#&gt; STATcubeR   0.4.3</span></span></code></pre>
@@ -235,37 +235,37 @@ format. If you prefer to use codes rather than labels, use
 <ul>
 <li>Functionalities of the returned object are explained in the
 <a href="sc_data.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;The STATcubeR Data Class&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;The STATcubeR Data Class&lt;/b&gt;
   &lt;br/&gt;
-  STATcubeR uses a common base class for OGD datasets and datasets from the STATcube REST API. This article explains the core functionalities and allows you to use both datasources more flexibly.
+  &lt;div class="tippy_body"&gt;STATcubeR uses a common base class for OGD datasets and datasets from the STATcube REST API. This article explains the core functionalities and allows you to use both datasources more flexibly.&lt;/div&gt;
 &lt;/div&gt;'>STATcubeR data article</a>.</li>
 <li>
 <code><a href="../reference/sc_tabulate.html">sc_tabulate()</a></code> provides a more flixble way of turning
 STATcube tables into <code>data.frame</code>s. See the
 <a href="sc_tabulate.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Tabulating STATcubeR Datasets&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Tabulating STATcubeR Datasets&lt;/b&gt;
   &lt;br/&gt;
-  Learn how to turn datasets from the REST API or from the OGD portal into tidy &lt;code&gt;data.frame&lt;/code&gt;s by using the tabulate() method.
+  &lt;div class="tippy_body"&gt;Learn how to turn datasets from the REST API or from the OGD portal into tidy &lt;code&gt;data.frame&lt;/code&gt;s by using the tabulate() method.&lt;/div&gt;
 &lt;/div&gt;'>tabulation article</a>
 for more details.</li>
 <li>The
 <a href="sc_table_saved.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Load Saved Tables&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Load Saved Tables&lt;/b&gt;
   &lt;br/&gt;
-  STATcube allows you to save tables in the GUI. You can import those saved tables using &lt;code&gt;sc_table_saved()&lt;/code&gt;. This function can also be used to import default tables for databases.
+  &lt;div class="tippy_body"&gt;STATcube allows you to save tables in the GUI. You can import those saved tables using &lt;code&gt;sc_table_saved()&lt;/code&gt;. This function can also be used to import default tables for databases.&lt;/div&gt;
 &lt;/div&gt;'>saved tables article</a>
 shows an alternative way of importing tables.</li>
 <li>If you are interested in other API endpoints, see the
 <a href="sc_schema.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Get Metadata with the Schema Endpoint&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Get Metadata with the Schema Endpoint&lt;/b&gt;
   &lt;br/&gt;
-  The &lt;code&gt;/schema&lt;/code&gt; endpoint of the REST API provides metadata about databases and can also be used to retrieve a catalogue with all available databases.
+  &lt;div class="tippy_body"&gt;The &lt;code&gt;/schema&lt;/code&gt; endpoint of the REST API provides metadata about databases and can also be used to retrieve a catalogue with all available databases.&lt;/div&gt;
 &lt;/div&gt;'>schema article</a>
 ot the
 <a href="sc_info.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Other REST API Endpoints&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Other REST API Endpoints&lt;/b&gt;
   &lt;br/&gt;
-  How to use the (rather simple) endpoints &lt;code&gt;/info&lt;/code&gt;, &lt;code&gt;/rate_limit_table&lt;/code&gt; and &lt;code&gt;/rate_limit_schema&lt;/code&gt;.
+  &lt;div class="tippy_body"&gt;How to use the (rather simple) endpoints &lt;code&gt;/info&lt;/code&gt;, &lt;code&gt;/rate_limit_table&lt;/code&gt; and &lt;code&gt;/rate_limit_schema&lt;/code&gt;.&lt;/div&gt;
 &lt;/div&gt;'>other API endpoints article</a>
 </li>
 </ul>

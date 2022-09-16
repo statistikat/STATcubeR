@@ -121,20 +121,24 @@
     });
     </script><p><code><a href="../reference/od_table.html">od_table()</a></code> makes it easy to import datasets from
 <a href="https://data.statistik.gv.at" data-tippy-allowhtml="true" data-tippy-content="
-  &lt;b&gt;Open Government Data from Statistics Austria&lt;/b&gt;&lt;br/&gt;
-The open data portal provides datasets from Statistics Austria according to open data guidelines
+  &lt;b class='tippy_header'&gt;Open Government Data from Statistics Austria&lt;/b&gt;&lt;br/&gt;
+  &lt;div class='tippy_body'&gt;
+    The open data portal provides datasets from Statistics Austria according to open data guidelines
+  &lt;/div&gt;
   " class="external-link STATcubeR">data.statistik.gv.at</a>
 into your R sessions. This function uses direct downloads from the
 fileserver. Therefore no API key is required.</p>
 <p>In this example, we will use a
 <u class="STATcubeR" data-tippy-content="&lt;div style=' text-align: left;'&gt;
-  &lt;b&gt; Cancer statistics by reporting year, province of residence and localisation of cancer &lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
+  &lt;b class='tippy_header'&gt; Cancer statistics by reporting year, province of residence and localisation of cancer &lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
+  &lt;div class='tippy_body'&gt;
   &lt;b&gt;Measures&lt;/b&gt;: Number of records F-KRE&lt;br/&gt;
   &lt;b&gt;Fields&lt;/b&gt;: Tumore ICD/10 3-Steller, Reporting year, Province of residence, Sex&lt;br/&gt;&lt;br/&gt;
   &lt;b&gt;links&lt;/b&gt;:
     &lt;a href='https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_krebs_ext_KREBS_1' target='_blank'&gt;metadata&lt;/a&gt;
     &lt;a href='https://data.statistik.gv.at/ogd/json?dataset=OGD_krebs_ext_KREBS_1' target='_blank'&gt;json&lt;/a&gt;
     &lt;a href='https://statcube.at/statcube/opendatabase?id=dekrebs_ext' target='_blank'&gt;STATcube&lt;/a&gt;
+  &lt;/div&gt;
 &lt;/div&gt;" data-tippy-interactive="true">data set about cancer statistics</u>.
 The dataset id <code>OGD_krebs_ext_KREBS_1</code> can be extracted from
 the url and will be used in the data import.</p>
@@ -162,9 +166,10 @@ method.</p>
 <span><span class="co">#&gt; Dataset     Cancer statistics by reporting year, province of residence and</span></span>
 <span><span class="co">#&gt;             localisation of cancer </span></span>
 <span><span class="co">#&gt; Measures    Number of records F-KRE </span></span>
-<span><span class="co">#&gt; Fields      Tumore ICD/10 3-Steller, Reporting year, Province of residence, Sex </span></span>
+<span><span class="co">#&gt; Fields      Tumore ICD/10 3-Steller &lt;95&gt;, Reporting year &lt;37&gt;, Province of</span></span>
+<span><span class="co">#&gt;             residence &lt;9&gt;, Sex &lt;2&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Request     2022-09-16 11:16:58 </span></span>
+<span><span class="co">#&gt; Request     2022-09-16 18:35:56 </span></span>
 <span><span class="co">#&gt; STATcubeR   0.4.3</span></span></code></pre>
 </div>
 <div class="section level2">
@@ -184,9 +189,9 @@ can be obtained via <code>$header</code>.</p>
 <span style="color: #BCBCBC;">5</span> C-KRE_GESCHLECHT-0 <span style="color: #BB0000;">NA</span>    Geschlecht                  Sex                    </code></pre>
 <p>Additional metadata can be obtained via <code>$meta</code>. See the
 <a href="sc_data.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;The STATcubeR Data Class&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;The STATcubeR Data Class&lt;/b&gt;
   &lt;br/&gt;
-  STATcubeR uses a common base class for OGD datasets and datasets from the STATcube REST API. This article explains the core functionalities and allows you to use both datasources more flexibly.
+  &lt;div class="tippy_body"&gt;STATcubeR uses a common base class for OGD datasets and datasets from the STATcube REST API. This article explains the core functionalities and allows you to use both datasources more flexibly.&lt;/div&gt;
 &lt;/div&gt;'>STATcubeR data article</a>
 for more details.</p>
 <div class="section level3 unlisted unnumbered tabset tabset-pills">
@@ -313,9 +318,9 @@ previsously mentioned metadata.</p>
 if they satisfy certain STATcube standards. You can read more about
 <code>$tabulate()</code> in the
 <a href="sc_tabulate.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Tabulating STATcubeR Datasets&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Tabulating STATcubeR Datasets&lt;/b&gt;
   &lt;br/&gt;
-  Learn how to turn datasets from the REST API or from the OGD portal into tidy &lt;code&gt;data.frame&lt;/code&gt;s by using the tabulate() method.
+  &lt;div class="tippy_body"&gt;Learn how to turn datasets from the REST API or from the OGD portal into tidy &lt;code&gt;data.frame&lt;/code&gt;s by using the tabulate() method.&lt;/div&gt;
 &lt;/div&gt;'>tabulation article</a>.</p>
 </div>
 <div class="section level2">
@@ -339,9 +344,10 @@ the german labels are used as a fallback mechanism.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Dataset     Krebsstatistik </span></span>
 <span><span class="co">#&gt; Measures    Anzahl der Datensätze F-KRE </span></span>
-<span><span class="co">#&gt; Fields      Tumore ICD/10 3-Steller, Berichtsjahr, Bundesland, Geschlecht </span></span>
+<span><span class="co">#&gt; Fields      Tumore ICD/10 3-Steller &lt;95&gt;, Berichtsjahr &lt;37&gt;, Bundesland &lt;9&gt;,</span></span>
+<span><span class="co">#&gt;             Geschlecht &lt;2&gt; </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Request     2022-09-16 11:16:58 </span></span>
+<span><span class="co">#&gt; Request     2022-09-16 18:35:56 </span></span>
 <span><span class="co">#&gt; STATcubeR   0.4.3</span></span></code></pre>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
@@ -362,30 +368,32 @@ the german labels are used as a fallback mechanism.</p>
 <ul>
 <li>See the
 <a href="od_list.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Available Datasets&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Available Datasets&lt;/b&gt;
   &lt;br/&gt;
-  A concise overview about the 315 datasets from the OGD portal which are compatible with STATcubeR. Learn how to discover useful datasets and read OGD metadata.
+  &lt;div class="tippy_body"&gt;A concise overview about the 315 datasets from the OGD portal which are compatible with STATcubeR. Learn how to discover useful datasets and read OGD metadata.&lt;/div&gt;
 &lt;/div&gt;'>available datasets article</a>
 to list all datasets that are compatible with
 <code><a href="../reference/od_table.html">od_table()</a></code>.</li>
 <li>Open data datasets often contain a large amount of rows. Check out
 the
 <a href="sc_tabulate.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Tabulating STATcubeR Datasets&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Tabulating STATcubeR Datasets&lt;/b&gt;
   &lt;br/&gt;
-  Learn how to turn datasets from the REST API or from the OGD portal into tidy &lt;code&gt;data.frame&lt;/code&gt;s by using the tabulate() method.
+  &lt;div class="tippy_body"&gt;Learn how to turn datasets from the REST API or from the OGD portal into tidy &lt;code&gt;data.frame&lt;/code&gt;s by using the tabulate() method.&lt;/div&gt;
 &lt;/div&gt;'>tabulation article</a>
 to see how they can be summarized into a more compact form.</li>
 <li>
 <a href="../index.html" data-tippy-content="
-  &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
-  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;b class='tippy_header'&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
+  &lt;div class='tippy_body'&gt;
+    Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;/div&gt;
   " class="STATcubeR">STATcubeR</a>
 caches all files requested from the server under the hood. The
 <a href="od_resources.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;File Management&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;File Management&lt;/b&gt;
   &lt;br/&gt;
-  Learn how STATcubeR caches resources from the OGD portal in the local file system. Understanding this allows you to enable persistent caches and directly use cached resources.
+  &lt;div class="tippy_body"&gt;Learn how STATcubeR caches resources from the OGD portal in the local file system. Understanding this allows you to enable persistent caches and directly use cached resources.&lt;/div&gt;
 &lt;/div&gt;'>caching article</a>
 explains where and how those caches are stored.</li>
 </ul>
