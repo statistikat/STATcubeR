@@ -12,7 +12,7 @@ later will be returned. Otherwise, all datasets are retured.
 Can be in either one of the following formats
 \itemize{
 \item a native R time type that is compatible with \code{strftime()}
-such as the return values of \code{Sys.date()}, \code{Sys.time()} and \code{file.mtime()}.
+such as the return values of \code{Sys.Date()}, \code{Sys.time()} and \code{file.mtime()}.
 \item a string of the form \code{YYYY-MM-DD} to specify a day.
 \item a string of the form \code{YYYY-MM-DDThh:mm:ss} to specify a day and a time.
 }}
