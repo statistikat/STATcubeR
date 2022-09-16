@@ -19,7 +19,15 @@ See also the [wingarc docs](https://docs.wingarc.com.au/superstar/9.12/open-data
 In order to use the REST API of STATcube it is necessary to provide an API key.
 This means that you will need a subscription for STATcube.
 Subscribed users will automatically get access to the STATcube API.
-The API key can be displayed under the [preferences menu](https://statcube.at/statistik.at/ext/statcube/jsf/preferences/editPreferences.xhtml) ^[The link to the preferences will only work if you are already logged in into STATcube] of STATcube.
+The API key can be displayed under the [account preferences](`r sc_browse_preferences()`) ^[The link to the preferences will only work if you are already logged in into STATcube] of STATcube.
+
+```{js, echo = FALSE}
+el = $('.external-link:contains("preferences")');
+tippy(el[0], {
+  content: "<img src='img/preferences-menu.png' style='width: 300px;'>",
+  allowHTML: true, theme: 'light rounded'
+})
+```
 
 To make the key available for `r STATcubeR`, use the function
 `sc_key_set()`. Replace `"XXXX"` with your key.
