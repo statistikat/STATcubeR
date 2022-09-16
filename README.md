@@ -24,6 +24,18 @@ This package can be installed directly from github using the `{remotes}` package
 remotes::install_github("statistikat/STATcubeR")
 ```
 
+<details>
+<summary>Alternative: Install from tar.gz archives</summary>
+
+If you are not able to use `install_github()` to install `STATcubeR`,
+you can also download the package as a tar archive from https://github.com/statistikat/STATcubeR/tags.
+The package can then be installed by providing a path to the downloaded archive file.
+
+```r
+install.packages('STATcubeR-0.4.3.tar.gz', repos = NULL)
+```
+</details>
+
 ## Open Data
 
 To import datasets from https://data.statistik.gv.at, pass the dataset
@@ -63,7 +75,7 @@ There are four main functions that interact with the API
   - `sc_schema_catalogue()` lists all available datasets and tables
   - `sc_schema_db()` provides metadata about a specific database
   - `sc_table()` requests a table from the API according to a json
-    standard.
+    standard
   - `sc_table_saved()` requests a table based on an id
 
 More information about the first two functions can be found in the
