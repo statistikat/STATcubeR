@@ -97,7 +97,7 @@ navbar:
     href: https://data.statistik.gv.at
     aria-label: open data portal
   - icon: fas fa-cube fa-lg
-    href: https://www.statistik.at/web_de/services/statcube/
+    href: https://www.statistik.at/datenbanken/statcube-statistische-datenbank
     aria-label: STATcube
   - icon: fab fa-github fa-lg
     href: https://github.com/statistikat/STATcubeR/
