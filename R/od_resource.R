@@ -186,6 +186,10 @@ od_normalize_columns <- function(x, suffix) {
 #' By default, downloaded json files will "expire" in one hour or 3600 seconds.
 #' That is, if a json is requested, it will be reused from the cache unless the
 #' [file.mtime()] is more than one hour behind [Sys.time()].
+#' @examples
+#'
+#' # get json metadata about a dataset
+#' od_json('OGD_veste309_Veste309_1')
 #' @export
 od_json <- function(id, timestamp = Sys.time() - 3600, server = "ext") {
   file <- od_cache_file(id, NULL, timestamp = timestamp, ext = "json", server = server)
