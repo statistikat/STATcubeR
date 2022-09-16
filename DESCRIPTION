@@ -4,7 +4,8 @@ Title: R interface for the STATcube REST API and Open Government Data
 Version: 0.4.3
 Authors@R: c(
     person("Gregor", "de Cillia", , "Gregor.deCillia@statistik.gv.at", role = c("aut", "cre")),
-    person("Bernhard", "Meindl", , "Bernhard.Meindl@statistik.gv.at", role = "ctb")
+    person("Bernhard", "Meindl", , "Bernhard.Meindl@statistik.gv.at", role = "ctb"),
+    person("Alexander", "Kowarik", , "Alexander.Kowarik@statistik.gv.at", role = "ctb")
   )
 Description: Import data from the STATcube REST API or from the open data
     portal of Statistics Austria. This package includes a client for API
