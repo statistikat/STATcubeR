@@ -57,5 +57,21 @@ The generated json file contains an API request that can be used in
 my_response <- sc_table("wine.json")
 ```
 
+## Default Tables
+
+Most STATcube databases have an associated default table.
+Those default tables can also be loaded with `sc_table_saved()`.
+
+```{r}
+sc_table_saved('str:table:defaulttable_deake005')
+```
+
+All available default tables as well as other saved tables can be discovered using `sc_schema_catalogue()`. See the `r ticle("sc_schema")` for more details.
+
+```{r}
+sc_schema_catalogue() %>% 
+  sc_schema_flatten("TABLE")
+```
+
 [saved tables]: https://docs.wingarc.com.au/superstar/9.12/superweb2/user-guide/save-and-reload-tables
 
