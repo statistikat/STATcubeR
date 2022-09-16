@@ -4,6 +4,8 @@ description: >
   Learn how get access to an API key and set up authentication to the STATcube
   REST API by making the key available for STATcubeR.
 link_text: "API key article"
+resource_files:
+  - img/preferences-menu.png
 ---
 
 ```{r, echo = FALSE}
