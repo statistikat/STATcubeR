@@ -58,7 +58,7 @@ Please feel free to open a new issue on the [STATcubeR issue tracker] if you get
 If an invalid API key is used for a request, a 401 status is returned.
 
 ```{r, eval = FALSE}
-sc_schema_info(key = "wrong key")
+sc_info(key = "wrong key")
 ```
 
 ```{r, echo = FALSE, error=TRUE}
