@@ -63,6 +63,10 @@ sc_browse_ogd <- function() {
 
 # check if STATcubeR is used inside the firewall of Statistics Austria
 in_stat <- function() {
+  if (Sys.getenv("IN_PKGDOWN") == "true")
+    return(FALSE)
+  if (Sys.getenv("STATCUBER_IN_STAT") != "")
+    return(as.logical(Sys.getenv("STATCUBER_IN_STAT")))
   Sys.info()["nodename"] %in% c("xlwt0012", "xlwp0017")
 }
 
