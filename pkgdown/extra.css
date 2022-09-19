@@ -23,8 +23,8 @@ code a:any-link {
   color: white;
 }
 
-.navbar-brand {
-  color: white;
+.navbar-brand,.navbar-brand:hover {
+  color: white!important;
 }
 
 .nav-text {
@@ -32,13 +32,20 @@ code a:any-link {
 }
 
 .bg-primary .navbar-nav .nav-link:hover,
-.bg-primary .navbar-nav .nav-link:focus,
+.bg-primary .navbar-nav .nav-link:focus {
+  color: white !important;
+}
+
 a:hover {
-  color: hsl(358deg 90% 68%) !important;
+  color: #ab0813 !important;
 }
 
 .nav-pills .nav-link {
   color: black;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    background-color: hsl(210deg 29% 24%);
 }
 
 .tabset-pills .tab-content {
@@ -103,4 +110,31 @@ a:hover {
 
 mark, .mark {
   background: #F0B4B9;
+}
+
+.navbar .navbar-nav .nav-item,
+.navbar-brand {
+  position: relative;
+}
+
+.navbar .navbar-nav .nav-item::after,
+.navbar-brand::after {
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: white;
+  background-color: rgba(255, 255, 255, .75);
+
+  color: transparent;
+  width: 0%;
+  content: '';
+  height: 3px;
+  transition: width 200ms;
+}
+
+.navbar .navbar-nav .nav-item:hover::after,
+.navbar-brand:hover::after {
+  width: 100%;
 }
