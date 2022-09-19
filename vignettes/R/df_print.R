@@ -29,3 +29,6 @@ options(crayon.enabled = TRUE)
 options(pillar.min_chars = 30)
 options(pillar.bold = TRUE)
 options(width = 80)
+
+# "polyfill" for cli::style_hyperlink(). See ?cli::`cli-config`
+Sys.setenv(R_CLI_HYPERLINK_MODE = "posix")
