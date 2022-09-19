@@ -48,6 +48,31 @@ ticle <- function(x) {
   )
 }
 
+style_resource <- function(id = "OGD_veste309_Veste309_1", suffix = NULL, ext = "csv") {
+  file <- od_cache_file(id, suffix, ext = ext)
+  url <- paste0("https://data.statistik.gv.at/data/", basename(file))
+  if (ext == "json")
+    url <- paste0("https://data.statistik.gv.at/ogd/json?dataset=", id)
+  content <- readLines(file)
+  title <- ""
+  if (length(content) > 15) {
+    title <- paste0("Showing lines 1-10 of ", length(content), " total lines")
+    content <- content[1:10]
+  }
+  tags$a(
+    tags$code(basename(file)),
+    href = url,
+    class = "STATcubeR",
+    "data-tippy-content" = tags$div(
+      tags$b(title), tags$div(
+        class = "tippy_body", content %>%
+          paste(collapse = "\n") %>% tags$pre())
+    ),
+    "data-tippy-interactive" = "true",
+    "data-tippy-maxWidth" = 600
+  )
+}
+
 STATcubeR <- tags$a(
   "STATcubeR",
   href = "../index.html",

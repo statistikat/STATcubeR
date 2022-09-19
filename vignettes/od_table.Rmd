@@ -15,11 +15,11 @@ table <- od_table("OGD_krebs_ext_KREBS_1")
 ```
 
 `od_table()` makes it easy to import datasets from `r ogd_portal` into your R sessions.
-This function uses direct downloads from the fileserver.
-Therefore no API key is required.
+This function downloads csv sources from the fileserver.
+This means that no API key is required to use STATcubeR with datasets from the OGD portal.
 
 In this example, we will use a `r tippy_dataset(table, "data set about cancer statistics")`.
-The dataset id `OGD_krebs_ext_KREBS_1` can be extracted from the url and will be used in the data import.
+The dataset id `"OGD_krebs_ext_KREBS_1"` can be extracted from the url and will be used in the data import.
 
 ```{js, echo = FALSE}
 let url = "https://data.statistik.gv.at/"
@@ -31,7 +31,7 @@ tippy("#ogd", {allowHTML: true, interactive: true, theme: 'light rounded', conte
 })
 ```
 
-## Import
+## Import and overview
 
 To import a dataset, provide the dataset id as an argument.
 
@@ -39,22 +39,51 @@ To import a dataset, provide the dataset id as an argument.
 table <- od_table("OGD_krebs_ext_KREBS_1")
 ```
 
-The returned object is of class [`od_table`].
-It provides an overview of the dataset via the `print()` method. 
+This returns an object of class [`od_table`], which bundles all the data from the OGD portal that correspons to this dataset.
+Printing the object will show a summary of the contents. 
 
 ```{r}
 table
 ```
 
+The dataset contains the number of cancer patients by several classification fields
+
+- **tumor type** differentiates **<95>** types of cancers
+- The **reporting period** spans **<37>** years (1983 to 2019).
+- The **regional** variable contains the **<9>** NUTS-2 regions of austria.
+- The **demographic** variable "Sex" is reported with **<2>** levels
+
+## Convert to a data frame
+
+The method `$tabulate()` can be used to turn the object into a `data.frame` in long format,
+which contains labled data.
+
+```{r}
+table$tabulate()
+```
+
+The dataset contains `r nrow(table$data)` rows. 
+If every combination of tumor tpye, year, region and sex would contain a seperate row the number of rows would be the following.
+
+\[
+95\times37\times9\times2 = 63270
+\]
+
+This means that the table is fairly dense. But this might not be the case for other OGD datasets.
+
 ## Metadata
 
-Information from [`OGD_krebs_ext_KREBS_1_HEADER.csv`] can be obtained via `$header`. 
+This section will show the different metadata components contained in the table object.
+
+### Header
+
+The labels for the columns of the data.frame representation are generated from `r style_resource("OGD_krebs_ext_KREBS_1", "HEADER")` and can be extracted from the table object via `$header`. 
 
 ```{r}
 table$header
 ```
 
-Additional metadata can be obtained via `$meta`.
+Additional metadata for the columns can be obtained via `$meta`.
 See the `r ticle("sc_data")` for more details.
 
 ### Field infos {.unlisted .unnumbered .tabset .tabset-pills}
@@ -64,47 +93,73 @@ options(tibble.print_max = 5)
 options(tibble.print_min = 5)
 ```
 
-
-The method `table$field()` can be used to get information about specific fields.
+The method `table$field()` can be used to get information about specific classification fields.
 Thise contain data from `{dataset_id}_{field_code}.csv`.
 Unlike the metadata in `sc_table`, the `od_table` class always contains german and english labels.
 Both can be used to label the dataset.
 
 #### Tumor type
 
+The following call gives access to the german and english labels for the 95 differen tumor types in the `"cancer type"` classification. 
+Click `"Year"` above to see information about the years.
+
 ```{r}
 table$field("C-TUM_ICD10_3ST-0")
 ```
 
-https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_C-TUM_ICD10_3ST-0.csv
+`r style_resource("OGD_krebs_ext_KREBS_1", "C-TUM_ICD10_3ST-0")`
+
 
 #### Year
+
+The reporting period spans 37 years (1983 to 2019).
+The classification elements are parsed into a `<date>` format for the `<data.frame>` representation.
 
 ```{r}
 table$field("C-BERJ-0")
 ```
 
-https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_C-BERJ-0.csv
+`r style_resource("OGD_krebs_ext_KREBS_1", "C-BERJ-0")`
 
 #### Province
+
+The regional classification contains 9 elements which correspond to the NUTS2 regions of austria.
 
 ```{r}
 table$field("C-BUNDESLAND-0")
 ```
 
-https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_C-BUNDESLAND-0.csv
+`r style_resource("OGD_krebs_ext_KREBS_1", "C-BUNDESLAND-0")`
 
 #### Sex
+
+Sex is coded as a ditochome variable with the classification elements `"male"` and `"female"`.
 
 ```{r}
 table$field("C-KRE_GESCHLECHT-0")
 ```
 
-https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_C-KRE_GESCHLECHT-0.csv
+`r style_resource("OGD_krebs_ext_KREBS_1", "C-KRE_GESCHLECHT-0")`
+
+### json Metadata
+
+The json metadatafile `r style_resource("OGD_krebs_ext_KREBS_1", ext = "json")` is available via the `$json` binding.
+
+```{r}
+table$json
+```
+
+This print method only shows part of the metadata. More information can be extracted by using the keys of the json object.
+
+```{r, collapse=TRUE}
+table$json$extras$publisher
+table$json$extras$update_frequency
+table$json$resources[[1]]$url
+```
 
 ## Table Contents
 
-To get the actual microdata from [`OGD_krebs_ext_KREBS_1.csv`], use `table$data`.
+To get the raw microdata from `r style_resource("OGD_krebs_ext_KREBS_1")`, use `table$data`.
 The output is similar to what is returned from `read.csv2("OGD_krebs_ext_KREBS_1.csv")`.
 
 ```{r}
@@ -117,8 +172,8 @@ table$data
 levels(table$data$`C-BUNDESLAND-0`) == table$field("C-BUNDESLAND-0")$code
 ```
 
-If you want to use labels rather than codes, a labelled version of the data can be obtained via `table$tabulate()`. 
-The labelling is done by mapping codes to english names using the previsously mentioned metadata.
+As mentioned above, a labelled version of the data can be obtained via `table$tabulate()`. 
+The labelling is done by taking the raw dataset and then joining the labes from `$header` and `$field()`.
 
 ```{r}
 table$tabulate()
@@ -133,9 +188,10 @@ It is possible to switch the language used for labelling the dataset using the `
 This field can be used to get and set the language.
 Allowed options are `"en"` for english and `"de"` for german.
 
-```{r}
+```{r, collapse=TRUE}
 table$language
 table$language <- "de"
+table$language
 ```
 
 This option affects the `print()` method as well as the output of `$tabulate()`.
@@ -159,6 +215,3 @@ table$tabulate()
   
 
 [`od_table`]: ../reference/od_table_class.html
-[`OGD_krebs_ext_KREBS_1.csv`]: https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1.csv
-[`OGD_krebs_ext_KREBS_1_HEADER.csv`]: https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_HEADER.csv
-[`OGD_krebs_ext_KREBS_1_C-KRE_GESCHLECHT-0.csv`]: https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_C-KRE_GESCHLECHT-0.csv

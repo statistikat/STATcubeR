@@ -141,7 +141,7 @@ json <- od_json(id)
 json
 ```
 
-The json can also be used programatically to get details which are ommited in the `print()` output.
+This output is generated from `r style_resource(id, ext = "json")` and shows a summary of the available metatata. Other parts of the metadata can be extracted with `$` using the keys from the json specification.
 
 ```{r}
 json$extras$update_frequency
