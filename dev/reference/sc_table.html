@@ -6,7 +6,7 @@ sc_table_custom() uses the ids of a database, measures and fields
 sc_table_saved() uses a table uri of a saved table.
 
 
-Those three functions all return an object of class "sc_table".'><title>Create a request against the /table endpoint — sc_table • STATcubeR</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet"><meta property="og:title" content="Create a request against the /table endpoint — sc_table"><meta property="og:description" content='Send requests against the /table endpoint of the STATcube REST API. The
+Those three functions all return an object of class "sc_table".'><title>Create a request against the /table endpoint — sc_table • STATcubeR</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet"><meta property="og:title" content="Create a request against the /table endpoint — sc_table"><meta property="og:description" content='Send requests against the /table endpoint of the STATcube REST API. The
 requests can use three formats with corresponding functions
 sc_table() uses a json file downloaded via the STATcube GUI
 sc_table_custom() uses the ids of a database, measures and fields
@@ -24,7 +24,7 @@ Those three functions all return an object of class "sc_table".'><meta property=
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.4.1</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.4.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,7 +67,7 @@ Those three functions all return an object of class "sc_table".'><meta property=
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/" aria-label="STATcube">
+  <a class="external-link nav-link" href="https://www.statistik.at/datenbanken/statcube-statistische-datenbank" aria-label="STATcube">
     <span class="fas fa fas fa-cube fa-lg"></span>
      
   </a>
@@ -86,43 +86,29 @@ Those three functions all return an object of class "sc_table".'><meta property=
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Create a request against the /table endpoint</h1>
-      <small class="dont-index">Source: <a href="https://github.com/statistikat/STATcubeR/blob/HEAD/R/table.R" class="external-link"><code>R/table.R</code></a>, <a href="https://github.com/statistikat/STATcubeR/blob/HEAD/R/table_custom.R" class="external-link"><code>R/table_custom.R</code></a>, <a href="https://github.com/statistikat/STATcubeR/blob/HEAD/R/table_saved.R" class="external-link"><code>R/table_saved.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/statistikat/STATcubeR/blob/HEAD/R/table.R" class="external-link"><code>R/table.R</code></a>, <a href="https://github.com/statistikat/STATcubeR/blob/HEAD/R/table_saved.R" class="external-link"><code>R/table_saved.R</code></a></small>
       <div class="d-none name"><code>sc_table.Rd</code></div>
     </div>
 
     <div class="ref-description section level2">
     <p>Send requests against the <strong><code>/table</code></strong> endpoint of the STATcube REST API. The
 requests can use three formats with corresponding functions</p><ul><li><p><code>sc_table()</code> uses a json file downloaded via the STATcube GUI</p></li>
-<li><p><code>sc_table_custom()</code> uses the ids of a database, measures and fields</p></li>
+<li><p><code><a href="sc_table_custom.html">sc_table_custom()</a></code> uses the ids of a database, measures and fields</p></li>
 <li><p><code>sc_table_saved()</code> uses a table uri of a saved table.</p></li>
 </ul><p>Those three functions all return an object of class <code>"sc_table"</code>.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">sc_table</span><span class="op">(</span>
-  <span class="va">json_file</span>,
-  language <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"en"</span>, <span class="st">"de"</span>, <span class="st">"both"</span><span class="op">)</span>,
-  add_totals <span class="op">=</span> <span class="cn">TRUE</span>,
-  key <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span>
-
-<span class="fu">sc_examples_list</span><span class="op">(</span><span class="op">)</span>
-
-<span class="fu">sc_example</span><span class="op">(</span><span class="va">filename</span><span class="op">)</span>
-
-<span class="fu">sc_table_custom</span><span class="op">(</span>
-  <span class="va">db</span>,
-  measures <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,
-  dimensions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,
-  language <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"en"</span>, <span class="st">"de"</span><span class="op">)</span>,
-  add_totals <span class="op">=</span> <span class="cn">TRUE</span>,
-  key <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span>
-
-<span class="fu">sc_table_saved_list</span><span class="op">(</span>key <span class="op">=</span> <span class="cn">NULL</span>, server <span class="op">=</span> <span class="st">"ext"</span><span class="op">)</span>
-
-<span class="fu">sc_table_saved</span><span class="op">(</span><span class="va">table_uri</span>, language <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"en"</span>, <span class="st">"de"</span><span class="op">)</span>, key <span class="op">=</span> <span class="cn">NULL</span>, server <span class="op">=</span> <span class="st">"ext"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">sc_table</span><span class="op">(</span><span class="va">json_file</span>, language <span class="op">=</span> <span class="st">"en"</span>, add_totals <span class="op">=</span> <span class="cn">TRUE</span>, key <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">sc_examples_list</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">sc_example</span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">sc_table_saved_list</span><span class="op">(</span>key <span class="op">=</span> <span class="cn">NULL</span>, server <span class="op">=</span> <span class="st">"ext"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">sc_table_saved</span><span class="op">(</span><span class="va">table_uri</span>, language <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"en"</span>, <span class="st">"de"</span><span class="op">)</span>, key <span class="op">=</span> <span class="cn">NULL</span>, server <span class="op">=</span> <span class="st">"ext"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -133,14 +119,15 @@ GUI ("Open Data API Abfrage")</p></dd>
 
 
 <dt>language</dt>
-<dd><p>The language to be used for labeling. <code>"en"</code> or <code>"de"</code>.
+<dd><p>The language to be used for labeling. <code>"en"</code> (the default)
+will use english. <code>"de"</code> uses german.
 The third option <code>"both"</code> will import both languages by sending two requests
 to the <code>/table</code> endpoint.</p></dd>
 
 
 <dt>add_totals</dt>
-<dd><p>Should totals be added for each measure in the json
-request?</p></dd>
+<dd><p>Should totals be added for each classification field in
+the json request?</p></dd>
 
 
 <dt>key</dt>
@@ -150,21 +137,6 @@ request?</p></dd>
 
 <dt>filename</dt>
 <dd><p>The name of an example json file.</p></dd>
-
-
-<dt>db</dt>
-<dd><p>The uid of a database</p></dd>
-
-
-<dt>measures</dt>
-<dd><p>A character vector of uids for measures. Can be either of
-type <code>MEASURE</code> or of type <code>STAT_FUNCTION</code></p></dd>
-
-
-<dt>dimensions</dt>
-<dd><p>A character vector of dimensions for the cube. Can be
-either of type <code>FIELD</code> or type <code>VALUESET</code>. Those entries are referred to
-as <code>fields</code> in the parsed API response</p></dd>
 
 
 <dt>server</dt>
@@ -190,22 +162,22 @@ provides member functions to parse this response object. See
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">my_table</span> <span class="op">&lt;-</span> <span class="fu">sc_table</span><span class="op">(</span>json_file <span class="op">=</span> <span class="fu">sc_example</span><span class="op">(</span><span class="st">"population_timeseries.json"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># print</span></span>
-<span class="r-in"><span class="va">my_table</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">my_table</span> <span class="op">&lt;-</span> <span class="fu">sc_table</span><span class="op">(</span>json_file <span class="op">=</span> <span class="fu">sc_example</span><span class="op">(</span><span class="st">"population_timeseries.json"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># print</span></span></span>
+<span class="r-in"><span><span class="va">my_table</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> An object of class sc_table</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Database    Population at the beginning of the quarter since 2002 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Measures    Number of persons </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Fields      Quarter, Age in single years &lt;96&gt;, Sex &lt;2&gt;, Commune</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             &lt;2383&gt; (Province-District) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Fields      Quarter &lt;82&gt;, Age in single years &lt;96&gt; &lt;7&gt;, Sex &lt;2&gt; &lt;3&gt;,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Commune &lt;2383&gt; (Province-District) &lt;10&gt; </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-08-31 10:25:31 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> STATcubeR   0.4.1</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># get matadata for the table</span></span>
-<span class="r-in"><span class="va">my_table</span><span class="op">$</span><span class="va">meta</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-08-29 09:52:04 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> STATcubeR   0.4.3</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># get matadata for the table</span></span></span>
+<span class="r-in"><span><span class="va">my_table</span><span class="op">$</span><span class="va">meta</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $source</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># STATcubeR metadata: 1 x 6</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">code</span>       <span style="font-weight: bold;">label</span>                                               <span style="font-weight: bold;">lang</span> </span>
@@ -222,36 +194,36 @@ provides member functions to parse this response object. See
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $fields</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># STATcubeR metadata: 4 x 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">code</span>       <span style="font-weight: bold;">label</span>                              <span style="font-weight: bold;">total_code</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> C-A10-0    Quarter                            SC_TOTAL  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> C-BESC51-0 Age in single years &lt;96&gt;           SC_TOTAL  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> C-BESC11-0 Sex &lt;2&gt;                            SC_TOTAL  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> C-C41-2    Commune &lt;2383&gt; (Province-District) SC_TOTAL  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 4 more columns: 'nitems', 'type', 'label_de', 'label_en'</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">code</span>       <span style="font-weight: bold;">label</span>                              <span style="font-weight: bold;">total_c…¹</span> <span style="font-weight: bold;">nitems</span> <span style="font-weight: bold;">type</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> C-A10-0    Quarter                            SC_TOTAL      82 Time…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> C-BESC51-0 Age in single years &lt;96&gt;           SC_TOTAL       7 Cate…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> C-BESC11-0 Sex &lt;2&gt;                            SC_TOTAL       3 Cate…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> C-C41-2    Commune &lt;2383&gt; (Province-District) SC_TOTAL      10 Cate…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable name ¹​total_code</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 2 more columns: 'label_de', 'label_en'</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># get a data.frame</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">my_table</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># get a data.frame</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">my_table</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A STATcubeR tibble: 17,220 x 5</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="font-weight: bold;">Quarter</span>    <span style="font-weight: bold;">Age in single yea…¹</span> <span style="font-weight: bold;">Sex &lt;…²</span> <span style="font-weight: bold;">Commune &lt;2383&gt; (Pr…³</span> <span style="font-weight: bold;">Numbe…⁴</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2002-01-01 Up to 14 years old  male    Burgenland &lt;AT11&gt;      <span style="text-decoration: underline;">21</span>287</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2002-01-01 Up to 14 years old  male    Carinthia &lt;AT21&gt;       <span style="text-decoration: underline;">47</span>230</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2002-01-01 Up to 14 years old  male    Vienna &lt;AT13&gt;         <span style="text-decoration: underline;">117</span>920</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2002-01-01 Up to 14 years old  male    Vorarlberg &lt;AT34&gt;      <span style="text-decoration: underline;">34</span>798</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2002-01-01 Up to 14 years old  male    Tyrol &lt;AT33&gt;           <span style="text-decoration: underline;">62</span>794</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2002-01-01 Up to 14 years old  male    Styria &lt;AT22&gt;          <span style="text-decoration: underline;">97</span>538</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2002-01-01 Up to 14 years old  male    Salzburg &lt;AT32&gt;        <span style="text-decoration: underline;">46</span>955</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2002-01-01 Up to 14 years old  male    Upper Austria &lt;AT31&gt;  <span style="text-decoration: underline;">127</span>316</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2002-01-01 Up to 14 years old  male    Lower Austria &lt;AT12&gt;  <span style="text-decoration: underline;">133</span>928</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2002-01-01 Up to 14 years old  male    Total                 <span style="text-decoration: underline;">689</span>766</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="font-weight: bold;">Quarter</span>    <span style="font-weight: bold;">`Age in single years &lt;96&gt;`</span> <span style="font-weight: bold;">`Sex &lt;2&gt;`</span> <span style="font-weight: bold;">Commune &lt;…¹</span> <span style="font-weight: bold;">Numbe…²</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2002-01-01 Up to 14 years old         male      Burgenland…   <span style="text-decoration: underline;">21</span>287</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2002-01-01 Up to 14 years old         male      Carinthia …   <span style="text-decoration: underline;">47</span>230</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2002-01-01 Up to 14 years old         male      Vienna &lt;AT…  <span style="text-decoration: underline;">117</span>920</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2002-01-01 Up to 14 years old         male      Vorarlberg…   <span style="text-decoration: underline;">34</span>798</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2002-01-01 Up to 14 years old         male      Tyrol &lt;AT3…   <span style="text-decoration: underline;">62</span>794</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2002-01-01 Up to 14 years old         male      Styria &lt;AT…   <span style="text-decoration: underline;">97</span>538</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2002-01-01 Up to 14 years old         male      Salzburg &lt;…   <span style="text-decoration: underline;">46</span>955</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2002-01-01 Up to 14 years old         male      Upper Aust…  <span style="text-decoration: underline;">127</span>316</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2002-01-01 Up to 14 years old         male      Lower Aust…  <span style="text-decoration: underline;">133</span>928</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2002-01-01 Up to 14 years old         male      Total        <span style="text-decoration: underline;">689</span>766</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 17,210 more rows, and abbreviated variable names</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ¹​`Age in single years &lt;96&gt;`, ²​`Sex &lt;2&gt;`,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ³​`Commune &lt;2383&gt; (Province-District)`, ⁴​`Number of persons`</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># get metadata for field 2</span></span>
-<span class="r-in"><span class="va">my_table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ¹​`Commune &lt;2383&gt; (Province-District)`, ²​`Number of persons`</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># get metadata for field 2</span></span></span>
+<span class="r-in"><span><span class="va">my_table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># STATcubeR metadata: 7 x 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">code</span>     <span style="font-weight: bold;">label</span>              <span style="font-weight: bold;">parsed</span>            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
@@ -263,40 +235,21 @@ provides member functions to parse this response object. See
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> BESN07-6 75 plus years old  75 plus years old </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> SC_TOTAL Total              Total             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 4 more columns: 'label_de', 'label_en', 'visible', 'order'</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu">sc_table_custom</span><span class="op">(</span></span>
-<span class="r-in">  db <span class="op">=</span> <span class="st">"str:database:detouextregsai"</span>,</span>
-<span class="r-in">  measures <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span class="r-in">    <span class="st">"str:statfn:detouextregsai:F-DATA1:F-ANK:SUM"</span>,</span>
-<span class="r-in">    <span class="st">"str:measure:detouextregsai:F-DATA1:F-UEB"</span></span>
-<span class="r-in">  <span class="op">)</span>,</span>
-<span class="r-in">  dimensions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span class="r-in">    <span class="st">"str:field:detouextregsai:F-DATA1:C-SDB_TIT-0"</span>,</span>
-<span class="r-in">    <span class="st">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93SUM-0"</span></span>
-<span class="r-in">  <span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> An object of class sc_table</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Database    Accomodation statistics as of 1974 according to seasons </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Measures    Arrivals, Nights spent </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Fields      Season/Tourism Month, Country of origin </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-08-31 10:25:43 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> STATcubeR   0.4.1</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># get the ids and labels of all saved tables</span></span>
-<span class="r-in"><span class="op">(</span><span class="va">saved_tables</span> <span class="op">&lt;-</span> <span class="fu">sc_table_saved_list</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># get the ids and labels of all saved tables</span></span></span>
+<span class="r-in"><span><span class="op">(</span><span class="va">saved_tables</span> <span class="op">&lt;-</span> <span class="fu">sc_table_saved_list</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             label                                             id</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   Bier auf Wein str:table:4520fba3-dffd-4f2a-9cd1-d46d710b6da4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2    hierarchical str:table:1529fb5c-8f71-425c-bc95-a017f6534c8f</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3             neu str:table:4d55ca7c-e999-49e4-90f4-396163195da5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4 lebenserwartung str:table:b0f4779b-546e-4a6c-88a1-43038cdeaf7b</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5         test123 str:table:9ba81454-32f5-4ab7-b904-c446940946f5</span>
-<span class="r-in"><span class="va">table_uri</span> <span class="op">&lt;-</span> <span class="va">saved_tables</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># get a table based on one of these ids</span></span>
-<span class="r-in"><span class="va">my_response</span> <span class="op">&lt;-</span> <span class="fu">sc_table_saved</span><span class="op">(</span><span class="va">table_uri</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">my_response</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">table_uri</span> <span class="op">&lt;-</span> <span class="va">saved_tables</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># get a table based on one of these ids</span></span></span>
+<span class="r-in"><span><span class="va">my_response</span> <span class="op">&lt;-</span> <span class="fu">sc_table_saved</span><span class="op">(</span><span class="va">table_uri</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">my_response</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A STATcubeR tibble: 156 x 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="font-weight: bold;">Year</span>       <span style="font-weight: bold;">`Wine colour`</span>     <span style="font-weight: bold;">`Production in hectolitres`</span> <span style="font-weight: bold;">Area in …¹</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>

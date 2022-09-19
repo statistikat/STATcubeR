@@ -15,8 +15,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Define Custom Tables">
@@ -37,7 +37,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.4.1</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.4.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,7 +84,7 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/" aria-label="STATcube">
+  <a class="external-link nav-link" href="https://www.statistik.at/datenbanken/statcube-statistische-datenbank" aria-label="STATcube">
     <span class="fas fa fas fa-cube fa-lg"></span>
      
   </a>
@@ -120,7 +120,7 @@
 <script>$(document).ready(function () {
     window.setTimeout("tippy('.STATcubeR', {allowHTML: true, theme:'light rounded'});", 50);
     });
-    </script><p>The function <code><a href="../reference/sc_table.html">sc_table_custom()</a></code> allows you to define
+    </script><p>The function <code><a href="../reference/sc_table_custom.html">sc_table_custom()</a></code> allows you to define
 requests against the <code>/table</code> endpoint programatically. This
 can be useful to automate the generation of <code>/table</code> request
 rather than relying on the GUI to do so. The function accepts the three
@@ -136,18 +136,18 @@ arguments.</p>
 <h2 id="starting-simple">Starting Simple<a class="anchor" aria-label="anchor" href="#starting-simple"></a>
 </h2>
 <p>First, we want to just send a database id to
-<code><a href="../reference/sc_table.html">sc_table_custom()</a></code>. We will use a <a href="https://portal.statistik.at/statistik.at/ext/statcube/?openinfopage?id=detouextregsai" class="external-link">database
+<code><a href="../reference/sc_table_custom.html">sc_table_custom()</a></code>. We will use a <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=detouextregsai" class="external-link">database
 about accomodation</a> througout this article. This returns a table with
 one single row.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">database</span> <span class="op">&lt;-</span> <span class="st">"str:database:detouextregsai"</span>
-<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table_custom</a></span><span class="op">(</span><span class="va">database</span><span class="op">)</span>
-<span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">database</span> <span class="op">&lt;-</span> <span class="st">"str:database:detouextregsai"</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span><span class="va">database</span><span class="op">)</span></span>
+<span><span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 1 x 2</span>
   <span style="font-weight: bold;">`Season/Tourism Month`</span> <span style="font-weight: bold;">`Nights spent`</span>
 <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>
-<span style="color: #BCBCBC;">1</span> 2022-06-01                   19<span style="text-decoration: underline;">210</span>069</code></pre>
-<p>we see that 19 210 069 nights were spent in austrian tourism
+<span style="color: #BCBCBC;">1</span> 2022-06-01                   37<span style="text-decoration: underline;">162</span>704</code></pre>
+<p>we see that 37 162 704 nights were spent in austrian tourism
 establishments in the month of 2022-06-01.</p>
 </div>
 <div class="section level2">
@@ -156,7 +156,7 @@ establishments in the month of 2022-06-01.</p>
 <p>Now we want to add a classification to the table. This can be done by
 getting the database schema and showing all classification fields.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="va">fields</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_db</a></span><span class="op">(</span><span class="va">database</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_flatten</a></span><span class="op">(</span><span class="st">"FIELD"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">fields</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_db</a></span><span class="op">(</span><span class="va">database</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_flatten</a></span><span class="op">(</span><span class="st">"FIELD"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A data frame: 4 × 2</span>
   <span style="font-weight: bold;">id</span>                                           <span style="font-weight: bold;">label</span>                     
   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     
@@ -167,14 +167,14 @@ getting the database schema and showing all classification fields.</p>
 <p>If we want to add “Country of origin” we need to include the fouth
 entry of the <code>id</code> column in our request.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table_custom</a></span><span class="op">(</span><span class="va">database</span>, dimensions <span class="op">=</span> <span class="va">fields</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>
-<span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span><span class="va">database</span>, dimensions <span class="op">=</span> <span class="va">fields</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 3 x 3</span>
   <span style="font-weight: bold;">`Season/Tourism Month`</span> <span style="font-weight: bold;">`Country of origin`</span> <span style="font-weight: bold;">`Nights spent`</span>
 <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>
-<span style="color: #BCBCBC;">1</span> 2022-06-01             Austria                    7<span style="text-decoration: underline;">222</span>450
-<span style="color: #BCBCBC;">2</span> 2022-06-01             Germany                    7<span style="text-decoration: underline;">488</span>224
-<span style="color: #BCBCBC;">3</span> 2022-06-01             other countries            4<span style="text-decoration: underline;">499</span>395</code></pre>
+<span style="color: #BCBCBC;">1</span> 2022-06-01             Austria                   12<span style="text-decoration: underline;">235</span>755
+<span style="color: #BCBCBC;">2</span> 2022-06-01             Germany                   14<span style="text-decoration: underline;">343</span>746
+<span style="color: #BCBCBC;">3</span> 2022-06-01             other countries           10<span style="text-decoration: underline;">583</span>203</code></pre>
 </div>
 <div class="section level2">
 <h2 id="adding-tourism-communes">Adding Tourism Communes<a class="anchor" aria-label="anchor" href="#adding-tourism-communes"></a>
@@ -183,21 +183,21 @@ entry of the <code>id</code> column in our request.</p>
 <code>sc_schema_custom()</code> accepts vectors of field ids. Therefore,
 we can add the communes easily.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table_custom</a></span><span class="op">(</span><span class="va">database</span>, dimensions <span class="op">=</span> <span class="va">fields</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
-<span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span><span class="va">database</span>, dimensions <span class="op">=</span> <span class="va">fields</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 321 x 4</span>
    <span style="font-weight: bold;">`Season/Tourism Month`</span> <span style="font-weight: bold;">`Tourism commune [ABO]`</span>        <span style="font-weight: bold;">Country of or…¹</span> <span style="font-weight: bold;">Night…²</span>
  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                          <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>
-<span style="color: #BCBCBC;"> 1</span> 2022-06-01             Achensee                       Austria           <span style="text-decoration: underline;">26</span>827
-<span style="color: #BCBCBC;"> 2</span> 2022-06-01             Achensee                       Germany          <span style="text-decoration: underline;">210</span>986
-<span style="color: #BCBCBC;"> 3</span> 2022-06-01             Achensee                       other countries   <span style="text-decoration: underline;">42</span>661
-<span style="color: #BCBCBC;"> 4</span> 2022-06-01             Alpbachtal und Tiroler Seenla… Austria           <span style="text-decoration: underline;">16</span>444
-<span style="color: #BCBCBC;"> 5</span> 2022-06-01             Alpbachtal und Tiroler Seenla… Germany           <span style="text-decoration: underline;">77</span>646
-<span style="color: #BCBCBC;"> 6</span> 2022-06-01             Alpbachtal und Tiroler Seenla… other countries   <span style="text-decoration: underline;">27</span>444
-<span style="color: #BCBCBC;"> 7</span> 2022-06-01             Alpenregion Bludenz            Austria           <span style="text-decoration: underline;">13</span>378
-<span style="color: #BCBCBC;"> 8</span> 2022-06-01             Alpenregion Bludenz            Germany           <span style="text-decoration: underline;">70</span>733
-<span style="color: #BCBCBC;"> 9</span> 2022-06-01             Alpenregion Bludenz            other countries   <span style="text-decoration: underline;">38</span>407
-<span style="color: #BCBCBC;">10</span> 2022-06-01             Arlberg                        Austria            <span style="text-decoration: underline;">3</span>041
+<span style="color: #BCBCBC;"> 1</span> 2022-06-01             Achensee                       Austria           <span style="text-decoration: underline;">49</span>275
+<span style="color: #BCBCBC;"> 2</span> 2022-06-01             Achensee                       Germany          <span style="text-decoration: underline;">371</span>475
+<span style="color: #BCBCBC;"> 3</span> 2022-06-01             Achensee                       other countries  <span style="text-decoration: underline;">100</span>131
+<span style="color: #BCBCBC;"> 4</span> 2022-06-01             Alpbachtal und Tiroler Seenla… Austria           <span style="text-decoration: underline;">30</span>257
+<span style="color: #BCBCBC;"> 5</span> 2022-06-01             Alpbachtal und Tiroler Seenla… Germany          <span style="text-decoration: underline;">147</span>238
+<span style="color: #BCBCBC;"> 6</span> 2022-06-01             Alpbachtal und Tiroler Seenla… other countries   <span style="text-decoration: underline;">78</span>072
+<span style="color: #BCBCBC;"> 7</span> 2022-06-01             Alpenregion Bludenz            Austria           <span style="text-decoration: underline;">24</span>161
+<span style="color: #BCBCBC;"> 8</span> 2022-06-01             Alpenregion Bludenz            Germany          <span style="text-decoration: underline;">124</span>078
+<span style="color: #BCBCBC;"> 9</span> 2022-06-01             Alpenregion Bludenz            other countries   <span style="text-decoration: underline;">94</span>838
+<span style="color: #BCBCBC;">10</span> 2022-06-01             Arlberg                        Austria           <span style="text-decoration: underline;">11</span>122
 <span style="color: #949494;"># … with 311 more rows, and abbreviated variable names ¹​`Country of origin`,</span>
 <span style="color: #949494;">#   ²​`Nights spent`</span></code></pre>
 </div>
@@ -208,7 +208,7 @@ we can add the communes easily.</p>
 database which is the number of nights spent. We can add a second
 measure by again using the database schema and passing a measure id</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="va">measures</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_db</a></span><span class="op">(</span><span class="va">database</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_flatten</a></span><span class="op">(</span><span class="st">"MEASURE"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">measures</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_db</a></span><span class="op">(</span><span class="va">database</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_flatten</a></span><span class="op">(</span><span class="st">"MEASURE"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A data frame: 2 × 2</span>
   <span style="font-weight: bold;">id</span>                                       <span style="font-weight: bold;">label</span>       
   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       
@@ -219,29 +219,29 @@ measure by again using the database schema and passing a measure id</p>
 parameter, the <code>measures</code> parameters accepts vectors of
 resource ids.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table_custom</a></span><span class="op">(</span><span class="va">database</span>, measures <span class="op">=</span> <span class="va">measures</span><span class="op">$</span><span class="va">id</span>, 
-                     dimensions <span class="op">=</span> <span class="va">fields</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
-<span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span><span class="va">database</span>, measures <span class="op">=</span> <span class="va">measures</span><span class="op">$</span><span class="va">id</span>,</span>
+<span>                     dimensions <span class="op">=</span> <span class="va">fields</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 321 x 5</span>
    <span style="font-weight: bold;">Season/Touri…¹</span> <span style="font-weight: bold;">`Tourism commune [ABO]`</span>        <span style="font-weight: bold;">Country of or…²</span> <span style="font-weight: bold;">Arriv…³</span> <span style="font-weight: bold;">Night…⁴</span>
  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                          <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>
-<span style="color: #BCBCBC;"> 1</span> 2022-06-01     Achensee                       Austria            <span style="text-decoration: underline;">9</span>783   <span style="text-decoration: underline;">26</span>827
-<span style="color: #BCBCBC;"> 2</span> 2022-06-01     Achensee                       Germany           <span style="text-decoration: underline;">59</span>929  <span style="text-decoration: underline;">210</span>986
-<span style="color: #BCBCBC;"> 3</span> 2022-06-01     Achensee                       other countries   <span style="text-decoration: underline;">11</span>776   <span style="text-decoration: underline;">42</span>661
-<span style="color: #BCBCBC;"> 4</span> 2022-06-01     Alpbachtal und Tiroler Seenla… Austria            <span style="text-decoration: underline;">6</span>445   <span style="text-decoration: underline;">16</span>444
-<span style="color: #BCBCBC;"> 5</span> 2022-06-01     Alpbachtal und Tiroler Seenla… Germany           <span style="text-decoration: underline;">20</span>302   <span style="text-decoration: underline;">77</span>646
-<span style="color: #BCBCBC;"> 6</span> 2022-06-01     Alpbachtal und Tiroler Seenla… other countries    <span style="text-decoration: underline;">6</span>562   <span style="text-decoration: underline;">27</span>444
-<span style="color: #BCBCBC;"> 7</span> 2022-06-01     Alpenregion Bludenz            Austria            <span style="text-decoration: underline;">6</span>183   <span style="text-decoration: underline;">13</span>378
-<span style="color: #BCBCBC;"> 8</span> 2022-06-01     Alpenregion Bludenz            Germany           <span style="text-decoration: underline;">21</span>616   <span style="text-decoration: underline;">70</span>733
-<span style="color: #BCBCBC;"> 9</span> 2022-06-01     Alpenregion Bludenz            other countries   <span style="text-decoration: underline;">11</span>136   <span style="text-decoration: underline;">38</span>407
-<span style="color: #BCBCBC;">10</span> 2022-06-01     Arlberg                        Austria            <span style="text-decoration: underline;">1</span>393    <span style="text-decoration: underline;">3</span>041
+<span style="color: #BCBCBC;"> 1</span> 2022-06-01     Achensee                       Austria           <span style="text-decoration: underline;">16</span>835   <span style="text-decoration: underline;">49</span>275
+<span style="color: #BCBCBC;"> 2</span> 2022-06-01     Achensee                       Germany          <span style="text-decoration: underline;">100</span>856  <span style="text-decoration: underline;">371</span>475
+<span style="color: #BCBCBC;"> 3</span> 2022-06-01     Achensee                       other countries   <span style="text-decoration: underline;">27</span>409  <span style="text-decoration: underline;">100</span>131
+<span style="color: #BCBCBC;"> 4</span> 2022-06-01     Alpbachtal und Tiroler Seenla… Austria           <span style="text-decoration: underline;">10</span>846   <span style="text-decoration: underline;">30</span>257
+<span style="color: #BCBCBC;"> 5</span> 2022-06-01     Alpbachtal und Tiroler Seenla… Germany           <span style="text-decoration: underline;">35</span>436  <span style="text-decoration: underline;">147</span>238
+<span style="color: #BCBCBC;"> 6</span> 2022-06-01     Alpbachtal und Tiroler Seenla… other countries   <span style="text-decoration: underline;">18</span>959   <span style="text-decoration: underline;">78</span>072
+<span style="color: #BCBCBC;"> 7</span> 2022-06-01     Alpenregion Bludenz            Austria           <span style="text-decoration: underline;">10</span>462   <span style="text-decoration: underline;">24</span>161
+<span style="color: #BCBCBC;"> 8</span> 2022-06-01     Alpenregion Bludenz            Germany           <span style="text-decoration: underline;">36</span>567  <span style="text-decoration: underline;">124</span>078
+<span style="color: #BCBCBC;"> 9</span> 2022-06-01     Alpenregion Bludenz            other countries   <span style="text-decoration: underline;">24</span>898   <span style="text-decoration: underline;">94</span>838
+<span style="color: #BCBCBC;">10</span> 2022-06-01     Arlberg                        Austria            <span style="text-decoration: underline;">4</span>593   <span style="text-decoration: underline;">11</span>122
 <span style="color: #949494;"># … with 311 more rows, and abbreviated variable names ¹​`Season/Tourism Month`,</span>
 <span style="color: #949494;">#   ²​`Country of origin`, ³​Arrivals, ⁴​`Nights spent`</span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="using-valuesets">Using Valuesets<a class="anchor" aria-label="anchor" href="#using-valuesets"></a>
 </h2>
-<p>We can see in <a href="https://portal.statistik.at/statistik.at/ext/statcube/?openinfopage?id=detouextregsai" class="external-link">the
+<p>We can see in <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=detouextregsai" class="external-link">the
 GUI</a> that “Country of origin” is a hierarchical classification. If we
 look at the table above, only the top level of the hierarchy (Austria,
 Germany, other) is used. This can be changed by providing the the
@@ -251,8 +251,8 @@ valueset that corresponds to the more granular classification of
 <p>The different valuesets for “country of origin” can be compared by
 browsing the database schema.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">db_schema</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_db</a></span><span class="op">(</span><span class="va">database</span><span class="op">)</span>
-<span class="va">db_schema</span><span class="op">$</span><span class="va">`Other Classifications`</span><span class="op">$</span><span class="va">`Country of origin`</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">db_schema</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_db</a></span><span class="op">(</span><span class="va">database</span><span class="op">)</span></span>
+<span><span class="va">db_schema</span><span class="op">$</span><span class="va">`Other Classifications`</span><span class="op">$</span><span class="va">`Country of origin`</span></span></code></pre></div>
 <pre class="r-output"><code>FIELD: Country of origin
 <span style="color: #949494;"># A data frame: 2 × 3</span>
   <span style="font-weight: bold;">child</span>                    <span style="font-weight: bold;">type</span>     <span style="font-weight: bold;">n_childs</span>
@@ -269,26 +269,26 @@ present.</p>
 <p>We will now use the id for the first valueset in the
 <code>dimensions</code> parmaeter of <code>sc_table_custom</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">id_valueset</span> <span class="op">&lt;-</span> <span class="va">db_schema</span><span class="op">$</span><span class="va">`Other Classifications`</span><span class="op">$</span>
-  <span class="va">`Country of origin`</span><span class="op">$</span><span class="va">`Country of origin`</span><span class="op">$</span><span class="va">id</span>
-<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table_custom</a></span><span class="op">(</span>
-  db <span class="op">=</span> <span class="st">"str:database:detouextregsai"</span>,
-  measures <span class="op">=</span> <span class="va">measures</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>,
-  dimensions <span class="op">=</span> <span class="va">id_valueset</span>
-<span class="op">)</span>
-<span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">id_valueset</span> <span class="op">&lt;-</span> <span class="va">db_schema</span><span class="op">$</span><span class="va">`Other Classifications`</span><span class="op">$</span></span>
+<span>  <span class="va">`Country of origin`</span><span class="op">$</span><span class="va">`Country of origin`</span><span class="op">$</span><span class="va">id</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span></span>
+<span>  db <span class="op">=</span> <span class="st">"str:database:detouextregsai"</span>,</span>
+<span>  measures <span class="op">=</span> <span class="va">measures</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>,</span>
+<span>  dimensions <span class="op">=</span> <span class="va">id_valueset</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 87 x 4</span>
    <span style="font-weight: bold;">`Season/Tourism Month`</span> <span style="font-weight: bold;">`Country of origin`</span>                    <span style="font-weight: bold;">Arriv…¹</span> <span style="font-weight: bold;">Night…²</span>
  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>
-<span style="color: #BCBCBC;"> 1</span> 2022-06-01             Vienna &lt;01&gt;                             <span style="text-decoration: underline;">546</span>918 1<span style="text-decoration: underline;">479</span>235
-<span style="color: #BCBCBC;"> 2</span> 2022-06-01             Burgenland (beg.05/03) &lt;70&gt;             <span style="text-decoration: underline;">132</span>019  <span style="text-decoration: underline;">330</span>712
-<span style="color: #BCBCBC;"> 3</span> 2022-06-01             Carinthia (beg.05/03) &lt;71&gt;              <span style="text-decoration: underline;">151</span>623  <span style="text-decoration: underline;">453</span>398
-<span style="color: #BCBCBC;"> 4</span> 2022-06-01             Lower Austria (beg.05/03) &lt;72&gt;          <span style="text-decoration: underline;">495</span>229 1<span style="text-decoration: underline;">378</span>863
-<span style="color: #BCBCBC;"> 5</span> 2022-06-01             Upper Austria (beg.05/03) &lt;73&gt;          <span style="text-decoration: underline;">469</span>950 1<span style="text-decoration: underline;">197</span>799
-<span style="color: #BCBCBC;"> 6</span> 2022-06-01             Salzburg (beg.05/03) &lt;74&gt;               <span style="text-decoration: underline;">197</span>219  <span style="text-decoration: underline;">504</span>919
-<span style="color: #BCBCBC;"> 7</span> 2022-06-01             Styria (beg.05/03) &lt;75&gt;                 <span style="text-decoration: underline;">388</span>971 1<span style="text-decoration: underline;">089</span>424
-<span style="color: #BCBCBC;"> 8</span> 2022-06-01             Tyrol (beg.05/03) &lt;76&gt;                  <span style="text-decoration: underline;">197</span>763  <span style="text-decoration: underline;">509</span>234
-<span style="color: #BCBCBC;"> 9</span> 2022-06-01             Vorarlberg (beg.05/03) &lt;77&gt;             <span style="text-decoration: underline;">107</span>724  <span style="text-decoration: underline;">278</span>866
+<span style="color: #BCBCBC;"> 1</span> 2022-06-01             Vienna &lt;01&gt;                             <span style="text-decoration: underline;">886</span>417 2<span style="text-decoration: underline;">644</span>207
+<span style="color: #BCBCBC;"> 2</span> 2022-06-01             Burgenland (beg.05/03) &lt;70&gt;             <span style="text-decoration: underline;">208</span>706  <span style="text-decoration: underline;">537</span>523
+<span style="color: #BCBCBC;"> 3</span> 2022-06-01             Carinthia (beg.05/03) &lt;71&gt;              <span style="text-decoration: underline;">231</span>186  <span style="text-decoration: underline;">697</span>365
+<span style="color: #BCBCBC;"> 4</span> 2022-06-01             Lower Austria (beg.05/03) &lt;72&gt;          <span style="text-decoration: underline;">827</span>314 2<span style="text-decoration: underline;">483</span>974
+<span style="color: #BCBCBC;"> 5</span> 2022-06-01             Upper Austria (beg.05/03) &lt;73&gt;          <span style="text-decoration: underline;">747</span>303 1<span style="text-decoration: underline;">997</span>340
+<span style="color: #BCBCBC;"> 6</span> 2022-06-01             Salzburg (beg.05/03) &lt;74&gt;               <span style="text-decoration: underline;">307</span>547  <span style="text-decoration: underline;">808</span>860
+<span style="color: #BCBCBC;"> 7</span> 2022-06-01             Styria (beg.05/03) &lt;75&gt;                 <span style="text-decoration: underline;">622</span>698 1<span style="text-decoration: underline;">793</span>778
+<span style="color: #BCBCBC;"> 8</span> 2022-06-01             Tyrol (beg.05/03) &lt;76&gt;                  <span style="text-decoration: underline;">314</span>377  <span style="text-decoration: underline;">828</span>831
+<span style="color: #BCBCBC;"> 9</span> 2022-06-01             Vorarlberg (beg.05/03) &lt;77&gt;             <span style="text-decoration: underline;">168</span>320  <span style="text-decoration: underline;">443</span>877
 <span style="color: #BCBCBC;">10</span> 2022-06-01             Austria except Vienna (till 04/03) &lt;0…      <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>
 <span style="color: #949494;"># … with 77 more rows, and abbreviated variable names ¹​Arrivals,</span>
 <span style="color: #949494;">#   ²​`Nights spent`</span></code></pre>
@@ -300,13 +300,56 @@ present.</p>
 </h2>
 <p>Omitting certain classification elements from the query is possible
 with the <code>recodes</code> parameter of the <code>/table</code>
-endpoint. Currently, <code><a href="../reference/sc_table.html">sc_table_custom()</a></code> does not provide
+endpoint. Currently, <code><a href="../reference/sc_table_custom.html">sc_table_custom()</a></code> does not provide
 support for recodes. Please issue a <a href="https://github.com/statistikat/STATcubeR/issues" class="external-link">feature
 request</a> if you see this as a useful extension of
 <a href="../index.html" data-tippy-content="
-  &lt;b&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
-  Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;b class='tippy_header'&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
+  &lt;div class='tippy_body'&gt;
+    Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;/div&gt;
   " class="STATcubeR">STATcubeR</a>.</p>
+<details><summary>
+Example
+</summary><p>For example, the last call to <code><a href="../reference/sc_table_custom.html">sc_table_custom()</a></code> will
+send the following json to the server.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"database"</span><span class="fu">:</span> <span class="st">"str:database:detouextregsai"</span><span class="fu">,</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"measures"</span><span class="fu">:</span> <span class="ot">[</span> <span class="st">"str:measure:detouextregsai:F-DATA1:F-ANK"</span><span class="ot">,</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-UEB"</span> <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"dimensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="ot">[</span> <span class="st">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2"</span> <span class="ot">]</span> <span class="ot">]</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p>For comparison, this is how the same request was specified in
+<a href="../index.html" data-tippy-content="
+  &lt;b class='tippy_header'&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
+  &lt;div class='tippy_body'&gt;
+    Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;/div&gt;
+  " class="STATcubeR">STATcubeR</a></p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span></span>
+<span>  <span class="st">"str:database:detouextregsai"</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"str:measure:detouextregsai:F-DATA1:F-ANK"</span>,</span>
+<span>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-UEB"</span><span class="op">)</span>,</span>
+<span>  <span class="st">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>It is now possible to add recodes in order to only show results for
+Vienna. For this, the regional classification (<code>C-C93</code>) is
+limited to the code for vienna, which is <code>C-C93-2:01</code>.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"database"</span><span class="fu">:</span> <span class="st">"str:database:detouextregsai"</span><span class="fu">,</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"measures"</span><span class="fu">:</span> <span class="ot">[</span> <span class="st">"str:measure:detouextregsai:F-DATA1:F-ANK"</span><span class="ot">,</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-UEB"</span> <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"dimensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="ot">[</span> <span class="st">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2"</span> <span class="ot">]</span> <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"recodes"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2"</span><span class="er">:</span> <span class="fu">{</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"map"</span><span class="fu">:</span> <span class="ot">[[</span> <span class="st">"str:value:detouextregsai:F-DATA1:C-C93-2:C-C93-2:01"</span> <span class="ot">]]</span> </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+</details>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

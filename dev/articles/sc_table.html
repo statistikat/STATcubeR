@@ -15,8 +15,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Get Tables via JSON Requests">
@@ -37,7 +37,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.4.1</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.4.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,7 +84,7 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.statistik.at/web_de/services/statcube/" aria-label="STATcube">
+  <a class="external-link nav-link" href="https://www.statistik.at/datenbanken/statcube-statistische-datenbank" aria-label="STATcube">
     <span class="fas fa fas fa-cube fa-lg"></span>
      
   </a>
@@ -134,9 +134,9 @@ an R session. This process involves four steps</p>
 <p>It is assumed that you already provided your API key as described in
 the
 <a href="sc_key.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Set Up the API Key&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Set Up the API Key&lt;/b&gt;
   &lt;br/&gt;
-  Learn how get access to an API key and set up authentication to the STATcube REST API by making the key available for STATcubeR.
+  &lt;div class="tippy_body"&gt;Learn how get access to an API key and set up authentication to the STATcube REST API by making the key available for STATcubeR.&lt;/div&gt;
 &lt;/div&gt;'>API key article</a>.</p>
 <div class="section level2">
 <h2 id="create-a-table-with-the-statcube-gui">Create a table with the STATcube GUI<a class="anchor" aria-label="anchor" href="#create-a-table-with-the-statcube-gui"></a>
@@ -163,28 +163,28 @@ use the API.</p>
 <p>Provide the path to the downloaded json file as a string in
 <code><a href="../reference/sc_table.html">sc_table()</a></code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span>json_file <span class="op">=</span> <span class="st">"path/to/api_request.json"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">my_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span>json_file <span class="op">=</span> <span class="st">"path/to/api_request.json"</span><span class="op">)</span></span></code></pre></div>
 <p>This will send the json-request to the <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/table-endpoint" class="external-link"><code>/table</code>
 endpoint</a> of the API and return an object of class
 <code>sc_table</code>. We will demonstrate this with an example json via
 <code><a href="../reference/sc_table.html">sc_example()</a></code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">(</span><span class="va">json_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"population_timeseries.json"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">## [1] "~/R/3.6/STATcubeR/json_examples/population_timeseries.json"</span>
-<span class="va">my_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="va">json_path</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">json_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"population_timeseries.json"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">## [1] "~/R/3.6/STATcubeR/json_examples/population_timeseries.json"</span></span>
+<span><span class="va">my_table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="va">json_path</span><span class="op">)</span></span></code></pre></div>
 <p>Printing the object <code>my_table</code> will summarize the data
 contained in the response.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_table</span></code></pre></div>
-<pre><code><span class="co">#&gt; An object of class sc_table</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Database    Population at the beginning of the quarter since 2002 </span>
-<span class="co">#&gt; Measures    Number of persons </span>
-<span class="co">#&gt; Fields      Quarter, Age in single years &lt;96&gt;, Sex &lt;2&gt;, Commune &lt;2383&gt;</span>
-<span class="co">#&gt;             (Province-District) </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Request     2022-08-31 10:25:31 </span>
-<span class="co">#&gt; STATcubeR   0.4.1</span></code></pre>
+<code class="sourceCode R"><span><span class="va">my_table</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; An object of class sc_table</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Database    Population at the beginning of the quarter since 2002 </span></span>
+<span><span class="co">#&gt; Measures    Number of persons </span></span>
+<span><span class="co">#&gt; Fields      Quarter &lt;82&gt;, Age in single years &lt;96&gt; &lt;7&gt;, Sex &lt;2&gt; &lt;3&gt;, Commune</span></span>
+<span><span class="co">#&gt;             &lt;2383&gt; (Province-District) &lt;10&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Request     2022-08-29 09:52:04 </span></span>
+<span><span class="co">#&gt; STATcubeR   0.4.3</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="convert-the-response-into-a-data-frame">Convert the response into a data frame<a class="anchor" aria-label="anchor" href="#convert-the-response-into-a-data-frame"></a>
@@ -192,7 +192,7 @@ contained in the response.</p>
 <p>The return value of <code><a href="../reference/sc_table.html">sc_table()</a></code> can be converted into a
 <code>data.frame</code> with <code><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame()</a></code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">my_table</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">my_table</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 17,220 x 5</span>
    <span style="font-weight: bold;">Quarter</span>    <span style="font-weight: bold;">`Age in single years &lt;96&gt;`</span> <span style="font-weight: bold;">`Sex &lt;2&gt;`</span> <span style="font-weight: bold;">Commune &lt;2383&gt; (Pro…¹</span> <span style="font-weight: bold;">Numbe…²</span>
    <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>
@@ -214,7 +214,7 @@ be present for each measure. In other words, the data uses a long
 format. If you prefer to use codes rather than labels, use
 <code>my_table$data</code> instead.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_table</span><span class="op">$</span><span class="va">data</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">my_table</span><span class="op">$</span><span class="va">data</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 17,220 x 5</span>
    <span style="font-weight: bold;">`C-A10-0`</span> <span style="font-weight: bold;">`C-BESC51-0`</span> <span style="font-weight: bold;">`C-BESC11-0`</span> <span style="font-weight: bold;">`C-C41-2`</span> <span style="font-weight: bold;">`F-ISIS-1`</span>
    <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>
@@ -236,37 +236,37 @@ format. If you prefer to use codes rather than labels, use
 <ul>
 <li>Functionalities of the returned object are explained in the
 <a href="sc_data.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;The STATcubeR Data Class&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;The STATcubeR Data Class&lt;/b&gt;
   &lt;br/&gt;
-  STATcubeR uses a common base class for OGD datasets and datasets from the STATcube REST API. This article explains the core functionalities and allows you to use both datasources more flexibly.
+  &lt;div class="tippy_body"&gt;STATcubeR uses a common base class for OGD datasets and datasets from the STATcube REST API. This article explains the core functionalities and allows you to use both datasources more flexibly.&lt;/div&gt;
 &lt;/div&gt;'>STATcubeR data article</a>.</li>
 <li>
 <code><a href="../reference/sc_tabulate.html">sc_tabulate()</a></code> provides a more flixble way of turning
 STATcube tables into <code>data.frame</code>s. See the
 <a href="sc_tabulate.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Tabulating STATcubeR Datasets&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Tabulating STATcubeR Datasets&lt;/b&gt;
   &lt;br/&gt;
-  Learn how to turn datasets from the REST API or from the OGD portal into tidy &lt;code&gt;data.frame&lt;/code&gt;s by using the tabulate() method.
+  &lt;div class="tippy_body"&gt;Learn how to turn datasets from the REST API or from the OGD portal into tidy &lt;code&gt;data.frame&lt;/code&gt;s by using the tabulate() method.&lt;/div&gt;
 &lt;/div&gt;'>tabulation article</a>
 for more details.</li>
 <li>The
 <a href="sc_table_saved.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Load Saved Tables&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Load Saved Tables&lt;/b&gt;
   &lt;br/&gt;
-  STATcube allows you to save tables in the GUI. You can import those saved tables using &lt;code&gt;sc_table_saved()&lt;/code&gt;. This function can also be used to import default tables for databases.
+  &lt;div class="tippy_body"&gt;STATcube allows you to save tables in the GUI. You can import those saved tables using &lt;code&gt;sc_table_saved()&lt;/code&gt;. This function can also be used to import default tables for databases.&lt;/div&gt;
 &lt;/div&gt;'>saved tables article</a>
 shows an alternative way of importing tables.</li>
 <li>If you are interested in other API endpoints, see the
 <a href="sc_schema.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Get Metadata with the Schema Endpoint&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Get Metadata with the Schema Endpoint&lt;/b&gt;
   &lt;br/&gt;
-  The &lt;code&gt;/schema&lt;/code&gt; endpoint of the REST API provides metadata about databases and can also be used to retrieve a catalogue with all available databases.
+  &lt;div class="tippy_body"&gt;The &lt;code&gt;/schema&lt;/code&gt; endpoint of the REST API provides metadata about databases and can also be used to retrieve a catalogue with all available databases.&lt;/div&gt;
 &lt;/div&gt;'>schema article</a>
 ot the
 <a href="sc_info.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
-  &lt;b&gt;Other REST API Endpoints&lt;/b&gt;
+  &lt;b class="tippy_header"&gt;Other REST API Endpoints&lt;/b&gt;
   &lt;br/&gt;
-  How to use the (rather simple) endpoints &lt;code&gt;/info&lt;/code&gt;, &lt;code&gt;/rate_limit_table&lt;/code&gt; and &lt;code&gt;/rate_limit_schema&lt;/code&gt;.
+  &lt;div class="tippy_body"&gt;How to use the (rather simple) endpoints &lt;code&gt;/info&lt;/code&gt;, &lt;code&gt;/rate_limit_table&lt;/code&gt; and &lt;code&gt;/rate_limit_schema&lt;/code&gt;.&lt;/div&gt;
 &lt;/div&gt;'>other API endpoints article</a>
 </li>
 </ul>
