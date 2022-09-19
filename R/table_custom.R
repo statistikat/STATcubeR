@@ -14,6 +14,13 @@
 #'   as `fields` in the parsed API response
 #' @keywords internal
 #' @examples
+#' sc_table_custom("str:database:detouextregsai")
+#'
+#' sc_table_custom(
+#'   "str:database:detouextregsai",
+#'   dimensions = "str:field:detouextregsai:F-DATA1:C-SDB_TIT-0"
+#' )
+#'
 #' sc_table_custom(
 #'   db = "str:database:detouextregsai",
 #'   measures = c(
