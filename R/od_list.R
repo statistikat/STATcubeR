@@ -50,7 +50,11 @@ od_list <- function(unique = TRUE, server = c("ext", "red")) {
     stringsAsFactors = FALSE
   )
 
-  df <- df[!(df$label %in% c("[Alle \u00f6ffnen]", "[Alle schlie\u00dfen]")), ]
+  ignored_labels <- c("[Alle \u00f6ffnen]", "[Alle schlie\u00dfen]",
+                      "Neueste Datens\u00e4tze")
+
+  df <- df[!(df$label %in% ignored_labels), ]
+  grp <- grp[!(grp %in% ignored_labels)]
 
   tt <- diff(c(which(is.na(df$id)), nrow(df) + 1))
   df$category <- rep(grp, tt)
