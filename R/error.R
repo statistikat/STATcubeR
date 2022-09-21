@@ -38,7 +38,9 @@ sc_last_error_parsed <- function() {
 
 sc_env <- new.env(parent = emptyenv())
 
-message_sc_last_error <- "see \033[90msc_last_error()\033[39m for more details"
+message_sc_last_error <- function() { cli::format_inline(
+  "run {.run STATcubeR::sc_last_error()} for more details"
+) }
 
 sc_check_response <- function(response) {
   stopifnot(inherits(response, "response"))
@@ -48,7 +50,7 @@ sc_check_response <- function(response) {
     if (httr::http_type(response) == "application/json")
       message <- httr::content(response, as = "text") %>%
         jsonlite::prettify(indent = 2) %>% paste0(message, .)
-    message <- paste0(message, message_sc_last_error)
+    message <- paste0(message, message_sc_last_error())
     stop(message, call. = FALSE)
   }
   if (httr::http_type(response) != "application/json") {
@@ -58,7 +60,7 @@ sc_check_response <- function(response) {
          "  possible reasons:\n  - rate limit exceeded. ",
          "Check with \033[90msc_rate_limit_table()\033[39m\n  ",
          "- invalid json body (sc_table, sc_table_custom)\n  ",
-         message_sc_last_error, call. = FALSE)
+         message_sc_last_error(), call. = FALSE)
   }
   response$request$headers["APIKey"] <- "HIDDEN"
   invisible(response)
