@@ -243,18 +243,16 @@ earnings survey.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">earnings</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/od_table.html">od_table</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span><span class="op">)</span></span>
 <span><span class="va">earnings</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; An object of class od_table</span></span>
+<pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Structure of Earnings Survey (SES) 2018 Gross hourly earnings in EUR by</span></span></span>
+<span><span class="co">#&gt; <span style="font-weight: bold;">citizenship, region (NUTS 2) and form of employment</span></span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Dataset     Structure of Earnings Survey (SES) 2018 Gross hourly earnings in</span></span>
-<span><span class="co">#&gt;             EUR by citizenship, region (NUTS 2) and form of</span></span>
-<span><span class="co">#&gt;             employment </span></span>
-<span><span class="co">#&gt; Measures    Arithmetic mean, 1st quartile, 2nd quartile (median), 3rd quartile,</span></span>
-<span><span class="co">#&gt;             Number of employees </span></span>
-<span><span class="co">#&gt; Fields      Sex &lt;3&gt;, Citizenship &lt;9&gt;, Region (NUTS2) &lt;10&gt;, Form of employment</span></span>
-<span><span class="co">#&gt;             &lt;7&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Dataset</span>: <a href="https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_veste309_Veste309_1" class="external-link">OGD_veste309_Veste309_1</a> (<span style="font-style: italic;">data.statistik.gv.at</span>)</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Measures</span>: Arithmetic mean, 1st quartile, 2nd quartile (median), 3rd quartile,</span></span>
+<span><span class="co">#&gt;   Number of employees</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Fields</span>: Sex<span style="font-style: italic;"> &lt;3&gt;</span>, Citizenship<span style="font-style: italic;"> &lt;9&gt;</span>, Region (NUTS2)<span style="font-style: italic;"> &lt;10&gt;</span>, Form of employment<span style="font-style: italic;"> &lt;7&gt;</span></span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Request     2022-09-19 18:34:09 </span></span>
-<span><span class="co">#&gt; STATcubeR   0.4.3</span></span></code></pre>
+<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2022-09-21 17:09:35]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">0.4.3</span></span></span></code></pre>
 <p>As we can see from the <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> output, the measures
 contain means and quartiles. Therefore, aggregating the data via
 <code><a href="https://rdrr.io/r/base/rowsum.html" class="external-link">rowsum()</a></code> is not meaningful. However, this dataset contains

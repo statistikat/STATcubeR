@@ -194,7 +194,7 @@ returned.</p>
 <span><span class="co">#&gt;   "message": "Error authenticating API key. Please contact your system administrator.",</span></span>
 <span><span class="co">#&gt;   "errorType": "AUTHENTICATION"</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; see <span style="color: #555555;">sc_last_error()</span> for more details</span></span></code></pre>
+<span><span class="co">#&gt; run <a href="https://statistikat.github.io/STATcubeR/reference/sc_last_error.html"><span style="color: #BB0000;">STATcubeR::sc_last_error()</span></a> for more details</span></span></code></pre>
 <p>This example passes the API key as a parameter for simplicity. In
 practice, you should set up your key according to the
 <a href="sc_key.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
@@ -257,7 +257,7 @@ shown.</p>
 <span><span class="co">#&gt;   possible reasons:</span></span>
 <span><span class="co">#&gt;   - rate limit exceeded. Check with <span style="color: #555555;">sc_rate_limit_table()</span></span></span>
 <span><span class="co">#&gt;   - invalid json body (sc_table, sc_table_custom)</span></span>
-<span><span class="co">#&gt;   see <span style="color: #555555;">sc_last_error()</span> for more details</span></span></code></pre>
+<span><span class="co">#&gt;   run <a href="https://statistikat.github.io/STATcubeR/reference/sc_last_error.html"><span style="color: #BB0000;">STATcubeR::sc_last_error()</span></a> for more details</span></span></code></pre>
 <p>If you encounter this error, please check if the rate limits are in
 fact a plauible reason by using <code><a href="../reference/other_endpoints.html">sc_rate_limit_table()</a></code>.
 Unfortunately, the response for exceeded rate limits is very generic and
@@ -277,7 +277,7 @@ a special error type <code>SCHEMA_COMPONENT_NOT_FOUND</code>.</p>
 <span><span class="co">#&gt;   "errorType": "SCHEMA_COMPONENT_NOT_FOUND",</span></span>
 <span><span class="co">#&gt;   "component": "invalid_uri"</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; see <span style="color: #555555;">sc_last_error()</span> for more details</span></span></code></pre>
+<span><span class="co">#&gt; run <a href="https://statistikat.github.io/STATcubeR/reference/sc_last_error.html"><span style="color: #BB0000;">STATcubeR::sc_last_error()</span></a> for more details</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="saved-tables">Saved Tables<a class="anchor" aria-label="anchor" href="#saved-tables"></a>
@@ -300,7 +300,7 @@ table URI is passed, the server will respond with a status code of
 <span><span class="co">#&gt;   "errorType": "TXD_NOT_FOUND",</span></span>
 <span><span class="co">#&gt;   "component": "str:table:invalid_uri"</span></span>
 <span><span class="co">#&gt; }</span></span>
-<span><span class="co">#&gt; see <span style="color: #555555;">sc_last_error()</span> for more details</span></span></code></pre>
+<span><span class="co">#&gt; run <a href="https://statistikat.github.io/STATcubeR/reference/sc_last_error.html"><span style="color: #BB0000;">STATcubeR::sc_last_error()</span></a> for more details</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="invalid-json">Invalid JSON<a class="anchor" aria-label="anchor" href="#invalid-json"></a>
@@ -323,7 +323,7 @@ error.</p>
 <span><span class="co">#&gt;   possible reasons:</span></span>
 <span><span class="co">#&gt;   - rate limit exceeded. Check with <span style="color: #555555;">sc_rate_limit_table()</span></span></span>
 <span><span class="co">#&gt;   - invalid json body (sc_table, sc_table_custom)</span></span>
-<span><span class="co">#&gt;   see <span style="color: #555555;">sc_last_error()</span> for more details</span></span></code></pre>
+<span><span class="co">#&gt;   run <a href="https://statistikat.github.io/STATcubeR/reference/sc_last_error.html"><span style="color: #BB0000;">STATcubeR::sc_last_error()</span></a> for more details</span></span></code></pre>
 <p>Unfortunately, the response for invalid json bodies is very generic
 and can not be differentiated from the response for exceeded rate limits
 (see above). This is why the error message lists two possible

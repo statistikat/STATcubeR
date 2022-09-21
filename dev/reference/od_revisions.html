@@ -122,102 +122,24 @@ is only accessible for employees of Statistics Austria</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># get all datasets (including OGDEXT_*)</span></span></span>
 <span class="r-in"><span><span class="va">ids</span> <span class="op">&lt;-</span> <span class="fu">od_revisions</span><span class="op">(</span>exclude_ext <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">ids</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 370</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ids</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "OGDEXT_AEST_GEMTAB_1" "OGDEXT_AMB_1"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "OGDEXT_BINNENWAND_1"  "OGDEXT_DSR_1"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "OGDEXT_EHL_1"         "OGDEXT_FA_1"         </span>
+<span class="r-in"><span><span class="va">ids</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">370</span> datasets are available (<span style="color: #B2B2B2;">[2022-09-21 15:06:04]</span>)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ids</span>: <span style="font-style: italic;">OGDEXT_AEST_GEMTAB_1</span>, <span style="font-style: italic;">OGDEXT_AMB_1</span>, <span style="font-style: italic;">OGDEXT_BINNENWAND_1</span>, …,</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">OGD_vpilhki45_VPI_LHKI45_1</span>, and <span style="font-style: italic;">OGD_zlf_komm_ZLF_KOM_1</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">ids</span>, <span class="fl">6</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "OGD_gvd_fahrten_GVD_F_2"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2] "OGD_bildungsausgaben_BILDAUS_1"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3] "OGD_ahlgrhs_Aussenhandel_3"         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4] "OGD_kjiumsatzindex2010_KOIND15_UI_1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5] "OGDEXT_SCHULSRV_1"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6] "OGD_gem_unterabschn_GHD_UA_6"       </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># get all the datasets since the last cache update</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="od_resource.html">od_cache_dir</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/file.info.html" class="external-link">file.mtime</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">od_revisions</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "OGD_1905fue_FUE_B1905FUE_1"                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "OGD_ake002q_AKEQ_1"                              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "OGD_beschaeftigtenindex2015_KJID2015_BI_1"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "OGD_bkibrueckenbau2020_BKI_B20_1"                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "OGD_bkistrassebitumen2020_BKI_SB20_1"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "OGD_bkistrassenbau2020_BKI_S20_1"                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "OGD_bkiwasserbau2020_BKI_W20_1"                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "OGD_bkiwhsiedlg2020_BKI_WS20_1"                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "OGD_bruttoverdiensteindex2015a_KJID2015_BVIa_1"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "OGD_einbuergerungen_EINBJ_1"                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "OGD_einbuergerungen_quart_EINB_1"                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [12] "OGD_f0760ext_OD_PkwGZL_1"                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "OGD_f1787_MZ_HWZ_Q_1"                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [14] "OGD_f1898_F1898_3"                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "OGD_f1899_F1899_1"                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "OGD_f1900_F1900_1"                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "OGD_f1901_F1901_1"                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [18] "OGD_f1903fue_FUE_B1903FUE_1"                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "OGD_f1904fue_FUE_B1904FUE_1"                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [20] "OGD_f1906fue_FUE_B1906FUE_1"                     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "OGD_fkfzul0759_OD_PkwNZL_1"                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [22] "OGD_gest_kalwo_GEST_KALWOCHE_100"                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [23] "OGD_gest_kalwo_alter_GEST_KALWOCHE_5J_100"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [24] "OGD_gestorbene_ext_ohmed_GES_1"                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "OGD_kjiarbeitsvolindex2015_KJID2015_AST_1"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [26] "OGD_kjiauftragseingangsindex2015_KJID2015_AEGI_1"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [27] "OGD_kjiprodindex2015_KJID2015_PI_1"              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [28] "OGD_kjiumsatzindex2015_KJID2015_UI_1"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [29] "OGD_klassen_KLASSEN_1"                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [30] "OGD_konjunkturmonitor_KonMon_1"                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [31] "OGD_krankenbewegungen_ex_ENTLASSUNGEN_AKUTKA_3"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [32] "OGD_krankenbewegungen_ex_ENTLASSUNGEN_KA_2"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [33] "OGD_krankenbewegungen_ex_LEISTUNGEN_1"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [34] "OGD_lehrer_LEHR_1"                               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [35] "OGD_pregpi003_GHPI_20_1"                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [36] "OGD_pregps003_GHPI_20S_1"                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [37] "OGD_prodindexstd2015_KJID2015_PVISTD_1"          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [38] "OGD_prodvindexusb2015_KJID2015_PVISTD_1"         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [39] "OGD_rate_kalwo_GEST_KALWOCHE_STR_100"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [40] "OGD_rate_kalwobez_GEST_KALWOCHE_STR_BZ_100"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [41] "OGD_tli16kv_TLI_108"                             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [42] "OGD_tli16kvg_TLI_109"                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [43] "OGD_tli16nace20_TLI_110"                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [44] "OGD_tli16wk15_TLI_107"                           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [45] "OGD_vgr001_VGRJahresR_1"                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [46] "OGD_vgr102_VGR_Besch_vj_1"                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [47] "OGD_vgr103_VGR_HA_vj_1"                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [48] "OGD_vgr104_VGR_Konsum_1"                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [49] "OGD_vgr105_VGR_HA_Bws_1"                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [50] "OGD_vgr106_VGR_HA_Prod_1"                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [51] "OGD_vgr107_VGR_HA_BAI_1"                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [52] "OGD_vgr108_VGR_HA_vj_1"                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [53] "OGD_vgr110_VGR_Personen_1"                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [54] "OGD_vpi00_VPI_2000_1"                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [55] "OGD_vpi05_VPI_2005_1"                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [56] "OGD_vpi10_VPI_2010_1"                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [57] "OGD_vpi15_VPI_2015_1"                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [58] "OGD_vpi20_VPI_2020_1"                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [59] "OGD_vpi58_VPI_1958_i_1"                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [60] "OGD_vpi58ii_VPI_1958_ii_1"                       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [61] "OGD_vpi66_VPI_1966_1"                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [62] "OGD_vpi76_VPI_1976_1"                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [63] "OGD_vpi86_VPI_1986_1"                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [64] "OGD_vpi96_VPI_1996_1"                            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [65] "OGD_vpikhpi_VPI_KHPI_1"                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [66] "OGD_vpilhki38_VPI_LHKI38_1"                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [67] "OGD_vpilhki45_VPI_LHKI45_1"                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [68] "OGD_zlf_komm_ZLF_KOM_1"                          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"reponse")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Response [https://data.statistik.gv.at/ogd/revision?since_time=2022-09-06T15%3A24%3A12]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Date: 2022-09-19 16:30</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Status: 200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Content-Type: application/json;charset=UTF-8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Size: 2.56 kB</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   "OGDEXT_AMB_1",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   "OGDEXT_DSR_1",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   "OGDEXT_FA_1",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   "OGDEXT_GBEZ_1",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   "OGDEXT_GEM_1",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   "OGDEXT_GEM_MP_1",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   "OGDEXT_LWPG_1",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   "OGDEXT_NUTS_1",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   "OGDEXT_ORT_1",</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...</span>
+<span class="r-in"><span><span class="co"># get all the datasets since the fifteenth of august</span></span></span>
+<span class="r-in"><span><span class="fu">od_revisions</span><span class="op">(</span><span class="st">"2022-09-15"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">36</span> changes between <span style="color: #B2B2B2;">[2022-09-15]</span> and <span style="color: #B2B2B2;">[2022-09-21 15:06:04]</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ids</span>: <span style="font-style: italic;">OGD_1905fue_FUE_B1905FUE_1</span>, <span style="font-style: italic;">OGD_bkibrueckenbau2020_BKI_B20_1</span>,</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">OGD_bkistrassebitumen2020_BKI_SB20_1</span>, …, <span style="font-style: italic;">OGD_vpilhki45_VPI_LHKI45_1</span>,</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> and <span style="font-style: italic;">OGD_zlf_komm_ZLF_KOM_1</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
