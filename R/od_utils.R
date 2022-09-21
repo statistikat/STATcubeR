@@ -84,7 +84,7 @@ od_create_data <- function(id, json = od_json(id), lang = c("en", "de"),
   resources <- rbind(data.frame(
     name = paste0(id, ".json"), last_modified = json$extras$metadata_modified %>%
       as.POSIXct(format = "%Y-%m-%dT%H:%M:%OS"), cached = od$cached,
-    size = od$size, download = od$download, parsed = NA), resources[1:6]
+    size = od$size, download = od$download, parsed = NA, stringsAsFactors = FALSE), resources[1:6]
   )
 
   list(data = dat, meta = meta, fields = fields, resources = resources,
