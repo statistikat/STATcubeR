@@ -13,11 +13,13 @@ tbl_sum.sc_meta <- function(x, ...) {
          ncol(x) + length(attr(x, "names_skip")))
 }
 
+style_subtle <- cli::make_ansi_style('#999999')
+
 tbl_format_footer.sc_meta <- function(x, setup, ...) {
   names_skip <- attr(x, "names_skip")
-  c(NextMethod(), if (length(names_skip)) paste0(
-    "\033[38;5;246m#", " \u2026", " with ", length(names_skip),
-    " more columns: ", paste(shQuote(names_skip), collapse = ", "), "\033[39m")
+  c(NextMethod(), if (length(names_skip)) style_subtle(
+    "# ", cli::symbol$continue, " with ", length(names_skip),
+    " more columns: ", paste(shQuote(names_skip), collapse = ", "))
   )
 }
 
