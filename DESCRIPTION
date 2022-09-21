@@ -15,6 +15,7 @@ License: GPL (>= 2)
 URL: https://statistikat.github.io/STATcubeR,
     https://github.com/statistikat/STATcubeR
 Imports: 
+    cli,
     httr,
     jsonlite,
     magrittr
