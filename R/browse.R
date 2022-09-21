@@ -90,8 +90,7 @@ sc_url <- function(...) {
 
 #' @export
 print.sc_url <- function(x, ...) {
-  if (interactive())
-    utils::browseURL(unclass(x))
-  else
-    cat('STATcube url:', x)
+  if (in_pkgdown() || !interactive())
+    return(cli::style_hyperlink(x, x))
+  utils::browseURL(unclass(x))
 }
