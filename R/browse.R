@@ -61,9 +61,13 @@ sc_browse_ogd <- function() {
   sc_url("https://data.statistik.gv.at/")
 }
 
+in_pkgdown <- function() {
+  identical(Sys.getenv("IN_PKGDOWN"), "true")
+}
+
 # check if STATcubeR is used inside the firewall of Statistics Austria
 in_stat <- function() {
-  if (Sys.getenv("IN_PKGDOWN") == "true")
+  if (in_pkgdown())
     return(FALSE)
   if (Sys.getenv("STATCUBER_IN_STAT") != "")
     return(as.logical(Sys.getenv("STATCUBER_IN_STAT")))
