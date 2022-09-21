@@ -93,8 +93,12 @@ sc_rate_limits <- function(x) {
 
 #' @export
 print.sc_rate_limit_table <- function(x, ...) {
-  cat(
-    x$remaining, " / ", x$limit, " (Resets at ",
-    strftime(sc_parse_time(x$reset), "%H:%M:%S"), ")\n", sep = ""
+  cat(format(x), sep = "\n")
+}
+
+format.sc_rate_limit_table <- function(x, ...) {
+  cli::format_inline(
+    "{.field {x$remaining}} / {.field {x$limit}}, (Resets at {.timestamp ",
+    strftime(sc_parse_time(x$reset), "%H:%M:%S"), "})\n"
   )
 }
