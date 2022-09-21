@@ -34,11 +34,9 @@ of all datasets that have changed since a certain timestamp.
 \examples{
 # get all datasets (including OGDEXT_*)
 ids <- od_revisions(exclude_ext = FALSE)
-length(ids)
-head(ids)
+ids
+sample(ids, 6)
 
-# get all the datasets since the last cache update
-od_cache_dir() \%>\%
-  file.mtime() \%>\%
-  od_revisions()
+# get all the datasets since the fifteenth of august
+od_revisions("2022-09-15")
 }

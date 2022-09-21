@@ -16,13 +16,11 @@
 #' @examples
 #' # get all datasets (including OGDEXT_*)
 #' ids <- od_revisions(exclude_ext = FALSE)
-#' length(ids)
-#' head(ids)
+#' ids
+#' sample(ids, 6)
 #'
-#' # get all the datasets since the last cache update
-#' od_cache_dir() %>%
-#'   file.mtime() %>%
-#'   od_revisions()
+#' # get all the datasets since the fifteenth of august
+#' od_revisions("2022-09-15")
 #' @export
 od_revisions <- function(since = NULL, exclude_ext = TRUE, server = "ext") {
   resp <- httr::GET(
@@ -32,8 +30,28 @@ od_revisions <- function(since = NULL, exclude_ext = TRUE, server = "ext") {
   content <- httr::content(resp, simplify = TRUE)
   if (exclude_ext)
     content <- grep("^OGD_", content, value = TRUE)
-  attr(content, "reponse") <- resp
+  attr(content, "response") <- resp
+  attr(content, "since") <- since
+  class(content) <- c("od_revisions", class(content))
   content
+}
+
+#' @export
+print.od_revisions <- function(x, ...) {
+  since <- attr(x, "since")
+  response <- attr(x, "response")
+  if (!is.null(since))
+    cli::cli_text("{.strong {length(x)}} changes between
+                {.timestamp {attr(x, 'since')}} and
+                {.timestamp {response$date}}")
+  else
+    cli::cli_text("{.strong {length(x)}} datasets are available
+                ({.timestamp {response$date}})")
+  if (length(x) > 0) {
+    y <- cli::cli_vec(x, list("vec-trunc" = 3))
+    cli::cli_text("{.strong ids}: {.emph {y}}")
+  }
+  invisible(x)
 }
 
 # normalize (and possibly format) the timestamp
