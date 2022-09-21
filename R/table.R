@@ -236,11 +236,31 @@ sc_example <- function(filename) {
 
 #' @export
 print.sc_table <- function(x, ...) {
-  cat("An object of class sc_table\n\n")
-  cat("Database   ", with_wrap(x$meta$source$label), "\n")
-  cat("Measures   ", with_wrap(x$meta$measures$label), "\n")
-  cat("Fields     ", with_wrap(paste0(
-    x$meta$fields$label, " <", x$meta$fields$nitems, ">")), "\n\n")
-  cat("Request    ", format(x$response$date), "\n")
-  cat("STATcubeR  ", x$meta$source$scr_version)
+  cat(format(x, ...), sep = "\n")
+}
+
+format.sc_table <- function(x, theme = getOption("cli.theme"), ...) {
+  cli::cli_format_method({
+    cli::cli_text(cli::style_bold(x$meta$source$label))
+    cat("\n")
+    cli_dl2(list(
+      Database = paste0(cli::style_hyperlink(x$meta$source$code, x$browse()),
+                        " (", cli::style_italic("STATcube"), ")"),
+      Measures = x$meta$measures$label,
+      Fields = paste0(
+        x$meta$fields$label, cli::style_italic(
+          paste0(" <", x$meta$fields$nitems, ">"))))
+    )
+    cat("\n")
+    cli_dl2(list(
+      Request = cli_class(x$response$date, "timestamp"),
+      STATcubeR = cli_class(x$meta$source$scr_version, "version")
+    ))
+  }, theme = theme)
+}
+
+cli_class <- function(x, class) {
+  cli::cli_fmt({
+      cli::cli_text(paste0("{.", class, " ", x, "}"))
+  })
 }

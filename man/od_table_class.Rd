@@ -29,6 +29,7 @@ Similar contents can be found in \verb{$meta}.}
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-od_table-new}{\code{od_table_class$new()}}
+\item \href{#method-od_table-browse}{\code{od_table_class$browse()}}
 }
 }
 \if{html}{\out{
@@ -61,5 +62,15 @@ initialize objects of class \code{od_table}.
 }
 \if{html}{\out{</div>}}
 }
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-od_table-browse"></a>}}
+\if{latex}{\out{\hypertarget{method-od_table-browse}{}}}
+\subsection{Method \code{browse()}}{
+open the metadata for the dataset in a browser
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{od_table_class$browse()}\if{html}{\out{</div>}}
+}
+
 }
 }

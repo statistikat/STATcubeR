@@ -85,6 +85,11 @@ od_table_class <- R6::R6Class(
       super$initialize(res$data, res$meta, res$fields)
       self$language <- language
       invisible(self)
+    },
+    #' @description open the metadata for the dataset in a browser
+    browse = function() {
+      sc_url(od_url(
+        'ext', '/web/meta.jsp?dataset=', self$meta$source$code, sep = ""))
     }
   ),
   active = list(
@@ -119,21 +124,25 @@ od_table_class <- R6::R6Class(
   )
 )
 
-with_wrap <- function(x) {
-  if (length(x) > 10)
-    x <- c(x[1:10], "...")
-  x <- paste(x, collapse = ", ")
-  strwrap(x, width = getOption("width") - 12, exdent = 12) %>%
-    paste(collapse = "\n")
-}
-
 #' @export
 print.od_table <- function(x, ...) {
-  cat("An object of class od_table\n\n")
-  cat("Dataset    ", with_wrap(x$meta$source$label), "\n")
-  cat("Measures   ", with_wrap(x$meta$measures$label), "\n")
-  cat("Fields     ", with_wrap(paste0(
-    x$meta$fields$label, " <", x$meta$fields$nitems, ">")), "\n\n")
-  cat("Request    ", format(x$meta$source$requested), "\n")
-  cat("STATcubeR  ", x$meta$source$scr_version, "\n")
+  cat(format(x), sep = "\n")
+}
+
+format.od_table <- function(x, ...) {
+  cli::cli_format_method({
+    cli::cli_text(cli::style_bold(x$meta$source$label))
+    cat("\n")
+    cli_dl2(list(
+      Dataset = paste0(cli::style_hyperlink(
+        x$meta$source$code, x$browse()), " (",
+        cli::style_italic("data.statistik.gv.at"), ")"),
+      Measures = x$meta$measures$label,
+      Fields = paste0(x$meta$fields$label, cli::style_italic(paste0(
+        " <", x$meta$fields$nitems, ">")))
+    ))
+    cat("\n")
+    cli_dl2(c(Request = cli_class(x$meta$source$requested, "timestamp"),
+              STATcubeR = cli_class(x$meta$source$scr_version, "version")))
+  })
 }
