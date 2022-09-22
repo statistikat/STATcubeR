@@ -38,11 +38,10 @@ To make the key available for `r STATcubeR`, use the function
 
 ```r
 sc_key_set("XXXX")
-#> The provided key will be available for this R session. Add
-#>
-#>   STATCUBE_KEY_EXT = XXXX
-#>
-#> to your .Renviron to set the key persistently
+```
+
+```{r, echo = FALSE, collapse = TRUE}
+sc_key_set(sc_key(), test = FALSE)
 ```
 
 As suggested by the code output, the key will be used for any API requests that happen in the same R session.
