@@ -239,10 +239,10 @@ print.sc_table <- function(x, ...) {
   cat(format(x, ...), sep = "\n")
 }
 
-format.sc_table <- function(x, theme = getOption("cli.theme"), ...) {
-  cli::cli_format_method({
-    cli::cli_text(cli::style_bold(x$meta$source$label))
-    cat("\n")
+format.sc_table <- function(x, ...) {
+  c(
+    cli::style_bold(x$meta$source$label),
+    "",
     cli_dl2(list(
       Database = paste0(cli::style_hyperlink(x$meta$source$code, x$browse()),
                         " (", cli::style_italic("STATcube"), ")"),
@@ -250,13 +250,13 @@ format.sc_table <- function(x, theme = getOption("cli.theme"), ...) {
       Fields = paste0(
         x$meta$fields$label, cli::style_italic(
           paste0(" <", x$meta$fields$nitems, ">"))))
-    )
-    cat("\n")
+    ),
+    "",
     cli_dl2(list(
       Request = cli_class(x$response$date, "timestamp"),
       STATcubeR = cli_class(x$meta$source$scr_version, "version")
     ))
-  }, theme = theme)
+  )
 }
 
 cli_class <- function(x, class) {

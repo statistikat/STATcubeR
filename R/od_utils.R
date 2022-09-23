@@ -117,24 +117,24 @@ od_label_data <- function(table, x = table$data, parse_time = TRUE, language = N
 }
 
 format.od_json <- function(x, ...) {
-  cli::cli_format_method({
-    att <- od_attr(x)
-    measures <- att$label[substr(att$code, 1, 1) == "F"]
-    fields <- att$label[substr(att$code, 1, 1) == "C"]
-    last_modified <- x$extras$metadata_modified  %>%
-      as.POSIXct(format = "%Y-%m-%dT%H:%M:%OS") %>% format()
-    cli::cli_text("{.strong {x$title}}")
-    cat("\n")
-    if (x$title != x$notes) {
-      cat(cli::style_italic(strwrap(x$notes)), sep = "\n")
-      cat("\n")
-    }
+  att <- od_attr(x)
+  measures <- att$label[substr(att$code, 1, 1) == "F"]
+  fields <- att$label[substr(att$code, 1, 1) == "C"]
+  last_modified <- x$extras$metadata_modified  %>%
+    as.POSIXct(format = "%Y-%m-%dT%H:%M:%OS") %>% format()
+  notes <- ""
+  if (x$title != x$notes) {
+    notes <- c("", cli::style_italic(strwrap(x$notes)), "")
+  }
+  c(
+    cli::style_bold(x$title),
+    notes,
     cli_dl2(list(
       Measures = measures, Fields = fields,
       Updated = last_modified, Tags = unlist(x$tags),
       Categories = x$extras$categorization
     ))
-  })
+  )
 }
 
 #' @export
@@ -145,12 +145,15 @@ print.od_json <- function(x, ...) {
 cli_dl2 <- function(items, labels = names(items)) {
   labels <- cli::cli_fmt(lapply(labels, function(x) {
     cli::cli_text("{.field {x}}") }))
+  out <- character()
   for (i in seq_along(items)) {
     item <- unlist(items[[i]])
     if (length(item) > 10)
       item <- c(item[1:10], paste(cli::symbol$continue,
                                   cli::style_italic("(", length(item) - 10, " more)")))
-    paste0(labels[i], ": ", paste(unlist(item), collapse = ", ")) %>%
-      cli::ansi_strwrap(exdent = 2) %>% cat(sep = "\n")
+    new <- paste0(labels[i], ": ", paste(unlist(item), collapse = ", ")) %>%
+      cli::ansi_strwrap(exdent = 2)
+    out <- c(out, new)
   }
+  out
 }

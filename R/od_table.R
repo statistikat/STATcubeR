@@ -130,9 +130,9 @@ print.od_table <- function(x, ...) {
 }
 
 format.od_table <- function(x, ...) {
-  cli::cli_format_method({
-    cli::cli_text(cli::style_bold(x$meta$source$label))
-    cat("\n")
+  c(
+    cli::style_bold(x$meta$source$label),
+    "",
     cli_dl2(list(
       Dataset = paste0(cli::style_hyperlink(
         x$meta$source$code, x$browse()), " (",
@@ -140,9 +140,9 @@ format.od_table <- function(x, ...) {
       Measures = x$meta$measures$label,
       Fields = paste0(x$meta$fields$label, cli::style_italic(paste0(
         " <", x$meta$fields$nitems, ">")))
-    ))
-    cat("\n")
+    )),
+    "",
     cli_dl2(c(Request = cli_class(x$meta$source$requested, "timestamp"),
               STATcubeR = cli_class(x$meta$source$scr_version, "version")))
-  })
+  )
 }
