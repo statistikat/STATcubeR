@@ -1,3 +1,8 @@
+# STATcubeR 0.5.0
+
+* adapt `od_list()` to data.statistik.at update ([`2249b66`](https://github.com/statistikat/STATcubeR/commit/2249b6607cb822a4aac56c6258cbe967832171f1))
+* Update print methods with the `{cli}` package
+
 # STATcubeR 0.4.3
 
 * add `od_revisions()` to check for updates on the OGD server

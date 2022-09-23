@@ -141,13 +141,30 @@ table$field("C-KRE_GESCHLECHT-0")
 
 `r style_resource("OGD_krebs_ext_KREBS_1", "C-KRE_GESCHLECHT-0")`
 
-### json Metadata
+### json Metadata {.tabset .tabset-pills}
 
 The json metadatafile `r style_resource("OGD_krebs_ext_KREBS_1", ext = "json")` is available via the `$json` binding.
+
+#### Cancer
 
 ```{r}
 table$json
 ```
+
+#### Earnings
+
+```{r}
+od_json("OGD_veste309_Veste309_1")
+```
+
+#### Economic Trend Monitor
+
+```{r}
+od_json("OGD_konjunkturmonitor_KonMon_1")
+```
+
+
+###
 
 This print method only shows part of the metadata. More information can be extracted by using the keys of the json object.
 

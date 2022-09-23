@@ -38,7 +38,7 @@ The table nodes correspond to the saved tables as described in the `r ticle("sc_
 The folders include all folders from the root level in the [catalogue explorer](`r sc_browse_catalogue()`):
 "Statistics", "Publication and Services" as well as "Examples".
 
-```{r,fig.align='center', out.width='70%', echo=FALSE}
+```{r,fig.align='center', out.width='50%', echo=FALSE}
 knitr::include_graphics("img/catalogue2.png")
 ```
 
@@ -55,7 +55,7 @@ my_catalogue$Statistics
 
 The child node `Statistics` is also of class `sc_schema` and shows all entries of the subfolder.
 
-```{r,fig.align='center', out.width='70%', echo=FALSE}
+```{r,fig.align='center', out.width='50%', echo=FALSE}
 knitr::include_graphics("img/catalogue3.png")
 ```
 

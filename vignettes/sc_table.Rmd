@@ -83,6 +83,54 @@ If you prefer to use codes rather than labels, use `my_table$data` instead.
 my_table$data
 ```
 
+## Example datasets {.tabsert .tabset-pills}
+
+This article used a dataset about the austrian populatio n via `sc_example()`.
+`r STATcubeR` contains more example jsons to get started.
+The datasets can be listed with `sc_examples_list()`.
+
+### Accomodation
+
+```{r}
+sc_example("accomodation.json") %>% sc_table()
+```
+
+### STATatlas
+
+```{r}
+sc_example("economic_atlas.json") %>% sc_table()
+```
+
+### Trade
+
+```{r}
+sc_example("foreign_trade.json") %>% sc_table()
+```
+
+### GDP
+
+```{r}
+sc_example("gross_regional_product.json") %>% sc_table()
+```
+
+### Working Hours
+
+```{r}
+sc_example("labor_force_survey.json") %>% sc_table()
+```
+
+### Agriculture
+
+```{r}
+sc_example("agriculture_prices.json") %>% sc_table()
+```
+
+### monitor.statistik.at
+
+```{r}
+sc_example("economic_trend_monitor.json") %>% sc_table()
+```
+
 ## Further reading
 
 * Functionalities of the returned object are explained in the `r ticle("sc_data")`.

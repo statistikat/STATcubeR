@@ -40,9 +40,11 @@ endpoint that are remaining.
 sc_rate_limit_table()
 ```
 
-```{r}
-## remaining: 92/100
-## reset:     2022-08-30 13:53:55
+```{r, echo=FALSE}
+rl <- sc_example("population_timeseries.json") %>%
+  sc_table() %>%
+  sc_rate_limits()
+rl$table
 ```
 
 In this case, we see that 8 out of the 100 requests per hour have been used up
@@ -60,8 +62,10 @@ Rate limits are be returned in the same format as in `sc_rate_limit_table()`.
 
 ```{r, eval = FALSE}
 sc_rate_limit_schema()
-#> remaining: 10000/10000
-#> reset:     2022-08-31 17:51:01
+```
+
+```{r, echo = FALSE}
+rl$schema
 ```
 
 ## Rate Limits from headers

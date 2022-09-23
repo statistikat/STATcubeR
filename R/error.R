@@ -38,7 +38,22 @@ sc_last_error_parsed <- function() {
 
 sc_env <- new.env(parent = emptyenv())
 
-message_sc_last_error <- "see \033[90msc_last_error()\033[39m for more details"
+cli_function_link <- function(fun, pkg = "STATcubeR", topic = fun) {
+  if (in_pkgdown() || !cli::ansi_has_hyperlink_support())
+    return(cli::format_inline("{.fun {fun}}"))
+  cli::format_inline("{.help [{.fun {fun}}]({pkg}::{topic})}")
+}
+
+cli_function_run <- function(fun, pkg = "STATcubeR") {
+  cli::format_inline("{.run [{fun}()]({pkg}::{fun}())}")
+}
+
+message_sc_last_error <- function() { cli::col_silver(
+  "Run ", cli_function_run("sc_last_error"), " or read the ",
+  cli::style_hyperlink("online documentation",
+    "https://statistikat.github.io/STATcubeR/articles/sc_last_error.html"),
+  " for more details"
+) }
 
 sc_check_response <- function(response) {
   stopifnot(inherits(response, "response"))
@@ -48,17 +63,20 @@ sc_check_response <- function(response) {
     if (httr::http_type(response) == "application/json")
       message <- httr::content(response, as = "text") %>%
         jsonlite::prettify(indent = 2) %>% paste0(message, .)
-    message <- paste0(message, message_sc_last_error)
+    message <- paste0(message, message_sc_last_error())
     stop(message, call. = FALSE)
   }
   if (httr::http_type(response) != "application/json") {
     sc_env$last_error <- response
-    stop("expected a response of type \"application/json\" but got \"",
-         httr::http_type(response), "\"\n",
-         "  possible reasons:\n  - rate limit exceeded. ",
-         "Check with \033[90msc_rate_limit_table()\033[39m\n  ",
-         "- invalid json body (sc_table, sc_table_custom)\n  ",
-         message_sc_last_error, call. = FALSE)
+    stop(cli::format_error(c(
+      cli::format_inline("expected an API response of type {.val application/json}
+        but got {.val {httr::http_type(response)}}"),
+      cli::style_italic("possible reasons:"),
+      "*" = "rate limit exceeded, check with {cli_function_run('sc_rate_limit_table')}",
+      "*" = "invalid json body (via {cli_function_link('sc_table')} or
+         {cli_function_link('sc_table_custom')})",
+      message_sc_last_error()
+    )), call. = FALSE)
   }
   response$request$headers["APIKey"] <- "HIDDEN"
   invisible(response)

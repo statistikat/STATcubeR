@@ -30,11 +30,17 @@ sc_key <- function(server = "ext", test = FALSE) {
 #' @export
 sc_key_set <- function(key, server = "ext", test = TRUE) {
   if (test && !sc_key_valid(key, server))
-    stop("The key could not be verified")
+    stop("The key could not be verified\n", message_sc_last_error(), call. = FALSE)
+  if (test)
+    cli::cli_alert_success("Key could be verified via a test request")
   do.call(Sys.setenv, as.list(stats::setNames(key, sc_key_env_var(server))))
-  message("The provided key will be available for this R session. Add",
-          "\n\n  ", sc_key_env_var(server), " = XXXX\n\nto your .Renviron to set ",
-          "the key persistently")
+  #cli::cli_alert_info("The provided key will be available for this R session"
+  cli::cli_bullets(c(
+    i = "The provided key will be available for this R session",
+    i = paste0("Add {.code {sc_key_env_var(server)} = XXXX} to ",
+               "{.file ~/.Renviron} to set the key persistently. Replace",
+               " {.code XXXX} with your key")
+  ))
   invisible(key)
 }
 
@@ -50,6 +56,8 @@ sc_key_get <- function(server = "ext") {
 #' @describeIn sc_key prompts for a key via [readline()]
 #' @export
 sc_key_prompt <- function(server = "ext", test = TRUE) {
+  cli::cli_alert_info(c("You can view your API key under the ",
+    "{.href [STATcube account preferences]({sc_browse_preferences()})}"))
   key <- readline("Provide your API key: \n")
   sc_key_set(key, test = test)
 }
@@ -71,7 +79,10 @@ sc_key_valid <- function(key = NULL, server = "ext") {
     url = paste0(base_url(server), "/info"),
     config = sc_headers("en", key, server)
   )
-  response$status_code == "200"
+  valid <- response$status_code == "200"
+  if (!valid)
+    sc_env$last_error <- response
+  valid
 }
 
 sc_servers <- c("ext", "red", "prod")

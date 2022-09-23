@@ -77,8 +77,8 @@ print.sc_schema <- function(x, tree = NULL, ..., limit = 30) {
   cat(x$type, ": ", x$label, "\n", sep = "")
   sc_schema_print_children(x, message_empty = switch(
     x$type,
-    DATABASE = paste0("# Get more info with `sc_schema_db('", x$id, "')`"),
-    TABLE = paste0("Get the data with `sc_table_saved('", x$id, "')`"),
+    DATABASE = "# Get more info with {.run STATcubeR::sc_schema_db('{x$id}')}",
+    TABLE = "Get the data with {.run STATcubeR::sc_table_saved('{x$id}')}",
     NULL
   ))
 }
@@ -96,7 +96,7 @@ sc_schema_print_children <- function(x, message_empty = NULL) {
       stringsAsFactors = FALSE
     ) %>% `class<-`(c("tbl", "data.frame")) %>% `row.names<-`(NULL) %>% print()
   } else if (!is.null(message_empty))
-    cat(message_empty, "\n")
+    cat(cli::format_inline(message_empty), "\n")
 }
 
 sc_as_nested_list <- function(x) {

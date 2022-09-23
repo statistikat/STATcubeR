@@ -2,6 +2,7 @@ library(magrittr)
 library(pillar)
 
 knit_print.data.frame <- function(x, ...) {
+  withr::local_options(width = getOption("width") + 3)
   out <- capture.output(print(x, ...)) %>%
     htmltools::htmlEscape() %>%
     fansi::sgr_to_html() %>%
@@ -28,7 +29,4 @@ registerS3method(
 options(crayon.enabled = TRUE)
 options(pillar.min_chars = 30)
 options(pillar.bold = TRUE)
-options(width = 80)
-
-# "polyfill" for cli::style_hyperlink(). See ?cli::`cli-config`
-Sys.setenv(R_CLI_HYPERLINK_MODE = "posix")
+options(width = 77)

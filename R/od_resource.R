@@ -109,7 +109,11 @@ od_cache_file <- function(id, suffix = NULL, timestamp = NULL, ..., server = "ex
 
 #' @export
 print.od_cache_file <- function(x, ...) {
-  print(as.character(x), ...)
+  if (cli::ansi_has_hyperlink_support())
+    cat(cli::format_inline("[1] {.file {as.character(x)}}\n"))
+  else
+    print(as.character(x), ...)
+  invisible(x)
 }
 
 #' @name od_resource

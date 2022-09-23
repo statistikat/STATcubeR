@@ -84,7 +84,7 @@ od_create_data <- function(id, json = od_json(id), lang = c("en", "de"),
   resources <- rbind(data.frame(
     name = paste0(id, ".json"), last_modified = json$extras$metadata_modified %>%
       as.POSIXct(format = "%Y-%m-%dT%H:%M:%OS"), cached = od$cached,
-    size = od$size, download = od$download, parsed = NA), resources[1:6]
+    size = od$size, download = od$download, parsed = NA, stringsAsFactors = FALSE), resources[1:6]
   )
 
   list(data = dat, meta = meta, fields = fields, resources = resources,
@@ -116,24 +116,44 @@ od_label_data <- function(table, x = table$data, parse_time = TRUE, language = N
   x
 }
 
-#' @export
-print.od_json <- function(x, ...) {
+format.od_json <- function(x, ...) {
   att <- od_attr(x)
   measures <- att$label[substr(att$code, 1, 1) == "F"]
   fields <- att$label[substr(att$code, 1, 1) == "C"]
   last_modified <- x$extras$metadata_modified  %>%
     as.POSIXct(format = "%Y-%m-%dT%H:%M:%OS") %>% format()
-  cat(paste(strwrap(x$title), collapse = "\n"), "\n\n")
-  if (x$title != x$notes)
-    cat(strwrap(x$notes), sep = "\n")
-  cat("\n")
-  cat("Measures:  ", with_wrap(measures), "\n")
-  cat("Fields:    ", with_wrap(fields), "\n")
-  cat("Updated:   ", last_modified, "\n")
-  cat("Tags:      ", with_wrap(unlist(x$tags)), "\n")
-  cat("Categories:", with_wrap(unlist(x$extras$categorization)), "\n\n")
-  cat(paste(c(x$extras$metadata_original_portal,
-              unlist(x$extras$metadata_linkage)), collapse = "\n"))
-  cat("\n")
+  notes <- ""
+  if (x$title != x$notes) {
+    notes <- c("", cli::style_italic(strwrap(x$notes)), "")
+  }
+  c(
+    cli::style_bold(strwrap(x$title)),
+    notes,
+    cli_dl2(list(
+      Measures = measures, Fields = fields,
+      Updated = last_modified, Tags = unlist(x$tags),
+      Categories = x$extras$categorization
+    ))
+  )
 }
 
+#' @export
+print.od_json <- function(x, ...) {
+  cat(format(x, ...), sep = "\n")
+}
+
+cli_dl2 <- function(items, labels = names(items)) {
+  labels <- cli::cli_fmt(lapply(labels, function(x) {
+    cli::cli_text("{.field {x}}") }))
+  out <- character()
+  for (i in seq_along(items)) {
+    item <- unlist(items[[i]])
+    if (length(item) > 10)
+      item <- c(item[1:10], paste(cli::symbol$continue,
+                                  cli::style_italic("(", length(item) - 10, " more)")))
+    new <- paste0(labels[i], ": ", paste(unlist(item), collapse = ", ")) %>%
+      cli::ansi_strwrap(exdent = 2)
+    out <- c(out, new)
+  }
+  out
+}
