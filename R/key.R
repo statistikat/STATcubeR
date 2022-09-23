@@ -30,7 +30,7 @@ sc_key <- function(server = "ext", test = FALSE) {
 #' @export
 sc_key_set <- function(key, server = "ext", test = TRUE) {
   if (test && !sc_key_valid(key, server))
-    stop("The key could not be verified")
+    stop("The key could not be verified\n", message_sc_last_error(), call. = FALSE)
   if (test)
     cli::cli_alert_success("Key could be verified via a test request")
   do.call(Sys.setenv, as.list(stats::setNames(key, sc_key_env_var(server))))
@@ -77,7 +77,10 @@ sc_key_valid <- function(key = NULL, server = "ext") {
     url = paste0(base_url(server), "/info"),
     config = sc_headers("en", key, server)
   )
-  response$status_code == "200"
+  valid <- response$status_code == "200"
+  if (!valid)
+    sc_env$last_error <- response
+  valid
 }
 
 sc_servers <- c("ext", "red", "prod")
