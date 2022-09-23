@@ -37,7 +37,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.4.3</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.4.3.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -163,16 +163,15 @@ bundles all the data from the OGD portal that correspons to this
 dataset. Printing the object will show a summary of the contents.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Cancer statistics by reporting year, province of residence and localisation of</span></span></span>
-<span><span class="co">#&gt; <span style="font-weight: bold;">cancer</span></span></span>
+<pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Cancer statistics by reporting year, province of residence and localisation of cancer</span></span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; <span style="color: #000087;">Dataset</span>: <a href="https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_krebs_ext_KREBS_1" class="external-link">OGD_krebs_ext_KREBS_1</a> (<span style="font-style: italic;">data.statistik.gv.at</span>)</span></span>
 <span><span class="co">#&gt; <span style="color: #000087;">Measures</span>: Number of records F-KRE</span></span>
 <span><span class="co">#&gt; <span style="color: #000087;">Fields</span>: Tumore ICD/10 3-Steller<span style="font-style: italic;"> &lt;95&gt;</span>, Reporting year<span style="font-style: italic;"> &lt;37&gt;</span>, Province of</span></span>
 <span><span class="co">#&gt;   residence<span style="font-style: italic;"> &lt;9&gt;</span>, Sex<span style="font-style: italic;"> &lt;2&gt;</span></span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2022-09-21 17:07:21]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">0.4.3</span></span></span></code></pre>
+<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2022-09-23 17:45:21]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">0.4.3.9000</span></span></span></code></pre>
 <p>The dataset contains the number of cancer patients by several
 classification fields</p>
 <ul>
@@ -449,8 +448,7 @@ is available via the <code>$json</code> binding.</p>
 
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/od_resource.html">od_json</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Verdienststrukturerhebung 2018 Bruttostundenverdienste in EUR nach</span></span></span>
-<span><span class="co">#&gt; <span style="font-weight: bold;">Staatsangehörigkeit, Bundesland und Beschäftigungsverhältnis</span></span></span>
+<pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Verdienststrukturerhebung 2018 Bruttostundenverdienste in EUR nach Staatsangehörigkeit, Bundesland und Beschäftigungsverhältnis</span></span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; <span style="font-style: italic;">Verdienststruktur nach Geschlecht, Staatsangehörigkeit, Bundesland und</span></span></span>
 <span><span class="co">#&gt; <span style="font-style: italic;">Beschäftigungsverhältnis</span></span></span>
@@ -585,8 +583,8 @@ the german labels are used as a fallback mechanism.</p>
 <span><span class="co">#&gt; <span style="color: #000087;">Fields</span>: Tumore ICD/10 3-Steller<span style="font-style: italic;"> &lt;95&gt;</span>, Berichtsjahr<span style="font-style: italic;"> &lt;37&gt;</span>, Bundesland<span style="font-style: italic;"> &lt;9&gt;</span>,</span></span>
 <span><span class="co">#&gt;   Geschlecht<span style="font-style: italic;"> &lt;2&gt;</span></span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2022-09-21 17:07:21]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">0.4.3</span></span></span></code></pre>
+<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2022-09-23 17:45:21]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">0.4.3.9000</span></span></span></code></pre>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 46,479 x 5</span>

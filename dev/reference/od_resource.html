@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.4.3</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.4.3.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -155,9 +155,9 @@ That is, if a json is requested, it will be reused from the cache unless the
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get paths to cached files</span></span></span>
 <span class="r-in"><span><span class="fu">od_cache_file</span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "~/.cache/STATcubeR/open_data/OGD_veste309_Veste309_1.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] <a href="file:///home/decill/.cache/STATcubeR/open_data/OGD_veste309_Veste309_1.csv"><span style="color: #0000BB;">~/.cache/STATcubeR/open_data/OGD_veste309_Veste309_1.csv</span></a></span>
 <span class="r-in"><span><span class="fu">od_cache_file</span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span>, <span class="st">"C-A11-0"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "~/.cache/STATcubeR/open_data/OGD_veste309_Veste309_1_C-A11-0.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] <a href="file:///home/decill/.cache/STATcubeR/open_data/OGD_veste309_Veste309_1_C-A11-0.csv"><span style="color: #0000BB;">~/.cache/STATcubeR/open_data/OGD_veste309_Veste309_1_C-A11-0.csv</span></a></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># get a parsed verison of the resource</span></span></span>
 <span class="r-in"><span><span class="fu">od_resource</span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span>, <span class="st">"C-A11-0"</span><span class="op">)</span></span></span>
@@ -170,8 +170,7 @@ That is, if a json is requested, it will be reused from the cache unless the
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># get json metadata about a dataset</span></span></span>
 <span class="r-in"><span><span class="fu">od_json</span><span class="op">(</span><span class="st">'OGD_veste309_Veste309_1'</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Verdienststrukturerhebung 2018 Bruttostundenverdienste in EUR nach</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Staatsangehörigkeit, Bundesland und Beschäftigungsverhältnis</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Verdienststrukturerhebung 2018 Bruttostundenverdienste in EUR nach Staatsangehörigkeit, Bundesland und Beschäftigungsverhältnis</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">Verdienststruktur nach Geschlecht, Staatsangehörigkeit,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">Bundesland und Beschäftigungsverhältnis</span></span>
@@ -189,12 +188,12 @@ That is, if a json is requested, it will be reused from the cache unless the
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 6 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">name</span>    <span style="font-weight: bold;">last_modified</span>       <span style="font-weight: bold;">cached</span>               <span style="font-weight: bold;">size</span> <span style="font-weight: bold;">downl…¹</span> <span style="font-weight: bold;">parsed</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>  <span style="text-decoration: underline;">4</span>931      <span style="color: #BB0000;">NA</span>  0.682</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   516      <span style="color: #BB0000;">NA</span>  0.468</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   159      <span style="color: #BB0000;">NA</span>  0.425</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   697      <span style="color: #BB0000;">NA</span>  0.453</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   518      <span style="color: #BB0000;">NA</span>  0.437</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   641      <span style="color: #BB0000;">NA</span>  0.422</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>  <span style="text-decoration: underline;">4</span>931      <span style="color: #BB0000;">NA</span>  0.679</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   516      <span style="color: #BB0000;">NA</span>  0.464</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   159      <span style="color: #BB0000;">NA</span>  0.450</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   697      <span style="color: #BB0000;">NA</span>  0.466</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   518      <span style="color: #BB0000;">NA</span>  0.443</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> OGD_ve… 2022-03-24 <span style="color: #949494;">11:29:48</span> 2022-03-24 <span style="color: #949494;">17:18:22</span>   641      <span style="color: #BB0000;">NA</span>  0.460</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 1 more variable: </span><span style="color: #949494; font-weight: bold;">data</span><span style="color: #949494;"> &lt;I&lt;list&gt;&gt;, and abbreviated variable</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   name ¹​download</span></span>
 </code></pre></div>
