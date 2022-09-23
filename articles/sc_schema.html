@@ -36,7 +36,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.5.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -170,7 +170,7 @@ table nodes correspond to the saved tables as described in the
 The folders include all folders from the root level in the <a href="https://portal.statistik.at/statistik.at/ext/statcube/jsf/dataCatalogueExplorer.xhtml" class="external-link">catalogue
 explorer</a>: “Statistics”, “Publication and Services” as well as
 “Examples”.</p>
-<p><img src="img/catalogue2.png" width="70%" style="display: block; margin: auto;"></p>
+<p><img src="img/catalogue2.png" width="50%" style="display: block; margin: auto;"></p>
 <p>To get access to the child nodes use
 <code>my_catalogue${child_label}</code></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -187,7 +187,7 @@ explorer</a>: “Statistics”, “Publication and Services” as well as
 <span style="color: #949494;"># … with 15 more rows</span></code></pre>
 <p>The child node <code>Statistics</code> is also of class
 <code>sc_schema</code> and shows all entries of the subfolder.</p>
-<p><img src="img/catalogue3.png" width="70%" style="display: block; margin: auto;"></p>
+<p><img src="img/catalogue3.png" width="50%" style="display: block; margin: auto;"></p>
 <p>This syntax can be used to navigate through folders and
 subfolders.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -217,7 +217,7 @@ used to describe nodes of a tree which have no child nodes&lt;/p&gt;"><sup>1</su
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span><span class="op">$</span><span class="va">`Labour Market`</span><span class="op">$</span><span class="va">`Working hours (Labour Force Survey)`</span></span></code></pre></div>
 <pre class="r-output"><code>DATABASE: Working hours (Labour Force Survey)
-# Get more info with `sc_schema_db('str:database:deake005')` </code></pre>
+# Get more info with <span style="color: #0000BB;">`STATcubeR::sc_schema_db('str:database:deake005')`</span> </code></pre>
 <p><img src="img/catalogue_deake005.png" width="70%" style="display: block; margin: auto;"></p>
 <p>The function <code><a href="../reference/sc_schema.html">sc_schema_db()</a></code> will be shown in the next
 section. As an example for a <code>TABLE</code> node, consider the <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?tableId=defaulttable_deake005" class="external-link">default
@@ -226,7 +226,7 @@ table for <code>deake005</code></a>.</p>
 <code class="sourceCode R"><span><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span><span class="op">$</span><span class="va">`Labour Market`</span><span class="op">$</span></span>
 <span>  <span class="va">`Standardtabelle / Default table (defaulttable_deake005)`</span></span></code></pre></div>
 <pre class="r-output"><code>TABLE: Standardtabelle / Default table (defaulttable_deake005)
-Get the data with `sc_table_saved('str:table:defaulttable_deake005')` </code></pre>
+Get the data with <span style="color: #0000BB;">`STATcubeR::sc_table_saved('str:table:defaulttable_deake005')`</span> </code></pre>
 <p><img src="img/catalogue_deake005_tables.png" width="70%" style="display: block; margin: auto;"></p>
 <p>As suggested by the output, tables can be loaded with the
 <code>/table</code> endpoint via <code><a href="../reference/sc_table.html">sc_table_saved()</a></code>. See the

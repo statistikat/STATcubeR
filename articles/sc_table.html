@@ -36,7 +36,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.5.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -175,15 +175,15 @@ endpoint</a> of the API and return an object of class
 contained in the response.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_table</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; An object of class sc_table</span></span>
+<pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Population at the beginning of the quarter since 2002</span></span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Database    Population at the beginning of the quarter since 2002 </span></span>
-<span><span class="co">#&gt; Measures    Number of persons </span></span>
-<span><span class="co">#&gt; Fields      Quarter &lt;82&gt;, Age in single years &lt;96&gt; &lt;7&gt;, Sex &lt;2&gt; &lt;3&gt;, Commune</span></span>
-<span><span class="co">#&gt;             &lt;2383&gt; (Province-District) &lt;10&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Database</span>: <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=debevstand" class="external-link">debevstand</a> (<span style="font-style: italic;">STATcube</span>)</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Measures</span>: Number of persons</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Fields</span>: Quarter<span style="font-style: italic;"> &lt;82&gt;</span>, Age in single years &lt;96&gt;<span style="font-style: italic;"> &lt;7&gt;</span>, Sex &lt;2&gt;<span style="font-style: italic;"> &lt;3&gt;</span>, Commune</span></span>
+<span><span class="co">#&gt;   &lt;2383&gt; (Province-District)<span style="font-style: italic;"> &lt;10&gt;</span></span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Request     2022-08-29 09:52:04 </span></span>
-<span><span class="co">#&gt; STATcubeR   0.4.3</span></span></code></pre>
+<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2022-08-29 09:52:04]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">0.5.0</span></span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="convert-the-response-into-a-data-frame">Convert the response into a data frame<a class="anchor" aria-label="anchor" href="#convert-the-response-into-a-data-frame"></a>
@@ -228,6 +228,150 @@ format. If you prefer to use codes rather than labels, use
 <span style="color: #BCBCBC;"> 9</span> A10-20021 BESN07-1     1            B00-3         <span style="text-decoration: underline;">133</span>928
 <span style="color: #BCBCBC;">10</span> A10-20021 BESN07-1     1            SC_TOTAL      <span style="text-decoration: underline;">689</span>766
 <span style="color: #949494;"># … with 17,210 more rows</span></code></pre>
+</div>
+<div class="section level2 tabsert tabset-pills">
+<h2 class="tabsert tabset-pills" id="example-datasets">Example datasets<a class="anchor" aria-label="anchor" href="#example-datasets"></a>
+</h2>
+<p>This article used a dataset about the austrian populatio n via
+<code><a href="../reference/sc_table.html">sc_example()</a></code>.
+<a href="../index.html" data-tippy-content="
+  &lt;b class='tippy_header'&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
+  &lt;div class='tippy_body'&gt;
+    Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
+  &lt;/div&gt;
+  " class="STATcubeR">STATcubeR</a>
+contains more example jsons to get started. The datasets can be listed
+with <code><a href="../reference/sc_table.html">sc_examples_list()</a></code>.</p>
+
+
+
+
+
+
+
+<ul class="nav nav-pills" id="example-datasets" role="tablist">
+<li role="presentation" class="nav-item"><button data-bs-toggle="tab" data-bs-target="#accomodation" id="accomodation-tab" type="button" role="tab" aria-controls="accomodation" aria-selected="true" class="active nav-link">Accomodation</button></li>
+<li role="presentation" class="nav-item"><button data-bs-toggle="tab" data-bs-target="#statatlas" id="statatlas-tab" type="button" role="tab" aria-controls="statatlas" aria-selected="false" class="nav-link">STATatlas</button></li>
+<li role="presentation" class="nav-item"><button data-bs-toggle="tab" data-bs-target="#trade" id="trade-tab" type="button" role="tab" aria-controls="trade" aria-selected="false" class="nav-link">Trade</button></li>
+<li role="presentation" class="nav-item"><button data-bs-toggle="tab" data-bs-target="#gdp" id="gdp-tab" type="button" role="tab" aria-controls="gdp" aria-selected="false" class="nav-link">GDP</button></li>
+<li role="presentation" class="nav-item"><button data-bs-toggle="tab" data-bs-target="#working-hours" id="working-hours-tab" type="button" role="tab" aria-controls="working-hours" aria-selected="false" class="nav-link">Working Hours</button></li>
+<li role="presentation" class="nav-item"><button data-bs-toggle="tab" data-bs-target="#agriculture" id="agriculture-tab" type="button" role="tab" aria-controls="agriculture" aria-selected="false" class="nav-link">Agriculture</button></li>
+<li role="presentation" class="nav-item"><button data-bs-toggle="tab" data-bs-target="#monitor-statistik-at" id="monitor-statistik-at-tab" type="button" role="tab" aria-controls="monitor-statistik-at" aria-selected="false" class="nav-link">monitor.statistik.at</button></li>
+</ul>
+<div class="tab-content">
+<div class="active  tab-pane" id="accomodation" role="tabpanel" aria-labelledby="accomodation-tab">
+
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"accomodation.json"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Accomodation statistics as of 1974 according to seasons</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Database</span>: <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=detouextregsai" class="external-link">detouextregsai</a> (<span style="font-style: italic;">STATcube</span>)</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Measures</span>: Nights spent, Arrivals</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Fields</span>: Season/Tourism Month<span style="font-style: italic;"> &lt;273&gt;</span>, Country of origin<span style="font-style: italic;"> &lt;4&gt;</span>, Accomodation</span></span>
+<span><span class="co">#&gt;   establishment<span style="font-style: italic;"> &lt;4&gt;</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2022-08-29 09:47:07]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">0.5.0</span></span></span></code></pre>
+</div>
+<div class="tab-pane" id="statatlas" role="tabpanel" aria-labelledby="statatlas-tab">
+
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"economic_atlas.json"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">02 Key data Federal provinces</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Database</span>: <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=dewatlas2" class="external-link">dewatlas2</a> (<span style="font-style: italic;">STATcube</span>)</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Measures</span>: Umemployment rate - ILO-definition, Employment rate (15 - 64 y.) -</span></span>
+<span><span class="co">#&gt;   ILO-definition, Overnight stays, Average duration of stay (in nights),</span></span>
+<span><span class="co">#&gt;   Private households, Total area (km²), Population (annual average), R&amp;D</span></span>
+<span><span class="co">#&gt;   intensity (in % of GDP), Employed persons - ILO-definition, Unemployed -</span></span>
+<span><span class="co">#&gt;   ILO-definition, … <span style="font-style: italic;">(38 more)</span></span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Fields</span>: Year (starting 1995)<span style="font-style: italic;"> &lt;28&gt;</span>, Federal provices<span style="font-style: italic;"> &lt;11&gt;</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2022-09-21 11:18:57]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">0.5.0</span></span></span></code></pre>
+</div>
+<div class="tab-pane" id="trade" role="tabpanel" aria-labelledby="trade-tab">
+
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"foreign_trade.json"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Trade by commodity (CPA) and activity sector (NACE)</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Database</span>: <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=denatec06" class="external-link">denatec06</a> (<span style="font-style: italic;">STATcube</span>)</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Measures</span>: Import, number of enterprises, Import, value in Euro, Export,</span></span>
+<span><span class="co">#&gt;   number of enterprises, Export, value in Euro</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Fields</span>: Commodities (CPA)<span style="font-style: italic;"> &lt;4&gt;</span>, Reference year<span style="font-style: italic;"> &lt;13&gt;</span>, Activity Sector (NACE)</span></span>
+<span><span class="co">#&gt;   [partly ABO]<span style="font-style: italic;"> &lt;4&gt;</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2022-08-30 19:08:33]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">0.5.0</span></span></span></code></pre>
+</div>
+<div class="tab-pane" id="gdp" role="tabpanel" aria-labelledby="gdp-tab">
+
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"gross_regional_product.json"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Gross regional product by ESA 1995, NUTS2+NUTS3 - finished time</span></span></span>
+<span><span class="co">#&gt; <span style="font-weight: bold;">series</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Database</span>: <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=devgrrgr004" class="external-link">devgrrgr004</a> (<span style="font-style: italic;">STATcube</span>)</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Measures</span>: Gross regional product; current prices in million Euro, Gross</span></span>
+<span><span class="co">#&gt;   regional product per inhabitant, Gross regional product per person</span></span>
+<span><span class="co">#&gt;   employed</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Fields</span>: NUTS-3<span style="font-style: italic;"> &lt;11&gt;</span>, Time<span style="font-style: italic;"> &lt;13&gt;</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2022-08-30 19:06:56]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">0.5.0</span></span></span></code></pre>
+</div>
+<div class="tab-pane" id="working-hours" role="tabpanel" aria-labelledby="working-hours-tab">
+
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"labor_force_survey.json"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Working hours (Labour Force Survey)</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Database</span>: <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=deake005" class="external-link">deake005</a> (<span style="font-style: italic;">STATcube</span>)</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Measures</span>: Average hours actually worked per week, Average hours usually</span></span>
+<span><span class="co">#&gt;   worked per week</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Fields</span>: Time section<span style="font-style: italic;"> &lt;8&gt;</span>, Gender<span style="font-style: italic;"> &lt;3&gt;</span>, Highest level of training completed</span></span>
+<span><span class="co">#&gt;   (national classification)<span style="font-style: italic;"> &lt;6&gt;</span>, Province (NUTS 2 unit)<span style="font-style: italic;"> &lt;10&gt;</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2022-08-31 12:48:22]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">0.5.0</span></span></span></code></pre>
+</div>
+<div class="tab-pane" id="agriculture" role="tabpanel" aria-labelledby="agriculture-tab">
+
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"agriculture_prices.json"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">EAA01_Economic accounts for agriculture at current prices in million</span></span></span>
+<span><span class="co">#&gt; <span style="font-weight: bold;">euros</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Database</span>: <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=delgr001" class="external-link">delgr001</a> (<span style="font-style: italic;">STATcube</span>)</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Measures</span>: Values (for output items and value added: values at basic prices),</span></span>
+<span><span class="co">#&gt;   Taxes on products (for output items), Values at producer prices (for</span></span>
+<span><span class="co">#&gt;   output items), Subsidies on products (for output items)</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Fields</span>: Year<span style="font-style: italic;"> &lt;28&gt;</span>, Item<span style="font-style: italic;"> &lt;6&gt;</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2022-09-21 11:19:01]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">0.5.0</span></span></span></code></pre>
+</div>
+<div class="tab-pane" id="monitor-statistik-at" role="tabpanel" aria-labelledby="monitor-statistik-at-tab">
+
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_table.html">sc_example</a></span><span class="op">(</span><span class="st">"economic_trend_monitor.json"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/sc_table.html">sc_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Economic Trend Monitor</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Database</span>: <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=dekonjunkturmonitor" class="external-link">dekonjunkturmonitor</a> (<span style="font-style: italic;">STATcube</span>)</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Measures</span>: Production Index Industry (wd; 2015=100), Technical total</span></span>
+<span><span class="co">#&gt;   production Industry (in 1.000 €), Turnover Index Industry (2015=100),</span></span>
+<span><span class="co">#&gt;   Turnover Industry (in 1.000 €), Index of new orders Industry (2015=100),</span></span>
+<span><span class="co">#&gt;   Index of persons employed Industry (2015=100), Persons employed Industry,</span></span>
+<span><span class="co">#&gt;   Productivity Index Industry per employee (2015=100), Productivity Index</span></span>
+<span><span class="co">#&gt;   Industry per hours worked (2015=100), Industrial Output Price Index</span></span>
+<span><span class="co">#&gt;   (2021=100), … <span style="font-style: italic;">(53 more)</span></span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Fields</span>: reporting period<span style="font-style: italic;"> &lt;165&gt;</span>, value indication<span style="font-style: italic;"> &lt;2&gt;</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2022-09-21 11:19:05]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">0.5.0</span></span></span></code></pre>
+</div>
+</div>
 </div>
 <div class="section level2">
 <h2 id="further-reading">Further reading<a class="anchor" aria-label="anchor" href="#further-reading"></a>

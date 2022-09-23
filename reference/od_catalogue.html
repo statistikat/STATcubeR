@@ -14,7 +14,7 @@ filtered based on categorizations, tags, number of classifications, etc."><meta 
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.5.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -184,22 +184,17 @@ The last column <code>"json"</code> containes the full json metadata as returned
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> Nicht-finanzielle Sektorkonten nach ESVG 2010            124      2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable name ¹​measures</span></span>
 <span class="r-in"><span><span class="va">catalogue</span><span class="op">$</span><span class="va">json</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Außenhandelsdaten Jährlich </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Außenhandelsdaten Jährlich</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Euro Werte der Einfuhren bzw. Ausfuhren nach Ursprungs- bzw.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Bestimmungsländern, jährliche Zeitreihe ab 2007</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">Euro Werte der Einfuhren bzw. Ausfuhren nach Ursprungs- bzw.</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">Bestimmungsländern, jährliche Zeitreihe ab 2007</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Measures:   Einfuhr Wert in Euro, Ausfuhr Wert in Euro </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Fields:     Jahr, Ursprungs- bzw. Bestimmungsland </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Updated:    2022-06-28 13:38:12 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Tags:       Einfuhren, Ausfuhren, Außenhandel, Ursprungsland,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             Bestimmungsland </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Categories: Wirtschaft und Tourismus </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <a href="https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_1531kn2_Aussenhandel_4" class="external-link">https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_1531kn2_Aussenhandel_4</a></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <a href="https://statcube.at/statcube/opendatabase?id=de1531kn2" class="external-link">https://statcube.at/statcube/opendatabase?id=de1531kn2</a></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <a href="https://www.statistik.at/fileadmin/shared/QM/Standarddokumentationen/U/std_u_itgs.pdf" class="external-link">https://www.statistik.at/fileadmin/shared/QM/Standarddokumentationen/U/std_u_itgs.pdf</a></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <a href="https://www.statistik.at/fileadmin/shared/QM/Standarddokumentationen/U/engl_std_u_itgs.pdf" class="external-link">https://www.statistik.at/fileadmin/shared/QM/Standarddokumentationen/U/engl_std_u_itgs.pdf</a></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Measures</span>: Einfuhr Wert in Euro, Ausfuhr Wert in Euro</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Fields</span>: Jahr, Ursprungs- bzw. Bestimmungsland</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Updated</span>: 2022-06-28 13:38:12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Tags</span>: Einfuhren, Ausfuhren, Außenhandel, Ursprungsland,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Bestimmungsland</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Categories</span>: Wirtschaft und Tourismus</span>
 <span class="r-in"><span><span class="va">catalogue</span><span class="op">$</span><span class="va">database</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "de1531kn2"                      "de1905fue"                     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [3] "de_steuer_est_ab_2008_altgesch" "de_steuer_est_ab_2008_bl_eink" </span>

@@ -36,7 +36,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.5.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -126,8 +126,9 @@
     The open data portal provides datasets from Statistics Austria according to open data guidelines
   &lt;/div&gt;
   " class="external-link STATcubeR">data.statistik.gv.at</a>
-into your R sessions. This function uses direct downloads from the
-fileserver. Therefore no API key is required.</p>
+into your R sessions. This function downloads csv sources from the
+fileserver. This means that no API key is required to use STATcubeR with
+datasets from the OGD portal.</p>
 <p>In this example, we will use a
 <u class="STATcubeR" data-tippy-content="&lt;div style=' text-align: left;'&gt;
   &lt;b class='tippy_header'&gt; Cancer statistics by reporting year, province of residence and localisation of cancer &lt;/b&gt;&lt;br/&gt;&lt;br/&gt;
@@ -140,8 +141,8 @@ fileserver. Therefore no API key is required.</p>
     &lt;a href='https://statcube.at/statcube/opendatabase?id=dekrebs_ext' target='_blank'&gt;STATcube&lt;/a&gt;
   &lt;/div&gt;
 &lt;/div&gt;" data-tippy-interactive="true">data set about cancer statistics</u>.
-The dataset id <code>OGD_krebs_ext_KREBS_1</code> can be extracted from
-the url and will be used in the data import.</p>
+The dataset id <code>"OGD_krebs_ext_KREBS_1"</code> can be extracted
+from the url and will be used in the data import.</p>
 <script type="text/javascript">
 let url = "https://data.statistik.gv.at/"
 tippy("#ogd", {allowHTML: true, interactive: true, theme: 'light rounded', content: 
@@ -151,33 +152,95 @@ tippy("#ogd", {allowHTML: true, interactive: true, theme: 'light rounded', conte
   `<a href=${url} target='blank_'>${url}</a>`
 })
 </script><div class="section level2">
-<h2 id="import">Import<a class="anchor" aria-label="anchor" href="#import"></a>
+<h2 id="import-and-overview">Import and overview<a class="anchor" aria-label="anchor" href="#import-and-overview"></a>
 </h2>
 <p>To import a dataset, provide the dataset id as an argument.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/od_table.html">od_table</a></span><span class="op">(</span><span class="st">"OGD_krebs_ext_KREBS_1"</span><span class="op">)</span></span></code></pre></div>
-<p>The returned object is of class <a href="../reference/od_table_class.html"><code>od_table</code></a>. It
-provides an overview of the dataset via the <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code>
-method.</p>
+<p>This returns an object of class <a href="../reference/od_table_class.html"><code>od_table</code></a>, which
+bundles all the data from the OGD portal that correspons to this
+dataset. Printing the object will show a summary of the contents.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; An object of class od_table</span></span>
+<pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Cancer statistics by reporting year, province of residence and</span></span></span>
+<span><span class="co">#&gt; <span style="font-weight: bold;">localisation of cancer</span></span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Dataset     Cancer statistics by reporting year, province of residence and</span></span>
-<span><span class="co">#&gt;             localisation of cancer </span></span>
-<span><span class="co">#&gt; Measures    Number of records F-KRE </span></span>
-<span><span class="co">#&gt; Fields      Tumore ICD/10 3-Steller &lt;95&gt;, Reporting year &lt;37&gt;, Province of</span></span>
-<span><span class="co">#&gt;             residence &lt;9&gt;, Sex &lt;2&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Dataset</span>: <a href="https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_krebs_ext_KREBS_1" class="external-link">OGD_krebs_ext_KREBS_1</a> (<span style="font-style: italic;">data.statistik.gv.at</span>)</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Measures</span>: Number of records F-KRE</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Fields</span>: Tumore ICD/10 3-Steller<span style="font-style: italic;"> &lt;95&gt;</span>, Reporting year<span style="font-style: italic;"> &lt;37&gt;</span>, Province of</span></span>
+<span><span class="co">#&gt;   residence<span style="font-style: italic;"> &lt;9&gt;</span>, Sex<span style="font-style: italic;"> &lt;2&gt;</span></span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Request     2022-09-16 18:35:56 </span></span>
-<span><span class="co">#&gt; STATcubeR   0.4.3</span></span></code></pre>
+<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2022-09-23 19:10:52]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">0.5.0</span></span></span></code></pre>
+<p>The dataset contains the number of cancer patients by several
+classification fields</p>
+<ul>
+<li>
+<strong>tumor type</strong> differentiates
+<strong>&lt;95&gt;</strong> types of cancers</li>
+<li>The <strong>reporting period</strong> spans
+<strong>&lt;37&gt;</strong> years (1983 to 2019).</li>
+<li>The <strong>regional</strong> variable contains the
+<strong>&lt;9&gt;</strong> NUTS-2 regions of austria.</li>
+<li>The <strong>demographic</strong> variable “Sex” is reported with
+<strong>&lt;2&gt;</strong> levels</li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="convert-to-a-data-frame">Convert to a data frame<a class="anchor" aria-label="anchor" href="#convert-to-a-data-frame"></a>
+</h2>
+<p>The method <code>$tabulate()</code> can be used to turn the object
+into a <code>data.frame</code> in long format, which contains labled
+data.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 46,479 x 5</span>
+   <span style="font-weight: bold;">`Tumore ICD/10 3-Steller`</span>           <span style="font-weight: bold;">Reportin…¹</span> <span style="font-weight: bold;">Province of r…²</span> <span style="font-weight: bold;">Sex</span>    <span style="font-weight: bold;">Numbe…³</span>
+ <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                               <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>
+<span style="color: #BCBCBC;"> 1</span> &lt;C00&gt; Bösartige Neubildung der Lip… 1983-01-01 <span style="color: #949494;">"</span>Burgenland <span style="color: #949494;">"</span>   male         2
+<span style="color: #BCBCBC;"> 2</span> &lt;C00&gt; Bösartige Neubildung der Lip… 1983-01-01 <span style="color: #949494;">"</span>Carinthia<span style="color: #949494;">"</span>     male         8
+<span style="color: #BCBCBC;"> 3</span> &lt;C00&gt; Bösartige Neubildung der Lip… 1983-01-01 <span style="color: #949494;">"</span>Carinthia<span style="color: #949494;">"</span>     female       2
+<span style="color: #BCBCBC;"> 4</span> &lt;C00&gt; Bösartige Neubildung der Lip… 1983-01-01 <span style="color: #949494;">"</span>Lower Austria<span style="color: #949494;">"</span> male         6
+<span style="color: #BCBCBC;"> 5</span> &lt;C00&gt; Bösartige Neubildung der Lip… 1983-01-01 <span style="color: #949494;">"</span>Lower Austria<span style="color: #949494;">"</span> female       2
+<span style="color: #BCBCBC;"> 6</span> &lt;C00&gt; Bösartige Neubildung der Lip… 1983-01-01 <span style="color: #949494;">"</span>Upper Austria<span style="color: #949494;">"</span> male        12
+<span style="color: #BCBCBC;"> 7</span> &lt;C00&gt; Bösartige Neubildung der Lip… 1983-01-01 <span style="color: #949494;">"</span>Upper Austria<span style="color: #949494;">"</span> female       2
+<span style="color: #BCBCBC;"> 8</span> &lt;C00&gt; Bösartige Neubildung der Lip… 1983-01-01 <span style="color: #949494;">"</span>Salzburg<span style="color: #949494;">"</span>      male         4
+<span style="color: #BCBCBC;"> 9</span> &lt;C00&gt; Bösartige Neubildung der Lip… 1983-01-01 <span style="color: #949494;">"</span>Styria<span style="color: #949494;">"</span>        male         5
+<span style="color: #BCBCBC;">10</span> &lt;C00&gt; Bösartige Neubildung der Lip… 1983-01-01 <span style="color: #949494;">"</span>Styria<span style="color: #949494;">"</span>        female       2
+<span style="color: #949494;"># … with 46,469 more rows, and abbreviated variable names ¹​`Reporting year`,</span>
+<span style="color: #949494;">#   ²​`Province of residence`, ³​`Number of records F-KRE`</span></code></pre>
+<p>The dataset contains 46479 rows. If every combination of tumor tpye,
+year, region and sex would contain a seperate row the number of rows
+would be the following.</p>
+<p><span class="math display">\[
+95\times37\times9\times2 = 63270
+\]</span></p>
+<p>This means that the table is fairly dense. But this might not be the
+case for other OGD datasets.</p>
 </div>
 <div class="section level2">
 <h2 id="metadata">Metadata<a class="anchor" aria-label="anchor" href="#metadata"></a>
 </h2>
-<p>Information from <a href="https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_HEADER.csv" class="external-link"><code>OGD_krebs_ext_KREBS_1_HEADER.csv</code></a>
-can be obtained via <code>$header</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<p>This section will show the different metadata components contained in
+the table object.</p>
+<div class="section level3">
+<h3 id="header">Header<a class="anchor" aria-label="anchor" href="#header"></a>
+</h3>
+<p>The labels for the columns of the data.frame representation are
+generated from
+<a href="https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_HEADER.csv" class="external-link STATcubeR" data-tippy-content='&lt;div&gt;
+  &lt;b&gt;&lt;/b&gt;
+  &lt;div class="tippy_body"&gt;
+    &lt;pre&gt;code;name;en_name;;;;;;;
+F-KRE;Anzahl der Datensätze F-KRE;Number of records F-KRE;;;;;;;
+C-TUM_ICD10_3ST-0;Tumore ICD/10 3-Steller;;;;;;;;
+C-BERJ-0;Berichtsjahr;Reporting year;;;;;;;
+C-BUNDESLAND-0;Bundesland;Province of residence;;;;;;;
+C-KRE_GESCHLECHT-0;Geschlecht;Sex;;;;;;;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;' data-tippy-interactive="true" data-tippy-maxwidth="600"> <code>OGD_krebs_ext_KREBS_1_HEADER.csv</code> </a>
+and can be extracted from the table object via <code>$header</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="va">header</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># STATcubeR metadata: 5 x 4</span>
   <span style="font-weight: bold;">code</span>               <span style="font-weight: bold;">label</span> <span style="font-weight: bold;">label_de</span>                    <span style="font-weight: bold;">label_en</span>               
@@ -187,18 +250,20 @@ can be obtained via <code>$header</code>.</p>
 <span style="color: #BCBCBC;">3</span> C-BERJ-0           <span style="color: #BB0000;">NA</span>    Berichtsjahr                Reporting year         
 <span style="color: #BCBCBC;">4</span> C-BUNDESLAND-0     <span style="color: #BB0000;">NA</span>    Bundesland                  Province of residence  
 <span style="color: #BCBCBC;">5</span> C-KRE_GESCHLECHT-0 <span style="color: #BB0000;">NA</span>    Geschlecht                  Sex                    </code></pre>
-<p>Additional metadata can be obtained via <code>$meta</code>. See the
+<p>Additional metadata for the columns can be obtained via
+<code>$meta</code>. See the
 <a href="sc_data.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
   &lt;b class="tippy_header"&gt;The STATcubeR Data Class&lt;/b&gt;
   &lt;br/&gt;
   &lt;div class="tippy_body"&gt;STATcubeR uses a common base class for OGD datasets and datasets from the STATcube REST API. This article explains the core functionalities and allows you to use both datasources more flexibly.&lt;/div&gt;
 &lt;/div&gt;'>STATcubeR data article</a>
 for more details.</p>
+</div>
 <div class="section level3 unlisted unnumbered tabset tabset-pills">
 <h3 class="unlisted unnumbered tabset tabset-pills" id="field-infos">Field infos<a class="anchor" aria-label="anchor" href="#field-infos"></a>
 </h3>
 <p>The method <code>table$field()</code> can be used to get information
-about specific fields. Thise contain data from
+about specific classification fields. Thise contain data from
 <code>{dataset_id}_{field_code}.csv</code>. Unlike the metadata in
 <code>sc_table</code>, the <code>od_table</code> class always contains
 german and english labels. Both can be used to label the dataset.</p>
@@ -215,7 +280,11 @@ german and english labels. Both can be used to label the dataset.</p>
 <div class="tab-content">
 <div class="active  tab-pane" id="tumor-type" role="tabpanel" aria-labelledby="tumor-type-tab">
 
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<p>The following call gives access to the german and english labels for
+the 95 differen tumor types in the <code>"cancer type"</code>
+classification. Click <code>"Year"</code> above to see information about
+the years.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"C-TUM_ICD10_3ST-0"</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># STATcubeR metadata: 95 x 8</span>
   <span style="font-weight: bold;">code</span>              <span style="font-weight: bold;">label</span>                                                       
@@ -227,11 +296,28 @@ german and english labels. Both can be used to label the dataset.</p>
 <span style="color: #BCBCBC;">5</span> TUM_ICD10_3ST-C04 &lt;C04&gt; Bösartige Neubildung des Mundbodens                   
 <span style="color: #949494;"># … with 90 more rows, and 1 more variable: </span><span style="color: #949494; font-weight: bold;">parsed</span><span style="color: #949494;"> &lt;chr&gt;</span>
 <span style="color: #949494;"># … with 5 more columns: 'label_de', 'label_en', 'parent', 'visible', 'order'</span></code></pre>
-<p><a href="https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_C-TUM_ICD10_3ST-0.csv" class="external-link uri">https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_C-TUM_ICD10_3ST-0.csv</a></p>
+<p><a href="https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_C-TUM_ICD10_3ST-0.csv" class="external-link STATcubeR" data-tippy-content='&lt;div&gt;
+  &lt;b&gt;Showing lines 1-10 of 99 total lines&lt;/b&gt;
+  &lt;div class="tippy_body"&gt;
+    &lt;pre&gt;code;name;;en_name;de_desc;de_link;en_desc;en_link;de_syn;en_syn
+TUM_ICD10_3ST-C00;&amp;lt;C00&amp;gt; Bösartige Neubildung der Lippe;;;;;;;;
+TUM_ICD10_3ST-C01;&amp;lt;C01&amp;gt; Bösartige Neubildung des Zungengrundes;;;;;;;;
+TUM_ICD10_3ST-C02;&amp;lt;C02&amp;gt; Bösartige Neubildung sonstiger und nicht näher bezeichneter Teile der Zunge;;;;;;;;
+TUM_ICD10_3ST-C03;&amp;lt;C03&amp;gt; Bösartige Neubildung des Zahnfleisches;;;;;;;;
+TUM_ICD10_3ST-C04;&amp;lt;C04&amp;gt; Bösartige Neubildung des Mundbodens;;;;;;;;
+TUM_ICD10_3ST-C05;&amp;lt;C05&amp;gt; Bösartige Neubildung des Gaumens;;;;;;;;
+TUM_ICD10_3ST-C06;&amp;lt;C06&amp;gt; Bösartige Neubildung sonstiger und nicht näher bezeichneter Teile des Mundes;;;;;;;;
+TUM_ICD10_3ST-C07;&amp;lt;C07&amp;gt; Bösartige Neubildung der Parotis;;;;;;;;
+TUM_ICD10_3ST-C08;&amp;lt;C08&amp;gt; Bösartige Neubildung sonstiger und nicht näher bezeichneter großer Speicheldrüsen;;;;;;;;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;' data-tippy-interactive="true" data-tippy-maxwidth="600"> <code>OGD_krebs_ext_KREBS_1_C-TUM_ICD10_3ST-0.csv</code> </a></p>
 </div>
 <div class="tab-pane" id="year" role="tabpanel" aria-labelledby="year-tab">
 
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<p>The reporting period spans 37 years (1983 to 2019). The
+classification elements are parsed into a <code>&lt;date&gt;</code>
+format for the <code>&lt;data.frame&gt;</code> representation.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"C-BERJ-0"</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># STATcubeR metadata: 37 x 8</span>
   <span style="font-weight: bold;">code</span>      <span style="font-weight: bold;">label</span> <span style="font-weight: bold;">parsed</span>    
@@ -243,11 +329,27 @@ german and english labels. Both can be used to label the dataset.</p>
 <span style="color: #BCBCBC;">5</span> BERJ-1987 1987  1987-01-01
 <span style="color: #949494;"># … with 32 more rows</span>
 <span style="color: #949494;"># … with 5 more columns: 'label_de', 'label_en', 'parent', 'visible', 'order'</span></code></pre>
-<p><a href="https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_C-BERJ-0.csv" class="external-link uri">https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_C-BERJ-0.csv</a></p>
+<p><a href="https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_C-BERJ-0.csv" class="external-link STATcubeR" data-tippy-content='&lt;div&gt;
+  &lt;b&gt;Showing lines 1-10 of 38 total lines&lt;/b&gt;
+  &lt;div class="tippy_body"&gt;
+    &lt;pre&gt;code;name;;en_name;de_desc;de_link;en_desc;en_link;de_syn;en_syn
+BERJ-1983;1983;;;;;;;;
+BERJ-1984;1984;;;;;;;;
+BERJ-1985;1985;;;;;;;;
+BERJ-1986;1986;;;;;;;;
+BERJ-1987;1987;;;;;;;;
+BERJ-1988;1988;;;;;;;;
+BERJ-1989;1989;;;;;;;;
+BERJ-1990;1990;;;;;;;;
+BERJ-1991;1991;;;;;;;;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;' data-tippy-interactive="true" data-tippy-maxwidth="600"> <code>OGD_krebs_ext_KREBS_1_C-BERJ-0.csv</code> </a></p>
 </div>
 <div class="tab-pane" id="province" role="tabpanel" aria-labelledby="province-tab">
 
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<p>The regional classification contains 9 elements which correspond to
+the NUTS2 regions of austria.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"C-BUNDESLAND-0"</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># STATcubeR metadata: 9 x 8</span>
   <span style="font-weight: bold;">code</span>         <span style="font-weight: bold;">label</span>           <span style="font-weight: bold;">parsed</span>         
@@ -259,11 +361,27 @@ german and english labels. Both can be used to label the dataset.</p>
 <span style="color: #BCBCBC;">5</span> BUNDESLAND-5 <span style="color: #949494;">"</span>Salzburg<span style="color: #949494;">"</span>      <span style="color: #949494;">"</span>Salzburg<span style="color: #949494;">"</span>     
 <span style="color: #949494;"># … with 4 more rows</span>
 <span style="color: #949494;"># … with 5 more columns: 'label_de', 'label_en', 'parent', 'visible', 'order'</span></code></pre>
-<p><a href="https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_C-BUNDESLAND-0.csv" class="external-link uri">https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_C-BUNDESLAND-0.csv</a></p>
+<p><a href="https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_C-BUNDESLAND-0.csv" class="external-link STATcubeR" data-tippy-content='&lt;div&gt;
+  &lt;b&gt;&lt;/b&gt;
+  &lt;div class="tippy_body"&gt;
+    &lt;pre&gt;code;name;;en_name;de_desc;de_link;en_desc;en_link;de_syn;en_syn
+BUNDESLAND-1;Burgenland;;Burgenland ;;;;;;
+BUNDESLAND-2;Kärnten;;Carinthia;;;;;;
+BUNDESLAND-3;Niederösterreich;;Lower Austria;;;;;;
+BUNDESLAND-4;Oberösterreich;;Upper Austria;;;;;;
+BUNDESLAND-5;Salzburg;;Salzburg;;;;;;
+BUNDESLAND-6;Steiermark;;Styria;;;;;;
+BUNDESLAND-7;Tirol;;Tyrol;;;;;;
+BUNDESLAND-8;Vorarlberg;;Vorarlberg;;;;;;
+BUNDESLAND-9;Wien;;Vienna;;;;;;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;' data-tippy-interactive="true" data-tippy-maxwidth="600"> <code>OGD_krebs_ext_KREBS_1_C-BUNDESLAND-0.csv</code> </a></p>
 </div>
 <div class="tab-pane" id="sex" role="tabpanel" aria-labelledby="sex-tab">
 
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<p>Sex is coded as a ditochome variable with the classification elements
+<code>"male"</code> and <code>"female"</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"C-KRE_GESCHLECHT-0"</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># STATcubeR metadata: 2 x 8</span>
   <span style="font-weight: bold;">code</span>         <span style="font-weight: bold;">label</span>  <span style="font-weight: bold;">parsed</span>
@@ -271,18 +389,136 @@ german and english labels. Both can be used to label the dataset.</p>
 <span style="color: #BCBCBC;">1</span> GESCHLECHT-1 male   male  
 <span style="color: #BCBCBC;">2</span> GESCHLECHT-2 female female
 <span style="color: #949494;"># … with 5 more columns: 'label_de', 'label_en', 'parent', 'visible', 'order'</span></code></pre>
-<p><a href="https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_C-KRE_GESCHLECHT-0.csv" class="external-link uri">https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_C-KRE_GESCHLECHT-0.csv</a></p>
+<p><a href="https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1_C-KRE_GESCHLECHT-0.csv" class="external-link STATcubeR" data-tippy-content='&lt;div&gt;
+  &lt;b&gt;&lt;/b&gt;
+  &lt;div class="tippy_body"&gt;
+    &lt;pre&gt;code;name;;en_name;de_desc;de_link;en_desc;en_link;de_syn;en_syn
+GESCHLECHT-1;männlich;;male;;;;;;
+GESCHLECHT-2;weiblich;;female;;;;;;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;' data-tippy-interactive="true" data-tippy-maxwidth="600"> <code>OGD_krebs_ext_KREBS_1_C-KRE_GESCHLECHT-0.csv</code> </a></p>
 </div>
 </div>
+</div>
+<div class="section level3 tabset tabset-pills">
+<h3 class="tabset tabset-pills" id="json-metadata">json Metadata<a class="anchor" aria-label="anchor" href="#json-metadata"></a>
+</h3>
+<p>The json metadatafile
+<a href="https://data.statistik.gv.at/ogd/json?dataset=OGD_krebs_ext_KREBS_1" class="external-link STATcubeR" data-tippy-content='&lt;div&gt;
+  &lt;b&gt;Showing lines 1-10 of 103 total lines&lt;/b&gt;
+  &lt;div class="tippy_body"&gt;
+    &lt;pre&gt;{
+  "title":"Krebsstatistik",
+  "notes":"Krebsstatistik nach Krebslokalisation (ICD10), Geschlecht und Wohnbundesland",
+  "tags":[
+    "Krebsstatistik",
+    "Krebslokalisation-ICD10",
+    "Geschlecht",
+    "Wohnbundesland"
+  ],
+  "maintainer":"Statistik Austria, Guglgasse 13, 1110 Wien, Austria",&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;' data-tippy-interactive="true" data-tippy-maxwidth="600"> <code>OGD_krebs_ext_KREBS_1.json</code> </a>
+is available via the <code>$json</code> binding.</p>
+
+
+
+<ul class="nav nav-pills" id="json-metadata" role="tablist">
+<li role="presentation" class="nav-item"><button data-bs-toggle="tab" data-bs-target="#cancer" id="cancer-tab" type="button" role="tab" aria-controls="cancer" aria-selected="true" class="active nav-link">Cancer</button></li>
+<li role="presentation" class="nav-item"><button data-bs-toggle="tab" data-bs-target="#earnings" id="earnings-tab" type="button" role="tab" aria-controls="earnings" aria-selected="false" class="nav-link">Earnings</button></li>
+<li role="presentation" class="nav-item"><button data-bs-toggle="tab" data-bs-target="#economic-trend-monitor" id="economic-trend-monitor-tab" type="button" role="tab" aria-controls="economic-trend-monitor" aria-selected="false" class="nav-link">Economic Trend Monitor</button></li>
+</ul>
+<div class="tab-content">
+<div class="active  tab-pane" id="cancer" role="tabpanel" aria-labelledby="cancer-tab">
+
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="va">json</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Krebsstatistik</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="font-style: italic;">Krebsstatistik nach Krebslokalisation (ICD10), Geschlecht und</span></span></span>
+<span><span class="co">#&gt; <span style="font-style: italic;">Wohnbundesland</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Measures</span>: Anzahl der Datensätze F-KRE</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Fields</span>: Tumore ICD/10 3-Steller, Berichtsjahr, Bundesland, Geschlecht</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Updated</span>: 2022-09-06 14:51:39</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Tags</span>: Krebsstatistik, Krebslokalisation-ICD10, Geschlecht, Wohnbundesland</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Categories</span>: Gesundheit</span></span></code></pre>
+</div>
+<div class="tab-pane" id="earnings" role="tabpanel" aria-labelledby="earnings-tab">
+
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/od_resource.html">od_json</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Verdienststrukturerhebung 2018 Bruttostundenverdienste in EUR nach</span></span></span>
+<span><span class="co">#&gt; <span style="font-weight: bold;">Staatsangehörigkeit, Bundesland und Beschäftigungsverhältnis</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="font-style: italic;">Verdienststruktur nach Geschlecht, Staatsangehörigkeit, Bundesland</span></span></span>
+<span><span class="co">#&gt; <span style="font-style: italic;">und Beschäftigungsverhältnis</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Measures</span>: Arithmetisches Mittel, 1. Quartil, 2. Quartil (Median), 3.</span></span>
+<span><span class="co">#&gt;   Quartil, Zahl d unselbst Beschäftigten</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Fields</span>: Geschlecht, Staatsangehörigkeit, Bundesland (NUTS 2), Form des</span></span>
+<span><span class="co">#&gt;   Beschäftigungsverhältnisses</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Updated</span>: 2022-03-24 11:29:48</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Tags</span>: Staatsangehörigkeit, Bundesland, Beschäftigungsverhältnis</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Categories</span>: Arbeit, Bevölkerung</span></span></code></pre>
+</div>
+<div class="tab-pane" id="economic-trend-monitor" role="tabpanel" aria-labelledby="economic-trend-monitor-tab">
+
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/od_resource.html">od_json</a></span><span class="op">(</span><span class="st">"OGD_konjunkturmonitor_KonMon_1"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Konjunkturmonitor</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Measures</span>: Produktionsindex Industrie (at; 2015=100), Technische</span></span>
+<span><span class="co">#&gt;   Gesamtproduktion Industrie in Tsd. € (KJE), Umsatzindex Industrie</span></span>
+<span><span class="co">#&gt;   (2015=100), Umsatz Industrie inTsd.€ (KJE), Auftragseingangsindex</span></span>
+<span><span class="co">#&gt;   Industrie (2015=100), Beschäftigtenindex Industrie (2015=100),</span></span>
+<span><span class="co">#&gt;   Beschäftigte Industrie gesamt (KJE), Produktivitätsindex Industrie je</span></span>
+<span><span class="co">#&gt;   unselbständig Beschäftigtem (2015=100), Produktivitätsindex Industrie je</span></span>
+<span><span class="co">#&gt;   geleisteter Arbeitsstunde (2015=100), Erzeugerpreisindex für den</span></span>
+<span><span class="co">#&gt;   Produzierenden Bereich (2021=100; NACE B-E), … <span style="font-style: italic;">(76 more)</span></span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Fields</span>: Berichtszeitraum, Wertangabe</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Updated</span>: 2022-09-20 10:46:47</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Tags</span>: Konjunkturdaten</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Categories</span>: Wirtschaft und Tourismus, Arbeit, Bevölkerung, Finanzen und</span></span>
+<span><span class="co">#&gt;   Rechnungswesen</span></span></code></pre>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="section"></h3>
+<p>This print method only shows part of the metadata. More information
+can be extracted by using the keys of the json object.</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="va">json</span><span class="op">$</span><span class="va">extras</span><span class="op">$</span><span class="va">publisher</span></span>
+<span><span class="co">#&gt; [1] "Statistik Austria, Guglgasse 13, 1110 Wien, Austria"</span></span>
+<span><span class="va">table</span><span class="op">$</span><span class="va">json</span><span class="op">$</span><span class="va">extras</span><span class="op">$</span><span class="va">update_frequency</span></span>
+<span><span class="co">#&gt; [1] "jährlich"</span></span>
+<span><span class="va">table</span><span class="op">$</span><span class="va">json</span><span class="op">$</span><span class="va">resources</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">url</span></span>
+<span><span class="co">#&gt; [1] "https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1.csv"</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
 <h2 id="table-contents">Table Contents<a class="anchor" aria-label="anchor" href="#table-contents"></a>
 </h2>
-<p>To get the actual microdata from <a href="https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1.csv" class="external-link"><code>OGD_krebs_ext_KREBS_1.csv</code></a>,
+<p>To get the raw microdata from
+<a href="https://data.statistik.gv.at/data/OGD_krebs_ext_KREBS_1.csv" class="external-link STATcubeR" data-tippy-content='&lt;div&gt;
+  &lt;b&gt;Showing lines 1-10 of 46480 total lines&lt;/b&gt;
+  &lt;div class="tippy_body"&gt;
+    &lt;pre&gt;C-TUM_ICD10_3ST-0;C-BERJ-0;C-BUNDESLAND-0;C-KRE_GESCHLECHT-0;F-KRE
+TUM_ICD10_3ST-C00;BERJ-1983;BUNDESLAND-1;GESCHLECHT-1;2
+TUM_ICD10_3ST-C00;BERJ-1983;BUNDESLAND-2;GESCHLECHT-1;8
+TUM_ICD10_3ST-C00;BERJ-1983;BUNDESLAND-2;GESCHLECHT-2;2
+TUM_ICD10_3ST-C00;BERJ-1983;BUNDESLAND-3;GESCHLECHT-1;6
+TUM_ICD10_3ST-C00;BERJ-1983;BUNDESLAND-3;GESCHLECHT-2;2
+TUM_ICD10_3ST-C00;BERJ-1983;BUNDESLAND-4;GESCHLECHT-1;12
+TUM_ICD10_3ST-C00;BERJ-1983;BUNDESLAND-4;GESCHLECHT-2;2
+TUM_ICD10_3ST-C00;BERJ-1983;BUNDESLAND-5;GESCHLECHT-1;4
+TUM_ICD10_3ST-C00;BERJ-1983;BUNDESLAND-6;GESCHLECHT-1;5&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;' data-tippy-interactive="true" data-tippy-maxwidth="600"> <code>OGD_krebs_ext_KREBS_1.csv</code> </a>,
 use <code>table$data</code>. The output is similar to what is returned
 from <code>read.csv2("OGD_krebs_ext_KREBS_1.csv")</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="va">data</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 46,479 x 5</span>
   <span style="font-weight: bold;">`C-TUM_ICD10_3ST-0`</span> <span style="font-weight: bold;">`C-BERJ-0`</span> <span style="font-weight: bold;">`C-BUNDESLAND-0`</span> <span style="font-weight: bold;">`C-KRE_GESCHLECHT-0`</span> <span style="font-weight: bold;">`F-KRE`</span>
@@ -295,14 +531,14 @@ from <code>read.csv2("OGD_krebs_ext_KREBS_1.csv")</code>.</p>
 <span style="color: #949494;"># … with 46,474 more rows</span></code></pre>
 <p><code><a href="../reference/od_table.html">od_table()</a></code> makes sure that the levels of all factor
 columns are in the same order as in the metadata.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="va">table</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">`C-BUNDESLAND-0`</span><span class="op">)</span> <span class="op">==</span> <span class="va">table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"C-BUNDESLAND-0"</span><span class="op">)</span><span class="op">$</span><span class="va">code</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</span></span></code></pre>
-<p>If you want to use labels rather than codes, a labelled version of
-the data can be obtained via <code>table$tabulate()</code>. The
-labelling is done by mapping codes to english names using the
-previsously mentioned metadata.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<p>As mentioned above, a labelled version of the data can be obtained
+via <code>table$tabulate()</code>. The labelling is done by taking the
+raw dataset and then joining the labes from <code>$header</code> and
+<code>$field()</code>.</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 46,479 x 5</span>
   <span style="font-weight: bold;">`Tumore ICD/10 3-Steller`</span>            <span style="font-weight: bold;">Reportin…¹</span> <span style="font-weight: bold;">Province of r…²</span> <span style="font-weight: bold;">Sex</span>    <span style="font-weight: bold;">Numbe…³</span>
@@ -330,26 +566,27 @@ if they satisfy certain STATcube standards. You can read more about
 using the <code>$language</code> field. This field can be used to get
 and set the language. Allowed options are <code>"en"</code> for english
 and <code>"de"</code> for german.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="va">language</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; [1] "en"</span></span></code></pre>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="va">language</span> <span class="op">&lt;-</span> <span class="st">"de"</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="va">language</span></span>
+<span><span class="co">#&gt; [1] "en"</span></span>
+<span><span class="va">table</span><span class="op">$</span><span class="va">language</span> <span class="op">&lt;-</span> <span class="st">"de"</span></span>
+<span><span class="va">table</span><span class="op">$</span><span class="va">language</span></span>
+<span><span class="co">#&gt; [1] "de"</span></span></code></pre></div>
 <p>This option affects the <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> method as well as the
 output of <code>$tabulate()</code>. If no english labels are available,
 the german labels are used as a fallback mechanism.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; An object of class od_table</span></span>
+<pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Krebsstatistik</span></span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Dataset     Krebsstatistik </span></span>
-<span><span class="co">#&gt; Measures    Anzahl der Datensätze F-KRE </span></span>
-<span><span class="co">#&gt; Fields      Tumore ICD/10 3-Steller &lt;95&gt;, Berichtsjahr &lt;37&gt;, Bundesland &lt;9&gt;,</span></span>
-<span><span class="co">#&gt;             Geschlecht &lt;2&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Dataset</span>: <a href="https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_krebs_ext_KREBS_1" class="external-link">OGD_krebs_ext_KREBS_1</a> (<span style="font-style: italic;">data.statistik.gv.at</span>)</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Measures</span>: Anzahl der Datensätze F-KRE</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Fields</span>: Tumore ICD/10 3-Steller<span style="font-style: italic;"> &lt;95&gt;</span>, Berichtsjahr<span style="font-style: italic;"> &lt;37&gt;</span>, Bundesland<span style="font-style: italic;"> &lt;9&gt;</span>,</span></span>
+<span><span class="co">#&gt;   Geschlecht<span style="font-style: italic;"> &lt;2&gt;</span></span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Request     2022-09-16 18:35:56 </span></span>
-<span><span class="co">#&gt; STATcubeR   0.4.3</span></span></code></pre>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2022-09-23 19:10:52]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">0.5.0</span></span></span></code></pre>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 46,479 x 5</span>
   <span style="font-weight: bold;">`Tumore ICD/10 3-Steller`</span>         <span style="font-weight: bold;">Berichts…¹</span> <span style="font-weight: bold;">Bundesland</span>       <span style="font-weight: bold;">Geschl…²</span> <span style="font-weight: bold;">Anzah…³</span>

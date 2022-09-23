@@ -18,7 +18,7 @@ for more details."><meta property="og:image" content="https://statistikat.github
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.4.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.5.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -124,7 +124,30 @@ as <code>fields</code> in the parsed API response</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">sc_table_custom</span><span class="op">(</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">sc_table_custom</span><span class="op">(</span><span class="st">"str:database:detouextregsai"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Accomodation statistics as of 1974 according to seasons</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Database</span>: <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=detouextregsai" class="external-link">detouextregsai</a> (<span style="font-style: italic;">STATcube</span>)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Measures</span>: Nights spent</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Fields</span>: Season/Tourism Month<span style="font-style: italic;"> &lt;2&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Request</span>: <span style="color: #B2B2B2;">[2022-09-02 12:21:00]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">STATcubeR</span>: 0.5.0</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">sc_table_custom</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="st">"str:database:detouextregsai"</span>,</span></span>
+<span class="r-in"><span>  dimensions <span class="op">=</span> <span class="st">"str:field:detouextregsai:F-DATA1:C-SDB_TIT-0"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Accomodation statistics as of 1974 according to seasons</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Database</span>: <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=detouextregsai" class="external-link">detouextregsai</a> (<span style="font-style: italic;">STATcube</span>)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Measures</span>: Nights spent</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Fields</span>: Season/Tourism Month<span style="font-style: italic;"> &lt;47&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Request</span>: <span style="color: #B2B2B2;">[2022-09-19 14:40:09]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">STATcubeR</span>: 0.5.0</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">sc_table_custom</span><span class="op">(</span></span></span>
 <span class="r-in"><span>  db <span class="op">=</span> <span class="st">"str:database:detouextregsai"</span>,</span></span>
 <span class="r-in"><span>  measures <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="st">"str:statfn:detouextregsai:F-DATA1:F-ANK:SUM"</span>,</span></span>
@@ -135,14 +158,14 @@ as <code>fields</code> in the parsed API response</p></dd>
 <span class="r-in"><span>    <span class="st">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93SUM-0"</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> An object of class sc_table</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Accomodation statistics as of 1974 according to seasons</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Database    Accomodation statistics as of 1974 according to seasons </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Measures    Arrivals, Nights spent </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Fields      Season/Tourism Month &lt;47&gt;, Country of origin &lt;4&gt; </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Database</span>: <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=detouextregsai" class="external-link">detouextregsai</a> (<span style="font-style: italic;">STATcube</span>)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Measures</span>: Arrivals, Nights spent</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Fields</span>: Season/Tourism Month<span style="font-style: italic;"> &lt;47&gt;</span>, Country of origin<span style="font-style: italic;"> &lt;4&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Request     2022-08-29 09:52:13 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> STATcubeR   0.4.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">Request</span>: <span style="color: #B2B2B2;">[2022-08-29 09:52:13]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">STATcubeR</span>: 0.5.0</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
