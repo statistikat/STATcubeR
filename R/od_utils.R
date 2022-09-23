@@ -127,7 +127,7 @@ format.od_json <- function(x, ...) {
     notes <- c("", cli::style_italic(strwrap(x$notes)), "")
   }
   c(
-    cli::style_bold(x$title),
+    cli::style_bold(strwrap(x$title)),
     notes,
     cli_dl2(list(
       Measures = measures, Fields = fields,

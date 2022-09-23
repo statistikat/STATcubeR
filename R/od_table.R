@@ -131,7 +131,7 @@ print.od_table <- function(x, ...) {
 
 format.od_table <- function(x, ...) {
   c(
-    cli::style_bold(x$meta$source$label),
+    cli::style_bold(strwrap(x$meta$source$label)),
     "",
     cli_dl2(list(
       Dataset = paste0(cli::style_hyperlink(

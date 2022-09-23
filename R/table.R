@@ -241,7 +241,7 @@ print.sc_table <- function(x, ...) {
 
 format.sc_table <- function(x, ...) {
   c(
-    cli::style_bold(x$meta$source$label),
+    cli::style_bold(strwrap(x$meta$source$label)),
     "",
     cli_dl2(list(
       Database = paste0(cli::style_hyperlink(x$meta$source$code, x$browse()),
