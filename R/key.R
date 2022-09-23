@@ -56,6 +56,8 @@ sc_key_get <- function(server = "ext") {
 #' @describeIn sc_key prompts for a key via [readline()]
 #' @export
 sc_key_prompt <- function(server = "ext", test = TRUE) {
+  cli::cli_alert_info(c("You can view your API key under the ",
+    "{.href [STATcube account preferences]({sc_browse_preferences()})}"))
   key <- readline("Provide your API key: \n")
   sc_key_set(key, test = test)
 }

@@ -54,6 +54,7 @@ and throw an error if the test request is unsuccessfull.
 ```r
 sc_key_set('wrong key')
 #> Error in sc_key_set("wrong key") : The key could not be verified
+#> Run sc_last_error() or read the online documentation for more details
 ```
 
 ## Next Steps
