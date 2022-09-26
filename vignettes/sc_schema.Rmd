@@ -78,6 +78,11 @@ my_catalogue$Statistics$`Foreign Trade`$Außenhandelsindizes
 ## Databases and Tables
 
 Inside the catalogue, the leafs^[In the context of tree-like data structures, leafs are used to describe nodes of a tree which have no child nodes] of the tree are mostly of type `DATABASE` and `TABLE`.
+
+```{r}
+my_catalogue$Statistics$`Foreign Trade`$`Regional data by federal provinces`
+```
+
 Here is an example for the `DATABASE` node [`deake005`](`r sc_browse_database("deake005")`).
 
 ```{r}
@@ -151,7 +156,7 @@ A complete list of schema types is avilable in the [API reference](https://docs.
 Information about resources other than databases and the catalogue can
 be obtained by passing the resource id to `sc_schema()`.
 
-```{r}
+```{r, collapse=TRUE}
 (id <- my_db_info$Factors$id)
 group_info <- sc_schema(id)
 group_info
@@ -161,7 +166,7 @@ Note that the tree returned only has depth 1, i.e. the child nodes of measures a
 However, ids of the child nodes can be obtained with `$id`.
 These ids can be used to send another request to the `/schema` endpoint
 
-```{r}
+```{r, collapse=TRUE}
 (id <- group_info$`Average hours usually worked per week`$id)
 measure_info <- sc_schema(id)
 ```

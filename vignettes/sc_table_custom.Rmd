@@ -43,7 +43,8 @@ Now we want to add a classification to the table.
 This can be done by getting the database schema and showing all classification fields.
 
 ```{r}
-(fields <- sc_schema_db(database) %>% sc_schema_flatten("FIELD"))
+schema <- sc_schema_db(database)
+(fields <- sc_schema_flatten(schema, "FIELD"))
 ```
 
 If we want to add "Country of origin" we need to include the fouth entry of the `id` column in our request.
@@ -69,7 +70,7 @@ Currently, the table only returns the default measure for the database which is 
 We can add a second measure by again using the database schema and passing a measure id
 
 ```{r}
-(measures <- sc_schema_db(database) %>% sc_schema_flatten("MEASURE"))
+(measures <- sc_schema_flatten(schema, "MEASURE"))
 ```
 
 We can add both measures to the request by using `measures$id`.
@@ -94,8 +95,7 @@ knitr::include_graphics("img/hierarchical_classification.png")
 The different valuesets for "country of origin" can be compared by browsing the database schema.
 
 ```{r}
-db_schema <- sc_schema_db(database)
-db_schema$`Other Classifications`$`Country of origin`
+(valuesets <- schema$`Other Classifications`$`Country of origin`)
 ```
 
 We can see that the two levels of the hierarchy are represented by the two valuesets.
@@ -106,12 +106,10 @@ For classification with more levels of hierarchies, more valuesets will be prese
 We will now use the id for the first valueset in the `dimensions` parmaeter of `sc_table_custom`.
 
 ```{r}
-id_valueset <- db_schema$`Other Classifications`$
-  `Country of origin`$`Country of origin`$id
 x <- sc_table_custom(
   db = "str:database:detouextregsai",
   measures = measures$id[1:2],
-  dimensions = id_valueset
+  dimensions = valuesets$`Country of origin`$id
 )
 x$tabulate()
 ```

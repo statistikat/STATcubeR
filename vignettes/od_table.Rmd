@@ -63,7 +63,7 @@ table$tabulate()
 ```
 
 The dataset contains `r nrow(table$data)` rows. 
-If every combination of tumor tpye, year, region and sex would contain a seperate row the number of rows would be the following.
+If every combination of tumor type, year, region and sex would contain a seperate row the number of rows would be the following.
 
 \[
 95\times37\times9\times2 = 63270
@@ -73,7 +73,11 @@ This means that the table is fairly dense. But this might not be the case for ot
 
 ## Metadata
 
-This section will show the different metadata components contained in the table object.
+This section will show the different metadata components contained in the table object and how they relate to the resources on the OGD server.
+
+```{r, collapse=TRUE}
+table$resources$name
+```
 
 ### Header
 
@@ -123,7 +127,7 @@ table$field("C-BERJ-0")
 
 #### Province
 
-The regional classification contains 9 elements which correspond to the NUTS2 regions of austria.
+The regional classification contains 9 elements which correspond to the NUTS2 regions ("Bundesländer") of austria.
 
 ```{r}
 table$field("C-BUNDESLAND-0")
