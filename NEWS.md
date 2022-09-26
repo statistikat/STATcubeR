@@ -1,7 +1,7 @@
 # STATcubeR 0.5.0
 
 * adapt `od_list()` to data.statistik.at update ([`2249b66`](https://github.com/statistikat/STATcubeR/commit/2249b6607cb822a4aac56c6258cbe967832171f1))
-* Update print methods with the `{cli}` package
+* Update print methods with the `{cli}` package [#31](https://github.com/statistikat/STATcubeR/pull/31)
 
 # STATcubeR 0.4.3
 
