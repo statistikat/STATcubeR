@@ -24,6 +24,7 @@ sc_table_saved_list <- function(key = NULL, server = "ext") {
 #' @export
 sc_table_saved <- function(table_uri, language = NULL, key = NULL, server = "ext") {
   language <- sc_language(language)
+  table_uri <- as.character(table_uri)
   if (substr(table_uri, 1, 3) != "str")
     table_uri <- paste0("str:table:", table_uri)
   sc_with_cache(c("sc_table_saved", table_uri, language, key), function() {
