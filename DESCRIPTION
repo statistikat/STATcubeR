@@ -18,10 +18,12 @@ Imports:
     cli,
     httr,
     jsonlite,
-    magrittr
+    magrittr,
+    pillar,
+    tibble,
+    vctrs
 Suggests: 
     data.tree,
-    pillar,
     rappdirs,
     xml2
 Encoding: UTF-8
