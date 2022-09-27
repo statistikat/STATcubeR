@@ -62,6 +62,7 @@ pillar_shaft.sc_schema_uri <- function(x, ...) {
   )
 }
 
+#' @export
 as.character.sc_schema_uri <- function(x, ...) {
   format(x)
 }
