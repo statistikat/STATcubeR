@@ -8,7 +8,7 @@
 \alias{sc_table_saved}
 \title{Create a request against the /table endpoint}
 \usage{
-sc_table(json_file, language = "en", add_totals = TRUE, key = NULL)
+sc_table(json_file, language = NULL, add_totals = TRUE, key = NULL)
 
 sc_examples_list()
 
@@ -16,7 +16,7 @@ sc_example(filename)
 
 sc_table_saved_list(key = NULL, server = "ext")
 
-sc_table_saved(table_uri, language = c("en", "de"), key = NULL, server = "ext")
+sc_table_saved(table_uri, language = NULL, key = NULL, server = "ext")
 }
 \arguments{
 \item{json_file}{path to a json file, which was downloaded via the STATcube

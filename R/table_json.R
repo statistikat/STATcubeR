@@ -75,9 +75,9 @@ sc_database_get_server <- function(database_uri) {
   )
 }
 
-sc_table_json_post <- function(json, language = c("en", "de"),
+sc_table_json_post <- function(json, language = NULL,
                                add_totals = TRUE, key = NULL) {
-  language <- match.arg(language)
+  language <- sc_language(language)
   server <- sc_json_get_server(json)
   if (add_totals)
     json <- json %>%

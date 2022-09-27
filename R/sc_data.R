@@ -108,7 +108,7 @@ sc_data <- R6::R6Class(
       if (missing(value)) {
         private$lang
       } else {
-        match.arg(value, c("de", "en"))
+        value <- sc_language(value)
         private$lang <- value
       }
     },

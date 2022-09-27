@@ -130,7 +130,7 @@ open the dataset in a browser
 \subsection{Method \code{add_language()}}{
 add a second language to the dataset
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{sc_table_class$add_language(language = c("en", "de"), key = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{sc_table_class$add_language(language = NULL, key = NULL)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{

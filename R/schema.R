@@ -25,8 +25,8 @@
 #' @family functions for /schema
 #' @export
 sc_schema <- function(id = NULL, depth = NULL,
-                      language = c("en", "de"), key = NULL, server = "ext") {
-  language <- match.arg(language)
+                      language = NULL, key = NULL, server = "ext") {
+  language <- sc_language(language)
   if (is.null(key))
     key <- sc_key(server)
   response <- sc_with_cache(

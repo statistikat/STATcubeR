@@ -48,7 +48,7 @@ Similar contents can be found in \verb{$meta}.}
 This class is not exported. Use \code{\link[=od_table]{od_table()}} to
 initialize objects of class \code{od_table}.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{od_table_class$new(id, language = c("en", "de"), server = "ext")}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{od_table_class$new(id, language = NULL, server = "ext")}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{

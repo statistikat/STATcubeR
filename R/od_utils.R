@@ -32,9 +32,9 @@ od_attr <- function(json) {
   data.frame(label = label, code = code, stringsAsFactors = FALSE)
 }
 
-od_create_data <- function(id, json = od_json(id), lang = c("en", "de"),
+od_create_data <- function(id, json = od_json(id), lang = NULL,
                            server = "ext", verbose = FALSE) {
-  lang <- match.arg(lang)
+  lang <- sc_language(lang)
   resources <- od_resource_all(id, json, server)
   dat <- resources$data[[1]]
   header <- resources$data[[2]]

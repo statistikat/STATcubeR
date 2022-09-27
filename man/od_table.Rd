@@ -4,7 +4,7 @@
 \alias{od_table}
 \title{Create a table-instance from an open-data dataset}
 \usage{
-od_table(id, language = c("en", "de"), server = "ext")
+od_table(id, language = NULL, server = "ext")
 }
 \arguments{
 \item{id}{the id of the data-set that should be accessed}

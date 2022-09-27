@@ -52,7 +52,7 @@
 #' od_table("OGD_f1741_HH_Proj_1")
 #' od_table("OGD_veste303_Veste203_1")
 #' @export
-od_table <- function(id, language = c("en", "de"), server = "ext") {
+od_table <- function(id, language = NULL, server = "ext") {
   od_table_class$new(id, language, server = server)
 }
 
@@ -70,8 +70,8 @@ od_table_class <- R6::R6Class(
     #' @param id the id of the data-set that should be accessed
     #' @param language language to be used for labeling. `"en"` or `"de"`
     #' @param server the OGD-Server server to be used
-    initialize = function(id, language = c("en", "de"), server = "ext") {
-      language <- match.arg(language)
+    initialize = function(id, language = NULL, server = "ext") {
+      language <- sc_language(language)
       stime <- Sys.time()
       stopifnot(rlang::is_scalar_character(id))
       private$id <- id

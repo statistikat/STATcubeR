@@ -24,3 +24,9 @@ sc_headers <- function(language = c("en", "de"), key = NULL, server = "ext", ...
                           " httr/", utils::packageVersion("httr"),
                           " R/", R.version$major, ".", R.version$minor))
 }
+
+sc_language <- function(language = NULL) {
+  if (is.null(language))
+    language <- getOption("STATcubeR.language")
+  match.arg(language, c("en", "de"))
+}
