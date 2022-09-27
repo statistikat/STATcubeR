@@ -3,6 +3,8 @@
 S3method(as.character,od_json)
 S3method(as.character,sc_json)
 S3method(as.data.frame,sc_data)
+S3method(format,sc_schema_uri)
+S3method(pillar_shaft,sc_schema_uri)
 S3method(print,od_cache_file)
 S3method(print,od_json)
 S3method(print,od_revisions)

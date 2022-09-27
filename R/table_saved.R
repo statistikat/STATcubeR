@@ -9,10 +9,13 @@ sc_table_saved_list <- function(key = NULL, server = "ext") {
 
   tables <- schema %>% sapply(function(x) x$type == "TABLE")
   saved_tables <- schema[tables]
-  data.frame(
+  vctrs::new_data_frame(list(
     label = sapply(saved_tables, function(x) x$label),
-    id = sapply(saved_tables, function(x) x$id)
-  )
+    id = new_schema_uri(
+      sapply(saved_tables, function(x) x$id),
+      sapply(saved_tables, function(x) x$id)
+    )
+  ), class = c("tbl", "tbl_df"))
 }
 
 #' @param table_uri Identifier of a saved table as returned by
