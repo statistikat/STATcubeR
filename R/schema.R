@@ -138,8 +138,7 @@ sc_schema_flatten_impl <- function(resp, type) {
 #' [catalogue explorer](`r sc_browse_catalogue()`) of the STATcube GUI and reurns
 #' a tree-type object containing all databases and tables.
 #' @export
-sc_schema_catalogue <- function(depth = "folder", language = c("en", "de"),
-                                key = NULL, server = "ext") {
-  sc_schema(depth = depth, language = language, key = key, server = server)
+sc_schema_catalogue <- function(depth = "folder", ...) {
+  sc_schema(id = NULL, depth = depth, ...)
 }
 

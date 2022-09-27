@@ -14,12 +14,7 @@ sc_schema(id = NULL, depth = NULL, language = NULL, key = NULL, server = "ext")
 
 sc_schema_flatten(x, type)
 
-sc_schema_catalogue(
-  depth = "folder",
-  language = c("en", "de"),
-  key = NULL,
-  server = "ext"
-)
+sc_schema_catalogue(depth = "folder", ...)
 
 sc_schema_db(id, depth = "valueset", language = c("en", "de"), key = NULL)
 }
