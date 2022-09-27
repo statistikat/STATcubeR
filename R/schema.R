@@ -74,29 +74,44 @@ print.sc_schema <- function(x, tree = NULL, ..., limit = 30) {
   classes <- sapply(x, class)
   if (tree && any(classes == "sc_schema"))
     return(print_schema_with_tree(x, limit = limit, ...))
-  cat(x$type, ": ", x$label, "\n", sep = "")
-  sc_schema_print_children(x, message_empty = switch(
+  style <- cli::make_ansi_style(sc_schema_colors()[[x$type]])
+  cat(style(x$type), ": ", cli::style_bold(x$label), "\n", sep = "")
+  short_id <- strsplit(x$id, ":")[[1]][3]
+  message_empty <- switch(
     x$type,
-    DATABASE = "# Get more info with {.run STATcubeR::sc_schema_db('{x$id}')}",
-    TABLE = "Get the data with {.run STATcubeR::sc_table_saved('{x$id}')}",
+    DATABASE = c("# Get more metdata with {.run [sc_schema_db('{short_id}')]",
+                 "(STATcubeR::sc_schema_db('{x$id}'))}"),
+    TABLE = c("# Get the data with {.run [sc_table_saved('{short_id}')]",
+              "(STATcubeR::sc_table_saved('{x$id}'))}"),
     NULL
-  ))
+  )
+  sc_schema_print_children(x, message_empty = message_empty, ...)
+  invisible(x)
 }
 
-sc_schema_print_children <- function(x, message_empty = NULL) {
+sc_schema_print_children <- function(x, message_empty = NULL, ...) {
   classes <- sapply(x, class)
-  child_schemas <- names(x)[classes == "sc_schema"]
+  ind <- which(classes == "sc_schema")
+  child_schemas <- names(x)[ind]
   if (length(child_schemas) > 0) {
-    data.frame(
-      child = child_schemas,
-      type = sapply(x[child_schemas], function(x) x$type),
-      n_childs = sapply(x[child_schemas], function(x) {
-        sum(sapply(x, class) == "sc_schema")
-      }),
-      stringsAsFactors = FALSE
-    ) %>% `class<-`(c("tbl", "data.frame")) %>% `row.names<-`(NULL) %>% print()
-  } else if (!is.null(message_empty))
+    children <- vctrs::new_data_frame(list(
+      child = new_schema_uri(
+        label = child_schemas,
+        uri = sapply(ind, function(i) x[[i]]$id)
+      ),
+      type = sc_schema_type(sapply(ind, function(i) x[[i]]$type)),
+      n = sapply(ind, function(i) {
+        sum(sapply(x[[i]], class) == "sc_schema")
+      })
+    ), class = c("tbl_df", "tbl"))
+    if (all(children$n == 0))
+      children$n <- NULL
+    formatted <- format(children, ...)
+    cat(formatted[seq(4, length(formatted))], sep = "\n")
+  } else if (!is.null(message_empty)) {
+    short_id <- strsplit(x$id, ":")[[1]][3]
     cat(cli::format_inline(message_empty), "\n")
+  }
 }
 
 sc_as_nested_list <- function(x) {

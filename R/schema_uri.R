@@ -66,3 +66,30 @@ pillar_shaft.sc_schema_uri <- function(x, ...) {
 as.character.sc_schema_uri <- function(x, ...) {
   format(x)
 }
+
+sc_schema_colors <- function() {
+  if (!is.null(getOption("STATcubeR.schema_colors")))
+    return(getOption("STATcubeR.schema_colors"))
+  list(
+    "FOLDER" = "#8470FF", "DATABASE" = "cadetblue", "TABLE" = "peru",
+    "GROUP" = "#8470FF", "FIELD" = "cyan", "VALUESET" = "cadetblue",
+    "VALUE" = "#8470FF", "MEASURE" = "yellow", "STAT_FUNCTION" = "cadetblue",
+    "COUNT" = "cadetblue"
+  )
+}
+
+sc_schema_type <- function(type) {
+  stopifnot(is.character(type), all(type %in% names(sc_schema_colors())))
+  vctrs::new_vctr(type, class = "sc_schema_type", inherit_base_type = TRUE)
+}
+
+#' @export
+pillar_shaft.sc_schema_type <- function(x, ...) {
+  type <- vctrs::vec_data(x)
+  stl <- sc_schema_colors()
+  formatted <- sapply(type, function(y) {
+    style <- cli::make_ansi_style(stl[[y]])
+    style(y)
+  })
+  pillar::new_pillar_shaft_simple(formatted, type_sum = "chr")
+}
