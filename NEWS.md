@@ -1,3 +1,8 @@
+# STATcubeR 0.5.1
+
+* Update print methods with the `{tibble}` package (#32)
+* Add global option `STATcubeR.language` to override the default language
+
 # STATcubeR 0.5.0
 
 * adapt `od_list()` to data.statistik.at update ([`2249b66`](https://github.com/statistikat/STATcubeR/commit/2249b6607cb822a4aac56c6258cbe967832171f1))
