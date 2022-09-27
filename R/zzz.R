@@ -12,6 +12,7 @@
 }
 
 cli_theme_pkgdown <- function() {
+  options(cli.hyperlink_run = FALSE)
   options(cli.theme = list(
     ".field" = list("color" = "#0d0d73"),
     ".code" = list("color" = "blue"),
@@ -27,6 +28,7 @@ cli_theme_pkgdown <- function() {
 }
 
 cli_theme_reset <- function() {
+  options(cli.hyperlink_run = TRUE)
   Sys.unsetenv("R_CLI_HYPERLINK_MODE")
   options(cli.theme = NULL)
   options(fansi.warn = NULL)
