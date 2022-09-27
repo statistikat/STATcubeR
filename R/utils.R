@@ -25,8 +25,8 @@ sc_headers <- function(language = c("en", "de"), key = NULL, server = "ext", ...
                           " R/", R.version$major, ".", R.version$minor))
 }
 
-sc_language <- function(language = NULL) {
+sc_language <- function(language = NULL, options = c("en", "de")) {
   if (is.null(language))
     language <- getOption("STATcubeR.language")
-  match.arg(language, c("en", "de"))
+  match.arg(language, options)
 }
