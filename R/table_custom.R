@@ -7,8 +7,8 @@
 #' for more details.
 #'
 #' @param db The uid of a database
-#' @param measures A character vector of uids for measures. Can be either of
-#'   type `MEASURE` or of type `STAT_FUNCTION`
+#' @param measures A character vector of uids for measures. Each entry must be
+#'   of type `MEASURE`, `STAT_FUNCTION` or `COUNT`.
 #' @param dimensions A character vector of dimensions for the cube. Can be
 #'   either of type `FIELD` or type `VALUESET`. Those entries are referred to
 #'   as `fields` in the parsed API response

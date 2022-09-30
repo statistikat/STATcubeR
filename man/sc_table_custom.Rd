@@ -16,8 +16,8 @@ sc_table_custom(
 \arguments{
 \item{db}{The uid of a database}
 
-\item{measures}{A character vector of uids for measures. Can be either of
-type \code{MEASURE} or of type \code{STAT_FUNCTION}}
+\item{measures}{A character vector of uids for measures. Each entry must be
+of type \code{MEASURE}, \code{STAT_FUNCTION} or \code{COUNT}.}
 
 \item{dimensions}{A character vector of dimensions for the cube. Can be
 either of type \code{FIELD} or type \code{VALUESET}. Those entries are referred to
