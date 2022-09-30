@@ -131,6 +131,53 @@ sc_example("agriculture_prices.json") %>% sc_table()
 sc_example("economic_trend_monitor.json") %>% sc_table()
 ```
 
+## Choosing the Language {.tabsert .tabset-pills}
+
+The language which is used for labelling can be changed via the `language`
+parameter of `sc_table()`.
+
+### Accomodation
+
+```{r}
+sc_example("accomodation.json") %>% sc_table("de")
+```
+
+### STATatlas
+
+```{r}
+sc_example("economic_atlas.json") %>% sc_table("de")
+```
+
+### Trade
+
+```{r}
+sc_example("foreign_trade.json") %>% sc_table("de")
+```
+
+### GDP
+
+```{r}
+sc_example("gross_regional_product.json") %>% sc_table("de")
+```
+
+### Working Hours
+
+```{r}
+sc_example("labor_force_survey.json") %>% sc_table("de")
+```
+
+### Agriculture
+
+```{r}
+sc_example("agriculture_prices.json") %>% sc_table("de")
+```
+
+### monitor.statistik.at
+
+```{r}
+sc_example("economic_trend_monitor.json") %>% sc_table("de")
+```
+
 ## Further reading
 
 * Functionalities of the returned object are explained in the `r ticle("sc_data")`.
