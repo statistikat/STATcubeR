@@ -170,6 +170,27 @@ If you encounter this error during the workflow described in the `r ticle("sc_ta
 This is because json request that are downloaded by the STATcube GUI should always contain valid URIs.
 However, if you either modify the downloaded json requests or use `sc_table_custom()`, the reason "invalid json body" is plausible.
 
+### Cell Limit Exceeded
+
+This error occurs if more than 1 million cells are requested via a single
+call to `sc_table()` or `sc_table_custom()`.
+If you encounter this error, consider splitting up the request into multiple smaller requests.
+
+```{r, eval = FALSE}
+sc_table_custom(
+  "str:database:debevstand",
+  "str:measure:debevstand:F-BEVSTAND:F-ISIS-1",
+  c("str:field:debevstand:F-BEVSTAND:C-A10-0",
+    "str:valueset:debevstand:F-BEVSTAND:C-GNU-2:C-GNU-2",
+    "str:valueset:debevstand:F-BEVSTAND:C-BESC51-0:C-BESC51-0",
+    "str:valueset:debevstand:F-BEVSTAND:C-BESC11-0:C-BESC11-0")
+)
+```
+
+```{r, echo = FALSE, error = TRUE}
+readRDS("sc_last_error/cell_limit.rds") %>% STATcubeR:::sc_check_response()
+```
+
 ## Custom Error Handling
 
 If you want to use your own error-handling instead of the default `r STATcubeR` error handlers, you can get started with the following code sample from one of our `{shiny}` applications.
