@@ -119,12 +119,12 @@ It is possible to use a mixture of valuesets and fields in the `dimensions` para
 ## Using Counts
 
 Instead of Measures and Valuesets, it is also possible to provide counts
-in the measure parameter of `sc_table_ciustom()`
+in the measure parameter of `sc_table_custom()`.
 
 ```{r}
 schema_pop <- sc_schema_db("debevstand")
 (count <- schema_pop$`Datensätze/Records`$`F-BEVSTAND`)
-sc_table_custom("str:database:debevstand", count$id)
+sc_table_custom(schema_pop$id, count$id)
 ```
 
 ## Filtering Data
