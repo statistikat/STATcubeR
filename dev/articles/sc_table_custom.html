@@ -18,7 +18,7 @@
 <link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Define Custom Tables">
 <meta property="og:description" content="Define custom requests against the `/table` endpoint programatically by providing character vectors with ids of databases, measures and classification fields.
 ">
@@ -37,7 +37,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.4.3.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.5.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -156,7 +156,8 @@ establishments in the month of 2022-06-01.</p>
 <p>Now we want to add a classification to the table. This can be done by
 getting the database schema and showing all classification fields.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">(</span><span class="va">fields</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_db</a></span><span class="op">(</span><span class="va">database</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_flatten</a></span><span class="op">(</span><span class="st">"FIELD"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">schema</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_db</a></span><span class="op">(</span><span class="va">database</span><span class="op">)</span></span>
+<span><span class="op">(</span><span class="va">fields</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_flatten</a></span><span class="op">(</span><span class="va">schema</span>, <span class="st">"FIELD"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A data frame: 4 × 2</span>
   <span style="font-weight: bold;">id</span>                                           <span style="font-weight: bold;">label</span>                     
   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     
@@ -208,7 +209,7 @@ we can add the communes easily.</p>
 database which is the number of nights spent. We can add a second
 measure by again using the database schema and passing a measure id</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">(</span><span class="va">measures</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_db</a></span><span class="op">(</span><span class="va">database</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_flatten</a></span><span class="op">(</span><span class="st">"MEASURE"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">measures</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_flatten</a></span><span class="op">(</span><span class="va">schema</span>, <span class="st">"MEASURE"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A data frame: 2 × 2</span>
   <span style="font-weight: bold;">id</span>                                       <span style="font-weight: bold;">label</span>       
   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       
@@ -251,14 +252,10 @@ valueset that corresponds to the more granular classification of
 <p>The different valuesets for “country of origin” can be compared by
 browsing the database schema.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">db_schema</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_db</a></span><span class="op">(</span><span class="va">database</span><span class="op">)</span></span>
-<span><span class="va">db_schema</span><span class="op">$</span><span class="va">`Other Classifications`</span><span class="op">$</span><span class="va">`Country of origin`</span></span></code></pre></div>
-<pre class="r-output"><code>FIELD: Country of origin
-<span style="color: #949494;"># A data frame: 2 × 3</span>
-  <span style="font-weight: bold;">child</span>                    <span style="font-weight: bold;">type</span>     <span style="font-weight: bold;">n_childs</span>
-  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>
-<span style="color: #BCBCBC;">1</span> Country of origin        VALUESET       87
-<span style="color: #BCBCBC;">2</span> Herkunftsland (Ebene +1) VALUESET        3</code></pre>
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">valuesets</span> <span class="op">&lt;-</span> <span class="va">schema</span><span class="op">$</span><span class="va">`Other Classifications`</span><span class="op">$</span><span class="va">`Country of origin`</span><span class="op">)</span></span></code></pre></div>
+<pre class="r-output"><code><span style="color: #00BBBB;">FIELD</span>: <span style="font-weight: bold;">Country of origin</span>
+<span style="color: #BCBCBC;">1</span> Country of origin        <span style="color: #87AFAF;">VALUESET</span>    87
+<span style="color: #BCBCBC;">2</span> Herkunftsland (Ebene +1) <span style="color: #87AFAF;">VALUESET</span>     3</code></pre>
 <p>We can see that the two levels of the hierarchy are represented by
 the two valuesets. The valueset “Herkunftsland” uses 3 classification
 elements and represents the top level of the hierarchy (Austria,
@@ -269,12 +266,10 @@ present.</p>
 <p>We will now use the id for the first valueset in the
 <code>dimensions</code> parmaeter of <code>sc_table_custom</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">id_valueset</span> <span class="op">&lt;-</span> <span class="va">db_schema</span><span class="op">$</span><span class="va">`Other Classifications`</span><span class="op">$</span></span>
-<span>  <span class="va">`Country of origin`</span><span class="op">$</span><span class="va">`Country of origin`</span><span class="op">$</span><span class="va">id</span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span></span>
 <span>  db <span class="op">=</span> <span class="st">"str:database:detouextregsai"</span>,</span>
 <span>  measures <span class="op">=</span> <span class="va">measures</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>,</span>
-<span>  dimensions <span class="op">=</span> <span class="va">id_valueset</span></span>
+<span>  dimensions <span class="op">=</span> <span class="va">valuesets</span><span class="op">$</span><span class="va">`Country of origin`</span><span class="op">$</span><span class="va">id</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 87 x 4</span>
@@ -296,6 +291,26 @@ present.</p>
 <code>dimensions</code> parameter.</p>
 </div>
 <div class="section level2">
+<h2 id="using-counts">Using Counts<a class="anchor" aria-label="anchor" href="#using-counts"></a>
+</h2>
+<p>Instead of Measures and Valuesets, it is also possible to provide
+counts in the measure parameter of <code><a href="../reference/sc_table_custom.html">sc_table_custom()</a></code>.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">schema_pop</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_db</a></span><span class="op">(</span><span class="st">"debevstand"</span><span class="op">)</span></span>
+<span><span class="op">(</span><span class="va">count</span> <span class="op">&lt;-</span> <span class="va">schema_pop</span><span class="op">$</span><span class="va">`Datensätze/Records`</span><span class="op">$</span><span class="va">`F-BEVSTAND`</span><span class="op">)</span></span></code></pre></div>
+<pre class="r-output"><code><span><span class="va">COUNT</span><span class="op">:</span> <span class="cn">F</span><span class="op">-</span><span class="va">BEVSTAND</span></span></code></pre>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span><span class="va">schema_pop</span><span class="op">$</span><span class="va">id</span>, <span class="va">count</span><span class="op">$</span><span class="va">id</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Population at the beginning of the quarter since 2002</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Database</span>: <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=debevstand" class="external-link">debevstand</a> (<span style="font-style: italic;">STATcube</span>)</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Measures</span>: F-BEVSTAND</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Fields</span>: Quarter<span style="font-style: italic;"> &lt;2&gt;</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2022-09-30 08:34:50]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">0.5.0</span></span></span></code></pre>
+</div>
+<div class="section level2">
 <h2 id="filtering-data">Filtering Data<a class="anchor" aria-label="anchor" href="#filtering-data"></a>
 </h2>
 <p>Omitting certain classification elements from the query is possible
@@ -313,13 +328,13 @@ request</a> if you see this as a useful extension of
 Example
 </summary><p>For example, the last call to <code><a href="../reference/sc_table_custom.html">sc_table_custom()</a></code> will
 send the following json to the server.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"database"</span><span class="fu">:</span> <span class="st">"str:database:detouextregsai"</span><span class="fu">,</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"measures"</span><span class="fu">:</span> <span class="ot">[</span> <span class="st">"str:measure:detouextregsai:F-DATA1:F-ANK"</span><span class="ot">,</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-UEB"</span> <span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"dimensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="ot">[</span> <span class="st">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2"</span> <span class="ot">]</span> <span class="ot">]</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"database"</span><span class="fu">:</span> <span class="st">"str:database:detouextregsai"</span><span class="fu">,</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"measures"</span><span class="fu">:</span> <span class="ot">[</span> <span class="st">"str:measure:detouextregsai:F-DATA1:F-ANK"</span><span class="ot">,</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-UEB"</span> <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"dimensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="ot">[</span> <span class="st">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2"</span> <span class="ot">]</span> <span class="ot">]</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
 <p>For comparison, this is how the same request was specified in
 <a href="../index.html" data-tippy-content="
   &lt;b class='tippy_header'&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
@@ -327,7 +342,7 @@ send the following json to the server.</p>
     Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
   &lt;/div&gt;
   " class="STATcubeR">STATcubeR</a></p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span></span>
 <span>  <span class="st">"str:database:detouextregsai"</span>,</span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"str:measure:detouextregsai:F-DATA1:F-ANK"</span>,</span>
@@ -337,18 +352,18 @@ send the following json to the server.</p>
 <p>It is now possible to add recodes in order to only show results for
 Vienna. For this, the regional classification (<code>C-C93</code>) is
 limited to the code for vienna, which is <code>C-C93-2:01</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"database"</span><span class="fu">:</span> <span class="st">"str:database:detouextregsai"</span><span class="fu">,</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"measures"</span><span class="fu">:</span> <span class="ot">[</span> <span class="st">"str:measure:detouextregsai:F-DATA1:F-ANK"</span><span class="ot">,</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-UEB"</span> <span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"dimensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="ot">[</span> <span class="st">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2"</span> <span class="ot">]</span> <span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"recodes"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2"</span><span class="er">:</span> <span class="fu">{</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"map"</span><span class="fu">:</span> <span class="ot">[[</span> <span class="st">"str:value:detouextregsai:F-DATA1:C-C93-2:C-C93-2:01"</span> <span class="ot">]]</span> </span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"database"</span><span class="fu">:</span> <span class="st">"str:database:detouextregsai"</span><span class="fu">,</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"measures"</span><span class="fu">:</span> <span class="ot">[</span> <span class="st">"str:measure:detouextregsai:F-DATA1:F-ANK"</span><span class="ot">,</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-UEB"</span> <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"dimensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="ot">[</span> <span class="st">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2"</span> <span class="ot">]</span> <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"recodes"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2"</span><span class="er">:</span> <span class="fu">{</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"map"</span><span class="fu">:</span> <span class="ot">[[</span> <span class="st">"str:value:detouextregsai:F-DATA1:C-C93-2:C-C93-2:01"</span> <span class="ot">]]</span> </span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
 </details>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -364,7 +379,7 @@ limited to the code for vienna, which is <code>C-C93-2:01</code>.</p>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
     </footer>

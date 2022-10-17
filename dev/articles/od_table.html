@@ -18,7 +18,7 @@
 <link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Open Government Data">
 <meta property="og:description" content="Hands-on guide on how to get and use datasets from the OGD portal. This article also contains a short introduction on tabulation and translation of datasets.
 ">
@@ -37,7 +37,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.4.3.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.5.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -163,15 +163,16 @@ bundles all the data from the OGD portal that correspons to this
 dataset. Printing the object will show a summary of the contents.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Cancer statistics by reporting year, province of residence and localisation of cancer</span></span></span>
+<pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Cancer statistics by reporting year, province of residence and</span></span></span>
+<span><span class="co">#&gt; <span style="font-weight: bold;">localisation of cancer</span></span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; <span style="color: #000087;">Dataset</span>: <a href="https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_krebs_ext_KREBS_1" class="external-link">OGD_krebs_ext_KREBS_1</a> (<span style="font-style: italic;">data.statistik.gv.at</span>)</span></span>
 <span><span class="co">#&gt; <span style="color: #000087;">Measures</span>: Number of records F-KRE</span></span>
 <span><span class="co">#&gt; <span style="color: #000087;">Fields</span>: Tumore ICD/10 3-Steller<span style="font-style: italic;"> &lt;95&gt;</span>, Reporting year<span style="font-style: italic;"> &lt;37&gt;</span>, Province of</span></span>
 <span><span class="co">#&gt;   residence<span style="font-style: italic;"> &lt;9&gt;</span>, Sex<span style="font-style: italic;"> &lt;2&gt;</span></span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2022-09-23 17:45:21]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">0.4.3.9000</span></span></span></code></pre>
+<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2022-10-17 16:42:52]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">0.5.0</span></span></span></code></pre>
 <p>The dataset contains the number of cancer patients by several
 classification fields</p>
 <ul>
@@ -209,7 +210,7 @@ data.</p>
 <span style="color: #BCBCBC;">10</span> &lt;C00&gt; Bösartige Neubildung der Lip… 1983-01-01 <span style="color: #949494;">"</span>Styria<span style="color: #949494;">"</span>        female       2
 <span style="color: #949494;"># … with 46,469 more rows, and abbreviated variable names ¹​`Reporting year`,</span>
 <span style="color: #949494;">#   ²​`Province of residence`, ³​`Number of records F-KRE`</span></code></pre>
-<p>The dataset contains 46479 rows. If every combination of tumor tpye,
+<p>The dataset contains 46479 rows. If every combination of tumor type,
 year, region and sex would contain a seperate row the number of rows
 would be the following.</p>
 <p><span class="math display">\[
@@ -222,7 +223,17 @@ case for other OGD datasets.</p>
 <h2 id="metadata">Metadata<a class="anchor" aria-label="anchor" href="#metadata"></a>
 </h2>
 <p>This section will show the different metadata components contained in
-the table object.</p>
+the table object and how they relate to the resources on the OGD
+server.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="va">resources</span><span class="op">$</span><span class="va">name</span></span>
+<span><span class="co">#&gt; [1] "OGD_krebs_ext_KREBS_1.json"                  </span></span>
+<span><span class="co">#&gt; [2] "OGD_krebs_ext_KREBS_1.csv"                   </span></span>
+<span><span class="co">#&gt; [3] "OGD_krebs_ext_KREBS_1_HEADER.csv"            </span></span>
+<span><span class="co">#&gt; [4] "OGD_krebs_ext_KREBS_1_C-TUM_ICD10_3ST-0.csv" </span></span>
+<span><span class="co">#&gt; [5] "OGD_krebs_ext_KREBS_1_C-BERJ-0.csv"          </span></span>
+<span><span class="co">#&gt; [6] "OGD_krebs_ext_KREBS_1_C-BUNDESLAND-0.csv"    </span></span>
+<span><span class="co">#&gt; [7] "OGD_krebs_ext_KREBS_1_C-KRE_GESCHLECHT-0.csv"</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="header">Header<a class="anchor" aria-label="anchor" href="#header"></a>
 </h3>
@@ -240,7 +251,7 @@ C-KRE_GESCHLECHT-0;Geschlecht;Sex;;;;;;;&lt;/pre&gt;
   &lt;/div&gt;
 &lt;/div&gt;' data-tippy-interactive="true" data-tippy-maxwidth="600"> <code>OGD_krebs_ext_KREBS_1_HEADER.csv</code> </a>
 and can be extracted from the table object via <code>$header</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="va">header</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># STATcubeR metadata: 5 x 4</span>
   <span style="font-weight: bold;">code</span>               <span style="font-weight: bold;">label</span> <span style="font-weight: bold;">label_de</span>                    <span style="font-weight: bold;">label_en</span>               
@@ -284,7 +295,7 @@ german and english labels. Both can be used to label the dataset.</p>
 the 95 differen tumor types in the <code>"cancer type"</code>
 classification. Click <code>"Year"</code> above to see information about
 the years.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"C-TUM_ICD10_3ST-0"</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># STATcubeR metadata: 95 x 8</span>
   <span style="font-weight: bold;">code</span>              <span style="font-weight: bold;">label</span>                                                       
@@ -317,7 +328,7 @@ TUM_ICD10_3ST-C08;&amp;lt;C08&amp;gt; Bösartige Neubildung sonstiger und nicht 
 <p>The reporting period spans 37 years (1983 to 2019). The
 classification elements are parsed into a <code>&lt;date&gt;</code>
 format for the <code>&lt;data.frame&gt;</code> representation.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"C-BERJ-0"</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># STATcubeR metadata: 37 x 8</span>
   <span style="font-weight: bold;">code</span>      <span style="font-weight: bold;">label</span> <span style="font-weight: bold;">parsed</span>    
@@ -348,8 +359,8 @@ BERJ-1991;1991;;;;;;;;&lt;/pre&gt;
 <div class="tab-pane" id="province" role="tabpanel" aria-labelledby="province-tab">
 
 <p>The regional classification contains 9 elements which correspond to
-the NUTS2 regions of austria.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+the NUTS2 regions (“Bundesländer”) of austria.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"C-BUNDESLAND-0"</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># STATcubeR metadata: 9 x 8</span>
   <span style="font-weight: bold;">code</span>         <span style="font-weight: bold;">label</span>           <span style="font-weight: bold;">parsed</span>         
@@ -381,7 +392,7 @@ BUNDESLAND-9;Wien;;Vienna;;;;;;&lt;/pre&gt;
 
 <p>Sex is coded as a ditochome variable with the classification elements
 <code>"male"</code> and <code>"female"</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"C-KRE_GESCHLECHT-0"</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># STATcubeR metadata: 2 x 8</span>
   <span style="font-weight: bold;">code</span>         <span style="font-weight: bold;">label</span>  <span style="font-weight: bold;">parsed</span>
@@ -431,7 +442,7 @@ is available via the <code>$json</code> binding.</p>
 <div class="tab-content">
 <div class="active  tab-pane" id="cancer" role="tabpanel" aria-labelledby="cancer-tab">
 
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="va">json</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Krebsstatistik</span></span></span>
 <span><span class="co">#&gt; </span></span>
@@ -446,15 +457,16 @@ is available via the <code>$json</code> binding.</p>
 </div>
 <div class="tab-pane" id="earnings" role="tabpanel" aria-labelledby="earnings-tab">
 
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/od_resource.html">od_json</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Verdienststrukturerhebung 2018 Bruttostundenverdienste in EUR nach Staatsangehörigkeit, Bundesland und Beschäftigungsverhältnis</span></span></span>
+<pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Verdienststrukturerhebung 2018 Bruttostundenverdienste in EUR nach</span></span></span>
+<span><span class="co">#&gt; <span style="font-weight: bold;">Staatsangehörigkeit, Bundesland und Beschäftigungsverhältnis</span></span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; <span style="font-style: italic;">Verdienststruktur nach Geschlecht, Staatsangehörigkeit, Bundesland und</span></span></span>
-<span><span class="co">#&gt; <span style="font-style: italic;">Beschäftigungsverhältnis</span></span></span>
+<span><span class="co">#&gt; <span style="font-style: italic;">Verdienststruktur nach Geschlecht, Staatsangehörigkeit, Bundesland</span></span></span>
+<span><span class="co">#&gt; <span style="font-style: italic;">und Beschäftigungsverhältnis</span></span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; <span style="color: #000087;">Measures</span>: Arithmetisches Mittel, 1. Quartil, 2. Quartil (Median), 3. Quartil,</span></span>
-<span><span class="co">#&gt;   Zahl d unselbst Beschäftigten</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Measures</span>: Arithmetisches Mittel, 1. Quartil, 2. Quartil (Median), 3.</span></span>
+<span><span class="co">#&gt;   Quartil, Zahl d unselbst Beschäftigten</span></span>
 <span><span class="co">#&gt; <span style="color: #000087;">Fields</span>: Geschlecht, Staatsangehörigkeit, Bundesland (NUTS 2), Form des</span></span>
 <span><span class="co">#&gt;   Beschäftigungsverhältnisses</span></span>
 <span><span class="co">#&gt; <span style="color: #000087;">Updated</span>: 2022-03-24 11:29:48</span></span>
@@ -463,20 +475,20 @@ is available via the <code>$json</code> binding.</p>
 </div>
 <div class="tab-pane" id="economic-trend-monitor" role="tabpanel" aria-labelledby="economic-trend-monitor-tab">
 
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/od_resource.html">od_json</a></span><span class="op">(</span><span class="st">"OGD_konjunkturmonitor_KonMon_1"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Konjunkturmonitor</span></span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; <span style="color: #000087;">Measures</span>: Produktionsindex Industrie (at; 2015=100), Technische</span></span>
-<span><span class="co">#&gt;   Gesamtproduktion Industrie in Tsd. € (KJE), Umsatzindex Industrie (2015=100),</span></span>
-<span><span class="co">#&gt;   Umsatz Industrie inTsd.€ (KJE), Auftragseingangsindex Industrie (2015=100),</span></span>
-<span><span class="co">#&gt;   Beschäftigtenindex Industrie (2015=100), Beschäftigte Industrie gesamt (KJE),</span></span>
-<span><span class="co">#&gt;   Produktivitätsindex Industrie je unselbständig Beschäftigtem (2015=100),</span></span>
-<span><span class="co">#&gt;   Produktivitätsindex Industrie je geleisteter Arbeitsstunde (2015=100),</span></span>
-<span><span class="co">#&gt;   Erzeugerpreisindex für den Produzierenden Bereich (2021=100; NACE B-E), … <span style="font-style: italic;">(76</span></span></span>
-<span><span class="co">#&gt;   <span style="font-style: italic;">more)</span></span></span>
+<span><span class="co">#&gt;   Gesamtproduktion Industrie in Tsd. € (KJE), Umsatzindex Industrie</span></span>
+<span><span class="co">#&gt;   (2015=100), Umsatz Industrie inTsd.€ (KJE), Auftragseingangsindex</span></span>
+<span><span class="co">#&gt;   Industrie (2015=100), Beschäftigtenindex Industrie (2015=100),</span></span>
+<span><span class="co">#&gt;   Beschäftigte Industrie gesamt (KJE), Produktivitätsindex Industrie je</span></span>
+<span><span class="co">#&gt;   unselbständig Beschäftigtem (2015=100), Produktivitätsindex Industrie je</span></span>
+<span><span class="co">#&gt;   geleisteter Arbeitsstunde (2015=100), Erzeugerpreisindex für den</span></span>
+<span><span class="co">#&gt;   Produzierenden Bereich (2021=100; NACE B-E), … <span style="font-style: italic;">(76 more)</span></span></span>
 <span><span class="co">#&gt; <span style="color: #000087;">Fields</span>: Berichtszeitraum, Wertangabe</span></span>
-<span><span class="co">#&gt; <span style="color: #000087;">Updated</span>: 2022-09-20 10:46:47</span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">Updated</span>: 2022-10-11 08:46:24</span></span>
 <span><span class="co">#&gt; <span style="color: #000087;">Tags</span>: Konjunkturdaten</span></span>
 <span><span class="co">#&gt; <span style="color: #000087;">Categories</span>: Wirtschaft und Tourismus, Arbeit, Bevölkerung, Finanzen und</span></span>
 <span><span class="co">#&gt;   Rechnungswesen</span></span></code></pre>
@@ -487,7 +499,7 @@ is available via the <code>$json</code> binding.</p>
 <h3 id="section"></h3>
 <p>This print method only shows part of the metadata. More information
 can be extracted by using the keys of the json object.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="va">json</span><span class="op">$</span><span class="va">extras</span><span class="op">$</span><span class="va">publisher</span></span>
 <span><span class="co">#&gt; [1] "Statistik Austria, Guglgasse 13, 1110 Wien, Austria"</span></span>
 <span><span class="va">table</span><span class="op">$</span><span class="va">json</span><span class="op">$</span><span class="va">extras</span><span class="op">$</span><span class="va">update_frequency</span></span>
@@ -517,7 +529,7 @@ TUM_ICD10_3ST-C00;BERJ-1983;BUNDESLAND-6;GESCHLECHT-1;5&lt;/pre&gt;
 &lt;/div&gt;' data-tippy-interactive="true" data-tippy-maxwidth="600"> <code>OGD_krebs_ext_KREBS_1.csv</code> </a>,
 use <code>table$data</code>. The output is similar to what is returned
 from <code>read.csv2("OGD_krebs_ext_KREBS_1.csv")</code>.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="va">data</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 46,479 x 5</span>
   <span style="font-weight: bold;">`C-TUM_ICD10_3ST-0`</span> <span style="font-weight: bold;">`C-BERJ-0`</span> <span style="font-weight: bold;">`C-BUNDESLAND-0`</span> <span style="font-weight: bold;">`C-KRE_GESCHLECHT-0`</span> <span style="font-weight: bold;">`F-KRE`</span>
@@ -530,14 +542,14 @@ from <code>read.csv2("OGD_krebs_ext_KREBS_1.csv")</code>.</p>
 <span style="color: #949494;"># … with 46,474 more rows</span></code></pre>
 <p><code><a href="../reference/od_table.html">od_table()</a></code> makes sure that the levels of all factor
 columns are in the same order as in the metadata.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="va">table</span><span class="op">$</span><span class="va">data</span><span class="op">$</span><span class="va">`C-BUNDESLAND-0`</span><span class="op">)</span> <span class="op">==</span> <span class="va">table</span><span class="op">$</span><span class="fu">field</span><span class="op">(</span><span class="st">"C-BUNDESLAND-0"</span><span class="op">)</span><span class="op">$</span><span class="va">code</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</span></span></code></pre>
 <p>As mentioned above, a labelled version of the data can be obtained
 via <code>table$tabulate()</code>. The labelling is done by taking the
 raw dataset and then joining the labes from <code>$header</code> and
 <code>$field()</code>.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 46,479 x 5</span>
   <span style="font-weight: bold;">`Tumore ICD/10 3-Steller`</span>            <span style="font-weight: bold;">Reportin…¹</span> <span style="font-weight: bold;">Province of r…²</span> <span style="font-weight: bold;">Sex</span>    <span style="font-weight: bold;">Numbe…³</span>
@@ -565,7 +577,7 @@ if they satisfy certain STATcube standards. You can read more about
 using the <code>$language</code> field. This field can be used to get
 and set the language. Allowed options are <code>"en"</code> for english
 and <code>"de"</code> for german.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="va">language</span></span>
 <span><span class="co">#&gt; [1] "en"</span></span>
 <span><span class="va">table</span><span class="op">$</span><span class="va">language</span> <span class="op">&lt;-</span> <span class="st">"de"</span></span>
@@ -574,7 +586,7 @@ and <code>"de"</code> for german.</p>
 <p>This option affects the <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> method as well as the
 output of <code>$tabulate()</code>. If no english labels are available,
 the german labels are used as a fallback mechanism.</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; <span style="font-weight: bold;">Krebsstatistik</span></span></span>
 <span><span class="co">#&gt; </span></span>
@@ -583,9 +595,9 @@ the german labels are used as a fallback mechanism.</p>
 <span><span class="co">#&gt; <span style="color: #000087;">Fields</span>: Tumore ICD/10 3-Steller<span style="font-style: italic;"> &lt;95&gt;</span>, Berichtsjahr<span style="font-style: italic;"> &lt;37&gt;</span>, Bundesland<span style="font-style: italic;"> &lt;9&gt;</span>,</span></span>
 <span><span class="co">#&gt;   Geschlecht<span style="font-style: italic;"> &lt;2&gt;</span></span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2022-09-23 17:45:21]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">0.4.3.9000</span></span></span></code></pre>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2022-10-17 16:42:52]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">0.5.0</span></span></span></code></pre>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">table</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 46,479 x 5</span>
   <span style="font-weight: bold;">`Tumore ICD/10 3-Steller`</span>         <span style="font-weight: bold;">Berichts…¹</span> <span style="font-weight: bold;">Bundesland</span>       <span style="font-weight: bold;">Geschl…²</span> <span style="font-weight: bold;">Anzah…³</span>
@@ -647,7 +659,7 @@ explains where and how those caches are stored.</li>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
     </footer>
