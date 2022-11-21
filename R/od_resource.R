@@ -171,9 +171,9 @@ od_resources_check <- function(json) {
 
 od_normalize_columns <- function(x, suffix) {
   if (!is.null(suffix)) {
-    col_indices <- c(1, 2, 2, switch(suffix, HEADER = 3, c(4, 3)))
+    col_indices <- c(1, 2, 2, switch(suffix, HEADER = 3, c(4, 3)), 5, 7)
     col_names <- c("code", "label", "label_de", "label_en",
-                   switch(suffix, HEADER = NULL, "parent"))
+                   switch(suffix, HEADER = NULL, "parent"), "de_desc", "en_desc")
     x <- x[, col_indices] %>% `names<-`(col_names)
     x$label <- NA_character_
     x$label_en <- as.character(x$label_en)
