@@ -22,6 +22,17 @@ of type \code{MEASURE}, \code{STAT_FUNCTION} or \code{COUNT}.}
 \item{dimensions}{A character vector of dimensions for the cube. Can be
 either of type \code{FIELD} or type \code{VALUESET}. Those entries are referred to
 as \code{fields} in the parsed API response}
+
+\item{language}{The language to be used for labeling. \code{"en"} (the default)
+will use english. \code{"de"} uses german.
+The third option \code{"both"} will import both languages by sending two requests
+to the \verb{/table} endpoint.}
+
+\item{add_totals}{Should totals be added for each classification field in
+the json request?}
+
+\item{key}{(\code{string}) An API key. To display your key, call
+\code{\link[=sc_browse_preferences]{sc_browse_preferences()}}.}
 }
 \description{
 Define requests against the /table endpoint by providing
@@ -50,4 +61,3 @@ sc_table_custom(
   )
 )
 }
-\keyword{internal}

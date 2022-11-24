@@ -12,7 +12,7 @@
 #' @param dimensions A character vector of dimensions for the cube. Can be
 #'   either of type `FIELD` or type `VALUESET`. Those entries are referred to
 #'   as `fields` in the parsed API response
-#' @keywords internal
+#' @inheritParams sc_table
 #' @examples
 #' sc_table_custom("str:database:detouextregsai")
 #'
