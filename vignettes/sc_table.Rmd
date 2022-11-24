@@ -29,7 +29,7 @@ It is assumed that you already provided your API key as described in the `r ticl
 
 Use the graphical user interface of STATcube to create a table. Visit
 [STATcube] and select a database. This will open the table view where you can 
-create a table. See the [STATcube manual] for details.
+create a table. See the [STATcube documentation] for details.
 
 ## Download an API request
 
@@ -189,5 +189,5 @@ sc_example("economic_trend_monitor.json") %>% sc_table("de")
 
 [`/table` endpoint]: https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/table-endpoint
 [download options]: https://docs.wingarc.com.au/superstar/9.12/superweb2/user-guide/download-tables
-[STATcube]: https://statcube.at/statcube/home
-[STATcube manual]: http://www.statistik.at/wcm/idc/idcplg?IdcService=GET_PDF_FILE&dDocName=105692
+[STATcube]: https://www.statistik.at/datenbanken/statcube-statistische-datenbank/login
+[STATcube documentation]: https://www.statistik.at/datenbanken/statcube-statistische-datenbank/dokumente-downloads
