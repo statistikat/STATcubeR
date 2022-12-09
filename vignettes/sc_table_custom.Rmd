@@ -129,55 +129,47 @@ sc_table_custom(schema_pop$id, count$id)
 
 ## Filtering Data
 
-Omitting certain classification elements from the query is possible with the `recodes` parameter of the `/table` endpoint. Currently, `sc_table_custom()` does not provide support for recodes.
-Please issue a [feature request] if you see this as a useful extension of `r STATcubeR`.
+Data can be filtered on the server side by using the `recodes` parameter
+of `sc_table_custom()`.
+Here is an example where the accomodation statistics uses a filter for
+`Country of origin`.
 
-<details>
-<summary>Example</summary>
-
-For example, the last call to `sc_table_custom()` will send the following json
-to the server.
-
-```json
-{
-  "database": "str:database:detouextregsai",
-  "measures": [ "str:measure:detouextregsai:F-DATA1:F-ANK",
-    "str:measure:detouextregsai:F-DATA1:F-UEB" ],
-  "dimensions": [
-    [ "str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2" ] ]
-}
-```
-
-For comparison, this is how the same request was specified in `r STATcubeR`
-
-```{r, eval = FALSE}
-sc_table_custom(
-  "str:database:detouextregsai",
-  c("str:measure:detouextregsai:F-DATA1:F-ANK",
-    "str:measure:detouextregsai:F-DATA1:F-UEB"),
-  "str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2"
+```{r}
+x <- sc_table_custom(
+  db = "str:database:detouextregsai",
+  measures = measures$id[1:2],
+  dimensions = list(schema$`Mandatory fields`$`Season/Tourism Month`,
+                    valuesets$`Country of origin`),
+  recodes = c(sc_recode(
+    valuesets$`Country of origin`,
+    list(valuesets$`Country of origin`$`Italy <29>`,
+         valuesets$`Country of origin`$`Germany <12>`)
+  ))
 )
+x$tabulate()
 ```
 
-It is now possible to add recodes in order to only show results for Vienna.
-For this, the regional classification (`C-C93`) is limited to the
-code for vienna, which is `C-C93-2:01`.
+Other options from the [recodes specification] are also available via `sc_recode()`.
+It is possible to group items and specify recodes for several classifications.
 
-```json
-{
-  "database": "str:database:detouextregsai",
-  "measures": [ "str:measure:detouextregsai:F-DATA1:F-ANK",
-    "str:measure:detouextregsai:F-DATA1:F-UEB" ],
-  "dimensions": [
-    [ "str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2" ] ],
-  "recodes": [
-    "str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2": {
-      "map": [[ "str:value:detouextregsai:F-DATA1:C-C93-2:C-C93-2:01" ]] 
-    }
-  ]
-}
+```{r}
+origin <- valuesets$`Country of origin`
+month <- schema$`Mandatory fields`$`Season/Tourism Month`$`Season/Tourism Month`
+x <- sc_table_custom(
+  db = "str:database:detouextregsai",
+  measures = measures$id[1:2],
+  dimensions = list(month, origin),
+  recodes = c(
+    sc_recode(origin, list(
+      list(origin$`Germany <12>`, origin$`Netherlands <25>`),
+      list(origin$`Italy <29>`, origin$`France (incl.Monaco) <14>`)
+    )),
+    sc_recode(month, list(
+      month$Nov.99, month$Feb.00, month$Apr.09, month$`Jan. 22`
+    ))
+  )
+)
+x$tabulate()
 ```
 
-</details>
-
-[feature request]: https://github.com/statistikat/STATcubeR/issues
+[recodes specification]: https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/table-endpoint
