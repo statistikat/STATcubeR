@@ -19,7 +19,7 @@ Imports:
     httr,
     jsonlite,
     magrittr,
-    pillar,
+    pillar (>= 1.5.0),
     vctrs
 Suggests: 
     data.tree,
