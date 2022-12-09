@@ -8,6 +8,8 @@ sc_tibble_meta <- function(x, names_keep = c()) {
   x
 }
 
+#' @importFrom pillar tbl_sum
+#' @export
 tbl_sum.sc_meta <- function(x, ...) {
   paste0("STATcubeR metadata: ", format(nrow(x), big.mark = ","), " x ",
          ncol(x) + length(attr(x, "names_skip")))
@@ -15,6 +17,8 @@ tbl_sum.sc_meta <- function(x, ...) {
 
 style_subtle <- cli::make_ansi_style('#999999')
 
+#' @importFrom pillar tbl_format_footer
+#' @export
 tbl_format_footer.sc_meta <- function(x, setup, ...) {
   names_skip <- attr(x, "names_skip")
   c(NextMethod(), if (length(names_skip)) style_subtle(
@@ -39,6 +43,8 @@ sc_tibble <- function(x) {
   x
 }
 
+#' @importFrom pillar tbl_sum
+#' @export
 tbl_sum.sc_tibble <- function(x, ...) {
   paste0("A STATcubeR tibble: ", format(nrow(x), big.mark = ","), " x ", ncol(x))
 }
