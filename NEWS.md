@@ -1,9 +1,7 @@
-# STATcubeR 0.5.1
+# STATcubeR 0.6.0
 
 * Update print methods with the `{tibble}` package (#32)
-
-# STATcubeR 0.5.0.1
-
+* Add filters and other recodes to `sc_table_custom()` (#33)
 * Add global option `STATcubeR.language` to override the default language
 * `od_table()`: Add descriptions to `x$header` and `x$field(i)`
 

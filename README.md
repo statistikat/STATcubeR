@@ -32,7 +32,7 @@ you can also download the package as a tar archive from https://github.com/stati
 The package can then be installed by providing a path to the downloaded archive file.
 
 ```r
-install.packages('STATcubeR-0.4.3.tar.gz', repos = NULL)
+install.packages('STATcubeR-0.6.0.tar.gz', repos = NULL)
 ```
 </details>
 
