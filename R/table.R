@@ -170,6 +170,8 @@ sc_table_class <- R6::R6Class(
 #' Those three functions all return an object of class `"sc_table"`.
 #' @param json_file path to a json file, which was downloaded via the STATcube
 #'   GUI ("Open Data API Abfrage")
+#' @param json A string representing a json file downloaded via STATcube
+#'   (readLines(json_file))
 #' @param add_totals Should totals be added for each classification field in
 #'   the json request?
 #' @return An object of class `sc_table` which contains the return
@@ -206,13 +208,15 @@ sc_table_class <- R6::R6Class(
 #' my_response <- sc_table_saved(table_uri)
 #' as.data.frame(my_response)
 #' @export
-sc_table <- function(json_file, language = NULL, add_totals = TRUE,
+sc_table <- function(json_file = NULL, json = NULL, language = NULL, add_totals = TRUE,
                      key = NULL) {
   language <- sc_language(language, c("en", "de", "both"))
   both <- language == "both"
   if (both)
     language <- "de"
-  res <- sc_table_json_post(readLines(json_file, warn = FALSE), language, add_totals, key) %>%
+  if (!is.null(json_file))
+    json <- readLines(json_file, warn = FALSE)
+  res <- sc_table_json_post(json, language, add_totals, key) %>%
     sc_table_class$new(file = json_file, add_totals = add_totals)
   if (both)
     res$add_language("en", key)

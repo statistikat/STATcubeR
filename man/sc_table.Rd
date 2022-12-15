@@ -22,6 +22,9 @@ sc_table_saved(table_uri, language = NULL, key = NULL, server = "ext")
 \item{json_file}{path to a json file, which was downloaded via the STATcube
 GUI ("Open Data API Abfrage")}
 
+\item{json}{A string that represents a json query from the STATcube GUI,
+imported using, e.g., readLines(json_file)}
+
 \item{language}{The language to be used for labeling. \code{"en"} (the default)
 will use english. \code{"de"} uses german.
 The third option \code{"both"} will import both languages by sending two requests
