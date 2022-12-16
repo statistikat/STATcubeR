@@ -224,5 +224,8 @@ od_resource_all <- function(id, json = od_json(id), server = "ext") {
   check_header(out$data[[2]])
   out$data[[2]] %<>% od_normalize_columns("HEADER")
   out$data[seq(3, nrow(out))] %<>% lapply(od_normalize_columns, "FIELD")
+  class(out$name) <- c("ogd_file", "character")
+  class(out$last_modified) <- c("sc_dttm", class(out$last_modified))
+  class(out$cached) <- c("sc_dttm", class(out$cached))
   out %>% `class<-`(c("tbl", "data.frame"))
 }

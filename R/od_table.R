@@ -108,7 +108,11 @@ od_table_class <- R6::R6Class(
     #' @field resources
     #' lists all files downloaded from the server to contruct this table
     resources = function() {
-      private$cache$resources %>% `class<-`(c("tbl", "data.frame"))
+      resources <- private$cache$resources
+      class(resources$name) <- c("ogd_file", "character")
+      class(resources$last_modified) <- c("sc_dttm", class(resources$last_modified))
+      class(resources$cached) <- c("sc_dttm", class(resources$cached))
+      resources %>% `class<-`(c("tbl", "data.frame"))
     },
     #' @field od_server
     #' The server used for initialization (see to `?od_table`)

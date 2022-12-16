@@ -48,3 +48,53 @@ sc_tibble <- function(x) {
 tbl_sum.sc_tibble <- function(x, ...) {
   paste0("A STATcubeR tibble: ", format(nrow(x), big.mark = ","), " x ", ncol(x))
 }
+
+#' @importFrom pillar pillar_shaft
+#' @export
+pillar_shaft.sc_dttm <- function(x, ...) {
+  ymd <- format(x, "%Y-%m-%d")
+  hms <- cli::col_silver(format(x, "%H:%M:%S"))
+  short <- ymd
+  ind <- as.numeric(Sys.time()) - as.numeric(x) < 60*24
+  short[ind] <- hms[ind]
+  pillar::new_pillar_shaft_simple(
+    paste(ymd, hms),
+    width = 19,
+    min_width = 10,
+    short_formatted = short,
+    type_sum = "dttm"
+  )
+}
+
+#' @importFrom pillar pillar_shaft
+#' @export
+pillar_shaft.ogd_file <- function(x, ...) {
+  pillar::new_pillar_shaft(
+    list(x = x),
+    width = pillar::get_max_extent(x),
+    min_width = 20,
+    class = "pillar_shaft_ogd_file",
+    type_sum = "chr"
+  )
+}
+
+#' @export
+format.pillar_shaft_ogd_file <- function(x, width, ...) {
+  files <- x$x
+  if (in_pkgdown()) {
+    id <- substr(files[1], 1, nchar(files[1]) - 5)
+    files[1:2] <- c("meta.json", "data.csv")
+    files <- gsub(paste0(id, "_"), "", files, fixed = TRUE)
+  }
+  too_long <- nchar(files) > width
+  files[too_long] <- paste0(substring(files[too_long], 1, width - 2),
+                            cli::symbol$ellipsis)
+  if (in_pkgdown()) {
+    files <- cli::style_hyperlink(
+      files, paste0("https://data.statistik.gv.at/data/", x$x))
+  } else {
+    files <- cli::style_hyperlink(files, paste0("file://", path.expand(
+      od_cache_dir()), x$x)) %>% as.character()
+  }
+  pillar::new_ornament(files, align = "left")
+}
