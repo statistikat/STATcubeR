@@ -132,9 +132,18 @@ sc_schema_flatten <- function(x, type) {
   stopifnot(!is.null(response))
   response <- httr::content(response)
   flattened <- sc_schema_flatten_impl(response, type)
-  flattened <- as.data.frame(flattened, stringsAsFactors = FALSE)
-  class(flattened) <- c("tbl", "data.frame")
+  flattened <- vctrs::new_data_frame(flattened,
+    class = c("sc_schema_flatten", "tbl", "tbl_df"))
   flattened
+}
+
+#' @export
+print.sc_schema_flatten <- function(x, ...) {
+  y <- x
+  y$id <- new_schema_uri(x$id, x$id)
+  class(y) <- setdiff(class(x), "sc_schema_flatten")
+  print(y, ...)
+  invisible(x)
 }
 
 sc_schema_flatten_impl <- function(resp, type) {
