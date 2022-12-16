@@ -92,8 +92,10 @@ sc_table_class <- R6::R6Class(
     #'   provided by the API.
     #' @param annotations Include separate annotation columns in the returned
     #'   table. This parameter is currently broken and needs to be re-implemented
-    tabulate = function(..., round = TRUE, annotations = FALSE) {
-      sc_table_tabulate(self, ..., round = round, annotations = annotations)
+    #' @param recode_zeros interpret zero values as missings?
+    tabulate = function(..., round = FALSE, annotations = FALSE, recode_zeros = FALSE) {
+      sc_table_tabulate(self, ..., round = round, annotations = annotations,
+                        recode_zeros = recode_zeros)
     },
     #' @description open the dataset in a browser
     browse = function() {
@@ -168,8 +170,9 @@ sc_table_class <- R6::R6Class(
 #' * [sc_table_saved()] uses a table uri of a saved table.
 #'
 #' Those three functions all return an object of class `"sc_table"`.
-#' @param json_file path to a json file, which was downloaded via the STATcube
-#'   GUI ("Open Data API Abfrage")
+#' @param json Path to a json file, which was downloaded via the STATcube
+#'   GUI ("Open Data API Request"). Alternatively, a json string which
+#'   passes [jsonlite::validate()].
 #' @param add_totals Should totals be added for each classification field in
 #'   the json request?
 #' @return An object of class `sc_table` which contains the return
@@ -181,9 +184,10 @@ sc_table_class <- R6::R6Class(
 #'   will use english. `"de"` uses german.
 #'   The third option `"both"` will import both languages by sending two requests
 #'   to the `/table` endpoint.
+#' @param json_file Depricated. Use `json` instead
 #' @family functions for /table
 #' @examplesIf sc_key_exists()
-#' my_table <- sc_table(json_file = sc_example("population_timeseries.json"))
+#' my_table <- sc_table(json = sc_example("population_timeseries.json"))
 #'
 #' # print
 #' my_table
@@ -206,14 +210,15 @@ sc_table_class <- R6::R6Class(
 #' my_response <- sc_table_saved(table_uri)
 #' as.data.frame(my_response)
 #' @export
-sc_table <- function(json_file, language = NULL, add_totals = TRUE,
-                     key = NULL) {
+sc_table <- function(json, language = NULL, add_totals = TRUE, key = NULL,
+                     json_file = NA) {
+  json <- normalize_json(json, json_file)
   language <- sc_language(language, c("en", "de", "both"))
   both <- language == "both"
   if (both)
     language <- "de"
-  res <- sc_table_json_post(readLines(json_file, warn = FALSE), language, add_totals, key) %>%
-    sc_table_class$new(file = json_file, add_totals = add_totals)
+  res <- sc_table_json_post(json$string, language, add_totals, key) %>%
+    sc_table_class$new(json$string, json$file, add_totals)
   if (both)
     res$add_language("en", key)
   res
@@ -237,6 +242,19 @@ sc_example <- function(filename) {
 #' @export
 print.sc_table <- function(x, ...) {
   cat(format(x, ...), sep = "\n")
+}
+
+normalize_json <- function(json, json_file) {
+  if (!is.na(json_file)) {
+    json <- json_file
+    warning("parameter `json_file` was renamed to `json`")
+  }
+  file <- NULL
+  if (length(json) == 1 && !jsonlite::validate(json)) {
+    file <- json
+    json <- readLines(file)
+  }
+  list(file = file, string = json)
 }
 
 format.sc_table <- function(x, ...) {
