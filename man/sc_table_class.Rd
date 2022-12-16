@@ -97,7 +97,12 @@ added to a timeseries
 An extension of \code{\link[=sc_tabulate]{sc_tabulate()}} with additional
 parameters.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{sc_table_class$tabulate(..., round = TRUE, annotations = FALSE)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{sc_table_class$tabulate(
+  ...,
+  round = FALSE,
+  annotations = FALSE,
+  recode_zeros = FALSE
+)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -110,6 +115,8 @@ provided by the API.}
 
 \item{\code{annotations}}{Include separate annotation columns in the returned
 table. This parameter is currently broken and needs to be re-implemented}
+
+\item{\code{recode_zeros}}{interpret zero values as missings?}
 }
 \if{html}{\out{</div>}}
 }

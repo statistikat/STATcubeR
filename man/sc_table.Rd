@@ -19,7 +19,7 @@ sc_table_saved_list(key = NULL, server = "ext")
 sc_table_saved(table_uri, language = NULL, key = NULL, server = "ext")
 }
 \arguments{
-\item{json}{path to a json file, which was downloaded via the STATcube
+\item{json}{Path to a json file, which was downloaded via the STATcube
 GUI ("Open Data API Request"). Alternatively, a json string which
 passes \code{\link[jsonlite:validate]{jsonlite::validate()}}.}
 
