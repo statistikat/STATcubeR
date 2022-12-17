@@ -48,7 +48,8 @@ This means that the current user is not permitted to use the API.
 Provide the path to the downloaded json file as a string in `sc_table()`.
 
 ``` r
-my_table <- sc_table(json_file = "path/to/api_request.json")
+library(STATcubeR)
+my_table <- sc_table(json = "path/to/api_request.json")
 ```
 
 This will send the json-request to the [`/table` endpoint] of the API and return an object of class `sc_table`.
