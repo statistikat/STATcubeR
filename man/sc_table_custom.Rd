@@ -12,7 +12,8 @@ sc_table_custom(
   language = c("en", "de"),
   add_totals = TRUE,
   key = NULL,
-  recodes = NULL
+  recodes = NULL,
+  dry_run = FALSE
 )
 
 sc_recode(field, map = NULL, total = FALSE)
@@ -39,6 +40,10 @@ the json request? Ignored if \code{recodes} is used.}
 \item{recodes}{One or more recodes that were generated via \code{\link[=sc_recode]{sc_recode()}}.
 If more than one recode is supplied, recodes should be concatinated with
 \code{\link[=c]{c()}}.}
+
+\item{dry_run}{If \code{TRUE}, no request is sent to the API. Instead, type
+checks are performed and the json request is returned as a string.
+Defaults to \code{FALSE}.}
 
 \item{field}{An uid of a classification field to be recoded. The provided
 uid should also be passed in the \code{dimensions} parameter of
