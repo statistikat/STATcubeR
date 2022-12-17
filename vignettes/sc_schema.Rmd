@@ -230,3 +230,11 @@ The following example shows all available measures from the [economic trend moni
 sc_schema_db("dekonjunkturmonitor") %>%
   sc_schema_flatten("MEASURE")
 ```
+
+## Further Reading
+
+* Schemas can be used to construct table requests as described in 
+  the `r ticle("sc_table_custom")`
+* See the `r ticle("sc_table_saved")` to get access to the data for table
+  nodes in the schema.
+  .
