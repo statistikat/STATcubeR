@@ -53,7 +53,7 @@ See `?httr::content` to and `?httr::headers` to get started.
 This section showcases the most common types of errors that you might encounter when interacting with the API.
 Please feel free to open a new issue on the [STATcubeR issue tracker] if you get an error which is not listed here.
 
-### Invalid API Key
+### Invalid API Key {#AUTHENTICATION}
 
 If an invalid API key is used for a request, a 401 status is returned.
 
@@ -110,7 +110,7 @@ If you encounter this error, please check if the rate limits are in fact a plaui
 Unfortunately, the response for exceeded rate limits is very generic and can not be differentiated from the response for invalid json-bodies (see below).
 This is why the error message lists two possible reasons.
 
-### Schema
+### Schema {#SCHEMA_COMPONENT_NOT_FOUND}
 
 Invalid URIs used with `sc_schema` will be displayed with a special error type `SCHEMA_COMPONENT_NOT_FOUND`.
 
@@ -122,7 +122,7 @@ sc_schema("invalid_uri")
 readRDS("sc_last_error/schema.rds") %>% STATcubeR:::sc_check_response()
 ```
 
-### Saved Tables
+### Saved Tables {#TXD_NOT_FOUND}
 
 As mentioned in the `r ticle("sc_table_saved")`, the function `sc_table_saved()`
 can only access default tables and tables that are saved under the current user.
