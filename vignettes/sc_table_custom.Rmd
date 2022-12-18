@@ -174,7 +174,12 @@ in the `measure` parameter of `sc_table_custom()`.
 ```{r}
 population <- sc_schema_db("debevstand")
 (count <- population$`Datensätze/Records`$`F-BEVSTAND`)
-sc_table_custom(population, count)
+x <- sc_table_custom(population, count)
+x$tabulate()
+```
+
+```{r, echo=FALSE}
+show_json(x)
 ```
 
 ## Recodes {#recodes}
