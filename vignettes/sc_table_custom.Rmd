@@ -335,10 +335,10 @@ sc_table_custom("A", measures = "B", dimensions = "C",
 
 If `dry_run` is set to `FALSE` (the default), STATcubeR will send the request
 to the API even if inconsistencies are detected.
-This will likely lead to an error of the form "expected json but got html".
+This will likely lead to an error of the form ["expected json but got html"].
 
 If you get spurious warnings or have suggestions on how these typechecks might
-be improved, please issue a feature request to the STATcubeR bugtracker.
+be improved, please issue a feature request to the [STATcubeR bugtracker].
 
 ## Further Reading
 
@@ -349,3 +349,5 @@ be improved, please issue a feature request to the STATcubeR bugtracker.
   from the return value of `sc_table_custom()`.
 
 [recodes specification]: https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/table-endpoint
+[STATcubeR bugtracker]: https://github.com/statistikat/STATcubeR/issues
+["expected json but got html"]: sc_last_error.html#invalid-json
