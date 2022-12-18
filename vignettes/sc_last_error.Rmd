@@ -170,11 +170,12 @@ If you encounter this error during the workflow described in the `r ticle("sc_ta
 This is because json request that are downloaded by the STATcube GUI should always contain valid URIs.
 However, if you either modify the downloaded json requests or use `sc_table_custom()`, the reason "invalid json body" is plausible.
 
-### Cell Limit Exceeded
+### Cell Limit Exceeded {#CELL_COUNT}
 
 This error occurs if more than 1 million cells are requested via a single
 call to `sc_table()` or `sc_table_custom()`.
-If you encounter this error, consider splitting up the request into multiple smaller requests.
+If you encounter this error, consider splitting up the request into multiple smaller requests or defining a filter in the gui or via a
+[custom table filter](sc_table_custom.html#filter).
 
 ```{r, eval = FALSE}
 sc_table_custom(

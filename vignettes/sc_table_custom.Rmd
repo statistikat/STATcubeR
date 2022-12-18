@@ -186,9 +186,12 @@ important advantages.
 
 - **performance** Traffic between the client and server is reduced which might 
   lead to consierably faster API responses.
-- **cell limits** Apart from rate limits (see `?sc_rate_limits`), STATcube also
+- **cell limits (user)** Apart from rate limits (see `?sc_rate_limits`),
+  STATcube also
   limits the amount of cells that can be fetched per user.
   Filtering data can be useful to preserve this quota.
+- **cell limits (equest)** If a single request would contain more than 1 million 
+  cells, a [cell count error](sc_last_error.html#CELL_COUNT) is thrown.
 
 ### Filtering Data {#filter}
 
