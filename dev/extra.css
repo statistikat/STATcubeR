@@ -48,6 +48,12 @@ a:hover {
     background-color: hsl(210deg 29% 24%);
 }
 
+.navbar-nav .show>.nav-link,
+.navbar-nav .active>.nav-link,
+.navbar-nav .nav-link.active {
+    color: white;
+}
+
 .tabset-pills .tab-content {
   border: none;
   padding: 0;
