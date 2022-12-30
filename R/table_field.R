@@ -22,19 +22,22 @@ sc_field_type <- function(field) {
   codes_numeric <- all(!is.na(suppressWarnings(as.numeric(varcodes))))
   if (!codes_numeric)
     return("Category")
-  if (!all(diff(nchar(varcodes)) == 0) || !(nchar(varcodes)[1] %in% 4:6))
+  if (!all(diff(nchar(varcodes)) == 0) || !(nchar(varcodes)[1] %in% c(4:6, 8)))
     return("Category")
   year <- as.numeric(substr(varcodes, 1, 4))
   if (!all(year %in% 1900:2150))
     return("Category")
   time_type <- switch(
     as.character(nchar(varcodes[1])),
-    `4` = "year", `5` = "quarter", `6` = "month"
+    `4` = "year", `5` = "quarter", `6` = "month", `8` = "date"
   )
   if ((time_type == "quarter") && all(substr(varcodes, 5, 5) %in% 5:6))
     time_type <- "half-year"
   if ((time_type == "month") && any(as.numeric(substr(varcodes, 5, 6)) > 12))
     time_type <- "week"
+  if (time_type == "date" && (any(as.numeric(substr(varcodes, 5, 6))  > 12) ||
+                              any(as.numeric(substr(varcodes, 7, 8))  > 31)))
+    return("Category")
   paste0("Time (", time_type, ")")
 }
 
@@ -69,6 +72,12 @@ sc_field_parse_week <- function(year, week) {
   first_day + 7 * (as.numeric(week) - 1)
 }
 
+sc_field_parse_iso_date <- function(year, remainder) {
+  month <- substr(remainder, 1, 2)
+  day <- substr(remainder, 3, 4)
+  as.Date(paste(year, month, day, sep = "-"))
+}
+
 sc_field_parse_time <- function(field) {
   if (is.character(field))
     varcodes <- sapply(field, function(x) utils::tail(strsplit(x, "-")[[1]], 1))
@@ -77,12 +86,16 @@ sc_field_parse_time <- function(field) {
   varcodes[varcodes == "SC_TOTAL"] <- NA
   year <- substr(varcodes, 1, 4)
   remainder <- substr(varcodes, 5, 8)
+  ind <- is.na(varcodes)
+  nc <- nchar(remainder[!ind][1])
+  stopifnot(all(nchar(remainder[!ind]) == nc))
+  if (nc == 4)
+    return(sc_field_parse_iso_date(year, remainder))
   if (any(as.numeric(remainder) > 12, na.rm = TRUE))
     return(sc_field_parse_week(year, remainder))
   month <- sc_field_parse_time_month(remainder)
 
   parsed <- as.Date(rep(NA, length(varcodes)))
-  ind <- is.na(varcodes)
   parsed[!ind] <- sc_as_time(year, month, ind)
   parsed
 }
