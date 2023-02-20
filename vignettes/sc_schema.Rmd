@@ -24,16 +24,16 @@ endpoint.
 
 ## Browsing the Catalogue
 
-The first function shows the catalogue, which lists all available
+The first function shows the catalog, which lists all available
 databases in a tree form. The tree structure is determined by the API and
-closely resembles the "Catalogue" view in the GUI.
+closely resembles the "Catalog" view in the GUI.
 
 ```{r}
 my_catalogue <- sc_schema_catalogue()
 my_catalogue
 ```
 
-We see that the catalog has 8 child nodes: Four childs of type `FOLDER` and four childs of type `TABLE`.
+We see that the catalog has 8 child nodes: Four children of type `FOLDER` and four children of type `TABLE`.
 The table nodes correspond to the saved tables as described in the `r ticle("sc_table_saved")`.
 The folders include all folders from the root level in the [catalogue explorer](`r sc_browse_catalogue()`):
 "Statistics", "Publication and Services" as well as "Examples".
@@ -53,13 +53,13 @@ options(tibble.print_max = 5)
 my_catalogue$Statistics
 ```
 
-The child node `Statistics` is also of class `sc_schema` and shows all entries of the subfolder.
+The child node `Statistics` is also of class `sc_schema` and shows all entries of the sub-folder.
 
 ```{r,fig.align='center', out.width='50%', echo=FALSE}
 knitr::include_graphics("img/catalogue3.png")
 ```
 
-This syntax can be used to navigate through folders and subfolders.
+This syntax can be used to navigate through folders and sub-folders.
 
 ```{r}
 my_catalogue$Statistics$`Foreign Trade`
@@ -77,7 +77,7 @@ my_catalogue$Statistics$`Foreign Trade`$Außenhandelsindizes
 
 ## Databases and Tables
 
-Inside the catalogue, the leafs^[In the context of tree-like data structures, leafs are used to describe nodes of a tree which have no child nodes] of the tree are mostly of type `DATABASE` and `TABLE`.
+Inside the catalog, the leafs^[In the context of tree-like data structures, leafs are used to describe nodes of a tree which have no child nodes] of the tree are mostly of type `DATABASE` and `TABLE`.
 
 ```{r}
 my_catalogue$Statistics$`Foreign Trade`$`Regional data by federal provinces`
@@ -138,7 +138,7 @@ The leafs of database schemas are mostly of type `VALUE` and `MEASURE`.
 
 ## Data Structure of sc_schema Objects
 
-As shown above, `sc_schema` objets have a tree like structure.
+As shown above, `sc_schema` objects have a tree like structure.
 Each `sc_schema` object has `id`, `label`, `location` and `type` as the last four entries
 
 ```{r}
@@ -149,11 +149,11 @@ str(tail(my_catalogue$Statistics, 4))
 Schema objects can have an arbitrary amount of children.
 Children are always of type `sc_schema`.
 `x$type` contains the type of the schema object.
-A complete list of schema types is avilable in the [API reference](https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/schema-endpoint).
+A complete list of schema types is available in the [API reference](https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/schema-endpoint).
 
 ## Other Resources
 
-Information about resources other than databases and the catalogue can
+Information about resources other than databases and the catalog can
 be obtained by passing the resource id to `sc_schema()`.
 
 ```{r, collapse=TRUE}
@@ -184,7 +184,7 @@ group_info <- my_db_info$`Demographic Characteristics`$id %>%
 ## Printing with data.tree
 
 If the `{data.tree}` package is installed, it can be used for an alternative
-print mehtod.
+print method.
 
 ```{r}
 print(group_info, tree = TRUE)
@@ -199,7 +199,7 @@ options(STATcubeR.print_tree = TRUE)
 ## Flatten a Schema
 
 The function `sc_schema_flatten()` can be used to turn responses from the `/schema` endpoint into `data.frame`s.
-The following call extracts all databasess from the catalogue and displays their ids and labels.
+The following call extracts all databases from the catalog and displays their ids and labels.
 
 ```{r}
 sc_schema_catalogue() %>%
@@ -208,9 +208,9 @@ sc_schema_catalogue() %>%
 
 The string `"DATABASE"` in the previous example acts as a filter to make sure only nodes with the schema type `DATABASE` are included in the table.
 
-If `"DATABASE"` is relaced with `"TABLE"`, all tables will be displayed. This includes
+If `"DATABASE"` is replaced with `"TABLE"`, all tables will be displayed. This includes
 
-* All the defaulttables on STATcube.
+* All the default-tables on STATcube.
   Most databases have an associated default table.
 * All saved tables for the current user as described in the `r ticle("sc_table_saved")`.
 * Other saved tables.

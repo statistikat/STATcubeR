@@ -29,7 +29,7 @@ either of type \code{FIELD} or type \code{VALUESET}. Those entries are referred 
 as \code{fields} in the parsed API response}
 
 \item{language}{The language to be used for labeling. "en"
-(the default) will use english. "de" uses german.}
+(the default) will use English. "de" uses German.}
 
 \item{add_totals}{Should totals be added for each classification field in
 the json request? Ignored if \code{recodes} is used.}
@@ -38,7 +38,7 @@ the json request? Ignored if \code{recodes} is used.}
 \code{\link[=sc_browse_preferences]{sc_browse_preferences()}}.}
 
 \item{recodes}{One or more recodes that were generated via \code{\link[=sc_recode]{sc_recode()}}.
-If more than one recode is supplied, recodes should be concatinated with
+If more than one recode is supplied, recodes should be concatenated with
 \code{\link[=c]{c()}}.}
 
 \item{dry_run}{If \code{TRUE}, no request is sent to the API. Instead, type

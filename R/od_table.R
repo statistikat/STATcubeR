@@ -14,7 +14,7 @@
 #' `$field(code)  `| `https://data.statistik.gv.at/data/${id}_${code}.csv`
 #' `$json         `| `https://data.statistik.gv.at/ogd/json?dataset=${id}`
 #'
-#' @param id the id of the data-set that should be accessed
+#' @param id the id of the dataset that should be accessed
 #' @param language language to be used for labeling. `"en"` or `"de"`
 #' @param server the OGD-server to be used. `"ext"` (the default) for the
 #'   external server or `prod` for the production server
@@ -67,7 +67,7 @@ od_table_class <- R6::R6Class(
   public = list(
     #' @description This class is not exported. Use [od_table()] to
     #' initialize objects of class `od_table`.
-    #' @param id the id of the data-set that should be accessed
+    #' @param id the id of the dataset that should be accessed
     #' @param language language to be used for labeling. `"en"` or `"de"`
     #' @param server the OGD-Server server to be used
     initialize = function(id, language = NULL, server = "ext") {
@@ -106,7 +106,7 @@ od_table_class <- R6::R6Class(
       private$cache$header %>% sc_tibble_meta(c("label_de", "label_en"))
     },
     #' @field resources
-    #' lists all files downloaded from the server to contruct this table
+    #' lists all files downloaded from the server to construct this table
     resources = function() {
       resources <- private$cache$resources
       class(resources$name) <- c("ogd_file", "character")

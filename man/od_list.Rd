@@ -7,7 +7,7 @@
 od_list(unique = TRUE, server = c("ext", "red"))
 }
 \arguments{
-\item{unique}{some datasets are pulbished under multiple groups.
+\item{unique}{some datasets are published under multiple groups.
 They will only be listed once with the first group they appear in unless
 this parameter is set to \code{FALSE}.}
 

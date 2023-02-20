@@ -19,7 +19,7 @@ R6 Class open data datasets.
 
 Similar contents can be found in \verb{$meta}.}
 
-\item{\code{resources}}{lists all files downloaded from the server to contruct this table}
+\item{\code{resources}}{lists all files downloaded from the server to construct this table}
 
 \item{\code{od_server}}{The server used for initialization (see to \code{?od_table})}
 }
@@ -54,7 +54,7 @@ initialize objects of class \code{od_table}.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{id}}{the id of the data-set that should be accessed}
+\item{\code{id}}{the id of the dataset that should be accessed}
 
 \item{\code{language}}{language to be used for labeling. \code{"en"} or \code{"de"}}
 

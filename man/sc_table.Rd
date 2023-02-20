@@ -24,7 +24,7 @@ GUI ("Open Data API Request"). Alternatively, a json string which
 passes \code{\link[jsonlite:validate]{jsonlite::validate()}}.}
 
 \item{language}{The language to be used for labeling. \code{"en"} (the default)
-will use english. \code{"de"} uses german.
+will use english. \code{"de"} uses German.
 The third option \code{"both"} will import both languages by sending two requests
 to the \verb{/table} endpoint.}
 
@@ -34,7 +34,7 @@ the json request?}
 \item{key}{(\code{string}) An API key. To display your key, call
 \code{\link[=sc_browse_preferences]{sc_browse_preferences()}}.}
 
-\item{json_file}{Depricated. Use \code{json} instead}
+\item{json_file}{Deprecated. Use \code{json} instead}
 
 \item{filename}{The name of an example json file.}
 

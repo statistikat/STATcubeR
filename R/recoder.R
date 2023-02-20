@@ -1,7 +1,7 @@
 #' @title Recode sc_table objects
 #' @description
 #' A collection of methods that can be used to modify an object of class
-#' sc_table by reference. Typical usage is to acces the `recode` binding
+#' sc_table by reference. Typical usage is to access the `recode` binding
 #' of an `sc_table` object and then use method chaining to perform recode
 #' operations.
 #'
@@ -80,7 +80,7 @@ sc_recoder <- R6::R6Class(
       private$x$p_fields[[i]][j, private$l(language)] <- new
       invisible(self)
     },
-    #' @description Cheange the total code for a field
+    #' @description Change the total code for a field
     #' @param field a field code
     #' @param new a level code for the field or `NA`. Will be used as the
     #'   new total code. In case of `NA`, the total code will be unset.
@@ -91,7 +91,7 @@ sc_recoder <- R6::R6Class(
       invisible(self)
     },
     #' @description set the visibility of a level. Invisible levels are
-    #'   ommited in the output of `$tabulate()` but don't affect aggregation
+    #'   omitted in the output of `$tabulate()` but don't affect aggregation
     #' @param field a field code
     #' @param level a level code for the field
     #' @param new visibility. `TRUE` or `FALSE`

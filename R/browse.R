@@ -14,7 +14,7 @@ sc_browse <- function(server = "ext") {
   sc_url(sc_url_gui(server), "home")
 }
 
-#' @describeIn sc_browse opens the preference menu with the api key
+#' @describeIn sc_browse opens the preference menu with the API key
 #' @examples
 #' sc_browse_preferences()
 #' @export

@@ -39,7 +39,7 @@ Currently, the following columns are provided.\tabular{lll}{
 
 
 The type \code{datetime} refers to the \code{POSIXct} format as returned by \code{\link[=Sys.time]{Sys.time()}}.
-The last column \code{"json"} containes the full json metadata as returned by
+The last column \code{"json"} contains the full json metadata as returned by
 \code{\link[=od_json]{od_json()}}.
 }
 \examples{

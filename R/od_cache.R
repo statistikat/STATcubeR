@@ -15,7 +15,7 @@
 #' od_downloads()
 #' @details
 #' [od_cache_summary()] provides an overview of all contents of the cache through
-#' a data.frame. It hasone row for each dataset and the following columns.
+#' a data.frame. It has one row for each dataset and the following columns.
 #' All file sizes are given in bytes
 #' - **`id`** the dataset id
 #' - **`updated`** the last modified time for `${id}.json`

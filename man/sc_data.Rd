@@ -5,7 +5,7 @@
 \title{Common interface for STATcubeR datasets}
 \description{
 This class represents a common interface for datasets returned from the
-STATcube REST API and OGD datasets. \code{sc_data} obects are usually created with
+STATcube REST API and OGD datasets. \code{sc_data} objects are usually created with
 \code{\link[=od_table]{od_table()}} or \code{\link[=sc_table]{sc_table()}}.
 }
 \examples{
@@ -105,7 +105,7 @@ Do not use directly but initialize objects with \code{\link[=sc_table]{sc_table(
 \if{latex}{\out{\hypertarget{method-sc_data-field}{}}}
 \subsection{Method \code{field()}}{
 get information about a specific field. The format of
-the reurn value is similar to \verb{$meta}. A \code{data.frame} that includes
+the return value is similar to \verb{$meta}. A \code{data.frame} that includes
 codes and labels for each level of the field.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{sc_data$field(i = 1)}\if{html}{\out{</div>}}
@@ -114,7 +114,7 @@ codes and labels for each level of the field.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{i}}{specifier for the field. Integer or character. If an interger
+\item{\code{i}}{specifier for the field. Integer or character. If an integer
 is provided, it should match the row number in \verb{$meta$fields}. If
 a character is provided, the field is matched using \code{\link[=pmatch]{pmatch()}} on
 all available codes and labels.}

@@ -8,7 +8,7 @@ od_revisions(since = NULL, exclude_ext = TRUE, server = "ext")
 }
 \arguments{
 \item{since}{(optional) A timestamp. If supplied, only datasets updated
-later will be returned. Otherwise, all datasets are retured.
+later will be returned. Otherwise, all datasets are returned.
 Can be in either one of the following formats
 \itemize{
 \item a native R time type that is compatible with \code{strftime()}
@@ -25,7 +25,7 @@ server (the default) or \code{red} for the editing server. The editing server
 is only accessible for employees of Statistics Austria}
 }
 \value{
-a character verctor with dataset ids
+a character vector with dataset ids
 }
 \description{
 Use the \verb{/revision} endpoint of the OGD server to get a list

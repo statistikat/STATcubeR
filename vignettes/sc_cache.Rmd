@@ -40,11 +40,11 @@ Caching will affect all calls to `sc_table()` and `sc_schema()` as well as their
 `sc_table_saved()`, `sc_table_custom()`, `sc_schema_db()`, `sc_schema_catalogue()`.
 
 If the same resource is requested several times, the last valid API response is reused.
-Invalid resposes (such as 404 responses) will not be added to the cache.
+Invalid responses (such as 404 responses) will not be added to the cache.
 
 Cache files always contain unparsed API responses as returned by `httr::GET()` or `httr::POST()`.
 Responses are stored in an `rds` format.
-If caching is enabled, the corresponding cache files to an object of class `sc_schema` or `sc_table` can be retieved using `sc_cache_files()`.
+If caching is enabled, the corresponding cache files to an object of class `sc_schema` or `sc_table` can be retrieved using `sc_cache_files()`.
 
 ```{r}
 sc_example("accomodation") %>% sc_table(language = "both") %>% sc_cache_files()
@@ -52,7 +52,7 @@ sc_schema_catalogue() %>% sc_cache_files()
 ```
 
 Note that the first call to `sc_cache_files()` returned two paths.
-Since the table was requested in two languages, two api responses are necessary to construct the table object.
+Since the table was requested in two languages, two API responses are necessary to construct the table object.
 
 The content of the cache files can be parsed using `readRDS()` and `httr::content()`.
 This gives direct access to the API response in a `list()` format.
@@ -76,8 +76,8 @@ sc_cache_clear()
 ## Should I use caching?
 
 If you are using `r STATcubeR` interactively, the answer is probably no.
-However, when building applications that rely on STATcube data caching can be a usefiul way to decrease the traffic with the STATcube server.
-Another usecase for caching is if you are writing `{rmarkdown}` documents that rely on STATcube data.
+However, when building applications that rely on STATcube data caching can be a useful way to decrease the traffic with the STATcube server.
+Another use case for caching is if you are writing `{rmarkdown}` documents that rely on STATcube data.
 Caching makes those documents both reproducible and quicker to render.
 
 Please note that there is currently no reliable way to invalidate the cache.

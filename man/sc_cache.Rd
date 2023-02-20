@@ -23,10 +23,10 @@ sc_cache_files(x)
 sc_cache_clear()
 }
 \arguments{
-\item{verbose}{print instuctions on how to set up caching persistently
+\item{verbose}{print instructions on how to set up caching persistently
 via environment variables?}
 
-\item{dir}{a chace directory}
+\item{dir}{a cache directory}
 
 \item{x}{an object of class \code{sc_table} or \code{sc_schema}}
 }
@@ -42,7 +42,7 @@ old cache entries.
 Caching can be set up using environment variables. To set up a persistent cache
 for both Open Data and the REST API, the following lines in \code{.Renviron} can
 be used.
-The paths in this example are only applicalble for UNIX-based operating systems.
+The paths in this example are only applicable for UNIX-based operating systems.
 
 \if{html}{\out{<div class="sourceCode sh">}}\preformatted{STATCUBE_KEY_EXT   = YOUR_API_KEY_GOES_HERE
 STATCUBE_CACHE     = TRUE
@@ -62,7 +62,7 @@ endpoints \code{\link[=sc_info]{sc_info()}} and \code{\link[=sc_rate_limit_table
 \item \code{sc_cache_disable()}: disables caching for the current R session
 sc_cache_disable()
 
-\item \code{sc_cache_enabled()}: informs wether the cache is currently enabled
+\item \code{sc_cache_enabled()}: informs whether the cache is currently enabled
 
 \item \code{sc_cache_dir()}: get/set the directory used for caching
 

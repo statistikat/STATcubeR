@@ -5,7 +5,7 @@
 \title{Recode sc_table objects}
 \description{
 A collection of methods that can be used to modify an object of class
-sc_table by reference. Typical usage is to acces the \code{recode} binding
+sc_table by reference. Typical usage is to access the \code{recode} binding
 of an \code{sc_table} object and then use method chaining to perform recode
 operations.
 
@@ -142,7 +142,7 @@ Change the labels of a level
 \if{html}{\out{<a id="method-sc_recoder-total_codes"></a>}}
 \if{latex}{\out{\hypertarget{method-sc_recoder-total_codes}{}}}
 \subsection{Method \code{total_codes()}}{
-Cheange the total code for a field
+Change the total code for a field
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{sc_recoder$total_codes(field, new)}\if{html}{\out{</div>}}
 }
@@ -163,7 +163,7 @@ new total code. In case of \code{NA}, the total code will be unset.}
 \if{latex}{\out{\hypertarget{method-sc_recoder-visible}{}}}
 \subsection{Method \code{visible()}}{
 set the visibility of a level. Invisible levels are
-ommited in the output of \verb{$tabulate()} but don't affect aggregation
+omitted in the output of \verb{$tabulate()} but don't affect aggregation
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{sc_recoder$visible(field, level, new)}\if{html}{\out{</div>}}
 }

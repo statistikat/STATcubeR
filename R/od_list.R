@@ -3,7 +3,7 @@
 #' [od_list()] returns a `data.frame ` containing all datasets published at
 #' [data.statistik.gv.at](https://data.statistik.gv.at)
 #'
-#' @param unique some datasets are pulbished under multiple groups.
+#' @param unique some datasets are published under multiple groups.
 #'   They will only be listed once with the first group they appear in unless
 #'   this parameter is set to `FALSE`.
 #' @param server the open data server to use. Either `ext` for the external
@@ -95,7 +95,7 @@ od_list <- function(unique = TRUE, server = c("ext", "red")) {
 #' |json      |`list<od_json>`| Full json metadata
 #'
 #' The type `datetime` refers to the `POSIXct` format as returned by [Sys.time()].
-#' The last column `"json"` containes the full json metadata as returned by
+#' The last column `"json"` contains the full json metadata as returned by
 #' [od_json()].
 #'
 #' @inheritParams od_table

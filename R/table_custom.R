@@ -15,10 +15,10 @@
 #' @param add_totals Should totals be added for each classification field in
 #'   the json request? Ignored if `recodes` is used.
 #' @param recodes One or more recodes that were generated via [sc_recode()].
-#'   If more than one recode is supplied, recodes should be concatinated with
+#'   If more than one recode is supplied, recodes should be concatenated with
 #'   [c()].
 #' @param language The language to be used for labeling. "en"
-#'   (the default) will use english. "de" uses german.
+#'   (the default) will use English. "de" uses German.
 #' @param dry_run If `TRUE`, no request is sent to the API. Instead, type
 #'   checks are performed and the json request is returned as a string.
 #'   Defaults to `FALSE`.

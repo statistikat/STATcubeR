@@ -3,7 +3,7 @@
 #' Use the `/revision` endpoint of the OGD server to get a list
 #' of all datasets that have changed since a certain timestamp.
 #' @param since (optional) A timestamp. If supplied, only datasets updated
-#'   later will be returned. Otherwise, all datasets are retured.
+#'   later will be returned. Otherwise, all datasets are returned.
 #'   Can be in either one of the following formats
 #'   * a native R time type that is compatible with `strftime()`
 #'     such as the return values of `Sys.Date()`, `Sys.time()` and `file.mtime()`.
@@ -11,7 +11,7 @@
 #'   * a string of the form `YYYY-MM-DDThh:mm:ss` to specify a day and a time.
 #' @param exclude_ext If `TRUE` (default) exclude all results that have
 #'   `OGDEXT_` as a prefix
-#' @return a character verctor with dataset ids
+#' @return a character vector with dataset ids
 #' @inheritParams od_list
 #' @examples
 #' # get all datasets (including OGDEXT_*)

@@ -13,9 +13,9 @@ sc_last_error_parsed()
 The return value from \code{httr::GET()} or \code{httr::POST()}.
 }
 \description{
-In case API requests are unsuccessfull, \code{STATcubeR} will throw errors
+In case API requests are unsuccessful, \code{STATcubeR} will throw errors
 to summarize the httr error type and its meaning.
-Requests are considered unsuccessfull if one of the following applies
+Requests are considered unsuccessful if one of the following applies
 \itemize{
 \item The response returns \code{TRUE} for \code{httr::http_error()}.
 \item The response is not of type \code{"application/json"}
@@ -23,7 +23,7 @@ Requests are considered unsuccessfull if one of the following applies
 
 In some cases it is useful to get direct access to a faulty response object.
 For that purpose, it is possible to use \code{\link[=sc_last_error]{sc_last_error()}} which will provide
-the httr response object for the last unsuccessfull request.
+the httr response object for the last unsuccessful request.
 }
 \section{Functions}{
 \itemize{

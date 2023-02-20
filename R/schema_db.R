@@ -30,7 +30,7 @@
 #'   print(tree = TRUE)
 #' @describeIn sc_schema is similar to the
 #'   [table view](`r sc_browse_database('deake005', open = TRUE)`)
-#'   of ths STATcube GUI and gives information about all measures and
+#'   of the STATcube GUI and gives information about all measures and
 #'   classification fields for a specific database
 #' @export
 sc_schema_db <- function(id, depth = "valueset", language = c("en", "de"),

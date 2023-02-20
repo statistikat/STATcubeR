@@ -4,9 +4,9 @@
 #' This endpoint can be used to get all available databases and tables
 #' as well as metadata about specific databases.
 #'
-#' The main function `sc_schema()` can be used with any resouce id.
+#' The main function `sc_schema()` can be used with any resource id.
 #' [sc_schema_catalogue()] and [sc_schema_db()] are very simple
-#' wrapper functions around [`sc_schema()`] and are comparabable to the
+#' wrapper functions around [`sc_schema()`] and are comparable to the
 #' [catalogue explorer](`r sc_browse_catalogue()`) or the
 #' [table view](`r sc_browse_database('deake005', open = TRUE)`) of the STATcube GUI.
 #'
@@ -56,7 +56,7 @@ print_schema_with_tree <- function(x, ...) {
 #' @rdname sc_schema
 #' @param x an object of class `sc_schema()` i.e. the return value of
 #'   [sc_schema()], [sc_schema_db()] or [sc_schema_catalogue()].
-#' @param tree wether to use the [`data.tree`](https://rdrr.io/cran/data.tree/man/data.tree.html) package for printing.
+#' @param tree whether to use the [`data.tree`](https://rdrr.io/cran/data.tree/man/data.tree.html) package for printing.
 #' @param limit,... passed to [data.tree::print.Node()] if `tree` is set
 #'   to `TRUE`. Ignored otherwise.
 #' @section Printing with data.tree:
@@ -159,7 +159,7 @@ sc_schema_flatten_impl <- function(resp, type) {
 }
 
 #' @describeIn sc_schema is similar to the
-#' [catalogue explorer](`r sc_browse_catalogue()`) of the STATcube GUI and reurns
+#' [catalogue explorer](`r sc_browse_catalogue()`) of the STATcube GUI and returns
 #' a tree-type object containing all databases and tables.
 #' @export
 sc_schema_catalogue <- function(depth = "folder", ...) {

@@ -1,7 +1,7 @@
 ---
 title: "Define Custom Tables"
 description: >
-  Define custom requests against the `/table` endpoint programatically
+  Define custom requests against the `/table` endpoint programmatically
   by providing character vectors with ids of databases, measures and classification fields.
 link_text: "custom tables article"
 ---
@@ -31,7 +31,7 @@ show_json <- function(x) {
 }
 ```
 
-The function `sc_table_custom()` allows you to define requests against the `/table` endpoint programatically.
+The function `sc_table_custom()` allows you to define requests against the `/table` endpoint programmatically.
 This can be useful to automate the generation of `/table` request rather than relying on the GUI to do so.
 The function accepts the four arguments.
 
@@ -40,7 +40,7 @@ The function accepts the four arguments.
 - ids of **fields** to be imported (type `FIELD` or `VALUESET`)
 - a list of **recodes** that can be used customize fields
 
-## Bulding a Custom Table Step by Step {#step-by-step}
+## Building a Custom Table Step by Step {#step-by-step}
 
 The first part of this Article will showcase how custom tables can be
 created with a [database about tourism](`r sc_browse_database("detouextregsai")`).
@@ -49,7 +49,7 @@ This database will also be used in most other examples of this article.
 ### Starting Simple {#database}
 
 First, we want to just send the database id to `sc_table_custom()`.
-This will request only the mandirory fields and default measures for that database.
+This will request only the mandatory fields and default measures for that database.
 In case of the tourism database, a table with one single row is returned.
 
 ```{r}
@@ -62,7 +62,7 @@ x$tabulate()
 show_json(x)
 ```
 
-We see that `r format(x$tabulate()[[2]], big.mark = " ")` nights were spent in austrian tourism establishments in the month of `r x$tabulate()[[1]]`.
+We see that `r format(x$tabulate()[[2]], big.mark = " ")` nights were spent in Austrian tourism establishments in the month of `r x$tabulate()[[1]]`.
 
 ### Adding Countries {#field}
 
@@ -74,7 +74,7 @@ tourism <- sc_schema_db(database)
 (fields <- sc_schema_flatten(tourism, "FIELD"))
 ```
 
-If we want to add "Country of origin" we need to include the fouth entry of the `id` column in our request.
+If we want to add "Country of origin" we need to include the fourth entry of the `id` column in our request.
 
 ```{r}
 x <- sc_table_custom(tourism, dimensions = fields$id[4])
@@ -132,24 +132,24 @@ show_json(x)
 
 We can see in [the GUI](`r sc_browse_database("detouextregsai")`) that "Country of origin" is a hierarchical classification.
 If we look at the table above, only the top level of the hierarchy (Austria, Germany, other) is used.
-This can be changed by providing the the valueset that corresponds to the more granular classification of "country of origin"
+This can be changed by providing the the value-set that corresponds to the more granular classification of "country of origin"
 
 ```{r,fig.align='center', out.width='50%', echo=FALSE}
 knitr::include_graphics("img/hierarchical_classification.png")
 ```
 
-The different valuesets for "country of origin" can be compared by browsing the database schema.
+The different value-sets for "country of origin" can be compared by browsing the database schema.
 
 ```{r}
 (valuesets <- tourism$`Other Classifications`$`Country of origin`)
 ```
 
-We can see that the two levels of the hierarchy are represented by the two valuesets.
-The valueset "Herkunftsland" uses 3 classification elements and represents the top level of the hierarchy (Austria, Germany, Other).
-The valueset "Country of origin" uses 87 (10+8+69) classification elements and is the bottom level of the hierarchy.
-For classifications with more levels of hierarchies, more valuesets will be present.
+We can see that the two levels of the hierarchy are represented by the two value-sets.
+The value-set "Herkunftsland" uses 3 classification elements and represents the top level of the hierarchy (Austria, Germany, Other).
+The value-set "Country of origin" uses 87 (10+8+69) classification elements and is the bottom level of the hierarchy.
+For classifications with more levels of hierarchies, more value-sets will be present.
 
-We will now use the id for the first valueset in the `dimensions` parmaeter of `sc_table_custom`.
+We will now use the id for the first value-set in the `dimensions` parameter of `sc_table_custom`.
 
 ```{r}
 x <- sc_table_custom(
@@ -164,11 +164,11 @@ x$tabulate()
 show_json(x)
 ```
 
-It is possible to use a mixture of valuesets and fields in the `dimensions` parameter.
+It is possible to use a mixture of value-sets and fields in the `dimensions` parameter.
 
 ## Using Counts {#counts}
 
-Instead of Measures and Valuesets, it is also possible to provide counts
+Instead of Measures and Value-sets, it is also possible to provide counts
 in the `measure` parameter of `sc_table_custom()`.
 
 ```{r}
@@ -190,17 +190,17 @@ This might be more complicated than filtering the data in R but offers some
 important advantages.
 
 - **performance** Traffic between the client and server is reduced which might 
-  lead to consierably faster API responses.
+  lead to considerably faster API responses.
 - **cell limits (user)** Apart from rate limits (see `?sc_rate_limits`),
   STATcube also
   limits the amount of cells that can be fetched per user.
   Filtering data can be useful to preserve this quota.
-- **cell limits (equest)** If a single request would contain more than 1 million 
+- **cell limits (request)** If a single request would contain more than 1 million 
   cells, a [cell count error](sc_last_error.html#CELL_COUNT) is thrown.
 
 ### Filtering Data {#filter}
 
-As an example for fiitering data, we can request a table from the tourism
+As an example for filtering data, we can request a table from the tourism
 database and only select some countries for `Country of origin`.
 
 ```{r}
@@ -251,16 +251,16 @@ show_json(x)
 ```
 
 This table contains data for two country-groups and two months.
-In this case, the cell values for Gemany and the Netherlands are just added
-to calculate the etries for Arrivals and Nights spent.
-However, in other cases STATcubeR might decide it is more appropriate
+In this case, the cell values for Germany and the Netherlands are just added
+to calculate the entries for Arrivals and Nights spent.
+However, in other cases STATcube might decide it is more appropriate
 to use weighted means or other more complicated aggregation methods.
 
 ### Adding Totals {#totals}
 
 The `total` parameter in `sc_recode()` can be used to request totals for
-classifications. As an example, let's look at the tourism acivity in the
-capital cities of austria
+classifications. As an example, let's look at the tourism activity in the
+capital cities of Austria
 
 ```{r}
 destination <- tourism$`Other Classifications`$`Tourism commune [ABO]`$
@@ -284,7 +284,7 @@ show_json(x)
 
 We see that there are two rows in the table where Tourism commune is set
 to "Total". The corresponding values represent the sum of all Arrivals
-or Nights spent in either of these three cities durng that month.
+or Nights spent in either of these three cities during that month.
 
 ### Recoding across hierarchies {#recode-hierarchy}
 
@@ -337,8 +337,8 @@ If `dry_run` is set to `FALSE` (the default), STATcubeR will send the request
 to the API even if inconsistencies are detected.
 This will likely lead to an error of the form ["expected json but got html"].
 
-If you get spurious warnings or have suggestions on how these typechecks might
-be improved, please issue a feature request to the [STATcubeR bugtracker].
+If you get spurious warnings or have suggestions on how these type-checks might
+be improved, please issue a feature request to the [STATcubeR bug tracker].
 
 ## Further Reading
 

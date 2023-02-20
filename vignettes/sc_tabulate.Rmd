@@ -166,11 +166,11 @@ x <- sc_table(sc_example("accomodation"))
 x$meta$fields
 ```
 
-### Including totals in the oputput
+### Including totals in the output
 
 It is not necessary that all fields have totals.
 For example, suppose we want to include the totals for `Sex` in the output table.
-We can just remove the toal code before running `sc_tabulate()`.
+We can just remove the total code before running `sc_tabulate()`.
 The special symbol `NA` can be used to unset a total code.
 
 ```{r}
@@ -188,21 +188,21 @@ earnings$language <- "de"
 earnings$tabulate("Geschlecht")
 ```
 
-To skip labelling altogether and use variable codes in the output, use `raw=TRUE`.
+To skip labeling altogether and use variable codes in the output, use `raw=TRUE`.
 
 ```{r}
 earnings$tabulate("Geschlecht", raw = TRUE)
 ```
 
 Switching languages is always available for `od_table()` objects.
-For `sc_table()`, it depends on whcih languages were requested.
+For `sc_table()`, it depends on which languages were requested.
 
 ```{r}
-# default: get labels in german and english
+# default: get labels in German and English
 x <- sc_table(sc_example("accomodation"))
-# only get english labels
+# only get English labels
 x <- sc_table(sc_example("accomodation"), lang = "en")
-# only get german labels
+# only get German labels
 x <- sc_table(sc_example("accomodation"), lang = "de")
 ```
 
@@ -220,10 +220,10 @@ In the above example, `"2. Quartil"` was matched to `"2. Quartil (Median)"`.
 
 ## Programmatic usage
 
-Notice that we used the german label for the column `"Sex"` in the last calls
+Notice that we used the German label for the column `"Sex"` in the last calls
 to `tabulate()`. This is necessary because only the "active" labels are
 available to define the tabulation. If you want to use `r STATcubeR`
-programatically, always use codes to define the tabulation and also use the
+programmatically, always use codes to define the tabulation and also use the
 `.list` parameter if you want to pass several codes.
 
 ```{r, echo = FALSE}

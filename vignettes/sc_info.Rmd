@@ -98,7 +98,7 @@ request to `sc_table()` is sent several times, this will not count
 towards the rate-limit (100 requests per hour).~~ 
 
 Server-Side caching of [`/table`] responses is currently disabled due to security reasons.
-Therefore, all requests against the [`/table`] endpoint count towards the ratelimit.
+Therefore, all requests against the [`/table`] endpoint count towards the rate-limit.
 
 [`/info`]: https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/info-endpoint
 [`/rate_limit`]: https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/rate-limit

@@ -26,7 +26,7 @@ sc_table_class <- R6::R6Class(
   cloneable = FALSE,
   inherit = sc_data,
   public = list(
-    #' @description Ususally, objects of class `sc_table` are generated with
+    #' @description Usually, objects of class `sc_table` are generated with
     #'   one of the factory methods [sc_table()], [sc_table_saved()] or
     #'   [sc_table_custom()]. If this constructor is invoked directly,
     #'   either omit the parameters `json` and `file` or make sure that they
@@ -36,7 +36,7 @@ sc_table_class <- R6::R6Class(
     #' @param json the json file used in the request as a string.
     #' @param file the file path to the json file
     #' @param add_totals was the json request modified by adding totals via
-    #'   the add_toals parameter in one of the factory functions (`sc_table()`,
+    #'   the add_totals parameter in one of the factory functions (`sc_table()`,
     #'   `sc_table_custom()`). Necessary, in order to also request totals via
     #'   the `$add_language()` method.
     initialize = function(response, json = NULL, file = NULL, add_totals = FALSE) {
@@ -88,7 +88,7 @@ sc_table_class <- R6::R6Class(
     #' @description An extension of [sc_tabulate()] with additional
     #'   parameters.
     #' @param ... Parameters which are passed down to [sc_tabulate()]
-    #' @param round apply rounding to each measure accoring to the precision
+    #' @param round apply rounding to each measure according to the precision
     #'   provided by the API.
     #' @param annotations Include separate annotation columns in the returned
     #'   table. This parameter is currently broken and needs to be re-implemented
@@ -131,7 +131,7 @@ sc_table_class <- R6::R6Class(
     #' the raw response content
     raw = function() httr::content(self$response),
     #' @field annotation_legend
-    #' list of all annotations occuring in the data as a `data.frame` with
+    #' list of all annotations occurring in the data as a `data.frame` with
     #' two columns for the annotation keys and annotation labels.
     annotation_legend = function() {
       am <- self$raw$annotationMap
@@ -181,10 +181,10 @@ sc_table_class <- R6::R6Class(
 #'   [sc_table_class] for the class documentation.
 #' @inheritParams sc_key
 #' @param language The language to be used for labeling. `"en"` (the default)
-#'   will use english. `"de"` uses german.
+#'   will use english. `"de"` uses German.
 #'   The third option `"both"` will import both languages by sending two requests
 #'   to the `/table` endpoint.
-#' @param json_file Depricated. Use `json` instead
+#' @param json_file Deprecated. Use `json` instead
 #' @family functions for /table
 #' @examplesIf sc_key_exists()
 #' my_table <- sc_table(json = sc_example("population_timeseries.json"))

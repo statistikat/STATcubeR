@@ -39,7 +39,7 @@ install.packages('STATcubeR-0.6.0.tar.gz', repos = NULL)
 ## Open Data
 
 To import datasets from https://data.statistik.gv.at, pass the dataset
-id to the `od_table()` function. For example, OGD data about the [austrian population in 2020](https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_bevstandjbab2002_BevStand_2020)
+id to the `od_table()` function. For example, OGD data about the [Austrian population in 2020](https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_bevstandjbab2002_BevStand_2020)
 can be accessed as follows.
 
 ```r
@@ -67,8 +67,8 @@ an overview of the 315 datasets that are compatible with `od_table()`.
 ## STATcube API
 
 In order to use the REST API, it is required to set up an API key. As mentioned in the
-[api key article](https://statistikat.github.io/STATcubeR/articles/sc_key.html),
-this requres a STATcube subscription.
+[API key article](https://statistikat.github.io/STATcubeR/articles/sc_key.html),
+this requires a STATcube subscription.
 
 There are four main functions that interact with the API
 

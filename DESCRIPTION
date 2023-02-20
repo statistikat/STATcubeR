@@ -21,11 +21,13 @@ Imports:
     magrittr,
     pillar (>= 1.5.0),
     vctrs
-Suggests: 
+Suggests:
+    spelling, 
     data.tree,
     rappdirs,
     xml2
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
+Language: en-US

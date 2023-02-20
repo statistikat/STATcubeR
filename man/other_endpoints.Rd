@@ -43,8 +43,8 @@ for calls against the \verb{/table} endpoint.
 \item \code{remaining} how much requests can be sent to the \verb{/table}
 endpoint until the rate limit is reached.
 \item \code{limit} the number of requests allowed per hour.
-\item \code{reset} a tiestamp when the rate limit will be reset.
-Ususally, this should be less than one hour `after the current time.
+\item \code{reset} a timestamp when the rate limit will be reset.
+Usually, this should be less than one hour `after the current time.
 }
 
 \item \code{sc_rate_limits()}: gets rate limits from response headers

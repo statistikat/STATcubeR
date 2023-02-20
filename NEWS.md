@@ -47,7 +47,7 @@
 * Allow recodes of `sc_data` objects (#17)
 * Better parsing of time variables (#15, #16)
 * Use bootstrap 5  and `{pkgdown}` 2.0.0 for the website
-* Allow export and import of open data using tar archves (#20)
+* Allow export and import of open data using tar archives (#20)
 
 # STATcubeR 0.2.4
 
@@ -94,7 +94,7 @@ This version finalizes #11
 https://data.statistik.gv.at/
 
 * new class `od_table` to get OGD data
-* methods to tabulate reponses
+* methods to tabulate responses
 * caching
 * four new pkgdown articles for `od_table()`, `od_list()`, `od_resource()` and `sc_data`
 
