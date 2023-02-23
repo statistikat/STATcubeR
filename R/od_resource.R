@@ -141,15 +141,14 @@ od_resource_parse_all <- function(resources, server = "ext") {
   })
   od <- lapply(parsed, attr, "od")
 
-  data.frame(
+  data_frame(
     name = sapply(resources, function(x) x$name),
     last_modified = lapply(od, function(x) x$last_modified) %>% do.call(c, .),
     cached = lapply(od, function(x) x$cached) %>% do.call(c, .),
     size = sapply(od, function(x) x$size),
     download = vapply(od, function(x) x$download, 1.0),
     parsed = sapply(od, function(x) x$parsed),
-    data = I(parsed %>% lapply(`attr<-`, "od", NULL)),
-    stringsAsFactors = FALSE
+    data = I(parsed %>% lapply(`attr<-`, "od", NULL))
   )
 }
 
@@ -227,5 +226,5 @@ od_resource_all <- function(id, json = od_json(id), server = "ext") {
   class(out$name) <- c("ogd_file", "character")
   class(out$last_modified) <- c("sc_dttm", class(out$last_modified))
   class(out$cached) <- c("sc_dttm", class(out$cached))
-  out %>% `class<-`(c("tbl", "data.frame"))
+  out
 }

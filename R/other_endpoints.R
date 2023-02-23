@@ -25,7 +25,7 @@ sc_info <- function(language = c("en", "de"), key = NULL, server = "ext") {
   info_content <- httr::content(response)
   info_content$languages %>%
     lapply(function(x)
-      data.frame(locale = x$locale, displayName = x$displayName)) %>%
+      data_frame(locale = x$locale, displayName = x$displayName)) %>%
     do.call(rbind, .)
 }
 

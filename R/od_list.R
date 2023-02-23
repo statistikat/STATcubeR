@@ -43,11 +43,10 @@ od_list <- function(unique = TRUE, server = c("ext", "red")) {
     xml2::xml_find_all(".//a")
 
   # ids
-  df <- data.frame(
-    category = "NA",
+  df <- data_frame(
+    category = rep("NA", length(el)),
     id = el %>% xml2::xml_attr("aria-label"),
-    label = el %>% xml2::xml_text(),
-    stringsAsFactors = FALSE
+    label = el %>% xml2::xml_text()
   )
 
   ignored_labels <- c("[Alle \u00f6ffnen]", "[Alle schlie\u00dfen]",
@@ -67,7 +66,7 @@ od_list <- function(unique = TRUE, server = c("ext", "red")) {
   df <- df[!(df$id %in% od_resource_blacklist), ]
   rownames(df) <- NULL
   attr(df, "od") <- r$times[["total"]]
-  df %>% `class<-`(c("tbl", "data.frame"))
+  df
 }
 
 #' Get a catalogue for OGD datasets
@@ -130,7 +129,7 @@ as_df_jsons <- function(jsons) {
   }
 
   descs <- sapply(jsons, function(x) x$extras$attribute_description) %>% paste0(";", .)
-  out <- data.frame(
+  out <- data_frame(
     title = sapply(jsons, function(x) x$title),
     measures = gregexpr(";F-", descs) %>% sapply(length),
     fields = gregexpr(";C-", descs) %>% sapply(length),
@@ -145,12 +144,10 @@ as_df_jsons <- function(jsons) {
     update_frequency = sapply(jsons, function(x) x$extras$update_frequency),
     tags = I(lapply(jsons, function(x) unlist(x$tags))),
     categorization = sapply(jsons, function(x) unlist(x$extras$categorization[1])),
-    json = I(jsons),
-    stringsAsFactors = FALSE
+    json = I(jsons)
   )
   out$modified <- parse_time(out$modified)
   out$created <- parse_time(out$created)
-  class(out) <- c("tbl", class(out))
   out
 }
 

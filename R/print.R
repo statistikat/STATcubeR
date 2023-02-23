@@ -39,7 +39,7 @@ print.sc_tibble_meta <- function(x, ...) {
 }
 
 sc_tibble <- function(x) {
-  class(x) <- c("sc_tibble", "tbl", class(x))
+  class(x) <- unique(c("sc_tibble", "tbl", class(x)))
   x
 }
 

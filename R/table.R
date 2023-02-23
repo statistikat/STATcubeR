@@ -135,18 +135,17 @@ sc_table_class <- R6::R6Class(
     #' two columns for the annotation keys and annotation labels.
     annotation_legend = function() {
       am <- self$raw$annotationMap
-      data.frame(annotation = names(am), label = unlist(am), row.names = NULL)
+      data_frame(annotation = names(am), label = unlist(am))
     },
     #' @field rate_limit
     #' how much requests were left after the POST request for this table was sent?
     #' Uses the same format as [sc_rate_limit_table()].
     rate_limit = function() {
       headers <- self$response$headers
-      res <- data.frame(
+      res <- list(
         remaining = headers$`x-ratelimit-remaining-table`,
         limit     = headers$`x-ratelimit-table`,
-        reset     = headers$`x-ratelimit-reset-table`,
-        stringsAsFactors = FALSE
+        reset     = headers$`x-ratelimit-reset-table`
       )
       class(res) <- "sc_rate_limit_table"
       res

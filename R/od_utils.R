@@ -29,7 +29,7 @@ od_attr <- function(json) {
     code <- c(code, substr(desc, index_code[i] + 1, next_col - 1))
     label <- c(label, substr(desc, next_col + 1, index_end[i]))
   }
-  data.frame(label = label, code = code, stringsAsFactors = FALSE)
+  data_frame(label = label, code = code)
 }
 
 od_create_data <- function(id, json = od_json(id), lang = NULL,
@@ -39,9 +39,8 @@ od_create_data <- function(id, json = od_json(id), lang = NULL,
   dat <- resources$data[[1]]
   header <- resources$data[[2]]
   meta <- list(
-    source = data.frame(code = id, label = NA, label_de = json$title,
-                        label_en = json$extras$en_title_and_desc,
-                        stringsAsFactors = FALSE),
+    source = data_frame(code = id, label = NA, label_de = json$title,
+                        label_en = json$extras$en_title_and_desc),
     measures = header[substr(header$code, 1, 1) == "F", ],
     fields   = header[substr(header$code, 1, 1) == "C", ]
   )
@@ -81,10 +80,10 @@ od_create_data <- function(id, json = od_json(id), lang = NULL,
 
   resources$name <- paste0(resources$name, ".csv")
   od <- attr(json, "od")
-  resources <- rbind(data.frame(
+  resources <- rbind(data_frame(
     name = paste0(id, ".json"), last_modified = json$extras$metadata_modified %>%
       as.POSIXct(format = "%Y-%m-%dT%H:%M:%OS"), cached = od$cached,
-    size = od$size, download = od$download, parsed = NA, stringsAsFactors = FALSE), resources[1:6]
+    size = od$size, download = od$download, parsed = NA), resources[1:6]
   )
 
   list(data = dat, meta = meta, fields = fields, resources = resources,

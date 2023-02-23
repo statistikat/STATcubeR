@@ -39,7 +39,7 @@ od_cache_summary <- function(server = "ext") {
   field <- substr(files[is_field], 1 + pos_underscore[is_field], nchar(files[is_field]) - 4)
   id <- substr(files[is_field], 1, pos_underscore[is_field] - 1)
   sizes_fields <- file.size(file.path(od_cache_dir(), files[is_field])) %>% split(id) %>% sapply(sum)
-  fields <- data.frame(id, field, stringsAsFactors = FALSE)
+  fields <- list(id = id, field = field)
 
   files <- files[!is_field]
   pos_underscore <- as.integer(gregexpr("_HEADER", files))
@@ -48,17 +48,18 @@ od_cache_summary <- function(server = "ext") {
   files <- files[!is_header]
   id_data <- substr(files, 1, nchar(files) - 4)
   all_ids <- unique(c(id_data, id_header, fields$id))
-  data.frame(
-    id = all_ids,
+  res <- data_frame(
+    id = all_ids %>% `class<-`(c("ogd_id", "character")),
     updated = file.mtime(paste0(cache_dir, all_ids, ".json")),
     json = file.size(paste0(cache_dir, all_ids, ".json")),
     data = file.size(paste0(cache_dir, all_ids, ".csv")),
     header = file.size(paste0(cache_dir, all_ids, "_HEADER.csv")),
     fields = sizes_fields[match(unique(fields$id), all_ids)],
     n_fields = match(fields$id, all_ids) %>% factor(seq_along(all_ids)) %>%
-      table() %>% as.integer(),
-    row.names = NULL, stringsAsFactors = FALSE
-  ) %>% `class<-`(c("tbl", "data.frame"))
+      table() %>% as.integer()
+  )
+  class(res$updated) <- c("sc_dttm", class(res$updated))
+  res
 }
 
 

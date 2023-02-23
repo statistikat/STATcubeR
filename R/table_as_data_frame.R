@@ -28,7 +28,7 @@ sc_model_matrix <- function(dims) {
       rep(times = times, each = each)
     times <- times * dims[i]
   }
-  as.data.frame(out)
+  vctrs::new_data_frame(out)
 }
 
 sc_table_create_data <- function(content) {

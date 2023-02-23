@@ -34,3 +34,7 @@ sc_language <- function(language = NULL, options = c("en", "de")) {
     language <- getOption("STATcubeR.language")
   match.arg(language, options)
 }
+
+data_frame <- function(...) {
+  vctrs::new_data_frame(list(...), class = "tbl")
+}
