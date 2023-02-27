@@ -158,6 +158,7 @@ as_df_jsons <- function(jsons) {
   )
   out$modified <- parse_time(out$modified)
   out$created <- parse_time(out$created)
+  class(out$id) <- c("ogd_id", "character")
   out
 }
 
