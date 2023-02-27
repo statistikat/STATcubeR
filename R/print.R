@@ -55,10 +55,13 @@ pillar_shaft.sc_dttm <- function(x, ...) {
   ymd <- format(x, "%Y-%m-%d")
   hms <- cli::col_silver(format(x, "%H:%M:%S"))
   short <- ymd
-  ind <- as.numeric(Sys.time()) - as.numeric(x) < 60*24
+  ind <- !is.na(x) & as.numeric(Sys.time()) - as.numeric(x) < 60*24
   short[ind] <- hms[ind]
+  long <- paste(ymd, hms)
+  long[is.na(x)] <- NA
+  short[is.na(x)] <- NA
   pillar::new_pillar_shaft_simple(
-    paste(ymd, hms),
+    long,
     width = 19,
     min_width = 10,
     short_formatted = short,
