@@ -96,6 +96,7 @@ if the provided \code{VALUE}s belong to the \code{VALUESET/FIELD}
 }
 
 \examples{
+\dontshow{if (sc_key_exists()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 sc_table_custom("str:database:detouextregsai")
 
 sc_table_custom(
@@ -133,4 +134,5 @@ x <- sc_table_custom(
   )
 )
 x$tabulate()
+\dontshow{\}) # examplesIf}
 }

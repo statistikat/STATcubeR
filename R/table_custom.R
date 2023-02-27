@@ -42,7 +42,7 @@
 #' * all fields in `recodes` are also present in `dimensions`
 #' * the first two arguments of `sc_recode()` are consistent, i.e.
 #'   if the provided `VALUE`s belong to the `VALUESET/FIELD`
-#' @examples
+#' @examplesIf sc_key_exists()
 #' sc_table_custom("str:database:detouextregsai")
 #'
 #' sc_table_custom(
