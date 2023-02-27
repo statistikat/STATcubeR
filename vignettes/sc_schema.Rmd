@@ -237,4 +237,7 @@ sc_schema_db("dekonjunkturmonitor") %>%
   the `r ticle("sc_table_custom")`
 * See the `r ticle("sc_table_saved")` to get access to the data for table
   nodes in the schema.
-  .
+
+```{js, echo=FALSE}
+$('[href^="https://portal.statistik.at/statistik.at/ext/statcube"]').attr("target", "_blank");
+```
