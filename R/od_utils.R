@@ -33,7 +33,7 @@ od_attr <- function(json) {
 }
 
 od_create_data <- function(id, json = od_json(id), lang = NULL,
-                           server = "ext", verbose = FALSE) {
+                           server = "ext") {
   lang <- sc_language(lang)
   resources <- od_resource_all(id, json, server)
   dat <- resources$data[[1]]
