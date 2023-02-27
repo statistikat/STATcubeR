@@ -125,6 +125,8 @@ sc_recode <- function(field, map = NULL, total = FALSE) {
     return(stats::setNames(list(list(total = total)), as_id(field)))
   if (inherits(map, "sc_schema"))
     map <- list(map)
+  else
+    map <- stats::setNames(map, NULL)
   recode <- stats::setNames(
     list(list(
       map = lapply(map, function(value) {
