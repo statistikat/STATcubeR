@@ -66,6 +66,8 @@ od_list <- function(unique = TRUE, server = c("ext", "red")) {
   df <- df[!(df$id %in% od_resource_blacklist), ]
   rownames(df) <- NULL
   attr(df, "od") <- r$times[["total"]]
+  class(df$id) <- c("ogd_id", "character")
+  class(df) <- c("tbl_df", class(df))
   df
 }
 
