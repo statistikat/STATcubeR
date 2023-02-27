@@ -48,12 +48,6 @@ od_create_data <- function(id, json = od_json(id), lang = NULL,
   fields <- lapply(seq_along(meta$fields$code), function(i) {
     code <- meta$fields$code[i]
     fld <- resources$data[[2 + i]]
-    udc <- unique(dat[[code]])
-    stopifnot(all(udc %in% fld$code))
-    if (verbose && length(udc) != nrow(fld))
-      message("dropping unused levels in ", shQuote(code), ": ",
-              paste(shQuote(setdiff(fld$code, udc)), collapse = ", "))
-    fld <- fld[fld$code %in% udc, ]
     fld$label_en[is.na(fld$label_en)] <- fld$label_de[is.na(fld$label_en)]
     fld
   })
