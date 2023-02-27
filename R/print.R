@@ -101,3 +101,20 @@ format.pillar_shaft_ogd_file <- function(x, width, ...) {
   }
   pillar::new_ornament(files, align = "left")
 }
+
+pillar_shaft.ogd_id <- function(x, ...) {
+  pillar::new_pillar_shaft(list(x = x), width = pillar::get_max_extent(x),
+                           min_width = 20, class = "pillar_shaft_ogd_id",
+                           type_sum = "chr")
+}
+
+format.pillar_shaft_ogd_id <- function(x, width, ...) {
+  id <- x$x
+  too_long <- nchar(id) > width
+  id[too_long] <- paste0(substring(id[too_long], 1, width - 2),
+                         cli::symbol$ellipsis)
+  id <- cli::style_hyperlink(id, paste0(
+    "https://data.statistik.gv.at/web/meta.jsp?dataset=", x$x))
+  pillar::new_ornament(id, align = "left")
+}
+
