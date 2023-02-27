@@ -121,7 +121,15 @@ od_catalogue <- function(server = "ext", local = TRUE) {
     ids <- od_revisions(server = server)
   }
   timestamp <- switch(as.character(local), "TRUE" = NULL, "FALSE" = Sys.time())
-  jsons <- lapply(ids, od_json, timestamp, server)
+  jsons <- lapply(
+    cli::cli_progress_along(
+      ids, type = "tasks", "downloading json metadata files"),
+    function(i) {
+      od_json(ids[i], timestamp, server)
+    }
+  )
+  if (!local)
+    cli::cli_text("\rDownloaded {.field {length(ids)}} metadata files with {.fn od_json}")
   as_df_jsons(jsons)
 }
 
