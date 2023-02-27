@@ -75,7 +75,7 @@ in_stat <- function() {
 }
 
 sc_url_gui <- function(server = "ext") {
-  if (server == "ext" && !in_stat())
+  if (server == "ext" && (!in_stat() || Sys.getenv("NOT_CRAN") != ""))
     return("https://portal.statistik.at/statistik.at/ext/statcube/")
   if (server == "test")
     return("http://sdbtest:8081/statistik.at/wdev/statcube/")
