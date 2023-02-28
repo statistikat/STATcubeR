@@ -147,15 +147,18 @@ print.sc_schema_flatten <- function(x, ...) {
 }
 
 sc_schema_flatten_impl <- function(resp, type) {
-  if (resp$type == type)
-    return(list(id = resp$id, label = resp$label))
-  if (is.null(resp$children))
-    return(NULL)
-  ret <- lapply(resp$children, sc_schema_flatten_impl, type)
-  list(
-    id = lapply(ret, function(x) { x$id }) %>% unlist(),
-    label = lapply(ret, function(x) { x$label }) %>% unlist()
-  )
+  id <- character()
+  label <- character()
+  if (!is.null(resp$children)) {
+    ret <- lapply(resp$children, sc_schema_flatten_impl, type)
+    id <- lapply(ret, function(x) x$id) %>% unlist()
+    label <- lapply(ret, function(x) x$label) %>% unlist()
+  }
+  if (resp$type == type) {
+    id <- c(resp$id, id)
+    label <- c(resp$label, label)
+  }
+  list(id = id, label = label)
 }
 
 #' @describeIn sc_schema is similar to the
