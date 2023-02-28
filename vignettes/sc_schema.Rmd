@@ -70,6 +70,7 @@ knitr::include_graphics("img/catalogue4.png")
 ```
 
 In some cases, the API shows more folders than the GUI in which case the folders from the API will be empty.
+Seeing an empty folder usually means that your STATcube user is not permitted to view the contents of the folder.
 
 ```{r}
 my_catalogue$Statistics$`Foreign Trade`$Außenhandelsindizes
