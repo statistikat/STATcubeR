@@ -128,6 +128,7 @@ sc_as_nested_list <- function(x) {
 #' @export
 sc_schema_flatten <- function(x, type) {
   stopifnot(inherits(x, "sc_schema"))
+  type <- match.arg(toupper(type), names(sc_schema_colors()))
   response <- attr(x, "response")
   stopifnot(!is.null(response))
   response <- httr::content(response)
