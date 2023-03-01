@@ -14,17 +14,17 @@
         [ "str:value:denatec06:F-DATA:C-NATEC_CPA-0:C-NATEC_CPA-0:NATEC_CPA-CPA_E" ]
       ]
     },
-    "str:field:denatec06:F-DATA:C-NACEK2_3-0" : {
+    "str:field:denatec06:F-DATA:C-NACEK2_4-0" : {
       "map" : [
-        [ "str:value:denatec06:F-DATA:C-NACEK2_3-0:C-NACEK2_2-0:NACE-BTE" ],
-        [ "str:value:denatec06:F-DATA:C-NACEK2_3-0:C-NACEK2_2-0:NACE-G" ],
-        [ "str:value:denatec06:F-DATA:C-NACEK2_3-0:C-NACEK2_2-0:NACE-AFHTU" ]
+        [ "str:value:denatec06:F-DATA:C-NACEK2_4-0:C-NACEK2_4-0:NACE-BTE" ],
+        [ "str:value:denatec06:F-DATA:C-NACEK2_4-0:C-NACEK2_4-0:NACE-G" ],
+        [ "str:value:denatec06:F-DATA:C-NACEK2_4-0:C-NACEK2_4-0:NACE-AFHTU" ]
       ]
     }
   },
   "dimensions" : [
     [ "str:field:denatec06:F-DATA:C-NATEC_CPA-0" ],
     [ "str:field:denatec06:F-DATA:C-A10-0" ],
-    [ "str:field:denatec06:F-DATA:C-NACEK2_3-0" ]
+    [ "str:field:denatec06:F-DATA:C-NACEK2_4-0" ]
   ]
 }
