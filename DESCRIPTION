@@ -14,6 +14,7 @@ Description: Import data from the STATcube REST API or from the open data
 License: GPL (>= 2)
 URL: https://statistikat.github.io/STATcubeR,
     https://github.com/statistikat/STATcubeR
+BugReports: https://github.com/statistikat/STATcubeR/issues
 Imports: 
     cli (>= 3.4.1),
     httr,
