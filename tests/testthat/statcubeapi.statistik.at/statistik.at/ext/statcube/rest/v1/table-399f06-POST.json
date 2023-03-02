@@ -1,0 +1,74 @@
+{
+    "query": {
+        "database": "str:database:detouextregsai",
+        "measures": [
+            "str:statfn:detouextregsai:F-DATA1:F-UEB:SUM"
+        ],
+        "recodes": {
+            "str:field:detouextregsai:F-DATA1:C-SDB_TIT-0": {
+                "map": [
+                    [
+                        "str:value:detouextregsai:F-DATA1:C-SDB_TIT-0:C-SDB_TIS-0:20235"
+                    ]
+                ],
+                "total": true
+            }
+        },
+        "dimensions": [
+            [
+                "str:field:detouextregsai:F-DATA1:C-SDB_TIT-0"
+            ]
+        ]
+    },
+    "database": {
+        "id": "detouextregsai",
+        "uri": "str:database:detouextregsai",
+        "label": "Accomodation statistics as of 1974 according to seasons",
+        "annotationKeys": [
+            "Q"
+        ]
+    },
+    "measures": [
+        {
+            "uri": "str:statfn:detouextregsai:F-DATA1:F-UEB:SUM",
+            "label": "Nights spent",
+            "measure": "str:measure:detouextregsai:F-DATA1:F-UEB",
+            "function": "SUM"
+        }
+    ],
+    "fields": [
+        {
+            "uri": "str:field:detouextregsai:F-DATA1:C-SDB_TIT-0",
+            "label": "Season/Tourism Month",
+            "items": [
+                {
+                    "type": "RecodeItem",
+                    "uris": [
+                        "str:value:detouextregsai:F-DATA1:C-SDB_TIT-0:C-SDB_TIS-0:20235"
+                    ],
+                    "labels": [
+                        "Winter-half 2023"
+                    ]
+                },
+                {
+                    "type": "Total",
+                    "labels": [
+                        "Total"
+                    ]
+                }
+            ]
+        }
+    ],
+    "cubes": {
+        "str:statfn:detouextregsai:F-DATA1:F-UEB:SUM": {
+            "values": [
+                1.5672696E7,
+                1.5672696E7
+            ],
+            "precision": 0
+        }
+    },
+    "annotationMap": {
+        "Q": "STATcube – Statistical Database of STATISTICS AUSTRIA"
+    }
+}

@@ -1,0 +1,48 @@
+{
+    "id": "str:folder:root",
+    "label": "Extern V9",
+    "location": "http://statcubeapi.statistik.at/statistik.at/ext/statcube/rest/v1/schema/str:folder:root",
+    "type": "FOLDER",
+    "children": [
+        {
+            "id": "str:folder:fdemo",
+            "label": "Examples",
+            "location": "http://statcubeapi.statistik.at/statistik.at/ext/statcube/rest/v1/schema/str:folder:fdemo",
+            "type": "FOLDER"
+        },
+        {
+            "id": "str:folder:fepubl",
+            "label": "Publications and services",
+            "location": "http://statcubeapi.statistik.at/statistik.at/ext/statcube/rest/v1/schema/str:folder:fepubl",
+            "type": "FOLDER"
+        },
+        {
+            "id": "str:folder:fdeftables",
+            "label": "Default Tables",
+            "location": "http://statcubeapi.statistik.at/statistik.at/ext/statcube/rest/v1/schema/str:folder:fdeftables",
+            "type": "FOLDER"
+        },
+        {
+            "id": "str:folder:festat",
+            "label": "Statistics",
+            "location": "http://statcubeapi.statistik.at/statistik.at/ext/statcube/rest/v1/schema/str:folder:festat",
+            "type": "FOLDER"
+        },
+        {
+            "id": "str:table:1529fb5c-8f71-425c-bc95-a017f6534c8f",
+            "label": "hierarchical",
+            "location": "http://statcubeapi.statistik.at/statistik.at/ext/statcube/rest/v1/schema/str:table:1529fb5c-8f71-425c-bc95-a017f6534c8f",
+            "type": "TABLE",
+            "lastModified": 1677695185153,
+            "recordViewEnabled": false
+        },
+        {
+            "id": "str:table:9ba81454-32f5-4ab7-b904-c446940946f5",
+            "label": "test123",
+            "location": "http://statcubeapi.statistik.at/statistik.at/ext/statcube/rest/v1/schema/str:table:9ba81454-32f5-4ab7-b904-c446940946f5",
+            "type": "TABLE",
+            "lastModified": 1677695185154,
+            "recordViewEnabled": false
+        }
+    ]
+}

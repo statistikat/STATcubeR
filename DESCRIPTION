@@ -27,7 +27,8 @@ Suggests:
     data.tree,
     rappdirs,
     xml2,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    httptest
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
