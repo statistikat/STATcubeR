@@ -39,7 +39,9 @@ sc_table_class <- R6::R6Class(
     #'   the add_totals parameter in one of the factory functions (`sc_table()`,
     #'   `sc_table_custom()`). Necessary, in order to also request totals via
     #'   the `$add_language()` method.
-    initialize = function(response, json = NULL, file = NULL, add_totals = FALSE) {
+    initialize = function(response, json = NULL, file = NULL, add_totals = FALSE,
+                          language = c("en", "de")) {
+      language <- match.arg(language)
       stopifnot(inherits(response, "response"))
       private$httr_response <- response
       content <- httr::content(response)
@@ -50,7 +52,7 @@ sc_table_class <- R6::R6Class(
       private$json_content <- sc_json_class$new(json, file, add_totals)
 
       meta <- sc_meta(content)
-      meta$source$lang <- response$headers$`content-language`
+      meta$source$lang <- language
       meta$source$label_de <- meta$source$label
       meta$source$label_en <- meta$source$label
       meta$fields$label_de <- meta$fields$label
@@ -73,7 +75,7 @@ sc_table_class <- R6::R6Class(
         meta = meta,
         field = meta_fields
       )
-      private$lang <- response$headers$`content-language`
+      private$lang <- language
     },
     #' @description Update the data by re-sending the json to the API. This
     #'   is still experimental and could break the object in case new levels
@@ -83,7 +85,7 @@ sc_table_class <- R6::R6Class(
       response <- sc_table_json_post(self$json$content)
       if (response$status_code != 200)
         stop(httr::content(response)$message)
-      self$initialize(response, self$json$content, self$json$file)
+      self$initialize(response, self$json$content, self$json$file, self$language)
     },
     #' @description An extension of [sc_tabulate()] with additional
     #'   parameters.
@@ -217,7 +219,7 @@ sc_table <- function(json, language = NULL, add_totals = TRUE, key = NULL,
   if (both)
     language <- "de"
   res <- sc_table_json_post(json$string, language, add_totals, key) %>%
-    sc_table_class$new(json$string, json$file, add_totals)
+    sc_table_class$new(json$string, json$file, add_totals, language)
   if (both)
     res$add_language("en", key)
   res

@@ -32,5 +32,5 @@ sc_table_saved <- function(table_uri, language = NULL, key = NULL, server = "ext
       url = paste0(base_url(server), "/table/saved/", table_uri),
       config = sc_headers(language, key, server)
     ) %>% sc_check_response()
-  }) %>% sc_table_class$new()
+  }) %>% sc_table_class$new(language = language)
 }

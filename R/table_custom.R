@@ -107,7 +107,7 @@ sc_table_custom <- function(db, measures = c(), dimensions = c(),
   if (dry_run)
     return(json)
   response <- sc_table_json_post(json, language, add_totals, key)
-  sc_table_class$new(response, toString(json))
+  sc_table_class$new(response, toString(json), language)
 }
 
 #' @describeIn sc_table_custom creates a recode object which can be used
