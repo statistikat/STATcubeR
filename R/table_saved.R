@@ -12,8 +12,8 @@ sc_table_saved_list <- function(key = NULL, server = "ext") {
   vctrs::new_data_frame(list(
     label = sapply(saved_tables, function(x) x$label),
     id = new_schema_uri(
-      sapply(saved_tables, function(x) x$id),
-      sapply(saved_tables, function(x) x$id)
+      vapply(saved_tables, function(x) x$id, ""),
+      vapply(saved_tables, function(x) x$id, "")
     )
   ), class = c("tbl", "tbl_df"))
 }
