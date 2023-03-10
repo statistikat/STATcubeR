@@ -20,8 +20,9 @@ od_resource_blacklist <- c(
 )
 
 od_resource_check_id <- function(id) {
-  if (substr(id, 1, 4) != "OGD_")
-    stop("Dataset ids must begin with \"OGD_\": ", shQuote(id), call. = FALSE)
+  if (!grepl("^OGD_", id) && !grepl("^STAT_", id))
+    stop("Dataset ids must begin with \"OGD_\" or \"STAT_\": ",
+         shQuote(id), call. = FALSE)
   if (id %in% od_resource_blacklist)
     stop("Dataset ", shQuote(id), " was blacklisted in STATcubeR ",
          "because of inconsistent formats", call. = FALSE)
