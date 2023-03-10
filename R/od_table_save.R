@@ -83,9 +83,16 @@ od_table_local <- function(file) {
 od_table_local_paths <- function() {
   extracted <- dir()
   stopifnot(length(extracted) == 1)
-  json <- jsonlite::read_json(file.path(extracted, "meta.json"))
+  json_file <- file.path(extracted, "meta.json")
+  json <- jsonlite::read_json(json_file)
   id <- json$resources[[1]]$name
   stopifnot(is.character(id), length(id) == 1)
+  if (json$extras$metadata_modified == "$PublDateTime$") {
+    readLines(json_file) %>%
+      gsub("\\$PublDateTime\\$", json$extras$begin_datetime, .) %>%
+      writeLines(json_file)
+    json <- jsonlite::read_json(json_file)
+  }
   timestamps <- sapply(json$resources, function(x) x$last_modified) %>%
     as.POSIXct(format = "%Y-%m-%dT%H:%M:%OS")
   stopifnot(all(timestamps <= Sys.time()))
@@ -93,7 +100,7 @@ od_table_local_paths <- function() {
     classifications = dir(file.path(extracted, "classifications"), full.names = TRUE),
     data = file.path(extracted, "data.csv"),
     header = file.path(extracted, "header.csv"),
-    meta = file.path(extracted, "meta.json"),
+    meta = json_file,
     id = id
   )
   stopifnot(all(file.exists(c(paths$data, paths$header, paths$meta))))
