@@ -1,5 +1,5 @@
 
-# STATcubeR <img src="man/figures/logo_readme.png" align="right" alt="" width="120" />
+# STATcubeR <img src="man/figures/logo2.svg" align="right" alt="" width="120" />
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/statistikat/STATcubeR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/statistikat/STATcubeR/actions/workflows/R-CMD-check.yaml)
