@@ -65,6 +65,13 @@ sdmx_fields <- function(x) {
     values <- xml2::xml_attr(codes, "value")
     desc <- codes %>% xml2::xml_find_all("Description") %>%
       xml2::xml_text()
+    ann_list <- codes %>%
+      xml2::xml_find_all(".//common:AnnotationText", flatten = FALSE) %>%
+      lapply(xml2::xml_text)
+    has_ann <- vapply(ann_list, length, 0) > 0
+    ann_de <- ann_en <- rep(NA_character_, length(ann_list))
+    ann_de[has_ann] <- vapply(ann_list[has_ann], function(x) {x[1]}, "")
+    ann_en[has_ann] <- vapply(ann_list[has_ann], function(x) {x[2]}, "")
     ind_de <- seq(1, length(desc), 2)
     ind_en <- seq(2, length(desc), 2)
     parent <- xml2::xml_attr(codes, "parentCode")
@@ -79,8 +86,8 @@ sdmx_fields <- function(x) {
         label_de = desc[ind_de],
         label_en = desc[ind_en],
         parent = factor(parent, levels = values),
-        de_desc = rep(NA_character_, length(values)),
-        en_desc = rep(NA_character_, length(values))
+        de_desc = ann_de,
+        en_desc = ann_en
       ))
     )
   })
