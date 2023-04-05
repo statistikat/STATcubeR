@@ -105,10 +105,12 @@ sdmx_meta <- function(x) {
     xml2::xml_text()
   ind_de <- seq(1, length(label_measure), 2)
   ind_en <- seq(2, length(label_measure), 2)
+  prepared <- x$meta %>% xml2::xml_find_all(".//message:Prepared") %>%
+    xml2::xml_text() %>% as.POSIXct(format = "%FT%T")
   list(
     source = data_frame(label = label_dataset[2], code = code_db,
                           lang = "en", label_de = label_dataset[1],
-                          label_en = label_dataset[2]),
+                          label_en = label_dataset[2], prepared = prepared),
     measures = data_frame(
       label = label_measure[ind_en],
       code = code_measure,
