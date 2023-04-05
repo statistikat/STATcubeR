@@ -9,8 +9,7 @@
 #' @keywords experimental
 #' @export
 sdmx_table <- function(file) {
-  sdmx_read_zip(file) %>%
-    sdmx_as_data_object()
+  sdmx_table_class$new(file)
 }
 
 sdmx_read <- function(folder = ".") {
@@ -121,22 +120,60 @@ sdmx_meta <- function(x) {
   )
 }
 
-sdmx_as_data_object <- function(x) {
-  df <- sdmx_as_raw_df(x)
-  fields <- sdmx_fields(x)
-  meta <- sdmx_meta(x)
-  meta$fields <- data_frame(
-    code = vapply(fields, function(x) x$id, ""),
-    label = vapply(fields, function(x) x$label_en, "") ,
-    label_de = vapply(fields, function(x) x$label_de, ""),
-    label_en = vapply(fields, function(x) x$label_en, ""),
-    total_code = rep(NA, length(fields)),
-    nitems = sapply(fields, function(x) {nrow(x$elements)}),
-    type = rep("Category", length(fields))
+format.sdmx_table <- function(x, ...) {
+  c(
+    cli::style_bold(strwrap(x$meta$source$label)),
+    "",
+    cli_dl2(list(
+      Database = cli::style_hyperlink(
+        x$meta$source$code, sprintf(
+          "https://statcube.at/statistik.at/ext/statcube/openinfopage?id=%s",
+          x$meta$source$code)
+      ),
+      Measures = x$meta$measures$label,
+      Fields = x$meta$fields$label
+    )),
+    "",
+    cli_dl2(list(
+      Downloaded = cli_class(x$meta$source$prepared, "timestamp"),
+      STATcubeR = cli_class(x$meta$source$scr_version, "version")
+    ))
   )
-  fields2 <- lapply(fields, function(x) x$elements)
-  names(df) <- c(meta$fields$code, meta$measures$code)
-  y <- sc_data$new(df, meta, fields2)
-  y$language <- "en"
-  y
 }
+
+sdmx_table_class <- R6::R6Class(
+  classname = "sdmx_table", class = TRUE,
+  inherit = sc_data,
+  list(
+    initialize = function(file) {
+      x <- sdmx_read_zip(file)
+      df <- sdmx_as_raw_df(x)
+      fields <- sdmx_fields(x)
+      meta <- sdmx_meta(x)
+      meta$fields <- data_frame(
+        code = vapply(fields, function(x) x$id, ""),
+        label = vapply(fields, function(x) x$label_en, "") ,
+        label_de = vapply(fields, function(x) x$label_de, ""),
+        label_en = vapply(fields, function(x) x$label_en, ""),
+        total_code = rep(NA, length(fields)),
+        nitems = sapply(fields, function(x) {nrow(x$elements)}),
+        type = rep("Category", length(fields))
+      )
+      fields2 <- lapply(fields, function(x) x$elements)
+      names(df) <- c(meta$fields$code, meta$measures$code)
+      super$initialize(df, meta, fields2)
+      self$language <- "en"
+      private$p_xml <- x
+    }
+  ),
+  list(p_xml = NULL),
+  list(
+    xml = function() { private$p_xml },
+    description = function() {
+      self$xml$meta %>% xml2::xml_find_first(
+        sprintf(".//ConceptScheme/Description[(@xml:lang='%s')]", self$language)
+      ) %>% xml2::xml_text()
+    }
+  )
+)
+
