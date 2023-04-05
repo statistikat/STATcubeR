@@ -21,7 +21,7 @@ Imports:
     jsonlite,
     magrittr,
     pillar (>= 1.5.0),
-    vctrs
+    vctrs (>= 0.5.2)
 Suggests:
     spelling, 
     data.tree,
