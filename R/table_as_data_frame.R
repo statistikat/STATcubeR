@@ -1,4 +1,6 @@
 unlist_n <- function(x, times) {
+  if (times <= 0)
+    return(x)
   x <- unlist(x, recursive = FALSE)
   if (times == 1)
     return(x)

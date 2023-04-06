@@ -120,6 +120,7 @@ sdmx_meta <- function(x) {
   )
 }
 
+#' @export
 format.sdmx_table <- function(x, ...) {
   c(
     cli::style_bold(strwrap(x$meta$source$label)),
