@@ -43,9 +43,10 @@ sdmx_as_raw_df <- function(x) {
   names(val_split) <- val_lab
   n <- which(val_lab == "MEASURES_DIMENSION")
   obs_split <- split(obs, val_split[[n]])
+  ind <- val_split[[n]] == val_split[[n]][1]
   res <- c(
     lapply(val_split[-n], function(x) {
-      u <- head(x, length(obs_split[[1]]))
+      u <- x[ind]
       factor(u, unique(u))
     }),
     obs_split
