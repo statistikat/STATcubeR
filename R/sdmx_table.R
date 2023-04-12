@@ -7,6 +7,17 @@
 #' @param file a "sdmx archive" file that was downloaded from STATcube.
 #' @return An object of class `sc_data`
 #' @keywords experimental
+#' @examples
+#' x <- "sdmx/dedemo.zip" %>% system.file(package = "STATcubeR") %>% sdmx_table()
+#' # print and tabulate
+#' x
+#' x$tabulate()
+#' # explore hierarchies
+#' nuts2 <- x$field("C-B00-0")
+#' data.frame(label = nuts2$label,
+#'   parent = nuts2$label[match(nuts2$parent, nuts2$code)])
+#' # extract more data from the raw xml
+#' x$xml$meta %>% xml2::xml_find_first(".//Name")
 #' @export
 sdmx_table <- function(file) {
   sdmx_table_class$new(file)
