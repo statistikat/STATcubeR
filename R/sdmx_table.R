@@ -185,8 +185,16 @@ sdmx_table_class <- R6::R6Class(
     description = function() {
       self$xml$meta %>% xml2::xml_find_first(
         sprintf(".//ConceptScheme/Description[(@xml:lang='%s')]", self$language)
-      ) %>% xml2::xml_text()
+      ) %>% xml2::xml_text() %>% `class<-`("sdmx_description")
     }
   )
 )
 
+#' @export
+print.sdmx_description <- function(x, ...) {
+  desc <- strsplit(x, "\r\n")[[1]]
+  desc <- ifelse(grepl("^.)", desc),
+                 cli::style_bold(substring(desc, 4)),
+                 desc)
+  cat(desc, sep = "\n")
+}
