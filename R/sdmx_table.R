@@ -44,7 +44,7 @@ sdmx_as_raw_df <- function(x) {
   obs <- x$data %>% xml2::xml_find_all(".//ObsValue") %>%
     xml2::xml_attr("value") %>% as.numeric()
   val <- x$data %>% xml2::xml_find_all(".//SeriesKey//Value") %>%
-    xml2::xml_attr("value")
+    xml2::xml_attr("value") %>% sdmx_codes()
   # assume that entries of SeriesKey always use the same order
   val_lab <- x$data %>% xml2::xml_find_first(".//SeriesKey") %>%
     xml2::xml_find_all(".//Value") %>% xml2::xml_attr("concept")
@@ -92,11 +92,11 @@ sdmx_fields <- function(x) {
       label_de = names[1],
       elements = vctrs::new_data_frame(list(
         label = desc[ind_en],
-        code = values,
+        code = sdmx_codes(values),
         parsed = desc[ind_en],
         label_de = desc[ind_de],
         label_en = desc[ind_en],
-        parent = factor(parent, levels = values),
+        parent = factor(parent, levels = values, labels = sdmx_codes(values)),
         de_desc = ann_de,
         en_desc = ann_en
       ))
@@ -111,7 +111,7 @@ sdmx_meta <- function(x) {
     ".//*[(@id = 'CL_MEASURES_DIMENSION')]/Code/Description") %>%
     xml2::xml_text()
   code_db <- xml2::xml_find_all(x$meta, ".//ConceptScheme") %>%
-    xml2::xml_attr("id")
+    xml2::xml_attr("id") %>% gsub("@5f@", "\x5f", .)
   label_dataset <- x$meta %>% xml2::xml_find_all(".//ConceptScheme/Name") %>%
     xml2::xml_text()
   ind_de <- seq(1, length(label_measure), 2)
@@ -152,6 +152,14 @@ format.sdmx_table <- function(x, ...) {
       STATcubeR = cli_class(x$meta$source$scr_version, "version")
     ))
   )
+}
+
+sdmx_codes <- function(codes) {
+  simplified <- gsub("^.*_", "", codes)
+  if (anyDuplicated(simplified))
+    codes
+  else
+    simplified
 }
 
 sdmx_table_class <- R6::R6Class(
