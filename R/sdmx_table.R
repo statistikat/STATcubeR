@@ -44,7 +44,7 @@ sdmx_as_raw_df <- function(x) {
   obs <- x$data %>% xml2::xml_find_all(".//ObsValue") %>%
     xml2::xml_attr("value") %>% as.numeric()
   val <- x$data %>% xml2::xml_find_all(".//SeriesKey//Value") %>%
-    xml2::xml_attr("value") %>% sdmx_codes()
+    xml2::xml_attr("value")
   # assume that entries of SeriesKey always use the same order
   val_lab <- x$data %>% xml2::xml_find_first(".//SeriesKey") %>%
     xml2::xml_find_all(".//Value") %>% xml2::xml_attr("concept")
@@ -58,7 +58,7 @@ sdmx_as_raw_df <- function(x) {
   res <- c(
     lapply(val_split[-n], function(x) {
       u <- x[ind]
-      factor(u, unique(u))
+      factor(u, unique(u), sdmx_codes(unique(u)))
     }),
     obs_split
   ) %>% vctrs::new_data_frame()
