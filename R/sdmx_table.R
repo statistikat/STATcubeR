@@ -62,7 +62,7 @@ sdmx_as_raw_df <- function(x) {
     }),
     obs_split
   ) %>% vctrs::new_data_frame()
-  names(res) <- gsub("F-DATA_", "", names(res))
+  names(res) <- gsub("F-DATA_", "", names(res)) %>% sdmx_unescape_codes()
   res
 }
 
@@ -111,7 +111,7 @@ sdmx_meta <- function(x) {
     ".//*[(@id = 'CL_MEASURES_DIMENSION')]/Code/Description") %>%
     xml2::xml_text()
   code_db <- xml2::xml_find_all(x$meta, ".//ConceptScheme") %>%
-    xml2::xml_attr("id") %>% gsub("@5f@", "\x5f", .)
+    xml2::xml_attr("id") %>% sdmx_unescape_codes()
   label_dataset <- x$meta %>% xml2::xml_find_all(".//ConceptScheme/Name") %>%
     xml2::xml_text()
   ind_de <- seq(1, length(label_measure), 2)
@@ -124,7 +124,7 @@ sdmx_meta <- function(x) {
                           label_en = label_dataset[2], prepared = prepared),
     measures = data_frame(
       label = label_measure[ind_en],
-      code = code_measure,
+      code = sdmx_unescape_codes(code_measure),
       label_de = label_measure[ind_de],
       label_en = label_measure[ind_en],
       NAs = rep(0, length(code_measure))
@@ -160,6 +160,16 @@ sdmx_codes <- function(codes) {
     codes
   else
     simplified
+}
+
+sdmx_esc <- function(codes, char) {
+  int <- utf8ToInt(char)
+  gsub(sprintf("@%x@", int), char, codes, fixed = TRUE)
+}
+
+sdmx_unescape_codes <- function(codes) {
+  codes %>% sdmx_esc("\u5f") %>% sdmx_esc("\u7c") %>% sdmx_esc("\u2b") %>%
+    sdmx_esc("\u2e") %>% sdmx_esc("\u23") %>% sdmx_esc("\u40")
 }
 
 sdmx_table_class <- R6::R6Class(
