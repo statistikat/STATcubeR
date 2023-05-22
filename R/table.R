@@ -251,7 +251,7 @@ normalize_json <- function(json, json_file) {
   file <- NULL
   if (length(json) == 1 && !jsonlite::validate(json)) {
     file <- json
-    json <- readLines(file)
+    json <- readLines(file, warn = FALSE)
   }
   list(file = file, string = json)
 }
