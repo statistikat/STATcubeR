@@ -61,8 +61,8 @@ as well as metadata about specific databases.
 The main function \code{sc_schema()} can be used with any resouce id.
 \code{\link[=sc_schema_catalogue]{sc_schema_catalogue()}} and \code{\link[=sc_schema_db]{sc_schema_db()}} are very simple
 wrapper functions around \code{\link[=sc_schema]{sc_schema()}} and are comparabable to the
-\href{http://sdbext:8081/statistik.at/ext/statcube/jsf/dataCatalogueExplorer.xhtml}{catalogue explorer} or the
-\href{http://sdbext:8081/statistik.at/ext/statcube/opendatabase?id=deake005}{table view} of the STATcube GUI.
+\href{https://portal.statistik.at/statistik.at/ext/statcube/jsf/dataCatalogueExplorer.xhtml}{catalogue explorer} or the
+\href{https://portal.statistik.at/statistik.at/ext/statcube/opendatabase?id=deake005}{table view} of the STATcube GUI.
 
 The responses of the API are tree-like data structures which
 are wrapped into a class called \code{sc_schema} to simplify the usage in R.
@@ -72,11 +72,11 @@ are wrapped into a class called \code{sc_schema} to simplify the usage in R.
 \item \code{sc_schema_flatten()}: turns a \code{sc_schema} object into a \code{data.frame}
 
 \item \code{sc_schema_catalogue()}: is similar to the
-\href{http://sdbext:8081/statistik.at/ext/statcube/jsf/dataCatalogueExplorer.xhtml}{catalogue explorer} of the STATcube GUI and reurns
+\href{https://portal.statistik.at/statistik.at/ext/statcube/jsf/dataCatalogueExplorer.xhtml}{catalogue explorer} of the STATcube GUI and reurns
 a tree-type object containing all databases and tables.
 
 \item \code{sc_schema_db()}: is similar to the
-\href{http://sdbext:8081/statistik.at/ext/statcube/opendatabase?id=deake005}{table view}
+\href{https://portal.statistik.at/statistik.at/ext/statcube/opendatabase?id=deake005}{table view}
 of ths STATcube GUI and gives information about all measures and
 classification fields for a specific database
 

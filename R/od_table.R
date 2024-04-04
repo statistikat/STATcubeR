@@ -49,7 +49,6 @@
 #' od_table("OGD_veste309_Veste309_1")
 #' od_table("OGD_konjunkturmonitor_KonMon_1")
 #' od_table("OGD_krankenbewegungen_ex_LEISTUNGEN_1")
-#' od_table("OGD_f1741_HH_Proj_1")
 #' od_table("OGD_veste303_Veste203_1")
 #' @export
 od_table <- function(id, language = NULL, server = "ext") {
