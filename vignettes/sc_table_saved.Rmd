@@ -26,9 +26,8 @@ sc_table_saved_list()
 
 Subsequently the `id` of a saved table can be used to import the table into R.
 
-```{r}
+```{r, eval = FALSE}
 wine <- sc_table_saved("str:table:4520fba3-dffd-4f2a-9cd1-d46d710b6da4")
-wine
 ```
 
 ## Keys and accounts
