@@ -41,18 +41,18 @@ account. Saved tables from other accounts can not be listed or requested.
 To make the table available for later use or for other users of `r STATcubeR`,
 the response can be exported into a json.
 
-```{r}
+```{r,eval=FALSE}
 wine$json$write("wine.json")
 ```
 
-```{r, include=FALSE}
+```{r, include=FALSE,eval=FALSE}
 on.exit(fs::file_delete("wine.json"))
 ```
 
 The generated json file contains an API request that can be used in
 `sc_table()`.
 
-```r
+```{r,eval=FALSE}
 my_response <- sc_table("wine.json")
 ```
 
