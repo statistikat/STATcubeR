@@ -8,7 +8,7 @@ wrapper functions around sc_schema() and are comparabable to the
 catalogue explorer or the
 table view of the STATcube GUI.
 The responses of the API are tree-like data structures which
-are wrapped into a class called sc_schema to simplify the usage in R."><title>Create a request against the /schema endpoint — sc_schema • STATcubeR</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet"><meta property="og:title" content="Create a request against the /schema endpoint — sc_schema"><meta property="og:description" content="Invoke the /schema endpoint of the STATcube REST API.
+are wrapped into a class called sc_schema to simplify the usage in R."><title>Create a request against the /schema endpoint — sc_schema • STATcubeR</title><!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png"><link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png"><link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png"><link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png"><link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png"><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet"><meta property="og:title" content="Create a request against the /schema endpoint — sc_schema"><meta property="og:description" content="Invoke the /schema endpoint of the STATcube REST API.
 This endpoint can be used to get all available databases and tables
 as well as metadata about specific databases.
 The main function sc_schema() can be used with any resouce id.
@@ -109,13 +109,7 @@ are wrapped into a class called <code>sc_schema</code> to simplify the usage in 
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">sc_schema</span><span class="op">(</span></span>
-<span>  id <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  depth <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  language <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"en"</span>, <span class="st">"de"</span><span class="op">)</span>,</span>
-<span>  key <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  server <span class="op">=</span> <span class="st">"ext"</span></span>
-<span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">sc_schema</span><span class="op">(</span>id <span class="op">=</span> <span class="cn">NULL</span>, depth <span class="op">=</span> <span class="cn">NULL</span>, language <span class="op">=</span> <span class="cn">NULL</span>, key <span class="op">=</span> <span class="cn">NULL</span>, server <span class="op">=</span> <span class="st">"ext"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for sc_schema</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span>, tree <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span>, limit <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
@@ -211,43 +205,40 @@ To use <code>data.tree</code> printing permanently, use</p>
 <span class="r-in"><span><span class="co">## print</span></span></span>
 <span class="r-in"><span><span class="va">my_catalogue</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> FOLDER: Extern V9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 9 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">child</span>                     <span style="font-weight: bold;">type</span>   <span style="font-weight: bold;">n_childs</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 6 × 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   child                     type   n_childs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Examples                  FOLDER        9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Publications and services FOLDER        2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Default Tables            FOLDER        0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Statistics                FOLDER       20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Bier auf Wein             TABLE         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> hierarchical              TABLE         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> neu                       TABLE         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> lebenserwartung           TABLE         0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">9</span> test123                   TABLE         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> meineErsteTabelle         TABLE         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> meineZweiteTabelle        TABLE         0</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## access the parsed catalogue</span></span></span>
 <span class="r-in"><span><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span><span class="op">$</span><span class="va">`Labour Market`</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> FOLDER: Labour Market</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 14 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="font-weight: bold;">child</span>                                                 <span style="font-weight: bold;">type</span>  <span style="font-weight: bold;">n_chi…¹</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Job Seeker                                            FOLD…       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Labour Market Policy                                  FOLD…       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Working Time                                          FOLD…       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Activity Status                                       FOLD…       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Employment                                            FOLD…       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Job Vacancies                                         FOLD…       4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Working hours (Labour Force Survey)                   DATA…       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Austrian Micro census - Labour Force Survey Yearly D… DATA…       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Austrian Micro census - Labour Force Survey Quarterl… DATA…       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Mikrozensus-Zeitreihe ab 1974                         DATA…       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> Standardtabelle / Default table (defaulttable_deake0… TABLE       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> Standardtabelle / Default table (defaulttable_deake0… TABLE       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> Standardtabelle / Default table (defaulttable_deake0… TABLE       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> Standardtabelle / Default table (defaulttable_deake0… TABLE       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable name ¹​n_childs</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 15 × 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    child                                                type  n_childs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Job Seeker                                           FOLD…        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Labour Market Policy                                 FOLD…        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Working Time                                         FOLD…        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Selected Labour Market Indicators                    FOLD…        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Activity Status                                      FOLD…        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Employment                                           FOLD…        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Job Vacancies                                        FOLD…        4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Working hours (Labour Force Survey)                  DATA…        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Austrian Micro census - Labour Force Survey Yearly … DATA…        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Austrian Micro census - Labour Force Survey Quarter… DATA…        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> Mikrozensus-Zeitreihe ab 1974                        DATA…        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> Standardtabelle / Default table (defaulttable_deake… TABLE        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> Standardtabelle / Default table (defaulttable_deake… TABLE        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> Standardtabelle / Default table (defaulttable_deake… TABLE        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> Standardtabelle / Default table (defaulttable_deake… TABLE        0</span>
 <span class="r-in"><span><span class="va">my_catalogue</span><span class="op">$</span><span class="va">Statistics</span><span class="op">$</span><span class="va">`Labour Market`</span><span class="op">$</span><span class="va">`Working hours (Labour Force Survey)`</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> DATABASE: Working hours (Labour Force Survey)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> # Get more info with `STATcubeR::sc_schema_db('str:database:deake005')` </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # Get more info with <span style="color: #0000BB;">`STATcubeR::sc_schema_db('str:database:deake005')`</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">db_schema</span> <span class="op">&lt;-</span> <span class="fu">sc_schema_db</span><span class="op">(</span><span class="st">"deake005"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -255,7 +246,7 @@ To use <code>data.tree</code> printing permanently, use</p>
 <span class="r-in"><span><span class="va">db_schema</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> DATABASE: Working hours (Labour Force Survey)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 8 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">child</span>                                <span style="font-weight: bold;">type</span>  <span style="font-weight: bold;">n_childs</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   child                                type  n_childs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Factors                              GROUP        9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Datensätze/Records                   GROUP        1</span>
@@ -270,21 +261,20 @@ To use <code>data.tree</code> printing permanently, use</p>
 <span class="r-in"><span><span class="va">db_schema</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GROUP: Demographic Characteristics</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 8 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">child</span>                                                  <span style="font-weight: bold;">type</span>  <span style="font-weight: bold;">n_chi…¹</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Gender                                                 FIELD       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Age in years-groups                                    FIELD       3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Highest level of training completed (national classif… FIELD       2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Highest level of training completed (ISCED 97)         FIELD       2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Highest level of training completed (ISCED 2011)       FIELD       2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Nationality                                            FIELD       2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> Country of birth                                       FIELD       2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> Migration background                                   FIELD       2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with abbreviated variable name ¹​n_childs</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   child                                                 type  n_childs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Gender                                                FIELD        1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Age in years-groups                                   FIELD        3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Highest level of training completed (national classi… FIELD        2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Highest level of training completed (ISCED 97)        FIELD        2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Highest level of training completed (ISCED 2011)      FIELD        2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Nationality                                           FIELD        2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> Country of birth                                      FIELD        2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> Migration background                                  FIELD        2</span>
 <span class="r-in"><span><span class="va">db_schema</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span><span class="op">$</span><span class="va">Gender</span><span class="op">$</span><span class="va">Gender</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> VALUESET: Gender</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 3 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="font-weight: bold;">child</span>                <span style="font-weight: bold;">type</span>  <span style="font-weight: bold;">n_childs</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   child                type  n_childs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> male                 VALUE        0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> female               VALUE        0</span>
@@ -295,7 +285,7 @@ To use <code>data.tree</code> printing permanently, use</p>
 <span class="r-in"><span><span class="co"># access the raw response from httr::GET()</span></span></span>
 <span class="r-in"><span><span class="va">my_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">db_schema</span>, <span class="st">"response"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">my_response</span><span class="op">$</span><span class="va">headers</span><span class="op">$</span><span class="va">date</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Mon, 29 Aug 2022 09:51:50 GMT"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Fri, 05 Apr 2024 19:02:34 GMT"</span>
 <span class="r-in"><span><span class="va">my_content</span> <span class="op">&lt;-</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html" class="external-link">content</a></span><span class="op">(</span><span class="va">my_response</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">my_content</span><span class="op">$</span><span class="va">label</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Working hours (Labour Force Survey)"</span>
@@ -344,11 +334,11 @@ To use <code>data.tree</code> printing permanently, use</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by <a href="https://github.com/GregorDeCillia" class="external-link">Gregor de Cillia</a>.</p>
+  <p></p><p>Developed by <a href="https://github.com/GregorDeCillia" class="external-link">Gregor de Cillia</a>, <a href="https://github.com/alexkowa" class="external-link">Alexander Kowarik</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
     </footer></div>
