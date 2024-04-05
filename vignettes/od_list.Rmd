@@ -192,14 +192,16 @@ od_table("OGD_veste309_Veste309_1")$tabulate()
 ### Household forecast
 
 ```{r, include=FALSE}
-x <- od_table("OGD_f1741_HH_Proj_2")
+l <- od_list()$id
+dat_name <- tail(l[grep("f1741",l)],1)
+x <- od_table(dat_name)
 ```
 
 The `r tippy_dataset(x, "household forecast")` contains predictions about the
 number of private households by 4 household characteristics from 2011 to 2080.
 
 ```{r}
-od_table("OGD_f1741_HH_Proj_2")$tabulate()
+od_table(dat_name)$tabulate()
 ```
 
 ### Gross regional product
