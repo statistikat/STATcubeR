@@ -34,6 +34,8 @@
 od_cache_summary <- function(server = "ext") {
   cache_dir <- od_cache_path(server)
   files <- dir(cache_dir, pattern = ".csv")
+  if(length(files)==0)
+    return(NULL)
   pos_underscore <- as.integer(gregexpr("_C-", files))
   is_field <- pos_underscore != -1
   field <- substr(files[is_field], 1 + pos_underscore[is_field], nchar(files[is_field]) - 4)
