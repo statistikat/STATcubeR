@@ -24,7 +24,8 @@ Suggests:
     data.tree,
     pillar,
     rappdirs,
-    xml2
+    xml2,
+    reactable
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
