@@ -40,7 +40,7 @@ try(readRDS("sc_last_error/invalid_key.rds") %>%
   STATcubeR:::sc_check_response())
 ```
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, eval = FALSE}
 sc_last_error_parsed() %>% str()
 ```
 
@@ -59,10 +59,6 @@ If an invalid API key is used for a request, a 401 status is returned.
 
 ```{r, eval = FALSE}
 sc_info(key = "wrong key")
-```
-
-```{r, echo = FALSE, error=TRUE}
-readRDS("sc_last_error/invalid_key.rds") %>% STATcubeR:::sc_check_response()
 ```
 
 This example passes the API key as a parameter for simplicity.
@@ -102,7 +98,7 @@ If the rate limit for the amount of requests against the `/table` endpoint is ex
 sc_table_saved("defaulttable_deake005")
 ```
 
-```{r, echo = FALSE, error=TRUE}
+```{r, echo = FALSE, error=TRUE, eval = FALSE}
 readRDS("sc_last_error/rate_limit.rds") %>% STATcubeR:::sc_check_response()
 ```
 
@@ -118,7 +114,7 @@ Invalid URIs used with `sc_schema` will be displayed with a special error type `
 sc_schema("invalid_uri")
 ```
 
-```{r, echo = FALSE, error=TRUE}
+```{r, echo = FALSE, error=TRUE, eval = FALSE}
 readRDS("sc_last_error/schema.rds") %>% STATcubeR:::sc_check_response()
 ```
 
@@ -132,7 +128,7 @@ If an invalid table URI is passed, the server will respond with a status code of
 sc_table_saved("invalid_uri")
 ```
 
-```{r, echo = FALSE, error=TRUE}
+```{r, echo = FALSE, error=TRUE, eval = FALSE}
 readRDS("sc_last_error/table_saved.rds") %>% STATcubeR:::sc_check_response()
 ```
 
@@ -159,7 +155,7 @@ readLines("request.json") %>% cat(sep = "\n")
 sc_table("request.json")
 ```
 
-```{r, echo = FALSE, error = TRUE}
+```{r, echo = FALSE, error = TRUE, eval = FALSE}
 readRDS("sc_last_error/invalid_json.rds") %>% STATcubeR:::sc_check_response()
 ```
 
