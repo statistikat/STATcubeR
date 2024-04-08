@@ -20,14 +20,14 @@ If [saved tables] are present in STATcube, those can be imported without
 downloading a json file. All saved tables can be shown with
 `sc_table_saved_list()`.
 
-```{r,eval=FALSE}
+```{r}
 sc_table_saved_list()
 ```
 
 Subsequently the `id` of a saved table can be used to import the table into R.
 
-```{r, eval = FALSE}
-wine <- sc_table_saved("str:table:4520fba3-dffd-4f2a-9cd1-d46d710b6da4")
+```{r}
+tab <- sc_table_saved("str:table:16f39429-8a1b-4593-a129-d5c646368f0f")
 ```
 
 ## Keys and accounts
@@ -41,19 +41,19 @@ account. Saved tables from other accounts can not be listed or requested.
 To make the table available for later use or for other users of `r STATcubeR`,
 the response can be exported into a json.
 
-```{r,eval=FALSE}
-wine$json$write("wine.json")
+```{r}
+tab$json$write("tab.json")
 ```
 
-```{r, include=FALSE,eval=FALSE}
-on.exit(fs::file_delete("wine.json"))
+```{r, include=FALSE}
+on.exit(fs::file_delete("tab.json"))
 ```
 
 The generated json file contains an API request that can be used in
 `sc_table()`.
 
-```{r,eval=FALSE}
-my_response <- sc_table("wine.json")
+```{r}
+my_response <- sc_table("tab.json")
 ```
 
 ## Default Tables
@@ -61,13 +61,13 @@ my_response <- sc_table("wine.json")
 Most STATcube databases have an associated default table.
 Those default tables can also be loaded with `sc_table_saved()`.
 
-```{r,eval=FALSE}
+```{r}
 sc_table_saved('str:table:defaulttable_deake005')
 ```
 
 All available default tables as well as other saved tables can be discovered using `sc_schema_catalogue()`. See the `r ticle("sc_schema")` for more details.
 
-```{r,eval=FALSE}
+```{r}
 sc_schema_catalogue() %>% 
   sc_schema_flatten("TABLE")
 ```
