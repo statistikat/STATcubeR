@@ -20,7 +20,7 @@ If [saved tables] are present in STATcube, those can be imported without
 downloading a json file. All saved tables can be shown with
 `sc_table_saved_list()`.
 
-```{r}
+```{r,eval=FALSE}
 sc_table_saved_list()
 ```
 
@@ -61,13 +61,13 @@ my_response <- sc_table("wine.json")
 Most STATcube databases have an associated default table.
 Those default tables can also be loaded with `sc_table_saved()`.
 
-```{r}
+```{r,eval=FALSE}
 sc_table_saved('str:table:defaulttable_deake005')
 ```
 
 All available default tables as well as other saved tables can be discovered using `sc_schema_catalogue()`. See the `r ticle("sc_schema")` for more details.
 
-```{r}
+```{r,eval=FALSE}
 sc_schema_catalogue() %>% 
   sc_schema_flatten("TABLE")
 ```
