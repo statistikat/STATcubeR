@@ -24,7 +24,7 @@ are wrapped into a class called sc_schema to simplify the usage in R."><meta pro
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-default navbar-expand-lg bg-primary"><div class="container">
+    <nav class="navbar fixed-top navbar-default navbar-expand-lg bg-primary" data-bs-theme="default"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
@@ -285,7 +285,7 @@ To use <code>data.tree</code> printing permanently, use</p>
 <span class="r-in"><span><span class="co"># access the raw response from httr::GET()</span></span></span>
 <span class="r-in"><span><span class="va">my_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">db_schema</span>, <span class="st">"response"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">my_response</span><span class="op">$</span><span class="va">headers</span><span class="op">$</span><span class="va">date</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Mon, 08 Apr 2024 18:28:23 GMT"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Thu, 18 Apr 2024 09:53:42 GMT"</span>
 <span class="r-in"><span><span class="va">my_content</span> <span class="op">&lt;-</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html" class="external-link">content</a></span><span class="op">(</span><span class="va">my_response</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">my_content</span><span class="op">$</span><span class="va">label</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Working hours (Labour Force Survey)"</span>
@@ -338,7 +338,7 @@ To use <code>data.tree</code> printing permanently, use</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
 </div>
 
     </footer></div>
