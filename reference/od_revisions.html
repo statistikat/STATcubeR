@@ -123,7 +123,7 @@ is only accessible for employees of Statistics Austria</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># get all datasets (including OGDEXT_*)</span></span></span>
 <span class="r-in"><span><span class="va">ids</span> <span class="op">&lt;-</span> <span class="fu">od_revisions</span><span class="op">(</span>exclude_ext <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ids</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">398</span> datasets are available (<span style="color: #5F0087;">[2024-04-18 09:53:17]</span>)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">398</span> datasets are available (<span style="color: #5F0087;">[2024-04-18 10:02:41]</span>)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ids</span>: <span style="font-style: italic;">OGDEXT_AEST_GEMTAB_1</span>, <span style="font-style: italic;">OGDEXT_AMB_1</span>, <span style="font-style: italic;">OGDEXT_BINNENWAND_1</span>, …,</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">OGD_vpilhki45_VPI_LHKI45_1</span>, and <span style="font-style: italic;">OGD_zlf_komm_ZLF_KOM_1</span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">ids</span>, <span class="fl">6</span><span class="op">)</span></span></span>
@@ -136,7 +136,7 @@ is only accessible for employees of Statistics Austria</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># get all the datasets since the fifteenth of august</span></span></span>
 <span class="r-in"><span><span class="fu">od_revisions</span><span class="op">(</span><span class="st">"2022-09-15"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">253</span> changes between <span style="color: #5F0087;">[2022-09-15]</span> and <span style="color: #5F0087;">[2024-04-18 09:53:17]</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">253</span> changes between <span style="color: #5F0087;">[2022-09-15]</span> and <span style="color: #5F0087;">[2024-04-18 10:02:42]</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">ids</span>: <span style="font-style: italic;">OGD_1531kn2_Aussenhandel_4</span>, <span style="font-style: italic;">OGD_1905fue_FUE_B1905FUE_1</span>,</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">OGD__steuer_est_ab_2008_altgesch_EST_2_2</span>, …,</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="font-style: italic;">OGD_vpilhki45_VPI_LHKI45_1</span>, and <span style="font-style: italic;">OGD_zlf_komm_ZLF_KOM_1</span></span>
