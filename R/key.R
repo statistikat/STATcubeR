@@ -48,7 +48,7 @@ sc_key_set <- function(key, server = "ext", test = TRUE) {
 #'   an error is thrown.
 #' @export
 sc_key_get <- function(server = "ext") {
-  if (!sc_key_exists())
+  if (!sc_key_exists(server = server))
     stop("No STATcube key available. Set key with sc_key_set()")
   invisible(Sys.getenv(sc_key_env_var(server)))
 }
