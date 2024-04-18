@@ -15,7 +15,7 @@
 #'   length one.
 #' @export
 sc_key <- function(server = "ext", test = FALSE) {
-  if (!sc_key_exists(server)) {
+  if (!sc_key_exists(server = server)) {
     if (interactive())
       sc_key_prompt(server, test)
     else
