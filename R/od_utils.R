@@ -16,11 +16,11 @@ od_get_total_code <- function(code, parent) {
 }
 
 od_attr <- function(json) {
-  desc <- json$extras$attribute_description %>% paste0(";", .)
-  index_c <- gregexpr(";C-", desc) %>% .[[1]]
-  index_f <- gregexpr(";F-", desc) %>% .[[1]]
+  desc <- paste0(";", json$extras$attribute_description)
+  index_c <- gregexpr(";C-", desc)[[1]]
+  index_f <- gregexpr(";F-", desc)[[1]]
   index_code <- sort(c(index_c, index_f))
-  index_colon <- gregexpr(":", desc) %>% .[[1]]
+  index_colon <- gregexpr(":", desc)[[1]]
   index_end <- c(index_code[-1], 1000000L) - 1
   code <- character(0)
   label <- character(0)
@@ -75,7 +75,7 @@ od_create_data <- function(id, json = od_json(id), lang = NULL,
   resources$name <- paste0(resources$name, ".csv")
   od <- attr(json, "od")
   resources <- rbind(data_frame(
-    name = paste0(id, ".json"), last_modified = json$extras$metadata_modified %>%
+    name = paste0(id, ".json"), last_modified = json$extras$metadata_modified |>
       as.POSIXct(format = "%Y-%m-%dT%H:%M:%OS"), cached = od$cached,
     size = od$size, download = od$download, parsed = NA), resources[1:6]
   )
@@ -109,12 +109,12 @@ od_label_data <- function(table, x = table$data, parse_time = TRUE, language = N
   x
 }
 
+#' @export
 format.od_json <- function(x, ...) {
   att <- od_attr(x)
   measures <- att$label[substr(att$code, 1, 1) == "F"]
   fields <- att$label[substr(att$code, 1, 1) == "C"]
-  last_modified <- x$extras$metadata_modified  %>%
-    as.POSIXct(format = "%Y-%m-%dT%H:%M:%OS") %>% format()
+  last_modified <- format(as.POSIXct(x$extras$metadata_modified, format = "%Y-%m-%dT%H:%M:%OS"))
   notes <- ""
   if (x$title != x$notes) {
     notes <- c("", cli::style_italic(strwrap(x$notes)), "")
@@ -144,8 +144,7 @@ cli_dl2 <- function(items, labels = names(items)) {
     if (length(item) > 10)
       item <- c(item[1:10], paste(cli::symbol$continue,
                                   cli::style_italic("(", length(item) - 10, " more)")))
-    new <- paste0(labels[i], ": ", paste(unlist(item), collapse = ", ")) %>%
-      cli::ansi_strwrap(exdent = 2)
+    new <- cli::ansi_strwrap(paste0(labels[i], ": ", paste(unlist(item), collapse = ", ")), exdent = 2)
     out <- c(out, new)
   }
   out

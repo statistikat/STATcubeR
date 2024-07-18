@@ -74,8 +74,7 @@ sc_cache_dir_get <- function() {
 }
 
 sc_checksum <- function(x) {
-  httr::sha1_hash(NULL, x) %>%
-    gsub("/", "-", .)
+    gsub("/", "-", httr::sha1_hash(NULL, x))
 }
 
 #' @describeIn sc_cache get the cache file associated with an object
@@ -83,15 +82,14 @@ sc_checksum <- function(x) {
 #' @export
 sc_cache_files <- function(x) {
   if (inherits(x, "sc_table"))
-    return(x$response %>% attr("sc_cache_file"))
+    return(attr(x$response, "sc_cache_file"))
   if (inherits(x, "sc_schema"))
-    return(x %>% attr("response") %>% attr("sc_cache_file"))
+    return( attr(attr(x, "response"), "sc_cache_file"))
   stop("sc_cache_file() can only be used with sc_table and sc_schema objects")
 }
 
 sc_cache_file <- function(params, ext = ".rds") {
-  sc_checksum(params) %>%
-    paste0(sc_cache_dir(), "/", ., ext)
+    paste0(sc_cache_dir(), "/", sc_checksum(params), ext)
 }
 
 #' @describeIn sc_cache removes all files from the cache

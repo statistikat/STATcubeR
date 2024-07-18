@@ -102,7 +102,7 @@ od_table_class <- R6::R6Class(
     #'
     #' Similar contents can be found in `$meta`.
     header = function() {
-      private$cache$header %>% sc_tibble_meta(c("label_de", "label_en"))
+       sc_tibble_meta(private$cache$header, c("label_de", "label_en"))
     },
     #' @field resources
     #' lists all files downloaded from the server to construct this table
@@ -132,6 +132,7 @@ print.od_table <- function(x, ...) {
   cat(format(x), sep = "\n")
 }
 
+#' @export
 format.od_table <- function(x, ...) {
   c(
     cli::style_bold(strwrap(x$meta$source$label)),

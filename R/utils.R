@@ -1,17 +1,5 @@
-#' Pipe operator
-#'
-#' See \code{magrittr::\link[magrittr:pipe]{\%>\%}} for details.
-#'
-#' @name %>%
-#' @rdname pipe
-#' @keywords internal
-#' @export
-#' @importFrom magrittr %>%
-#' @usage lhs \%>\% rhs
-NULL
-
 sc_parse_time <- function(timestamp) {
-  (as.numeric(timestamp) / 1000) %>% as.POSIXct(origin = "1970-01-01")
+   as.POSIXct((as.numeric(timestamp) / 1000), origin = "1970-01-01")
 }
 
 sc_user_agent <- function(){

@@ -10,14 +10,11 @@ unlist_n <- function(x, times) {
 get_annotations <- function(content, i = 1) {
   cube <- content$cubes[[i]]$annotations
   if (is.null(cube)) {
-    n_values <- content$cubes[[i]]$values %>% unlist() %>% length()
+    n_values <-  length(unlist(content$cubes[[i]]$values))
     return(rep(list(NULL), n_values))
   }
-  dims <- content$fields %>%
-    lapply(function(x) x$items) %>%
-    sapply(length)
-  unlist_n(cube, length(dims) - 1) %>%
-    sapply(unlist)
+  dims <- sapply(lapply(content$fields,function(x) x$items), length)
+  return(sapply(unlist_n(cube, length(dims) - 1), unlist))
 }
 
 sc_model_matrix <- function(dims) {
@@ -26,16 +23,15 @@ sc_model_matrix <- function(dims) {
   out <- list()
   for (i in seq_along(dims)) {
     each <- each / dims[i]
-    out[[paste0("FIELD_", i)]] <- seq_len(dims[i]) %>%
-      rep(times = times, each = each)
+    out[[paste0("FIELD_", i)]] <- rep(seq_len(dims[i]),
+                                      times = times, each = each)
     times <- times * dims[i]
   }
   vctrs::new_data_frame(out)
 }
 
 sc_table_create_data <- function(content) {
-  dims_fields <- content$fields %>%
-    lapply(function(x) x$items) %>%
+  dims_fields <- lapply(content$fields, function(x) x$items) |>
     sapply(length)
   df <- sc_model_matrix(dims_fields)
   # labeling of fields

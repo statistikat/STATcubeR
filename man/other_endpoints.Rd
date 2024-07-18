@@ -55,7 +55,6 @@ Usually, this should be less than one hour `after the current time.
 sc_info()
 sc_rate_limit_table()
 sc_rate_limit_schema()
-sc_schema("str:group:deake005:X_B1") \%>\%
-  sc_rate_limits()
+sc_rate_limits(sc_schema("str:group:deake005:X_B1"))
 \dontshow{\}) # examplesIf}
 }

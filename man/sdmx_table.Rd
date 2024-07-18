@@ -18,7 +18,7 @@ consisting of \code{structure.xml} with metadata and \code{dataset.xml} for the
 values.
 }
 \examples{
-x <- "sdmx/dedemo.zip" \%>\% system.file(package = "STATcubeR") \%>\% sdmx_table()
+x <- sdmx_table(system.file("sdmx/dedemo.zip", package = "STATcubeR"))
 # print and tabulate
 x
 x$tabulate()
@@ -27,6 +27,6 @@ nuts2 <- x$field("C-B00-0")
 data.frame(label = nuts2$label,
   parent = nuts2$label[match(nuts2$parent, nuts2$code)])
 # extract more data from the raw xml
-x$xml$meta \%>\% xml2::xml_find_first(".//Name")
+xml2::xml_find_first(x$xml$meta, ".//Name")
 }
 \keyword{experimental}

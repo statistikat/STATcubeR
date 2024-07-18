@@ -18,5 +18,5 @@ parses a json request and returns a short string representing
 the corresponding STATcube server
 }
 \examples{
-sc_example('accomodation') \%>\% sc_json_get_server()
+sc_json_get_server(sc_example('accomodation'))
 }

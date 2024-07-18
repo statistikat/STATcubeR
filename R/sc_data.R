@@ -81,7 +81,7 @@ sc_data <- R6::R6Class(
     total_codes = function(...) {
       args <- list(...)
       if (length(args) == 0)
-        return(private$p_meta$fields[, c("code", "total_code")] %>%
+        return(private$p_meta$fields[, c("code", "total_code")] |>
                  `class<-`(c("tbl", "data.frame")))
       keys <- od_match_codes(private$p_meta$fields, names(args), single = FALSE)
       values <- unlist(args)

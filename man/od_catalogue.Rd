@@ -45,10 +45,10 @@ The last column \code{"json"} contains the full json metadata as returned by
 \examples{
 catalogue <- od_catalogue()
 catalogue
-catalogue$update_frequency \%>\% table()
-catalogue$categorization \%>\% table()
+table(catalogue$update_frequency)
+table(catalogue$categorization)
 catalogue[catalogue$categorization == "Gesundheit", 1:4]
 catalogue[catalogue$measures >= 70, 1:3]
 catalogue$json[[1]]
-catalogue$database \%>\% head()
+head(catalogue$database)
 }

@@ -6,8 +6,7 @@ sc_field_parse <- function(field, type = sc_field_type(field)) {
 }
 
 sc_field_codes <- function(field, split_minus = TRUE) {
-  res <- field$items %>%
-    sapply(function(x) x$uris[[1]] %>% get_var_code(split_minus))
+  res <-  sapply(field$items, function(x) get_var_code(x$uris[[1]], split_minus))
   res[res == ""] <- NA
   res
 }
@@ -42,7 +41,7 @@ sc_field_type <- function(field) {
 }
 
 sc_field_parse_category <- function(field) {
-  field$items %>% sapply(function(x) x$labels[[1]])
+  sapply(field$items, function(x) x$labels[[1]])
 }
 
 sc_as_time <- function(year, month, ind) {

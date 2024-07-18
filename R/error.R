@@ -15,7 +15,7 @@
 #' try(sc_table_saved("invalid_id"))
 #' last_error <- sc_last_error()
 #' httr::content(last_error)
-#' sc_last_error_parsed() %>% str()
+#' str(sc_last_error_parsed())
 #' @export
 sc_last_error <- function() {
   sc_env$last_error
@@ -61,8 +61,7 @@ sc_check_response <- function(response) {
     sc_env$last_error <- response
     message <- paste0(httr::http_status(response)$message, "\n")
     if (httr::http_type(response) == "application/json")
-      message <- httr::content(response, as = "text") %>%
-        jsonlite::prettify(indent = 2) %>% paste0(message, .)
+      message <- paste0(message, jsonlite::prettify(httr::content(response, as = "text"),indent = 2))
     message <- paste0(message, message_sc_last_error())
     stop(message, call. = FALSE)
   }

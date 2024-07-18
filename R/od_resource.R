@@ -7,7 +7,6 @@
 #'   contain a hidden attribute `attr(., "od")` about the time used for
 #'   downloading and parsing the resource. [od_resource_all()] converts these
 #'   hidden attribute into columns.
-#' @importFrom magrittr %<>%
 NULL
 
 od_resource_blacklist <- c(
@@ -55,7 +54,7 @@ od_cache_path <- function(server = "ext", ...) {
 #' @export
 od_cache_clear <- function(id, server = "ext") {
   od_resource_check_id(id)
-  files <- od_cache_path(server) %>% dir(id, full.names = TRUE)
+  files <- dir(od_cache_path(server),id, full.names = TRUE)
   file.remove(files)
   message("deleted ", length(files), " files from ", shQuote(od_cache_path(server)))
 }
@@ -94,7 +93,7 @@ od_cache_file <- function(id, suffix = NULL, timestamp = NULL, ..., server = "ex
   ext <- match.arg(list(...)$ext, c("csv", "json"))
   stopifnot(is.character(id) && length(id) > 0)
   od_resource_check_id(id)
-  filename <- c(id, suffix) %>% paste(collapse = "_") %>% paste0(".", ext)
+  filename <- paste0(paste(c(id, suffix), collapse = "_"), ".", ext)
   cache_file <- od_cache_path(server, filename)
   download <- NA_real_
   if (!file.exists(cache_file) || !is.null(timestamp) &&
@@ -127,7 +126,7 @@ od_resource <- function(id, suffix = NULL, timestamp = NULL, server = "ext") {
   cache_file <- od_cache_file(id, suffix, timestamp, ext = "csv", server = server)
   t <- Sys.time()
   x <- utils::read.csv2(cache_file, na.strings = c("", ":"),
-                        check.names = FALSE, stringsAsFactors = FALSE) %>%
+                        check.names = FALSE, stringsAsFactors = FALSE) |>
     od_normalize_columns(suffix)
   t <- Sys.time() - t
   t <- 1000 * as.numeric(t)
@@ -136,7 +135,7 @@ od_resource <- function(id, suffix = NULL, timestamp = NULL, server = "ext") {
 }
 
 od_resource_parse_all <- function(resources, server = "ext") {
-  parsed <- resources %>% lapply(function(x) {
+  parsed <- lapply(resources, function(x) {
     last_modified <- as.POSIXct(x$last_modified, format = "%Y-%m-%dT%H:%M:%OS")
     od_resource(x$name, timestamp = last_modified, server = server)
   })
@@ -144,12 +143,12 @@ od_resource_parse_all <- function(resources, server = "ext") {
 
   data_frame(
     name = sapply(resources, function(x) x$name),
-    last_modified = lapply(od, function(x) x$last_modified) %>% do.call(c, .),
-    cached = lapply(od, function(x) x$cached) %>% do.call(c, .),
+    last_modified = do.call(c, lapply(od, function(x) x$last_modified)),
+    cached =  do.call(c, lapply(od, function(x) x$cached)),
     size = sapply(od, function(x) x$size),
     download = vapply(od, function(x) x$download, 1.0),
     parsed = sapply(od, function(x) x$parsed),
-    data = I(parsed %>% lapply(`attr<-`, "od", NULL))
+    data = I(lapply(parsed, `attr<-`, "od", NULL))
   )
 }
 
@@ -159,7 +158,7 @@ od_resources_check <- function(json) {
   id <- resources[[1]]$name
   stopifnot(resources[[2]]$name == paste0(id, "_HEADER"))
   stopifnot(all(sapply(resources, function(x) { x$format == "csv" })))
-  fc_res <- resources %>% .[-c(1, 2)] %>% sapply(function(x) x$name)
+  fc_res <- sapply(resources[-c(1, 2)], function(x) x$name)
   fc_att <- att$code[substr(att$code, 1, 2) == "C-"]
   stopifnot(setequal(fc_res, paste0(id, "_", fc_att)))
   function(header) {
@@ -174,7 +173,8 @@ od_normalize_columns <- function(x, suffix) {
     col_indices <- c(1, 2, 2, switch(suffix, HEADER = 3, c(4, 3)), 5, 7)
     col_names <- c("code", "label", "label_de", "label_en",
                    switch(suffix, HEADER = NULL, "parent"), "de_desc", "en_desc")
-    x <- x[, col_indices] %>% `names<-`(col_names)
+    x <- x[, col_indices]
+    names(x) <- col_names
     x$label <- NA_character_
     x$label_en <- as.character(x$label_en)
     x$label_de <- as.character(x$label_de)
@@ -207,8 +207,7 @@ od_json <- function(id, timestamp = Sys.time() - 3600, server = "ext") {
 
 #' @export
 as.character.od_json <- function(x, ...) {
-  jsonlite::toJSON(x, pretty = TRUE, auto_unbox = TRUE) %>%
-    paste(...)
+  paste(jsonlite::toJSON(x, pretty = TRUE, auto_unbox = TRUE), ...)
 }
 
 #' @name od_resource
@@ -222,8 +221,11 @@ od_resource_all <- function(id, json = od_json(id), server = "ext") {
   check_header <- od_resources_check(json)
   out <- od_resource_parse_all(json$resources, server = server)
   check_header(out$data[[2]])
-  out$data[[2]] %<>% od_normalize_columns("HEADER")
-  out$data[seq(3, nrow(out))] %<>% lapply(od_normalize_columns, "FIELD")
+
+  out$data[[2]] <- od_normalize_columns(out$data[[2]], "HEADER")
+
+  out$data[seq(3, nrow(out))] <- lapply(out$data[seq(3, nrow(out))],
+                                        od_normalize_columns, "FIELD")
   class(out$name) <- c("ogd_file", "character")
   class(out$last_modified) <- c("sc_dttm", class(out$last_modified))
   class(out$cached) <- c("sc_dttm", class(out$cached))

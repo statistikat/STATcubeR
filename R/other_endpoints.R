@@ -7,8 +7,7 @@
 #' sc_info()
 #' sc_rate_limit_table()
 #' sc_rate_limit_schema()
-#' sc_schema("str:group:deake005:X_B1") %>%
-#'   sc_rate_limits()
+#' sc_rate_limits(sc_schema("str:group:deake005:X_B1"))
 #' @name other_endpoints
 #' @inheritParams sc_key
 #' @inheritParams sc_schema
@@ -21,12 +20,12 @@ sc_info <- function(language = c("en", "de"), key = NULL, server = "ext") {
   response <- httr::GET(
     url = paste0(base_url(server), "/info"),
     config = sc_headers(language, key, server)
-  ) %>% sc_check_response()
+  )
+  response <- sc_check_response(response)
   info_content <- httr::content(response)
-  info_content$languages %>%
-    lapply(function(x)
-      data_frame(locale = x$locale, displayName = x$displayName)) %>%
-    do.call(rbind, .)
+  return(do.call(rbind,lapply(info_content$languages,
+           function(x) data_frame(locale = x$locale,
+                                  displayName = x$displayName))))
 }
 
 #' @describeIn other_endpoints
@@ -38,10 +37,10 @@ sc_info <- function(language = c("en", "de"), key = NULL, server = "ext") {
 #'   Usually, this should be less than one hour `after the current time.
 #' @export
 sc_rate_limit_table <- function(language = c("en", "de"), key = NULL, server = "ext") {
-  response <- httr::GET(
+  response <- sc_check_response(httr::GET(
     url = paste0(base_url(server), "/rate_limit_table"),
     config = sc_headers(language, key, server)
-  ) %>% sc_check_response()
+  ))
   rate_limit <- httr::content(response)
   class(rate_limit) <- "sc_rate_limit_table"
   rate_limit
@@ -50,10 +49,10 @@ sc_rate_limit_table <- function(language = c("en", "de"), key = NULL, server = "
 #' @rdname other_endpoints
 #' @export
 sc_rate_limit_schema <- function(language = c("en", "de"), key = NULL, server = "ext") {
-  response <- httr::GET(
+  response <- sc_check_response(httr::GET(
     url = paste0(base_url(server), "/rate_limit_schema"),
     config = sc_headers(language, key, server)
-  ) %>% sc_check_response()
+  ))
   rate_limit <- httr::content(response)
   class(rate_limit) <- "sc_rate_limit_table"
   rate_limit
@@ -66,12 +65,12 @@ extract_rate_limits <- function(response) {
       limit = header[["x-ratelimit-schema"]],
       remaining = header[["x-ratelimit-remaining-schema"]],
       reset = header[["x-ratelimit-reset-schema"]]
-    ) %>% `class<-`("sc_rate_limit_table"),
+    ) |> `class<-`("sc_rate_limit_table"),
     table = list(
       limit = header[["x-ratelimit-table"]],
       remaining = header[["x-ratelimit-remaining-table"]],
       reset = header[["x-ratelimit-reset-table"]]
-    ) %>% `class<-`("sc_rate_limit_table")
+    ) |> `class<-`("sc_rate_limit_table")
   )
 }
 
@@ -96,6 +95,7 @@ print.sc_rate_limit_table <- function(x, ...) {
   cat(format(x), sep = "\n")
 }
 
+#' @export
 format.sc_rate_limit_table <- function(x, ...) {
   cli::format_inline(
     "{.field {x$remaining}} / {.field {x$limit}} (Resets at {.timestamp ",

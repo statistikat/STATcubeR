@@ -38,7 +38,7 @@ sc_schema <- function(id = NULL, depth = NULL,
           ifelse(is.null(depth), "", paste0("?depth=", depth))
         ),
         config = sc_headers(language, key, server)
-      ) %>% sc_check_response()
+      ) |> sc_check_response()
     })
   content <- httr::content(response)
   x <- sc_as_nested_list(content)
@@ -48,7 +48,7 @@ sc_schema <- function(id = NULL, depth = NULL,
 
 print_schema_with_tree <- function(x, ...) {
   stopifnot(requireNamespace("data.tree", quietly = TRUE))
-  x <- unclass(x) %>% data.tree::as.Node(nodeName = x$label, check = "no-check")
+  x <- data.tree::as.Node(unclass(x), nodeName = x$label, check = "no-check")
   print(x, ..., "type")
   invisible(x)
 }
@@ -152,8 +152,8 @@ sc_schema_flatten_impl <- function(resp, type) {
   label <- character()
   if (!is.null(resp$children)) {
     ret <- lapply(resp$children, sc_schema_flatten_impl, type)
-    id <- lapply(ret, function(x) x$id) %>% unlist()
-    label <- lapply(ret, function(x) x$label) %>% unlist()
+    id <- unlist(lapply(ret, function(x) x$id))
+    label <- unlist(lapply(ret, function(x) x$label))
   }
   if (resp$type == type) {
     id <- c(resp$id, id)

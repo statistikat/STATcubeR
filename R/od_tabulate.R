@@ -43,10 +43,10 @@ sc_data_tabulate <- function(table, ..., .list = NULL, raw = FALSE, parse_time =
   x <- x[, setdiff(names(x), setdiff(fields_to_aggregate, has_total))]
   if (length(aggregate_via_sum) > 0) {
     grouping_var <- do.call(paste, x[fields])
-    x <- cbind(
+    x <- sc_tibble(cbind(
       subset(x, !duplicated(grouping_var), fields),
       rowsum(x[measures], group = grouping_var, reorder = FALSE)
-    ) %>% sc_tibble()
+    ))
   }
   # post process aggregated data
   for (field_code in fields) {

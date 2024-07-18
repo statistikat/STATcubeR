@@ -40,7 +40,9 @@ od_cache_summary <- function(server = "ext") {
   is_field <- pos_underscore != -1
   field <- substr(files[is_field], 1 + pos_underscore[is_field], nchar(files[is_field]) - 4)
   id <- substr(files[is_field], 1, pos_underscore[is_field] - 1)
-  sizes_fields <- file.size(file.path(od_cache_dir(), files[is_field])) %>% split(id) %>% sapply(sum)
+  sizes_fields <- sapply(
+    split(file.size(file.path(od_cache_dir(), files[is_field])),id),
+    sum)
   fields <- list(id = id, field = field)
 
   files <- files[!is_field]
@@ -51,14 +53,13 @@ od_cache_summary <- function(server = "ext") {
   id_data <- substr(files, 1, nchar(files) - 4)
   all_ids <- unique(c(id_data, id_header, fields$id))
   res <- data_frame(
-    id = all_ids %>% `class<-`(c("ogd_id", "character")),
+    id = `class<-`(all_ids,c("ogd_id", "character")),
     updated = file.mtime(paste0(cache_dir, all_ids, ".json")),
     json = file.size(paste0(cache_dir, all_ids, ".json")),
     data = file.size(paste0(cache_dir, all_ids, ".csv")),
     header = file.size(paste0(cache_dir, all_ids, "_HEADER.csv")),
     fields = sizes_fields[match(unique(fields$id), all_ids)],
-    n_fields = match(fields$id, all_ids) %>% factor(seq_along(all_ids)) %>%
-      table() %>% as.integer()
+    n_fields = as.integer(table(factor(match(fields$id, all_ids),seq_along(all_ids))))
   )
   class(res$updated) <- c("sc_dttm", class(res$updated))
   res
@@ -66,12 +67,15 @@ od_cache_summary <- function(server = "ext") {
 
 
 #' @rdname od_cache
-#' @importFrom magrittr %T>%
 #' @export
 od_downloads <- function(server = "ext") {
-  x <- od_cache_path(server, "downloads.log") %T>%
-    (function(x) {if (!file.exists(x)) stop("No file 'downloads.log' in cache")}) %>%
-    utils::read.csv(header = FALSE) %>% `names<-`(c("time", "file", "downloaded"))
+  x <- od_cache_path(server, "downloads.log")
+  if (!file.exists(x))
+    stop("No file 'downloads.log' in cache")
+  x <- utils::read.csv(x,header = FALSE)
+  names(x) <- c("time", "file", "downloaded")
   x$time <- as.POSIXct(x$time)
-  x %>% .[rev(seq_len(nrow(.))), ] %>% `class<-`(c("tbl", "data.frame"))
+  x[rev(seq_len(nrow(x))), ]
+  class(x) <- c("tbl", "data.frame")
+  return(x)
 }
