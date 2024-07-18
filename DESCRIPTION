@@ -3,9 +3,10 @@ Package: STATcubeR
 Title: R interface for the STATcube REST API and Open Government Data
 Version: 0.5.2
 Authors@R: c(
-    person("Gregor", "de Cillia", , "Gregor.deCillia@statistik.gv.at", role = c("aut", "cre")),
+    person("Gregor", "de Cillia", , "Gregor.deCillia@statistik.gv.at", role = "aut"),
     person("Bernhard", "Meindl", , "Bernhard.Meindl@statistik.gv.at", role = "ctb"),
-    person("Alexander", "Kowarik", , "Alexander.Kowarik@statistik.gv.at", role = "ctb")
+    person("Alexander", "Kowarik", , "Alexander.Kowarik@statistik.gv.at",
+    role = c("ctb","cre"),comment=c(ORCID="0000-0001-8598-4130"))
   )
 Description: Import data from the STATcube REST API or from the open data
     portal of Statistics Austria. This package includes a client for API
@@ -26,7 +27,10 @@ Suggests:
     spelling, 
     data.tree,
     rappdirs,
-    xml2
+    xml2,
+    reactable,
+    tidyverse,
+    markdown
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

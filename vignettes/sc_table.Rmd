@@ -92,43 +92,43 @@ The datasets can be listed with `sc_examples_list()`.
 
 ### Accommodation
 
-```{r}
+```{r, eval = FALSE}
 sc_example("accomodation.json") %>% sc_table()
 ```
 
 ### STATatlas
 
-```{r}
+```{r, eval = FALSE}
 sc_example("economic_atlas.json") %>% sc_table()
 ```
 
 ### Trade
 
-```{r}
+```{r, eval = FALSE}
 sc_example("foreign_trade.json") %>% sc_table()
 ```
 
 ### GDP
 
-```{r}
+```{r, eval = FALSE}
 sc_example("gross_regional_product.json") %>% sc_table()
 ```
 
 ### Working Hours
 
-```{r}
+```{r, eval = FALSE}
 sc_example("labor_force_survey.json") %>% sc_table()
 ```
 
 ### Agriculture
 
-```{r}
+```{r, eval = FALSE
 sc_example("agriculture_prices.json") %>% sc_table()
 ```
 
 ### monitor.statistik.at
 
-```{r}
+```{r, eval = FALSE}
 sc_example("economic_trend_monitor.json") %>% sc_table()
 ```
 
