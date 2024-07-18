@@ -1,9 +1,9 @@
 Type: Package
 Package: STATcubeR
 Title: R interface for the STATcube REST API and Open Government Data
-Version: 0.5.2
+Version: 1.0.0
 Authors@R: c(
-    person("Gregor", "de Cillia", , "Gregor.deCillia@statistik.gv.at", role = "aut"),
+    person("Gregor", "de Cillia", , "", role = "aut"),
     person("Bernhard", "Meindl", , "Bernhard.Meindl@statistik.gv.at", role = "ctb"),
     person("Alexander", "Kowarik", , "Alexander.Kowarik@statistik.gv.at",
     role = c("ctb","cre"),comment=c(ORCID="0000-0001-8598-4130"))
