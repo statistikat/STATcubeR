@@ -3,7 +3,7 @@
 #' Use the `/revision` endpoint of the OGD server to get a list
 #' of all datasets that have changed since a certain timestamp.
 #' @param since (optional) A timestamp. If supplied, only datasets updated
-#'   later will be returned. Otherwise, all datasets are retured.
+#'   later will be returned. Otherwise, all datasets are returned.
 #'   Can be in either one of the following formats
 #'   * a native R time type that is compatible with `strftime()`
 #'     such as the return values of `Sys.Date()`, `Sys.time()` and `file.mtime()`.
@@ -11,7 +11,7 @@
 #'   * a string of the form `YYYY-MM-DDThh:mm:ss` to specify a day and a time.
 #' @param exclude_ext If `TRUE` (default) exclude all results that have
 #'   `OGDEXT_` as a prefix
-#' @return a character verctor with dataset ids
+#' @return a character vector with dataset ids
 #' @inheritParams od_list
 #' @examples
 #' # get all datasets (including OGDEXT_*)
@@ -41,15 +41,15 @@ print.od_revisions <- function(x, ...) {
   since <- attr(x, "since")
   response <- attr(x, "response")
   if (!is.null(since))
-    cli::cli_text("{.strong {length(x)}} changes between
+    cli::format_inline("{.strong {length(x)}} changes between
                 {.timestamp {attr(x, 'since')}} and
-                {.timestamp {response$date}}")
+                {.timestamp {response$date}}") %>% cat()
   else
-    cli::cli_text("{.strong {length(x)}} datasets are available
-                ({.timestamp {response$date}})")
+    cli::format_inline("{.strong {length(x)}} datasets are available ",
+                "({.timestamp {response$date}})\n") %>% cat()
   if (length(x) > 0) {
     y <- cli::cli_vec(x, list("vec-trunc" = 3))
-    cli::cli_text("{.strong ids}: {.emph {y}}")
+    cli::format_inline("{.strong ids}: {.emph {y}}") %>% cat()
   }
   invisible(x)
 }

@@ -18,7 +18,7 @@ STATcube REST API.
 
 \item{\code{raw}}{the raw response content}
 
-\item{\code{annotation_legend}}{list of all annotations occuring in the data as a \code{data.frame} with
+\item{\code{annotation_legend}}{list of all annotations occurring in the data as a \code{data.frame} with
 two columns for the annotation keys and annotation labels.}
 
 \item{\code{rate_limit}}{how much requests were left after the POST request for this table was sent?
@@ -50,7 +50,7 @@ Uses the same format as \code{\link[=sc_rate_limit_table]{sc_rate_limit_table()}
 \if{html}{\out{<a id="method-sc_table-new"></a>}}
 \if{latex}{\out{\hypertarget{method-sc_table-new}{}}}
 \subsection{Method \code{new()}}{
-Ususally, objects of class \code{sc_table} are generated with
+Usually, objects of class \code{sc_table} are generated with
 one of the factory methods \code{\link[=sc_table]{sc_table()}}, \code{\link[=sc_table_saved]{sc_table_saved()}} or
 \code{\link[=sc_table_custom]{sc_table_custom()}}. If this constructor is invoked directly,
 either omit the parameters \code{json} and \code{file} or make sure that they
@@ -70,7 +70,7 @@ endpoint.}
 \item{\code{file}}{the file path to the json file}
 
 \item{\code{add_totals}}{was the json request modified by adding totals via
-the add_toals parameter in one of the factory functions (\code{sc_table()},
+the add_totals parameter in one of the factory functions (\code{sc_table()},
 \code{sc_table_custom()}). Necessary, in order to also request totals via
 the \verb{$add_language()} method.}
 }
@@ -97,7 +97,12 @@ added to a timeseries
 An extension of \code{\link[=sc_tabulate]{sc_tabulate()}} with additional
 parameters.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{sc_table_class$tabulate(..., round = TRUE, annotations = FALSE)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{sc_table_class$tabulate(
+  ...,
+  round = FALSE,
+  annotations = FALSE,
+  recode_zeros = FALSE
+)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -105,11 +110,13 @@ parameters.
 \describe{
 \item{\code{...}}{Parameters which are passed down to \code{\link[=sc_tabulate]{sc_tabulate()}}}
 
-\item{\code{round}}{apply rounding to each measure accoring to the precision
+\item{\code{round}}{apply rounding to each measure according to the precision
 provided by the API.}
 
 \item{\code{annotations}}{Include separate annotation columns in the returned
 table. This parameter is currently broken and needs to be re-implemented}
+
+\item{\code{recode_zeros}}{interpret zero values as missings?}
 }
 \if{html}{\out{</div>}}
 }

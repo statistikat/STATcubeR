@@ -14,12 +14,7 @@ sc_schema(id = NULL, depth = NULL, language = NULL, key = NULL, server = "ext")
 
 sc_schema_flatten(x, type)
 
-sc_schema_catalogue(
-  depth = "folder",
-  language = c("en", "de"),
-  key = NULL,
-  server = "ext"
-)
+sc_schema_catalogue(depth = "folder", ...)
 
 sc_schema_db(id, depth = "valueset", language = c("en", "de"), key = NULL)
 }
@@ -45,7 +40,7 @@ the production server. External users should always use the default option \code
 \item{x}{an object of class \code{sc_schema()} i.e. the return value of
 \code{\link[=sc_schema]{sc_schema()}}, \code{\link[=sc_schema_db]{sc_schema_db()}} or \code{\link[=sc_schema_catalogue]{sc_schema_catalogue()}}.}
 
-\item{tree}{wether to use the \href{https://rdrr.io/cran/data.tree/man/data.tree.html}{\code{data.tree}} package for printing.}
+\item{tree}{whether to use the \href{https://rdrr.io/cran/data.tree/man/data.tree.html}{\code{data.tree}} package for printing.}
 
 \item{limit, ...}{passed to \code{\link[data.tree:print.Node]{data.tree::print.Node()}} if \code{tree} is set
 to \code{TRUE}. Ignored otherwise.}
@@ -58,9 +53,9 @@ Invoke the \href{https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-d
 This endpoint can be used to get all available databases and tables
 as well as metadata about specific databases.
 
-The main function \code{sc_schema()} can be used with any resouce id.
+The main function \code{sc_schema()} can be used with any resource id.
 \code{\link[=sc_schema_catalogue]{sc_schema_catalogue()}} and \code{\link[=sc_schema_db]{sc_schema_db()}} are very simple
-wrapper functions around \code{\link[=sc_schema]{sc_schema()}} and are comparabable to the
+wrapper functions around \code{\link[=sc_schema]{sc_schema()}} and are comparable to the
 \href{https://portal.statistik.at/statistik.at/ext/statcube/jsf/dataCatalogueExplorer.xhtml}{catalogue explorer} or the
 \href{https://portal.statistik.at/statistik.at/ext/statcube/opendatabase?id=deake005}{table view} of the STATcube GUI.
 
@@ -72,12 +67,12 @@ are wrapped into a class called \code{sc_schema} to simplify the usage in R.
 \item \code{sc_schema_flatten()}: turns a \code{sc_schema} object into a \code{data.frame}
 
 \item \code{sc_schema_catalogue()}: is similar to the
-\href{https://portal.statistik.at/statistik.at/ext/statcube/jsf/dataCatalogueExplorer.xhtml}{catalogue explorer} of the STATcube GUI and reurns
+\href{https://portal.statistik.at/statistik.at/ext/statcube/jsf/dataCatalogueExplorer.xhtml}{catalogue explorer} of the STATcube GUI and returns
 a tree-type object containing all databases and tables.
 
 \item \code{sc_schema_db()}: is similar to the
 \href{https://portal.statistik.at/statistik.at/ext/statcube/opendatabase?id=deake005}{table view}
-of ths STATcube GUI and gives information about all measures and
+of the STATcube GUI and gives information about all measures and
 classification fields for a specific database
 
 }}

@@ -36,42 +36,38 @@ summarize_annotations <- function(content, i) {
 sc_meta <- function(content) {
   measure_info <- lapply(seq_along(content$measures), function(i) {
     measure <- content$measures[[i]]
-    data.frame(
+    data_frame(
       label = measure$label,
       code = get_var_code(measure$measure),
       fun = measure$`function`,
       precision = content$cubes[[i]]$precision,
       annotations = summarize_annotations(content, i),
-      NAs = sum(unlist(content$cubes[[i]]$values) == 0),
-      stringsAsFactors = FALSE
+      NAs = sum(unlist(content$cubes[[i]]$values) == 0)
     )
   }) %>% do.call(rbind, .)
 
   field_info <- lapply(content$fields, function(field) {
     has_total <- field$items[[length(field$items)]]$type == "Total"
-    data.frame(
+    data_frame(
       label = field$label,
       code = get_var_code(field$uri),
       nitems = length(field$items),
       type = sc_field_type(field),
-      total_code = ifelse(has_total, "SC_TOTAL", NA_character_),
-      stringsAsFactors = FALSE
+      total_code = ifelse(has_total, "SC_TOTAL", NA_character_)
     )
   }) %>% do.call(rbind, .)
-  db_info <- data.frame(
+  db_info <- data_frame(
     label = content$database$label,
-    code = content$database$id,
-    stringsAsFactors = FALSE
+    code = content$database$id
   )
   list(source = db_info, measures = measure_info, fields = field_info)
 }
 
 sc_meta_field <- function(field) {
   res <- lapply(field$items, function(item) {
-    data.frame(
+    data_frame(
       label = paste(item$labels, collapse = ";"),
-      code = get_item_code(item),
-      stringsAsFactors = FALSE
+      code = get_item_code(item)
     )
   }) %>% do.call(rbind, .)
   res$parsed <- sc_field_parse(field)

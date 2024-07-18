@@ -2,7 +2,7 @@
 #'
 #' @description
 #' This class represents a common interface for datasets returned from the
-#' STATcube REST API and OGD datasets. `sc_data` obects are usually created with
+#' STATcube REST API and OGD datasets. `sc_data` objects are usually created with
 #' [od_table()] or [sc_table()].
 #' @examples
 #' ## create a new sc_data object via od_table()
@@ -40,9 +40,9 @@ sc_data <- R6::R6Class(
       private$recoder <- sc_recoder$new(private)
     },
     #' @description get information about a specific field. The format of
-    #'   the reurn value is similar to `$meta`. A `data.frame` that includes
+    #'   the return value is similar to `$meta`. A `data.frame` that includes
     #'   codes and labels for each level of the field.
-    #' @param i specifier for the field. Integer or character. If an interger
+    #' @param i specifier for the field. Integer or character. If an integer
     #'   is provided, it should match the row number in `$meta$fields`. If
     #'   a character is provided, the field is matched using [pmatch()] on
     #'   all available codes and labels.

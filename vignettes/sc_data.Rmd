@@ -15,7 +15,7 @@ options(tibble.print_min = 5)
 ```
 
 The class [sc_data] defines a common interface for open data datasets and responses from the `/table` endpoint of the STATcube REST API.
-It defines methods that are applicable to both datasources like aquiring metadata, labeling the data and aggregating results.
+It defines methods that are applicable to both datasources like acquiring metadata, labeling the data and aggregating results.
 
 ## Constructing sc_data objects
 
@@ -29,8 +29,8 @@ Therefore, objects of the class should be created with one of the following func
     * `sc_table_saved()` and `sc_table_custom()` also use the `/table` endpoint.
        However, the request is specified via ids rather than a json file.
 
-To illustrate, we will use one of the OGD datasets to showcase the functionalities of this class.
-Notice however, that objects created with `sc_table()` can be used interchangibly.
+To illustrate, we will use one of the OGD datasets to showcase the functionality of this class.
+Notice however, that objects created with `sc_table()` can be used interchangeably.
 
 ```{r}
 x <- od_table("OGD_krebs_ext_KREBS_1")
@@ -117,7 +117,7 @@ x$field("Sex")
 ## Tabulation
 
 The method `$tabulate()` can be used to turn `sc_table` objects into tidy data.frames.
-See the `r ticle("sc_tabulate")` for more defails.
+See the `r ticle("sc_tabulate")` for more defaults.
 
 ```{r}
 x$tabulate()

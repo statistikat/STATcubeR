@@ -30,7 +30,7 @@ Ignored if \code{raw} is set to \code{TRUE}.}
 
 \item{recode_zeros}{turn zero values into \code{NA}s}
 
-\item{language}{The language to be used for labelling. By default, the
+\item{language}{The language to be used for labeling. By default, the
 dataset language (\code{table$language}) is used.}
 
 \item{sort}{If \code{TRUE}, the resulting data will be sorted by all provided
@@ -52,7 +52,7 @@ is true for fields.
 \details{
 Aggregation is done as follows
 \itemize{
-\item First, all columns that priovide a total code via \code{table$total_codes()}
+\item First, all columns that provide a total code via \code{table$total_codes()}
 will be used to filter for \code{column == total_code} or \code{column != total_code}
 \item Then, the remaining data is aggregated using \code{\link[=rowsum]{rowsum()}}
 }
@@ -63,7 +63,7 @@ See Examples
 For objects of class \code{sc_table} two additional operations are performed.
 \itemize{
 \item zeros are recoded to \code{NA}s
-\item rounding is done according to the precision of each measure. Ronding
+\item rounding is done according to the precision of each measure. Rounding
 happens after the recoding to \code{NA} values
 }
 }

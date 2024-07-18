@@ -1,7 +1,7 @@
 Type: Package
 Package: STATcubeR
 Title: R interface for the STATcube REST API and Open Government Data
-Version: 0.5.0
+Version: 0.5.2
 Authors@R: c(
     person("Gregor", "de Cillia", , "Gregor.deCillia@statistik.gv.at", role = "aut"),
     person("Bernhard", "Meindl", , "Bernhard.Meindl@statistik.gv.at", role = "ctb"),
@@ -15,14 +15,17 @@ Description: Import data from the STATcube REST API or from the open data
 License: GPL (>= 2)
 URL: https://statistikat.github.io/STATcubeR,
     https://github.com/statistikat/STATcubeR
+BugReports: https://github.com/statistikat/STATcubeR/issues
 Imports: 
     cli (>= 3.4.1),
     httr,
     jsonlite,
-    magrittr
-Suggests: 
+    magrittr,
+    pillar (>= 1.5.0),
+    vctrs (>= 0.5.2)
+Suggests:
+    spelling, 
     data.tree,
-    pillar,
     rappdirs,
     xml2,
     reactable,
@@ -32,3 +35,4 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+Language: en-US

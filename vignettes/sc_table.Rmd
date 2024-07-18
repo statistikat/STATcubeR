@@ -29,7 +29,7 @@ It is assumed that you already provided your API key as described in the `r ticl
 
 Use the graphical user interface of STATcube to create a table. Visit
 [STATcube] and select a database. This will open the table view where you can 
-create a table. See the [STATcube manual] for details.
+create a table. See the [STATcube documentation] for details.
 
 ## Download an API request
 
@@ -48,7 +48,8 @@ This means that the current user is not permitted to use the API.
 Provide the path to the downloaded json file as a string in `sc_table()`.
 
 ``` r
-my_table <- sc_table(json_file = "path/to/api_request.json")
+library(STATcubeR)
+my_table <- sc_table(json = "path/to/api_request.json")
 ```
 
 This will send the json-request to the [`/table` endpoint] of the API and return an object of class `sc_table`.
@@ -83,13 +84,13 @@ If you prefer to use codes rather than labels, use `my_table$data` instead.
 my_table$data
 ```
 
-## Example datasets {.tabsert .tabset-pills}
+## Example datasets {.tabset .tabset-pills}
 
-This article used a dataset about the austrian populatio n via `sc_example()`.
+This article used a dataset about the Austrian population via `sc_example()`.
 `r STATcubeR` contains more example jsons to get started.
 The datasets can be listed with `sc_examples_list()`.
 
-### Accomodation
+### Accommodation
 
 ```{r, eval = FALSE}
 sc_example("accomodation.json") %>% sc_table()
@@ -131,16 +132,63 @@ sc_example("agriculture_prices.json") %>% sc_table()
 sc_example("economic_trend_monitor.json") %>% sc_table()
 ```
 
+## Choosing the Language {.tabset .tabset-pills}
+
+The language which is used for labeling can be changed via the `language`
+parameter of `sc_table()`.
+
+### Accommodation
+
+```{r}
+sc_example("accomodation.json") %>% sc_table("de")
+```
+
+### STATatlas
+
+```{r}
+sc_example("economic_atlas.json") %>% sc_table("de")
+```
+
+### Trade
+
+```{r}
+sc_example("foreign_trade.json") %>% sc_table("de")
+```
+
+### GDP
+
+```{r}
+sc_example("gross_regional_product.json") %>% sc_table("de")
+```
+
+### Working Hours
+
+```{r}
+sc_example("labor_force_survey.json") %>% sc_table("de")
+```
+
+### Agriculture
+
+```{r}
+sc_example("agriculture_prices.json") %>% sc_table("de")
+```
+
+### monitor.statistik.at
+
+```{r}
+sc_example("economic_trend_monitor.json") %>% sc_table("de")
+```
+
 ## Further reading
 
-* Functionalities of the returned object are explained in the `r ticle("sc_data")`.
-* `sc_tabulate()`  provides a more flixble way of turning STATcube tables into
+* The functionality of the returned object are explained in the `r ticle("sc_data")`.
+* `sc_tabulate()`  provides a more flexible way of turning STATcube tables into
   `data.frame`s. See the `r ticle("sc_tabulate")` for more details.
 * The `r ticle("sc_table_saved")` shows an alternative way of importing tables.
 * If you are interested in other API endpoints, see the `r ticle("sc_schema")`
-  ot the `r ticle("sc_info")`
+  or the `r ticle("sc_info")`
 
 [`/table` endpoint]: https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/table-endpoint
 [download options]: https://docs.wingarc.com.au/superstar/9.12/superweb2/user-guide/download-tables
-[STATcube]: https://statcube.at/statcube/home
-[STATcube manual]: http://www.statistik.at/wcm/idc/idcplg?IdcService=GET_PDF_FILE&dDocName=105692
+[STATcube]: https://www.statistik.at/datenbanken/statcube-statistische-datenbank/login
+[STATcube documentation]: https://www.statistik.at/datenbanken/statcube-statistische-datenbank/dokumente-downloads

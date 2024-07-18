@@ -1,7 +1,7 @@
 ---
 title: "Define Custom Tables"
 description: >
-  Define custom requests against the `/table` endpoint programatically
+  Define custom requests against the `/table` endpoint programmatically
   by providing character vectors with ids of databases, measures and classification fields.
 link_text: "custom tables article"
 ---
@@ -13,21 +13,44 @@ source("R/setup.R")$value
 ```{r, include = FALSE}
 if (!sc_key_exists())
   knitr::opts_chunk$set(eval = FALSE)
+show_json <- function(x) {
+  paste(
+    "<details>",
+    "<summary>Show json request</summary>",
+    "",
+    "```r",
+    "x$json",
+    "```",
+    "",
+    x$json$.__enclos_env__$private$json_content %>% 
+      paste("```json\n", . , "\n```") %>% knitr::asis_output(),
+    "",
+    "</details>",
+    sep = "\n"
+  ) %>% knitr::asis_output()
+}
 ```
 
-The function `sc_table_custom()` allows you to define requests against the `/table` endpoint programatically.
+The function `sc_table_custom()` allows you to define requests against the `/table` endpoint programmatically.
 This can be useful to automate the generation of `/table` request rather than relying on the GUI to do so.
-The function accepts the three arguments.
+The function accepts the four arguments.
 
-* A database id
-* ids of measures to be imported (type `MEASURE` or `STAT_FUNCTION`)
-* ids of fields to be imported (type `FIELD` or `VALUESET`)
+- A **database** id
+- ids of **measures** to be imported (type `MEASURE`, `STAT_FUNCTION` or `COUNT`)
+- ids of **fields** to be imported (type `FIELD` or `VALUESET`)
+- a list of **recodes** that can be used customize fields
 
-## Starting Simple
+## Building a Custom Table Step by Step {#step-by-step}
 
-First, we want to just send a database id to `sc_table_custom()`.
-We will use a [database about accomodation](`r sc_browse_database("detouextregsai")`) througout this article.
-This returns a table with one single row.
+The first part of this Article will showcase how custom tables can be
+created with a [database about tourism](`r sc_browse_database("detouextregsai")`).
+This database will also be used in most other examples of this article.
+
+### Starting Simple {#database}
+
+First, we want to just send the database id to `sc_table_custom()`.
+This will request only the mandatory fields and default measures for that database.
+In case of the tourism database, a table with one single row is returned.
 
 ```{r}
 database <- "str:database:detouextregsai"
@@ -35,138 +58,296 @@ x <- sc_table_custom(database)
 x$tabulate()
 ```
 
-we see that `r format(x$tabulate()[[2]], big.mark = " ")` nights were spent in austrian tourism establishments in the month of `r x$tabulate()[[1]]`.
+```{r, echo=FALSE}
+show_json(x)
+```
 
-## Adding Countries
+We see that `r format(x$tabulate()[[2]], big.mark = " ")` nights were spent in Austrian tourism establishments in the month of `r x$tabulate()[[1]]`.
+
+### Adding Countries {#field}
 
 Now we want to add a classification to the table.
 This can be done by getting the database schema and showing all classification fields.
 
 ```{r}
-schema <- sc_schema_db(database)
-(fields <- sc_schema_flatten(schema, "FIELD"))
+tourism <- sc_schema_db(database)
+(fields <- sc_schema_flatten(tourism, "FIELD"))
 ```
 
-If we want to add "Country of origin" we need to include the fouth entry of the `id` column in our request.
+If we want to add "Country of origin" we need to include the fourth entry of the `id` column in our request.
 
 ```{r}
-x <- sc_table_custom(database, dimensions = fields$id[4])
+x <- sc_table_custom(tourism, dimensions = fields$id[4])
 x$tabulate()
 ```
 
-## Adding Tourism Communes
+```{r, echo=FALSE}
+show_json(x)
+```
+
+Alternatively, we could also pass the schema object for "country of origin".
+
+```{r}
+origin <- tourism$`Other Classifications`$`Country of origin`
+x <- sc_table_custom(tourism, dimensions = origin)
+```
+
+### Adding Tourism Communes {#fields}
 
 The `dimensions` parameter in `sc_schema_custom()` accepts vectors of field ids.
 Therefore, we can add the communes easily.
 
 ```{r}
-x <- sc_table_custom(database, dimensions = fields$id[c(2, 4)])
+x <- sc_table_custom(tourism, dimensions = fields$id[c(2, 4)])
 x$tabulate()
 ```
 
-## Add Another Measure
+```{r, echo=FALSE}
+show_json(x)
+```
+
+### Add Another Measure {#measure}
 
 Currently, the table only returns the default measure for the database which is the number of nights spent.
 We can add a second measure by again using the database schema and passing a measure id
 
 ```{r}
-(measures <- sc_schema_flatten(schema, "MEASURE"))
+(measures <- sc_schema_flatten(tourism, "MEASURE"))
 ```
 
 We can add both measures to the request by using `measures$id`.
 Just like the `dimensions` parameter, the `measures` parameters accepts vectors of resource ids.
 
 ```{r}
-x <- sc_table_custom(database, measures = measures$id,
+x <- sc_table_custom(tourism, measures = measures$id,
                      dimensions = fields$id[c(2, 4)])
 x$tabulate()
 ```
 
-## Using Valuesets
+```{r, echo=FALSE}
+show_json(x)
+```
+
+### Changing the hierarchy level {#hierarchy}
 
 We can see in [the GUI](`r sc_browse_database("detouextregsai")`) that "Country of origin" is a hierarchical classification.
 If we look at the table above, only the top level of the hierarchy (Austria, Germany, other) is used.
-This can be changed by providing the the valueset that corresponds to the more granular classification of "country of origin"
+This can be changed by providing the the value-set that corresponds to the more granular classification of "country of origin"
 
 ```{r,fig.align='center', out.width='50%', echo=FALSE}
 knitr::include_graphics("img/hierarchical_classification.png")
 ```
 
-The different valuesets for "country of origin" can be compared by browsing the database schema.
+The different value-sets for "country of origin" can be compared by browsing the database schema.
 
 ```{r}
-(valuesets <- schema$`Other Classifications`$`Country of origin`)
+(valuesets <- tourism$`Other Classifications`$`Country of origin`)
 ```
 
-We can see that the two levels of the hierarchy are represented by the two valuesets.
-The valueset "Herkunftsland" uses 3 classification elements and represents the top level of the hierarchy (Austria, Germany, Other).
-The valueset "Country of origin" uses 87 (10+8+69) classification elements and is the bottom level of the hierarchy.
-For classification with more levels of hierarchies, more valuesets will be present.
+We can see that the two levels of the hierarchy are represented by the two value-sets.
+The value-set "Herkunftsland" uses 3 classification elements and represents the top level of the hierarchy (Austria, Germany, Other).
+The value-set "Country of origin" uses 87 (10+8+69) classification elements and is the bottom level of the hierarchy.
+For classifications with more levels of hierarchies, more value-sets will be present.
 
-We will now use the id for the first valueset in the `dimensions` parmaeter of `sc_table_custom`.
+We will now use the id for the first value-set in the `dimensions` parameter of `sc_table_custom`.
 
 ```{r}
 x <- sc_table_custom(
-  db = "str:database:detouextregsai",
-  measures = measures$id[1:2],
-  dimensions = valuesets$`Country of origin`$id
+  db = tourism,
+  measures = measures$id,
+  dimensions = valuesets$`Country of origin`
 )
 x$tabulate()
 ```
 
-It is possible to use a mixture of valuesets and fields in the `dimensions` parameter.
+```{r, echo=FALSE}
+show_json(x)
+```
 
-## Filtering Data
+It is possible to use a mixture of value-sets and fields in the `dimensions` parameter.
 
-Omitting certain classification elements from the query is possible with the `recodes` parameter of the `/table` endpoint. Currently, `sc_table_custom()` does not provide support for recodes.
-Please issue a [feature request] if you see this as a useful extension of `r STATcubeR`.
+## Using Counts {#counts}
+
+Instead of Measures and Value-sets, it is also possible to provide counts
+in the `measure` parameter of `sc_table_custom()`.
+
+```{r}
+population <- sc_schema_db("debevstand")
+(count <- population$`Datensätze/Records`$`F-BEVSTAND`)
+x <- sc_table_custom(population, count)
+x$tabulate()
+```
+
+```{r, echo=FALSE}
+show_json(x)
+```
+
+## Recodes {#recodes}
+
+Data can be filtered on the server side by using the `recodes` parameter
+of `sc_table_custom()`.
+This might be more complicated than filtering the data in R but offers some
+important advantages.
+
+- **performance** Traffic between the client and server is reduced which might 
+  lead to considerably faster API responses.
+- **cell limits (user)** Apart from rate limits (see `?sc_rate_limits`),
+  STATcube also
+  limits the amount of cells that can be fetched per user.
+  Filtering data can be useful to preserve this quota.
+- **cell limits (request)** If a single request would contain more than 1 million 
+  cells, a [cell count error](sc_last_error.html#CELL_COUNT) is thrown.
+
+### Filtering Data {#filter}
+
+As an example for filtering data, we can request a table from the tourism
+database and only select some countries for `Country of origin`.
+
+```{r}
+origin <- tourism$`Other Classifications`$`Country of origin`$`Country of origin`
+month <- tourism$`Mandatory fields`$`Season/Tourism Month`$`Season/Tourism Month`
+x <- sc_table_custom(
+  db = tourism,
+  measures = measures$id,
+  dimensions = list(month, origin),
+  recodes = sc_recode(origin, list(origin$`Italy <29>`, origin$`Germany <12>`))
+)
+x$tabulate()
+```
+
+```{r, echo=FALSE}
+show_json(x)
+```
+
+This table only contains two countries rather than
+`r length(valuesets[["Country of origin"]])-4` so the amount of cells in the
+table is also 40 times less compared to a table that would omit this filter.
+
+### Grouping items {#group}
+
+Other options from the [recodes specification] are also available via `sc_recode()`.
+It is possible to group items and specify recodes for several classifications.
+
+```{r}
+x <- sc_table_custom(
+  db = tourism,
+  measures = measures$id,
+  dimensions = list(month, origin),
+  recodes = c(
+    sc_recode(origin, list(
+      list(origin$`Germany <12>`, origin$`Netherlands <25>`),
+      list(origin$`Italy <29>`, origin$`France (incl.Monaco) <14>`)
+    )),
+    sc_recode(month, list(
+      month$Nov.99, month$Feb.00, month$Apr.09, month$`Jan. 22`
+    ))
+  )
+)
+x$tabulate()
+```
+
+```{r, echo=FALSE}
+show_json(x)
+```
+
+This table contains data for two country-groups and two months.
+In this case, the cell values for Germany and the Netherlands are just added
+to calculate the entries for Arrivals and Nights spent.
+However, in other cases STATcube might decide it is more appropriate
+to use weighted means or other more complicated aggregation methods.
+
+### Adding Totals {#totals}
+
+The `total` parameter in `sc_recode()` can be used to request totals for
+classifications. As an example, let's look at the tourism activity in the
+capital cities of Austria
+
+```{r}
+destination <- tourism$`Other Classifications`$`Tourism commune [ABO]`$
+  `Regionale Gliederung (Ebene +1)`
+x <- sc_table_custom(
+    tourism,
+    measures = measures$id,
+    dimensions = list(month, destination),
+    recodes = c(
+      sc_recode(destination, total = TRUE, list(
+        destination$Wien, destination$`Stadt Salzburg`, destination$Linz)),
+      sc_recode(month, total = FALSE, list(month$Nov.99, month$Apr.09))
+    )
+)
+as.data.frame(x)
+```
+
+```{r, echo=FALSE}
+show_json(x)
+```
+
+We see that there are two rows in the table where Tourism commune is set
+to "Total". The corresponding values represent the sum of all Arrivals
+or Nights spent in either of these three cities during that month.
+
+### Recoding across hierarchies {#recode-hierarchy}
+
+To use a recode that includes several hierarchy levels, the corresponding
+`FIELD` should be used as the first parameter of `sc_recode()`.
+For example, a recode with countries and federal states from the "Country of origin"
+classification can be defined as follows.
+
+
+```{r}
+origin1 <- tourism$`Other Classifications`$`Country of origin`
+origin2 <- origin1$`Country of origin`
+origin3 <- origin1$`Herkunftsland (Ebene +1)`
+x <- sc_table_custom(
+  tourism, measures$id, origin1,
+  recodes = sc_recode(origin1, list(
+    origin2$`Vienna <01>`, origin3$Germany,
+    list(origin2$`Bavaria (beg.05/03) <80>`, origin3$`other countries`))
+  )
+)
+x$tabulate()
+```
+
+```{r, echo=FALSE}
+show_json(x)
+```
+
+## Typechecks
+
+Since custom tables can become quite complicated, `sc_table_custom()` performs
+type-checks before sending the request to the API.
+If inconsistencies are detected, warnings will be generated.
+See `?sc_table_custom` for a comprehensive list of the performed checks.
+
+```{r}
+sc_table_custom(tourism, measures = tourism, dry_run = TRUE)
+```
 
 <details>
-<summary>Example</summary>
+<summary>Advanced example</summary>
 
-For example, the last call to `sc_table_custom()` will send the following json
-to the server.
-
-```json
-{
-  "database": "str:database:detouextregsai",
-  "measures": [ "str:measure:detouextregsai:F-DATA1:F-ANK",
-    "str:measure:detouextregsai:F-DATA1:F-UEB" ],
-  "dimensions": [
-    [ "str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2" ] ]
-}
-```
-
-For comparison, this is how the same request was specified in `r STATcubeR`
-
-```{r, eval = FALSE}
-sc_table_custom(
-  "str:database:detouextregsai",
-  c("str:measure:detouextregsai:F-DATA1:F-ANK",
-    "str:measure:detouextregsai:F-DATA1:F-UEB"),
-  "str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2"
-)
-```
-
-It is now possible to add recodes in order to only show results for Vienna.
-For this, the regional classification (`C-C93`) is limited to the
-code for vienna, which is `C-C93-2:01`.
-
-```json
-{
-  "database": "str:database:detouextregsai",
-  "measures": [ "str:measure:detouextregsai:F-DATA1:F-ANK",
-    "str:measure:detouextregsai:F-DATA1:F-UEB" ],
-  "dimensions": [
-    [ "str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2" ] ],
-  "recodes": [
-    "str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2": {
-      "map": [[ "str:value:detouextregsai:F-DATA1:C-C93-2:C-C93-2:01" ]] 
-    }
-  ]
-}
+```{r}
+sc_table_custom("A", measures = "B", dimensions = "C", 
+                recodes = sc_recode("D", "E"), dry_run = TRUE)
 ```
 
 </details>
 
-[feature request]: https://github.com/statistikat/STATcubeR/issues
+If `dry_run` is set to `FALSE` (the default), STATcubeR will send the request
+to the API even if inconsistencies are detected.
+This will likely lead to an error of the form ["expected json but got html"].
+
+If you get spurious warnings or have suggestions on how these type-checks might
+be improved, please issue a feature request to the [STATcubeR bug tracker].
+
+## Further Reading
+
+* If you've come this far, you are probably already familiar with `sc_schema()`.
+  But in case you are not, the `r ticle("sc_schema")` contains more information
+  on how to get metadata from the API.
+* The `r ticle("sc_data")` showcases different ways to extract data and metadata
+  from the return value of `sc_table_custom()`.
+
+[recodes specification]: https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/table-endpoint
+[STATcubeR bugtracker]: https://github.com/statistikat/STATcubeR/issues
+["expected json but got html"]: sc_last_error.html#invalid-json

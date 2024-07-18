@@ -14,7 +14,7 @@ sc_browse <- function(server = "ext") {
   sc_url(sc_url_gui(server), "home")
 }
 
-#' @describeIn sc_browse opens the preference menu with the api key
+#' @describeIn sc_browse opens the preference menu with the API key
 #' @examples
 #' sc_browse_preferences()
 #' @export
@@ -75,7 +75,7 @@ in_stat <- function() {
 }
 
 sc_url_gui <- function(server = "ext") {
-  if (server == "ext" && !in_stat())
+  if (server == "ext" && (!in_stat() || Sys.getenv("NOT_CRAN") != ""))
     return("https://portal.statistik.at/statistik.at/ext/statcube/")
   if (server == "test")
     return("http://sdbtest:8081/statistik.at/wdev/statcube/")

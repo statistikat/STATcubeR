@@ -20,8 +20,9 @@ od_resource_blacklist <- c(
 )
 
 od_resource_check_id <- function(id) {
-  if (substr(id, 1, 4) != "OGD_")
-    stop("Dataset ids must begin with \"OGD_\": ", shQuote(id), call. = FALSE)
+  if (!grepl("^OGD_", id) && !grepl("^STAT_", id))
+    stop("Dataset ids must begin with \"OGD_\" or \"STAT_\": ",
+         shQuote(id), call. = FALSE)
   if (id %in% od_resource_blacklist)
     stop("Dataset ", shQuote(id), " was blacklisted in STATcubeR ",
          "because of inconsistent formats", call. = FALSE)
@@ -141,15 +142,14 @@ od_resource_parse_all <- function(resources, server = "ext") {
   })
   od <- lapply(parsed, attr, "od")
 
-  data.frame(
+  data_frame(
     name = sapply(resources, function(x) x$name),
     last_modified = lapply(od, function(x) x$last_modified) %>% do.call(c, .),
     cached = lapply(od, function(x) x$cached) %>% do.call(c, .),
     size = sapply(od, function(x) x$size),
     download = vapply(od, function(x) x$download, 1.0),
     parsed = sapply(od, function(x) x$parsed),
-    data = I(parsed %>% lapply(`attr<-`, "od", NULL)),
-    stringsAsFactors = FALSE
+    data = I(parsed %>% lapply(`attr<-`, "od", NULL))
   )
 }
 
@@ -171,9 +171,9 @@ od_resources_check <- function(json) {
 
 od_normalize_columns <- function(x, suffix) {
   if (!is.null(suffix)) {
-    col_indices <- c(1, 2, 2, switch(suffix, HEADER = 3, c(4, 3)))
+    col_indices <- c(1, 2, 2, switch(suffix, HEADER = 3, c(4, 3)), 5, 7)
     col_names <- c("code", "label", "label_de", "label_en",
-                   switch(suffix, HEADER = NULL, "parent"))
+                   switch(suffix, HEADER = NULL, "parent"), "de_desc", "en_desc")
     x <- x[, col_indices] %>% `names<-`(col_names)
     x$label <- NA_character_
     x$label_en <- as.character(x$label_en)
@@ -224,5 +224,8 @@ od_resource_all <- function(id, json = od_json(id), server = "ext") {
   check_header(out$data[[2]])
   out$data[[2]] %<>% od_normalize_columns("HEADER")
   out$data[seq(3, nrow(out))] %<>% lapply(od_normalize_columns, "FIELD")
-  out %>% `class<-`(c("tbl", "data.frame"))
+  class(out$name) <- c("ogd_file", "character")
+  class(out$last_modified) <- c("sc_dttm", class(out$last_modified))
+  class(out$cached) <- c("sc_dttm", class(out$cached))
+  out
 }

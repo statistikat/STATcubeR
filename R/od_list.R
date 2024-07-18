@@ -3,7 +3,7 @@
 #' [od_list()] returns a `data.frame ` containing all datasets published at
 #' [data.statistik.gv.at](https://data.statistik.gv.at)
 #'
-#' @param unique some datasets are pulbished under multiple groups.
+#' @param unique some datasets are published under multiple groups.
 #'   They will only be listed once with the first group they appear in unless
 #'   this parameter is set to `FALSE`.
 #' @param server the open data server to use. Either `ext` for the external
@@ -43,11 +43,10 @@ od_list <- function(unique = TRUE, server = c("ext", "red")) {
     xml2::xml_find_all(".//a")
 
   # ids
-  df <- data.frame(
-    category = "NA",
+  df <- data_frame(
+    category = rep("NA", length(el)),
     id = el %>% xml2::xml_attr("aria-label"),
-    label = el %>% xml2::xml_text(),
-    stringsAsFactors = FALSE
+    label = el %>% xml2::xml_text()
   )
 
   ignored_labels <- c("[Alle \u00f6ffnen]", "[Alle schlie\u00dfen]",
@@ -67,7 +66,9 @@ od_list <- function(unique = TRUE, server = c("ext", "red")) {
   df <- df[!(df$id %in% od_resource_blacklist), ]
   rownames(df) <- NULL
   attr(df, "od") <- r$times[["total"]]
-  df %>% `class<-`(c("tbl", "data.frame"))
+  class(df$id) <- c("ogd_id", "character")
+  class(df) <- c("tbl_df", class(df))
+  df
 }
 
 #' Get a catalogue for OGD datasets
@@ -95,7 +96,7 @@ od_list <- function(unique = TRUE, server = c("ext", "red")) {
 #' |json      |`list<od_json>`| Full json metadata
 #'
 #' The type `datetime` refers to the `POSIXct` format as returned by [Sys.time()].
-#' The last column `"json"` containes the full json metadata as returned by
+#' The last column `"json"` contains the full json metadata as returned by
 #' [od_json()].
 #'
 #' @inheritParams od_table
@@ -120,7 +121,15 @@ od_catalogue <- function(server = "ext", local = TRUE) {
     ids <- od_revisions(server = server)
   }
   timestamp <- switch(as.character(local), "TRUE" = NULL, "FALSE" = Sys.time())
-  jsons <- lapply(ids, od_json, timestamp, server)
+  jsons <- lapply(
+    cli::cli_progress_along(
+      ids, type = "tasks", "downloading json metadata files"),
+    function(i) {
+      od_json(ids[i], timestamp, server)
+    }
+  )
+  if (!local)
+    cli::cli_text("\rDownloaded {.field {length(ids)}} metadata files with {.fn od_json}")
   as_df_jsons(jsons)
 }
 
@@ -130,7 +139,7 @@ as_df_jsons <- function(jsons) {
   }
 
   descs <- sapply(jsons, function(x) x$extras$attribute_description) %>% paste0(";", .)
-  out <- data.frame(
+  out <- data_frame(
     title = sapply(jsons, function(x) x$title),
     measures = gregexpr(";F-", descs) %>% sapply(length),
     fields = gregexpr(";C-", descs) %>% sapply(length),
@@ -145,12 +154,11 @@ as_df_jsons <- function(jsons) {
     update_frequency = sapply(jsons, function(x) x$extras$update_frequency),
     tags = I(lapply(jsons, function(x) unlist(x$tags))),
     categorization = sapply(jsons, function(x) unlist(x$extras$categorization[1])),
-    json = I(jsons),
-    stringsAsFactors = FALSE
+    json = I(jsons)
   )
   out$modified <- parse_time(out$modified)
   out$created <- parse_time(out$created)
-  class(out) <- c("tbl", class(out))
+  class(out$id) <- c("ogd_id", "character")
   out
 }
 

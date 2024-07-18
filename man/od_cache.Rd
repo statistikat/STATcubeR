@@ -19,7 +19,7 @@ Functions to inspect the contents of the current cache.
 }
 \details{
 \code{\link[=od_cache_summary]{od_cache_summary()}} provides an overview of all contents of the cache through
-a data.frame. It hasone row for each dataset and the following columns.
+a data.frame. It has one row for each dataset and the following columns.
 All file sizes are given in bytes
 \itemize{
 \item \strong{\code{id}} the dataset id

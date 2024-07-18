@@ -26,7 +26,7 @@ sc_table_class <- R6::R6Class(
   cloneable = FALSE,
   inherit = sc_data,
   public = list(
-    #' @description Ususally, objects of class `sc_table` are generated with
+    #' @description Usually, objects of class `sc_table` are generated with
     #'   one of the factory methods [sc_table()], [sc_table_saved()] or
     #'   [sc_table_custom()]. If this constructor is invoked directly,
     #'   either omit the parameters `json` and `file` or make sure that they
@@ -36,7 +36,7 @@ sc_table_class <- R6::R6Class(
     #' @param json the json file used in the request as a string.
     #' @param file the file path to the json file
     #' @param add_totals was the json request modified by adding totals via
-    #'   the add_toals parameter in one of the factory functions (`sc_table()`,
+    #'   the add_totals parameter in one of the factory functions (`sc_table()`,
     #'   `sc_table_custom()`). Necessary, in order to also request totals via
     #'   the `$add_language()` method.
     initialize = function(response, json = NULL, file = NULL, add_totals = FALSE) {
@@ -88,12 +88,14 @@ sc_table_class <- R6::R6Class(
     #' @description An extension of [sc_tabulate()] with additional
     #'   parameters.
     #' @param ... Parameters which are passed down to [sc_tabulate()]
-    #' @param round apply rounding to each measure accoring to the precision
+    #' @param round apply rounding to each measure according to the precision
     #'   provided by the API.
     #' @param annotations Include separate annotation columns in the returned
     #'   table. This parameter is currently broken and needs to be re-implemented
-    tabulate = function(..., round = TRUE, annotations = FALSE) {
-      sc_table_tabulate(self, ..., round = round, annotations = annotations)
+    #' @param recode_zeros interpret zero values as missings?
+    tabulate = function(..., round = FALSE, annotations = FALSE, recode_zeros = FALSE) {
+      sc_table_tabulate(self, ..., round = round, annotations = annotations,
+                        recode_zeros = recode_zeros)
     },
     #' @description open the dataset in a browser
     browse = function() {
@@ -129,22 +131,21 @@ sc_table_class <- R6::R6Class(
     #' the raw response content
     raw = function() httr::content(self$response),
     #' @field annotation_legend
-    #' list of all annotations occuring in the data as a `data.frame` with
+    #' list of all annotations occurring in the data as a `data.frame` with
     #' two columns for the annotation keys and annotation labels.
     annotation_legend = function() {
       am <- self$raw$annotationMap
-      data.frame(annotation = names(am), label = unlist(am), row.names = NULL)
+      data_frame(annotation = names(am), label = unlist(am))
     },
     #' @field rate_limit
     #' how much requests were left after the POST request for this table was sent?
     #' Uses the same format as [sc_rate_limit_table()].
     rate_limit = function() {
       headers <- self$response$headers
-      res <- data.frame(
+      res <- list(
         remaining = headers$`x-ratelimit-remaining-table`,
         limit     = headers$`x-ratelimit-table`,
-        reset     = headers$`x-ratelimit-reset-table`,
-        stringsAsFactors = FALSE
+        reset     = headers$`x-ratelimit-reset-table`
       )
       class(res) <- "sc_rate_limit_table"
       res
@@ -168,8 +169,9 @@ sc_table_class <- R6::R6Class(
 #' * [sc_table_saved()] uses a table uri of a saved table.
 #'
 #' Those three functions all return an object of class `"sc_table"`.
-#' @param json_file path to a json file, which was downloaded via the STATcube
-#'   GUI ("Open Data API Abfrage")
+#' @param json Path to a json file, which was downloaded via the STATcube
+#'   GUI ("Open Data API Request"). Alternatively, a json string which
+#'   passes [jsonlite::validate()].
 #' @param add_totals Should totals be added for each classification field in
 #'   the json request?
 #' @return An object of class `sc_table` which contains the return
@@ -178,12 +180,13 @@ sc_table_class <- R6::R6Class(
 #'   [sc_table_class] for the class documentation.
 #' @inheritParams sc_key
 #' @param language The language to be used for labeling. `"en"` (the default)
-#'   will use english. `"de"` uses german.
+#'   will use english. `"de"` uses German.
 #'   The third option `"both"` will import both languages by sending two requests
 #'   to the `/table` endpoint.
+#' @param json_file Deprecated. Use `json` instead
 #' @family functions for /table
 #' @examplesIf sc_key_exists()
-#' my_table <- sc_table(json_file = sc_example("population_timeseries.json"))
+#' my_table <- sc_table(json = sc_example("population_timeseries.json"))
 #'
 #' # print
 #' my_table
@@ -206,14 +209,15 @@ sc_table_class <- R6::R6Class(
 #' my_response <- sc_table_saved(table_uri)
 #' as.data.frame(my_response)
 #' @export
-sc_table <- function(json_file, language = NULL, add_totals = TRUE,
-                     key = NULL) {
+sc_table <- function(json, language = NULL, add_totals = TRUE, key = NULL,
+                     json_file = NA) {
+  json <- normalize_json(json, json_file)
   language <- sc_language(language, c("en", "de", "both"))
   both <- language == "both"
   if (both)
     language <- "de"
-  res <- sc_table_json_post(readLines(json_file, warn = FALSE), language, add_totals, key) %>%
-    sc_table_class$new(file = json_file, add_totals = add_totals)
+  res <- sc_table_json_post(json$string, language, add_totals, key) %>%
+    sc_table_class$new(json$string, json$file, add_totals)
   if (both)
     res$add_language("en", key)
   res
@@ -237,6 +241,19 @@ sc_example <- function(filename) {
 #' @export
 print.sc_table <- function(x, ...) {
   cat(format(x, ...), sep = "\n")
+}
+
+normalize_json <- function(json, json_file) {
+  if (!is.na(json_file)) {
+    json <- json_file
+    warning("parameter `json_file` was renamed to `json`")
+  }
+  file <- NULL
+  if (length(json) == 1 && !jsonlite::validate(json)) {
+    file <- json
+    json <- readLines(file, warn = FALSE)
+  }
+  list(file = file, string = json)
 }
 
 format.sc_table <- function(x, ...) {

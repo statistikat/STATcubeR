@@ -40,7 +40,7 @@ A collection of links, to browse important STATcube pages.
 \itemize{
 \item \code{sc_browse()}: opens the home menu of STATcube
 
-\item \code{sc_browse_preferences()}: opens the preference menu with the api key
+\item \code{sc_browse_preferences()}: opens the preference menu with the API key
 
 \item \code{sc_browse_table()}: shows the info page for a table
 

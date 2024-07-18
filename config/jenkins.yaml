@@ -15,4 +15,4 @@ pkg_options:
 
 features:
   build_branches:
-    - statbucket
+    - tibble_pkg

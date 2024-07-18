@@ -39,7 +39,7 @@ To import a dataset, provide the dataset id as an argument.
 table <- od_table("OGD_krebs_ext_KREBS_1")
 ```
 
-This returns an object of class [`od_table`], which bundles all the data from the OGD portal that correspons to this dataset.
+This returns an object of class [`od_table`], which bundles all the data from the OGD portal that corresponds to this dataset.
 Printing the object will show a summary of the contents. 
 
 ```{r}
@@ -50,20 +50,20 @@ The dataset contains the number of cancer patients by several classification fie
 
 - **tumor type** differentiates **<95>** types of cancers
 - The **reporting period** spans **<37>** years (1983 to 2019).
-- The **regional** variable contains the **<9>** NUTS-2 regions of austria.
+- The **regional** variable contains the **<9>** NUTS-2 regions of Austria.
 - The **demographic** variable "Sex" is reported with **<2>** levels
 
 ## Convert to a data frame
 
 The method `$tabulate()` can be used to turn the object into a `data.frame` in long format,
-which contains labled data.
+which contains labeled data.
 
 ```{r}
 table$tabulate()
 ```
 
 The dataset contains `r nrow(table$data)` rows. 
-If every combination of tumor type, year, region and sex would contain a seperate row the number of rows would be the following.
+If every combination of tumor type, year, region and sex would contain a separate row the number of rows would be the following.
 
 \[
 95\times37\times9\times2 = 63270
@@ -98,13 +98,13 @@ options(tibble.print_min = 5)
 ```
 
 The method `table$field()` can be used to get information about specific classification fields.
-Thise contain data from `{dataset_id}_{field_code}.csv`.
-Unlike the metadata in `sc_table`, the `od_table` class always contains german and english labels.
+These contain data from `{dataset_id}_{field_code}.csv`.
+Unlike the metadata in `sc_table`, the `od_table` class always contains German and English labels.
 Both can be used to label the dataset.
 
 #### Tumor type
 
-The following call gives access to the german and english labels for the 95 differen tumor types in the `"cancer type"` classification. 
+The following call gives access to the German and English labels for the 95 different tumor types in the `"cancer type"` classification. 
 Click `"Year"` above to see information about the years.
 
 ```{r}
@@ -127,7 +127,7 @@ table$field("C-BERJ-0")
 
 #### Province
 
-The regional classification contains 9 elements which correspond to the NUTS2 regions ("Bundesländer") of austria.
+The regional classification contains 9 elements which correspond to the NUTS2 regions ("Bundesländer") of Austria.
 
 ```{r}
 table$field("C-BUNDESLAND-0")
@@ -137,7 +137,7 @@ table$field("C-BUNDESLAND-0")
 
 #### Sex
 
-Sex is coded as a ditochome variable with the classification elements `"male"` and `"female"`.
+Sex is coded as a dichotomous variable with the classification elements `"male"` and `"female"`.
 
 ```{r}
 table$field("C-KRE_GESCHLECHT-0")
@@ -147,7 +147,7 @@ table$field("C-KRE_GESCHLECHT-0")
 
 ### json Metadata {.tabset .tabset-pills}
 
-The json metadatafile `r style_resource("OGD_krebs_ext_KREBS_1", ext = "json")` is available via the `$json` binding.
+The json metadata file `r style_resource("OGD_krebs_ext_KREBS_1", ext = "json")` is available via the `$json` binding.
 
 #### Cancer
 
@@ -193,8 +193,8 @@ table$data
 levels(table$data$`C-BUNDESLAND-0`) == table$field("C-BUNDESLAND-0")$code
 ```
 
-As mentioned above, a labelled version of the data can be obtained via `table$tabulate()`. 
-The labelling is done by taking the raw dataset and then joining the labes from `$header` and `$field()`.
+As mentioned above, a labeled version of the data can be obtained via `table$tabulate()`. 
+The labeling is done by taking the raw dataset and then joining the labels from `$header` and `$field()`.
 
 ```{r}
 table$tabulate()
@@ -205,9 +205,9 @@ You can read more about `$tabulate()` in the `r ticle('sc_tabulate')`.
 
 ## A Trip to Germany {#sauerkraut}
 
-It is possible to switch the language used for labelling the dataset using the `$language` field.
+It is possible to switch the language used for labeling the dataset using the `$language` field.
 This field can be used to get and set the language.
-Allowed options are `"en"` for english and `"de"` for german.
+Allowed options are `"en"` for English and `"de"` for German.
 
 ```{r, collapse=TRUE}
 table$language
@@ -216,7 +216,7 @@ table$language
 ```
 
 This option affects the `print()` method as well as the output of `$tabulate()`.
-If no english labels are available, the german labels are used as a fallback mechanism.
+If no English labels are available, the German labels are used as a fallback mechanism.
 
 ```{r}
 table

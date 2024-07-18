@@ -27,7 +27,7 @@ By default, `r STATcubeR` caches all accessed resources from `r ogd_portal` in t
 od_cache_dir()
 ```
 
-Let's examine for example what happens when the data from the structure of earnings suvey (SES) is requested.
+Let's examine for example what happens when the data from the structure of earnings survey (SES) is requested.
 
 ```{r}
 earnings <- od_table("OGD_veste309_Veste309_1")
@@ -42,12 +42,12 @@ earnings$resources
 ```
 
 `last_modified` tells us when the resource was changed on the fileserver.
-If a resource does not exist in the cache or if the last modified entry in the json is newer than the cached file, it will be dowloaded from the server.
+If a resource does not exist in the cache or if the last modified entry in the json is newer than the cached file, it will be downloaded from the server.
 Otherwise, the cached version is reused.
 
 ## Access and Updates
 
-Cached files can be acessed with `od_cache_file()`.
+Cached files can be accessed with `od_cache_file()`.
 If the specified file exists in the cache, a path to the file will be returned.
 Otherwise, the file is downloaded to the cache and then the path is returned.
 The files use the same naming conventions as the open data fileserver.
@@ -68,7 +68,7 @@ od_resource("OGD_veste309_Veste309_1", "C-A11-0")
 ```
 
 The parser behaves differently for header files, data files and fields.
-Json files can be acessed with `od_json()`.
+Json files can be accessed with `od_json()`.
 
 ```{r}
 json <- od_json("OGD_veste309_Veste309_1")

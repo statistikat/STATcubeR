@@ -7,7 +7,7 @@
 od_table(id, language = NULL, server = "ext")
 }
 \arguments{
-\item{id}{the id of the data-set that should be accessed}
+\item{id}{the id of the dataset that should be accessed}
 
 \item{language}{language to be used for labeling. \code{"en"} or \code{"de"}}
 

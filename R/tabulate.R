@@ -21,14 +21,14 @@
 #' @param .list allows to define the arguments for `...` as a character vector.
 #' @param raw If FALSE (the default), apply labeling to the dataset.
 #'   Otherwise, return codes.
-#' @param language The language to be used for labelling. By default, the
+#' @param language The language to be used for labeling. By default, the
 #'   dataset language (`table$language`) is used.
 #' @param sort If `TRUE`, the resulting data will be sorted by all provided
 #'   field values
 #' @details
 #' Aggregation is done as follows
 #'
-#' * First, all columns that priovide a total code via `table$total_codes()`
+#' * First, all columns that provide a total code via `table$total_codes()`
 #'   will be used to filter for `column == total_code` or `column != total_code`
 #' * Then, the remaining data is aggregated using [rowsum()]
 #'
@@ -37,7 +37,7 @@
 #'
 #' For objects of class `sc_table` two additional operations are performed.
 #' * zeros are recoded to `NA`s
-#' * rounding is done according to the precision of each measure. Ronding
+#' * rounding is done according to the precision of each measure. Rounding
 #'   happens after the recoding to `NA` values
 #' @seealso sc_table_class
 #' @examples

@@ -49,7 +49,7 @@ You can set the key persistently by modifying `.Renviron`.
 This can be done easily with `usethis::edit_r_environ()`.
 
 By default, `sc_key_set()` will perform a test request to verify that the key is valid
-and throw an error if the test request is unsuccessfull.
+and throw an error if the test request is unsuccessful.
 
 ```r
 sc_key_set('wrong key')

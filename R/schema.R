@@ -4,9 +4,9 @@
 #' This endpoint can be used to get all available databases and tables
 #' as well as metadata about specific databases.
 #'
-#' The main function `sc_schema()` can be used with any resouce id.
+#' The main function `sc_schema()` can be used with any resource id.
 #' [sc_schema_catalogue()] and [sc_schema_db()] are very simple
-#' wrapper functions around [`sc_schema()`] and are comparabable to the
+#' wrapper functions around [`sc_schema()`] and are comparable to the
 #' [catalogue explorer](`r sc_browse_catalogue()`) or the
 #' [table view](`r sc_browse_database('deake005', open = TRUE)`) of the STATcube GUI.
 #'
@@ -56,7 +56,7 @@ print_schema_with_tree <- function(x, ...) {
 #' @rdname sc_schema
 #' @param x an object of class `sc_schema()` i.e. the return value of
 #'   [sc_schema()], [sc_schema_db()] or [sc_schema_catalogue()].
-#' @param tree wether to use the [`data.tree`](https://rdrr.io/cran/data.tree/man/data.tree.html) package for printing.
+#' @param tree whether to use the [`data.tree`](https://rdrr.io/cran/data.tree/man/data.tree.html) package for printing.
 #' @param limit,... passed to [data.tree::print.Node()] if `tree` is set
 #'   to `TRUE`. Ignored otherwise.
 #' @section Printing with data.tree:
@@ -74,29 +74,44 @@ print.sc_schema <- function(x, tree = NULL, ..., limit = 30) {
   classes <- sapply(x, class)
   if (tree && any(classes == "sc_schema"))
     return(print_schema_with_tree(x, limit = limit, ...))
-  cat(x$type, ": ", x$label, "\n", sep = "")
-  sc_schema_print_children(x, message_empty = switch(
+  style <- cli::make_ansi_style(sc_schema_colors()[[x$type]])
+  cat(style(x$type), ": ", cli::style_bold(x$label), "\n", sep = "")
+  short_id <- strsplit(x$id, ":")[[1]][3]
+  message_empty <- switch(
     x$type,
-    DATABASE = "# Get more info with {.run STATcubeR::sc_schema_db('{x$id}')}",
-    TABLE = "Get the data with {.run STATcubeR::sc_table_saved('{x$id}')}",
+    DATABASE = c("# Get more metdata with {.run [sc_schema_db('{short_id}')]",
+                 "(STATcubeR::sc_schema_db('{x$id}'))}"),
+    TABLE = c("# Get the data with {.run [sc_table_saved('{short_id}')]",
+              "(STATcubeR::sc_table_saved('{x$id}'))}"),
     NULL
-  ))
+  )
+  sc_schema_print_children(x, message_empty = message_empty, ...)
+  invisible(x)
 }
 
-sc_schema_print_children <- function(x, message_empty = NULL) {
+sc_schema_print_children <- function(x, message_empty = NULL, ...) {
   classes <- sapply(x, class)
-  child_schemas <- names(x)[classes == "sc_schema"]
+  ind <- which(classes == "sc_schema")
+  child_schemas <- names(x)[ind]
   if (length(child_schemas) > 0) {
-    data.frame(
-      child = child_schemas,
-      type = sapply(x[child_schemas], function(x) x$type),
-      n_childs = sapply(x[child_schemas], function(x) {
-        sum(sapply(x, class) == "sc_schema")
-      }),
-      stringsAsFactors = FALSE
-    ) %>% `class<-`(c("tbl", "data.frame")) %>% `row.names<-`(NULL) %>% print()
-  } else if (!is.null(message_empty))
+    children <- vctrs::new_data_frame(list(
+      child = new_schema_uri(
+        label = child_schemas,
+        uri = sapply(ind, function(i) x[[i]]$id)
+      ),
+      type = sc_schema_type(sapply(ind, function(i) x[[i]]$type)),
+      n = sapply(ind, function(i) {
+        sum(sapply(x[[i]], class) == "sc_schema")
+      })
+    ), class = c("tbl_df", "tbl"))
+    if (all(children$n == 0))
+      children$n <- NULL
+    formatted <- format(children, ...)
+    cat(formatted[seq(4, length(formatted))], sep = "\n")
+  } else if (!is.null(message_empty)) {
+    short_id <- strsplit(x$id, ":")[[1]][3]
     cat(cli::format_inline(message_empty), "\n")
+  }
 }
 
 sc_as_nested_list <- function(x) {
@@ -113,33 +128,45 @@ sc_as_nested_list <- function(x) {
 #' @export
 sc_schema_flatten <- function(x, type) {
   stopifnot(inherits(x, "sc_schema"))
+  type <- match.arg(toupper(type), names(sc_schema_colors()))
   response <- attr(x, "response")
   stopifnot(!is.null(response))
   response <- httr::content(response)
   flattened <- sc_schema_flatten_impl(response, type)
-  flattened <- as.data.frame(flattened, stringsAsFactors = FALSE)
-  class(flattened) <- c("tbl", "data.frame")
+  flattened <- vctrs::new_data_frame(flattened,
+    class = c("sc_schema_flatten", "tbl", "tbl_df"))
   flattened
 }
 
+#' @export
+print.sc_schema_flatten <- function(x, ...) {
+  y <- x
+  y$id <- new_schema_uri(x$id, x$id)
+  class(y) <- setdiff(class(x), "sc_schema_flatten")
+  print(y, ...)
+  invisible(x)
+}
+
 sc_schema_flatten_impl <- function(resp, type) {
-  if (resp$type == type)
-    return(list(id = resp$id, label = resp$label))
-  if (is.null(resp$children))
-    return(NULL)
-  ret <- lapply(resp$children, sc_schema_flatten_impl, type)
-  list(
-    id = lapply(ret, function(x) { x$id }) %>% unlist(),
-    label = lapply(ret, function(x) { x$label }) %>% unlist()
-  )
+  id <- character()
+  label <- character()
+  if (!is.null(resp$children)) {
+    ret <- lapply(resp$children, sc_schema_flatten_impl, type)
+    id <- lapply(ret, function(x) x$id) %>% unlist()
+    label <- lapply(ret, function(x) x$label) %>% unlist()
+  }
+  if (resp$type == type) {
+    id <- c(resp$id, id)
+    label <- c(resp$label, label)
+  }
+  list(id = id, label = label)
 }
 
 #' @describeIn sc_schema is similar to the
-#' [catalogue explorer](`r sc_browse_catalogue()`) of the STATcube GUI and reurns
+#' [catalogue explorer](`r sc_browse_catalogue()`) of the STATcube GUI and returns
 #' a tree-type object containing all databases and tables.
 #' @export
-sc_schema_catalogue <- function(depth = "folder", language = c("en", "de"),
-                                key = NULL, server = "ext") {
-  sc_schema(depth = depth, language = language, key = key, server = server)
+sc_schema_catalogue <- function(depth = "folder", ...) {
+  sc_schema(id = NULL, depth = depth, ...)
 }
 

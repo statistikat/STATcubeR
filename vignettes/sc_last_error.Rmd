@@ -15,7 +15,7 @@ This article explains how `r STATcubeR` deals with situations where the communic
 ## Throw all the Errors
 
 All http errors codes from the REST API will be turned into R errors.
-More precisely, the following conditions are checked to determine wether a request to the STATcube API was successful
+More precisely, the following conditions are checked to determine whether a request to the STATcube API was successful
 
 * The response returns `FALSE` for `httr::http_error()` which means the response
   status is less than 400. See the [MDN reference] for more information about http status codes.
@@ -53,7 +53,7 @@ See `?httr::content` to and `?httr::headers` to get started.
 This section showcases the most common types of errors that you might encounter when interacting with the API.
 Please feel free to open a new issue on the [STATcubeR issue tracker] if you get an error which is not listed here.
 
-### Invalid API Key
+### Invalid API Key {#AUTHENTICATION}
 
 If an invalid API key is used for a request, a 401 status is returned.
 
@@ -66,7 +66,7 @@ In practice, you should set up your key according to the `r ticle('sc_key')`.
 
 ### API Not Accessible
 
-This occurs if `r STATcubeR` tries to send requests to a server which is not accessible for the current environment. This will result in a timout error.
+This occurs if `r STATcubeR` tries to send requests to a server which is not accessible for the current environment. This will result in a timeout error.
 
 ```
 Error in curl::curl_fetch_memory(url, handle = handle) : 
@@ -88,7 +88,7 @@ Reasons this error might occur
 4. (Statistics Austria Employees only) You downloaded a json request from one of our internal STATcube
    servers and try to use this request with `sc_table()` from outside.
    
-Note to future-self: It might be a good idea to set up some environment variables on Statistic Austrias internal R servers to avoid (3) and (4).
+Note to future-self: It might be a good idea to set up some environment variables on Statistic Austria's internal R servers to avoid (3) and (4).
 
 ### Rate Limit Exceeded
 
@@ -102,11 +102,11 @@ sc_table_saved("defaulttable_deake005")
 readRDS("sc_last_error/rate_limit.rds") %>% STATcubeR:::sc_check_response()
 ```
 
-If you encounter this error, please check if the rate limits are in fact a plauible reason by using `sc_rate_limit_table()`.
+If you encounter this error, please check if the rate limits are in fact a plausible reason by using `sc_rate_limit_table()`.
 Unfortunately, the response for exceeded rate limits is very generic and can not be differentiated from the response for invalid json-bodies (see below).
 This is why the error message lists two possible reasons.
 
-### Schema
+### Schema {#SCHEMA_COMPONENT_NOT_FOUND}
 
 Invalid URIs used with `sc_schema` will be displayed with a special error type `SCHEMA_COMPONENT_NOT_FOUND`.
 
@@ -118,7 +118,7 @@ sc_schema("invalid_uri")
 readRDS("sc_last_error/schema.rds") %>% STATcubeR:::sc_check_response()
 ```
 
-### Saved Tables
+### Saved Tables {#TXD_NOT_FOUND}
 
 As mentioned in the `r ticle("sc_table_saved")`, the function `sc_table_saved()`
 can only access default tables and tables that are saved under the current user.
@@ -166,6 +166,28 @@ If you encounter this error during the workflow described in the `r ticle("sc_ta
 This is because json request that are downloaded by the STATcube GUI should always contain valid URIs.
 However, if you either modify the downloaded json requests or use `sc_table_custom()`, the reason "invalid json body" is plausible.
 
+### Cell Limit Exceeded {#CELL_COUNT}
+
+This error occurs if more than 1 million cells are requested via a single
+call to `sc_table()` or `sc_table_custom()`.
+If you encounter this error, consider splitting up the request into multiple smaller requests or defining a filter in the gui or via a
+[custom table filter](sc_table_custom.html#filter).
+
+```{r, eval = FALSE}
+sc_table_custom(
+  "str:database:debevstand",
+  "str:measure:debevstand:F-BEVSTAND:F-ISIS-1",
+  c("str:field:debevstand:F-BEVSTAND:C-A10-0",
+    "str:valueset:debevstand:F-BEVSTAND:C-GNU-2:C-GNU-2",
+    "str:valueset:debevstand:F-BEVSTAND:C-BESC51-0:C-BESC51-0",
+    "str:valueset:debevstand:F-BEVSTAND:C-BESC11-0:C-BESC11-0")
+)
+```
+
+```{r, echo = FALSE, error = TRUE}
+readRDS("sc_last_error/cell_limit.rds") %>% STATcubeR:::sc_check_response()
+```
+
 ## Custom Error Handling
 
 If you want to use your own error-handling instead of the default `r STATcubeR` error handlers, you can get started with the following code sample from one of our `{shiny}` applications.
@@ -183,7 +205,7 @@ shiny::observeEvent(input$button_load_data, {
 ```
 
 `try()` will turn errors into "error-objects" of class `"try-error"`.
-A conditional is then used to perform different actions for successfull and unsccessfull requests.
+A conditional is then used to perform different actions for successful and unsuccessful requests.
 If an error occurs, the error details are fetched via `sc_last_error_parsed()` and then sent to an error handler.
 Otherwise, the return value from `sc_table_saved()` is processed by the success handler.
 

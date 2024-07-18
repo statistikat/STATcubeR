@@ -10,7 +10,7 @@
 #' Caching can be set up using environment variables. To set up a persistent cache
 #' for both Open Data and the REST API, the following lines in `.Renviron` can
 #' be used.
-#' The paths in this example are only applicalble for UNIX-based operating systems.
+#' The paths in this example are only applicable for UNIX-based operating systems.
 #'
 #' ```sh
 #' STATCUBE_KEY_EXT   = YOUR_API_KEY_GOES_HERE
@@ -23,7 +23,7 @@
 #' Caching is not implemented for the
 #' endpoints [sc_info()] and [sc_rate_limit_table()].
 #' @rdname sc_cache
-#' @param verbose print instuctions on how to set up caching persistently
+#' @param verbose print instructions on how to set up caching persistently
 #'   via environment variables?
 #' @name sc_cache
 NULL
@@ -49,14 +49,14 @@ sc_cache_disable <- function() {
   Sys.unsetenv("STATCUBE_CACHE")
 }
 
-#' @describeIn sc_cache informs wether the cache is currently enabled
+#' @describeIn sc_cache informs whether the cache is currently enabled
 #' @export
 sc_cache_enabled <- function() {
   Sys.getenv("STATCUBE_CACHE") != ""
 }
 
 #' @export
-#' @param dir a chace directory
+#' @param dir a cache directory
 #' @describeIn sc_cache get/set the directory used for caching
 sc_cache_dir <- function(dir = NULL) {
   if (is.null(dir))

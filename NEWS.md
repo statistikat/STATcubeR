@@ -1,3 +1,16 @@
+# Upcoming (0.6.0)
+
+* Update print methods with the `{tibble}` package (#32)
+
+# STATcubeR 0.5.2
+
+* Add filters and other recodes to `sc_table_custom()` (#33)
+* Add global option `STATcubeR.language` to override the default language
+* `od_table()`: Add descriptions to `x$header` and `x$field(i)`
+* Depend on cli >= 3.4.1 (@matmo, #35)
+* Allow json strings in `sc_table()` (@matmo, #36)
+* add `sdmx_table()` to import sdmx archives (.zip)
+
 # STATcubeR 0.5.0
 
 * adapt `od_list()` to data.statistik.at update ([`2249b66`](https://github.com/statistikat/STATcubeR/commit/2249b6607cb822a4aac56c6258cbe967832171f1))
@@ -38,7 +51,7 @@
 * Allow recodes of `sc_data` objects (#17)
 * Better parsing of time variables (#15, #16)
 * Use bootstrap 5  and `{pkgdown}` 2.0.0 for the website
-* Allow export and import of open data using tar archves (#20)
+* Allow export and import of open data using tar archives (#20)
 
 # STATcubeR 0.2.4
 
@@ -85,7 +98,7 @@ This version finalizes #11
 https://data.statistik.gv.at/
 
 * new class `od_table` to get OGD data
-* methods to tabulate reponses
+* methods to tabulate responses
 * caching
 * four new pkgdown articles for `od_table()`, `od_list()`, `od_resource()` and `sc_data`
 

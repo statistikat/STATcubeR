@@ -8,7 +8,7 @@
 \alias{sc_table_saved}
 \title{Create a request against the /table endpoint}
 \usage{
-sc_table(json_file, language = NULL, add_totals = TRUE, key = NULL)
+sc_table(json, language = NULL, add_totals = TRUE, key = NULL, json_file = NA)
 
 sc_examples_list()
 
@@ -19,11 +19,12 @@ sc_table_saved_list(key = NULL, server = "ext")
 sc_table_saved(table_uri, language = NULL, key = NULL, server = "ext")
 }
 \arguments{
-\item{json_file}{path to a json file, which was downloaded via the STATcube
-GUI ("Open Data API Abfrage")}
+\item{json}{Path to a json file, which was downloaded via the STATcube
+GUI ("Open Data API Request"). Alternatively, a json string which
+passes \code{\link[jsonlite:validate]{jsonlite::validate()}}.}
 
 \item{language}{The language to be used for labeling. \code{"en"} (the default)
-will use english. \code{"de"} uses german.
+will use english. \code{"de"} uses German.
 The third option \code{"both"} will import both languages by sending two requests
 to the \verb{/table} endpoint.}
 
@@ -32,6 +33,8 @@ the json request?}
 
 \item{key}{(\code{string}) An API key. To display your key, call
 \code{\link[=sc_browse_preferences]{sc_browse_preferences()}}.}
+
+\item{json_file}{Deprecated. Use \code{json} instead}
 
 \item{filename}{The name of an example json file.}
 
@@ -61,7 +64,7 @@ Those three functions all return an object of class \code{"sc_table"}.
 }
 \examples{
 \dontshow{if (sc_key_exists()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-my_table <- sc_table(json_file = sc_example("population_timeseries.json"))
+my_table <- sc_table(json = sc_example("population_timeseries.json"))
 
 # print
 my_table

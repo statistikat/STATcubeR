@@ -25,7 +25,7 @@ sc_info <- function(language = c("en", "de"), key = NULL, server = "ext") {
   info_content <- httr::content(response)
   info_content$languages %>%
     lapply(function(x)
-      data.frame(locale = x$locale, displayName = x$displayName)) %>%
+      data_frame(locale = x$locale, displayName = x$displayName)) %>%
     do.call(rbind, .)
 }
 
@@ -34,8 +34,8 @@ sc_info <- function(language = c("en", "de"), key = NULL, server = "ext") {
 #' * `remaining` how much requests can be sent to the `/table`
 #'   endpoint until the rate limit is reached.
 #' * `limit` the number of requests allowed per hour.
-#' * `reset` a tiestamp when the rate limit will be reset.
-#'   Ususally, this should be less than one hour `after the current time.
+#' * `reset` a timestamp when the rate limit will be reset.
+#'   Usually, this should be less than one hour `after the current time.
 #' @export
 sc_rate_limit_table <- function(language = c("en", "de"), key = NULL, server = "ext") {
   response <- httr::GET(

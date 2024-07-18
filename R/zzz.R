@@ -1,17 +1,10 @@
 .onLoad <- function(...) {
-  if (requireNamespace("pillar", quietly = TRUE)) {
-    register_s3 <- function(method, class, fun, pkg = "pillar")
-      registerS3method(method, class, fun, asNamespace(pkg))
-    register_s3("tbl_format_footer", "sc_meta", tbl_format_footer.sc_meta)
-    register_s3("tbl_sum", "sc_meta", tbl_sum.sc_meta)
-    register_s3("tbl_sum", "sc_tibble", tbl_sum.sc_tibble)
-  }
-
   if (in_pkgdown())
     cli_theme_pkgdown()
 }
 
 cli_theme_pkgdown <- function() {
+  options(cli.hyperlink_run = FALSE)
   options(cli.theme = list(
     ".field" = list("color" = "#0d0d73"),
     ".code" = list("color" = "blue"),
@@ -27,6 +20,7 @@ cli_theme_pkgdown <- function() {
 }
 
 cli_theme_reset <- function() {
+  options(cli.hyperlink_run = TRUE)
   Sys.unsetenv("R_CLI_HYPERLINK_MODE")
   options(cli.theme = NULL)
   options(fansi.warn = NULL)
