@@ -7,8 +7,8 @@
 #' The main function `sc_schema()` can be used with any resource id.
 #' [sc_schema_catalogue()] and [sc_schema_db()] are very simple
 #' wrapper functions around [`sc_schema()`] and are comparable to the
-#' [catalogue explorer](`r sc_browse_catalogue()`) or the
-#' [table view](`r sc_browse_database('deake005', open = TRUE)`) of the STATcube GUI.
+#' catalogue explorer or the
+#' table view of the STATcube GUI.
 #'
 #' The responses of the API are tree-like data structures which
 #' are wrapped into a class called `sc_schema` to simplify the usage in R.
