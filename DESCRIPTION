@@ -2,6 +2,7 @@ Type: Package
 Package: STATcubeR
 Title: R interface for the STATcube REST API and Open Government Data
 Version: 0.5.2
+Date: 2024-10-07
 Authors@R: c(
     person("Gregor", "de Cillia", , "Gregor.deCillia@statistik.gv.at", role = "aut"),
     person("Bernhard", "Meindl", , "Bernhard.Meindl@statistik.gv.at", role = "ctb"),
@@ -29,10 +30,9 @@ Suggests:
     rappdirs,
     xml2,
     reactable,
-    tidyverse,
     markdown
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Language: en-US
