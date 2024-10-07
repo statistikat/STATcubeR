@@ -132,6 +132,7 @@ print.od_table <- function(x, ...) {
   cat(format(x), sep = "\n")
 }
 
+#' @export
 format.od_table <- function(x, ...) {
   c(
     cli::style_bold(strwrap(x$meta$source$label)),

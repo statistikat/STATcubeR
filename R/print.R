@@ -102,12 +102,14 @@ format.pillar_shaft_ogd_file <- function(x, width, ...) {
   pillar::new_ornament(files, align = "left")
 }
 
+#' @export
 pillar_shaft.ogd_id <- function(x, ...) {
   pillar::new_pillar_shaft(list(x = x), width = pillar::get_max_extent(x),
                            min_width = 20, class = "pillar_shaft_ogd_id",
                            type_sum = "chr")
 }
 
+#' @export
 format.pillar_shaft_ogd_id <- function(x, width, ...) {
   id <- x$x
   too_long <- nchar(id) > width

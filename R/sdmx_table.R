@@ -36,7 +36,7 @@ sdmx_read_zip <- function(zip_file) {
   exdir <- tempfile()
   dir.create(exdir)
   on.exit(unlink(exdir, recursive = TRUE))
-  unzip(zipfile = zip_file, exdir = exdir)
+  utils::unzip(zipfile = zip_file, exdir = exdir)
   sdmx_read(exdir)
 }
 

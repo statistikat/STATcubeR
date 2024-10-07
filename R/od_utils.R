@@ -109,6 +109,7 @@ od_label_data <- function(table, x = table$data, parse_time = TRUE, language = N
   x
 }
 
+#' @export
 format.od_json <- function(x, ...) {
   att <- od_attr(x)
   measures <- att$label[substr(att$code, 1, 1) == "F"]

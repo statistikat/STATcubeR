@@ -12,7 +12,8 @@ source("R/setup.R")$value
 
 ```{r, include=FALSE}
 library(reactable)
-library(tidyverse)
+library(dplyr)
+library(purrr)
 all_datasets <- od_list()
 ```
 
@@ -57,7 +58,6 @@ od_index$fields <- lapply(descs_parsed, function(x) {
 })
 
 ## rendering
-hide_col <- colDef(show = FALSE)
 tpy <- function(x, y) {
   tags$span(x, `data-tippy-content` = y)
 }
@@ -66,6 +66,8 @@ od_index %>%
   mutate(
     n_fields = purrr::map_int(fields, nrow),
     n_measures = purrr::map_int(measures, nrow)
+  ) %>% select(
+    -description, -created, -tags, -id_sc, -id_od, -measures, -fields, -update_frequency
   ) %>%
   reactable(
     columns = list(
@@ -73,15 +75,12 @@ od_index %>%
         name = "Bezeichnung", html = TRUE,
         details = JS("od_table.details.label")
       ),
-      description = hide_col,
       last_modified = colDef(
         name = "Stand", width = 90, align = "right",
         cell = JS("od_table.parse_time"), html = TRUE,
         header = function(value) {tpy(value, "Zeitpunkt der letzten Aktualisierung")},
         details = JS("od_table.details.last_modified")
       ),
-      created = hide_col,
-      update_frequency = hide_col,
       categories = colDef(
         name = "Kat.", width = 70, html = TRUE,
         header = function(value) { tpy(value, "Primäre Kategorie des Datensatzes") },
@@ -95,11 +94,6 @@ od_index %>%
         },
         details = JS("od_table.details.category")
       ),
-      tags = hide_col,
-      id_sc = hide_col,
-      id_od = hide_col,
-      measures = hide_col,
-      fields = hide_col,
       n_measures = colDef(
         name = "M", width = 50, html = TRUE,
         header = function(x) {tpy("M", "Messwerte")},

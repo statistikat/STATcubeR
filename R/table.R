@@ -256,6 +256,7 @@ normalize_json <- function(json, json_file) {
   list(file = file, string = json)
 }
 
+#' @export
 format.sc_table <- function(x, ...) {
   c(
     cli::style_bold(strwrap(x$meta$source$label)),
