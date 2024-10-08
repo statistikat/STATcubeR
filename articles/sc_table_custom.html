@@ -5,99 +5,66 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Define custom requests against the `/table` endpoint programatically by providing character vectors with ids of databases, measures and classification fields.
-">
 <title>Define Custom Tables • STATcubeR</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Define Custom Tables">
-<meta property="og:description" content="Define custom requests against the `/table` endpoint programatically by providing character vectors with ids of databases, measures and classification fields.
+<meta name="description" content="Define custom requests against the `/table` endpoint programmatically by providing character vectors with ids of databases, measures and classification fields.
+">
+<meta property="og:description" content="Define custom requests against the `/table` endpoint programmatically by providing character vectors with ids of databases, measures and classification fields.
 ">
 <meta property="og:image" content="https://statistikat.github.io/STATcubeR/logo.png">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-default navbar-expand-lg bg-primary" data-bs-theme="default"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-primary" data-bs-theme="default" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.5.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.5.2</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="../reference/">Reference</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../reference/">Reference</a></li>
 <li class="active nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/">Show All Articles ...</a>
-    <div class="dropdown-divider"></div>
-    <h6 class="dropdown-header" data-toc-skip>STATcube REST API</h6>
-    <a class="dropdown-item" href="../articles/sc_key.html">All about the API Key</a>
-    <a class="dropdown-item" href="../articles/sc_table.html">Get Data via JSON Requests</a>
-    <a class="dropdown-item" href="../articles/sc_schema.html">Metadata with the /schema Endpoint</a>
-    <div class="dropdown-divider"></div>
-    <h6 class="dropdown-header" data-toc-skip>Open Goventment Data</h6>
-    <a class="dropdown-item" href="../articles/od_table.html">Getting Started with OGD Data</a>
-    <a class="dropdown-item" href="../articles/od_list.html">Available Datasets</a>
-    <div class="dropdown-divider"></div>
-    <h6 class="dropdown-header" data-toc-skip>The STATcubeR Data Class</h6>
-    <a class="dropdown-item" href="../articles/sc_data.html">A Common Class for OGD and API Data</a>
-    <a class="dropdown-item" href="../articles/sc_tabulate.html">Tabulation of Data</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/">Show All Articles ...</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>STATcube REST API</h6></li>
+    <li><a class="dropdown-item" href="../articles/sc_key.html">All about the API Key</a></li>
+    <li><a class="dropdown-item" href="../articles/sc_table.html">Get Data via JSON Requests</a></li>
+    <li><a class="dropdown-item" href="../articles/sc_schema.html">Metadata with the /schema Endpoint</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>Open Goventment Data</h6></li>
+    <li><a class="dropdown-item" href="../articles/od_table.html">Getting Started with OGD Data</a></li>
+    <li><a class="dropdown-item" href="../articles/od_list.html">Available Datasets</a></li>
+    <li><hr class="dropdown-divider"></li>
+    <li><h6 class="dropdown-header" data-toc-skip>The STATcubeR Data Class</h6></li>
+    <li><a class="dropdown-item" href="../articles/sc_data.html">A Common Class for OGD and API Data</a></li>
+    <li><a class="dropdown-item" href="../articles/sc_tabulate.html">Tabulation of Data</a></li>
+  </ul>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../news/">Changelog</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../news/">Changelog</a></li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav">
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://data.statistik.gv.at" aria-label="open data portal">
-    <span class="fas fa fas fa-table fa-lg"></span>
-     
-  </a>
-</li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://www.statistik.at/datenbanken/statcube-statistische-datenbank" aria-label="STATcube">
-    <span class="fas fa fas fa-cube fa-lg"></span>
-     
-  </a>
-</li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/statistikat/STATcubeR/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><a class="external-link nav-link" href="https://data.statistik.gv.at" aria-label="open data portal"><span class="fa fas fa-table fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://www.statistik.at/datenbanken/statcube-statistische-datenbank" aria-label="STATcube"><span class="fa fas fa-cube fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/statistikat/STATcubeR/" aria-label="github"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-article">
 
@@ -109,7 +76,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Define Custom Tables</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/statistikat/STATcubeR/blob/HEAD/vignettes/sc_table_custom.Rmd" class="external-link"><code>vignettes/sc_table_custom.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/statistikat/STATcubeR/blob/master/vignettes/sc_table_custom.Rmd" class="external-link"><code>vignettes/sc_table_custom.Rmd</code></a></small>
       <div class="d-none name"><code>sc_table_custom.Rmd</code></div>
     </div>
 
@@ -124,24 +91,34 @@
     window.setTimeout("tippy('.STATcubeR', {allowHTML: true, theme:'light rounded'});", 50);
     });
     </script><p>The function <code><a href="../reference/sc_table_custom.html">sc_table_custom()</a></code> allows you to define
-requests against the <code>/table</code> endpoint programatically. This
+requests against the <code>/table</code> endpoint programmatically. This
 can be useful to automate the generation of <code>/table</code> request
-rather than relying on the GUI to do so. The function accepts the three
+rather than relying on the GUI to do so. The function accepts the four
 arguments.</p>
 <ul>
-<li>A database id</li>
-<li>ids of measures to be imported (type <code>MEASURE</code> or
-<code>STAT_FUNCTION</code>)</li>
-<li>ids of fields to be imported (type <code>FIELD</code> or
-<code>VALUESET</code>)</li>
+<li>A <strong>database</strong> id</li>
+<li>ids of <strong>measures</strong> to be imported (type
+<code>MEASURE</code>, <code>STAT_FUNCTION</code> or
+<code>COUNT</code>)</li>
+<li>ids of <strong>fields</strong> to be imported (type
+<code>FIELD</code> or <code>VALUESET</code>)</li>
+<li>a list of <strong>recodes</strong> that can be used customize
+fields</li>
 </ul>
 <div class="section level2">
-<h2 id="starting-simple">Starting Simple<a class="anchor" aria-label="anchor" href="#starting-simple"></a>
+<h2 id="step-by-step">Building a Custom Table Step by Step<a class="anchor" aria-label="anchor" href="#step-by-step"></a>
 </h2>
-<p>First, we want to just send a database id to
-<code><a href="../reference/sc_table_custom.html">sc_table_custom()</a></code>. We will use a <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=detouextregsai" class="external-link">database
-about accomodation</a> througout this article. This returns a table with
-one single row.</p>
+<p>The first part of this Article will showcase how custom tables can be
+created with a <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=detouextregsai" class="external-link">database
+about tourism</a>. This database will also be used in most other
+examples of this article.</p>
+<div class="section level3">
+<h3 id="database">Starting Simple<a class="anchor" aria-label="anchor" href="#database"></a>
+</h3>
+<p>First, we want to just send the database id to
+<code><a href="../reference/sc_table_custom.html">sc_table_custom()</a></code>. This will request only the mandatory
+fields and default measures for that database. In case of the tourism
+database, a table with one single row is returned.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">database</span> <span class="op">&lt;-</span> <span class="st">"str:database:detouextregsai"</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span><span class="va">database</span><span class="op">)</span></span>
@@ -149,18 +126,27 @@ one single row.</p>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 1 x 2</span>
   <span style="font-weight: bold;">`Season/Tourism Month`</span> <span style="font-weight: bold;">`Nights spent`</span>
 <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>
-<span style="color: #BCBCBC;">1</span> 2024-01-01                   50<span style="text-decoration: underline;">575</span>693</code></pre>
-<p>we see that 50 575 693 nights were spent in austrian tourism
-establishments in the month of 2024-01-01.</p>
+<span style="color: #BCBCBC;">1</span> 2024-06-01                   40<span style="text-decoration: underline;">052</span>036</code></pre>
+<details><summary>
+Show json request
+</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span><span class="op">$</span><span class="va">json</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a> <span class="fu">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="dt">"database"</span><span class="fu">:</span> <span class="st">"str:database:detouextregsai"</span><span class="fu">,</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="dt">"measures"</span><span class="fu">:</span> <span class="ot">[]</span><span class="fu">,</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="dt">"dimensions"</span><span class="fu">:</span> <span class="ot">[]</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="fu">}</span> </span></code></pre></div>
+</details><p>We see that 40 052 036 nights were spent in Austrian tourism
+establishments in the month of 2024-06-01.</p>
 </div>
-<div class="section level2">
-<h2 id="adding-countries">Adding Countries<a class="anchor" aria-label="anchor" href="#adding-countries"></a>
-</h2>
+<div class="section level3">
+<h3 id="field">Adding Countries<a class="anchor" aria-label="anchor" href="#field"></a>
+</h3>
 <p>Now we want to add a classification to the table. This can be done by
 getting the database schema and showing all classification fields.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">schema</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_db</a></span><span class="op">(</span><span class="va">database</span><span class="op">)</span></span>
-<span><span class="op">(</span><span class="va">fields</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_flatten</a></span><span class="op">(</span><span class="va">schema</span>, <span class="st">"FIELD"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tourism</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_db</a></span><span class="op">(</span><span class="va">database</span><span class="op">)</span></span>
+<span><span class="op">(</span><span class="va">fields</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_flatten</a></span><span class="op">(</span><span class="va">tourism</span>, <span class="st">"FIELD"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A data frame: 4 × 2</span>
   <span style="font-weight: bold;">id</span>                                           <span style="font-weight: bold;">label</span>                     
   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                     
@@ -168,51 +154,80 @@ getting the database schema and showing all classification fields.</p>
 <span style="color: #BCBCBC;">2</span> str:field:detouextregsai:F-DATA:C-GEMREG-0   Tourism commune [ABO]     
 <span style="color: #BCBCBC;">3</span> str:field:detouextregsai:F-DATA:C-BBTR_REG-0 Accomodation establishment
 <span style="color: #BCBCBC;">4</span> str:field:detouextregsai:F-DATA1:C-C93-2     Country of origin         </code></pre>
-<p>If we want to add “Country of origin” we need to include the fouth
+<p>If we want to add “Country of origin” we need to include the fourth
 entry of the <code>id</code> column in our request.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span><span class="va">database</span>, dimensions <span class="op">=</span> <span class="va">fields</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span><span class="va">tourism</span>, dimensions <span class="op">=</span> <span class="va">fields</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 3 x 3</span>
   <span style="font-weight: bold;">`Season/Tourism Month`</span> <span style="font-weight: bold;">`Country of origin`</span> <span style="font-weight: bold;">`Nights spent`</span>
 <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>
-<span style="color: #BCBCBC;">1</span> 2024-01-01             Austria                   11<span style="text-decoration: underline;">010</span>356
-<span style="color: #BCBCBC;">2</span> 2024-01-01             Germany                   18<span style="text-decoration: underline;">406</span>575
-<span style="color: #BCBCBC;">3</span> 2024-01-01             other countries           21<span style="text-decoration: underline;">158</span>762</code></pre>
+<span style="color: #BCBCBC;">1</span> 2024-06-01             Austria                   12<span style="text-decoration: underline;">012</span>664
+<span style="color: #BCBCBC;">2</span> 2024-06-01             Germany                   14<span style="text-decoration: underline;">978</span>671
+<span style="color: #BCBCBC;">3</span> 2024-06-01             other countries           13<span style="text-decoration: underline;">060</span>701</code></pre>
+<details><summary>
+Show json request
+</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span><span class="op">$</span><span class="va">json</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a> <span class="fu">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  <span class="dt">"database"</span><span class="fu">:</span> <span class="st">"str:database:detouextregsai"</span><span class="fu">,</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  <span class="dt">"measures"</span><span class="fu">:</span> <span class="ot">[]</span><span class="fu">,</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>  <span class="dt">"dimensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>    <span class="ot">[</span><span class="st">"str:field:detouextregsai:F-DATA1:C-C93-2"</span><span class="ot">]</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="fu">}</span> </span></code></pre></div>
+</details><p>Alternatively, we could also pass the schema object for “country of
+origin”.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">origin</span> <span class="op">&lt;-</span> <span class="va">tourism</span><span class="op">$</span><span class="va">`Other Classifications`</span><span class="op">$</span><span class="va">`Country of origin`</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span><span class="va">tourism</span>, dimensions <span class="op">=</span> <span class="va">origin</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="adding-tourism-communes">Adding Tourism Communes<a class="anchor" aria-label="anchor" href="#adding-tourism-communes"></a>
-</h2>
+<div class="section level3">
+<h3 id="fields">Adding Tourism Communes<a class="anchor" aria-label="anchor" href="#fields"></a>
+</h3>
 <p>The <code>dimensions</code> parameter in
 <code>sc_schema_custom()</code> accepts vectors of field ids. Therefore,
 we can add the communes easily.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span><span class="va">database</span>, dimensions <span class="op">=</span> <span class="va">fields</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span><span class="va">tourism</span>, dimensions <span class="op">=</span> <span class="va">fields</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 321 x 4</span>
    <span style="font-weight: bold;">`Season/Tourism Month`</span> <span style="font-weight: bold;">`Tourism commune [ABO]`</span>         <span style="font-weight: bold;">`Country of origin`</span>
  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                           <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>              
-<span style="color: #BCBCBC;"> 1</span> 2024-01-01             Achensee                        Austria            
-<span style="color: #BCBCBC;"> 2</span> 2024-01-01             Achensee                        Germany            
-<span style="color: #BCBCBC;"> 3</span> 2024-01-01             Achensee                        other countries    
-<span style="color: #BCBCBC;"> 4</span> 2024-01-01             Alpbachtal und Tiroler Seenland Austria            
-<span style="color: #BCBCBC;"> 5</span> 2024-01-01             Alpbachtal und Tiroler Seenland Germany            
-<span style="color: #BCBCBC;"> 6</span> 2024-01-01             Alpbachtal und Tiroler Seenland other countries    
-<span style="color: #BCBCBC;"> 7</span> 2024-01-01             Alpenregion Bludenz             Austria            
-<span style="color: #BCBCBC;"> 8</span> 2024-01-01             Alpenregion Bludenz             Germany            
-<span style="color: #BCBCBC;"> 9</span> 2024-01-01             Alpenregion Bludenz             other countries    
-<span style="color: #BCBCBC;">10</span> 2024-01-01             Arlberg                         Austria            
+<span style="color: #BCBCBC;"> 1</span> 2024-06-01             Achensee                        Austria            
+<span style="color: #BCBCBC;"> 2</span> 2024-06-01             Achensee                        Germany            
+<span style="color: #BCBCBC;"> 3</span> 2024-06-01             Achensee                        other countries    
+<span style="color: #BCBCBC;"> 4</span> 2024-06-01             Alpbachtal und Tiroler Seenland Austria            
+<span style="color: #BCBCBC;"> 5</span> 2024-06-01             Alpbachtal und Tiroler Seenland Germany            
+<span style="color: #BCBCBC;"> 6</span> 2024-06-01             Alpbachtal und Tiroler Seenland other countries    
+<span style="color: #BCBCBC;"> 7</span> 2024-06-01             Alpenregion Bludenz             Austria            
+<span style="color: #BCBCBC;"> 8</span> 2024-06-01             Alpenregion Bludenz             Germany            
+<span style="color: #BCBCBC;"> 9</span> 2024-06-01             Alpenregion Bludenz             other countries    
+<span style="color: #BCBCBC;">10</span> 2024-06-01             Arlberg                         Austria            
 <span style="color: #949494;"># ℹ 311 more rows</span>
 <span style="color: #949494;"># ℹ 1 more variable: </span><span style="color: #949494; font-weight: bold;">`Nights spent`</span><span style="color: #949494;"> &lt;dbl&gt;</span></code></pre>
+<details><summary>
+Show json request
+</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span><span class="op">$</span><span class="va">json</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a> <span class="fu">{</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  <span class="dt">"database"</span><span class="fu">:</span> <span class="st">"str:database:detouextregsai"</span><span class="fu">,</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  <span class="dt">"measures"</span><span class="fu">:</span> <span class="ot">[]</span><span class="fu">,</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  <span class="dt">"dimensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>    <span class="ot">[</span><span class="st">"str:field:detouextregsai:F-DATA:C-GEMREG-0"</span><span class="ot">],</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>    <span class="ot">[</span><span class="st">"str:field:detouextregsai:F-DATA1:C-C93-2"</span><span class="ot">]</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a><span class="fu">}</span> </span></code></pre></div>
+</details>
 </div>
-<div class="section level2">
-<h2 id="add-another-measure">Add Another Measure<a class="anchor" aria-label="anchor" href="#add-another-measure"></a>
-</h2>
+<div class="section level3">
+<h3 id="measure">Add Another Measure<a class="anchor" aria-label="anchor" href="#measure"></a>
+</h3>
 <p>Currently, the table only returns the default measure for the
 database which is the number of nights spent. We can add a second
 measure by again using the database schema and passing a measure id</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">(</span><span class="va">measures</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_flatten</a></span><span class="op">(</span><span class="va">schema</span>, <span class="st">"MEASURE"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">measures</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_flatten</a></span><span class="op">(</span><span class="va">tourism</span>, <span class="st">"MEASURE"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A data frame: 2 × 2</span>
   <span style="font-weight: bold;">id</span>                                       <span style="font-weight: bold;">label</span>       
   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       
@@ -222,157 +237,515 @@ measure by again using the database schema and passing a measure id</p>
 <code>measures$id</code>. Just like the <code>dimensions</code>
 parameter, the <code>measures</code> parameters accepts vectors of
 resource ids.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span><span class="va">database</span>, measures <span class="op">=</span> <span class="va">measures</span><span class="op">$</span><span class="va">id</span>,</span>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span><span class="va">tourism</span>, measures <span class="op">=</span> <span class="va">measures</span><span class="op">$</span><span class="va">id</span>,</span>
 <span>                     dimensions <span class="op">=</span> <span class="va">fields</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 321 x 5</span>
    <span style="font-weight: bold;">`Season/Tourism Month`</span> <span style="font-weight: bold;">`Tourism commune [ABO]`</span>         <span style="font-weight: bold;">`Country of origin`</span>
  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                           <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>              
-<span style="color: #BCBCBC;"> 1</span> 2024-01-01             Achensee                        Austria            
-<span style="color: #BCBCBC;"> 2</span> 2024-01-01             Achensee                        Germany            
-<span style="color: #BCBCBC;"> 3</span> 2024-01-01             Achensee                        other countries    
-<span style="color: #BCBCBC;"> 4</span> 2024-01-01             Alpbachtal und Tiroler Seenland Austria            
-<span style="color: #BCBCBC;"> 5</span> 2024-01-01             Alpbachtal und Tiroler Seenland Germany            
-<span style="color: #BCBCBC;"> 6</span> 2024-01-01             Alpbachtal und Tiroler Seenland other countries    
-<span style="color: #BCBCBC;"> 7</span> 2024-01-01             Alpenregion Bludenz             Austria            
-<span style="color: #BCBCBC;"> 8</span> 2024-01-01             Alpenregion Bludenz             Germany            
-<span style="color: #BCBCBC;"> 9</span> 2024-01-01             Alpenregion Bludenz             other countries    
-<span style="color: #BCBCBC;">10</span> 2024-01-01             Arlberg                         Austria            
+<span style="color: #BCBCBC;"> 1</span> 2024-06-01             Achensee                        Austria            
+<span style="color: #BCBCBC;"> 2</span> 2024-06-01             Achensee                        Germany            
+<span style="color: #BCBCBC;"> 3</span> 2024-06-01             Achensee                        other countries    
+<span style="color: #BCBCBC;"> 4</span> 2024-06-01             Alpbachtal und Tiroler Seenland Austria            
+<span style="color: #BCBCBC;"> 5</span> 2024-06-01             Alpbachtal und Tiroler Seenland Germany            
+<span style="color: #BCBCBC;"> 6</span> 2024-06-01             Alpbachtal und Tiroler Seenland other countries    
+<span style="color: #BCBCBC;"> 7</span> 2024-06-01             Alpenregion Bludenz             Austria            
+<span style="color: #BCBCBC;"> 8</span> 2024-06-01             Alpenregion Bludenz             Germany            
+<span style="color: #BCBCBC;"> 9</span> 2024-06-01             Alpenregion Bludenz             other countries    
+<span style="color: #BCBCBC;">10</span> 2024-06-01             Arlberg                         Austria            
 <span style="color: #949494;"># ℹ 311 more rows</span>
 <span style="color: #949494;"># ℹ 2 more variables: </span><span style="color: #949494; font-weight: bold;">Arrivals</span><span style="color: #949494;"> &lt;dbl&gt;, </span><span style="color: #949494; font-weight: bold;">`Nights spent`</span><span style="color: #949494;"> &lt;dbl&gt;</span></code></pre>
+<details><summary>
+Show json request
+</summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span><span class="op">$</span><span class="va">json</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a> <span class="fu">{</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>  <span class="dt">"database"</span><span class="fu">:</span> <span class="st">"str:database:detouextregsai"</span><span class="fu">,</span></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>  <span class="dt">"measures"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-ANK"</span><span class="ot">,</span></span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-UEB"</span></span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a>  <span class="dt">"dimensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a>    <span class="ot">[</span><span class="st">"str:field:detouextregsai:F-DATA:C-GEMREG-0"</span><span class="ot">],</span></span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a>    <span class="ot">[</span><span class="st">"str:field:detouextregsai:F-DATA1:C-C93-2"</span><span class="ot">]</span></span>
+<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb18-11"><a href="#cb18-11" tabindex="-1"></a><span class="fu">}</span> </span></code></pre></div>
+</details>
 </div>
-<div class="section level2">
-<h2 id="using-valuesets">Using Valuesets<a class="anchor" aria-label="anchor" href="#using-valuesets"></a>
-</h2>
+<div class="section level3">
+<h3 id="hierarchy">Changing the hierarchy level<a class="anchor" aria-label="anchor" href="#hierarchy"></a>
+</h3>
 <p>We can see in <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=detouextregsai" class="external-link">the
 GUI</a> that “Country of origin” is a hierarchical classification. If we
 look at the table above, only the top level of the hierarchy (Austria,
 Germany, other) is used. This can be changed by providing the the
-valueset that corresponds to the more granular classification of
+value-set that corresponds to the more granular classification of
 “country of origin”</p>
-<p><img src="img/hierarchical_classification.png" width="50%" style="display: block; margin: auto;"></p>
-<p>The different valuesets for “country of origin” can be compared by
+<p><img src="img%2Fhierarchical_classification.png" alt="hierarchical_classification.png" width="50%" style="display: block; margin: auto;"></p>
+<p>The different value-sets for “country of origin” can be compared by
 browsing the database schema.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">(</span><span class="va">valuesets</span> <span class="op">&lt;-</span> <span class="va">schema</span><span class="op">$</span><span class="va">`Other Classifications`</span><span class="op">$</span><span class="va">`Country of origin`</span><span class="op">)</span></span></code></pre></div>
-<pre class="r-output"><code>FIELD: Country of origin
-<span style="color: #949494;"># A data frame: 2 × 3</span>
-  <span style="font-weight: bold;">child</span>                    <span style="font-weight: bold;">type</span>     <span style="font-weight: bold;">n_childs</span>
-  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>
-<span style="color: #BCBCBC;">1</span> Country of origin        VALUESET       87
-<span style="color: #BCBCBC;">2</span> Herkunftsland (Ebene +1) VALUESET        3</code></pre>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">valuesets</span> <span class="op">&lt;-</span> <span class="va">tourism</span><span class="op">$</span><span class="va">`Other Classifications`</span><span class="op">$</span><span class="va">`Country of origin`</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; <span style="color: #00BBBB;">FIELD</span>: <span style="font-weight: bold;">Country of origin</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> Country of origin        <span style="color: #87AFAF;">VALUESET</span>    87</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> Herkunftsland (Ebene +1) <span style="color: #87AFAF;">VALUESET</span>     3</span></span></code></pre>
 <p>We can see that the two levels of the hierarchy are represented by
-the two valuesets. The valueset “Herkunftsland” uses 3 classification
+the two value-sets. The value-set “Herkunftsland” uses 3 classification
 elements and represents the top level of the hierarchy (Austria,
-Germany, Other). The valueset “Country of origin” uses 87 (10+8+69)
+Germany, Other). The value-set “Country of origin” uses 87 (10+8+69)
 classification elements and is the bottom level of the hierarchy. For
-classification with more levels of hierarchies, more valuesets will be
+classifications with more levels of hierarchies, more value-sets will be
 present.</p>
-<p>We will now use the id for the first valueset in the
-<code>dimensions</code> parmaeter of <code>sc_table_custom</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<p>We will now use the id for the first value-set in the
+<code>dimensions</code> parameter of <code>sc_table_custom</code>.</p>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span></span>
-<span>  db <span class="op">=</span> <span class="st">"str:database:detouextregsai"</span>,</span>
-<span>  measures <span class="op">=</span> <span class="va">measures</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>,</span>
-<span>  dimensions <span class="op">=</span> <span class="va">valuesets</span><span class="op">$</span><span class="va">`Country of origin`</span><span class="op">$</span><span class="va">id</span></span>
+<span>  db <span class="op">=</span> <span class="va">tourism</span>,</span>
+<span>  measures <span class="op">=</span> <span class="va">measures</span><span class="op">$</span><span class="va">id</span>,</span>
+<span>  dimensions <span class="op">=</span> <span class="va">valuesets</span><span class="op">$</span><span class="va">`Country of origin`</span></span>
 <span><span class="op">)</span></span>
 <span><span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 87 x 4</span>
    <span style="font-weight: bold;">`Season/Tourism Month`</span> <span style="font-weight: bold;">`Country of origin`</span>            <span style="font-weight: bold;">Arrivals</span> <span style="font-weight: bold;">`Nights spent`</span>
  <span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>
-<span style="color: #BCBCBC;"> 1</span> 2024-01-01             Vienna &lt;01&gt;                      <span style="text-decoration: underline;">780</span>407        2<span style="text-decoration: underline;">394</span>542
-<span style="color: #BCBCBC;"> 2</span> 2024-01-01             Burgenland (beg.05/03) &lt;70&gt;      <span style="text-decoration: underline;">215</span>736         <span style="text-decoration: underline;">610</span>071
-<span style="color: #BCBCBC;"> 3</span> 2024-01-01             Carinthia (beg.05/03) &lt;71&gt;       <span style="text-decoration: underline;">262</span>777         <span style="text-decoration: underline;">718</span>801
-<span style="color: #BCBCBC;"> 4</span> 2024-01-01             Lower Austria (beg.05/03) &lt;72&gt;   <span style="text-decoration: underline;">750</span>052        2<span style="text-decoration: underline;">385</span>062
-<span style="color: #BCBCBC;"> 5</span> 2024-01-01             Upper Austria (beg.05/03) &lt;73&gt;   <span style="text-decoration: underline;">657</span>664        1<span style="text-decoration: underline;">763</span>812
-<span style="color: #BCBCBC;"> 6</span> 2024-01-01             Salzburg (beg.05/03) &lt;74&gt;        <span style="text-decoration: underline;">261</span>350         <span style="text-decoration: underline;">639</span>952
-<span style="color: #BCBCBC;"> 7</span> 2024-01-01             Styria (beg.05/03) &lt;75&gt;          <span style="text-decoration: underline;">549</span>336        1<span style="text-decoration: underline;">520</span>610
-<span style="color: #BCBCBC;"> 8</span> 2024-01-01             Tyrol (beg.05/03) &lt;76&gt;           <span style="text-decoration: underline;">251</span>724         <span style="text-decoration: underline;">607</span>251
-<span style="color: #BCBCBC;"> 9</span> 2024-01-01             Vorarlberg (beg.05/03) &lt;77&gt;      <span style="text-decoration: underline;">142</span>066         <span style="text-decoration: underline;">370</span>255
-<span style="color: #BCBCBC;">10</span> 2024-01-01             Austria except Vienna (till 0…       <span style="color: #BB0000;">NA</span>             <span style="color: #BB0000;">NA</span>
+<span style="color: #BCBCBC;"> 1</span> 2024-06-01             Vienna &lt;01&gt;                      <span style="text-decoration: underline;">922</span>690        2<span style="text-decoration: underline;">643</span>098
+<span style="color: #BCBCBC;"> 2</span> 2024-06-01             Burgenland (beg.05/03) &lt;70&gt;      <span style="text-decoration: underline;">225</span>145         <span style="text-decoration: underline;">578</span>398
+<span style="color: #BCBCBC;"> 3</span> 2024-06-01             Carinthia (beg.05/03) &lt;71&gt;       <span style="text-decoration: underline;">236</span>029         <span style="text-decoration: underline;">685</span>653
+<span style="color: #BCBCBC;"> 4</span> 2024-06-01             Lower Austria (beg.05/03) &lt;72&gt;   <span style="text-decoration: underline;">821</span>841        2<span style="text-decoration: underline;">425</span>672
+<span style="color: #BCBCBC;"> 5</span> 2024-06-01             Upper Austria (beg.05/03) &lt;73&gt;   <span style="text-decoration: underline;">738</span>750        1<span style="text-decoration: underline;">966</span>014
+<span style="color: #BCBCBC;"> 6</span> 2024-06-01             Salzburg (beg.05/03) &lt;74&gt;        <span style="text-decoration: underline;">309</span>997         <span style="text-decoration: underline;">782</span>968
+<span style="color: #BCBCBC;"> 7</span> 2024-06-01             Styria (beg.05/03) &lt;75&gt;          <span style="text-decoration: underline;">602</span>165        1<span style="text-decoration: underline;">724</span>328
+<span style="color: #BCBCBC;"> 8</span> 2024-06-01             Tyrol (beg.05/03) &lt;76&gt;           <span style="text-decoration: underline;">311</span>638         <span style="text-decoration: underline;">800</span>478
+<span style="color: #BCBCBC;"> 9</span> 2024-06-01             Vorarlberg (beg.05/03) &lt;77&gt;      <span style="text-decoration: underline;">157</span>028         <span style="text-decoration: underline;">406</span>055
+<span style="color: #BCBCBC;">10</span> 2024-06-01             Austria except Vienna (till 0…        0              0
 <span style="color: #949494;"># ℹ 77 more rows</span></code></pre>
-<p>It is possible to use a mixture of valuesets and fields in the
+<details><summary>
+Show json request
+</summary><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span><span class="op">$</span><span class="va">json</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a> <span class="fu">{</span></span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>  <span class="dt">"database"</span><span class="fu">:</span> <span class="st">"str:database:detouextregsai"</span><span class="fu">,</span></span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>  <span class="dt">"measures"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-ANK"</span><span class="ot">,</span></span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-UEB"</span></span>
+<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a>  <span class="dt">"dimensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a>    <span class="ot">[</span><span class="st">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2"</span><span class="ot">]</span></span>
+<span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a><span class="fu">}</span> </span></code></pre></div>
+</details><p>It is possible to use a mixture of value-sets and fields in the
 <code>dimensions</code> parameter.</p>
 </div>
+</div>
 <div class="section level2">
-<h2 id="filtering-data">Filtering Data<a class="anchor" aria-label="anchor" href="#filtering-data"></a>
+<h2 id="counts">Using Counts<a class="anchor" aria-label="anchor" href="#counts"></a>
 </h2>
-<p>Omitting certain classification elements from the query is possible
-with the <code>recodes</code> parameter of the <code>/table</code>
-endpoint. Currently, <code><a href="../reference/sc_table_custom.html">sc_table_custom()</a></code> does not provide
-support for recodes. Please issue a <a href="https://github.com/statistikat/STATcubeR/issues" class="external-link">feature
-request</a> if you see this as a useful extension of
-<a href="../index.html" data-tippy-content="
-  &lt;b class='tippy_header'&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
-  &lt;div class='tippy_body'&gt;
-    Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
-  &lt;/div&gt;
-  " class="STATcubeR">STATcubeR</a>.</p>
+<p>Instead of Measures and Value-sets, it is also possible to provide
+counts in the <code>measure</code> parameter of
+<code><a href="../reference/sc_table_custom.html">sc_table_custom()</a></code>.</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">population</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_schema.html">sc_schema_db</a></span><span class="op">(</span><span class="st">"debevstand"</span><span class="op">)</span></span>
+<span><span class="op">(</span><span class="va">count</span> <span class="op">&lt;-</span> <span class="va">population</span><span class="op">$</span><span class="va">`Datensätze/Records`</span><span class="op">$</span><span class="va">`F-BEVSTAND`</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; <span style="color: #875F00;">COUNT</span>: <span style="font-weight: bold;">F-BEVSTAND</span></span></span></code></pre>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span><span class="va">population</span>, <span class="va">count</span><span class="op">)</span></span>
+<span><span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 1 x 2</span>
+  <span style="font-weight: bold;">Quarter</span>    <span style="font-weight: bold;">`F-BEVSTAND`</span>
+<span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>
+<span style="color: #BCBCBC;">1</span> 2024-01-01       <span style="text-decoration: underline;">389</span>629</code></pre>
 <details><summary>
-Example
-</summary><p>For example, the last call to <code><a href="../reference/sc_table_custom.html">sc_table_custom()</a></code> will
-send the following json to the server.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>  <span class="dt">"database"</span><span class="fu">:</span> <span class="st">"str:database:detouextregsai"</span><span class="fu">,</span></span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>  <span class="dt">"measures"</span><span class="fu">:</span> <span class="ot">[</span> <span class="st">"str:measure:detouextregsai:F-DATA1:F-ANK"</span><span class="ot">,</span></span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-UEB"</span> <span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>  <span class="dt">"dimensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a>    <span class="ot">[</span> <span class="st">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2"</span> <span class="ot">]</span> <span class="ot">]</span></span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
-<p>For comparison, this is how the same request was specified in
-<a href="../index.html" data-tippy-content="
-  &lt;b class='tippy_header'&gt;R package for all things STATcube&lt;/b&gt;&lt;br/&gt;
-  &lt;div class='tippy_body'&gt;
-    Transfer data from the STATcube REST API or from the Open Data portal into your R sessions
-  &lt;/div&gt;
-  " class="STATcubeR">STATcubeR</a></p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span></span>
-<span>  <span class="st">"str:database:detouextregsai"</span>,</span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"str:measure:detouextregsai:F-DATA1:F-ANK"</span>,</span>
-<span>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-UEB"</span><span class="op">)</span>,</span>
-<span>  <span class="st">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2"</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<p>It is now possible to add recodes in order to only show results for
-Vienna. For this, the regional classification (<code>C-C93</code>) is
-limited to the code for vienna, which is <code>C-C93-2:01</code>.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  <span class="dt">"database"</span><span class="fu">:</span> <span class="st">"str:database:detouextregsai"</span><span class="fu">,</span></span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  <span class="dt">"measures"</span><span class="fu">:</span> <span class="ot">[</span> <span class="st">"str:measure:detouextregsai:F-DATA1:F-ANK"</span><span class="ot">,</span></span>
-<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-UEB"</span> <span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>  <span class="dt">"dimensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>    <span class="ot">[</span> <span class="st">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2"</span> <span class="ot">]</span> <span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>  <span class="dt">"recodes"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>    <span class="st">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2"</span><span class="er">:</span> <span class="fu">{</span></span>
-<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a>      <span class="dt">"map"</span><span class="fu">:</span> <span class="ot">[[</span> <span class="st">"str:value:detouextregsai:F-DATA1:C-C93-2:C-C93-2:01"</span> <span class="ot">]]</span> </span>
-<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a>    <span class="fu">}</span></span>
-<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a>  <span class="ot">]</span></span>
-<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+Show json request
+</summary><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span><span class="op">$</span><span class="va">json</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a> <span class="fu">{</span></span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a>  <span class="dt">"database"</span><span class="fu">:</span> <span class="st">"str:database:debevstand"</span><span class="fu">,</span></span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a>  <span class="dt">"measures"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a>    <span class="st">"str:count:debevstand:F-BEVSTAND"</span></span>
+<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a>  <span class="dt">"dimensions"</span><span class="fu">:</span> <span class="ot">[]</span></span>
+<span id="cb28-7"><a href="#cb28-7" tabindex="-1"></a><span class="fu">}</span> </span></code></pre></div>
 </details>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+<div class="section level2">
+<h2 id="recodes">Recodes<a class="anchor" aria-label="anchor" href="#recodes"></a>
+</h2>
+<p>Data can be filtered on the server side by using the
+<code>recodes</code> parameter of <code><a href="../reference/sc_table_custom.html">sc_table_custom()</a></code>. This
+might be more complicated than filtering the data in R but offers some
+important advantages.</p>
+<ul>
+<li>
+<strong>performance</strong> Traffic between the client and server
+is reduced which might lead to considerably faster API responses.</li>
+<li>
+<strong>cell limits (user)</strong> Apart from rate limits (see
+<code><a href="../reference/other_endpoints.html">?sc_rate_limits</a></code>), STATcube also limits the amount of cells
+that can be fetched per user. Filtering data can be useful to preserve
+this quota.</li>
+<li>
+<strong>cell limits (request)</strong> If a single request would
+contain more than 1 million cells, a <a href="sc_last_error.html#CELL_COUNT">cell count error</a> is
+thrown.</li>
+</ul>
+<div class="section level3">
+<h3 id="filter">Filtering Data<a class="anchor" aria-label="anchor" href="#filter"></a>
+</h3>
+<p>As an example for filtering data, we can request a table from the
+tourism database and only select some countries for
+<code>Country of origin</code>.</p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">origin</span> <span class="op">&lt;-</span> <span class="va">tourism</span><span class="op">$</span><span class="va">`Other Classifications`</span><span class="op">$</span><span class="va">`Country of origin`</span><span class="op">$</span><span class="va">`Country of origin`</span></span>
+<span><span class="va">month</span> <span class="op">&lt;-</span> <span class="va">tourism</span><span class="op">$</span><span class="va">`Mandatory fields`</span><span class="op">$</span><span class="va">`Season/Tourism Month`</span><span class="op">$</span><span class="va">`Season/Tourism Month`</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span></span>
+<span>  db <span class="op">=</span> <span class="va">tourism</span>,</span>
+<span>  measures <span class="op">=</span> <span class="va">measures</span><span class="op">$</span><span class="va">id</span>,</span>
+<span>  dimensions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">month</span>, <span class="va">origin</span><span class="op">)</span>,</span>
+<span>  recodes <span class="op">=</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_recode</a></span><span class="op">(</span><span class="va">origin</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">origin</span><span class="op">$</span><span class="va">`Italy &lt;29&gt;`</span>, <span class="va">origin</span><span class="op">$</span><span class="va">`Germany &lt;12&gt;`</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 594 x 4</span>
+   <span style="font-weight: bold;">`Season/Tourism Month`</span> <span style="font-weight: bold;">`Country of origin`</span> <span style="font-weight: bold;">Arrivals</span> <span style="font-weight: bold;">`Nights spent`</span>
+   <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>
+<span style="color: #BCBCBC;"> 1</span> 1999-11-01             Italy &lt;29&gt;             <span style="text-decoration: underline;">34</span>612          <span style="text-decoration: underline;">71</span>854
+<span style="color: #BCBCBC;"> 2</span> 1999-11-01             Germany &lt;12&gt;          <span style="text-decoration: underline;">261</span>213         <span style="text-decoration: underline;">762</span>568
+<span style="color: #BCBCBC;"> 3</span> 1999-12-01             Italy &lt;29&gt;             <span style="text-decoration: underline;">88</span>337         <span style="text-decoration: underline;">218</span>213
+<span style="color: #BCBCBC;"> 4</span> 1999-12-01             Germany &lt;12&gt;          <span style="text-decoration: underline;">849</span>720        4<span style="text-decoration: underline;">152</span>811
+<span style="color: #BCBCBC;"> 5</span> 2000-01-01             Italy &lt;29&gt;             <span style="text-decoration: underline;">53</span>289         <span style="text-decoration: underline;">204</span>169
+<span style="color: #BCBCBC;"> 6</span> 2000-01-01             Germany &lt;12&gt;         1<span style="text-decoration: underline;">221</span>916        6<span style="text-decoration: underline;">972</span>223
+<span style="color: #BCBCBC;"> 7</span> 2000-02-01             Italy &lt;29&gt;             <span style="text-decoration: underline;">32</span>509          <span style="text-decoration: underline;">98</span>706
+<span style="color: #BCBCBC;"> 8</span> 2000-02-01             Germany &lt;12&gt;          <span style="text-decoration: underline;">966</span>214        5<span style="text-decoration: underline;">651</span>428
+<span style="color: #BCBCBC;"> 9</span> 2000-03-01             Italy &lt;29&gt;             <span style="text-decoration: underline;">56</span>189         <span style="text-decoration: underline;">135</span>877
+<span style="color: #BCBCBC;">10</span> 2000-03-01             Germany &lt;12&gt;         1<span style="text-decoration: underline;">009</span>715        5<span style="text-decoration: underline;">483</span>191
+<span style="color: #949494;"># ℹ 584 more rows</span></code></pre>
+<details><summary>
+Show json request
+</summary><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span><span class="op">$</span><span class="va">json</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a> <span class="fu">{</span></span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>  <span class="dt">"database"</span><span class="fu">:</span> <span class="st">"str:database:detouextregsai"</span><span class="fu">,</span></span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>  <span class="dt">"measures"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-ANK"</span><span class="ot">,</span></span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-UEB"</span></span>
+<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a>  <span class="dt">"dimensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a>    <span class="ot">[</span><span class="st">"str:valueset:detouextregsai:F-DATA1:C-SDB_TIT-0:C-SDB_TIT-0"</span><span class="ot">],</span></span>
+<span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a>    <span class="ot">[</span><span class="st">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2"</span><span class="ot">]</span></span>
+<span id="cb31-10"><a href="#cb31-10" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb31-11"><a href="#cb31-11" tabindex="-1"></a>  <span class="dt">"recodes"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb31-12"><a href="#cb31-12" tabindex="-1"></a>    <span class="dt">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb31-13"><a href="#cb31-13" tabindex="-1"></a>      <span class="dt">"map"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb31-14"><a href="#cb31-14" tabindex="-1"></a>        <span class="ot">[</span><span class="st">"str:value:detouextregsai:F-DATA1:C-C93-2:C-C93-2:20"</span><span class="ot">],</span></span>
+<span id="cb31-15"><a href="#cb31-15" tabindex="-1"></a>        <span class="ot">[</span><span class="st">"str:value:detouextregsai:F-DATA1:C-C93-2:C-C93-2:12"</span><span class="ot">]</span></span>
+<span id="cb31-16"><a href="#cb31-16" tabindex="-1"></a>      <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb31-17"><a href="#cb31-17" tabindex="-1"></a>      <span class="dt">"total"</span><span class="fu">:</span> <span class="kw">false</span></span>
+<span id="cb31-18"><a href="#cb31-18" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb31-19"><a href="#cb31-19" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb31-20"><a href="#cb31-20" tabindex="-1"></a><span class="fu">}</span> </span></code></pre></div>
+</details><p>This table only contains two countries rather than 87 so the amount
+of cells in the table is also 40 times less compared to a table that
+would omit this filter.</p>
+</div>
+<div class="section level3">
+<h3 id="group">Grouping items<a class="anchor" aria-label="anchor" href="#group"></a>
+</h3>
+<p>Other options from the <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/table-endpoint" class="external-link">recodes
+specification</a> are also available via <code><a href="../reference/sc_table_custom.html">sc_recode()</a></code>. It is
+possible to group items and specify recodes for several
+classifications.</p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span></span>
+<span>  db <span class="op">=</span> <span class="va">tourism</span>,</span>
+<span>  measures <span class="op">=</span> <span class="va">measures</span><span class="op">$</span><span class="va">id</span>,</span>
+<span>  dimensions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">month</span>, <span class="va">origin</span><span class="op">)</span>,</span>
+<span>  recodes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="../reference/sc_table_custom.html">sc_recode</a></span><span class="op">(</span><span class="va">origin</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">origin</span><span class="op">$</span><span class="va">`Germany &lt;12&gt;`</span>, <span class="va">origin</span><span class="op">$</span><span class="va">`Netherlands &lt;25&gt;`</span><span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">origin</span><span class="op">$</span><span class="va">`Italy &lt;29&gt;`</span>, <span class="va">origin</span><span class="op">$</span><span class="va">`France (incl.Monaco) &lt;14&gt;`</span><span class="op">)</span></span>
+<span>    <span class="op">)</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="../reference/sc_table_custom.html">sc_recode</a></span><span class="op">(</span><span class="va">month</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>      <span class="va">month</span><span class="op">$</span><span class="va">Nov.99</span>, <span class="va">month</span><span class="op">$</span><span class="va">Feb.00</span>, <span class="va">month</span><span class="op">$</span><span class="va">Apr.09</span>, <span class="va">month</span><span class="op">$</span><span class="va">`Jan. 22`</span></span>
+<span>    <span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 8 x 4</span>
+  <span style="font-weight: bold;">`Season/Tourism Month`</span> <span style="font-weight: bold;">`Country of origin`</span>             <span style="font-weight: bold;">Arrivals</span> <span style="font-weight: bold;">`Nights spent`</span>
+  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>
+<span style="color: #BCBCBC;">1</span> 1999-11-01             Germany &lt;12&gt;;Netherlands &lt;25&gt;     <span style="text-decoration: underline;">272</span>496         <span style="text-decoration: underline;">795</span>183
+<span style="color: #BCBCBC;">2</span> 1999-11-01             Italy &lt;29&gt;;France (incl.Monaco…    <span style="text-decoration: underline;">47</span>580         <span style="text-decoration: underline;">105</span>150
+<span style="color: #BCBCBC;">3</span> 2000-02-01             Germany &lt;12&gt;;Netherlands &lt;25&gt;    1<span style="text-decoration: underline;">237</span>039        7<span style="text-decoration: underline;">208</span>626
+<span style="color: #BCBCBC;">4</span> 2000-02-01             Italy &lt;29&gt;;France (incl.Monaco…    <span style="text-decoration: underline;">77</span>162         <span style="text-decoration: underline;">350</span>655
+<span style="color: #BCBCBC;">5</span> 2009-04-01             Germany &lt;12&gt;;Netherlands &lt;25&gt;      <span style="text-decoration: underline;">44</span>545         <span style="text-decoration: underline;">174</span>388
+<span style="color: #BCBCBC;">6</span> 2009-04-01             Italy &lt;29&gt;;France (incl.Monaco…    <span style="text-decoration: underline;">97</span>913         <span style="text-decoration: underline;">219</span>553
+<span style="color: #BCBCBC;">7</span> 2022-01-01             Germany &lt;12&gt;;Netherlands &lt;25&gt;     <span style="text-decoration: underline;">154</span>121         <span style="text-decoration: underline;">886</span>490
+<span style="color: #BCBCBC;">8</span> 2022-01-01             Italy &lt;29&gt;;France (incl.Monaco…    <span style="text-decoration: underline;">28</span>301         <span style="text-decoration: underline;">100</span>484</code></pre>
+<details><summary>
+Show json request
+</summary><div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span><span class="op">$</span><span class="va">json</span></span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a> <span class="fu">{</span></span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a>  <span class="dt">"database"</span><span class="fu">:</span> <span class="st">"str:database:detouextregsai"</span><span class="fu">,</span></span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a>  <span class="dt">"measures"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-ANK"</span><span class="ot">,</span></span>
+<span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-UEB"</span></span>
+<span id="cb34-6"><a href="#cb34-6" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb34-7"><a href="#cb34-7" tabindex="-1"></a>  <span class="dt">"dimensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb34-8"><a href="#cb34-8" tabindex="-1"></a>    <span class="ot">[</span><span class="st">"str:valueset:detouextregsai:F-DATA1:C-SDB_TIT-0:C-SDB_TIT-0"</span><span class="ot">],</span></span>
+<span id="cb34-9"><a href="#cb34-9" tabindex="-1"></a>    <span class="ot">[</span><span class="st">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2"</span><span class="ot">]</span></span>
+<span id="cb34-10"><a href="#cb34-10" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb34-11"><a href="#cb34-11" tabindex="-1"></a>  <span class="dt">"recodes"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb34-12"><a href="#cb34-12" tabindex="-1"></a>    <span class="dt">"str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93-2"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb34-13"><a href="#cb34-13" tabindex="-1"></a>      <span class="dt">"map"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb34-14"><a href="#cb34-14" tabindex="-1"></a>        <span class="ot">[</span><span class="st">"str:value:detouextregsai:F-DATA1:C-C93-2:C-C93-2:12"</span><span class="ot">,</span> <span class="st">"str:value:detouextregsai:F-DATA1:C-C93-2:C-C93-2:25"</span><span class="ot">],</span></span>
+<span id="cb34-15"><a href="#cb34-15" tabindex="-1"></a>        <span class="ot">[</span><span class="st">"str:value:detouextregsai:F-DATA1:C-C93-2:C-C93-2:20"</span><span class="ot">,</span> <span class="st">"str:value:detouextregsai:F-DATA1:C-C93-2:C-C93-2:14"</span><span class="ot">]</span></span>
+<span id="cb34-16"><a href="#cb34-16" tabindex="-1"></a>      <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb34-17"><a href="#cb34-17" tabindex="-1"></a>      <span class="dt">"total"</span><span class="fu">:</span> <span class="kw">false</span></span>
+<span id="cb34-18"><a href="#cb34-18" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb34-19"><a href="#cb34-19" tabindex="-1"></a>    <span class="dt">"str:valueset:detouextregsai:F-DATA1:C-SDB_TIT-0:C-SDB_TIT-0"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb34-20"><a href="#cb34-20" tabindex="-1"></a>      <span class="dt">"map"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb34-21"><a href="#cb34-21" tabindex="-1"></a>        <span class="ot">[</span><span class="st">"str:value:detouextregsai:F-DATA1:C-SDB_TIT-0:C-SDB_TIT-0:199911"</span><span class="ot">],</span></span>
+<span id="cb34-22"><a href="#cb34-22" tabindex="-1"></a>        <span class="ot">[</span><span class="st">"str:value:detouextregsai:F-DATA1:C-SDB_TIT-0:C-SDB_TIT-0:200002"</span><span class="ot">],</span></span>
+<span id="cb34-23"><a href="#cb34-23" tabindex="-1"></a>        <span class="ot">[</span><span class="st">"str:value:detouextregsai:F-DATA1:C-SDB_TIT-0:C-SDB_TIT-0:200904"</span><span class="ot">],</span></span>
+<span id="cb34-24"><a href="#cb34-24" tabindex="-1"></a>        <span class="ot">[</span><span class="st">"str:value:detouextregsai:F-DATA1:C-SDB_TIT-0:C-SDB_TIT-0:202201"</span><span class="ot">]</span></span>
+<span id="cb34-25"><a href="#cb34-25" tabindex="-1"></a>      <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb34-26"><a href="#cb34-26" tabindex="-1"></a>      <span class="dt">"total"</span><span class="fu">:</span> <span class="kw">false</span></span>
+<span id="cb34-27"><a href="#cb34-27" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb34-28"><a href="#cb34-28" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb34-29"><a href="#cb34-29" tabindex="-1"></a><span class="fu">}</span> </span></code></pre></div>
+</details><p>This table contains data for two country-groups and two months. In
+this case, the cell values for Germany and the Netherlands are just
+added to calculate the entries for Arrivals and Nights spent. However,
+in other cases STATcube might decide it is more appropriate to use
+weighted means or other more complicated aggregation methods.</p>
+</div>
+<div class="section level3">
+<h3 id="totals">Adding Totals<a class="anchor" aria-label="anchor" href="#totals"></a>
+</h3>
+<p>The <code>total</code> parameter in <code><a href="../reference/sc_table_custom.html">sc_recode()</a></code> can be
+used to request totals for classifications. As an example, let’s look at
+the tourism activity in the capital cities of Austria</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">destination</span> <span class="op">&lt;-</span> <span class="va">tourism</span><span class="op">$</span><span class="va">`Other Classifications`</span><span class="op">$</span><span class="va">`Tourism commune [ABO]`</span><span class="op">$</span></span>
+<span>  <span class="va">`Regionale Gliederung (Ebene +1)`</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span></span>
+<span>    <span class="va">tourism</span>,</span>
+<span>    measures <span class="op">=</span> <span class="va">measures</span><span class="op">$</span><span class="va">id</span>,</span>
+<span>    dimensions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">month</span>, <span class="va">destination</span><span class="op">)</span>,</span>
+<span>    recodes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="../reference/sc_table_custom.html">sc_recode</a></span><span class="op">(</span><span class="va">destination</span>, total <span class="op">=</span> <span class="cn">TRUE</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>        <span class="va">destination</span><span class="op">$</span><span class="va">Wien</span>, <span class="va">destination</span><span class="op">$</span><span class="va">`Stadt Salzburg`</span>, <span class="va">destination</span><span class="op">$</span><span class="va">Linz</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>      <span class="fu"><a href="../reference/sc_table_custom.html">sc_recode</a></span><span class="op">(</span><span class="va">month</span>, total <span class="op">=</span> <span class="cn">FALSE</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">month</span><span class="op">$</span><span class="va">Nov.99</span>, <span class="va">month</span><span class="op">$</span><span class="va">Apr.09</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
+<pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 8 x 4</span>
+  <span style="font-weight: bold;">`Season/Tourism Month`</span> <span style="font-weight: bold;">`Tourism commune [ABO]`</span> <span style="font-weight: bold;">Arrivals</span> <span style="font-weight: bold;">`Nights spent`</span>
+  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>
+<span style="color: #BCBCBC;">1</span> 1999-11-01             Wien                      <span style="text-decoration: underline;">234</span>186         <span style="text-decoration: underline;">522</span>306
+<span style="color: #BCBCBC;">2</span> 1999-11-01             Stadt Salzburg             <span style="text-decoration: underline;">49</span>369          <span style="text-decoration: underline;">89</span>637
+<span style="color: #BCBCBC;">3</span> 1999-11-01             Linz                       <span style="text-decoration: underline;">25</span>562          <span style="text-decoration: underline;">43</span>789
+<span style="color: #BCBCBC;">4</span> 1999-11-01             Total                     <span style="text-decoration: underline;">309</span>117         <span style="text-decoration: underline;">655</span>732
+<span style="color: #BCBCBC;">5</span> 2009-04-01             Wien                      <span style="text-decoration: underline;">356</span>723         <span style="text-decoration: underline;">806</span>201
+<span style="color: #BCBCBC;">6</span> 2009-04-01             Stadt Salzburg             <span style="text-decoration: underline;">84</span>582         <span style="text-decoration: underline;">151</span>483
+<span style="color: #BCBCBC;">7</span> 2009-04-01             Linz                       <span style="text-decoration: underline;">35</span>594          <span style="text-decoration: underline;">65</span>001
+<span style="color: #BCBCBC;">8</span> 2009-04-01             Total                     <span style="text-decoration: underline;">476</span>899        1<span style="text-decoration: underline;">022</span>685</code></pre>
+<details><summary>
+Show json request
+</summary><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span><span class="op">$</span><span class="va">json</span></span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a> <span class="fu">{</span></span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a>  <span class="dt">"database"</span><span class="fu">:</span> <span class="st">"str:database:detouextregsai"</span><span class="fu">,</span></span>
+<span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a>  <span class="dt">"measures"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb37-4"><a href="#cb37-4" tabindex="-1"></a>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-ANK"</span><span class="ot">,</span></span>
+<span id="cb37-5"><a href="#cb37-5" tabindex="-1"></a>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-UEB"</span></span>
+<span id="cb37-6"><a href="#cb37-6" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb37-7"><a href="#cb37-7" tabindex="-1"></a>  <span class="dt">"dimensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb37-8"><a href="#cb37-8" tabindex="-1"></a>    <span class="ot">[</span><span class="st">"str:valueset:detouextregsai:F-DATA1:C-SDB_TIT-0:C-SDB_TIT-0"</span><span class="ot">],</span></span>
+<span id="cb37-9"><a href="#cb37-9" tabindex="-1"></a>    <span class="ot">[</span><span class="st">"str:valueset:detouextregsai:F-DATA:C-GEMREG-0:C-TOUREG-0"</span><span class="ot">]</span></span>
+<span id="cb37-10"><a href="#cb37-10" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb37-11"><a href="#cb37-11" tabindex="-1"></a>  <span class="dt">"recodes"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb37-12"><a href="#cb37-12" tabindex="-1"></a>    <span class="dt">"str:valueset:detouextregsai:F-DATA:C-GEMREG-0:C-TOUREG-0"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb37-13"><a href="#cb37-13" tabindex="-1"></a>      <span class="dt">"map"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb37-14"><a href="#cb37-14" tabindex="-1"></a>        <span class="ot">[</span><span class="st">"str:value:detouextregsai:F-DATA:C-GEMREG-0:C-TOUREG-0:TOUREG-Wien"</span><span class="ot">],</span></span>
+<span id="cb37-15"><a href="#cb37-15" tabindex="-1"></a>        <span class="ot">[</span><span class="st">"str:value:detouextregsai:F-DATA:C-GEMREG-0:C-TOUREG-0:TOUREG-Stadt"</span><span class="ot">],</span></span>
+<span id="cb37-16"><a href="#cb37-16" tabindex="-1"></a>        <span class="ot">[</span><span class="st">"str:value:detouextregsai:F-DATA:C-GEMREG-0:C-TOUREG-0:TOUREG-Linz"</span><span class="ot">]</span></span>
+<span id="cb37-17"><a href="#cb37-17" tabindex="-1"></a>      <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb37-18"><a href="#cb37-18" tabindex="-1"></a>      <span class="dt">"total"</span><span class="fu">:</span> <span class="kw">true</span></span>
+<span id="cb37-19"><a href="#cb37-19" tabindex="-1"></a>    <span class="fu">},</span></span>
+<span id="cb37-20"><a href="#cb37-20" tabindex="-1"></a>    <span class="dt">"str:valueset:detouextregsai:F-DATA1:C-SDB_TIT-0:C-SDB_TIT-0"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb37-21"><a href="#cb37-21" tabindex="-1"></a>      <span class="dt">"map"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb37-22"><a href="#cb37-22" tabindex="-1"></a>        <span class="ot">[</span><span class="st">"str:value:detouextregsai:F-DATA1:C-SDB_TIT-0:C-SDB_TIT-0:199911"</span><span class="ot">],</span></span>
+<span id="cb37-23"><a href="#cb37-23" tabindex="-1"></a>        <span class="ot">[</span><span class="st">"str:value:detouextregsai:F-DATA1:C-SDB_TIT-0:C-SDB_TIT-0:200904"</span><span class="ot">]</span></span>
+<span id="cb37-24"><a href="#cb37-24" tabindex="-1"></a>      <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb37-25"><a href="#cb37-25" tabindex="-1"></a>      <span class="dt">"total"</span><span class="fu">:</span> <span class="kw">false</span></span>
+<span id="cb37-26"><a href="#cb37-26" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb37-27"><a href="#cb37-27" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb37-28"><a href="#cb37-28" tabindex="-1"></a><span class="fu">}</span> </span></code></pre></div>
+</details><p>We see that there are two rows in the table where Tourism commune is
+set to “Total”. The corresponding values represent the sum of all
+Arrivals or Nights spent in either of these three cities during that
+month.</p>
+</div>
+<div class="section level3">
+<h3 id="recode-hierarchy">Recoding across hierarchies<a class="anchor" aria-label="anchor" href="#recode-hierarchy"></a>
+</h3>
+<p>To use a recode that includes several hierarchy levels, the
+corresponding <code>FIELD</code> should be used as the first parameter
+of <code><a href="../reference/sc_table_custom.html">sc_recode()</a></code>. For example, a recode with countries and
+federal states from the “Country of origin” classification can be
+defined as follows.</p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">origin1</span> <span class="op">&lt;-</span> <span class="va">tourism</span><span class="op">$</span><span class="va">`Other Classifications`</span><span class="op">$</span><span class="va">`Country of origin`</span></span>
+<span><span class="va">origin2</span> <span class="op">&lt;-</span> <span class="va">origin1</span><span class="op">$</span><span class="va">`Country of origin`</span></span>
+<span><span class="va">origin3</span> <span class="op">&lt;-</span> <span class="va">origin1</span><span class="op">$</span><span class="va">`Herkunftsland (Ebene +1)`</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span></span>
+<span>  <span class="va">tourism</span>, <span class="va">measures</span><span class="op">$</span><span class="va">id</span>, <span class="va">origin1</span>,</span>
+<span>  recodes <span class="op">=</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_recode</a></span><span class="op">(</span><span class="va">origin1</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    <span class="va">origin2</span><span class="op">$</span><span class="va">`Vienna &lt;01&gt;`</span>, <span class="va">origin3</span><span class="op">$</span><span class="va">Germany</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">origin2</span><span class="op">$</span><span class="va">`Bavaria (beg.05/03) &lt;80&gt;`</span>, <span class="va">origin3</span><span class="op">$</span><span class="va">`other countries`</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre class="r-output"><code><span style="color: #949494;"># A STATcubeR tibble: 3 x 4</span>
+  <span style="font-weight: bold;">`Season/Tourism Month`</span> <span style="font-weight: bold;">`Country of origin`</span>             <span style="font-weight: bold;">Arrivals</span> <span style="font-weight: bold;">`Nights spent`</span>
+<span style="color: #BCBCBC;">*</span> <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span>                              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>
+<span style="color: #BCBCBC;">1</span> 2024-06-01             Vienna &lt;01&gt;                       <span style="text-decoration: underline;">922</span>690        2<span style="text-decoration: underline;">643</span>098
+<span style="color: #BCBCBC;">2</span> 2024-06-01             Germany                          4<span style="text-decoration: underline;">158</span>045       14<span style="text-decoration: underline;">978</span>671
+<span style="color: #BCBCBC;">3</span> 2024-06-01             other countries;Bavaria (beg.0…  6<span style="text-decoration: underline;">020</span>270       16<span style="text-decoration: underline;">735</span>426</code></pre>
+<details><summary>
+Show json request
+</summary><div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span><span class="op">$</span><span class="va">json</span></span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a> <span class="fu">{</span></span>
+<span id="cb40-2"><a href="#cb40-2" tabindex="-1"></a>  <span class="dt">"database"</span><span class="fu">:</span> <span class="st">"str:database:detouextregsai"</span><span class="fu">,</span></span>
+<span id="cb40-3"><a href="#cb40-3" tabindex="-1"></a>  <span class="dt">"measures"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb40-4"><a href="#cb40-4" tabindex="-1"></a>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-ANK"</span><span class="ot">,</span></span>
+<span id="cb40-5"><a href="#cb40-5" tabindex="-1"></a>    <span class="st">"str:measure:detouextregsai:F-DATA1:F-UEB"</span></span>
+<span id="cb40-6"><a href="#cb40-6" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb40-7"><a href="#cb40-7" tabindex="-1"></a>  <span class="dt">"dimensions"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb40-8"><a href="#cb40-8" tabindex="-1"></a>    <span class="ot">[</span><span class="st">"str:field:detouextregsai:F-DATA1:C-C93-2"</span><span class="ot">]</span></span>
+<span id="cb40-9"><a href="#cb40-9" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb40-10"><a href="#cb40-10" tabindex="-1"></a>  <span class="dt">"recodes"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb40-11"><a href="#cb40-11" tabindex="-1"></a>    <span class="dt">"str:field:detouextregsai:F-DATA1:C-C93-2"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb40-12"><a href="#cb40-12" tabindex="-1"></a>      <span class="dt">"map"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb40-13"><a href="#cb40-13" tabindex="-1"></a>        <span class="ot">[</span><span class="st">"str:value:detouextregsai:F-DATA1:C-C93-2:C-C93-2:01"</span><span class="ot">],</span></span>
+<span id="cb40-14"><a href="#cb40-14" tabindex="-1"></a>        <span class="ot">[</span><span class="st">"str:value:detouextregsai:F-DATA1:C-C93-2:C-C93SUM-0:C93SUM-2"</span><span class="ot">],</span></span>
+<span id="cb40-15"><a href="#cb40-15" tabindex="-1"></a>        <span class="ot">[</span><span class="st">"str:value:detouextregsai:F-DATA1:C-C93-2:C-C93-2:80"</span><span class="ot">,</span> <span class="st">"str:value:detouextregsai:F-DATA1:C-C93-2:C-C93SUM-0:C93SUM-3"</span><span class="ot">]</span></span>
+<span id="cb40-16"><a href="#cb40-16" tabindex="-1"></a>      <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb40-17"><a href="#cb40-17" tabindex="-1"></a>      <span class="dt">"total"</span><span class="fu">:</span> <span class="kw">false</span></span>
+<span id="cb40-18"><a href="#cb40-18" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb40-19"><a href="#cb40-19" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb40-20"><a href="#cb40-20" tabindex="-1"></a><span class="fu">}</span> </span></code></pre></div>
+</details>
+</div>
+</div>
+<div class="section level2">
+<h2 id="typechecks">Typechecks<a class="anchor" aria-label="anchor" href="#typechecks"></a>
+</h2>
+<p>Since custom tables can become quite complicated,
+<code><a href="../reference/sc_table_custom.html">sc_table_custom()</a></code> performs type-checks before sending the
+request to the API. If inconsistencies are detected, warnings will be
+generated. See <code><a href="../reference/sc_table_custom.html">?sc_table_custom</a></code> for a comprehensive list of
+the performed checks.</p>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span><span class="va">tourism</span>, measures <span class="op">=</span> <span class="va">tourism</span>, dry_run <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; Warning in sc_table_custom(tourism, measures = tourism, dry_run = TRUE):</span></span>
+<span><span class="co">#&gt; parameter `measures` is not of type `MEASURE`, `STATFN` or `COUNT`</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; {</span></span>
+<span><span class="co">#&gt;   "database": "str:database:detouextregsai",</span></span>
+<span><span class="co">#&gt;   "measures": [</span></span>
+<span><span class="co">#&gt;     "str:database:detouextregsai"</span></span>
+<span><span class="co">#&gt;   ],</span></span>
+<span><span class="co">#&gt;   "dimensions": []</span></span>
+<span><span class="co">#&gt; }</span></span></code></pre>
+<details><summary>
+Advanced example
+</summary><div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_table_custom.html">sc_table_custom</a></span><span class="op">(</span><span class="st">"A"</span>, measures <span class="op">=</span> <span class="st">"B"</span>, dimensions <span class="op">=</span> <span class="st">"C"</span>, </span>
+<span>                recodes <span class="op">=</span> <span class="fu"><a href="../reference/sc_table_custom.html">sc_recode</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"E"</span><span class="op">)</span>, dry_run <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt; Warning in sc_recode("D", "E"): parameters `field` and `map` might be</span></span>
+<span><span class="co">#&gt; inconsistent</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; Warning in sc_recode("D", "E"): some entries in `map` are not of type VALUE</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; Warning in sc_recode("D", "E"): parameter `field` is not of type `FIELD` or</span></span>
+<span><span class="co">#&gt; `VALUESET`</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; Warning in sc_table_custom("A", measures = "B", dimensions = "C", recodes =</span></span>
+<span><span class="co">#&gt; sc_recode("D", : `recodes` and `dimensions` might be inconsistent</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; Warning in sc_table_custom("A", measures = "B", dimensions = "C", recodes =</span></span>
+<span><span class="co">#&gt; sc_recode("D", : parameter `dimensions` is not of type `FIELD` or `VALUESET`</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; Warning in sc_table_custom("A", measures = "B", dimensions = "C", recodes =</span></span>
+<span><span class="co">#&gt; sc_recode("D", : parameter `measures` is not of type `MEASURE`, `STATFN` or</span></span>
+<span><span class="co">#&gt; `COUNT`</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; Warning in sc_table_custom("A", measures = "B", dimensions = "C", recodes =</span></span>
+<span><span class="co">#&gt; sc_recode("D", : parameter `db` is not of type `DATABASE`</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; {</span></span>
+<span><span class="co">#&gt;   "database": "A",</span></span>
+<span><span class="co">#&gt;   "measures": [</span></span>
+<span><span class="co">#&gt;     "B"</span></span>
+<span><span class="co">#&gt;   ],</span></span>
+<span><span class="co">#&gt;   "dimensions": [</span></span>
+<span><span class="co">#&gt;     ["C"]</span></span>
+<span><span class="co">#&gt;   ],</span></span>
+<span><span class="co">#&gt;   "recodes": {</span></span>
+<span><span class="co">#&gt;     "D": {</span></span>
+<span><span class="co">#&gt;       "map": [</span></span>
+<span><span class="co">#&gt;         ["E"]</span></span>
+<span><span class="co">#&gt;       ],</span></span>
+<span><span class="co">#&gt;       "total": false</span></span>
+<span><span class="co">#&gt;     }</span></span>
+<span><span class="co">#&gt;   }</span></span>
+<span><span class="co">#&gt; }</span></span></code></pre>
+</details><p>If <code>dry_run</code> is set to <code>FALSE</code> (the default),
+STATcubeR will send the request to the API even if inconsistencies are
+detected. This will likely lead to an error of the form <a href="sc_last_error.html#invalid-json">“expected json but got
+html”</a>.</p>
+<p>If you get spurious warnings or have suggestions on how these
+type-checks might be improved, please issue a feature request to the
+[STATcubeR bug tracker].</p>
+</div>
+<div class="section level2">
+<h2 id="further-reading">Further Reading<a class="anchor" aria-label="anchor" href="#further-reading"></a>
+</h2>
+<ul>
+<li>If you’ve come this far, you are probably already familiar with
+<code><a href="../reference/sc_schema.html">sc_schema()</a></code>. But in case you are not, the
+<a href="sc_schema.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
+  &lt;b class="tippy_header"&gt;Get Metadata with the Schema Endpoint&lt;/b&gt;
+  &lt;br/&gt;
+  &lt;div class="tippy_body"&gt;The &lt;code&gt;/schema&lt;/code&gt; endpoint of the REST API provides metadata about databases and can also be used to retrieve a catalogue with all available databases.&lt;/div&gt;
+&lt;/div&gt;'>schema article</a>
+contains more information on how to get metadata from the API.</li>
+<li>The
+<a href="sc_data.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
+  &lt;b class="tippy_header"&gt;The STATcubeR Data Class&lt;/b&gt;
+  &lt;br/&gt;
+  &lt;div class="tippy_body"&gt;STATcubeR uses a common base class for OGD datasets and datasets from the STATcube REST API. This article explains the core functionalities and allows you to use both datasources more flexibly.&lt;/div&gt;
+&lt;/div&gt;'>STATcubeR data article</a>
+showcases different ways to extract data and metadata from the return
+value of <code><a href="../reference/sc_table_custom.html">sc_table_custom()</a></code>.</li>
+</ul>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p>
-<p>Developed by <a href="https://github.com/GregorDeCillia" class="external-link">Gregor de Cillia</a>, <a href="https://github.com/alexkowa" class="external-link">Alexander Kowarik</a>.</p>
+  <p>Developed by <a href="https://github.com/GregorDeCillia" class="external-link">Gregor de Cillia</a>, <a href="https://github.com/alexkowa" class="external-link">Alexander Kowarik</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>
