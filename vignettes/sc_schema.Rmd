@@ -15,30 +15,24 @@ if (!sc_key_exists())
   knitr::opts_chunk$set(eval = FALSE)
 ```
 
-There are currently three functions in `r STATcubeR` that utilize the `/schema`
-endpoint.
+There are currently three functions in `r STATcubeR` that utilize the `/schema` endpoint.
 
-* `sc_schema_catalogue()` returns an overview of all available databases and tables.
-* `sc_schema_db()` can be used to inspect all fields and measures for a database.
-* `sc_schema()` returns metadata about any resource.
+-   `sc_schema_catalogue()` returns an overview of all available databases and tables.
+-   `sc_schema_db()` can be used to inspect all fields and measures for a database.
+-   `sc_schema()` returns metadata about any resource.
 
 ## Browsing the Catalogue
 
-The first function shows the catalog, which lists all available
-databases in a tree form. The tree structure is determined by the API and
-closely resembles the "Catalog" view in the GUI.
+The first function shows the catalog, which lists all available databases in a tree form. The tree structure is determined by the API and closely resembles the "Catalog" view in the GUI.
 
 ```{r}
 my_catalogue <- sc_schema_catalogue()
 my_catalogue
 ```
 
-We see that the catalog has 8 child nodes: Four children of type `FOLDER` and four children of type `TABLE`.
-The table nodes correspond to the saved tables as described in the `r ticle("sc_table_saved")`.
-The folders include all folders from the root level in the [catalogue explorer](`r sc_browse_catalogue()`):
-"Statistics", "Publication and Services" as well as "Examples".
+We see that the catalog has 8 child nodes: Four children of type `FOLDER` and four children of type `TABLE`. The table nodes correspond to the saved tables as described in the `r ticle("sc_table_saved")`. The folders include all folders from the root level in the [catalogue explorer](%60r%20sc_browse_catalogue()%60): "Statistics", "Publication and Services" as well as "Examples".
 
-```{r,fig.align='center', out.width='50%', echo=FALSE}
+```{r,fig.align='center', out.width='50%', echo=FALSE, fig.alt="catalogue2.png"}
 knitr::include_graphics("img/catalogue2.png")
 ```
 
@@ -55,7 +49,7 @@ my_catalogue$Statistics
 
 The child node `Statistics` is also of class `sc_schema` and shows all entries of the sub-folder.
 
-```{r,fig.align='center', out.width='50%', echo=FALSE}
+```{r,fig.align='center', out.width='50%', echo=FALSE, fig.alt="catalogue3.png"}
 knitr::include_graphics("img/catalogue3.png")
 ```
 
@@ -65,12 +59,11 @@ This syntax can be used to navigate through folders and sub-folders.
 my_catalogue$Statistics$`Foreign Trade`
 ```
 
-```{r,fig.align='center', out.width='70%', echo=FALSE}
+```{r,fig.align='center', out.width='70%', echo=FALSE, fig.alt="catalogue4.png"}
 knitr::include_graphics("img/catalogue4.png")
 ```
 
-In some cases, the API shows more folders than the GUI in which case the folders from the API will be empty.
-Seeing an empty folder usually means that your STATcube user is not permitted to view the contents of the folder.
+In some cases, the API shows more folders than the GUI in which case the folders from the API will be empty. Seeing an empty folder usually means that your STATcube user is not permitted to view the contents of the folder.
 
 ```{r}
 my_catalogue$Statistics$`Foreign Trade`$Außenhandelsindizes
@@ -78,56 +71,53 @@ my_catalogue$Statistics$`Foreign Trade`$Außenhandelsindizes
 
 ## Databases and Tables
 
-Inside the catalog, the leafs^[In the context of tree-like data structures, leafs are used to describe nodes of a tree which have no child nodes] of the tree are mostly of type `DATABASE` and `TABLE`.
+Inside the catalog, the leafs[^1] of the tree are mostly of type `DATABASE` and `TABLE`.
+
+[^1]: In the context of tree-like data structures, leafs are used to describe nodes of a tree which have no child nodes
 
 ```{r}
 my_catalogue$Statistics$`Foreign Trade`$`Regional data by federal provinces`
 ```
 
-Here is an example for the `DATABASE` node [`deake005`](`r sc_browse_database("deake005")`).
+Here is an example for the `DATABASE` node [`deake005`](%60r%20sc_browse_database(%22deake005%22)%60).
 
 ```{r}
 my_catalogue$Statistics$`Labour Market`$`Working hours (Labour Force Survey)`
 ```
 
-```{r,fig.align='center', out.width='70%', echo=FALSE}
+```{r,fig.align='center', out.width='70%', echo=FALSE, fig.alt="catalogue_deake005.png"}
 knitr::include_graphics("img/catalogue_deake005.png")
 ```
 
-The function `sc_schema_db()` will be shown in the next section.
-As an example for a `TABLE` node, consider the [default table for `deake005`](`r STATcubeR:::sc_browse_table("defaulttable_deake005")`).
+The function `sc_schema_db()` will be shown in the next section. As an example for a `TABLE` node, consider the [default table for `deake005`](%60r%20STATcubeR:::sc_browse_table(%22defaulttable_deake005%22)%60).
 
 ```{r}
 my_catalogue$Statistics$`Labour Market`$
   `Standardtabelle / Default table (defaulttable_deake005)`
 ```
 
-```{r,fig.align='center', out.width='70%', echo=FALSE}
+```{r,fig.align='center', out.width='70%', echo=FALSE, fig.alt="catalogue_deake005_tables.png"}
 knitr::include_graphics("img/catalogue_deake005_tables.png")
 ```
 
-As suggested by the output, tables can be loaded with the `/table` endpoint via `sc_table_saved()`.
-See the `r ticle("sc_table_saved")` for more details.
+As suggested by the output, tables can be loaded with the `/table` endpoint via `sc_table_saved()`. See the `r ticle("sc_table_saved")` for more details.
 
 ## Database Infos
 
-To get information about a specific database, you can pass the database `id` to `sc_schema_db()`.
-Similar to `sc_schema_catalogue()`, the return value has a tree-like data structure. 
+To get information about a specific database, you can pass the database `id` to `sc_schema_db()`. Similar to `sc_schema_catalogue()`, the return value has a tree-like data structure.
 
 ```{r load_data}
 my_db_info <- sc_schema_db("deake005")
 my_db_info
 ```
 
-For comparison, here is a screenshot from the sidebar of the table view for [`deake005`](`r sc_browse_database("deake005")`) which has a similar (but not identical) structure.
+For comparison, here is a screenshot from the sidebar of the table view for [`deake005`](%60r%20sc_browse_database(%22deake005%22)%60) which has a similar (but not identical) structure.
 
-```{r,fig.align='center', out.width='70%', echo=FALSE}
+```{r,fig.align='center', out.width='70%', echo=FALSE, fig.alt="table_view.png"}
 knitr::include_graphics("img/table_view.png")
 ```
 
-`my_db_info` can be used in a similar fashion as `my_catalogue`
-to obtain details about the resources in the tree. For example, the
-`VALUESET` with the label "Gender" can be viewed like this.
+`my_db_info` can be used in a similar fashion as `my_catalogue` to obtain details about the resources in the tree. For example, the `VALUESET` with the label "Gender" can be viewed like this.
 
 ```{r}
 my_db_info$`Demographic Characteristics`
@@ -139,23 +129,18 @@ The leafs of database schemas are mostly of type `VALUE` and `MEASURE`.
 
 ## Data Structure of sc_schema Objects
 
-As shown above, `sc_schema` objects have a tree like structure.
-Each `sc_schema` object has `id`, `label`, `location` and `type` as the last four entries
+As shown above, `sc_schema` objects have a tree like structure. Each `sc_schema` object has `id`, `label`, `location` and `type` as the last four entries
 
 ```{r}
 str(tail(my_db_info$`Demographic Characteristics`, 4))
 str(tail(my_catalogue$Statistics, 4))
 ```
 
-Schema objects can have an arbitrary amount of children.
-Children are always of type `sc_schema`.
-`x$type` contains the type of the schema object.
-A complete list of schema types is available in the [API reference](https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/schema-endpoint).
+Schema objects can have an arbitrary amount of children. Children are always of type `sc_schema`. `x$type` contains the type of the schema object. A complete list of schema types is available in the [API reference](https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/schema-endpoint).
 
 ## Other Resources
 
-Information about resources other than databases and the catalog can
-be obtained by passing the resource id to `sc_schema()`.
+Information about resources other than databases and the catalog can be obtained by passing the resource id to `sc_schema()`.
 
 ```{r, collapse=TRUE}
 (id <- my_db_info$Factors$id)
@@ -163,19 +148,14 @@ group_info <- sc_schema(id)
 group_info
 ```
 
-Note that the tree returned only has depth 1, i.e. the child nodes of measures are not available in `group_info`. 
-However, ids of the child nodes can be obtained with `$id`.
-These ids can be used to send another request to the `/schema` endpoint
+Note that the tree returned only has depth 1, i.e. the child nodes of measures are not available in `group_info`. However, ids of the child nodes can be obtained with `$id`. These ids can be used to send another request to the `/schema` endpoint
 
 ```{r, collapse=TRUE}
 (id <- group_info$`Average hours usually worked per week`$id)
 measure_info <- sc_schema(id)
 ```
 
-Alternatively, use the `depth` parameter of `sc_schema()`.
-This will make sure that the entries of the tree are returned recursively up to a certain level.
-For example, `depth = "VALUESET"` will use the same level of recursion as `sc_schema_db()`.
-See `?sc_schema` for all available options of the `depth` parameter.
+Alternatively, use the `depth` parameter of `sc_schema()`. This will make sure that the entries of the tree are returned recursively up to a certain level. For example, `depth = "VALUESET"` will use the same level of recursion as `sc_schema_db()`. See `?sc_schema` for all available options of the `depth` parameter.
 
 ```{r}
 group_info <- my_db_info$`Demographic Characteristics`$id %>%
@@ -184,8 +164,7 @@ group_info <- my_db_info$`Demographic Characteristics`$id %>%
 
 ## Printing with data.tree
 
-If the `{data.tree}` package is installed, it can be used for an alternative
-print method.
+If the `{data.tree}` package is installed, it can be used for an alternative print method.
 
 ```{r}
 print(group_info, tree = TRUE)
@@ -199,8 +178,7 @@ options(STATcubeR.print_tree = TRUE)
 
 ## Flatten a Schema
 
-The function `sc_schema_flatten()` can be used to turn responses from the `/schema` endpoint into `data.frame`s.
-The following call extracts all databases from the catalog and displays their ids and labels.
+The function `sc_schema_flatten()` can be used to turn responses from the `/schema` endpoint into `data.frame`s. The following call extracts all databases from the catalog and displays their ids and labels.
 
 ```{r}
 sc_schema_catalogue() %>%
@@ -211,21 +189,16 @@ The string `"DATABASE"` in the previous example acts as a filter to make sure on
 
 If `"DATABASE"` is replaced with `"TABLE"`, all tables will be displayed. This includes
 
-* All the default-tables on STATcube.
-  Most databases have an associated default table.
-* All saved tables for the current user as described in the `r ticle("sc_table_saved")`.
-* Other saved tables.
-  Some databases do not only provide a default table but also several other tables.
-  See [this database on transport statistics](https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=degvk_fahrt_2010) as an example for database with more than one associated table
-
+-   All the default-tables on STATcube. Most databases have an associated default table.
+-   All saved tables for the current user as described in the `r ticle("sc_table_saved")`.
+-   Other saved tables. Some databases do not only provide a default table but also several other tables. See [this database on transport statistics](https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=degvk_fahrt_2010) as an example for database with more than one associated table
 
 ```{r}
 sc_schema_catalogue() %>%
   sc_schema_flatten("TABLE")
 ```
 
-`sc_schema_flatten()` can also be used with `sc_schema_db()` and `sc_schema()`.
-The following example shows all available measures from the [economic trend monitor database](https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=dekonjunkturmonitor).
+`sc_schema_flatten()` can also be used with `sc_schema_db()` and `sc_schema()`. The following example shows all available measures from the [economic trend monitor database](https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=dekonjunkturmonitor).
 
 ```{r}
 sc_schema_db("dekonjunkturmonitor") %>%
@@ -234,10 +207,8 @@ sc_schema_db("dekonjunkturmonitor") %>%
 
 ## Further Reading
 
-* Schemas can be used to construct table requests as described in 
-  the `r ticle("sc_table_custom")`
-* See the `r ticle("sc_table_saved")` to get access to the data for table
-  nodes in the schema.
+-   Schemas can be used to construct table requests as described in the `r ticle("sc_table_custom")`
+-   See the `r ticle("sc_table_saved")` to get access to the data for table nodes in the schema.
 
 ```{js, echo=FALSE}
 $('[href^="https://portal.statistik.at/statistik.at/ext/statcube"]').attr("target", "_blank");

@@ -4,11 +4,13 @@
 #' consisting of `structure.xml` with metadata and `dataset.xml` for the
 #' values.
 #'
+#' @note [sdmx_table()] should be treated as experimental for now.
+#'
 #' @param file a "sdmx archive" file that was downloaded from STATcube.
 #' @return An object of class `sc_data`
-#' @keywords experimental
+#' @keywords internal
 #' @examples
-#' x <- "sdmx/dedemo.zip" %>% system.file(package = "STATcubeR") %>% sdmx_table()
+#' x <- system.file("sdmx/dedemo.zip", package = "STATcubeR") %>% sdmx_table()
 #' # print and tabulate
 #' x
 #' x$tabulate()

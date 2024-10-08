@@ -135,4 +135,5 @@ reference:
   - 'sc_json_get_server'
   - 'sc_last_error'
   - 'sc_cache'
+  - 'sdmx_table'
 

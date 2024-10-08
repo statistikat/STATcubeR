@@ -134,7 +134,7 @@ We can see in [the GUI](`r sc_browse_database("detouextregsai")`) that "Country 
 If we look at the table above, only the top level of the hierarchy (Austria, Germany, other) is used.
 This can be changed by providing the the value-set that corresponds to the more granular classification of "country of origin"
 
-```{r,fig.align='center', out.width='50%', echo=FALSE}
+```{r,fig.align='center', out.width='50%', echo=FALSE, fig.alt="hierarchical_classification.png"}
 knitr::include_graphics("img/hierarchical_classification.png")
 ```
 
