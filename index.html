@@ -73,7 +73,7 @@
 </div>
 <!-- badges: start -->
 
-<p>R client for all things <a href="https://statcube.at" class="external-link">STATcube</a>. Get data from the STATcube REST API or via the open government data portal at <a href="https://data.statistik.gv.at" class="external-link uri">https://data.statistik.gv.at</a>. <a href="https://statistikat.github.io/STATcubeR">STATcubeR</a> makes it easy to include both those datasources into your R projects.</p>
+<p>R client for all things <a href="https://statcube.at" class="external-link">STATcube</a>. Get data from the STATcube REST API or via the open government data portal at <a href="https://data.statistik.gv.at" class="external-link uri">https://data.statistik.gv.at</a>. <a href="https://statistikat.github.io/STATcubeR/">STATcubeR</a> makes it easy to include both those datasources into your R projects.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -92,7 +92,7 @@ Alternative: Install from tar.gz archives
 </h2>
 <p>To import datasets from <a href="https://data.statistik.gv.at" class="external-link uri">https://data.statistik.gv.at</a>, pass the dataset id to the <code><a href="reference/od_table.html">od_table()</a></code> function. For example, OGD data about the <a href="https://data.statistik.gv.at/web/meta.jsp?dataset=OGD_bevstandjbab2002_BevStand_2020" class="external-link">Austrian population in 2020</a> can be accessed as follows.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://statistikat.github.io/STATcubeR">STATcubeR</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://statistikat.github.io/STATcubeR/">STATcubeR</a></span><span class="op">)</span></span>
 <span><span class="va">population</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/od_table.html">od_table</a></span><span class="op">(</span><span class="st">"OGD_bevstandjbab2002_BevStand_2020"</span><span class="op">)</span></span>
 <span><span class="va">population</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code># A STATcubeR tibble: 392,508 x 5
