@@ -1,6 +1,6 @@
 Type: Package
 Package: STATcubeR
-Title: R interface for the STATcube REST API and Open Government Data
+Title: R Interface for the STATcube REST API and Open Government Data
 Version: 0.5.2
 Date: 2024-10-07
 Authors@R: c(
@@ -14,7 +14,7 @@ Description: Import data from the STATcube REST API or from the open data
     requests as well as parsing utilities for data which originates from
     STATcube.
 License: GPL (>= 2)
-URL: https://statistikat.github.io/STATcubeR,
+URL: https://statistikat.github.io/STATcubeR/,
     https://github.com/statistikat/STATcubeR
 BugReports: https://github.com/statistikat/STATcubeR/issues
 Imports: 
