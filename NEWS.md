@@ -1,4 +1,4 @@
-# Upcoming (1.0.0)
+# STATcubeR 1.0.0
 
 * First Version for CRAN
 * Update print methods with the `{tibble}` package (#32)
