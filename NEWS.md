@@ -2,6 +2,7 @@
 
 * First Version for CRAN
 * Update print methods with the `{tibble}` package (#32)
+* New exported function `sdmx_table()` (#27)
 * Simplifications and Code-refacturing
 
 # STATcubeR 0.5.2
