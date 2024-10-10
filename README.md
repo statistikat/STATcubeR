@@ -1,9 +1,3 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
 # STATcubeR <img src="man/figures/logo2.svg" align="right" width="120"/>
 
 <!-- badges: start -->
