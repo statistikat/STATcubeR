@@ -240,7 +240,7 @@ To use <code>data.tree</code> printing permanently, use</p>
 <span class="r-in"><span><span class="co"># access the raw response from httr::GET()</span></span></span>
 <span class="r-in"><span><span class="va">my_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">db_schema</span>, <span class="st">"response"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">my_response</span><span class="op">$</span><span class="va">headers</span><span class="op">$</span><span class="va">date</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Thu, 10 Oct 2024 11:39:19 GMT"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Thu, 10 Oct 2024 12:00:30 GMT"</span>
 <span class="r-in"><span><span class="va">my_content</span> <span class="op">&lt;-</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html" class="external-link">content</a></span><span class="op">(</span><span class="va">my_response</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">my_content</span><span class="op">$</span><span class="va">label</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Working hours (Labour Force Survey)"</span>
