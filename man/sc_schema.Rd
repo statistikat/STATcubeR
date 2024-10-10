@@ -56,8 +56,8 @@ as well as metadata about specific databases.
 The main function \code{sc_schema()} can be used with any resource id.
 \code{\link[=sc_schema_catalogue]{sc_schema_catalogue()}} and \code{\link[=sc_schema_db]{sc_schema_db()}} are very simple
 wrapper functions around \code{\link[=sc_schema]{sc_schema()}} and are comparable to the
-\href{https://portal.statistik.at/statistik.at/ext/statcube/jsf/dataCatalogueExplorer.xhtml}{catalogue explorer} or the
-\href{https://portal.statistik.at/statistik.at/ext/statcube/opendatabase?id=deake005}{table view} of the STATcube GUI.
+catalogue explorer or the
+table view of the STATcube GUI.
 
 The responses of the API are tree-like data structures which
 are wrapped into a class called \code{sc_schema} to simplify the usage in R.
@@ -115,9 +115,9 @@ my_content <- httr::content(my_response)
 my_content$label
 
 # print with data.tree
-"str:group:deake005:X_B1" \%>\%
-  sc_schema(depth = "valueset") \%>\%
-  print(tree = TRUE)
+
+ treeX_B1 <- sc_schema("str:group:deake005:X_B1", depth = "valueset")
+ print(treeX_B1, tree = TRUE)
 \dontshow{\}) # examplesIf}
 }
 \concept{functions for /schema}

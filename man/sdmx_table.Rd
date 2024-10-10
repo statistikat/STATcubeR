@@ -21,7 +21,8 @@ values.
 \code{\link[=sdmx_table]{sdmx_table()}} should be treated as experimental for now.
 }
 \examples{
-x <- system.file("sdmx/dedemo.zip", package = "STATcubeR") \%>\% sdmx_table()
+
+x <- sdmx_table(system.file("sdmx/dedemo.zip", package = "STATcubeR"))
 # print and tabulate
 x
 x$tabulate()
@@ -30,6 +31,6 @@ nuts2 <- x$field("C-B00-0")
 data.frame(label = nuts2$label,
   parent = nuts2$label[match(nuts2$parent, nuts2$code)])
 # extract more data from the raw xml
-x$xml$meta \%>\% xml2::xml_find_first(".//Name")
+xml2::xml_find_first(x$xml$meta, ".//Name")
 }
 \keyword{internal}

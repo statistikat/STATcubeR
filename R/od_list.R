@@ -33,20 +33,20 @@ od_list <- function(unique = TRUE, server = c("ext", "red")) {
   html <- httr::content(r, encoding = "UTF-8")
 
   # main-groups
-  grp <- html %>%
-    xml2::xml_find_all('//*[@class="panel-heading"]') %>%
-    xml2::xml_find_all(".//a") %>%
+  grp <- html |>
+    xml2::xml_find_all('//*[@class="panel-heading"]') |>
+    xml2::xml_find_all(".//a") |>
     xml2::xml_text()
 
-  el <- html %>%
-    xml2::xml_find_all(".//h4") %>%
+  el <- html |>
+    xml2::xml_find_all(".//h4") |>
     xml2::xml_find_all(".//a")
 
   # ids
   df <- data_frame(
     category = rep("NA", length(el)),
-    id = el %>% xml2::xml_attr("aria-label"),
-    label = el %>% xml2::xml_text()
+    id = el |> xml2::xml_attr("aria-label"),
+    label = el |> xml2::xml_text()
   )
 
   ignored_labels <- c("[Alle \u00f6ffnen]", "[Alle schlie\u00dfen]",
@@ -106,12 +106,12 @@ od_list <- function(unique = TRUE, server = c("ext", "red")) {
 #' @examples
 #' catalogue <- od_catalogue()
 #' catalogue
-#' catalogue$update_frequency %>% table()
-#' catalogue$categorization %>% table()
+#' table(catalogue$update_frequency)
+#' table(catalogue$categorization)
 #' catalogue[catalogue$categorization == "Gesundheit", 1:4]
 #' catalogue[catalogue$measures >= 70, 1:3]
 #' catalogue$json[[1]]
-#' catalogue$database %>% head()
+#' head(catalogue$database)
 #' @export
 od_catalogue <- function(server = "ext", local = TRUE) {
   if (local) {
@@ -138,16 +138,17 @@ as_df_jsons <- function(jsons) {
     as.POSIXct(x, format = "%Y-%m-%dT%H:%M:%OS")
   }
 
-  descs <- sapply(jsons, function(x) x$extras$attribute_description) %>% paste0(";", .)
+  descs <- paste0(";", sapply(jsons, function(x) x$extras$attribute_description))
+  tmpfn <- function(x) {x[!grepl("statcube", x)] <- NA_character_; x}
   out <- data_frame(
     title = sapply(jsons, function(x) x$title),
-    measures = gregexpr(";F-", descs) %>% sapply(length),
-    fields = gregexpr(";C-", descs) %>% sapply(length),
+    measures = sapply(gregexpr(";F-", descs),length),
+    fields = sapply(gregexpr(";C-", descs),length),
     modified = sapply(jsons, function(x) x$extras$metadata_modified),
     created = sapply(jsons, function(x) x$resources[[1]]$created),
     id = sapply(jsons, function(x) x$resources[[1]]$name),
-    database = sapply(jsons, function(x) x$extras$metadata_linkage[[1]]) %>%
-      (function(x) {x[!grepl("statcube", x)] <- NA_character_; x}) %>% strsplit("?id=") %>%
+    database = sapply(jsons, function(x) x$extras$metadata_linkage[[1]]) |>
+      tmpfn() |> strsplit("?id=") |>
       sapply(function(x) x[2]),
     title_en = sapply(jsons, function(x) x$extras$en_title_and_desc),
     notes = sapply(jsons, function(x) x$notes),

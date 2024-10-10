@@ -46,7 +46,7 @@ sc_table_class <- R6::R6Class(
 
       if (is.null(json) && is.null(file))
         json <- jsonlite::toJSON(
-          content$query, auto_unbox = TRUE, pretty = TRUE) %>% toString()
+          content$query, auto_unbox = TRUE, pretty = TRUE) |> toString()
       private$json_content <- sc_json_class$new(json, file, add_totals)
 
       meta <- sc_meta(content)
@@ -99,8 +99,8 @@ sc_table_class <- R6::R6Class(
     },
     #' @description open the dataset in a browser
     browse = function() {
-      sc_json_get_server(self$json$content) %>% sc_url_gui() %>%
-        paste0("openinfopage?id=", self$meta$source$code) %>% sc_url()
+      sc_json_get_server(self$json$content) |> sc_url_gui() |>
+        paste0("openinfopage?id=", self$meta$source$code) |> sc_url()
     },
     #' @description add a second language to the dataset
     #' @param language a language to add. `"en"` or `"de"`.
@@ -216,7 +216,7 @@ sc_table <- function(json, language = NULL, add_totals = TRUE, key = NULL,
   both <- language == "both"
   if (both)
     language <- "de"
-  res <- sc_table_json_post(json$string, language, add_totals, key) %>%
+  res <- sc_table_json_post(json$string, language, add_totals, key) |>
     sc_table_class$new(json$string, json$file, add_totals)
   if (both)
     res$add_language("en", key)

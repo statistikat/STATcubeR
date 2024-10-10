@@ -14,12 +14,12 @@ get_item_code <- function(item, split_minus = FALSE) {
     return("SC_TOTAL")
   stopifnot(item$type == "RecodeItem")
   uris <- item$uris
-  codes <- as.character(uris) %>%
-    strsplit(":") %>%
+  codes <- as.character(uris) |>
+    strsplit(":") |>
     lapply(utils::tail, 1)
   if (split_minus)
-    codes <- as.character(codes) %>%
-    strsplit("-") %>%
+    codes <- as.character(codes) |>
+    strsplit("-") |>
     lapply(utils::tail(1))
   paste(codes, collapse = ";")
 }
@@ -30,11 +30,11 @@ summarize_annotations <- function(content, i) {
     return("")
   freq <- table(unlist(annotations))
   sapply(seq_along(freq), function(i) { paste0(names(freq)[i], "(", as.numeric(freq)[i],
-    ")")}) %>% paste(collapse = ", ")
+    ")")}) |> paste(collapse = ", ")
 }
 
 sc_meta <- function(content) {
-  measure_info <- lapply(seq_along(content$measures), function(i) {
+  measure_info <- do.call(rbind,lapply(seq_along(content$measures), function(i) {
     measure <- content$measures[[i]]
     data_frame(
       label = measure$label,
@@ -44,9 +44,9 @@ sc_meta <- function(content) {
       annotations = summarize_annotations(content, i),
       NAs = sum(unlist(content$cubes[[i]]$values) == 0)
     )
-  }) %>% do.call(rbind, .)
+  }))
 
-  field_info <- lapply(content$fields, function(field) {
+  field_info <- do.call(rbind,lapply(content$fields, function(field) {
     has_total <- field$items[[length(field$items)]]$type == "Total"
     data_frame(
       label = field$label,
@@ -55,7 +55,7 @@ sc_meta <- function(content) {
       type = sc_field_type(field),
       total_code = ifelse(has_total, "SC_TOTAL", NA_character_)
     )
-  }) %>% do.call(rbind, .)
+  }))
   db_info <- data_frame(
     label = content$database$label,
     code = content$database$id
@@ -64,12 +64,12 @@ sc_meta <- function(content) {
 }
 
 sc_meta_field <- function(field) {
-  res <- lapply(field$items, function(item) {
+  res <- do.call(rbind,lapply(field$items, function(item) {
     data_frame(
       label = paste(item$labels, collapse = ";"),
       code = get_item_code(item)
     )
-  }) %>% do.call(rbind, .)
+  }))
   res$parsed <- sc_field_parse(field)
   res
 }

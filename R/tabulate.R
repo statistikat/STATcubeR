@@ -94,7 +94,7 @@
 #' ######################### STATcube REST API #################################
 #'
 #' @examplesIf sc_key_exists()
-#' table_tourism <- sc_example("accomodation.json") %>% sc_table("de")
+#' table_tourism <- sc_table(sc_example("accomodation.json"), "de")
 #'
 #' table_tourism$tabulate()
 #' table_tourism$tabulate("Saison/Tourismusmonat")
@@ -103,11 +103,11 @@
 #'
 #' ## TODO: param annotations does not work currently
 #' if (FALSE) {
-#'   table_trade <- sc_example("foreign_trade.json") %>% sc_table("de")
+#'   table_trade <- sc_table(sc_example("foreign_trade.json"), "de")
 #'   tt <- sc_tabulate(table_trade, "Berichtsjahr", "Import, Wert in Euro",
 #'                     annotations = TRUE)
 #'   tt
-#'   tt[['Import, Wert in Euro_a']] %>% str()
+#'   str(tt[['Import, Wert in Euro_a']])
 #' }
 #' @export
 sc_tabulate <- function(table, ..., .list = NULL, raw = FALSE,

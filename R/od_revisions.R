@@ -41,15 +41,15 @@ print.od_revisions <- function(x, ...) {
   since <- attr(x, "since")
   response <- attr(x, "response")
   if (!is.null(since))
-    cli::format_inline("{.strong {length(x)}} changes between
+    message(cli::format_inline("{.strong {length(x)}} changes between
                 {.timestamp {attr(x, 'since')}} and
-                {.timestamp {response$date}}") %>% cat()
+                {.timestamp {response$date}}"))
   else
-    cli::format_inline("{.strong {length(x)}} datasets are available ",
-                "({.timestamp {response$date}})\n") %>% cat()
+    message(cli::format_inline("{.strong {length(x)}} datasets are available ",
+                "({.timestamp {response$date}})\n"))
   if (length(x) > 0) {
     y <- cli::cli_vec(x, list("vec-trunc" = 3))
-    cli::format_inline("{.strong ids}: {.emph {y}}") %>% cat()
+    message(cli::format_inline("{.strong ids}: {.emph {y}}"))
   }
   invisible(x)
 }

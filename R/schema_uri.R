@@ -20,16 +20,14 @@ sc_schema_url <- function(uri) {
   url <- rep(NA_character_, length(uri))
   is_database <- grep("^str:database", uri)
   if (length(is_database) > 0)
-    url[is_database] <- uri[is_database] %>%
-    sub("^str:database:", "", .) %>%
-    sc_browse_database(server = "ext") %>%
+    url[is_database] <-  sub("^str:database:", "", uri[is_database]) |>
+    sc_browse_database(server = "ext") |>
     as.character()
   is_table <- grepl("^str:table", uri) &
     !grepl("^([0-9a-f-])+$", sub("str:table:", "", uri))
   if (length(is_table) > 0)
-    url[is_table] <- uri[is_table] %>%
-    sub("^str:table:", "", .) %>%
-    sc_browse_table(server = "ext") %>%
+    url[is_table] <- sub("^str:table:", "", uri[is_table]) |>
+    sc_browse_table(server = "ext") |>
     as.character()
   url
 }
@@ -43,7 +41,7 @@ pillar_shaft.sc_schema_uri <- function(x, ...) {
   uri <- vctrs::field(x, "uri")
   if (cli::ansi_hyperlink_types()$run) {
     run <- sc_schema_run(uri)
-    template <- cli::format_inline("{.run [%s](%s)}") %>% cli::style_underline()
+    template <- cli::format_inline("{.run [%s](%s)}") |> cli::style_underline()
     formatted <- sprintf(template, run, formatted)
     short_formatted <- sprintf(template, run, short_formatted)
   } else if (cli::ansi_has_hyperlink_support()) {

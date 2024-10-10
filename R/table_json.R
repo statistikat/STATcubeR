@@ -39,7 +39,7 @@ sc_json_class <- R6::R6Class(
 
 #' @export
 as.character.sc_json <- function(x, ..., collapse = "\n") {
-  x$content %>% paste(..., collapse = collapse)
+  paste(x$content,..., collapse = collapse)
 }
 
 sc_json_add_totals <- function(json_content) {
@@ -57,7 +57,7 @@ sc_json_add_totals <- function(json_content) {
 #'   json request
 #' @param json path to a request json
 #' @examples
-#' sc_example('accomodation') %>% sc_json_get_server()
+#' sc_json_get_server(sc_example('accomodation'))
 #' @export
 sc_json_get_server <- function(json) {
   parsed <- jsonlite::fromJSON(json, simplifyVector = FALSE)
@@ -80,15 +80,15 @@ sc_table_json_post <- function(json, language = NULL,
   language <- sc_language(language)
   server <- sc_json_get_server(json)
   if (add_totals)
-    json <- json %>%
-      jsonlite::fromJSON(simplifyVector = FALSE) %>%
-      sc_json_add_totals() %>%
+    json <- json |>
+      jsonlite::fromJSON(simplifyVector = FALSE) |>
+      sc_json_add_totals() |>
       jsonlite::toJSON(pretty = TRUE, auto_unbox = TRUE)
   sc_with_cache(c("sc_table_json_post", json, language, add_totals), function() {
     httr::POST(
       url = paste0(base_url(server), "/table"),
       body = json,
       config = sc_headers(language, key, server)
-    ) %>% sc_check_response()
+    ) |> sc_check_response()
   })
 }

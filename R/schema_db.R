@@ -25,9 +25,9 @@
 #' my_content$label
 #'
 #' # print with data.tree
-#' "str:group:deake005:X_B1" %>%
-#'   sc_schema(depth = "valueset") %>%
-#'   print(tree = TRUE)
+#'
+#'  treeX_B1 <- sc_schema("str:group:deake005:X_B1", depth = "valueset")
+#'  print(treeX_B1, tree = TRUE)
 #' @describeIn sc_schema is similar to the
 #'   [table view](`r sc_browse_database('deake005', open = TRUE)`)
 #'   of the STATcube GUI and gives information about all measures and

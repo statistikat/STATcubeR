@@ -88,13 +88,11 @@ od_table_local_paths <- function() {
   id <- json$resources[[1]]$name
   stopifnot(is.character(id), length(id) == 1)
   if (json$extras$metadata_modified == "$PublDateTime$") {
-    readLines(json_file) %>%
-      gsub("\\$PublDateTime\\$", json$extras$begin_datetime, .) %>%
-      writeLines(json_file)
+    writeLines(gsub("\\$PublDateTime\\$", json$extras$begin_datetime, readLines(json_file)), json_file)
     json <- jsonlite::read_json(json_file)
   }
-  timestamps <- sapply(json$resources, function(x) x$last_modified) %>%
-    as.POSIXct(format = "%Y-%m-%dT%H:%M:%OS")
+  timestamps <- as.POSIXct(sapply(json$resources, function(x) x$last_modified),
+                           format = "%Y-%m-%dT%H:%M:%OS")
   stopifnot(all(timestamps <= Sys.time()))
   paths <- list(
     classifications = dir(file.path(extracted, "classifications"), full.names = TRUE),

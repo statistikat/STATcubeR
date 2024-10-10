@@ -36,6 +36,6 @@ the response content and the response status
 try(sc_table_saved("invalid_id"))
 last_error <- sc_last_error()
 httr::content(last_error)
-sc_last_error_parsed() \%>\% str()
+str(sc_last_error_parsed())
 \dontshow{\}) # examplesIf}
 }
