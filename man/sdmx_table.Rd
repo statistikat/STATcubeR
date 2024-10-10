@@ -17,7 +17,11 @@ Function that reads STATcube data from an sdmx archive - a zip file
 consisting of \code{structure.xml} with metadata and \code{dataset.xml} for the
 values.
 }
+\note{
+\code{\link[=sdmx_table]{sdmx_table()}} should be treated as experimental for now.
+}
 \examples{
+
 x <- sdmx_table(system.file("sdmx/dedemo.zip", package = "STATcubeR"))
 # print and tabulate
 x
@@ -29,4 +33,4 @@ data.frame(label = nuts2$label,
 # extract more data from the raw xml
 xml2::xml_find_first(x$xml$meta, ".//Name")
 }
-\keyword{experimental}
+\keyword{internal}
