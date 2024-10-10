@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.5.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -127,7 +127,7 @@ error.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/other_endpoints.html">sc_info</a></span><span class="op">(</span>key <span class="op">=</span> <span class="st">"wrong key"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Error: Client error: (401) Unauthorized ...</span></span>
-<span><span class="fu"><a href="../reference/sc_last_error.html">sc_last_error_parsed</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/sc_last_error.html">sc_last_error_parsed</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><code><a href="../reference/sc_last_error.html">sc_last_error()</a></code> returns the same response but in the
 format returned by <code><a href="https://httr.r-lib.org/reference/GET.html" class="external-link">httr::GET()</a></code>. It is more flexible than
 <code><a href="../reference/sc_last_error.html">sc_last_error_parsed()</a></code> but requires you to parse the object
@@ -245,7 +245,7 @@ showcase this, <code><a href="../reference/sc_table.html">sc_table()</a></code> 
 that are used with <code><a href="../reference/sc_table_custom.html">sc_table_custom()</a></code> will throw the same
 error.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="st">"request.json"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span>sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="st">"request.json"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span>sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">{</span></span>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>  <span class="dt">"database"</span><span class="fu">:</span> <span class="st">"str:database:detouextregsai"</span><span class="fu">,</span></span>
 <span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>  <span class="dt">"measures"</span><span class="fu">:</span> <span class="ot">[</span> <span class="st">"str:measure:detouextregsai:F-DATA1:INVALID"</span> <span class="ot">]</span><span class="fu">,</span></span>
@@ -308,10 +308,10 @@ one of our <a href="https://shiny.posit.co/" class="external-link">shiny</a> app
 <code class="sourceCode R"><span><span class="fu">shiny</span><span class="fu">::</span><span class="fu">observeEvent</span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">button_load_data</span>, <span class="op">{</span></span>
 <span>  <span class="va">table</span> <span class="op">&lt;-</span> <span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">STATcubeR</span><span class="fu">::</span><span class="fu"><a href="../reference/sc_table.html">sc_table_saved</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">id</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">inherits</a></span><span class="op">(</span><span class="va">table</span>, <span class="st">"try-error"</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="fu">STATcubeR</span><span class="fu">::</span><span class="fu"><a href="../reference/sc_last_error.html">sc_last_error_parsed</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu">STATcubeR</span><span class="fu">::</span><span class="fu"><a href="../reference/sc_last_error.html">sc_last_error_parsed</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>    <span class="fu">myApp</span><span class="fu">::</span><span class="fu">show_error_prompt</span><span class="op">(</span><span class="op">)</span></span>
 <span>  <span class="kw">else</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">table</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">table</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>    <span class="fu">myApp</span><span class="fu">::</span><span class="fu">process_data</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
 <p><code><a href="https://rdrr.io/r/base/try.html" class="external-link">try()</a></code> will turn errors into “error-objects” of class

@@ -11,7 +11,7 @@ values."><meta property="og:image" content="https://statistikat.github.io/STATcu
 
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.5.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,7 +83,8 @@ values.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"sdmx/dedemo.zip"</span>, package <span class="op">=</span> <span class="st">"STATcubeR"</span><span class="op">)</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">sdmx_table</span><span class="op">(</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">sdmx_table</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"sdmx/dedemo.zip"</span>, package <span class="op">=</span> <span class="st">"STATcubeR"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># print and tabulate</span></span></span>
 <span class="r-in"><span><span class="va">x</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Communes (Demo)</span></span>
@@ -93,7 +94,7 @@ values.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #000087;">Fields</span>: Time, Einwohnerstufen, Bundesland (NUTS 2-Einheit)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #000087;">Downloaded</span>: <span style="color: #5F0087;">[2023-04-12 11:04:09]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">0.5.2</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">1.0.0</span></span>
 <span class="r-in"><span><span class="va">x</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A STATcubeR tibble: 16 x 5</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Time  Einwohnerstufen Bundesland (NUTS 2-E…¹ Ordinary expenditure…²</span>
@@ -127,7 +128,7 @@ values.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3 Eisenstadt urban area &lt;101&gt; Burgenland &lt;AT11&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4       Rust urban area &lt;102&gt; Burgenland &lt;AT11&gt;</span>
 <span class="r-in"><span><span class="co"># extract more data from the raw xml</span></span></span>
-<span class="r-in"><span><span class="va">x</span><span class="op">$</span><span class="va">xml</span><span class="op">$</span><span class="va">meta</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">xml2</span><span class="fu">::</span><span class="fu"><a href="http://xml2.r-lib.org/reference/xml_find_all.html" class="external-link">xml_find_first</a></span><span class="op">(</span><span class="st">".//Name"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">xml2</span><span class="fu">::</span><span class="fu"><a href="http://xml2.r-lib.org/reference/xml_find_all.html" class="external-link">xml_find_first</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">xml</span><span class="op">$</span><span class="va">meta</span>, <span class="st">".//Name"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> {xml_node}</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &lt;Name lang="de"&gt;</span>
 </code></pre></div>

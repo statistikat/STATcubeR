@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.5.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -311,7 +311,7 @@ tree are returned recursively up to a certain level. For example,
 <code><a href="../reference/sc_schema.html">sc_schema_db()</a></code>. See <code><a href="../reference/sc_schema.html">?sc_schema</a></code> for all
 available options of the <code>depth</code> parameter.</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">group_info</span> <span class="op">&lt;-</span> <span class="va">my_db_info</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span><span class="op">$</span><span class="va">id</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="va">group_info</span> <span class="op">&lt;-</span> <span class="va">my_db_info</span><span class="op">$</span><span class="va">`Demographic Characteristics`</span><span class="op">$</span><span class="va">id</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="../reference/sc_schema.html">sc_schema</a></span><span class="op">(</span>depth <span class="op">=</span> <span class="st">"valueset"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -368,7 +368,7 @@ responses from the <code>/schema</code> endpoint into
 <code>data.frame</code>s. The following call extracts all databases from
 the catalog and displays their ids and labels.</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_schema.html">sc_schema_catalogue</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_schema.html">sc_schema_catalogue</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="../reference/sc_schema.html">sc_schema_flatten</a></span><span class="op">(</span><span class="st">"DATABASE"</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A data frame: 660 × 2</span>
   <span style="font-weight: bold;">id</span>                               <span style="font-weight: bold;">label</span>                 
@@ -399,7 +399,7 @@ database on transport statistics</a> as an example for database with
 more than one associated table</li>
 </ul>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_schema.html">sc_schema_catalogue</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_schema.html">sc_schema_catalogue</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="../reference/sc_schema.html">sc_schema_flatten</a></span><span class="op">(</span><span class="st">"TABLE"</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A data frame: 693 × 2</span>
   <span style="font-weight: bold;">id</span>                                             <span style="font-weight: bold;">label</span>                          
@@ -415,7 +415,7 @@ more than one associated table</li>
 example shows all available measures from the <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=dekonjunkturmonitor" class="external-link">economic
 trend monitor database</a>.</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_schema.html">sc_schema_db</a></span><span class="op">(</span><span class="st">"dekonjunkturmonitor"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_schema.html">sc_schema_db</a></span><span class="op">(</span><span class="st">"dekonjunkturmonitor"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="../reference/sc_schema.html">sc_schema_flatten</a></span><span class="op">(</span><span class="st">"MEASURE"</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A data frame: 88 × 2</span>
   <span style="font-weight: bold;">id</span>                                              <span style="font-weight: bold;">label</span>                         

@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.5.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -146,8 +146,8 @@ default tables can also be loaded with
 <span><span class="co">#&gt;   worked per week</span></span>
 <span><span class="co">#&gt; <span style="color: #000087;">Fields</span>: Time section<span style="font-style: italic;"> &lt;1&gt;</span></span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2024-10-09 05:51:33]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">0.5.2</span></span></span></code></pre>
+<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2024-10-10 10:43:49]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">1.0.0</span></span></span></code></pre>
 <p>All available default tables as well as other saved tables can be
 discovered using <code><a href="../reference/sc_schema.html">sc_schema_catalogue()</a></code>. See the
 <a href="sc_schema.html" class="STATcubeR" data-tippy-content='&lt;div style="font-size: 14px; text-align: left;"&gt;
@@ -157,7 +157,7 @@ discovered using <code><a href="../reference/sc_schema.html">sc_schema_catalogue
 &lt;/div&gt;'>schema article</a>
 for more details.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_schema.html">sc_schema_catalogue</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_schema.html">sc_schema_catalogue</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu"><a href="../reference/sc_schema.html">sc_schema_flatten</a></span><span class="op">(</span><span class="st">"TABLE"</span><span class="op">)</span></span></code></pre></div>
 <pre class="r-output"><code><span style="color: #949494;"># A data frame: 693 × 2</span>
    <span style="font-weight: bold;">id</span>                                             <span style="font-weight: bold;">label</span>                         

@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.5.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -223,8 +223,8 @@ earnings survey.</p>
 <span><span class="co">#&gt; <span style="color: #000087;">Fields</span>: Sex<span style="font-style: italic;"> &lt;3&gt;</span>, Citizenship<span style="font-style: italic;"> &lt;9&gt;</span>, Region (NUTS2)<span style="font-style: italic;"> &lt;10&gt;</span>, Form of employment</span></span>
 <span><span class="co">#&gt;   <span style="font-style: italic;">&lt;7&gt;</span></span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2024-10-09 05:52:43.050868]</span></span></span>
-<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">0.5.2</span></span></span></code></pre>
+<span><span class="co">#&gt; <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2024-10-10 10:45:02.487516]</span></span></span>
+<span><span class="co">#&gt; <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">1.0.0</span></span></span></code></pre>
 <p>As we can see from the <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> output, the measures
 contain means and quartiles. Therefore, aggregating the data via
 <code><a href="https://rdrr.io/r/base/rowsum.html" class="external-link">rowsum()</a></code> is not meaningful. However, this dataset contains
@@ -277,8 +277,8 @@ aggregates of the data.</p>
 logic for selecting those rows is equivalent to the following
 <a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a> expression.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">earnings</span><span class="op">$</span><span class="va">data</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Sex</span> <span class="op">==</span> <span class="st">"Sum total"</span> <span class="op">&amp;</span> <span class="va">Citizenship</span> <span class="op">==</span> <span class="st">"Total"</span> <span class="op">&amp;</span></span>
-<span>  <span class="va">`Region (NUTS2)`</span> <span class="op">==</span> <span class="st">"Total"</span> <span class="op">&amp;</span> <span class="va">`Form of employment`</span> <span class="op">!=</span> <span class="st">"Total"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="va">earnings</span><span class="op">$</span><span class="va">data</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Sex</span> <span class="op">==</span> <span class="st">"Sum total"</span> <span class="op">&amp;</span> <span class="va">Citizenship</span> <span class="op">==</span> <span class="st">"Total"</span> <span class="op">&amp;</span></span>
+<span>  <span class="va">`Region (NUTS2)`</span> <span class="op">==</span> <span class="st">"Total"</span> <span class="op">&amp;</span> <span class="va">`Form of employment`</span> <span class="op">!=</span> <span class="st">"Total"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">Sex</span>, <span class="op">-</span><span class="va">Citizenship</span>, <span class="op">-</span><span class="va">`Region (NUTS2)`</span><span class="op">)</span></span></code></pre></div>
 <p>The <code>$tabulate()</code> method also works with more than one
 variable.</p>
@@ -375,10 +375,10 @@ variable.</p>
 in the OGD dataset. The same will happen for Citizenship &amp; Form of
 employment as well as Region &amp; Form of employment.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"Citizenship"</span>, <span class="st">"Form of employment"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"Citizenship"</span>, <span class="st">"Form of employment"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; [1] 0 7</span></span></code></pre>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"Region"</span>, <span class="st">"Form of employment"</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">earnings</span><span class="op">$</span><span class="fu">tabulate</span><span class="op">(</span><span class="st">"Region"</span>, <span class="st">"Form of employment"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; [1] 0 7</span></span></code></pre>
 </div>
 </div>

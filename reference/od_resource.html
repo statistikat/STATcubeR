@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">STATcubeR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.5.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -124,13 +124,13 @@ That is, if a json is requested, it will be reused from the cache unless the
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># get the current cache directory</span></span></span>
 <span class="r-in"><span><span class="fu">od_cache_dir</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmpGTmQ5U/STATcubeR/open_data/"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmpDBUq6P/STATcubeR/open_data/"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Get paths to cached files</span></span></span>
 <span class="r-in"><span><span class="fu">od_cache_file</span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmpGTmQ5U/STATcubeR/open_data/OGD_veste309_Veste309_1.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmpDBUq6P/STATcubeR/open_data/OGD_veste309_Veste309_1.csv"</span>
 <span class="r-in"><span><span class="fu">od_cache_file</span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span>, <span class="st">"C-A11-0"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmpGTmQ5U/STATcubeR/open_data/OGD_veste309_Veste309_1_C-A11-0.csv"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmpDBUq6P/STATcubeR/open_data/OGD_veste309_Veste309_1_C-A11-0.csv"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># get a parsed verison of the resource</span></span></span>
 <span class="r-in"><span><span class="fu">od_resource</span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span>, <span class="st">"C-A11-0"</span><span class="op">)</span></span></span>
@@ -163,12 +163,12 @@ That is, if a json is requested, it will be reused from the cache unless the
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 6 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   name                 last_modified cached    size download parsed</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> meta.json            2022-03-24    <span style="color: #555555;">05:45:26</span>  <span style="text-decoration: underline;">4</span>931       <span style="color: #BB0000;">NA</span>  0.584</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> data.csv             2022-03-24    <span style="color: #555555;">05:45:26</span>   516       <span style="color: #BB0000;">NA</span>  0.387</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> OGD_veste309_Veste3… 2022-03-24    <span style="color: #555555;">05:45:27</span>   159       <span style="color: #BB0000;">NA</span>  0.357</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> OGD_veste309_Veste3… 2022-03-24    <span style="color: #555555;">05:45:27</span>   697       <span style="color: #BB0000;">NA</span> 15.3  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> OGD_veste309_Veste3… 2022-03-24    <span style="color: #555555;">05:45:27</span>   518       <span style="color: #BB0000;">NA</span>  0.558</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> OGD_veste309_Veste3… 2022-03-24    <span style="color: #555555;">05:45:27</span>   641       <span style="color: #BB0000;">NA</span>  0.502</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> meta.json            2022-03-24    <span style="color: #555555;">10:37:49</span>  <span style="text-decoration: underline;">4</span>931       <span style="color: #BB0000;">NA</span>  0.576</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> data.csv             2022-03-24    <span style="color: #555555;">10:37:49</span>   516       <span style="color: #BB0000;">NA</span>  0.377</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> OGD_veste309_Veste3… 2022-03-24    <span style="color: #555555;">10:37:49</span>   159       <span style="color: #BB0000;">NA</span> 15.2  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> OGD_veste309_Veste3… 2022-03-24    <span style="color: #555555;">10:37:49</span>   697       <span style="color: #BB0000;">NA</span>  0.556</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> OGD_veste309_Veste3… 2022-03-24    <span style="color: #555555;">10:37:49</span>   518       <span style="color: #BB0000;">NA</span>  0.445</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> OGD_veste309_Veste3… 2022-03-24    <span style="color: #555555;">10:37:49</span>   641       <span style="color: #BB0000;">NA</span>  0.448</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: data &lt;I&lt;list&gt;&gt;</span></span>
 </code></pre></div>
     </div>
