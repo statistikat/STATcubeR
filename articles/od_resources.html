@@ -8,8 +8,8 @@
 <title>File Management • STATcubeR</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="File Management">
 <meta name="description" content="Learn how STATcubeR caches resources from the OGD portal in the local file system. Understanding this allows you to enable persistent caches and directly use cached resources.
@@ -126,7 +126,7 @@ caches all accessed resources from
 in the temporary directory of the current R session.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/od_resource.html">od_cache_dir</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; [1] "/tmp/Rtmpg08Bqo/STATcubeR/open_data/"</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; [1] "/tmp/Rtmpjvlv5d/STATcubeR/open_data/"</span></span></code></pre>
 <p>Let’s examine for example what happens when the data from the
 structure of earnings survey (SES) is requested.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -142,13 +142,13 @@ json. They are also included in the <code>od_table</code> object under
 <pre class="r-output"><code><span style="color: #949494;"># A data frame: 7 × 6</span>
   <span style="font-weight: bold;">name</span>           <span style="font-weight: bold;">last_modified</span>       <span style="font-weight: bold;">cached</span>               <span style="font-weight: bold;">size</span> <span style="font-weight: bold;">download</span> <span style="font-weight: bold;">parsed</span>
   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>
-<span style="color: #BCBCBC;">1</span> meta.json      2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-10-10 <span style="color: #555555;">12:02:36</span>  <span style="text-decoration: underline;">4</span>062     339. <span style="color: #BB0000;">NA</span>    
-<span style="color: #BCBCBC;">2</span> data.csv       2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-10-10 <span style="color: #555555;">12:02:36</span>  <span style="text-decoration: underline;">4</span>931     104.  0.748
-<span style="color: #BCBCBC;">3</span> HEADER.csv     2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-10-10 <span style="color: #555555;">12:02:36</span>   516     103.  0.438
-<span style="color: #BCBCBC;">4</span> C-A11-0.csv    2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-10-10 <span style="color: #555555;">12:02:37</span>   159     104.  0.417
-<span style="color: #BCBCBC;">5</span> C-STAATS-0.csv 2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-10-10 <span style="color: #555555;">12:02:37</span>   697     104.  0.457
-<span style="color: #BCBCBC;">6</span> C-VEBDL-0.csv  2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-10-10 <span style="color: #555555;">12:02:37</span>   518     103.  0.464
-<span style="color: #BCBCBC;">7</span> C-BESCHV-0.csv 2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-10-10 <span style="color: #555555;">12:02:37</span>   641     102.  0.455</code></pre>
+<span style="color: #BCBCBC;">1</span> meta.json      2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-11-28 <span style="color: #555555;">07:43:16</span>  <span style="text-decoration: underline;">4</span>062     348. <span style="color: #BB0000;">NA</span>    
+<span style="color: #BCBCBC;">2</span> data.csv       2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-11-28 <span style="color: #555555;">07:43:16</span>  <span style="text-decoration: underline;">4</span>931     107.  0.809
+<span style="color: #BCBCBC;">3</span> HEADER.csv     2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-11-28 <span style="color: #555555;">07:43:16</span>   516     106.  0.423
+<span style="color: #BCBCBC;">4</span> C-A11-0.csv    2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-11-28 <span style="color: #555555;">07:43:16</span>   159     106.  0.429
+<span style="color: #BCBCBC;">5</span> C-STAATS-0.csv 2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-11-28 <span style="color: #555555;">07:43:16</span>   697     106.  0.439
+<span style="color: #BCBCBC;">6</span> C-VEBDL-0.csv  2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-11-28 <span style="color: #555555;">07:43:16</span>   518     106.  0.434
+<span style="color: #BCBCBC;">7</span> C-BESCHV-0.csv 2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-11-28 <span style="color: #555555;">07:43:17</span>   641     109.  0.454</code></pre>
 <p><code>last_modified</code> tells us when the resource was changed on
 the fileserver. If a resource does not exist in the cache or if the last
 modified entry in the json is newer than the cached file, it will be
@@ -164,10 +164,10 @@ path is returned. The files use the same naming conventions as the open
 data fileserver.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/od_resource.html">od_cache_file</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; [1] "/tmp/Rtmpg08Bqo/STATcubeR/open_data/OGD_veste309_Veste309_1.csv"</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; [1] "/tmp/Rtmpjvlv5d/STATcubeR/open_data/OGD_veste309_Veste309_1.csv"</span></span></code></pre>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/od_resource.html">od_cache_file</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span>, <span class="st">"C-A11-0"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; [1] "/tmp/Rtmpg08Bqo/STATcubeR/open_data/OGD_veste309_Veste309_1_C-A11-0.csv"</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; [1] "/tmp/Rtmpjvlv5d/STATcubeR/open_data/OGD_veste309_Veste309_1_C-A11-0.csv"</span></span></code></pre>
 <p>To read files from the cache as <code>data.frame</code>s, use
 <code><a href="../reference/od_resource.html">od_resource()</a></code> with same parameters as in
 <code><a href="../reference/od_resource.html">od_cache_file()</a></code>. This will apply a special parser to the
@@ -197,7 +197,7 @@ all files belonging to the passed dataset id. We saw that
 be deleted during cleanup.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/od_resource.html">od_cache_clear</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; deleted 7 files from '/tmp/Rtmpg08Bqo/STATcubeR/open_data/'</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; deleted 7 files from '/tmp/Rtmpjvlv5d/STATcubeR/open_data/'</span></span></code></pre>
 <p>If you want to use a persistent directory like
 <code>~/.cache/STATcubeR/open_data/</code> for caching, the directory
 can be changed with <code>od_cache_dir(new)</code>.</p>
@@ -214,13 +214,13 @@ can be changed with <code>od_cache_dir(new)</code>.</p>
 <pre class="r-output"><code><span style="color: #949494;"># A data frame: 7 × 6</span>
   <span style="font-weight: bold;">name</span>           <span style="font-weight: bold;">last_modified</span>       <span style="font-weight: bold;">cached</span>               <span style="font-weight: bold;">size</span> <span style="font-weight: bold;">download</span> <span style="font-weight: bold;">parsed</span>
   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>
-<span style="color: #BCBCBC;">1</span> meta.json      2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-10-10 <span style="color: #555555;">12:02:36</span>  <span style="text-decoration: underline;">4</span>062     339. <span style="color: #BB0000;">NA</span>    
-<span style="color: #BCBCBC;">2</span> data.csv       2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-10-10 <span style="color: #555555;">12:02:36</span>  <span style="text-decoration: underline;">4</span>931     104.  0.748
-<span style="color: #BCBCBC;">3</span> HEADER.csv     2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-10-10 <span style="color: #555555;">12:02:36</span>   516     103.  0.438
-<span style="color: #BCBCBC;">4</span> C-A11-0.csv    2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-10-10 <span style="color: #555555;">12:02:37</span>   159     104.  0.417
-<span style="color: #BCBCBC;">5</span> C-STAATS-0.csv 2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-10-10 <span style="color: #555555;">12:02:37</span>   697     104.  0.457
-<span style="color: #BCBCBC;">6</span> C-VEBDL-0.csv  2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-10-10 <span style="color: #555555;">12:02:37</span>   518     103.  0.464
-<span style="color: #BCBCBC;">7</span> C-BESCHV-0.csv 2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-10-10 <span style="color: #555555;">12:02:37</span>   641     102.  0.455</code></pre>
+<span style="color: #BCBCBC;">1</span> meta.json      2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-11-28 <span style="color: #555555;">07:43:16</span>  <span style="text-decoration: underline;">4</span>062     348. <span style="color: #BB0000;">NA</span>    
+<span style="color: #BCBCBC;">2</span> data.csv       2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-11-28 <span style="color: #555555;">07:43:16</span>  <span style="text-decoration: underline;">4</span>931     107.  0.809
+<span style="color: #BCBCBC;">3</span> HEADER.csv     2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-11-28 <span style="color: #555555;">07:43:16</span>   516     106.  0.423
+<span style="color: #BCBCBC;">4</span> C-A11-0.csv    2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-11-28 <span style="color: #555555;">07:43:16</span>   159     106.  0.429
+<span style="color: #BCBCBC;">5</span> C-STAATS-0.csv 2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-11-28 <span style="color: #555555;">07:43:16</span>   697     106.  0.439
+<span style="color: #BCBCBC;">6</span> C-VEBDL-0.csv  2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-11-28 <span style="color: #555555;">07:43:16</span>   518     106.  0.434
+<span style="color: #BCBCBC;">7</span> C-BESCHV-0.csv 2022-03-24 <span style="color: #555555;">11:29:48</span> 2024-11-28 <span style="color: #555555;">07:43:17</span>   641     109.  0.454</code></pre>
 <p>We already looked at <strong><code>name</code></strong> and
 <strong><code>last_modified</code></strong>. The remaining columns can
 be interpreted as follows</p>
@@ -281,13 +281,13 @@ milliseconds.</p>
 <pre class="r-output"><code><span style="color: #949494;"># A data frame: 7 × 3</span>
   <span style="font-weight: bold;">time</span>                <span style="font-weight: bold;">file</span>                                   <span style="font-weight: bold;">downloaded</span>
   <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>
-<span style="color: #BCBCBC;">1</span> 2024-10-10 <span style="color: #949494;">12:02:36</span> OGD_veste309_Veste309_1.json                 339.
-<span style="color: #BCBCBC;">2</span> 2024-10-10 <span style="color: #949494;">12:02:36</span> OGD_veste309_Veste309_1.csv                  104.
-<span style="color: #BCBCBC;">3</span> 2024-10-10 <span style="color: #949494;">12:02:36</span> OGD_veste309_Veste309_1_HEADER.csv           103.
-<span style="color: #BCBCBC;">4</span> 2024-10-10 <span style="color: #949494;">12:02:37</span> OGD_veste309_Veste309_1_C-A11-0.csv          104.
-<span style="color: #BCBCBC;">5</span> 2024-10-10 <span style="color: #949494;">12:02:37</span> OGD_veste309_Veste309_1_C-STAATS-0.csv       104.
-<span style="color: #BCBCBC;">6</span> 2024-10-10 <span style="color: #949494;">12:02:37</span> OGD_veste309_Veste309_1_C-VEBDL-0.csv        103.
-<span style="color: #BCBCBC;">7</span> 2024-10-10 <span style="color: #949494;">12:02:37</span> OGD_veste309_Veste309_1_C-BESCHV-0.csv       102.</code></pre>
+<span style="color: #BCBCBC;">1</span> 2024-11-28 <span style="color: #949494;">07:43:16</span> OGD_veste309_Veste309_1.json                 348.
+<span style="color: #BCBCBC;">2</span> 2024-11-28 <span style="color: #949494;">07:43:16</span> OGD_veste309_Veste309_1.csv                  107.
+<span style="color: #BCBCBC;">3</span> 2024-11-28 <span style="color: #949494;">07:43:16</span> OGD_veste309_Veste309_1_HEADER.csv           106.
+<span style="color: #BCBCBC;">4</span> 2024-11-28 <span style="color: #949494;">07:43:16</span> OGD_veste309_Veste309_1_C-A11-0.csv          106.
+<span style="color: #BCBCBC;">5</span> 2024-11-28 <span style="color: #949494;">07:43:16</span> OGD_veste309_Veste309_1_C-STAATS-0.csv       106.
+<span style="color: #BCBCBC;">6</span> 2024-11-28 <span style="color: #949494;">07:43:16</span> OGD_veste309_Veste309_1_C-VEBDL-0.csv        106.
+<span style="color: #BCBCBC;">7</span> 2024-11-28 <span style="color: #949494;">07:43:17</span> OGD_veste309_Veste309_1_C-BESCHV-0.csv       109.</code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
@@ -296,7 +296,7 @@ milliseconds.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by <a href="https://github.com/GregorDeCillia" class="external-link">Gregor de Cillia</a>, <a href="https://github.com/alexkowa" class="external-link">Alexander Kowarik</a>.</p>
+  <p>Developed by <a href="https://github.com/bernhard-da" class="external-link">Bernhard Meindl</a>, <a href="https://github.com/GregorDeCillia" class="external-link">Gregor de Cillia</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
