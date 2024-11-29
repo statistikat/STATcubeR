@@ -146,6 +146,13 @@ See <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-
 
 </dl></div>
     <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+
+<ul><li><p>for <code>sc_schema()</code> and <code>sc_schema_db()</code>: an object of class <code>sc_schema</code></p></li>
+<li><p>for <code>sc_schema_flatten()</code>: a <code>data.frame</code></p></li>
+<li><p>for <code>sc_schema_catalogue()</code>: a <code>list</code></p></li>
+</ul></div>
+    <div class="section level2">
     <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a></h2>
 
 <ul><li><p><code>sc_schema_flatten()</code>: turns a <code>sc_schema</code> object into a <code>data.frame</code></p></li>
@@ -240,7 +247,7 @@ To use <code>data.tree</code> printing permanently, use</p>
 <span class="r-in"><span><span class="co"># access the raw response from httr::GET()</span></span></span>
 <span class="r-in"><span><span class="va">my_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">db_schema</span>, <span class="st">"response"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">my_response</span><span class="op">$</span><span class="va">headers</span><span class="op">$</span><span class="va">date</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Thu, 28 Nov 2024 07:41:10 GMT"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Fri, 29 Nov 2024 09:52:35 GMT"</span>
 <span class="r-in"><span><span class="va">my_content</span> <span class="op">&lt;-</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html" class="external-link">content</a></span><span class="op">(</span><span class="va">my_response</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">my_content</span><span class="op">$</span><span class="va">label</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Working hours (Labour Force Survey)"</span>

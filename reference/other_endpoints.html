@@ -95,15 +95,27 @@ the production server. External users should always use the default option <code
 
 </dl></div>
     <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+
+<ul><li><p><code>sc_info()</code>: a <code>data.frame</code> with two columns identifying possible languages</p></li>
+<li><p><code>sc_rate_limit_table()</code>, <code>sc_rate_limit_schema()</code>, <code>sc_rate_limits()</code>: a <code>list</code> with elements</p><ul><li><p><code>remaining</code>: how much requests can be sent until the rate limit is reached</p></li>
+<li><p><code>limit</code>: the number of requests allowed per hour</p></li>
+<li><p><code>reset</code>: a timestamp when the rate limit will be reset</p></li>
+</ul></li>
+<li><p><code>sc_rate_limits()</code>:</p></li>
+</ul></div>
+    <div class="section level2">
     <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a></h2>
 
 <ul><li><p><code>sc_info()</code>: returns information about all available database languages</p></li>
-<li><p><code>sc_rate_limit_table()</code>: returns a <code>3x1</code> dataframe with the following columns</p><ul><li><p><code>remaining</code> how much requests can be sent to the <code>/table</code>
-endpoint until the rate limit is reached.</p></li>
-<li><p><code>limit</code> the number of requests allowed per hour.</p></li>
-<li><p><code>reset</code> a timestamp when the rate limit will be reset.
-Usually, this should be less than one hour `after the current time.</p></li>
-</ul></li>
+<li><p><code>sc_rate_limit_table()</code>: returns a <code>list</code> with information about current requests-limits with
+respect to the <code>/table</code> endpoint. It
+also shows when the limits reset which should be less than one hour
+after the current time.</p></li>
+<li><p><code>sc_rate_limit_schema()</code>: returns a <code>list</code> with information about current requests-limits with
+respect to the <code>/schema</code> endpoint. It
+also shows when the limits reset which should be less than one hour
+after the current time.</p></li>
 <li><p><code>sc_rate_limits()</code>: gets rate limits from response headers</p></li>
 </ul></div>
 
@@ -116,18 +128,18 @@ Usually, this should be less than one hour `after the current time.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> de     Deutsch    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> en     English    </span>
 <span class="r-in"><span><span class="fu">sc_rate_limit_table</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #000087;">99</span> / <span style="color: #000087;">100</span> (Resets at <span style="color: #5F0087;">[08:40:34]</span>)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #000087;">100</span> / <span style="color: #000087;">100</span> (Resets at <span style="color: #5F0087;">[10:52:14]</span>)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">sc_rate_limit_schema</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #000087;">9997</span> / <span style="color: #000087;">10000</span> (Resets at <span style="color: #5F0087;">[08:40:34]</span>)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #000087;">9998</span> / <span style="color: #000087;">10000</span> (Resets at <span style="color: #5F0087;">[10:52:14]</span>)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">sc_rate_limits</span><span class="op">(</span><span class="fu"><a href="sc_schema.html">sc_schema</a></span><span class="op">(</span><span class="st">"str:group:deake005:X_B1"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $schema</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #000087;">9997</span> / <span style="color: #000087;">10000</span> (Resets at <span style="color: #5F0087;">[08:40:34]</span>)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #000087;">9998</span> / <span style="color: #000087;">10000</span> (Resets at <span style="color: #5F0087;">[10:52:14]</span>)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $table</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #000087;">99</span> / <span style="color: #000087;">100</span> (Resets at <span style="color: #5F0087;">[08:40:34]</span>)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #000087;">100</span> / <span style="color: #000087;">100</span> (Resets at <span style="color: #5F0087;">[10:52:14]</span>)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>

@@ -370,7 +370,7 @@ the catalog and displays their ids and labels.</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_schema.html">sc_schema_catalogue</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="../reference/sc_schema.html">sc_schema_flatten</a></span><span class="op">(</span><span class="st">"DATABASE"</span><span class="op">)</span></span></code></pre></div>
-<pre class="r-output"><code><span style="color: #949494;"># A data frame: 666 × 2</span>
+<pre class="r-output"><code><span style="color: #949494;"># A data frame: 665 × 2</span>
   <span style="font-weight: bold;">id</span>                               <span style="font-weight: bold;">label</span>                 
   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 
 <span style="color: #BCBCBC;">1</span> str:database:dedemo              Communes (Demo)       
@@ -378,7 +378,7 @@ the catalog and displays their ids and labels.</p>
 <span style="color: #BCBCBC;">3</span> str:database:depeopleml          People multilingual   
 <span style="color: #BCBCBC;">4</span> str:database:deretailml          Retail Banking ML en  
 <span style="color: #BCBCBC;">5</span> str:database:dekonjunkturmonitor Economic trend monitor
-<span style="color: #949494;"># ℹ 661 more rows</span></code></pre>
+<span style="color: #949494;"># ℹ 660 more rows</span></code></pre>
 <p>The string <code>"DATABASE"</code> in the previous example acts as a
 filter to make sure only nodes with the schema type
 <code>DATABASE</code> are included in the table.</p>
@@ -401,7 +401,7 @@ more than one associated table</li>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/sc_schema.html">sc_schema_catalogue</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu"><a href="../reference/sc_schema.html">sc_schema_flatten</a></span><span class="op">(</span><span class="st">"TABLE"</span><span class="op">)</span></span></code></pre></div>
-<pre class="r-output"><code><span style="color: #949494;"># A data frame: 699 × 2</span>
+<pre class="r-output"><code><span style="color: #949494;"># A data frame: 698 × 2</span>
   <span style="font-weight: bold;">id</span>                                             <span style="font-weight: bold;">label</span>                          
   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                          
 <span style="color: #BCBCBC;">1</span> str:table:7f851bfd-4bc0-4cc7-9013-e3c7982c9842 Monitoring                     
@@ -409,7 +409,7 @@ more than one associated table</li>
 <span style="color: #BCBCBC;">3</span> str:table:defaulttable_dedemo                  Standardtabelle / Default tabl…
 <span style="color: #BCBCBC;">4</span> str:table:E-A_nach_Bundeslaendern_dedemo       E-A_nach_Bundeslaendern_dedemo 
 <span style="color: #BCBCBC;">5</span> str:table:Jahre_nach_NUTS_dedemo               Jahre_nach_NUTS_dedemo         
-<span style="color: #949494;"># ℹ 694 more rows</span></code></pre>
+<span style="color: #949494;"># ℹ 693 more rows</span></code></pre>
 <p><code><a href="../reference/sc_schema.html">sc_schema_flatten()</a></code> can also be used with
 <code><a href="../reference/sc_schema.html">sc_schema_db()</a></code> and <code><a href="../reference/sc_schema.html">sc_schema()</a></code>. The following
 example shows all available measures from the <a href="https://portal.statistik.at/statistik.at/ext/statcube/openinfopage?id=dekonjunkturmonitor" class="external-link">economic

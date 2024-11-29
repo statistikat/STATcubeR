@@ -101,6 +101,15 @@ via environment variables?</p></dd>
 
 </dl></div>
     <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+
+<ul><li><p>for <code>sc_cache_enable()</code>, <code>sc_cache_dir()</code>: the path to the cache-directory</p></li>
+<li><p>for <code>sc_cache_disable()</code>: <code>TRUE</code></p></li>
+<li><p>for <code>sc_cache_enabled()</code>: <code>TRUE</code> if caching is enabled, <code>FALSE</code> otherwise</p></li>
+<li><p>for <code>sc_cache_files()</code>: the content of the cache associated with a file</p></li>
+<li><p>for <code>sc_cache_clear()</code>: <code>NULL</code></p></li>
+</ul></div>
+    <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Caching can be set up using environment variables. To set up a persistent cache
 for both Open Data and the REST API, the following lines in <code>.Renviron</code> can

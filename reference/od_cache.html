@@ -70,19 +70,23 @@ default) or <code>"red"</code> for the editing server</p></dd>
 
 </dl></div>
     <div class="section level2">
-    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p><code>od_cache_summary()</code> provides an overview of all contents of the cache through
-a data.frame. It has one row for each dataset and the following columns.
-All file sizes are given in bytes</p><ul><li><p><strong><code>id</code></strong> the dataset id</p></li>
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+
+<ul><li><p><code>od_cache_summary()</code> provides an overview of all contents of the cache through
+a data.frame. It has one row for each dataset and returns a <code>data.frame</code> with#
+the following columns in which all file sizes are given in bytes.</p><ul><li><p><strong><code>id</code></strong> the dataset id</p></li>
 <li><p><strong><code>updated</code></strong> the last modified time for <code>${id}.json</code></p></li>
 <li><p><strong><code>json</code></strong> the file size of <code>${id}.json</code></p></li>
 <li><p><strong><code>data</code></strong> the file size of <code>${id}.csv</code></p></li>
 <li><p><strong><code>header</code></strong> the file size of <code>${id}_HEADER.csv</code></p></li>
 <li><p><strong><code>fields</code></strong> the total file size of all files belonging to fields (<code>{id}_C*.csv</code>).</p></li>
 <li><p><strong><code>n_fields</code></strong> the number of field files</p></li>
-</ul><p><code>od_downloads()</code> shows a download history for the current cache</p><ul><li><p><strong><code>time</code></strong> a timestamp for the download</p></li>
+</ul></li>
+<li><p><code>od_downloads()</code> shows a download history for the current cache and returns
+a <code>data.frame</code> with the following columns:</p><ul><li><p><strong><code>time</code></strong> a timestamp for the download</p></li>
 <li><p><strong><code>file</code></strong> the filename</p></li>
 <li><p><strong><code>downloaded</code></strong> the download time in milliseconds</p></li>
+</ul></li>
 </ul></div>
 
     <div class="section level2">
@@ -97,7 +101,7 @@ All file sizes are given in bytes</p><ul><li><p><strong><code>id</code></strong>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #000087;">Fields</span>: Tumore ICD/10 3-Steller<span style="font-style: italic;"> &lt;98&gt;</span>, Reporting year<span style="font-style: italic;"> &lt;40&gt;</span>, Province</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   of residence<span style="font-style: italic;"> &lt;9&gt;</span>, Sex<span style="font-style: italic;"> &lt;2&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2024-11-28 07:40:37.495465]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2024-11-29 09:51:50.595704]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">1.0.0</span></span>
 <span class="r-in"><span><span class="fu"><a href="od_table.html">od_table</a></span><span class="op">(</span><span class="st">"OGD_veste309_Veste309_1"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Structure of Earnings Survey (SES) 2018 Gross hourly earnings</span></span>
@@ -109,7 +113,7 @@ All file sizes are given in bytes</p><ul><li><p><strong><code>id</code></strong>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #000087;">Fields</span>: Sex<span style="font-style: italic;"> &lt;3&gt;</span>, Citizenship<span style="font-style: italic;"> &lt;9&gt;</span>, Region (NUTS2)<span style="font-style: italic;"> &lt;10&gt;</span>, Form of</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   employment<span style="font-style: italic;"> &lt;7&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2024-11-28 07:40:42.622355]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #000087;">Request</span>: <span style="color: #5F0087;">[2024-11-29 09:51:59.159953]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #000087;">STATcubeR</span>: <span style="color: #AF0000;">1.0.0</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## inspect</span></span></span>
@@ -117,26 +121,26 @@ All file sizes are given in bytes</p><ul><li><p><strong><code>id</code></strong>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 2 × 7</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   id                    updated   json    data header fields n_fields</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> OGD_krebs_ext_KREBS_1 <span style="color: #555555;">07:40:38</span>  <span style="text-decoration: underline;">3</span>765 2<span style="text-decoration: underline;">828</span>045    287   <span style="text-decoration: underline;">9</span>955        4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> OGD_veste309_Veste3…  <span style="color: #555555;">07:40:42</span>  <span style="text-decoration: underline;">4</span>062    <span style="text-decoration: underline;">4</span>931    516   <span style="text-decoration: underline;">2</span>015        4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> OGD_krebs_ext_KREBS_1 <span style="color: #555555;">09:51:51</span>  <span style="text-decoration: underline;">3</span>765 2<span style="text-decoration: underline;">828</span>045    287   <span style="text-decoration: underline;">9</span>955        4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> OGD_veste309_Veste3…  <span style="color: #555555;">09:51:59</span>  <span style="text-decoration: underline;">4</span>062    <span style="text-decoration: underline;">4</span>931    516   <span style="text-decoration: underline;">2</span>015        4</span>
 <span class="r-in"><span><span class="fu">od_downloads</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A data frame: 14 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    time                file                                 downloaded</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2024-11-28 <span style="color: #949494;">07:40:38</span> OGD_krebs_ext_KREBS_1.json                 659.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2024-11-28 <span style="color: #949494;">07:40:41</span> OGD_krebs_ext_KREBS_1.csv                 <span style="text-decoration: underline;">3</span>781.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2024-11-28 <span style="color: #949494;">07:40:42</span> OGD_krebs_ext_KREBS_1_HEADER.csv           108.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2024-11-28 <span style="color: #949494;">07:40:42</span> OGD_krebs_ext_KREBS_1_C-TUM_ICD10_3…       107.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2024-11-28 <span style="color: #949494;">07:40:42</span> OGD_krebs_ext_KREBS_1_C-BERJ-0.csv         108.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2024-11-28 <span style="color: #949494;">07:40:42</span> OGD_krebs_ext_KREBS_1_C-BUNDESLAND-…       107.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2024-11-28 <span style="color: #949494;">07:40:42</span> OGD_krebs_ext_KREBS_1_C-KRE_GESCHLE…       107.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2024-11-28 <span style="color: #949494;">07:40:42</span> OGD_veste309_Veste309_1.json               109.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2024-11-28 <span style="color: #949494;">07:40:42</span> OGD_veste309_Veste309_1.csv                108.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2024-11-28 <span style="color: #949494;">07:40:42</span> OGD_veste309_Veste309_1_HEADER.csv         107.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 2024-11-28 <span style="color: #949494;">07:40:43</span> OGD_veste309_Veste309_1_C-A11-0.csv        107.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 2024-11-28 <span style="color: #949494;">07:40:43</span> OGD_veste309_Veste309_1_C-STAATS-0.…       107.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 2024-11-28 <span style="color: #949494;">07:40:43</span> OGD_veste309_Veste309_1_C-VEBDL-0.c…       107.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> 2024-11-28 <span style="color: #949494;">07:40:43</span> OGD_veste309_Veste309_1_C-BESCHV-0.…       107.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 2024-11-29 <span style="color: #949494;">09:51:51</span> OGD_krebs_ext_KREBS_1.json                <span style="text-decoration: underline;">1</span>192.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 2024-11-29 <span style="color: #949494;">09:51:58</span> OGD_krebs_ext_KREBS_1.csv                 <span style="text-decoration: underline;">6</span>361.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 2024-11-29 <span style="color: #949494;">09:51:58</span> OGD_krebs_ext_KREBS_1_HEADER.csv           173.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 2024-11-29 <span style="color: #949494;">09:51:58</span> OGD_krebs_ext_KREBS_1_C-TUM_ICD10_3…       172.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 2024-11-29 <span style="color: #949494;">09:51:58</span> OGD_krebs_ext_KREBS_1_C-BERJ-0.csv         172.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 2024-11-29 <span style="color: #949494;">09:51:58</span> OGD_krebs_ext_KREBS_1_C-BUNDESLAND-…       172.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> 2024-11-29 <span style="color: #949494;">09:51:59</span> OGD_krebs_ext_KREBS_1_C-KRE_GESCHLE…       173.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> 2024-11-29 <span style="color: #949494;">09:51:59</span> OGD_veste309_Veste309_1.json               174.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> 2024-11-29 <span style="color: #949494;">09:51:59</span> OGD_veste309_Veste309_1.csv                173.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> 2024-11-29 <span style="color: #949494;">09:51:59</span> OGD_veste309_Veste309_1_HEADER.csv         171.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> 2024-11-29 <span style="color: #949494;">09:51:59</span> OGD_veste309_Veste309_1_C-A11-0.csv        172.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> 2024-11-29 <span style="color: #949494;">09:52:00</span> OGD_veste309_Veste309_1_C-STAATS-0.…       171.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> 2024-11-29 <span style="color: #949494;">09:52:00</span> OGD_veste309_Veste309_1_C-VEBDL-0.c…       172.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> 2024-11-29 <span style="color: #949494;">09:52:00</span> OGD_veste309_Veste309_1_C-BESCHV-0.…       172.</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
