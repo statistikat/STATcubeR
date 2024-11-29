@@ -15,6 +15,12 @@ od_table_local(file)
 \item{file}{An archive file file for the dataset. For \code{od_table_save()},
 the default is \verb{\{id\}.tar.gz} where \code{id} denotes the OGD identifier.}
 }
+\value{
+\itemize{
+\item for \code{\link[=od_table_save]{od_table_save()}}: the path to the generated file
+\item for \code{\link[=od_table_local]{od_table_local()}}: the OGD identifier
+}
+}
 \description{
 \code{od_table_save()} creates a tar archive containing all relevant data from the
 OGD portal. \code{od_table_local()} parses the tar archive and recreates the

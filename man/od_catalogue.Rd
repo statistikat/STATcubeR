@@ -14,14 +14,8 @@ external server or \code{prod} for the production server}
 cached json metadata. Otherwise, the cache is updated prior to
 creating the catalogue using a "bulk-download" for metadata files.}
 }
-\description{
-\strong{EXPERIMENTAL} This function parses several json metadata files at once
-and combines them into a \code{data.frame} so the datasets can easily be
-filtered based on categorizations, tags, number of classifications, etc.
-}
-\details{
-The naming, ordering and choice of the columns is likely to change.
-Currently, the following columns are provided.\tabular{lll}{
+\value{
+a \code{data.frame} with the following structure\tabular{lll}{
    \strong{Column} \tab \strong{Type} \tab \strong{Description} \cr
    title \tab \code{chr} \tab Title of the dataset \cr
    measures \tab \code{int} \tab Number of measure variables \cr
@@ -41,6 +35,14 @@ Currently, the following columns are provided.\tabular{lll}{
 The type \code{datetime} refers to the \code{POSIXct} format as returned by \code{\link[=Sys.time]{Sys.time()}}.
 The last column \code{"json"} contains the full json metadata as returned by
 \code{\link[=od_json]{od_json()}}.
+}
+\description{
+\strong{EXPERIMENTAL} This function parses several json metadata files at once
+and combines them into a \code{data.frame} so the datasets can easily be
+filtered based on categorizations, tags, number of classifications, etc.
+}
+\details{
+The naming, ordering and choice of the columns is likely to change.
 }
 \examples{
 catalogue <- od_catalogue()

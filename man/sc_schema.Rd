@@ -48,6 +48,13 @@ to \code{TRUE}. Ignored otherwise.}
 \item{type}{a schema type such as "DATABASE", "VALUE" or "TABLE".
 See \href{https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/schema-endpoint#id-.SchemaOpenDataAPIv9.9.6-SchemaTypesandAssociatedIDSchemes}{the API reference} for a list of all schema types.}
 }
+\value{
+\itemize{
+\item for \code{\link[=sc_schema]{sc_schema()}} and \code{\link[=sc_schema_db]{sc_schema_db()}}: an object of class \code{sc_schema}
+\item for \code{\link[=sc_schema_flatten]{sc_schema_flatten()}}: a \code{data.frame}
+\item for \code{\link[=sc_schema_catalogue]{sc_schema_catalogue()}}: a \code{list}
+}
+}
 \description{
 Invoke the \href{https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-api-reference/schema-endpoint}{\strong{/schema}} endpoint of the STATcube REST API.
 This endpoint can be used to get all available databases and tables

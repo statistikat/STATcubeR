@@ -30,6 +30,15 @@ via environment variables?}
 
 \item{x}{an object of class \code{sc_table} or \code{sc_schema}}
 }
+\value{
+\itemize{
+\item for \code{\link[=sc_cache_enable]{sc_cache_enable()}}, \code{\link[=sc_cache_dir]{sc_cache_dir()}}: the path to the cache-directory
+\item for \code{\link[=sc_cache_disable]{sc_cache_disable()}}: \code{TRUE}
+\item for \code{\link[=sc_cache_enabled]{sc_cache_enabled()}}: \code{TRUE} if caching is enabled, \code{FALSE} otherwise
+\item for \code{\link[=sc_cache_files]{sc_cache_files()}}: the content of the cache associated with a file
+\item for \code{\link[=sc_cache_clear]{sc_cache_clear()}}: \code{NULL}
+}
+}
 \description{
 Functions to cache requested resources in the directory \verb{~/.STATcubeR_cache}
 and reuse them in calls to \code{\link[=sc_table]{sc_table()}}, \code{\link[=sc_table_custom]{sc_table_custom()}} \code{\link[=sc_schema]{sc_schema()}} and so forth.

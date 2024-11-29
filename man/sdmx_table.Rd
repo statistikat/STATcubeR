@@ -21,7 +21,6 @@ values.
 \code{\link[=sdmx_table]{sdmx_table()}} should be treated as experimental for now.
 }
 \examples{
-
 x <- sdmx_table(system.file("sdmx/dedemo.zip", package = "STATcubeR"))
 # print and tabulate
 x

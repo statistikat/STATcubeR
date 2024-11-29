@@ -55,6 +55,13 @@ list if items should be grouped. See examples}
 \item{total}{Add totals to the field? If \code{map} is provided, the totals
 will correspond to the filtered data.}
 }
+\value{
+\itemize{
+\item for \code{\link[=sc_table_custom]{sc_table_custom()}}: an object of class \code{sc_table}
+\item for \code{\link[=sc_recode]{sc_recode()}}: a \code{list} that is a suitable input for parameter
+\code{"recode"} in \code{\link[=sc_table_custom]{sc_table_custom()}}
+}
+}
 \description{
 Define requests against the /table endpoint by providing
 URIs to databases, measures and fields.

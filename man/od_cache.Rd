@@ -14,13 +14,11 @@ od_downloads(server = "ext")
 \item{server}{the OGD-Server to use. \code{"ext"} for the external server (the
 default) or \code{"red"} for the editing server}
 }
-\description{
-Functions to inspect the contents of the current cache.
-}
-\details{
-\code{\link[=od_cache_summary]{od_cache_summary()}} provides an overview of all contents of the cache through
-a data.frame. It has one row for each dataset and the following columns.
-All file sizes are given in bytes
+\value{
+\itemize{
+\item \code{\link[=od_cache_summary]{od_cache_summary()}} provides an overview of all contents of the cache through
+a data.frame. It has one row for each dataset and returns a \code{data.frame} with#
+the following columns in which all file sizes are given in bytes.
 \itemize{
 \item \strong{\code{id}} the dataset id
 \item \strong{\code{updated}} the last modified time for \verb{$\{id\}.json}
@@ -30,13 +28,17 @@ All file sizes are given in bytes
 \item \strong{\code{fields}} the total file size of all files belonging to fields (\verb{\{id\}_C*.csv}).
 \item \strong{\code{n_fields}} the number of field files
 }
-
-\code{\link[=od_downloads]{od_downloads()}} shows a download history for the current cache
+\item \code{\link[=od_downloads]{od_downloads()}} shows a download history for the current cache and returns
+a \code{data.frame} with the following columns:
 \itemize{
 \item \strong{\code{time}} a timestamp for the download
 \item \strong{\code{file}} the filename
 \item \strong{\code{downloaded}} the download time in milliseconds
 }
+}
+}
+\description{
+Functions to inspect the contents of the current cache.
 }
 \examples{
 ## make sure the cache is not empty

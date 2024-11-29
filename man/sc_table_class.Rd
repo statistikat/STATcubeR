@@ -5,7 +5,7 @@
 \title{Class for /table responses}
 \description{
 R6 Class for all responses of the /table endpoint of the
-STATcube REST API.
+'STATcube' REST API.
 }
 \keyword{internal}
 \section{Super class}{

@@ -19,6 +19,9 @@
 #'
 #' # cleanup
 #' file.remove(archive)
+#' @return
+#' - for [od_table_save()]: the path to the generated file
+#' - for [od_table_local()]: the OGD identifier
 #' @export
 od_table_save <- function(x, file = NULL) {
   stopifnot(inherits(x, "od_table"))

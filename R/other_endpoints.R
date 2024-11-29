@@ -11,6 +11,14 @@
 #' @name other_endpoints
 #' @inheritParams sc_key
 #' @inheritParams sc_schema
+#' @return
+#' - [sc_info()]: a `data.frame` with two columns identifying possible languages
+#' - [sc_rate_limit_table()], [sc_rate_limit_schema()], [sc_rate_limits()]: a `list` with elements
+#'   * `remaining`: how much requests can be sent until the rate limit is reached
+#'   * `limit`: the number of requests allowed per hour
+#'   * `reset`: a timestamp when the rate limit will be reset
+#' - [sc_rate_limits()]:
+
 NULL
 
 #' @describeIn other_endpoints
@@ -29,12 +37,10 @@ sc_info <- function(language = c("en", "de"), key = NULL, server = "ext") {
 }
 
 #' @describeIn other_endpoints
-#' returns a `3x1` dataframe with the following columns
-#' * `remaining` how much requests can be sent to the `/table`
-#'   endpoint until the rate limit is reached.
-#' * `limit` the number of requests allowed per hour.
-#' * `reset` a timestamp when the rate limit will be reset.
-#'   Usually, this should be less than one hour `after the current time.
+#' returns a `list` with information about current requests-limits with
+#' respect to the `/table` endpoint. It
+#' also shows when the limits reset which should be less than one hour
+#' after the current time.
 #' @export
 sc_rate_limit_table <- function(language = c("en", "de"), key = NULL, server = "ext") {
   response <- sc_check_response(httr::GET(
@@ -46,7 +52,11 @@ sc_rate_limit_table <- function(language = c("en", "de"), key = NULL, server = "
   rate_limit
 }
 
-#' @rdname other_endpoints
+#' @describeIn other_endpoints
+#' returns a `list` with information about current requests-limits with
+#' respect to the `/schema` endpoint. It
+#' also shows when the limits reset which should be less than one hour
+#' after the current time.
 #' @export
 sc_rate_limit_schema <- function(language = c("en", "de"), key = NULL, server = "ext") {
   response <- sc_check_response(httr::GET(

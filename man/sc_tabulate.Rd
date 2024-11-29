@@ -36,10 +36,13 @@ dataset language (\code{table$language}) is used.}
 \item{sort}{If \code{TRUE}, the resulting data will be sorted by all provided
 field values}
 }
+\value{
+a \code{data.frame}
+}
 \description{
 \code{\link[=sc_tabulate]{sc_tabulate()}} extracts the data in the table and turns it into a tidy
 data.frame. It applies labeling of the data and transforms time variables
-into a \code{Date} format if they satisfy certain STATcube Standards.
+into a \code{Date} format if they satisfy certain 'STATcube' standards.
 
 \code{sc_tabulate(table, ...)} is just an alias for \code{table$tabulate(...)} and
 was added so this rather complicated method can have a separate documentation
@@ -118,7 +121,7 @@ table$tabulate("C-A11-0")      # -> 3 rows: "total", "male", "female"
 ## table$tabulate(...) is an alias for sc_tabulate(table, ...)
 sc_tabulate(table, "C-A11-0")
 
-######################### STATcube REST API #################################
+######################## 'STATcube' REST API ################################
 
 \dontshow{if (sc_key_exists()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 table_tourism <- sc_table(sc_example("accomodation.json"), "de")
@@ -127,15 +130,6 @@ table_tourism$tabulate()
 table_tourism$tabulate("Saison/Tourismusmonat")
 table_tourism$tabulate("Saison/Tourismusmonat", "Ankünfte")
 table_tourism$tabulate("Ankünfte")
-
-## TODO: param annotations does not work currently
-if (FALSE) {
-  table_trade <- sc_table(sc_example("foreign_trade.json"), "de")
-  tt <- sc_tabulate(table_trade, "Berichtsjahr", "Import, Wert in Euro",
-                    annotations = TRUE)
-  tt
-  str(tt[['Import, Wert in Euro_a']])
-}
 \dontshow{\}) # examplesIf}
 }
 \seealso{

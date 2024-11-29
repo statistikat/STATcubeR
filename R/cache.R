@@ -26,6 +26,12 @@
 #' @param verbose print instructions on how to set up caching persistently
 #'   via environment variables?
 #' @name sc_cache
+#' @return
+#' - for [sc_cache_enable()], [sc_cache_dir()]: the path to the cache-directory
+#' - for [sc_cache_disable()]: `TRUE`
+#' - for [sc_cache_enabled()]: `TRUE` if caching is enabled, `FALSE` otherwise
+#' - for [sc_cache_files()]: the content of the cache associated with a file
+#' - for [sc_cache_clear()]: `NULL`
 NULL
 
 #' @describeIn sc_cache enables caching for the current R session

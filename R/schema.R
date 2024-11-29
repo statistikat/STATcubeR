@@ -23,6 +23,10 @@
 #'   `"field"` and `"valueset"`. For the catalogue, only `NULL` and `"folder"`
 #'   are applicable.
 #' @family functions for /schema
+#' @return
+#' - for [sc_schema()] and [sc_schema_db()]: an object of class `sc_schema`
+#' - for [sc_schema_flatten()]: a `data.frame`
+#' - for [sc_schema_catalogue()]: a `list`
 #' @export
 sc_schema <- function(id = NULL, depth = NULL,
                       language = NULL, key = NULL, server = "ext") {

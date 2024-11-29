@@ -77,8 +77,9 @@ od_list <- function(unique = TRUE, server = c("ext", "red")) {
 #' and combines them into a `data.frame` so the datasets can easily be
 #' filtered based on categorizations, tags, number of classifications, etc.
 #'
+#' @details
 #' The naming, ordering and choice of the columns is likely to change.
-#' Currently, the following columns are provided.
+#' @return a `data.frame` with the following structure
 #'
 #' |**Column**|**Type**       | **Description**
 #' | ---------| -------       | -------------

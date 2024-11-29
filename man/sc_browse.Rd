@@ -7,7 +7,7 @@
 \alias{sc_browse_database}
 \alias{sc_browse_catalogue}
 \alias{sc_browse_ogd}
-\title{Links to important STATcube and OGD pages}
+\title{Links to important 'STATcube' and 'OGD' pages}
 \usage{
 sc_browse(server = "ext")
 
@@ -33,12 +33,16 @@ the production server. External users should always use the default option \code
 \item{open}{If \code{FALSE} (the default), open the infopage for the database.
 Otherwise, open the table view.}
 }
+\value{
+the URL of a specific webpage which is opened by default
+in a web browser.
+}
 \description{
-A collection of links, to browse important STATcube pages.
+A collection of links, to browse important 'STATcube' pages.
 }
 \section{Functions}{
 \itemize{
-\item \code{sc_browse()}: opens the home menu of STATcube
+\item \code{sc_browse()}: opens the home menu of 'STATcube'
 
 \item \code{sc_browse_preferences()}: opens the preference menu with the API key
 

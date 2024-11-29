@@ -3,7 +3,7 @@
 #' @description
 #' [sc_tabulate()] extracts the data in the table and turns it into a tidy
 #' data.frame. It applies labeling of the data and transforms time variables
-#' into a `Date` format if they satisfy certain STATcube Standards.
+#' into a `Date` format if they satisfy certain 'STATcube' standards.
 #'
 #' `sc_tabulate(table, ...)` is just an alias for `table$tabulate(...)` and
 #' was added so this rather complicated method can have a separate documentation
@@ -91,7 +91,7 @@
 #' ## table$tabulate(...) is an alias for sc_tabulate(table, ...)
 #' sc_tabulate(table, "C-A11-0")
 #'
-#' ######################### STATcube REST API #################################
+#' ######################## 'STATcube' REST API ################################
 #'
 #' @examplesIf sc_key_exists()
 #' table_tourism <- sc_table(sc_example("accomodation.json"), "de")
@@ -100,15 +100,7 @@
 #' table_tourism$tabulate("Saison/Tourismusmonat")
 #' table_tourism$tabulate("Saison/Tourismusmonat", "Ankünfte")
 #' table_tourism$tabulate("Ankünfte")
-#'
-#' ## TODO: param annotations does not work currently
-#' if (FALSE) {
-#'   table_trade <- sc_table(sc_example("foreign_trade.json"), "de")
-#'   tt <- sc_tabulate(table_trade, "Berichtsjahr", "Import, Wert in Euro",
-#'                     annotations = TRUE)
-#'   tt
-#'   str(tt[['Import, Wert in Euro_a']])
-#' }
+#' @return a `data.frame`
 #' @export
 sc_tabulate <- function(table, ..., .list = NULL, raw = FALSE,
                         parse_time = TRUE, recode_zeros = inherits(table, "sc_table"),

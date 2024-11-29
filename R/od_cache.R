@@ -13,23 +13,24 @@
 #' ## inspect
 #' od_cache_summary()
 #' od_downloads()
-#' @details
-#' [od_cache_summary()] provides an overview of all contents of the cache through
-#' a data.frame. It has one row for each dataset and the following columns.
-#' All file sizes are given in bytes
-#' - **`id`** the dataset id
-#' - **`updated`** the last modified time for `${id}.json`
-#' - **`json`** the file size of `${id}.json`
-#' - **`data`** the file size of `${id}.csv`
-#' - **`header`** the file size of `${id}_HEADER.csv`
-#' - **`fields`** the total file size of all files belonging to fields (`{id}_C*.csv`).
-#' - **`n_fields`** the number of field files
+#' @return
+#' - [od_cache_summary()] provides an overview of all contents of the cache through
+#' a data.frame. It has one row for each dataset and returns a `data.frame` with#
+#' the following columns in which all file sizes are given in bytes.
+#'   - **`id`** the dataset id
+#'   - **`updated`** the last modified time for `${id}.json`
+#'   - **`json`** the file size of `${id}.json`
+#'   - **`data`** the file size of `${id}.csv`
+#'   - **`header`** the file size of `${id}_HEADER.csv`
+#'   - **`fields`** the total file size of all files belonging to fields (`{id}_C*.csv`).
+#'   - **`n_fields`** the number of field files
 #'
-#' [od_downloads()] shows a download history for the current cache
+#' - [od_downloads()] shows a download history for the current cache and returns
+#' a `data.frame` with the following columns:
 #'
-#' - **`time`** a timestamp for the download
-#' - **`file`** the filename
-#' - **`downloaded`** the download time in milliseconds
+#'   - **`time`** a timestamp for the download
+#'   - **`file`** the filename
+#'   - **`downloaded`** the download time in milliseconds
 #' @export
 od_cache_summary <- function(server = "ext") {
   cache_dir <- od_cache_path(server)

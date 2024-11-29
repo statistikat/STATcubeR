@@ -1,14 +1,16 @@
-#' Links to important STATcube and OGD pages
+#' Links to important 'STATcube' and 'OGD' pages
 #'
-#' A collection of links, to browse important STATcube pages.
+#' A collection of links, to browse important 'STATcube' pages.
 #'
 #' @inheritParams sc_key
 #' @name sc_browse
 NULL
 
-#' @describeIn sc_browse opens the home menu of STATcube
+#' @describeIn sc_browse opens the home menu of 'STATcube'
 #' @examples
 #' sc_browse()
+#' @return the URL of a specific webpage which is opened by default
+#' in a web browser.
 #' @export
 sc_browse <- function(server = "ext") {
   sc_url(sc_url_gui(server), "home")

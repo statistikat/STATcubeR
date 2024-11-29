@@ -19,7 +19,7 @@ base_url <- function(server = "ext") {
 
 #' @title  Class for /table responses
 #' @description R6 Class for all responses of the /table endpoint of the
-#'   STATcube REST API.
+#'   'STATcube' REST API.
 #' @keywords internal
 sc_table_class <- R6::R6Class(
   "sc_table",

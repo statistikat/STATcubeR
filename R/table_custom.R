@@ -80,6 +80,10 @@
 #'   )
 #' )
 #' x$tabulate()
+#' @return
+#' - for [sc_table_custom()]: an object of class `sc_table`
+#' - for [sc_recode()]: a `list` that is a suitable input for parameter
+#' `"recode"` in [sc_table_custom()]
 #' @export
 sc_table_custom <- function(db, measures = c(), dimensions = c(),
                             language = c("en", "de"),

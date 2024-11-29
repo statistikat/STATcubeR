@@ -29,6 +29,18 @@ the production server. External users should always use the default option \code
 \item{x}{either a response-object (package \code{httr}), an object of class
 \code{sc_table} or an object of class \code{sc_schema}}
 }
+\value{
+\itemize{
+\item \code{\link[=sc_info]{sc_info()}}: a \code{data.frame} with two columns identifying possible languages
+\item \code{\link[=sc_rate_limit_table]{sc_rate_limit_table()}}, \code{\link[=sc_rate_limit_schema]{sc_rate_limit_schema()}}, \code{\link[=sc_rate_limits]{sc_rate_limits()}}: a \code{list} with elements
+\itemize{
+\item \code{remaining}: how much requests can be sent until the rate limit is reached
+\item \code{limit}: the number of requests allowed per hour
+\item \code{reset}: a timestamp when the rate limit will be reset
+}
+\item \code{\link[=sc_rate_limits]{sc_rate_limits()}}:
+}
+}
 \description{
 Utilize the simple endpoints \verb{/info} and \verb{/table_rate_limit}. Those provide
 information about available locales and the amount of requests available
@@ -38,14 +50,15 @@ for calls against the \verb{/table} endpoint.
 \itemize{
 \item \code{sc_info()}: returns information about all available database languages
 
-\item \code{sc_rate_limit_table()}: returns a \verb{3x1} dataframe with the following columns
-\itemize{
-\item \code{remaining} how much requests can be sent to the \verb{/table}
-endpoint until the rate limit is reached.
-\item \code{limit} the number of requests allowed per hour.
-\item \code{reset} a timestamp when the rate limit will be reset.
-Usually, this should be less than one hour `after the current time.
-}
+\item \code{sc_rate_limit_table()}: returns a \code{list} with information about current requests-limits with
+respect to the \verb{/table} endpoint. It
+also shows when the limits reset which should be less than one hour
+after the current time.
+
+\item \code{sc_rate_limit_schema()}: returns a \code{list} with information about current requests-limits with
+respect to the \verb{/schema} endpoint. It
+also shows when the limits reset which should be less than one hour
+after the current time.
 
 \item \code{sc_rate_limits()}: gets rate limits from response headers
 
