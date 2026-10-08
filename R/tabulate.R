@@ -97,9 +97,9 @@
 #' table_tourism <- sc_table(sc_example("accomodation.json"), "de")
 #'
 #' table_tourism$tabulate()
-#' table_tourism$tabulate("Saison bzw. Tourismusjahr")
-#' table_tourism$tabulate("Saison bzw. Tourismusjahr", "Betten")
-#' table_tourism$tabulate("Betten")
+#' table_tourism$tabulate("Saison / Tourismusmonat")
+#' table_tourism$tabulate("Saison / Tourismusmonat", "Ankünfte")
+#' table_tourism$tabulate("Ankünfte")
 #' @return a `data.frame`
 #' @export
 sc_tabulate <- function(table, ..., .list = NULL, raw = FALSE,

@@ -74,7 +74,7 @@ are wrapped into a class called \code{sc_schema} to simplify the usage in R.
 \item \code{sc_schema_flatten()}: turns a \code{sc_schema} object into a \code{data.frame}
 
 \item \code{sc_schema_catalogue()}: is similar to the
-\href{https://portal.statistik.at/statistik.at/ext/statcube/jsf/dataCatalogueExplorer.xhtml}{catalogue explorer} of the STATcube GUI and returns
+Catalogue explorer (see \code{\link[=sc_browse_catalogue]{sc_browse_catalogue()}}) of the STATcube GUI and returns
 a tree-type object containing all databases and tables.
 
 \item \code{sc_schema_db()}: is similar to the

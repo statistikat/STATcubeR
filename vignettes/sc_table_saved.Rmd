@@ -21,13 +21,14 @@ downloading a json file. All saved tables can be shown with
 `sc_table_saved_list()`.
 
 ```{r}
-sc_table_saved_list()
+saved_tables <- sc_table_saved_list()
+saved_tables
 ```
 
 Subsequently the `id` of a saved table can be used to import the table into R.
 
 ```{r}
-tab <- sc_table_saved("str:table:16f39429-8a1b-4593-a129-d5c646368f0f")
+tab <- sc_table_saved(saved_tables$id[1])
 ```
 
 ## Keys and accounts

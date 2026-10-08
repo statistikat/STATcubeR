@@ -43,7 +43,7 @@ The function accepts the four arguments.
 ## Building a Custom Table Step by Step {#step-by-step}
 
 The first part of this Article will showcase how custom tables can be
-created with a [database about tourism](`r sc_browse_database("detouextregsai")`).
+created with a [database about tourism](`r sc_browse_database("detouextregiosai")`).
 This database will also be used in most other examples of this article.
 
 ### Starting Simple {#database}
@@ -53,7 +53,7 @@ This will request only the mandatory fields and default measures for that databa
 In case of the tourism database, a table with one single row is returned.
 
 ```{r}
-database <- "str:database:detouextregsai"
+database <- "str:database:detouextregiosai"
 x <- sc_table_custom(database)
 x$tabulate()
 ```
@@ -130,7 +130,7 @@ show_json(x)
 
 ### Changing the hierarchy level {#hierarchy}
 
-We can see in [the GUI](`r sc_browse_database("detouextregsai")`) that "Country of origin" is a hierarchical classification.
+We can see in [the GUI](`r sc_browse_database("detouextregiosai")`) that "Country of origin" is a hierarchical classification.
 If we look at the table above, only the top level of the hierarchy (Austria, Germany, other) is used.
 This can be changed by providing the the value-set that corresponds to the more granular classification of "country of origin"
 
@@ -239,7 +239,7 @@ x <- sc_table_custom(
       list(origin$`Italy <29>`, origin$`France (incl.Monaco) <14>`)
     )),
     sc_recode(month, list(
-      month$Nov.99, month$Feb.00, month$Apr.09, month$`Jan. 22`
+      month$Nov.00, month$Feb.01, month$Apr.09, month$`Jan.22`
     ))
   )
 )

@@ -104,41 +104,45 @@ if the provided \code{VALUE}s belong to the \code{VALUESET/FIELD}
 
 \examples{
 \dontshow{if (sc_key_exists() && sc_server_reachable()) withAutoprint(\{ # examplesIf}
-sc_table_custom("str:database:detouextregiosti")$tabulate()
+sc_table_custom("str:database:detouextregiosai")
 
 sc_table_custom(
-  "str:database:detouextregiosti",
-  dimensions = "str:field:detouextregiosti:F-DATA:C-D74-0"
-)$tabulate()
+  "str:database:detouextregiosai",
+  dimensions = "str:field:detouextregiosai:F-DATA1:C-SDB_TIT-0"
+)
 
 sc_table_custom(
-  db = "str:database:detouextregiosti",
+  db = "str:database:detouextregiosai",
   measures = c(
-    "str:statfn:detouextregiosti:F-DATA:F-BETR:SUM",
-    "str:statfn:detouextregiosti:F-DATA:F-BETT:SUM"
+    "str:statfn:detouextregiosai:F-DATA1:F-ANK:SUM",
+    "str:measure:detouextregiosai:F-DATA1:F-UEB"
   ),
   dimensions = c(
-    "str:field:detouextregiosti:F-DATA:C-A10-0",
-    "str:field:detouextregiosti:F-DATA:C-D74-0"
+    "str:field:detouextregiosai:F-DATA1:C-SDB_TIT-0",
+    "str:valueset:detouextregiosai:F-DATA1:C-C93-2:C-C93SUM-0"
   )
-)$tabulate()
+)
 
-schema <- sc_schema_db("detouextregiosti", lang = "en")
-region <- schema[["Classifications"]][["Region [ABO]"]][["Tourismusregionen"]]
-period <- schema[["Mandatory fields"]][["Season / Tourism year <3>"]]
+schema <- sc_schema_db("detouextregiosai")
+region <- schema$`Other Classifications`$`Tourism commune [ABO]`$
+  `Regionale Gliederung (Ebene +1)`
+month <- schema$`Mandatory fields`$`Season/Tourism Month`
+
 
 x <- sc_table_custom(
- db = schema,
- measures = schema$Facts$Rooms,
- dimensions = list(period, region),
- recodes = c(
-   sc_recode(
-     region,
-     total = FALSE,
-     map = list(region$Achensee, list(region$Achensee, region$`Ausseerland-Salzkammergut`))
-   ),
-   sc_recode(period, total = FALSE)
- )
+  db = schema,
+  measures = schema$Facts$Arrivals,
+  dimensions = list(month, region),
+  recodes = c(
+    sc_recode(
+      field = region,
+      total = FALSE,
+      map = list(
+        region$Achensee, list(region$Großarltal, region$`Ausseerland-Salzkammergut`)
+      )
+    ),
+    sc_recode(field = month, total = FALSE)
+  )
 )
 x$tabulate()
 \dontshow{\}) # examplesIf}
