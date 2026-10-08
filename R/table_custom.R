@@ -42,43 +42,43 @@
 #' * all fields in `recodes` are also present in `dimensions`
 #' * the first two arguments of `sc_recode()` are consistent, i.e.
 #'   if the provided `VALUE`s belong to the `VALUESET/FIELD`
-#' @examplesIf sc_key_exists()
-#' sc_table_custom("str:database:detouextregsai")
+#' @examplesIf sc_key_exists() && sc_server_reachable()
+#' sc_table_custom("str:database:detouextregiosti")$tabulate()
 #'
 #' sc_table_custom(
-#'   "str:database:detouextregsai",
-#'   dimensions = "str:field:detouextregsai:F-DATA1:C-SDB_TIT-0"
-#' )
+#'   "str:database:detouextregiosti",
+#'   dimensions = "str:field:detouextregiosti:F-DATA:C-D74-0"
+#' )$tabulate()
 #'
 #' sc_table_custom(
-#'   db = "str:database:detouextregsai",
+#'   db = "str:database:detouextregiosti",
 #'   measures = c(
-#'     "str:statfn:detouextregsai:F-DATA1:F-ANK:SUM",
-#'     "str:measure:detouextregsai:F-DATA1:F-UEB"
+#'     "str:statfn:detouextregiosti:F-DATA:F-BETR:SUM",
+#'     "str:statfn:detouextregiosti:F-DATA:F-BETT:SUM"
 #'   ),
 #'   dimensions = c(
-#'     "str:field:detouextregsai:F-DATA1:C-SDB_TIT-0",
-#'     "str:valueset:detouextregsai:F-DATA1:C-C93-2:C-C93SUM-0"
+#'     "str:field:detouextregiosti:F-DATA:C-A10-0",
+#'     "str:field:detouextregiosti:F-DATA:C-D74-0"
 #'   )
-#' )
+#' )$tabulate()
 #'
-#' schema <- sc_schema_db("detouextregsai")
-#' region <- schema$`Other Classifications`$`Tourism commune [ABO]`$
-#'   `Regionale Gliederung (Ebene +1)`
-#' month <- schema$`Mandatory fields`$`Season/Tourism Month`
+#' schema <- sc_schema_db("detouextregiosti", lang = "en")
+#' region <- schema[["Classifications"]][["Region [ABO]"]][["Tourismusregionen"]]
+#' period <- schema[["Mandatory fields"]][["Season / Tourism year <3>"]]
 #'
 #' x <- sc_table_custom(
-#'   schema,
-#'   schema$Facts$Arrivals,
-#'   list(month, region),
-#'   recodes = c(
-#'     sc_recode(region, total = FALSE, map = list(
-#'       region$Achensee,
-#'       list(region$Arlberg, region$`Ausseerland-Salzkammergut`)
-#'     )),
-#'     sc_recode(month, total = FALSE)
-#'   )
-#' )
+#'  db = schema,
+#'  measures = schema$Facts$Rooms,
+#'  dimensions = list(period, region),
+#'  recodes = c(
+#'    sc_recode(
+#'      region,
+#'      total = FALSE,
+#'      map = list(region$Achensee, list(region$Achensee, region$`Ausseerland-Salzkammergut`))
+#'    ),
+#'    sc_recode(period, total = FALSE)
+#'  )
+#')
 #' x$tabulate()
 #' @return
 #' - for [sc_table_custom()]: an object of class `sc_table`
@@ -110,6 +110,9 @@ sc_table_custom <- function(db, measures = c(), dimensions = c(),
     warning("parameter `db` is not of type `DATABASE`")
   if (dry_run)
     return(json)
+  server <- sc_database_get_server_safe(db)
+  if (sc_abort_api_unavailable(server))
+    return(invisible(NULL))
   response <- sc_table_json_post(json, language, add_totals, key)
   sc_table_class$new(response, toString(json))
 }

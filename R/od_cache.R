@@ -5,7 +5,7 @@
 #' @rdname od_cache
 #' @param server the OGD-Server to use. `"ext"` for the external server (the
 #'   default) or `"red"` for the editing server
-#' @examples
+#' @examplesIf od_server_reachable()
 #' ## make sure the cache is not empty
 #' od_table("OGD_krebs_ext_KREBS_1")
 #' od_table("OGD_veste309_Veste309_1")

@@ -9,6 +9,7 @@ STATcube REST API and OGD datasets. \code{sc_data} objects are usually created w
 \code{\link[=od_table]{od_table()}} or \code{\link[=sc_table]{sc_table()}}.
 }
 \examples{
+\dontshow{if (od_server_reachable()) withAutoprint(\{ # examplesIf}
 ## create a new sc_data object via od_table()
 x <- od_table("OGD_krebs_ext_KREBS_1")
 
@@ -17,42 +18,34 @@ x$data
 
 ## show metadata
 x$meta
-
-## ------------------------------------------------
-## Method `sc_data$field`
-## ------------------------------------------------
-
+\dontshow{\}) # examplesIf}
+\dontshow{if (od_server_reachable()) withAutoprint(\{ # examplesIf}
 x <- od_table("OGD_krebs_ext_KREBS_1")
 x$field(1)
 x$field("Sex")
-
-## ------------------------------------------------
-## Method `sc_data$tabulate`
-## ------------------------------------------------
-
+\dontshow{\}) # examplesIf}
+\dontshow{if (od_server_reachable()) withAutoprint(\{ # examplesIf}
 x <- od_table("OGD_krebs_ext_KREBS_1")
 x$tabulate("Reporting year", "Sex")
-
-## ------------------------------------------------
-## Method `sc_data$total_codes`
-## ------------------------------------------------
-
+\dontshow{\}) # examplesIf}
+\dontshow{if (od_server_reachable()) withAutoprint(\{ # examplesIf}
 earnings <- od_table("OGD_veste309_Veste309_1")
 earnings$total_codes(Sex = "Sum total", Citizenship = "Total",
                      Region = "Total", `Form of employment` = "Total")
 earnings$tabulate("Form of employment")
 earnings$tabulate("Sex", "Form of employment")
+\dontshow{\}) # examplesIf}
 }
 \keyword{internal}
 \section{Active bindings}{
-\if{html}{\out{<div class="r6-active-bindings">}}
-\describe{
-\item{\code{data}}{the raw data. A data.frame that uses codes for all field variables and
+  \if{html}{\out{<div class="r6-active-bindings">}}
+  \describe{
+    \item{\code{data}}{the raw data. A data.frame that uses codes for all field variables and
 for all column names. To obtain labeled data, use \verb{$tabulate()}.}
 
-\item{\code{language}}{language to be used for labeling. \code{"en"} or \code{"de"}}
+    \item{\code{language}}{language to be used for labeling. \code{"en"} or \code{"de"}}
 
-\item{\code{meta}}{A list containing metadata about the dataset. It has at least the
+    \item{\code{meta}}{A list containing metadata about the dataset. It has at least the
 following entries
 \itemize{
 \item \strong{\verb{$source}} is a dataframe with a single row that contains
@@ -65,145 +58,124 @@ dataset. It contains codes and labels for each measure as well as
 the total codes. Derived classes might add additional columns
 }}
 
-\item{\code{recode}}{An object of class \link{sc_recoder} that can be used to change labels
+    \item{\code{recode}}{An object of class \link{sc_recoder} that can be used to change labels
 and perform other recoding operations.}
-}
-\if{html}{\out{</div>}}
+  }
+  \if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-sc_data-new}{\code{sc_data$new()}}
-\item \href{#method-sc_data-field}{\code{sc_data$field()}}
-\item \href{#method-sc_data-tabulate}{\code{sc_data$tabulate()}}
-\item \href{#method-sc_data-total_codes}{\code{sc_data$total_codes()}}
-\item \href{#method-sc_data-clone}{\code{sc_data$clone()}}
-}
+  \itemize{
+    \item \href{#method-sc_data-initialize}{\code{sc_data$new()}}
+    \item \href{#method-sc_data-field}{\code{sc_data$field()}}
+    \item \href{#method-sc_data-tabulate}{\code{sc_data$tabulate()}}
+    \item \href{#method-sc_data-total_codes}{\code{sc_data$total_codes()}}
+    \item \href{#method-sc_data-clone}{\code{sc_data$clone()}}
+  }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-sc_data-new"></a>}}
-\if{latex}{\out{\hypertarget{method-sc_data-new}{}}}
-\subsection{Method \code{new()}}{
-This class is not exported. Use \code{\link[=od_table]{od_table()}} or \code{\link[=sc_table]{sc_table()}}
+\if{html}{\out{<a id="method-sc_data-initialize"></a>}}
+\if{latex}{\out{\hypertarget{method-sc_data-initialize}{}}}
+\subsection{\code{sc_data$new()}}{
+  This class is not exported. Use \code{\link[=od_table]{od_table()}} or \code{\link[=sc_table]{sc_table()}}
 to initialize objects of class \code{sc_data}.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{sc_data$new(data, meta, fields)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{data, meta, fields}}{raw data, metadata and field information.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{sc_data$new(data, meta, fields)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{data, meta, fields}}{raw data, metadata and field information.
 Do not use directly but initialize objects with \code{\link[=sc_table]{sc_table()}} or
 \code{\link[=od_table]{od_table()}}}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
-\if{html}{\out{</div>}}
-}
-}
+
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-sc_data-field"></a>}}
 \if{latex}{\out{\hypertarget{method-sc_data-field}{}}}
-\subsection{Method \code{field()}}{
-get information about a specific field. The format of
+\subsection{\code{sc_data$field()}}{
+  get information about a specific field. The format of
 the return value is similar to \verb{$meta}. A \code{data.frame} that includes
 codes and labels for each level of the field.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{sc_data$field(i = 1)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{i}}{specifier for the field. Integer or character. If an integer
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{sc_data$field(i = 1)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{i}}{specifier for the field. Integer or character. If an integer
 is provided, it should match the row number in \verb{$meta$fields}. If
 a character is provided, the field is matched using \code{\link[=pmatch]{pmatch()}} on
 all available codes and labels.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Examples}{
-\if{html}{\out{<div class="r example copy">}}
-\preformatted{x <- od_table("OGD_krebs_ext_KREBS_1")
-x$field(1)
-x$field("Sex")
-}
-\if{html}{\out{</div>}}
-
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-sc_data-tabulate"></a>}}
 \if{latex}{\out{\hypertarget{method-sc_data-tabulate}{}}}
-\subsection{Method \code{tabulate()}}{
-create a tidy dataset. See \code{\link[=sc_tabulate]{sc_tabulate()}} for details.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{sc_data$tabulate(...)}\if{html}{\out{</div>}}
+\subsection{\code{sc_data$tabulate()}}{
+  create a tidy dataset. See \code{\link[=sc_tabulate]{sc_tabulate()}} for details.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{sc_data$tabulate(...)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{...}}{arguments that are passed down to \code{\link[=sc_tabulate]{sc_tabulate()}}}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{...}}{arguments that are passed down to \code{\link[=sc_tabulate]{sc_tabulate()}}}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Examples}{
-\if{html}{\out{<div class="r example copy">}}
-\preformatted{x <- od_table("OGD_krebs_ext_KREBS_1")
-x$tabulate("Reporting year", "Sex")
-}
-\if{html}{\out{</div>}}
-
-}
-
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-sc_data-total_codes"></a>}}
 \if{latex}{\out{\hypertarget{method-sc_data-total_codes}{}}}
-\subsection{Method \code{total_codes()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{sc_data$total_codes(...)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{...}}{key value pairs to define the total codes. Key should be a
+\subsection{\code{sc_data$total_codes()}}{
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{sc_data$total_codes(...)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{...}}{key value pairs to define the total codes. Key should be a
 field code and value a code from \verb{$field(i)}. If empty, it will
 return a data.frame with all specified total codes. Keys and values
 can also use labels instead of codes. See examples.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Examples}{
-\if{html}{\out{<div class="r example copy">}}
-\preformatted{earnings <- od_table("OGD_veste309_Veste309_1")
-earnings$total_codes(Sex = "Sum total", Citizenship = "Total",
-                     Region = "Total", `Form of employment` = "Total")
-earnings$tabulate("Form of employment")
-earnings$tabulate("Sex", "Form of employment")
-}
-\if{html}{\out{</div>}}
-
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-sc_data-clone"></a>}}
 \if{latex}{\out{\hypertarget{method-sc_data-clone}{}}}
-\subsection{Method \code{clone()}}{
-The objects of this class are cloneable with this method.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{sc_data$clone(deep = FALSE)}\if{html}{\out{</div>}}
+\subsection{\code{sc_data$clone()}}{
+  The objects of this class are cloneable with this method.
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{sc_data$clone(deep = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{deep}}{Whether to make a deep clone.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{deep}}{Whether to make a deep clone.}
-}
-\if{html}{\out{</div>}}
-}
-}
 }

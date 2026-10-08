@@ -60,17 +60,25 @@ That is, if a json is requested, it will be reused from the cache unless the
 \examples{
 # get the current cache directory
 od_cache_dir()
+\dontshow{if (od_server_reachable()) withAutoprint(\{ # examplesIf}
 
 # Get paths to cached files
 od_cache_file("OGD_veste309_Veste309_1")
 od_cache_file("OGD_veste309_Veste309_1", "C-A11-0")
+\dontshow{\}) # examplesIf}
+\dontshow{if (od_server_reachable()) withAutoprint(\{ # examplesIf}
 
 # get a parsed verison of the resource
 od_resource("OGD_veste309_Veste309_1", "C-A11-0")
+\dontshow{\}) # examplesIf}
+\dontshow{if (od_server_reachable()) withAutoprint(\{ # examplesIf}
 
 # get json metadata about a dataset
 od_json('OGD_veste309_Veste309_1')
+\dontshow{\}) # examplesIf}
+\dontshow{if (od_server_reachable()) withAutoprint(\{ # examplesIf}
 
 # Bundle all resources
 od_resource_all("OGD_veste309_Veste309_1")
+\dontshow{\}) # examplesIf}
 }

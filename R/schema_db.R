@@ -1,4 +1,4 @@
-#' @examplesIf sc_key_exists()
+#' @examplesIf sc_key_exists() && sc_server_reachable()
 #' my_catalogue <- sc_schema_catalogue()
 #'
 #' ## print

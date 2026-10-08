@@ -3,7 +3,7 @@
 #' Utilize the simple endpoints `/info` and `/table_rate_limit`. Those provide
 #' information about available locales and the amount of requests available
 #' for calls against the `/table` endpoint.
-#' @examplesIf sc_key_exists()
+#' @examplesIf sc_key_exists() && sc_server_reachable()
 #' sc_info()
 #' sc_rate_limit_table()
 #' sc_rate_limit_schema()
@@ -25,6 +25,8 @@ NULL
 #' returns information about all available database languages
 #' @export
 sc_info <- function(language = c("en", "de"), key = NULL, server = "ext") {
+  if (sc_abort_api_unavailable(server))
+    return(invisible(NULL))
   response <- httr::GET(
     url = paste0(base_url(server), "/info"),
     config = sc_headers(language, key, server)
@@ -43,6 +45,8 @@ sc_info <- function(language = c("en", "de"), key = NULL, server = "ext") {
 #' after the current time.
 #' @export
 sc_rate_limit_table <- function(language = c("en", "de"), key = NULL, server = "ext") {
+  if (sc_abort_api_unavailable(server))
+    return(invisible(NULL))
   response <- sc_check_response(httr::GET(
     url = paste0(base_url(server), "/rate_limit_table"),
     config = sc_headers(language, key, server)
@@ -59,6 +63,8 @@ sc_rate_limit_table <- function(language = c("en", "de"), key = NULL, server = "
 #' after the current time.
 #' @export
 sc_rate_limit_schema <- function(language = c("en", "de"), key = NULL, server = "ext") {
+  if (sc_abort_api_unavailable(server))
+    return(invisible(NULL))
   response <- sc_check_response(httr::GET(
     url = paste0(base_url(server), "/rate_limit_schema"),
     config = sc_headers(language, key, server)
@@ -89,6 +95,8 @@ extract_rate_limits <- function(response) {
 #'   `sc_table` or an object of class `sc_schema`
 #' @export
 sc_rate_limits <- function(x) {
+  if (is.null(x))
+    return(invisible(NULL))
   if (inherits(x, "response"))
     return(extract_rate_limits(x))
   if (inherits(x, "sc_table"))

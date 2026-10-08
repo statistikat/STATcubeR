@@ -32,6 +32,7 @@ Use the \verb{/revision} endpoint of the OGD server to get a list
 of all datasets that have changed since a certain timestamp.
 }
 \examples{
+\dontshow{if (od_server_reachable()) withAutoprint(\{ # examplesIf}
 # get all datasets (including OGDEXT_*)
 ids <- od_revisions(exclude_ext = FALSE)
 ids
@@ -39,4 +40,5 @@ sample(ids, 6)
 
 # get all the datasets since the fifteenth of august
 od_revisions("2022-09-15")
+\dontshow{\}) # examplesIf}
 }

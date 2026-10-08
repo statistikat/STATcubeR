@@ -4,7 +4,7 @@
 #' This class represents a common interface for datasets returned from the
 #' STATcube REST API and OGD datasets. `sc_data` objects are usually created with
 #' [od_table()] or [sc_table()].
-#' @examples
+#' @examplesIf od_server_reachable()
 #' ## create a new sc_data object via od_table()
 #' x <- od_table("OGD_krebs_ext_KREBS_1")
 #'
@@ -46,7 +46,7 @@ sc_data <- R6::R6Class(
     #'   is provided, it should match the row number in `$meta$fields`. If
     #'   a character is provided, the field is matched using [pmatch()] on
     #'   all available codes and labels.
-    #' @examples
+    #' @examplesIf od_server_reachable()
     #' x <- od_table("OGD_krebs_ext_KREBS_1")
     #' x$field(1)
     #' x$field("Sex")
@@ -62,7 +62,7 @@ sc_data <- R6::R6Class(
     },
     #' @description create a tidy dataset. See [sc_tabulate()] for details.
     #' @param ... arguments that are passed down to [sc_tabulate()]
-    #' @examples
+    #' @examplesIf od_server_reachable()
     #' x <- od_table("OGD_krebs_ext_KREBS_1")
     #' x$tabulate("Reporting year", "Sex")
     tabulate = function(...) {
@@ -72,7 +72,7 @@ sc_data <- R6::R6Class(
     #'   field code and value a code from `$field(i)`. If empty, it will
     #'   return a data.frame with all specified total codes. Keys and values
     #'   can also use labels instead of codes. See examples.
-    #' @examples
+    #' @examplesIf od_server_reachable()
     #' earnings <- od_table("OGD_veste309_Veste309_1")
     #' earnings$total_codes(Sex = "Sum total", Citizenship = "Total",
     #'                      Region = "Total", `Form of employment` = "Total")

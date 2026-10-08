@@ -41,6 +41,7 @@ a \code{data.frame} with the following columns:
 Functions to inspect the contents of the current cache.
 }
 \examples{
+\dontshow{if (od_server_reachable()) withAutoprint(\{ # examplesIf}
 ## make sure the cache is not empty
 od_table("OGD_krebs_ext_KREBS_1")
 od_table("OGD_veste309_Veste309_1")
@@ -48,4 +49,5 @@ od_table("OGD_veste309_Veste309_1")
 ## inspect
 od_cache_summary()
 od_downloads()
+\dontshow{\}) # examplesIf}
 }

@@ -45,6 +45,7 @@ filtered based on categorizations, tags, number of classifications, etc.
 The naming, ordering and choice of the columns is likely to change.
 }
 \examples{
+\dontshow{if (od_server_reachable()) withAutoprint(\{ # examplesIf}
 catalogue <- od_catalogue()
 catalogue
 table(catalogue$update_frequency)
@@ -53,4 +54,5 @@ catalogue[catalogue$categorization == "Gesundheit", 1:4]
 catalogue[catalogue$measures >= 70, 1:3]
 catalogue$json[[1]]
 head(catalogue$database)
+\dontshow{\}) # examplesIf}
 }

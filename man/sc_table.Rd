@@ -63,7 +63,7 @@ requests can use three formats with corresponding functions
 Those three functions all return an object of class \code{"sc_table"}.
 }
 \examples{
-\dontshow{if (sc_key_exists()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (sc_key_exists() && sc_server_reachable()) withAutoprint(\{ # examplesIf}
 my_table <- sc_table(json = sc_example("population_timeseries.json"))
 
 # print

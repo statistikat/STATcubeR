@@ -95,7 +95,7 @@ To use \code{data.tree} printing permanently, use
 }
 
 \examples{
-\dontshow{if (sc_key_exists()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (sc_key_exists() && sc_server_reachable()) withAutoprint(\{ # examplesIf}
 my_catalogue <- sc_schema_catalogue()
 
 ## print

@@ -17,6 +17,58 @@ base_url <- function(server = "ext") {
   sprintf("http://sdb%s:8082/statistik.at/%s/statcube/rest/v1", server, server)
 }
 
+#' @title Check availability of the 'STATcube' REST API
+#'
+#' @description
+#' Returns `TRUE` if the 'STATcube' REST API of Statistics Austria is
+#' reachable and returns valid (JSON) content. This also detects cases
+#' where the server is technically reachable (HTTP status 200) but serves
+#' an intermediate html page (e.g. during maintenance work). Note that an
+#' HTTP status 401 (invalid/missing API key) still counts as reachable, as
+#' the API itself responds with valid JSON. The result is cached within an
+#' R session. It is mainly used internally to guard examples and network
+#' functions against an unavailable server.
+#'
+#' @inheritParams sc_key
+#' @param timeout timeout of the health check request in seconds
+#' @return a [logical()] of length one
+#' @keywords internal
+#' @export
+sc_server_reachable <- function(server = c("ext", "red", "prod", "test"),
+                                timeout = 5) {
+  server <- match.arg(server)
+  if (isTRUE(getOption("STATcubeR.skip_server_check", FALSE)))
+    return(FALSE)
+  key <- paste0("api_reachable_", server)
+  if (is.null(sc_env[[key]])) {
+    url <- paste0(suppressWarnings(base_url(server)), "/info")
+    r <- tryCatch(httr::GET(url, httr::timeout(timeout)), error = function(e) NULL)
+    sc_env[[key]] <- !is.null(r) && identical(httr::http_type(r), "application/json")
+  }
+  sc_env[[key]]
+}
+
+# guard used by the exported sc_*() functions. Checks reachability of the
+# requested server and informs the user via a message otherwise
+sc_abort_api_unavailable <- function(server = "ext") {
+  if (sc_server_reachable(server))
+    return(FALSE)
+  url <- suppressWarnings(base_url(server))
+  abort_unavailable(url_host(url))
+  TRUE
+}
+
+# like sc_json_get_server(), but defaults to "ext" instead of erroring,
+# so it can be used in guards before the json is fully validated
+sc_json_get_server_safe <- function(json) {
+  tryCatch(sc_json_get_server(json), error = function(e) "ext")
+}
+
+# like sc_database_get_server(), but defaults to "ext" instead of erroring
+sc_database_get_server_safe <- function(database_uri) {
+  tryCatch(sc_database_get_server(database_uri), error = function(e) "ext")
+}
+
 #' @title  Class for /table responses
 #' @description R6 Class for all responses of the /table endpoint of the
 #'   'STATcube' REST API.
@@ -185,7 +237,7 @@ sc_table_class <- R6::R6Class(
 #'   to the `/table` endpoint.
 #' @param json_file Deprecated. Use `json` instead
 #' @family functions for /table
-#' @examplesIf sc_key_exists()
+#' @examplesIf sc_key_exists() && sc_server_reachable()
 #' my_table <- sc_table(json = sc_example("population_timeseries.json"))
 #'
 #' # print
@@ -212,6 +264,9 @@ sc_table_class <- R6::R6Class(
 sc_table <- function(json, language = NULL, add_totals = TRUE, key = NULL,
                      json_file = NA) {
   json <- normalize_json(json, json_file)
+  server <- sc_json_get_server_safe(json$string)
+  if (sc_abort_api_unavailable(server))
+    return(invisible(NULL))
   language <- sc_language(language, c("en", "de", "both"))
   both <- language == "both"
   if (both)

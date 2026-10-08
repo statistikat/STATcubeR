@@ -4,7 +4,7 @@
 \alias{od_list}
 \title{List available Opendata datasets}
 \usage{
-od_list(unique = TRUE, server = c("ext", "red"))
+od_list(unique = TRUE, server = c("ext", "red"), lang = c("de", "en"))
 }
 \arguments{
 \item{unique}{some datasets are published under multiple groups.
@@ -14,14 +14,19 @@ this parameter is set to \code{FALSE}.}
 \item{server}{the open data server to use. Either \code{ext} for the external
 server (the default) or \code{red} for the editing server. The editing server
 is only accessible for employees of Statistics Austria}
+
+\item{lang}{either \code{"de"} or \code{"en"}}
 }
 \value{
-a \code{data.frame} with two columns
+a \code{data.frame} with the following columns
 \itemize{
 \item \code{"category"}: Grouping under which a dataset is listed
 \item \code{"id"}: Name of the dataset which can later be used in
 \code{\link[=od_table]{od_table()}}
 \item \code{"label"}: Description of the dataset
+\item \code{"date"}: the last update date of the dataset
+\item \code{"csv_link"}: the URL of the (bulk) csv file
+\item \code{"json_link"}: the URL of the json metadata file
 }
 }
 \description{
@@ -29,9 +34,11 @@ a \code{data.frame} with two columns
 \href{https://data.statistik.gv.at}{data.statistik.gv.at}
 }
 \examples{
+\dontshow{if (od_server_reachable()) withAutoprint(\{ # examplesIf}
 df <- od_list()
 df
 subset(df, category == "Bildung und Forschung")
 # use an id to load a dataset
 od_table("OGD_fhsstud_ext_FHS_S_1")
+\dontshow{\}) # examplesIf}
 }

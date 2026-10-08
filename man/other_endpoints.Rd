@@ -64,7 +64,7 @@ after the current time.
 
 }}
 \examples{
-\dontshow{if (sc_key_exists()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (sc_key_exists() && sc_server_reachable()) withAutoprint(\{ # examplesIf}
 sc_info()
 sc_rate_limit_table()
 sc_rate_limit_schema()

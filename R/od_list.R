@@ -9,66 +9,179 @@
 #' @param server the open data server to use. Either `ext` for the external
 #'   server (the default) or `red` for the editing server. The editing server
 #'   is only accessible for employees of Statistics Austria
-#' @return a `data.frame` with two columns
+#' @param lang either `"de"` or `"en"`
+#' @return a `data.frame` with the following columns
 #' - `"category"`: Grouping under which a dataset is listed
 #' - `"id"`: Name of the dataset which can later be used in
 #' [od_table()]
 #' - `"label"`: Description of the dataset
+#' - `"date"`: the last update date of the dataset
+#' - `"csv_link"`: the URL of the (bulk) csv file
+#' - `"json_link"`: the URL of the json metadata file
 #' @export
-#' @examples
+#' @examplesIf od_server_reachable()
 #' df <- od_list()
 #' df
 #' subset(df, category == "Bildung und Forschung")
 #' # use an id to load a dataset
 #' od_table("OGD_fhsstud_ext_FHS_S_1")
-od_list <- function(unique = TRUE, server = c("ext", "red")) {
-  stopifnot(requireNamespace("xml2"))
+
+od_list <- function(unique = TRUE, server = c("ext", "red"), lang = c("de", "en")) {
+  stopifnot(requireNamespace("xml2", quietly = TRUE))
+
   server <- match.arg(server)
-  url <- od_url(server, "web", "catalog.jsp")
-  r <- httr::GET(url)
+  if (!od_server_reachable(server))
+    return(od_abort_unavailable(server))
+  base_url <- od_url(server, "web")
+  url <- paste0(base_url, "/catalog.jsp")
+
+  lang <- match.arg(lang)
+
+  # Header based on defined language
+  if (lang == "de") {
+    custom_headers <- httr::add_headers(
+      `Accept-Language` = "de-AT,de;q=0.9,en;q=0.8"
+    )
+  } else {
+    custom_headers <- httr::add_headers(
+      `Accept-Language` = "en-US,en;q=0.9"
+    )
+  }
+
+  # read data
+  r <- httr::GET(url, custom_headers)
   if (httr::http_error(r)) {
     stop("Error while reading ", shQuote(url), call. = FALSE)
   }
 
-  html <- httr::content(r, encoding = "UTF-8")
+  html <- httr::content(r, as = "parsed", encoding = "UTF-8")
 
-  # main-groups
-  grp <- html |>
-    xml2::xml_find_all('//*[@class="panel-heading"]') |>
-    xml2::xml_find_all(".//a") |>
-    xml2::xml_text()
+  # extract categories
+  panels <- xml2::xml_find_all(html, "//*[@class='panel panel-default']")
 
-  el <- html |>
-    xml2::xml_find_all(".//h4") |>
-    xml2::xml_find_all(".//a")
+  # Liste fuer die Tabellen-Fragmente vorallokieren
+  res_list <- vector("list", length(panels))
+  base_url <- "https://data.statistik.gv.at/web/"
 
-  # ids
-  df <- data_frame(
-    category = rep("NA", length(el)),
-    id = el |> xml2::xml_attr("aria-label"),
-    label = el |> xml2::xml_text()
-  )
+  # ignored labels based on language
+  ignored_labels <- if (lang == "de") {
+    c("[Alle \u00f6ffnen]", "[Alle schlie\u00dfen]", "Neueste Datens\u00e4tze", "Neueste Daten")
+  } else {
+    c("[Open all]", "[Close all]", "Latest data", "Latest Datasets")
+  }
 
-  ignored_labels <- c("[Alle \u00f6ffnen]", "[Alle schlie\u00dfen]",
-                      "Neueste Datens\u00e4tze")
+  for (i in seq_along(panels)) {
+    panel <- panels[[i]]
 
-  df <- df[!(df$label %in% ignored_labels), ]
-  grp <- grp[!(grp %in% ignored_labels)]
+    # read category from panel-heading
+    cat_node <- xml2::xml_find_first(panel, ".//*[@class='panel-heading']//a")
+    category <- xml2::xml_text(cat_node, trim = TRUE)
 
-  tt <- diff(c(which(is.na(df$id)), nrow(df) + 1))
-  df$category <- rep(grp, tt)
-  df <- df[!is.na(df$id), ]
-  if (unique)
+    # skip ignored
+    if (is.na(category) || category %in% ignored_labels) {
+      next
+    }
+
+    # read relevant rows
+    rows <- xml2::xml_find_all(panel, ".//tr[td/h4/a[starts-with(@aria-label, 'OGD_')]]")
+    if (length(rows) == 0) next
+
+    # extract id and label
+    main_links <- xml2::xml_find_first(rows, "./td[1]/h4/a")
+    ids <- xml2::xml_attr(main_links, "aria-label")
+    labels <- xml2::xml_text(main_links, trim = TRUE)
+
+    # extract date
+    date_nodes <- xml2::xml_find_first(rows, "./td[2]")
+    dates <- xml2::xml_text(date_nodes, trim = TRUE)
+
+    # csv/json links
+    csv_nodes <- xml2::xml_find_first(rows, "./td[3]/a")
+    csv_links <- xml2::xml_attr(csv_nodes, "href")
+
+    json_nodes <- xml2::xml_find_first(rows, "./td[4]//a")
+    json_links <- xml2::xml_attr(json_nodes, "href")
+
+    # convert relative -> abs. hrefs
+    if (!all(is.na(csv_links))) {
+      csv_links <- ifelse(is.na(csv_links), NA_character_, xml2::url_absolute(csv_links, base_url))
+    }
+    if (!all(is.na(json_links))) {
+      json_links <- ifelse(is.na(json_links), NA_character_, xml2::url_absolute(json_links, base_url))
+    }
+
+    # data.frame for given category
+    res_list[[i]] <- data.frame(
+      category = category,
+      id = ids,
+      label = labels,
+      date = dates,
+      csv_link = csv_links,
+      json_link = json_links,
+      stringsAsFactors = FALSE
+    )
+  }
+
+  # combine to a single data.frame
+  df <- do.call(rbind, res_list[!sapply(res_list, is.null)])
+
+  if (is.null(df) || nrow(df) == 0) {
+    return(
+      data.frame(
+        category = character(),
+        id = character(),
+        label = character(),
+        date = as.Date(character()),
+        csv_link = character(),
+        json_link = character(),
+        stringsAsFactors = FALSE
+      )
+    )
+  }
+
+  # cleanup/filter
+  df <- df[!is.na(df$id) & substr(df$id, 1, 4) == "OGD_", ]
+
+  if (exists("od_resource_blacklist")) {
+    df <- df[!(df$id %in% od_resource_blacklist), ]
+  }
+
+  if (unique) {
     df <- df[!duplicated(df$id), ]
-  else
-    df <- df[df$label != "JSON", ]
-  df <- df[substr(df$id, 1, 4) == "OGD_", ]
-  df <- df[!(df$id %in% od_resource_blacklist), ]
+  }
+
+  # language-based date-parsing
+  if (lang == "de") {
+    df$date <- as.Date(df$date, format = "%d.%m.%Y")
+  } else {
+    # Format: "Apr 15, 2019" -> system independent mapping of english month abbreviations
+    date_clean <- df$date
+    months_regex <- c(
+      "^Jan" = "01", "^Feb" = "02", "^Mar" = "03", "^Apr" = "04",
+      "^May" = "05", "^Jun" = "06", "^Jul" = "07", "^Aug" = "08",
+      "^Sep" = "09", "^Oct" = "10", "^Nov" = "11", "^Dec" = "12"
+    )
+
+    days <- gsub("^[A-Za-z ]+ ([0-9]+), .*", "\\1", date_clean)
+    years <- gsub(".*, ([0-9]{4})$", "\\1", date_clean)
+    days <- sprintf("%02d", as.integer(days))
+
+    extracted_months <- sub("^([A-Za-z]{3}).*", "\\1", date_clean)
+    num_months <- rep(NA_character_, length(extracted_months))
+
+    for (pat in names(months_regex)) {
+      matches <- grepl(pat, extracted_months, ignore.case = TRUE)
+      num_months[matches] <- months_regex[pat]
+    }
+    iso_dates <- paste(years, num_months, days, sep = "-")
+    df$date <- as.Date(iso_dates)
+  }
+
   rownames(df) <- NULL
   attr(df, "od") <- r$times[["total"]]
   class(df$id) <- c("ogd_id", "character")
-  class(df) <- c("tbl_df", class(df))
-  df
+  class(df) <- c("tbl_df", "tbl", "data.frame")
+  return(df)
 }
 
 #' Get a catalogue for OGD datasets
@@ -104,7 +217,7 @@ od_list <- function(unique = TRUE, server = c("ext", "red")) {
 #' @param local If `TRUE` (the default), the catalogue is created based on
 #'   cached json metadata. Otherwise, the cache is updated prior to
 #'   creating the catalogue using a "bulk-download" for metadata files.
-#' @examples
+#' @examplesIf od_server_reachable()
 #' catalogue <- od_catalogue()
 #' catalogue
 #' table(catalogue$update_frequency)
@@ -119,6 +232,8 @@ od_catalogue <- function(server = "ext", local = TRUE) {
     files <- dir(od_cache_path(server), '*.json')
     ids <- substr(files, 1, nchar(files) - 5)
   } else {
+    if (!od_server_reachable(server))
+      return(od_abort_unavailable(server))
     ids <- od_revisions(server = server)
   }
   timestamp <- switch(as.character(local), "TRUE" = NULL, "FALSE" = Sys.time())

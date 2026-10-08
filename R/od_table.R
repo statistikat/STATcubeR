@@ -24,7 +24,7 @@
 #' methods from [sc_data]. See [od_table_class] for the full class
 #' documentation.
 #'
-#' @examples
+#' @examplesIf od_server_reachable()
 #' x <- od_table("OGD_krebs_ext_KREBS_1")
 #'
 #' ## metadata
@@ -52,6 +52,8 @@
 #' od_table("OGD_veste303_Veste203_1")
 #' @export
 od_table <- function(id, language = NULL, server = "ext") {
+  if (!od_server_reachable(server))
+    return(od_abort_unavailable(server))
   od_table_class$new(id, language, server = server)
 }
 

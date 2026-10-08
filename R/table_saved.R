@@ -4,6 +4,8 @@ sc_table_saved_list <- function(key = NULL, server = "ext") {
   if (is.null(key))
     key <- sc_key(server)
   schema <- sc_schema(key  = key, server = server)
+  if (is.null(schema))
+    return(invisible(NULL))
   schema <- attr(schema,"response")
   schema <- httr::content(schema)
   schema <- schema$children
@@ -24,6 +26,8 @@ sc_table_saved_list <- function(key = NULL, server = "ext") {
 #' @rdname sc_table
 #' @export
 sc_table_saved <- function(table_uri, language = NULL, key = NULL, server = "ext") {
+  if (sc_abort_api_unavailable(server))
+    return(invisible(NULL))
   language <- sc_language(language)
   table_uri <- as.character(table_uri)
   if (substr(table_uri, 1, 3) != "str")

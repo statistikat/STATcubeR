@@ -7,7 +7,7 @@
 #' @param x an object of class `od_table`
 #' @param file An archive file file for the dataset. For `od_table_save()`,
 #'   the default is `{id}.tar.gz` where `id` denotes the OGD identifier.
-#' @examples
+#' @examplesIf od_server_reachable()
 #' x <- od_table("OGD_krebs_ext_KREBS_1")
 #'
 #' # save dataset as an archive

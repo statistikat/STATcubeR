@@ -9,145 +9,146 @@ R6 Class for all responses of the /table endpoint of the
 }
 \keyword{internal}
 \section{Super class}{
-\code{\link[STATcubeR:sc_data]{STATcubeR::sc_data}} -> \code{sc_table}
+\code{\link[STATcubeR:sc_data]{sc_data}} -> \code{sc_table}
 }
 \section{Active bindings}{
-\if{html}{\out{<div class="r6-active-bindings">}}
-\describe{
-\item{\code{response}}{the httr response}
+  \if{html}{\out{<div class="r6-active-bindings">}}
+  \describe{
+    \item{\code{response}}{the httr response}
 
-\item{\code{raw}}{the raw response content}
+    \item{\code{raw}}{the raw response content}
 
-\item{\code{annotation_legend}}{list of all annotations occurring in the data as a \code{data.frame} with
+    \item{\code{annotation_legend}}{list of all annotations occurring in the data as a \code{data.frame} with
 two columns for the annotation keys and annotation labels.}
 
-\item{\code{rate_limit}}{how much requests were left after the POST request for this table was sent?
+    \item{\code{rate_limit}}{how much requests were left after the POST request for this table was sent?
 Uses the same format as \code{\link[=sc_rate_limit_table]{sc_rate_limit_table()}}.}
 
-\item{\code{json}}{an object of class \code{sc_json} based the json file used in the request}
-}
-\if{html}{\out{</div>}}
+    \item{\code{json}}{an object of class \code{sc_json} based the json file used in the request}
+  }
+  \if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
-\itemize{
-\item \href{#method-sc_table-new}{\code{sc_table_class$new()}}
-\item \href{#method-sc_table-update}{\code{sc_table_class$update()}}
-\item \href{#method-sc_table-tabulate}{\code{sc_table_class$tabulate()}}
-\item \href{#method-sc_table-browse}{\code{sc_table_class$browse()}}
-\item \href{#method-sc_table-add_language}{\code{sc_table_class$add_language()}}
+  \itemize{
+    \item \href{#method-sc_table-initialize}{\code{sc_table$new()}}
+    \item \href{#method-sc_table-update}{\code{sc_table$update()}}
+    \item \href{#method-sc_table-tabulate}{\code{sc_table$tabulate()}}
+    \item \href{#method-sc_table-browse}{\code{sc_table$browse()}}
+    \item \href{#method-sc_table-add_language}{\code{sc_table$add_language()}}
+  }
 }
-}
-\if{html}{\out{
-<details open><summary>Inherited methods</summary>
+\if{html}{\out{<details open><summary>Inherited methods</summary>
 <ul>
-<li><span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="field"><a href='../../STATcubeR/html/sc_data.html#method-sc_data-field'><code>STATcubeR::sc_data$field()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="total_codes"><a href='../../STATcubeR/html/sc_data.html#method-sc_data-total_codes'><code>STATcubeR::sc_data$total_codes()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="field"><a href='../../STATcubeR/html/sc_data.html#method-sc_data-field'><code>sc_data$field()</code></a></span></li>
+  <li><span class="pkg-link" data-pkg="STATcubeR" data-topic="sc_data" data-id="total_codes"><a href='../../STATcubeR/html/sc_data.html#method-sc_data-total_codes'><code>sc_data$total_codes()</code></a></span></li>
 </ul>
-</details>
-}}
+</details>}}
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-sc_table-new"></a>}}
-\if{latex}{\out{\hypertarget{method-sc_table-new}{}}}
-\subsection{Method \code{new()}}{
-Usually, objects of class \code{sc_table} are generated with
+\if{html}{\out{<a id="method-sc_table-initialize"></a>}}
+\if{latex}{\out{\hypertarget{method-sc_table-initialize}{}}}
+\subsection{\code{sc_table$new()}}{
+  Usually, objects of class \code{sc_table} are generated with
 one of the factory methods \code{\link[=sc_table]{sc_table()}}, \code{\link[=sc_table_saved]{sc_table_saved()}} or
 \code{\link[=sc_table_custom]{sc_table_custom()}}. If this constructor is invoked directly,
 either omit the parameters \code{json} and \code{file} or make sure that they
 match with \code{response}.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{sc_table_class$new(response, json = NULL, file = NULL, add_totals = FALSE)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{response}}{a response from \code{\link[httr:POST]{httr::POST()}} against the /table
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{sc_table$new(response, json = NULL, file = NULL, add_totals = FALSE)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{response}}{a response from \code{\link[httr:POST]{httr::POST()}} against the /table
 endpoint.}
-
-\item{\code{json}}{the json file used in the request as a string.}
-
-\item{\code{file}}{the file path to the json file}
-
-\item{\code{add_totals}}{was the json request modified by adding totals via
+      \item{\code{json}}{the json file used in the request as a string.}
+      \item{\code{file}}{the file path to the json file}
+      \item{\code{add_totals}}{was the json request modified by adding totals via
 the add_totals parameter in one of the factory functions (\code{sc_table()},
 \code{sc_table_custom()}). Necessary, in order to also request totals via
 the \verb{$add_language()} method.}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
-\if{html}{\out{</div>}}
-}
-}
+
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-sc_table-update"></a>}}
 \if{latex}{\out{\hypertarget{method-sc_table-update}{}}}
-\subsection{Method \code{update()}}{
-Update the data by re-sending the json to the API. This
+\subsection{\code{sc_table$update()}}{
+  Update the data by re-sending the json to the API. This
 is still experimental and could break the object in case new levels
 were added to one of the fields. For example, if a new entry is
 added to a timeseries
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{sc_table_class$update()}\if{html}{\out{</div>}}
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{sc_table$update()}
+    \if{html}{\out{</div>}}
+  }
 }
 
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-sc_table-tabulate"></a>}}
 \if{latex}{\out{\hypertarget{method-sc_table-tabulate}{}}}
-\subsection{Method \code{tabulate()}}{
-An extension of \code{\link[=sc_tabulate]{sc_tabulate()}} with additional
+\subsection{\code{sc_table$tabulate()}}{
+  An extension of \code{\link[=sc_tabulate]{sc_tabulate()}} with additional
 parameters.
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{sc_table_class$tabulate(
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{sc_table$tabulate(
   ...,
   round = FALSE,
   annotations = FALSE,
   recode_zeros = FALSE
-)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{...}}{Parameters which are passed down to \code{\link[=sc_tabulate]{sc_tabulate()}}}
-
-\item{\code{round}}{apply rounding to each measure according to the precision
+)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{...}}{Parameters which are passed down to \code{\link[=sc_tabulate]{sc_tabulate()}}}
+      \item{\code{round}}{apply rounding to each measure according to the precision
 provided by the API.}
-
-\item{\code{annotations}}{Include separate annotation columns in the returned
+      \item{\code{annotations}}{Include separate annotation columns in the returned
 table. This parameter is currently broken and needs to be re-implemented}
+      \item{\code{recode_zeros}}{interpret zero values as missings?}
+    }
+    \if{html}{\out{</div>}}
+  }
+}
 
-\item{\code{recode_zeros}}{interpret zero values as missings?}
-}
-\if{html}{\out{</div>}}
-}
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-sc_table-browse"></a>}}
 \if{latex}{\out{\hypertarget{method-sc_table-browse}{}}}
-\subsection{Method \code{browse()}}{
-open the dataset in a browser
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{sc_table_class$browse()}\if{html}{\out{</div>}}
+\subsection{\code{sc_table$browse()}}{
+  open the dataset in a browser
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{sc_table$browse()}
+    \if{html}{\out{</div>}}
+  }
 }
 
-}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-sc_table-add_language"></a>}}
 \if{latex}{\out{\hypertarget{method-sc_table-add_language}{}}}
-\subsection{Method \code{add_language()}}{
-add a second language to the dataset
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{sc_table_class$add_language(language = NULL, key = NULL)}\if{html}{\out{</div>}}
+\subsection{\code{sc_table$add_language()}}{
+  add a second language to the dataset
+  \subsection{Usage}{
+    \if{html}{\out{<div class="r">}}
+    \preformatted{sc_table$add_language(language = NULL, key = NULL)}
+    \if{html}{\out{</div>}}
+  }
+  \subsection{Arguments}{
+    \if{html}{\out{<div class="arguments">}}
+    \describe{
+      \item{\code{language}}{a language to add. \code{"en"} or \code{"de"}.}
+      \item{\code{key}}{an API key}
+    }
+    \if{html}{\out{</div>}}
+  }
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{language}}{a language to add. \code{"en"} or \code{"de"}.}
-
-\item{\code{key}}{an API key}
-}
-\if{html}{\out{</div>}}
-}
-}
 }

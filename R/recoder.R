@@ -13,7 +13,7 @@
 #' ````
 #'
 #' See the example section for more details.
-#' @examples
+#' @examplesIf od_server_reachable()
 #' x <- od_table("OGD_krebs_ext_KREBS_1")
 #'
 #' x$recode$

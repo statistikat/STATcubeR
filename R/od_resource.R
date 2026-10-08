@@ -62,10 +62,21 @@ od_cache_clear <- function(id, server = "ext") {
 od_cache_update <- function(url, filename, server = "ext") {
   cache_file <- od_cache_path(server, filename)
   dir.create(dirname(cache_file), recursive = TRUE, showWarnings = FALSE)
-  r <- httr::GET(url, httr::write_disk(cache_file, overwrite = TRUE))
+  r <- httr::GET(url, httr::write_disk(cache_file, overwrite = TRUE),
+                 httr::timeout(60))
+  ext <- sub(".*\\.", "", filename)
+  expected_type <- switch(ext, csv = "text/csv", json = "application/json")
+  type <- httr::http_type(r)
   if (httr::http_error(r) || identical(r$headers$`content-length`, "0")) {
     file.remove(cache_file)
     stop("Resource not available: ", url, call. = FALSE)
+  }
+  if (is.character(type) && nzchar(type) && type != expected_type) {
+    # e.g. an html page served during maintenance work
+    file.remove(cache_file)
+    stop("Unexpected response of type ", shQuote(type), " while downloading ",
+         shQuote(url), ". The server may be under maintenance.",
+         call. = FALSE)
   }
   t <- r$times[["total"]] * 1000
   cat(format(Sys.time()), ",", filename, ",", t, "\n", append = TRUE,
@@ -83,7 +94,7 @@ od_cache_update <- function(url, filename, server = "ext") {
 #' @param server the OGD-Server to use to load update the resources in case they
 #'   are outdated. `"ext"` for the external server (the default) od `"red"` for
 #'   the editing server.
-#' @examples
+#' @examplesIf od_server_reachable()
 #'
 #' # Get paths to cached files
 #' od_cache_file("OGD_veste309_Veste309_1")
@@ -117,7 +128,7 @@ print.od_cache_file <- function(x, ...) {
 }
 
 #' @name od_resource
-#' @examples
+#' @examplesIf od_server_reachable()
 #'
 #' # get a parsed verison of the resource
 #' od_resource("OGD_veste309_Veste309_1", "C-A11-0")
@@ -190,7 +201,7 @@ od_normalize_columns <- function(x, suffix) {
 #' By default, downloaded json files will "expire" in one hour or 3600 seconds.
 #' That is, if a json is requested, it will be reused from the cache unless the
 #' [file.mtime()] is more than one hour behind [Sys.time()].
-#' @examples
+#' @examplesIf od_server_reachable()
 #'
 #' # get json metadata about a dataset
 #' od_json('OGD_veste309_Veste309_1')
@@ -212,7 +223,7 @@ as.character.od_json <- function(x, ...) {
 
 #' @name od_resource
 #' @param json The JSON file belonging to the dataset
-#' @examples
+#' @examplesIf od_server_reachable()
 #'
 #' # Bundle all resources
 #' od_resource_all("OGD_veste309_Veste309_1")

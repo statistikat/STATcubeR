@@ -34,6 +34,7 @@ and metadata from https://data.statistik.gv.at/data/
 }
 
 \examples{
+\dontshow{if (od_server_reachable()) withAutoprint(\{ # examplesIf}
 x <- od_table("OGD_krebs_ext_KREBS_1")
 
 ## metadata
@@ -59,4 +60,5 @@ od_table("OGD_veste309_Veste309_1")
 od_table("OGD_konjunkturmonitor_KonMon_1")
 od_table("OGD_krankenbewegungen_ex_LEISTUNGEN_1")
 od_table("OGD_veste303_Veste203_1")
+\dontshow{\}) # examplesIf}
 }

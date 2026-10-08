@@ -32,7 +32,7 @@ the response content and the response status
 
 }}
 \examples{
-\dontshow{if (sc_key_exists()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (sc_key_exists() && sc_server_reachable()) withAutoprint(\{ # examplesIf}
 try(sc_table_saved("invalid_id"))
 last_error <- sc_last_error()
 httr::content(last_error)

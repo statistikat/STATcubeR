@@ -11,7 +11,7 @@
 #' For that purpose, it is possible to use [sc_last_error()] which will provide
 #' the httr response object for the last unsuccessful request.
 #' @return The return value from `httr::GET()` or `httr::POST()`.
-#' @examplesIf sc_key_exists()
+#' @examplesIf sc_key_exists() && sc_server_reachable()
 #' try(sc_table_saved("invalid_id"))
 #' last_error <- sc_last_error()
 #' httr::content(last_error)
@@ -67,6 +67,10 @@ sc_check_response <- function(response) {
   }
   if (httr::http_type(response) != "application/json") {
     sc_env$last_error <- response
+    maintenance <- if (identical(httr::http_type(response), "text/html"))
+      c("!" = "the server may be under maintenance, or the request was
+         rejected by a firewall (an html page was served instead of an
+         API response)")
     stop(cli::format_error(c(
       cli::format_inline("expected an API response of type {.val application/json}
         but got {.val {httr::http_type(response)}}"),
@@ -74,6 +78,7 @@ sc_check_response <- function(response) {
       "*" = "rate limit exceeded, check with {cli_function_run('sc_rate_limit_table')}",
       "*" = "invalid json body (via {cli_function_link('sc_table')} or
          {cli_function_link('sc_table_custom')})",
+      maintenance,
       message_sc_last_error()
     )), call. = FALSE)
   }

@@ -7,6 +7,64 @@ od_url <- function(server = c("ext", "red"), ..., sep = "/") {
   paste(base_url, ..., sep = sep)
 }
 
+# Check whether the open data server is reachable and returns valid content.
+# The /ogd/revision endpoint is used as a health check because it returns
+# clean JSON. This also detects cases where the server is technically
+# reachable (HTTP 200) but serves an intermediate html page (e.g. during
+# maintenance work). The result is cached per session, so the check costs
+# at most one request per R session.
+#' @title Check availability of the OGD server
+#'
+#' @description
+#' Returns `TRUE` if the open data server of Statistics Austria is reachable
+#' and returns valid (JSON) content. This also detects cases where the server
+#' is technically reachable (HTTP status 200) but serves an intermediate
+#' html page (e.g. during maintenance work). The result is cached within an
+#' R session. It is mainly used internally to guard examples and network
+#' functions against an unavailable server.
+#'
+#' @param server the OGD-Server to check. `"ext"` for the external server
+#'   (the default) or `"red"` for the editing server
+#' @param timeout timeout of the health check request in seconds
+#' @return a [logical()] of length one
+#' @keywords internal
+#' @export
+od_server_reachable <- function(server = c("ext", "red"), timeout = 5) {
+  server <- match.arg(server)
+  if (isTRUE(getOption("STATcubeR.skip_server_check", FALSE)))
+    return(FALSE)
+  key <- paste0("server_reachable_", server)
+  if (is.null(sc_env[[key]])) {
+    r <- tryCatch(
+      httr::GET(od_url(server, "ogd", "revision"), httr::timeout(timeout)),
+      error = function(e) NULL
+    )
+    sc_env[[key]] <- !is.null(r) && !httr::http_error(r) &&
+      identical(httr::http_type(r), "application/json")
+  }
+  sc_env[[key]]
+}
+
+# Gracefully inform the user that a server is not available.
+# Used as a guard in top-level exported functions, which return
+# invisible(NULL) in this case.
+abort_unavailable <- function(url) {
+  cli::cli_alert_danger(c(
+    "The server {.url {url}} is currently not available",
+    " (possibly under maintenance). Please try again later.",
+    "i" = "Returning {.code NULL}."
+  ))
+  invisible(NULL)
+}
+
+url_host <- function(url) {
+  sub("^(https?://)?([^/]+).*$", "\\2", url)
+}
+
+od_abort_unavailable <- function(server = "ext") {
+  abort_unavailable(url_host(od_url(server)))
+}
+
 od_get_total_code <- function(code, parent) {
   if (length(parent) > 1 && sum(is.na(parent)) == 1) {
     code[which(is.na(parent))]

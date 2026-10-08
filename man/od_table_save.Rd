@@ -27,6 +27,7 @@ OGD portal. \code{od_table_local()} parses the tar archive and recreates the
 \code{od_table} object.
 }
 \examples{
+\dontshow{if (od_server_reachable()) withAutoprint(\{ # examplesIf}
 x <- od_table("OGD_krebs_ext_KREBS_1")
 
 # save dataset as an archive
@@ -38,4 +39,5 @@ x2 <- od_table_local(archive)
 
 # cleanup
 file.remove(archive)
+\dontshow{\}) # examplesIf}
 }

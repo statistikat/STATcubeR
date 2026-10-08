@@ -30,6 +30,8 @@
 #' @export
 sc_schema <- function(id = NULL, depth = NULL,
                       language = NULL, key = NULL, server = "ext") {
+  if (sc_abort_api_unavailable(server))
+    return(invisible(NULL))
   language <- sc_language(language)
   if (is.null(key))
     key <- sc_key(server)

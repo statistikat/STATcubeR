@@ -13,7 +13,7 @@
 #'   `OGDEXT_` as a prefix
 #' @return a character vector with dataset ids
 #' @inheritParams od_list
-#' @examples
+#' @examplesIf od_server_reachable()
 #' # get all datasets (including OGDEXT_*)
 #' ids <- od_revisions(exclude_ext = FALSE)
 #' ids
@@ -23,6 +23,8 @@
 #' od_revisions("2022-09-15")
 #' @export
 od_revisions <- function(since = NULL, exclude_ext = TRUE, server = "ext") {
+  if (!od_server_reachable(server))
+    return(od_abort_unavailable(server))
   resp <- httr::GET(
     od_url(server, "ogd", "revision"),
     query = list(since_time = ogd_revison_normalize_time(since)))
