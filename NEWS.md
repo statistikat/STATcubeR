@@ -1,3 +1,24 @@
+# STATcubeR 1.0.1
+- now depends on `R >= 4.1.0`
+- Examples are skipped when the OGD server or the 'STATcube' REST API is not
+  reachable or serves an intermediate page (e.g. during maintenance work)
+  instead of failing with an error (CRAN check).
+- Network functions (`od_table()`, `od_list()`, `od_revisions()`,
+  `od_catalogue()`, `sc_table()`, `sc_table_custom()`, `sc_table_saved()`,
+  `sc_table_saved_list()`, `sc_schema()`, `sc_info()`, `sc_rate_limit_*()`)
+  inform via a message and return `invisible(NULL)` when the server is not
+  available, instead of failing with a cryptic parse error. The target server
+  (`ext`/`red`/`prod`) is derived from the requested dataset and reported in
+  the message.
+- `od_cache_update()` and `sc_check_response()` detect html responses
+  (e.g. maintenance pages or firewall rejections) and report an informative
+  error.
+- New (internal) availability checks `od_server_reachable()` and
+  `sc_server_reachable()`, cached per R session. `sc_server_reachable()`
+  validates the `server` argument via `match.arg()` and checks every server
+  (`ext`/`red`/`prod`/`test`) instead of assuming internal servers are
+  reachable.
+
 # STATcubeR 1.0.0
 
 * First Version for CRAN
