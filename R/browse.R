@@ -73,7 +73,7 @@ in_stat <- function() {
     return(FALSE)
   if (Sys.getenv("STATCUBER_IN_STAT") != "")
     return(as.logical(Sys.getenv("STATCUBER_IN_STAT")))
-  Sys.info()["nodename"] %in% c("xlwt0012", "xlwp0017")
+  grepl("xlwt|xlwp", Sys.info()["nodename"])
 }
 
 sc_url_gui <- function(server = "ext") {
