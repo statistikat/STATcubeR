@@ -169,7 +169,7 @@ sc_schema_flatten_impl <- function(resp, type) {
 }
 
 #' @describeIn sc_schema is similar to the
-#' [catalogue explorer](`r sc_browse_catalogue()`) of the STATcube GUI and returns
+#' Catalogue explorer (see [sc_browse_catalogue()]) of the STATcube GUI and returns
 #' a tree-type object containing all databases and tables.
 #' @export
 sc_schema_catalogue <- function(depth = "folder", ...) {
