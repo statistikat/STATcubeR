@@ -45,7 +45,7 @@ table
     #> Fields: Tumore ICD/10 3-Steller <98>, Reporting year <42>, Province of
     #>   residence <9>, Sex <2>
     #> 
-    #> Request: [2026-10-08 14:58:56.339354]
+    #> Request: [2026-10-09 04:55:40.145163]
     #> STATcubeR: 1.0.1
 
 The dataset contains the number of cancer patients by several
@@ -424,7 +424,7 @@ table
     #> Fields: Tumore ICD/10 3-Steller <98>, Berichtsjahr <42>, Bundesland <9>,
     #>   Geschlecht <2>
     #> 
-    #> Request: [2026-10-08 14:58:56.339354]
+    #> Request: [2026-10-09 04:55:40.145163]
     #> STATcubeR: 1.0.1
 
 ``` r

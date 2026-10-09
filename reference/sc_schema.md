@@ -100,10 +100,11 @@ sc_schema_db(id, depth = "valueset", language = c("en", "de"), key = NULL)
   of the STATcube GUI and returns a tree-type object containing all
   databases and tables.
 
-- `sc_schema_db()`: is similar to the [table
-  view](https://portal.statistik.at/statistik.at/ext/statcube/opendatabase?id=deake005)
-  of the STATcube GUI and gives information about all measures and
-  classification fields for a specific database
+- `sc_schema_db()`: is similar to the 'table view\* of the STATcube GUI
+  (see. eg.
+  ([`sc_browse_database()`](https://statistikat.github.io/STATcubeR/reference/sc_browse.md)
+  and open a specific database). The functions returns information about
+  all measures and classification fields for the selected database.
 
 ## Printing with data.tree
 
@@ -192,7 +193,7 @@ db_schema$`Demographic Characteristics`$Gender$Gender$male
 # access the raw response from httr::GET()
 my_response <- attr(db_schema, "response")
 my_response$headers$date
-#> [1] "Thu, 08 Oct 2026 14:57:22 GMT"
+#> [1] "Fri, 09 Oct 2026 04:52:45 GMT"
 my_content <- httr::content(my_response)
 my_content$label
 #> [1] "Working hours (Labour Force Survey)"

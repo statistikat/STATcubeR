@@ -48,7 +48,7 @@ endpoint that are remaining.
 sc_rate_limit_table()
 ```
 
-    #> 95 / 100 (Resets at [15:57:10])
+    #> 93 / 100 (Resets at [05:52:26])
 
 In this case, we see that 8 out of the 100 requests per hour have been
 used up and 92 are still available. The rate limit will be reset once
@@ -70,7 +70,7 @@ Rate limits are be returned in the same format as in
 sc_rate_limit_schema()
 ```
 
-    #> 9999 / 10000 (Resets at [15:57:10])
+    #> 9996 / 10000 (Resets at [05:52:26])
 
 ## Rate Limits from headers
 
@@ -99,11 +99,11 @@ sc_example("population_timeseries.json") %>%
 ```
 
     #> $schema
-    #> 9999 / 10000 (Resets at [15:57:10])
+    #> 9996 / 10000 (Resets at [05:52:26])
     #> 
     #> 
     #> $table
-    #> 95 / 100 (Resets at [15:57:10])
+    #> 93 / 100 (Resets at [05:52:26])
 
 Note that the function gives rate limits for `/schama` and `/table` even
 tough only the `/table` endpoint was used.
@@ -119,11 +119,11 @@ sc_schema_catalogue() %>%
 ```
 
     #> $schema
-    #> 9999 / 10000 (Resets at [15:57:10])
+    #> 9996 / 10000 (Resets at [05:52:26])
     #> 
     #> 
     #> $table
-    #> 95 / 100 (Resets at [15:57:10])
+    #> 93 / 100 (Resets at [05:52:26])
 
 ## Server-Side Caching
 

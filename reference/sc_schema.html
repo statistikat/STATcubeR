@@ -160,9 +160,9 @@ See <a href="https://docs.wingarc.com.au/superstar/9.12/open-data-api/open-data-
 Catalogue explorer (see <code><a href="sc_browse.html">sc_browse_catalogue()</a></code>) of the STATcube GUI and returns
 a tree-type object containing all databases and tables.</p></li>
 <li><p><code>sc_schema_db()</code>: is similar to the
-<a href="https://portal.statistik.at/statistik.at/ext/statcube/opendatabase?id=deake005" class="external-link">table view</a>
-of the STATcube GUI and gives information about all measures and
-classification fields for a specific database</p></li>
+'table view* of the STATcube GUI (see. eg. (<code><a href="sc_browse.html">sc_browse_database()</a></code> and
+open a specific database). The functions returns information about all measures and
+classification fields for the selected database.</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="printing-with-data-tree">Printing with data.tree<a class="anchor" aria-label="anchor" href="#printing-with-data-tree"></a></h2>
@@ -252,7 +252,7 @@ To use <code>data.tree</code> printing permanently, use</p>
 <span class="r-in"><span><span class="co"># access the raw response from httr::GET()</span></span></span>
 <span class="r-in"><span><span class="va">my_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">db_schema</span>, <span class="st">"response"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">my_response</span><span class="op">$</span><span class="va">headers</span><span class="op">$</span><span class="va">date</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Thu, 08 Oct 2026 14:57:22 GMT"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Fri, 09 Oct 2026 04:52:45 GMT"</span>
 <span class="r-in"><span><span class="va">my_content</span> <span class="op">&lt;-</span> <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/content.html" class="external-link">content</a></span><span class="op">(</span><span class="va">my_response</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">my_content</span><span class="op">$</span><span class="va">label</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Working hours (Labour Force Survey)"</span>

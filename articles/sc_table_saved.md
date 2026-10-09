@@ -80,7 +80,7 @@ sc_table_saved('str:table:defaulttable_deake005')
     #>   worked per week
     #> Fields: Time section <1>
     #> 
-    #> Request: [2026-10-08 15:00:22]
+    #> Request: [2026-10-09 04:57:58]
     #> STATcubeR: 1.0.1
 
 All available default tables as well as other saved tables can be

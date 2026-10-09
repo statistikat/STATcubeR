@@ -26,7 +26,7 @@ directory of the current R session.
 od_cache_dir()
 ```
 
-    #> [1] "/tmp/RtmprF7rPE/STATcubeR/open_data/"
+    #> [1] "/tmp/Rtmp9EWmVJ/STATcubeR/open_data/"
 
 Let’s examine for example what happens when the data from the structure
 of earnings survey (SES) is requested.
@@ -51,13 +51,13 @@ earnings$resources
 # A data frame: 7 × 6
   name           last_modified       cached               size download parsed
   <chr>          <dttm>              <dttm>              <dbl>    <dbl>  <dbl>
-1 meta.json      2022-03-24 11:29:48 2026-10-08 14:58:52  4028     105. NA    
-2 data.csv       2022-03-24 11:29:48 2026-10-08 14:58:52  4931     104.  0.680
-3 HEADER.csv     2022-03-24 11:29:48 2026-10-08 14:58:52   516     103.  0.372
-4 C-A11-0.csv    2022-03-24 11:29:48 2026-10-08 14:58:52   159     103.  0.361
-5 C-STAATS-0.csv 2022-03-24 11:29:48 2026-10-08 14:58:52   697     104.  0.379
-6 C-VEBDL-0.csv  2022-03-24 11:29:48 2026-10-08 14:58:53   518     104.  0.367
-7 C-BESCHV-0.csv 2022-03-24 11:29:48 2026-10-08 14:58:53   641     104.  0.385
+1 meta.json      2022-03-24 11:29:48 2026-10-09 04:55:35  4028     151. NA    
+2 data.csv       2022-03-24 11:29:48 2026-10-09 04:55:35  4931     150.  0.804
+3 HEADER.csv     2022-03-24 11:29:48 2026-10-09 04:55:35   516     150.  0.439
+4 C-A11-0.csv    2022-03-24 11:29:48 2026-10-09 04:55:35   159     152.  0.458
+5 C-STAATS-0.csv 2022-03-24 11:29:48 2026-10-09 04:55:35   697     151.  0.447
+6 C-VEBDL-0.csv  2022-03-24 11:29:48 2026-10-09 04:55:36   518     151.  0.438
+7 C-BESCHV-0.csv 2022-03-24 11:29:48 2026-10-09 04:55:36   641     151.  0.461
 ```
 
 `last_modified` tells us when the resource was changed on the
@@ -79,14 +79,14 @@ data fileserver.
 od_cache_file("OGD_veste309_Veste309_1")
 ```
 
-    #> [1] "/tmp/RtmprF7rPE/STATcubeR/open_data/OGD_veste309_Veste309_1.csv"
+    #> [1] "/tmp/Rtmp9EWmVJ/STATcubeR/open_data/OGD_veste309_Veste309_1.csv"
 
 ``` r
 
 od_cache_file("OGD_veste309_Veste309_1", "C-A11-0")
 ```
 
-    #> [1] "/tmp/RtmprF7rPE/STATcubeR/open_data/OGD_veste309_Veste309_1_C-A11-0.csv"
+    #> [1] "/tmp/Rtmp9EWmVJ/STATcubeR/open_data/OGD_veste309_Veste309_1_C-A11-0.csv"
 
 To read files from the cache as `data.frame`s, use
 [`od_resource()`](https://statistikat.github.io/STATcubeR/reference/od_resource.md)
@@ -133,7 +133,7 @@ contains 7 rows, therefore 7 files will be deleted during cleanup.
 od_cache_clear("OGD_veste309_Veste309_1")
 ```
 
-    #> deleted 7 files from '/tmp/RtmprF7rPE/STATcubeR/open_data/'
+    #> deleted 7 files from '/tmp/Rtmp9EWmVJ/STATcubeR/open_data/'
 
 If you want to use a persistent directory like
 `~/.cache/STATcubeR/open_data/` for caching, the directory can be
@@ -157,13 +157,13 @@ earnings$resources
 # A data frame: 7 × 6
   name           last_modified       cached               size download parsed
   <chr>          <dttm>              <dttm>              <dbl>    <dbl>  <dbl>
-1 meta.json      2022-03-24 11:29:48 2026-10-08 14:58:52  4028     105. NA    
-2 data.csv       2022-03-24 11:29:48 2026-10-08 14:58:52  4931     104.  0.680
-3 HEADER.csv     2022-03-24 11:29:48 2026-10-08 14:58:52   516     103.  0.372
-4 C-A11-0.csv    2022-03-24 11:29:48 2026-10-08 14:58:52   159     103.  0.361
-5 C-STAATS-0.csv 2022-03-24 11:29:48 2026-10-08 14:58:52   697     104.  0.379
-6 C-VEBDL-0.csv  2022-03-24 11:29:48 2026-10-08 14:58:53   518     104.  0.367
-7 C-BESCHV-0.csv 2022-03-24 11:29:48 2026-10-08 14:58:53   641     104.  0.385
+1 meta.json      2022-03-24 11:29:48 2026-10-09 04:55:35  4028     151. NA    
+2 data.csv       2022-03-24 11:29:48 2026-10-09 04:55:35  4931     150.  0.804
+3 HEADER.csv     2022-03-24 11:29:48 2026-10-09 04:55:35   516     150.  0.439
+4 C-A11-0.csv    2022-03-24 11:29:48 2026-10-09 04:55:35   159     152.  0.458
+5 C-STAATS-0.csv 2022-03-24 11:29:48 2026-10-09 04:55:35   697     151.  0.447
+6 C-VEBDL-0.csv  2022-03-24 11:29:48 2026-10-09 04:55:36   518     151.  0.438
+7 C-BESCHV-0.csv 2022-03-24 11:29:48 2026-10-09 04:55:36   641     151.  0.461
 ```
 
 We already looked at **`name`** and **`last_modified`**. The remaining
@@ -226,11 +226,11 @@ od_downloads()
 # A data frame: 7 × 3
   time                file                                   downloaded
   <dttm>              <chr>                                       <dbl>
-1 2026-10-08 14:58:52 OGD_veste309_Veste309_1.json                 105.
-2 2026-10-08 14:58:52 OGD_veste309_Veste309_1.csv                  104.
-3 2026-10-08 14:58:52 OGD_veste309_Veste309_1_HEADER.csv           103.
-4 2026-10-08 14:58:52 OGD_veste309_Veste309_1_C-A11-0.csv          103.
-5 2026-10-08 14:58:52 OGD_veste309_Veste309_1_C-STAATS-0.csv       104.
-6 2026-10-08 14:58:53 OGD_veste309_Veste309_1_C-VEBDL-0.csv        104.
-7 2026-10-08 14:58:53 OGD_veste309_Veste309_1_C-BESCHV-0.csv       104.
+1 2026-10-09 04:55:35 OGD_veste309_Veste309_1.json                 151.
+2 2026-10-09 04:55:35 OGD_veste309_Veste309_1.csv                  150.
+3 2026-10-09 04:55:35 OGD_veste309_Veste309_1_HEADER.csv           150.
+4 2026-10-09 04:55:35 OGD_veste309_Veste309_1_C-A11-0.csv          152.
+5 2026-10-09 04:55:35 OGD_veste309_Veste309_1_C-STAATS-0.csv       151.
+6 2026-10-09 04:55:36 OGD_veste309_Veste309_1_C-VEBDL-0.csv        151.
+7 2026-10-09 04:55:36 OGD_veste309_Veste309_1_C-BESCHV-0.csv       151.
 ```

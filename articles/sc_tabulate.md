@@ -135,7 +135,7 @@ earnings
     #> Fields: Sex <3>, Citizenship <9>, Region (NUTS2) <10>, Form of employment
     #>   <7>
     #> 
-    #> Request: [2026-10-08 15:00:48.959752]
+    #> Request: [2026-10-09 04:58:52.956836]
     #> STATcubeR: 1.0.1
 
 As we can see from the [`print()`](https://rdrr.io/r/base/print.html)

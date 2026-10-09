@@ -50,7 +50,7 @@ a character vector with dataset ids
 # get all datasets (including OGDEXT_*)
 ids <- od_revisions(exclude_ext = FALSE)
 ids
-#> 542 datasets are available ([2026-10-08 14:57:09])
+#> 542 datasets are available ([2026-10-09 04:52:27])
 #> ids: OGDEXT_AEST_GEMTAB_1, OGDEXT_AMB_1, OGDEXT_BINNENWAND_1, …, OGD_zlf_komm_ZLF_KOM_1, and OGD_zlf_komm_ZLF_KOM_2
 sample(ids, 6)
 #> [1] "OGD_bevstprogjdgebland_PR_BEVJDGB_7"
@@ -64,6 +64,6 @@ sample(ids, 6)
 od_revisions("2022-09-15")
 #> 396 changes between
 #>                 [2022-09-15] and
-#>                 [2026-10-08 14:57:09]
+#>                 [2026-10-09 04:52:27]
 #> ids: OGD_1531kn2_Aussenhandel_4, OGD_1905fue_FUE_B1905FUE_1, OGD__steuer_est_ab_2008_altgesch_EST_2_2, …, OGD_zlf_komm_ZLF_KOM_1, and OGD_zlf_komm_ZLF_KOM_2
 ```

@@ -137,7 +137,7 @@ sc_table_custom("str:database:detouextregiosai")
 #> Measures: Nights spent
 #> Fields: Season/Tourism Month <2>
 #> 
-#> Request: [2026-10-08 14:57:28]
+#> Request: [2026-10-09 04:53:09]
 #> STATcubeR: 1.0.1
 
 sc_table_custom(
@@ -151,7 +151,7 @@ sc_table_custom(
 #> Measures: Nights spent
 #> Fields: Season/Tourism Month <55>
 #> 
-#> Request: [2026-10-08 14:57:29]
+#> Request: [2026-10-09 04:53:17]
 #> STATcubeR: 1.0.1
 
 sc_table_custom(
@@ -172,7 +172,7 @@ sc_table_custom(
 #> Measures: Arrivals, Nights spent
 #> Fields: Season/Tourism Month <55>, Country of origin <4>
 #> 
-#> Request: [2026-10-08 14:57:30]
+#> Request: [2026-10-09 04:53:30]
 #> STATcubeR: 1.0.1
 
 schema <- sc_schema_db("detouextregiosai")

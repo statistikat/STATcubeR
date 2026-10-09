@@ -92,7 +92,7 @@ my_table
 #> Fields: Quarter <98>, Age in single years <96> <7>, Sex <2> <3>,
 #>   Commune <2383> (Province-District) <10>
 #> 
-#> Request: [2026-10-08 14:57:24]
+#> Request: [2026-10-09 04:52:55]
 #> STATcubeR: 1.0.1
 
 # get matadata for the table

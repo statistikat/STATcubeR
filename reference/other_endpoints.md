@@ -83,18 +83,18 @@ sc_info()
 #> 1 de     Deutsch    
 #> 2 en     English    
 sc_rate_limit_table()
-#> 99 / 100 (Resets at [15:57:10])
+#> 100 / 100 (Resets at [05:52:26])
 #> 
 sc_rate_limit_schema()
-#> 10000 / 10000 (Resets at [15:57:10])
+#> 9997 / 10000 (Resets at [05:52:26])
 #> 
 sc_rate_limits(sc_schema("str:group:deake005:X_B1"))
 #> $schema
-#> 10000 / 10000 (Resets at [15:57:10])
+#> 9997 / 10000 (Resets at [05:52:26])
 #> 
 #> 
 #> $table
-#> 99 / 100 (Resets at [15:57:10])
+#> 100 / 100 (Resets at [05:52:26])
 #> 
 #> 
 ```

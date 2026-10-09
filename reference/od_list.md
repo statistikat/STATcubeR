@@ -88,6 +88,6 @@ od_table("OGD_fhsstud_ext_FHS_S_1")
 #>   (Lehrgang)
 #> Fields: Semester <43>
 #> 
-#> Request: [2026-10-08 14:57:07.870193]
+#> Request: [2026-10-09 04:52:25.625639]
 #> STATcubeR: 1.0.1
 ```

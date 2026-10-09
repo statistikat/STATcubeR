@@ -80,7 +80,7 @@ my_table
     #> Fields: Quarter <98>, Age in single years <96> <7>, Sex <2> <3>, Commune
     #>   <2383> (Province-District) <10>
     #> 
-    #> Request: [2026-10-08 15:00:26]
+    #> Request: [2026-10-09 04:58:02]
     #> STATcubeR: 1.0.1
 
 ## Convert the response into a data frame
@@ -216,7 +216,7 @@ sc_example("accomodation.json") %>% sc_table("de")
     #> Fields: Saison / Tourismusmonat <323>, Herkunftsland <4>,
     #>   Beherbergungsbetrieb <4>
     #> 
-    #> Request: [2026-10-08 15:00:27]
+    #> Request: [2026-10-09 04:58:04]
     #> STATcubeR: 1.0.1
 
 ``` r
@@ -234,7 +234,7 @@ sc_example("economic_atlas.json") %>% sc_table("de")
     #>   (38 more)
     #> Fields: Jahr (ab 1995) <27>, Bundesland <11>
     #> 
-    #> Request: [2026-10-08 15:00:30]
+    #> Request: [2026-10-09 04:58:10]
     #> STATcubeR: 1.0.1
 
 ``` r
@@ -250,7 +250,7 @@ sc_example("foreign_trade.json") %>% sc_table("de")
     #> Fields: Güter (CPA) <4>, Berichtsjahr <18>, Wirtschaftszweig (NACE) [teilw.
     #>   ABO] <4>
     #> 
-    #> Request: [2026-10-08 15:00:32]
+    #> Request: [2026-10-09 04:58:19]
     #> STATcubeR: 1.0.1
 
 ``` r
@@ -266,7 +266,7 @@ sc_example("gross_regional_product.json") %>% sc_table("de")
     #>   je Einwohner, Bruttoregionalprodukt je Erwerbstätigem
     #> Fields: NUTS-3 <11>, Zeit <13>
     #> 
-    #> Request: [2026-10-08 15:00:35]
+    #> Request: [2026-10-09 04:58:23]
     #> STATcubeR: 1.0.1
 
 ``` r
@@ -282,7 +282,7 @@ sc_example("labor_force_survey.json") %>% sc_table("de")
     #> Fields: Zeit <12>, Geschlecht <3>, Höchste abgeschlossene Bildung -
     #>   nationale Gliederung <6>, Bundesland (NUTS 2-Einheit) <10>
     #> 
-    #> Request: [2026-10-08 15:00:39]
+    #> Request: [2026-10-09 04:58:38]
     #> STATcubeR: 1.0.1
 
 ``` r
@@ -300,7 +300,7 @@ sc_example("agriculture_prices.json") %>% sc_table("de")
     #>   Positionen der Produktion)
     #> Fields: Jahr <32>, Position <6>
     #> 
-    #> Request: [2026-10-08 15:00:42]
+    #> Request: [2026-10-09 04:58:43]
     #> STATcubeR: 1.0.1
 
 ``` r
@@ -321,7 +321,7 @@ sc_example("economic_trend_monitor.json") %>% sc_table("de")
     #>   Produzierenden Bereich (2021=100; NACE B-E), … (53 more)
     #> Fields: Berichtszeitraum <214>, Wertangabe <2>
     #> 
-    #> Request: [2026-10-08 15:00:45]
+    #> Request: [2026-10-09 04:58:48]
     #> STATcubeR: 1.0.1
 
 ## Further reading
