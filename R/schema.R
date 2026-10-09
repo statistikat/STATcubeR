@@ -175,4 +175,3 @@ sc_schema_flatten_impl <- function(resp, type) {
 sc_schema_catalogue <- function(depth = "folder", ...) {
   sc_schema(id = NULL, depth = depth, ...)
 }
-

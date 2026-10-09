@@ -29,9 +29,9 @@
 #'  treeX_B1 <- sc_schema("str:group:deake005:X_B1", depth = "valueset")
 #'  print(treeX_B1, tree = TRUE)
 #' @describeIn sc_schema is similar to the
-#'   [table view](`r sc_browse_database('deake005', open = TRUE)`)
-#'   of the STATcube GUI and gives information about all measures and
-#'   classification fields for a specific database
+#'   'table view* of the STATcube GUI (see. eg. ([sc_browse_database()] and
+#'   open a specific database). The functions returns information about all measures and
+#'   classification fields for the selected database.
 #' @export
 sc_schema_db <- function(id, depth = "valueset", language = c("en", "de"),
                          key = NULL) {

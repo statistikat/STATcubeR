@@ -78,9 +78,9 @@ Catalogue explorer (see \code{\link[=sc_browse_catalogue]{sc_browse_catalogue()}
 a tree-type object containing all databases and tables.
 
 \item \code{sc_schema_db()}: is similar to the
-\href{https://portal.statistik.at/statistik.at/ext/statcube/opendatabase?id=deake005}{table view}
-of the STATcube GUI and gives information about all measures and
-classification fields for a specific database
+'table view* of the STATcube GUI (see. eg. (\code{\link[=sc_browse_database]{sc_browse_database()}} and
+open a specific database). The functions returns information about all measures and
+classification fields for the selected database.
 
 }}
 \section{Printing with data.tree}{
